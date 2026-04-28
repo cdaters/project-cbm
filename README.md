@@ -72,7 +72,13 @@ See the full [Screenshot Gallery](docs/screenshots.md).
 
 ## Download
 
-Go to this repository's **Releases** section, open the latest release, and download the files listed under **Assets**:
+***Note:** Project CBM does not include copyrighted ROMs, games, or commercial software. Users are responsible for providing software they are legally allowed to use.*
+
+Download the latest Project CBM release from the **GitHub Releases** page:
+
+- [Download the latest Project CBM release](https://github.com/cdaters/project-cbm/releases/latest)
+
+From the release assets, download:
 
 ```text
 pcbm-v1.0.0-rpi3-5.img.xz
