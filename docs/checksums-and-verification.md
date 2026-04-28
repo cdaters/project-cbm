@@ -25,10 +25,17 @@ A successful result should report that the image is OK.
 macOS does not always include `sha256sum` by default. Use:
 
 ```bash
-shasum -a 256 pcbm-v1.0.0-rpi3-5.img.xz pcbm-v1.0.0-docs.zip
+shasum -a 256 -c SHA256SUMS
 ```
 
-Compare the output against the checksums listed in `SHA256SUMS`.
+If the files are valid, you should see output similar to:
+
+```text
+pcbm-v1.0.0-rpi3-5.img.xz: OK
+pcbm-v1.0.0-docs.zip: OK
+```
+
+If verification fails, delete the downloaded file and download it again from the official Project CBM GitHub Release.
 
 ## Why this matters
 
