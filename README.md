@@ -1,3 +1,9 @@
+![Static Badge](https://img.shields.io/badge/platform-raspberry pi-%23C51A4A)
+![GitHub Release(latest by date)](https://img.shields.io/github/v/release/cdaters/project-cbm)
+![GitHub License](https://img.shields.io/github/license/cdaters/project-cbm)
+![GitHub last commit](https://img.shields.io/github/last-commit/cdaters/project-cbm)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/cdaters/project-cbm)
+
 <p align="center">
   <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">
 </p>
