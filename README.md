@@ -152,6 +152,10 @@ screenshots/              Project screenshots and UI examples
 - [v1.0.0 Release Notes](release-notes/v1.0.0.md)
 - [Changelog](CHANGELOG.md)
 
+## Roadmap
+
+Project CBM is actively evolving. Planned ideas, possible future features, and wishlist items are tracked in the [Roadmap](ROADMAP.md).
+
 ## License and Upstream Software
 
 Project CBM scripts and documentation are provided under the license included in this repository.
