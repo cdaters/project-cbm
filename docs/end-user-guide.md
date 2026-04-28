@@ -11,6 +11,16 @@ The goal is simple:
 
 > Power on. Boot fast. No nonsense. Just Commodore.
 
+## Project Background
+
+Project CBM was inspired in spirit by Carmelo Maiolino's Combian64 project, which helped demonstrate how satisfying a fast-booting, appliance-style Commodore emulation environment could be on Raspberry Pi hardware.
+
+Project CBM is not a fork of Combian64 and is not affiliated with or endorsed by Combian64 or Carmelo Maiolino. It is an independently assembled Raspberry Pi OS Lite-based image using VICE, SDL2, and a custom console menu system.
+
+One of the goals of Project CBM is to provide a current, ready-to-image Commodore emulation environment for newer Raspberry Pi systems, including Raspberry Pi 5 and Raspberry Pi 500-class hardware.
+
+See [Acknowledgements](../ACKNOWLEDGEMENTS.md) for more.
+
 This guide is written for normal/beginner Raspberry Pi users. You do not need to be a Linux expert. If you can flash an SD card, plug in a keyboard, and follow a menu, you are in the right place.
 
 ---
