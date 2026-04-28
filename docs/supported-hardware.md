@@ -6,8 +6,9 @@ Project CBM v1.0.0 targets Raspberry Pi 3 through Raspberry Pi 5 and Pi 500-clas
 
 - Raspberry Pi 3
 - Raspberry Pi 4
+- Raspberry Pi 400
 - Raspberry Pi 5
-- Raspberry Pi 500
+- Raspberry Pi 500 (and 500+)
 
 ## Recommended Setup
 
