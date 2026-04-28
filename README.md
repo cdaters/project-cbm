@@ -88,10 +88,10 @@ sha256sum -c SHA256SUMS
 On macOS, you can also use:
 
 ```bash
-shasum -a 256 pcbm-v1.0.0-rpi3-5.img.xz
+shasum -a 256 pcbm-v1.0.0-rpi3-5.img.xz pcbm-v1.0.0-docs.zip
 ```
 
-Compare the result against the checksum published with the release.
+Compare the result against the checksums published with the release.
 
 ## Flashing the Image
 
