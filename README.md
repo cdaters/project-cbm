@@ -55,6 +55,20 @@ Project CBM includes:
 - BBS/modem support hooks using TCPser
 - Appliance-style runtime configuration
 
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/v1.0.0/02-main-menu.png" alt="Project CBM Main Menu" width="45%">
+  <img src="screenshots/v1.0.0/03-machines-menu.png" alt="Project CBM Machines Menu" width="45%">
+</p>
+
+<p align="center">
+  <img src="screenshots/v1.0.0/04-content-menu.png" alt="Project CBM Content Menu" width="45%">
+  <img src="screenshots/v1.0.0/09-vice-c64-startup.png" alt="VICE C64 startup through Project CBM" width="45%">
+</p>
+
+See the full [Screenshot Gallery](docs/screenshots.md).
+
 ## Download
 
 Go to this repository's **Releases** section and download:
