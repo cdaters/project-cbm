@@ -71,7 +71,7 @@ See the full [Screenshot Gallery](docs/screenshots.md).
 
 ## Download
 
-Go to this repository's **Releases** section and download:
+Go to this repository's **Releases** section, open the latest release, and download the files listed under **Assets**:
 
 ```text
 pcbm-v1.0.0-rpi3-5.img.xz
@@ -141,7 +141,7 @@ CONTRIBUTING.md           Contribution guidelines
 SUPPORT.md                Support and issue-reporting guidance
 docs/                     End-user documentation
 release-notes/            Release-specific notes
-checksums/                Checksum notes and optional archived checksum files
+checksums/                Archived checksum files by release version
 screenshots/              Project screenshots and UI examples
 ```
 
