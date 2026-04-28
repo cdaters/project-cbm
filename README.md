@@ -127,6 +127,7 @@ See the full guide:
 | VICE emulator menu key | `F10` |
 | SSH | Enabled by default |
 | Samba file sharing | Enabled by default |
+| BBS / Modem (TCPSer) | Disabled by default |
 | WiFi | Intentionally left unconfigured |
 
 After first boot, change the default password.
