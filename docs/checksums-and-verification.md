@@ -28,7 +28,7 @@ macOS does not always include `sha256sum` by default. Use:
 shasum -a 256 pcbm-v1.0.0-rpi3-5.img.xz pcbm-v1.0.0-docs.zip
 ```
 
-Compare the output against the checksum listed in `SHA256SUMS`.
+Compare the output against the checksums listed in `SHA256SUMS`.
 
 ## Why this matters
 
