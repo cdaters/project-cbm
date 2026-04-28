@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">
+</p>
 # Project CBM
 
 **Project CBM** is a ready-to-boot Raspberry Pi image that turns a Raspberry Pi into a clean, keyboard-friendly Commodore emulation environment.
