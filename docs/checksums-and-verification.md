@@ -2,16 +2,17 @@
 
 Project CBM release images should be verified before flashing.
 
-Download both files from the GitHub Release:
+Download files from the GitHub Release:
 
 ```text
 pcbm-v1.0.0-rpi3-5.img.xz
+pcbm-v1.0.0-docs.zip
 SHA256SUMS
 ```
 
 ## Linux
 
-From the folder containing both files:
+From the folder containing files:
 
 ```bash
 sha256sum -c SHA256SUMS
@@ -24,7 +25,7 @@ A successful result should report that the image is OK.
 macOS does not always include `sha256sum` by default. Use:
 
 ```bash
-shasum -a 256 pcbm-v1.0.0-rpi3-5.img.xz
+shasum -a 256 pcbm-v1.0.0-rpi3-5.img.xz pcbm-v1.0.0-docs.zip
 ```
 
 Compare the output against the checksum listed in `SHA256SUMS`.
