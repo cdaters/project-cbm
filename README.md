@@ -18,9 +18,13 @@ It is built around Raspberry Pi OS Lite, the console/SDL2 version of VICE, and a
 
 ## Project Background
 
-Project CBM v1.0.0 was created as a modern Raspberry Pi OS Lite-based Commodore emulation image inspired in part by the appliance-style experience of Carmelo Maiolino's Combian64.
+Project CBM exists in appreciation of the path [Carmelo Maiolino's Combian64](https://cmaiolino.wordpress.com/combian-64-v2/) helped establish: a fast-booting, appliance-style Commodore emulation experience on Raspberry Pi hardware.
 
-Project CBM is independently assembled and is not a fork of Combian64. The v1.0.0 release focuses on providing a ready-to-image Project CBM environment for Raspberry Pi 3, Raspberry Pi 4, Raspberry Pi 5, and Raspberry Pi 500-class systems.
+Project CBM is not a fork of Combian64 and is not affiliated with or endorsed by Combian64 or Carmelo Maiolino. It is an independently assembled Raspberry Pi OS Lite-based image using VICE and a custom Project CBM menu system.
+
+This project was also born from a practical goal: to create a more modern, current Commodore emulation build that I could share with friends and family who wanted a simple, ready-to-use Raspberry Pi setup without having to assemble every piece by hand.
+
+Project CBM is intended as an independent alternative for users who want a Raspberry Pi OS Lite-based Commodore environment on newer Raspberry Pi hardware, especially Raspberry Pi 5 and Raspberry Pi 500-class systems, while still supporting earlier Pi 3 and Pi 4-class machines.
 
 ## Current Release
 
