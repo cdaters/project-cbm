@@ -24,6 +24,7 @@ Items listed here are not guaranteed features, but they represent areas being en
 - Better VICE configuration backup/restore tools
 - Optional auto-launch behavior for a selected machine
 - Import/export Project CBM settings
+- Menu controls for Raspberry Pi 500+ LED behavior, including safe presets for default LEDs, quiet/dark mode, activity-only behavior (if possible), and restoring stock LED settings.
 
 ## Maybe / Research Needed
 
@@ -34,6 +35,7 @@ Items listed here are not guaranteed features, but they represent areas being en
 - Pi 3-specific performance tuning
 - Pi 5/500-specific performance tuning
 - Other emulator projects (not VICE/Commodore)
+- Research model-specific Raspberry Pi LED handling for Pi 500+ system before exposing LED controls in the Project CBM menu.
 
 ## Not Currently Planned
 
