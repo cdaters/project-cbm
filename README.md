@@ -1,7 +1,7 @@
 ![Platform](https://img.shields.io/badge/platform-raspberry%20pi-%23C51A4A)
 [![Project CBM Release](https://img.shields.io/github/v/release/cdaters/project-cbm?label=project-cbm%20release)](https://github.com/cdaters/project-cbm/releases/latest)
 [![Menu Release](https://img.shields.io/github/v/release/cdaters/project-cbm-menu?label=menu%20release)](https://github.com/cdaters/project-cbm-menu/releases/latest)
-[![License](https://img.shields.io/github/license/cdaters/project-cbm)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-orange)](LICENSE.md)
 ![GitHub last commit](https://img.shields.io/github/last-commit/cdaters/project-cbm)
 ![GitHub Issues](https://img.shields.io/github/issues/cdaters/project-cbm)
 
