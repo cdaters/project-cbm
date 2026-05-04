@@ -12,7 +12,7 @@ Items listed here are not guaranteed features, but they represent areas being en
 - Refine Samba/network sharing menu behavior
 - Improve joystick/controller setup documentation
 - Implement keyboard profiles for VICE (standard keyboard vs Pi 400/500/500+, vs Keyrah)
-- Tune VICE settings; screen / colors, 1541 Drive sounds (power-led indicates drive activity) - https://retrocombs.com/combianpi400-1#configure-combian-64
+- Tune VICE settings; screen / colors, 1541 Drive sounds (power-led indicates drive activity) - [Tune VICE](https://rrlm.cc/vice)
 
 ## Wishlist / Future Ideas
 
