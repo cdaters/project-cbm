@@ -8,3 +8,12 @@
 *.img.xz
 *.gz
 *.7z
+
+# Preservation tooling and bulk build products
+__pycache__/
+*.pyc
+*.bundle
+*.qcow2
+*.vmdk
+*.iso
+*.deb

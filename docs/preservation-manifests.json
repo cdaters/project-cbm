@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "archive_root": "/Volumes/TheBench/ProjectCBM-Work/archive/preservation-2026-09-15",
+  "manifests": [
+    {
+      "path": "manifests/historical.json",
+      "sha256": "79c86906be8da219afa00af7d15b6f4e455bd050d10a2c6f662b569f44ed0985",
+      "entries": 1677,
+      "root": "/Volumes/TheBench/Projects/Project CBM"
+    },
+    {
+      "path": "manifests/prior-audit-records.json",
+      "sha256": "a2918206e0c50f1eda41e83ae397fcc773c1169299d99ee4086ad0fdbaf75024",
+      "entries": 82,
+      "root": "/Volumes/TheBench/ProjectCBM-Work/audit"
+    },
+    {
+      "path": "manifests/retained-audit.json",
+      "sha256": "a9fd599189b0ca1f1ce397708f8aea2164fb3a6d99cc7fef0ff13c043eb9faf1",
+      "entries": 296,
+      "root": "/Volumes/TheBench/ProjectCBM-Work/archive/audit-2026-09-14"
+    }
+  ]
+}
