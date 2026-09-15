@@ -83,7 +83,7 @@ not current publication refs. Restore old checkpoints in isolation, consult this
 mapping and choose the later verified checkpoint when resuming current development.
 Do not delete or rewrite old archives to conceal the identity repair.
 
-## Validation and publication state
+## Validation and initial publication attempt (historical)
 
 Metadata-only rewrite and rewritten offline restoration: PASS. Static checks passed:
 44 current-document local links/anchors, all 3 repository JSON files (duplicate keys
@@ -113,3 +113,32 @@ main; leave Menu on main. Implement release-lock/installed-identity contracts an
 static tests, retention and design records, and research the Linux build host.
 The owner must approve the host choice before any infrastructure provisioning,
 large disk allocation, package build, pi-gen or image build.
+
+## Owner resolution and completed synchronization
+
+The first two main pushes succeeded. Product maintenance/1.0 creation was then
+rejected with `GH007: Your push would publish a private email address.` No further
+push occurred in that attempt. The additive `partial-publication/` checkpoint and
+`publication-stop.json` preserve that stop state; do not rewrite them.
+
+The owner subsequently deferred publication of product maintenance/1.0. It contains
+no unique commits and remains local/bundled at the immutable, already-public product
+v1.0.0 commit. **The public v1.0.0 tag is the authoritative public maintenance baseline**
+until actual 1.0.x work requires otherwise. Historical email metadata is not a reason
+to rewrite v1.0.0, weaken privacy protection or retry the branch push.
+
+Both Menu refs were separately published without force after verifying their sole
+newly reachable commit and tagger used the configured noreply identity. Remote
+maintenance/1.0 and the peeled recovery tag equal
+`a4148db54001790eaddb4e31104917c16149b181`; the annotated tag object is
+`21ae1d2b8d595f0339295351bd34fcea44a78db4`. Formal tags remain unchanged.
+Both main branches are published; this documentation follow-up is pushed normally.
+
+The additive `published/` checkpoint records the resolved scope after documentation
+publication: both main branches and Menu recovery/maintenance are public, product
+maintenance remains local/bundled. Its checkpoint JSON and separate digest identify
+exact final Git tips and bundles without a self-reference. Later Milestone 1 source
+work gets a separate checkpoint rather than modifying sealed repair evidence.
+
+Resume product feature/1.1-build-foundation from verified main. Work remains limited
+to contracts/tests/design and build-host research until the mandatory owner checkpoint.

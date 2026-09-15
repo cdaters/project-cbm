@@ -72,7 +72,11 @@ It is forensic source evidence, not an installable package or normal release.
 
 ## Maintenance policy
 
-- Product maintenance/1.0 starts at product v1.0.0; this is the correct product
+- Public product v1.0.0 is the authoritative public maintenance baseline. The local/
+  bundled maintenance/1.0 ref has no unique commits; its publication is intentionally
+  deferred by the owner after GH007 rejected historical email metadata during new
+  branch creation. Do not retry publication, rewrite v1.0.0 or weaken privacy.
+  Product maintenance/1.0 starts at product v1.0.0; this is the correct product
   documentation/release branch point, not a claim that Git contained an image recipe.
 - Menu maintenance/1.0 starts at the recovered root commit. Bring future important
   or security fixes, packaging and necessary configuration forward deliberately,

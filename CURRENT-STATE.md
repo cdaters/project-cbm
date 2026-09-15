@@ -29,8 +29,11 @@ shipped bytes; the new root recovery commit records recovery, not invented ances
   preservation records: [provenance](docs/provenance.md).
 - The eight unpublished preservation/continuity commits received an owner-authorized
   metadata-only privacy repair. Current refs and verified replacement bundles are in
-  [privacy reconciliation](docs/privacy-reconciliation-2026-09-15.md). Publication is
-  pending validation at this checkpoint; GitHub release assets are unchanged.
+  [privacy reconciliation](docs/privacy-reconciliation-2026-09-15.md). Both main branches and Menu recovery/maintenance refs are published. Product
+  maintenance/1.0 remains intentionally local/bundled; public product v1.0.0 is the
+  authoritative maintenance baseline. GH007 rejected new branch creation because
+  of historical commit email metadata; do not retry, rewrite v1.0.0 or weaken privacy.
+  GitHub release assets are unchanged.
 - Product maintenance/1.0 starts at immutable product v1.0.0 `46fbf47d66596b2f3d0f6ab53d26bdd90632c73c`.
   Menu maintenance/1.0 starts at the exact recovery commit above, not formal Menu
   v1.0.0. It contains scripts and provenance only, not an installable image recipe.

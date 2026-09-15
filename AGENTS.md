@@ -95,3 +95,16 @@ builds, pi-gen or images. The current identity-repair task authorizes its scoped
 rewrite, additive documentation/checkpoints and normal publication only; stop after
 verified pushes and offline recovery. Earlier phase-specific no-push/no-implementation
 statements above describe those completed phases, not a substitute for current scope.
+
+## Publication resolution and active milestone
+
+Both main branches and Menu maintenance/recovery refs are published. Product
+maintenance/1.0 stays local/bundled by owner decision: public v1.0.0 is the
+authoritative public maintenance baseline. GH007 on the historical commit does
+not authorize rewriting it, changing privacy settings or retrying that branch push.
+The owner now authorizes resuming Milestone 1 on product
+feature/1.1-build-foundation after synchronization/checkpoint verification. Complete
+contracts/tests and retention/package/integration/first-boot design plus Linux host
+research; STOP for the build-host options/recommendation checkpoint before installing
+software, provisioning a VM/container/host, allocating large disks, building packages,
+running pi-gen or building an image. No Menu feature branch without actual Menu work.
