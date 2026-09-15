@@ -1,0 +1,11 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: VICE
+Source: https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.10.tar.gz
+Disclaimer: Private engineering candidate. Source licensing notices are retained.
+ Runtime ROM/data rights need explicit review before any public distribution.
+
+Files: *
+Copyright: VICE contributors; per-file notices in retained corresponding source
+License: GPL-2+
+ See /usr/share/common-licenses/GPL-2 and upstream COPYING.
+ ROM/data files may have distinct upstream notices; this is not a blanket ROM license.

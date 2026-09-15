@@ -1,0 +1,16 @@
+Source: project-cbm-tcpser
+Section: comm
+Priority: optional
+Maintainer: Project CBM contributors <1015402+cdaters@users.noreply.github.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/go4retro/tcpser
+
+Package: project-cbm-tcpser
+Architecture: arm64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: tcpser
+Replaces: tcpser
+Description: TCP serial modem emulator for private Project CBM engineering
+ Pinned upstream 1.1.6 beta lineage. Does not install or start a service.

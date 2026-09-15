@@ -1,0 +1,5 @@
+project-cbm-tcpser (1.1.6~beta-1+pcbm1) trixie; urgency=medium
+
+  * Private candidate from upstream fe7feff4862406b277e009d14c219f5d16cf1222.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Tue, 15 Sep 2026 23:00:00 +0000

@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND = -march=armv8-a -mtune=generic
+include /usr/share/dpkg/buildflags.mk
+%:
+	dh $@
+
+override_dh_auto_build:
+	dh_auto_build -- CFLAGS="$(CPPFLAGS) $(CFLAGS)" LDFLAGS="$(LDFLAGS) -lpthread"
+
+override_dh_auto_install:
+	install -D -m 0755 tcpser debian/project-cbm-tcpser/usr/bin/tcpser

@@ -5,7 +5,7 @@ Debian 13 guest is provisioned on TheBench and its Linux capability gate **passe
 [Approved recipe and reconstruction](docs/build/lima-build-host.md) and
 [capability evidence](docs/build/lima-capability-2026-09-15.md) are current authority.
 [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md) remains accepted.
-No Project CBM image, component package or physical Pi pass exists yet.
+Three private component packages now build; no Project CBM image or physical Pi pass exists yet.
 
 ## What shipped
 
@@ -193,3 +193,38 @@ and raw private infrastructure logs: `ProjectCBM-Work/build-host/records/`.
 Next: retain and select exact pi-gen arm64/VICE/Menu/TCPser inputs and package-build
 closure, then implement the smallest locked POC factory. Do not claim a frozen real
 release lock, complete source/package closure, image, reproducibility or hardware pass.
+
+## Private component packages and retention work (in progress)
+
+Successful private Debian candidates retained under `ProjectCBM-Work/packages/poc1/`:
+
+- VICE `3.10-1+pcbm1`, arm64; SHA-256
+  `674c40040965b689d08cdc225f8954c0fb2433ef68459f51aa7f6360b1710d20`.
+- Menu `1.1.0~poc1-1+pcbm1`, all; SHA-256
+  `3f7557cdbdd44922954a6e640a1bcb3a96f446f6dbe6631afe667aa5e5d5f0fd`.
+  Companion feature/1.1-debian-package at `77a708019c9d8a11e657d7e5d2dde7b7ecb340ba`;
+  local-only annotated v1.1.0_poc1 object `e265f3cbb995ad0a9a7748987b2d9c88019aa787`.
+  Formal and forensic tags/main are unchanged. Menu packaging relocates required
+  command paths to /usr/bin and excludes release-prep, screenshot and unreviewed art.
+- TCPser `1.1.6~beta-1+pcbm1`, arm64; SHA-256
+  `8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f`.
+
+Exact source selection is in build/inputs-poc.json (NOT a frozen release lock).
+pi-gen arm64 `6fcca44892d5d4b36f826d2b8fb16d716369fada` and TCPser
+`fe7feff4862406b277e009d14c219f5d16cf1222` sources/bundles are externally retained.
+VICE needs dos2unix, xa65, SDL2-image and evdev development dependencies; those
+configure findings are now in the recipe. Out-of-tree compilation avoids source
+contamination; native CPU optimization is explicitly disabled. Build logs and .dsc,
+source archives, .buildinfo, .changes and debug .debs are retained outside Git.
+
+Pinned pi-gen stages 0/1/2 completed in an input-resolution-only run with all image
+exports disabled. No final appliance has been constructed. Resolved base is Trixie
+13.7 with raspberrypi-sys-mods 1:20260914 and vendor kernel metapackages
+1:6.18.50-1+rpt1. Actual vendor early resize hooks require the `resize` kernel argument;
+first-boot draft removes that argument and coordinates one explicit growth owner.
+Full source/host package retention and a frozen replay-capable input kit remain in
+progress. Seventeen old bootstrap .deb versions were absent from today's indexes;
+exact-version Debian snapshot recovery is underway, without upgrades/substitution.
+Inspect newer dirty scripts/state and build-host/records before resuming. Next:
+complete/verify retention, freeze real lock, review/test integration and first boot,
+then one private image and offline validation. No publication or physical Pi test.

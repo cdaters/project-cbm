@@ -1,0 +1,16 @@
+Source: project-cbm-vice
+Section: contrib/otherosfs
+Priority: optional
+Maintainer: Project CBM contributors <1015402+cdaters@users.noreply.github.com>
+Build-Depends: debhelper-compat (= 13), libsdl2-dev, libsdl2-image-dev, libevdev-dev, libasound2-dev, libpng-dev, zlib1g-dev, libcurl4-openssl-dev, libreadline-dev, libedit-dev, flex, bison, texinfo, pkg-config, dos2unix, xa65
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://vice-emu.sourceforge.io/
+
+Package: project-cbm-vice
+Architecture: arm64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: vice
+Replaces: vice
+Description: VICE 3.10 SDL2 for the private Project CBM engineering appliance
+ Commodore emulators with SDL2 and ALSA support, built for the arm64 baseline.

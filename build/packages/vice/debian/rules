@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND = -march=armv8-a -mtune=generic
+export DEB_CXXFLAGS_MAINT_APPEND = -march=armv8-a -mtune=generic
+%:
+	dh $@ --builddirectory=debian/build
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-sdl2ui --with-alsa --with-sdlsound --without-pulse --disable-arch --enable-x64 --disable-html-docs
+
+override_dh_autoreconf:
+	true
+
+override_dh_autoreconf_clean:
+	true

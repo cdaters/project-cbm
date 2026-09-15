@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: TCPser
+Source: https://github.com/go4retro/tcpser/tree/fe7feff4862406b277e009d14c219f5d16cf1222
+
+Files: *
+Copyright: Jim Brain and contributors, per-file notices in corresponding source
+License: GPL-2
+ See /usr/share/common-licenses/GPL-2 and original per-file notices.

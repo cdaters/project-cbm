@@ -1,7 +1,8 @@
 # Component packages and minimal integration stage
 
-Design only, 2026-09-15. No Debian package recipe, pi-gen stage or runtime change is
-implemented. [Contracts](contracts.md) implement declared metadata validation only.
+Design baseline, 2026-09-15. The first private component packages are now built;
+see [current state](../../CURRENT-STATE.md) and [recipes](../../build/packages/README.md).
+The integration/first-boot implementation is still being validated. [Contracts](contracts.md) implement declared metadata validation only.
 ADR-0001's foundation is closed; this specifies the first private POC boundary.
 
 ## Debian package ownership
