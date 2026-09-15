@@ -132,7 +132,6 @@
     "schema_version": 1,
     "build_id": null,
     "release_lock": {
-      "relative_path": "release-lock.json",
       "digest": null
     },
     "product_projection": null,
@@ -141,18 +140,6 @@
     "integration_projection": null,
     "component_projections": null,
     "configuration_schema_version": null,
-    "build_record": {
-      "relative_path": "build-record.json",
-      "digest": null
-    },
-    "package_inventory": {
-      "relative_path": "packages.json",
-      "digest": null
-    },
-    "recipe_inventory": null,
-    "schema_inventory": null,
-    "hardware_policy_projection": null,
-    "qualification_state": "external-attestation-required",
     "external_manifest_lookup": {
       "format": "project-cbm.release-manifest",
       "build_id": null
@@ -210,6 +197,8 @@
     "No lock self-hash or hash of its containing Git commit.",
     "No final image, external manifest or qualification hashes inside embedded identity.",
     "No reference from qualification to a manifest which hashes it.",
-    "No passwords, private keys, tokens, user data, personal paths or live device identity."
-  ]
+    "No passwords, private keys, tokens, user data, personal paths or live device identity.",
+    "No full build/recovery documentation, archives, source/package closure or qualification corpus in the appliance."
+  ],
+  "image_scope": "Minimal installed identity only. Full lock, records, inventory, schemas, recipes and recovery kit are retained externally."
 }

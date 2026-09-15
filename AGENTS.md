@@ -23,10 +23,16 @@ input/recovery refs, checks, unresolved issues and the next task.
   force-push, retag or silently replace artifacts. Recovery refs are evidence,
   not release replacements. No 1.0.1 has been created.
 
-- First-class black-box recovery is a 1.1 acceptance requirement. The same frozen
-  lock must drive construction, embedded identity and external attestations. Follow
-  docs/recovery.md's one-way checksum/qualification design. Offline identification
-  cannot require boot, Menu, network, macOS or proprietary filesystem software.
+- Full black-box PROJECT recovery is a repository/build/release-infrastructure
+  responsibility. The image carries minimal installed identity only. The same frozen
+  lock drives construction, minimal identity and external attestations; keep the
+  acyclic checksum design in docs/recovery.md. No full lock/recipes/archives/closure
+  in the appliance merely for recovery. Offline identity needs no boot/Menu/network.
+- ADR-0001 accepts Raspberry Pi OS Lite + pinned arm64 pi-gen with selected appliance
+  practices, writable ext4 and logical user-data separation for 1.1. Read
+  docs/adr/0001-base-distribution-and-image-architecture.md before foundation work.
+  Reopen only for its evidence-based triggers. No mandated 8 GB card minimum;
+  measure footprint, first-boot/maintenance margin and free user capacity.
 - Preserve rationale and evidence limits. CURRENT-STATE is the last completed
   checkpoint; inspect newer dirty work before changing it. Never erase unknown work
   to match a document. Reference projects are read-only learning material, not CBM
@@ -66,9 +72,10 @@ Follow docs/testing.md for focused behavioral and physical-device qualification.
 Keep logical commits and leave a clear git status. Do not claim hardware passes
 from static checks. Verify preservation manifests after preservation changes.
 
-Preservation/reconciliation/continuity and black-box recovery design are complete.
-Metadata schemas/generator, pcbm-info, first boot and independent backup remain
-unimplemented. The next milestone is the
-Project CBM 1.1 reproducible-build proof-of-concept in docs/build-and-release.md.
-Starting that milestone requires a new owner instruction; this preservation
-authorization does not authorize pi-gen, runtime changes, an image or publication.
+Preservation and the owner-accepted cold-start review are complete. Final architecture
+and documentation reconciliation are complete under ADR-0001. Metadata schemas/generator,
+pcbm-info, first boot and independent backup remain unimplemented. The next milestone
+is the Project CBM 1.1 POC in docs/build-and-release.md, requiring a NEW implementation
+instruction. This architecture phase authorizes documentation/ADR commits only:
+stop before pi-gen, Linux provisioning, packaging, runtime changes, image build or
+publication. No push is authorized.

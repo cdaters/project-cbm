@@ -85,7 +85,7 @@ Project CBM is intended to feel more like a small retro appliance than a normal 
 
 You will need:
 
-- A supported Raspberry Pi for the released Project CBM image (Pi 3 through Pi 5 supported).
+- An intended target Raspberry Pi: Pi 3 generation through Pi 500+ where technically supportable. See [model qualification status](supported-hardware.md); no audit hardware cell is a measured pass.
 - A microSD card.
 - A keyboard.
 - A display connected by HDMI.
@@ -182,7 +182,7 @@ Default information:
 | VICE emulator menu key      | `F10`                                       |
 | SSH                         | Enabled by default                          |
 | Samba file sharing          | Enabled by default                          |
-| TCPSer (BBS / Modem)        | Disabled by default                         |
+| TCPser (BBS / Modem) | Intended disabled; audited v1.0.0 unit is enabled, operation unqualified |
 | WiFi                        | Intentionally left unconfigured             |
 
 Important: change the default password after your first successful boot. Leaving the default password in place is fine for a quick first test, but it should not stay that way on a normal home network.
@@ -315,26 +315,14 @@ Project CBM scans folders recursively. That means you can organize content insid
 
 ## Included starter content
 
-The starter release is intended to include a small amount of legal starter content so users can try Project CBM immediately.
+The audit verified ROM and media files in the released v1.0.0 image. File presence,
+filenames, or a description such as “freeware” do not establish redistribution rights.
+The complete content/license inventory remains unresolved. The older examples in
+historical release documentation are not a reviewed list of permitted content.
 
-Included examples may include:
-
-- A few C64 demos.
-- A couple of C128 demos (for 80 column mode).
-- A couple of freeware C64 games.
-- SidWizard 1.8 in the C64 music folder.
-- StrikeTerm2014 in the C64 programs folder.
-
-Suggested places to explore:
-
-```text
-/home/pi/pcbm/demos
-/home/pi/pcbm/games/c64
-/home/pi/pcbm/music/c64
-/home/pi/pcbm/programs/c64
-```
-
-Starter content is there so users are not staring into an empty retro cave with only a blinking cursor for company.
+Future public candidates require a reviewed allowed-content inventory. Private
+historical artifacts are retained as evidence and are not a source of automatically
+approved starter content. See [current v1.0 corrections](v1.0-current-notes.md).
 
 ---
 
@@ -859,9 +847,13 @@ Default values:
 | Samba share name | `Project CBM` |
 | Shared folder | `/home/pi/pcbm` |
 | Username | `pi` |
-| Password | `cbm-ready` until you change it |
+| Password | Separately configured Samba password; historical documentation advertised `cbm-ready`, but authentication was not tested by the audit |
 
-After you change the Pi password, use the new password for Samba too.
+Changing the Unix password through `passwd` or raspi-config does not necessarily
+update Samba credentials. Samba maintains its own authentication database in this
+standalone-sharing model. Use the separately configured Samba password for the share;
+verify Unix/SSH and Samba authentication independently after a change. Do not assume
+synchronization. See the [current credential notes](v1.0-current-notes.md#credentials).
 
 ### From macOS
 
@@ -1095,7 +1087,7 @@ Do not:
 
 ## Legal notes
 
-Project CBM does not include or distribute copyrighted ROMs, commercial software, disk images, or game collections.
+Public distribution policy is to include only software and content with reviewed redistribution rights and required license/source notices. The audited v1.0.0 image contains ROMs and media whose complete redistribution provenance remains unresolved. Historical private archives may contain additional unreviewed material. See [content and release corrections](v1.0-current-notes.md). Users must have the necessary rights for content they add.
 
 Users are responsible for making sure they have the legal right to use any ROMs, games, demos, music, programs, or disk images they add.
 

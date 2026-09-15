@@ -16,8 +16,8 @@ Project CBM is intended to behave like a small Commodore-focused appliance:
 
 If you are new to Project CBM, read these in order:
 
-1. [Supported Hardware](supported-hardware.md)  
-   Make sure your Raspberry Pi model and basic hardware setup are supported.
+1. [Hardware Targets and Qualification](supported-hardware.md)
+   Check whether your model is a target and whether it has qualification evidence.
 
 2. [Checksums and Verification](checksums-and-verification.md)  
    Verify that your downloaded release files are complete and unmodified before flashing.
@@ -38,7 +38,7 @@ If you are new to Project CBM, read these in order:
 | [End-User Guide](end-user-guide.md) | The main user manual for Project CBM. Covers first boot, menu usage, machines, content folders, import tools, networking, Samba, SSH, boot modes, and legal notes. |
 | [Flashing the Image](flashing-the-image.md) | Explains how to write the Project CBM release image to a microSD card using Raspberry Pi Imager, BalenaEtcher, or Linux command-line tools. |
 | [Checksums and Verification](checksums-and-verification.md) | Explains how to verify downloaded Project CBM release files using `SHA256SUMS`. |
-| [Supported Hardware](supported-hardware.md) | Lists supported Raspberry Pi models and recommended hardware. |
+| [Hardware Targets and Qualification](supported-hardware.md) | Lists target Raspberry Pi models, qualification status and suggested hardware. |
 | [Screenshot Gallery](screenshots.md) | Shows Project CBM v1.0.0 menus, splash screen, control panel, network screen, system screen, and VICE emulator examples. |
 | [Troubleshooting](troubleshooting.md) | Common fixes for menu, emulator, network, Samba, WiFi, USB import, and command-line issues. |
 
@@ -106,7 +106,7 @@ After first boot, change the default password.
 
 ## Legal Note
 
-Project CBM does not include or distribute copyrighted ROMs, commercial software, disk images, or game collections.
+Public distribution policy is to include only software and content with reviewed redistribution rights and required license/source notices. The audited v1.0.0 image contains ROMs and media whose complete redistribution provenance remains unresolved. Historical private archives may contain additional unreviewed material. See [content and release corrections](v1.0-current-notes.md). Users must have the necessary rights for content they add.
 
 Users are responsible for making sure they have the legal right to use any ROMs, games, demos, music, programs, or disk images they add.
 
@@ -118,7 +118,8 @@ This documentation describes the public Project CBM v1.0.0 release.
 
 For project history and future plans, see:
 
-- [Release Notes](../release-notes/v1.0.0.md)
+- [Current v1.0 corrections](v1.0-current-notes.md)
+- [Historical Release Notes](../release-notes/v1.0.0.md)
 - [Changelog](../CHANGELOG.md)
 - [Roadmap](../ROADMAP.md)
 - [Contributing](../CONTRIBUTING.md)

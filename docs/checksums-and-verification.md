@@ -1,5 +1,8 @@
 # Checksums and Verification
 
+> Use the checksum asset from the matching release. The repository v1.0.0 copy
+> contains a preserved malformed trailing record; see [current checksum notes](v1.0-current-notes.md#checksums).
+
 Project CBM release images should be verified before flashing.
 
 Download files from the GitHub Release:

@@ -1,7 +1,14 @@
-# Black-box recovery contract
+# Black-box project recovery and installed identity
 
-Status: required architecture for Project CBM 1.1, designed 2026-09-15; builder,
+Status: required project architecture for Project CBM 1.1, refined 2026-09-15; builder,
 metadata generator, runtime information command and first boot are **not implemented**.
+Owner clarification, 2026-09-15: full black-box recovery belongs to the project,
+repositories and retained build/release infrastructure. The appliance carries only
+minimal installed release identity. This supersedes the earlier requirement to embed
+the lock, build record, inventory, schemas and reconstruction recipes in every image.
+The original design remains in Git at `7f9c4a3` and the sealed design archive.
+The owner accepted the repository-only cold-start comprehension test in this phase.
+
 This specification supplements [build/release](build-and-release.md), [provenance](provenance.md)
 and [testing](testing.md). It is self-contained; reference projects and conversations
 are not recovery dependencies. No 1.0 history or release is changed by this contract.
@@ -15,10 +22,10 @@ the documented next task. A successful build alone does not meet this requiremen
 
 | Term | Question answered |
 | --- | --- |
-| Black-box recovery | What exists, why, how it was made, what evidence supports it, where it lives and how to resume without conversational memory? |
+| Black-box project recovery | Recover project purpose, source, build/release infrastructure, inputs, rationale and evidence from repositories and retained kits without conversational memory. |
 | Reproducible build | Can declared inputs produce the expected semantic or bitwise output again? State which equivalence was tested. |
 | Disaster recovery | Can source, inputs, records and build capability survive loss of GitHub, the workstation or the storage device? |
-| Release provenance | Can these particular artifact bytes be traced to exact source, patches, inputs and construction records? |
+| Release provenance / installed identity | External records trace artifact bytes to inputs and construction; a small image-side identity identifies the installed base release and refers to those records. |
 
 Complete recovery combines **source + retained external inputs + build recipe and
 environment + product artifacts + qualification**. Also required are rationale,
@@ -45,6 +52,11 @@ focused acceptance records for chronology. Do not require an accumulating sessio
 transcript, private source archaeology or another project's repository to understand
 the public product or rebuild procedure.
 
+The full recovery kit is a development/release responsibility. Image-side identity
+is useful offline support data, not a miniature copy of that kit. Neither an image
+alone nor its identity digest promises full project recovery. [ADR-0001](adr/0001-base-distribution-and-image-architecture.md)
+sets the foundation and lean runtime/storage policy.
+
 ### Protected rationale
 
 | Decision | Why it exists / consequence |
@@ -62,11 +74,11 @@ the public product or rebuild procedure.
 
 | Scenario | Procedure / required retained material | Coverage at this checkpoint |
 | --- | --- | --- |
-| A: abandoned for years | Follow the read/resume sequence; project-owned docs explain purpose, rationale, Menu mapping, hardware, state and next work | Documentation available locally; no independent fresh-person comprehension drill yet. New commits are not pushed. |
+| A: abandoned for years | Follow the read/resume sequence; project-owned docs explain purpose, rationale, Menu mapping, hardware, state and next work | PASS: owner accepted the repository-only cold-start comprehension review on 2026-09-15. This does not test restore or building; new commits are not pushed. |
 | B: GitHub lost | Verify recovery index, restore both full bundles and all inventoried refs, recover release JSON/assets/provenance separately | Accepted preservation bundles were restored offline and checked; see section 8. Later checkpoints need their own bundles. |
 | C: development Mac lost | Obtain an independent recovery kit, remap logical roots, restore source and verified inputs, install recorded tools | Paths are now explicitly non-normative; independent backup copy not established. TheBench survives only if it is separately available. |
 | D: Linux builder lost | Bootstrap a clean compatible Linux environment from retained host/tool inputs and recipe; no hidden installed packages or shell state | Required for 1.1; no builder/environment exists yet. |
-| E: only image survives | Read embedded RECOVERY.md/identity/lock/inventories/schema/recipe without boot or network; label authentication and input-availability limits | Required from 1.1; 1.0 needs forensic inspection. Identity/recipe recovery is possible by design, but absent external package/source closure cannot be recreated from hashes alone. |
+| E: only image survives | Read minimal installed identity without boot or network; resolve full provenance/recovery externally when available | Minimal identity required from 1.1; 1.0 needs forensic inspection. Full recipes, qualification and input closure remain external and cannot be recreated from a digest. |
 | F: running system | pcbm-info displays the immutable base-image identity and separately labels live drift, if checked | Interface defined below; not implemented. Base-image identity does not certify an updated machine's current packages. |
 | G: upstream inputs vanish | Resolve every lock entry from verified retained source/package/tool closure, not a moving URL or cache | Required before 1.1 release. 1.0 closure is incomplete. |
 | H: TheBench lost/corrupt | Restore an independently held recovery checkpoint; verify catalog, artifacts and refs before use | Open disaster-recovery gap; Mac + associated disk alone do not satisfy it. |
@@ -156,7 +168,7 @@ Document raw-byte digest scope and explicit exclusions; no hidden canonicalizati
 | --- | --- |
 | `release-lock.json` (L) | Product version/candidate, architecture, target hardware policy; exact OS/base or builder recipe; integration source; Menu/VICE/TCPser identities; package closure; patches/config/assets/schema; build environment, flags, retention references, source-date epoch and sealed-image policy |
 | `build-record.json` (B) | L digest; actual tool/environment versions, commands/recipe, step outcomes, sanitized logs and sealing results; output package/config inventory checks. Cannot claim final image hashes or post-image qualification. |
-| `identity.json` (E) | Product/build identity projected from L; full L digest as build ID; component mapping; B/inventory/schema/recipe-document hashes; qualification policy and external lookup identity. No editable independent VERSION source. |
+| `identity.json` (E) | Minimal product/component/base/integration/config-schema identity projected from L; full L digest as build ID and external lookup reference. Only E is required in the image; no independent editable VERSION authority. |
 | `qualification.json` (Q) | Exact raw image digest, E/L digests, test-suite revision, model/revision/RAM/kernel/firmware/EEPROM, test environment and measurements, pass/fail/untested/blocked, reasons/known limits; no hash of a release manifest that contains Q |
 | `release-manifest.json` (R) | Exact L/B/E and inventory/source/recipe/Q artifact digests, raw/XZ image sizes/hashes, release designation, qualification/limitations summary and release-notes references |
 | `recovery-index.json` | Independent checkpoint inventory: repository IDs/bundles/refs, artifacts/locators, trust/handling class, schema/readme references, availability and completeness gaps; excludes its own digest |
@@ -188,9 +200,9 @@ follow assembly and must distinguish their identity from the integration commit.
 
 ```text
 retained source/environment/packages -> frozen L
-L -> image construction -> B + installed inventory + recipe/schema documents
-L + B + inventories -> E
-L/B/E + local documents -> embedded recovery files -> finalized image I -> XZ
+L -> minimal E
+L + packages + E -> image construction -> finalized image I -> XZ
+construction -> external B + inventory + retained recipe/schema documents
 I + E/L identity + tests -> Q
 L/B/E + I/XZ + Q + artifacts/notes -> R
 R + distributed artifacts -> SHA256SUMS -> detached signature
@@ -202,14 +214,15 @@ finalized predecessors. A file never includes its own digest. In particular:
 - E includes neither the final image hash nor R's checksum. Embedding either would
   cause a cycle. It identifies the expected external attestation by build ID/format,
   with an optional advisory URL; R later binds E to the exact image and Q.
-- Q is produced after I is frozen and tested. E embeds the qualification policy,
-  required tests and status `external-attestation-required`, never an assumed pass.
+- Q is produced after I is frozen and tested. E contains an external lookup
+  reference, never test archives, a test plan or an assumed qualification pass.
   External Q/R record actual qualified hardware. Do not modify I after testing to
   insert test results; doing so creates a new candidate needing qualification.
 - SHA256SUMS covers distributed payloads including R and Q, excluding itself and
   its detached signature. SBOM references do not hash the containing whole image.
-  A runtime package inventory may be embedded; an external full-artifact SBOM can
-  describe the recovery metadata package after assembly without a self-hash cycle.
+  Keep the full package inventory and SBOM external. Ordinary runtime package-manager
+  state remains for administration; it is not an extra recovery archive. An external
+  SBOM can describe installed identity after assembly without a self-hash cycle.
 - Use one stable build ID derived from full L SHA-256. A rebuild attempt gets a
   separate attestation/attempt ID and actual UTC time. Reusing inputs does not prove
   equal outputs. Source-date epoch is a deterministic input, not a fabricated date
@@ -221,7 +234,7 @@ finalized predecessors. A file never includes its own digest. In particular:
 ### Schema evolution
 
 Retain every released schema, field guide, validator source/dependencies and small
-test vectors beside its release kit, with an embedded plain-text field guide. Never
+test vectors beside its external release kit. Minimal E remains ordinary JSON. Never
 rewrite an old manifest into a newer schema as if it were the original bytes.
 Derived migrations get new digests and an explicit original-digest link. Preserve
 unknown fields when inspecting. Unknown schema versions remain displayable as raw
@@ -230,63 +243,50 @@ Schema version is independent of product, Menu and configuration versions. Missi
 required values are errors in 1.1 locks; historical unknowns use explicit evidence
 status in a historical record, never guessed pins or zero-filled fake digests.
 
-## 5. Self-describing images and running-system interface
+## 5. Minimal installed identity and running-system interface
 
-Proposed authoritative directory: **`/usr/share/project-cbm/recovery/`**, package-owned,
-root-owned ordinary readable files, immutable by release policy. `/usr/share` is
-appropriate for static data; editable `/etc` configuration must not become the
-identity authority. This follows the [FHS static-data guidance](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/ch04s11.html).
-No chmod/immutable-filesystem machinery is implemented here, and root compromise
-can still alter files. Integrity requires comparing against trusted external hashes.
+Proposed authority: **`/usr/share/project-cbm/identity.json`**, a small package-owned,
+root-owned, ordinarily readable JSON file. It is fixed base-release metadata by policy;
+a writable root does not make it tamper-proof. Do not replace OS `/etc/os-release`.
 
-```text
-/usr/share/project-cbm/recovery/
-  RECOVERY.md                 plain-text meaning, scope, paths and offline procedure
-  identity.json               E, readable directly; no menu/library needed
-  release-lock.json           exact public-safe L bytes used to build
-  build-record.json           public-safe B summary, not a raw builder transcript
-  packages.json               installed package identity inventory
-  schemas/                   frozen field guides/schemas needed to read these files
-  recipe/                    compact product recipe/config/patch snapshot and rationale
-```
+Required identity: product version/candidate, Menu version plus exact source/package
+identity, VICE version, OS/base identity, TCPser version/source/package identity if
+present, architecture, integration commit, full release-lock digest as build ID,
+configuration schema version and external manifest lookup ID/reference. Omit TCPser
+or explicitly mark absent when it is not installed. Do not invent a component version.
 
-The compact recipe snapshot must contain the actual product integration stage,
-configuration/sealing/first-boot recipe sources, patch references and reconstruction
-instructions from the pinned integration commit. Include Menu source/package identity
-and component source locators; do not duplicate all compiler sources/package archives
-in the runtime image. Retained full Git bundles and upstream closure live in the
-recovery kit. Budget metadata/recipe size during Pi 3 qualification.
+The external manifest can be located by build ID and expected format, with an optional
+advisory URL. Do **not** embed the final release-manifest digest if that manifest hashes
+the containing image; it creates a cycle. A digest reference is allowed only for an
+already-finalized predecessor such as L. Final R binds E, L, the image and Q externally.
 
-Offline procedure: open a copy read-only with a suitable Linux/ext4 recovery tool,
-identify the root filesystem by partition/filesystem evidence rather than assuming
-partition 2, read RECOVERY.md and identity.json, verify L/B/inventory/recipe references,
-and resolve external R/Q by build ID if available. Avoid journal replay/writes to
-the evidence image; use forensic read-only tooling or a disposable working copy.
-Paragon extFS on today's Mac is optional convenience, not a product dependency.
-Neither boot, network, SSH, Menu, jq nor a custom CBM program is required to read JSON.
+Image exclusions: no complete lock, build record, retained source tree, recipe archive,
+full schema/test corpus, package closure, qualification archive or disaster-recovery
+kit merely to meet recovery. Runtime license notices and package-manager data required
+for operation/administration remain. Full recovery documentation lives in Git/kits.
+The earlier `/usr/share/project-cbm/recovery/` directory is not the 1.1 requirement.
 
-Only-image limits: E identifies the sealed base and construction recipe; it cannot
-prove its own authenticity, reconstruct missing external source bytes, recover
-post-image Q, or establish that an already-used/modified image is pristine. Report
-these as unavailable/unverified rather than guessing. Existing `/etc/pcbm/version.conf`
-is historical runtime configuration; adapting future version displays to E belongs
-to 1.1. Do not overwrite Raspberry Pi/Debian `/etc/os-release` as a substitute.
+Offline identification: use a read-only Linux/ext4-capable reader or disposable copy,
+locate root from filesystem/partition evidence, and read identity.json with ordinary
+text tools. Avoid journal replay on evidence. No boot, network, Menu, macOS,
+proprietary filesystem software, jq or CBM command is required to read it. Resolve E's
+build ID against external records if available. Without those records report identity
+as unauthenticated and qualification/rebuild inputs as unavailable; do not guess.
 
 Proposed product-owned **`pcbm-info`** (not implemented):
 
-- Default: offline, unprivileged, read-only summary of product version, full build
-  ID, architecture, base/builder/integration and Menu/VICE/TCPser mapping; print
-  qualification scope as an external attestation reference, not a compatibility pass.
-- `--json`: emit the authoritative E bytes; `--root PATH`: inspect an already
-  accessible mounted root without mounting, contacting services or requiring sudo.
-- `--verify`: verify local referenced metadata/recipe hashes and E/L consistency;
-  a pass means internal integrity only, not publisher authentication/full-disk health.
-- Exit 0 on a successful requested operation; 2 for absent metadata, 3 for malformed
-  or unsupported schema, 4 for integrity/mapping mismatch. Never fall back silently
-  to an invented version from filenames, Menu main or current package versions.
-- Label default output “base image identity; live system may have changed”. Any
-  later live-inventory comparison is separate opt-in output and never rewrites E.
-  Manual/Menu displays consume this same authority; no independently edited values.
+- Default: offline, unprivileged, read-only summary of the fields above, labelled
+  “base image identity; live system may have changed”.
+- `--json`: output exact E bytes. `--root PATH`: read an accessible mounted root;
+  do not mount it, invoke sudo or contact network/services.
+- Future `--verify MANIFEST`: compare E and mapping with an explicitly supplied
+  external record offline. This checks consistency, not publisher authentication
+  without separately established trust, and not full-disk health.
+- Exit 0 for success, 2 for missing metadata, 3 for malformed/unsupported schema,
+  4 for an integrity/mapping mismatch in a requested comparison. A raw JSON reader
+  remains usable when a future schema is unknown. No filename/version guessing.
+- Menu/About displays consume E. Live package drift is separate optional information;
+  package upgrades and first boot must not rewrite the base identity.
 
 ### Sealing and first boot evidence
 
@@ -378,7 +378,7 @@ cannot be guaranteed by provisioning a modern Linux machine.
 | UNRECOVERABLE (if loss occurs) | Unique deleted evidence with no surviving copy cannot be regenerated by documentation. No specific historical unknown is currently declared proven unrecoverable; further evidence might exist. |
 
 1.0 is recoverable as exact retained artifacts and source evidence, not as a proven
-locked reproducible build or a self-describing 1.1 image. Do not add metadata to
+locked reproducible build or a 1.1 image with generated installed identity. Do not add metadata to
 historical images, repoint the formal Menu tag, normalize recovery scripts or fill
 unknown fields to make a modern validator pass. An equivalent reconstruction must
 have a new candidate identity, explicit deviations and new qualification; it is
@@ -388,22 +388,22 @@ never relabeled the exact old release. See [provenance](provenance.md) for hashe
 
 | Test | Required proof / failure case | Current state |
 | --- | --- | --- |
-| A: context-free entry | Fresh person/agent uses only clone + linked retained kit; reports purpose/rationale/release/Menu/hardware/current state/unknowns/next task correctly; no old sessions or reference repos | Entry links reviewed; independent comprehension drill NOT RUN |
+| A: context-free entry | Fresh person/agent uses only repositories for comprehension, with linked kit for restoration; reports purpose/rationale/release/Menu/hardware/current state/unknowns/next task correctly; no old sessions or reference repos | PASS: owner accepted repository-only cold-start review, 2026-09-15; no kit restoration or runtime proof implied |
 | B: GitHub unavailable | Restore both bundles into new locations, no remote access; compare all refs/tag objects/peeled commits and 17 recovery blob hashes; reject missing-prerequisite/corrupt bundles | PASS for accepted preservation checkpoint: product 5 refs, Menu 8 refs, 17 script hashes; both fsck passed, 2026-09-15 |
-| C: offline image | Read mounted root on Linux and another ext4-capable reader with network disabled and no boot/Menu; derive exact mapping and verify local hashes | NOT RUN; 1.1 image does not exist |
+| C: offline installed identity | Read mounted root on Linux and another ext4-capable reader with network disabled and no boot/Menu; read minimal E and resolve mapping against external records when provided | NOT RUN; 1.1 image does not exist |
 | D: lost builder/upstream | Bootstrap fresh Linux using only kit, relocated paths and documented tools; verify complete closure, build twice and compare defined semantic/bitwise result | NOT RUN; builder deferred |
-| E: metadata agreement | Generate projections from one L; compare L/B/E/R/inventories; reject a changed Menu pin, absent artifact, stale lock, dirty integration source or wrong digest | DESIGNED; generator/schema validator deferred |
+| E: metadata agreement | Generate minimal E from one L; compare external L/B/R/inventories with E; reject a changed Menu pin, absent artifact, stale lock, dirty integration source or wrong digest | DESIGNED; generator/schema validator deferred |
 | F: privacy | Public-field allowlist plus secret scans and manual review; synthetic forbidden categories are rejected; inspect actual filesystem sealing independently | Documentation reviewed; automated public-artifact/negative suite NOT IMPLEMENTED |
 | G: schema longevity | Offline read old schemas/fixtures, reject unsupported validation, preserve original bytes and unknown fields; detect duplicate keys and tampering | DESIGNED; fixtures/validator deferred |
 | H: qualification binding | Q names raw image digest + E/L + suite/hardware identity; changing image bytes invalidates association; PASS/FAIL/UNTESTED/BLOCKED cannot be collapsed | DESIGNED; no hardware tests |
-| I: only-image limitation | Remove external R/Q/inputs; still identify release/recipe offline and explicitly report absent qualification/authentication/rebuild inputs | DESIGNED |
+| I: only-image limitation | Remove external R/Q/inputs; still read base release/component identity offline and explicitly report absent recipe/qualification/authentication/rebuild inputs | DESIGNED |
 | J: checksum graph | Reject self-hashes/cycles and metadata rewritten after final image freeze; verify external checksums/signatures with independently trusted key | DESIGNED |
 | K: independent restore | Restore latest checkpoint from independently held medium on a replacement root; compare catalogs; inject missing/corrupt input and verify stop with gap report | NOT RUN; independent backup missing |
 | L: running drift | Installed package/update changes cannot rewrite base E or produce a false pristine report; malformed/absent E gets documented exit status | DESIGNED; pcbm-info deferred |
 
 The actual B drill used only two retained full bundles in fresh mirrors under the
 current bulk scratch root; no historical/reference tree or canonical checkout was
-modified. Their digests are recorded in [provenance](provenance.md) and the external
+modified. Their exact bundle digests and checkpoint locators are listed in [provenance](provenance.md#recovery-bundle-locators-and-digests) and the external
 preservation report. Passing bundle restore does not demonstrate off-site resilience,
 image reconstruction or host provisioning. No pi-gen, image build, runtime program,
 first-boot or service/privilege change occurred during this design phase.
@@ -448,7 +448,7 @@ These boundaries prevent reference conventions from overriding CBM authorization
 First 1.1 deliverable after new authorization: turn this contract into versioned
 lock/E/R/Q schemas and offline validation fixtures, define the Linux bootstrap/input
 retention plan and demonstrate a synthetic acyclic metadata graph. Then implement
-the minimal pinned Lite + integration POC with embedded identity/recipe, retaining
+the minimal pinned Lite + integration POC with minimal installed identity, retaining
 the closure and producing test-bound external records from the start. This is part
 of the builder's acceptance boundary, not optional release documentation at the end.
 

@@ -136,3 +136,32 @@ build recovery. New design commits are retained separately under the current
 ProjectCBM-Work/archive/black-box-design-2026-09-15 deployment. The sealed preservation
 archive is unchanged. Portable locators/configured roots must support later relocation;
 historical absolute roots remain evidence of the capture environment.
+
+## Recovery bundle locators and digests
+
+Read-only SHA-256/size verification on 2026-09-15 confirmed these existing bundles.
+Locators below are relative to the configured archive root (currently
+`/Volumes/TheBench/ProjectCBM-Work/archive`), not hard-coded restoration requirements.
+
+| Checkpoint / relative bundle locator | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `preservation-2026-09-15/git/project-cbm/after-local.bundle` | 734387 | `17b5fa40e3c78ee1fb0fb2fa9f0cd1e79bc613de46ef3119ad2c933b0b3d715e` |
+| `preservation-2026-09-15/git/project-cbm-menu/after-local.bundle` | 1959846 | `bd193a3a77e2390aaf68b3ae7e9e15f963566868d26bbb8dcb7db0980635a75e` |
+| `black-box-design-2026-09-15/project-cbm.bundle` | 754630 | `17271844e968dc44ea71492169c91c2e2ee4c96ec46f1783dda09cd53a24972e` |
+| `black-box-design-2026-09-15/project-cbm-menu.bundle` | 1961346 | `3e80a8e92cd63709b6c45aeabbf8dadcae7600f87a988ca17acd5ac05712ce7d` |
+
+Preservation ref inventories are beside the bundles as `after-local.json`.
+The later design archive's `checkpoint.json` lists both repositories, all refs and
+payload hashes; `checkpoint.json.sha256` is its separate checksum. The checkpoint
+JSON SHA-256 is `dd450d31a487dedf3e5c1ae99a0f513dea4d873ebe7dda13c49f69dfabbcc631`
+(rechecked against its checksum record). Its product main
+is `7f9c4a363cf19154a9637ed8b251049bf23723e0`, Menu main
+`c3746a12e6146f880c49979df8da2a3567200924`. Use the latest verified checkpoint that
+actually contains the desired commits. These bundles predate the final architecture
+reconciliation and do not back up its newer commits. That gap is explicit until a
+new separately retained checkpoint is made; never overwrite sealed archives.
+
+Full restore instructions are in [recovery](recovery.md#restore-git-without-github).
+Retain an independently trusted catalog: a colocated hash is not authentication.
+This phase rehashed the bundles and verified all three preservation tree manifests;
+it did not repeat the earlier clone/restore drill or create an independent backup.

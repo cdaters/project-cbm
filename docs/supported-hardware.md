@@ -1,4 +1,4 @@
-# Supported Hardware
+# Hardware Targets and Qualification
 
 Project CBM v1.0.0 targets Raspberry Pi 3 through Raspberry Pi 5 and Pi 500-class systems.
 
@@ -22,7 +22,7 @@ Compute Modules and Zero 2 are not automatically included.
 ## Recommended Setup
 
 - Raspberry Pi 5 or Pi 500 for best performance
-- Quality 16GB or larger microSD card
+- Quality storage sized for the image, first boot, maintenance margin and user content. The old 16 GB suggestion is not a qualified 1.1 minimum.
 - HDMI display
 - USB keyboard
 - Official or high-quality power supply
@@ -32,7 +32,7 @@ Compute Modules and Zero 2 are not automatically included.
 
 One of the reasons Project CBM exists is to provide a ready-to-image Commodore emulation environment for newer Raspberry Pi hardware.
 
-Earlier Commodore-focused Raspberry Pi distributions helped establish the appeal of a fast, appliance-style setup, but Project CBM specifically aims to include Raspberry Pi 5 and Raspberry Pi 500-class systems in its supported hardware target.
+Earlier Commodore-focused Raspberry Pi distributions helped establish the appeal of a fast, appliance-style setup, but Project CBM specifically aims to include Raspberry Pi 5 and Raspberry Pi 500-class systems in its hardware target.
 
 For best performance, Project CBM recommends Raspberry Pi 5 or Raspberry Pi 500, while still targeting Raspberry Pi 3 and Raspberry Pi 4 where practical.
 
@@ -47,3 +47,11 @@ For best performance, Project CBM recommends Raspberry Pi 5 or Raspberry Pi 500,
 - Controller behavior may vary by model.
 - Pi 5 and Pi 500 are recommended for the smoothest experience.
 - Pi 3 is the performance floor. Model-specific performance and compatibility require qualification; heavier profiles may have documented limits.
+
+## Storage qualification
+
+There is no mandated 8 GB card minimum. Determine minimum supported capacity from
+measured final image size, first-boot needs and safe free-space margin, using actual
+usable device bytes rather than nominal card labels. Publish compressed/raw image
+sizes, installed system footprint and free user-data capacity after first boot.
+See [ADR-0001](adr/0001-base-distribution-and-image-architecture.md).

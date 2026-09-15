@@ -1,5 +1,8 @@
 # Project CBM Checksums
 
+> Use the checksum asset from the matching release. The repository v1.0.0 copy
+> contains a preserved malformed trailing record; see [current checksum notes](../docs/v1.0-current-notes.md#checksums).
+
 This folder contains archived checksum files for Project CBM release assets.
 
 Checksums allow users to verify that downloaded release files have not been corrupted, altered, or incompletely downloaded.

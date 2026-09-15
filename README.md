@@ -6,7 +6,8 @@
 
 > 2026-09-15 continuity: read [CURRENT-STATE](CURRENT-STATE.md) for the reconciled
 > 1.0 history, maintenance policy and the next 1.1 reproducible-build milestone.
-> Preservation is complete; roadmap ideas are not implementation authorization.
+> Foundation decision: [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md).
+> Architecture is accepted; implementation still requires a new owner instruction.
 [![Project CBM Release](https://img.shields.io/github/v/release/cdaters/project-cbm?label=project-cbm%20release)](https://github.com/cdaters/project-cbm/releases/latest)
 [![Menu Release](https://img.shields.io/github/v/release/cdaters/project-cbm-menu?label=menu%20release)](https://github.com/cdaters/project-cbm-menu/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange)](LICENSE.md)
@@ -33,7 +34,7 @@ Project CBM is not a fork of Combian64 and is not affiliated with or endorsed by
 
 This project was also born from a practical goal: to create a more modern, current Commodore emulation build that I could share with friends and family who wanted a simple, ready-to-use Raspberry Pi setup without having to assemble every piece by hand.
 
-Project CBM is intended as an independent alternative for users who want a Raspberry Pi OS Lite-based Commodore environment on newer Raspberry Pi hardware, especially Raspberry Pi 5 and Raspberry Pi 500-class systems, while still supporting earlier Pi 3 and Pi 4-class machines.
+Project CBM is intended as an independent alternative for users who want a Raspberry Pi OS Lite-based Commodore environment on newer Raspberry Pi hardware, especially Raspberry Pi 5 and Raspberry Pi 500-class systems, while still targeting earlier Pi 3 and Pi 4-class machines subject to qualification.
 
 ## Current Release
 
@@ -42,9 +43,9 @@ Project CBM is intended as an independent alternative for users who want a Raspb
 
 The release image is distributed through **GitHub Releases**. Large image files are not stored directly in this repository.
 
-## Supported Hardware
+## Hardware Targets
 
-Target systems:
+Intended targets, not completed qualification claims (see [hardware status](docs/supported-hardware.md)):
 
 - Raspberry Pi 3
 - Raspberry Pi 4
@@ -55,7 +56,7 @@ Target systems:
 Recommended:
 
 - Raspberry Pi 5 or Pi 500 for best performance
-- Quality 16GB or larger microSD card
+- Quality storage with enough capacity for the image and your content; the historical 16 GB recommendation is not a measured 1.1 minimum
 - HDMI display/audio
 - USB keyboard
 - Optional USB gamepad/controller
@@ -91,7 +92,7 @@ See the full [Screenshot Gallery](docs/screenshots.md).
 
 ## Download
 
-***Note:** Project CBM does not include copyrighted ROMs, games, or commercial software. Users are responsible for providing software they are legally allowed to use.*
+Public distribution policy is to include only software and content with reviewed redistribution rights and required license/source notices. The audited v1.0.0 image contains ROMs and media whose complete redistribution provenance remains unresolved. Historical private archives may contain additional unreviewed material. See [content and release corrections](docs/v1.0-current-notes.md). Users must have the necessary rights for content they add.
 
 Download the latest Project CBM release from the **GitHub Releases** page:
 
@@ -136,7 +137,7 @@ See the full guide:
 
 - [End-User Guide](docs/end-user-guide.md)
 - [Flashing the Image](docs/flashing-the-image.md)
-- [Supported Hardware](docs/supported-hardware.md)
+- [Hardware Targets and Qualification](docs/supported-hardware.md)
 - [Checksums and Verification](docs/checksums-and-verification.md)
 - [Troubleshooting](docs/troubleshooting.md)
 
@@ -153,10 +154,12 @@ See the full guide:
 | VICE emulator menu key | `F10` |
 | SSH | Enabled by default |
 | Samba file sharing | Enabled by default |
-| BBS / Modem (TCPSer) | Disabled by default |
+| BBS / Modem (TCPser) | Documented intent was disabled; v1.0.0 contains an enabled unit; operation unqualified |
 | WiFi | Intentionally left unconfigured |
 
-After first boot, change the default password.
+After first boot, change the Unix password and review Samba credentials separately.
+Read the [current v1.0 notes](docs/v1.0-current-notes.md) for inherited identity,
+service and content findings before using historical release instructions.
 
 ## Repository Layout
 
@@ -174,7 +177,8 @@ screenshots/              Project screenshots and UI examples
 
 ## Releases
 
-- [v1.0.0 Release Notes](release-notes/v1.0.0.md)
+- [Current corrections to v1.0 documentation](docs/v1.0-current-notes.md)
+- [Historical v1.0.0 Release Notes](release-notes/v1.0.0.md)
 - [Changelog](CHANGELOG.md)
 
 ## Roadmap

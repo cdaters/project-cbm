@@ -1,7 +1,8 @@
 # Project CBM current state
 
-Updated 2026-09-15 — preservation/reconciliation/continuity accepted; first-class
-black-box recovery design added as a required part of the 1.1 builder architecture.
+Updated 2026-09-15 — owner accepted the cold-start continuity test; final architecture
+and documentation reconciliation complete. [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md)
+accepts Raspberry Pi OS Lite + pinned arm64 pi-gen with bounded appliance practices.
 No 1.1 builder, runtime changes, image build or release publication performed.
 
 ## What shipped
@@ -52,12 +53,19 @@ cloud-init and builder residue; broad sudo; TCPser default mismatch; inconsisten
 Samba service policy; USB import safety; non-idempotent installer; writing docs-sync
 dry run/deletion risk; version-display and CI/version mismatch; source/release
 divergence; PiShrink/manual build limitations; content/license provenance gaps.
-No fixes were applied in this phase.
+Current guidance is corrected in [v1.0 notes](docs/v1.0-current-notes.md); no runtime
+fixes were applied. Historical audit/release notes/assets/checksum bytes are preserved.
 
 ## Direction and next task
 
 Keep the console Bash/dialog -> SDL2 VICE -> ALSA appliance, with product-owned
-integration and an independently versioned Menu. The next milestone is a pinned
+integration and an independently versioned Menu. ADR-0001 selects writable ext4
+with logical system/user-data separation, existing
+content paths, external component .deb builds and backup/reflash/validated restore.
+No mandated 8 GB minimum: measure footprint, initialization/maintenance margin and
+free user capacity. Separate USERDATA and immutable roots are deferred.
+
+The next milestone, requiring a NEW implementation instruction, is a pinned
 pi-gen arm64 Lite + small CBM stage + packaged VICE 3.10 + pinned Menu candidate +
 pinned TCPser proof-of-concept. Read the exact [new-session handoff](docs/build-and-release.md#new-session-first-task).
 No full release-lock mechanism or Linux build environment has been implemented.
@@ -69,25 +77,27 @@ portable storage, independent backup/restore and acceptance tests. A future deve
 must recover the product from CBM repositories/retained artifacts alone, without old
 sessions, the original Mac or reference projects.
 
-1.1 must generate offline-readable /usr/share/project-cbm/recovery/ identity,
-lock, inventory, schema and compact recipe data from the same frozen inputs.
-Proposed pcbm-info reads that authority; it is not implemented. Final image hashes
-and post-image qualification attestations remain external to avoid hash cycles.
-Only-image identification cannot replace missing external input bytes or prove
-qualification. JSON field contracts and a design-only worksheet are documented;
-production schemas/validators/generator remain an initial POC task.
+Full project recovery belongs in repositories and retained build/release infrastructure.
+1.1 carries only minimal `/usr/share/project-cbm/identity.json`, generated from the
+same frozen lock: product/Menu/VICE/base/TCPser mapping, integration/build ID and config
+schema identity, with external provenance lookup. No full lock, recipes, schema corpus,
+archives or package closure merely for recovery in the appliance. Proposed pcbm-info
+reads E; it is not implemented. Final image hashes/qualification stay external to
+avoid cycles. A final manifest hashing the image cannot have its digest embedded in
+that image; use a predecessor digest/build-ID lookup. JSON worksheet is design-only.
 
 The accepted preservation bundles were restored into fresh mirrors without GitHub:
 all 5 product refs, 8 Menu refs and 17 recovered script hashes matched; fsck passed.
-Fresh-person comprehension, offline 1.1 image, clean Linux rebuild, schema/privacy
-negative tests and independent-medium restore remain unperformed. Read-only lessons
-from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
+Owner accepted repository-only cold-start comprehension on 2026-09-15. Offline 1.1
+identity, clean Linux rebuild, schema/privacy negatives and independent-medium restore
+remain unperformed. Read-only lessons from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
 on them. Spitfire's migrated reference copy has missing tools.
 
 Current local paths are deployment choices, not architecture. Independent encrypted
 backup/custody, Linux bootstrap environment, signing custody and standard SBOM format
-remain open. No infrastructure was provisioned. This additive design checkpoint is
-separate from the sealed accepted preservation archive.
+remain open. No infrastructure was provisioned. The earlier design checkpoint remains
+separate from the sealed preservation archive; this architecture phase updates Git
+only and its newer commits are not yet in those bundles.
 
 ## Evidence and storage
 
@@ -105,3 +115,19 @@ Unknowns: original base-XZ identity/full input lock, complete raw-to-shrunk comm
 chain, VICE upstream tar provenance/patch state, content licenses and all physical
 qualification. Public availability/credential remediation and any new release need
 separate owner review. These do not prevent starting an explicitly authorized POC.
+
+## Final architecture phase checkpoint
+
+Inputs: product main `7f9c4a363cf19154a9637ed8b251049bf23723e0`; Menu main
+`c3746a12e6146f880c49979df8da2a3567200924`. Both began clean. Exact historical release,
+Menu recovery refs and rehashed bundle locators are in [provenance](docs/provenance.md#recovery-bundle-locators-and-digests).
+Research dated 2026-09-15 is cited in ADR-0001; it is not a future release input lock.
+Current policy now distinguishes project recovery, minimal installed identity,
+reproducible builds and disaster recovery. Roadmap and user-facing content/service/
+credential/hardware guidance are reconciled; historical evidence is not rewritten.
+
+Validation and exact commit lookup are recorded in [phase validation](docs/architecture-phase-validation.md).
+No builder, Linux provisioning, packaging, runtime/first-boot change, image, push or
+release. Stop after documentation commits. Independent backup/custody, Linux bootstrap,
+signing custody, SBOM format, measured acceptance budgets and historical 1.0 input/
+build-chain gaps remain open. Implementation is the next separately authorized task.

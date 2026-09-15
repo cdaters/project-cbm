@@ -1,12 +1,15 @@
 # Build and release contract
 
-Status: contract and handoff only, 2026-09-15. No builder, lock implementation,
+Status: architecture accepted in [ADR-0001](adr/0001-base-distribution-and-image-architecture.md), 2026-09-15; implementation handoff only.
+No builder, lock implementation,
 package changes, 1.1 image or new release is present. The original process was
 interactive source-Pi installation, card capture, PiShrink and XZ compression.
 Historical Menu build notes/workflow remain evidence, not the future image recipe.
 
-First-class [black-box recovery](recovery.md) is mandatory from 1.1. It defines the
-JSON lock/embedded/external/qualification relationship, offline identity, retained
+Full [black-box project recovery](recovery.md) is mandatory for the repositories and
+build/release infrastructure from 1.1. The image carries only minimal installed identity;
+locks, recipes, schema/test corpora and inventories stay external. The contract defines
+the JSON lock/identity/external qualification relationship, offline identity, retained
 inputs/environment bootstrap and recovery tests. The design worksheet is not a
 usable lock; formal schemas/generators belong to the POC. A successful or repeatable
 build alone is insufficient for release readiness.
@@ -68,8 +71,10 @@ With a NEW owner instruction authorizing the 1.1 POC, begin in ~/Code/project-cb
    The build environment decision is still open; do not silently choose the Mac
    internal disk, change global temp settings or provision a costly remote host.
 3. Verify official current pi-gen arm64 Lite guidance and candidate Trixie inputs.
-   Record full builder/input identities. First formalize the recovery contract's
-   lock/embedded/external/qualification schemas and offline validation fixtures,
+   Record full builder/input identities; follow accepted ADR-0001 rather than reopening
+   the foundation comparison without a revisit trigger. First formalize the recovery
+   contract's
+   lock/minimal-identity/external/qualification schemas and offline validation fixtures,
    including checksum-cycle rejection and retained environment/input closure.
    Audit-era upstream versions are not a current lock.
 4. Establish the smallest pinned arm64 Lite stages plus one Project CBM integration
@@ -77,7 +82,9 @@ With a NEW owner instruction authorizing the 1.1 POC, begin in ~/Code/project-cb
    tag/commit/hash, and TCPser. Do not substitute formal Menu v1.0.0 for the exact
    shipped runtime without recording the five changes and extra helper.
 5. Build one PRIVATE POC on Linux using TheBench-backed bulk storage, preserving
-   inputs/logs/output hashes plus embedded offline identity/recipe from that same lock.
+   inputs/logs/output hashes plus minimal installed identity from that same lock.
+   Retain full recipes/recovery material externally and measure image footprint/free
+   user capacity; no arbitrary nominal SD-card size is an acceptance requirement.
    Generate external image/qualification records after image freeze; never alter a
    qualified image to insert its results. Validate recovery/image composition and
    record blockers; then
@@ -88,4 +95,5 @@ then a minimal reviewable recipe and private image evidence. Do not start option
 screenshots/themes/controller additions before the reproducible-build foundation.
 Runtime defect fixes belong in separately reviewable changes within the new scope.
 
-This preservation phase stops before step 2; it does not itself authorize this work.
+This completed architecture/reconciliation phase stops before step 2; a new owner
+instruction must authorize implementation. No host, packages or image were built.

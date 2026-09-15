@@ -1,5 +1,16 @@
 # Architecture and ownership
 
+## Decision and precedence
+
+[ADR-0001](adr/0001-base-distribution-and-image-architecture.md), accepted 2026-09-15,
+selects Raspberry Pi OS Lite + pinned arm64 pi-gen and bounded appliance practices.
+For 1.1 retain writable ext4 and logical system/user-data separation, minimal installed
+identity, separately built Debian packages and backup/reflash/validated restore.
+No 8 GB minimum: measure footprint and usable user-data capacity. Full black-box
+recovery stays in repositories and retained development/release infrastructure.
+This decision does not authorize implementation. [Current v1.0 corrections](v1.0-current-notes.md)
+explain precedence over historical release/audit statements.
+
 ## Current appliance
 
 Pi firmware -> vendor kernel/initramfs -> systemd multi-user target -> tty1 getty
@@ -52,8 +63,9 @@ See [build/release contract](build-and-release.md), [testing](testing.md) and
 
 The [black-box recovery contract](recovery.md) explains how a stranger recovers
 source, inputs, rationale, build environment, release identity and qualification
-without original context/infrastructure. Self-describing offline images and portable
-retained-input locators are mandatory from 1.1. One lock generates identity; final
-image/qualification hashes remain external to avoid circular dependencies. Runtime
+without original context/infrastructure. Full records, recipes, input closure and
+recovery documents stay external. Minimal offline-readable installed identity and
+portable retained-input locators are mandatory from 1.1. One lock generates identity;
+final image/qualification hashes remain external to avoid circular dependencies. Runtime
 identity reporting consumes generated metadata, not another version file. TheBench
 is the current bulk deployment, not a required product pathname or platform.

@@ -1,6 +1,8 @@
 # Security, defects and provenance follow-up
 
-These are audit findings, not fixes. Preservation changed no runtime behavior.
+These are audit findings, not fixes. Preservation and architecture reconciliation
+changed no runtime behavior. Read [current v1.0 corrections](v1.0-current-notes.md)
+and the accepted [ADR-0001](adr/0001-base-distribution-and-image-architecture.md).
 Historical images are PRIVATE-HISTORICAL even when previously published; publication
 does not establish clean identity or redistribution rights. Preserve originals,
 review derived public artifacts separately, and never export keys/password hashes,
@@ -12,7 +14,7 @@ cloud-init user-data or shell-history contents into Git, logs or chat.
 | cloud-init state | Processed instance state and completed SSH semaphore | One retry-safe first-boot owner; test Imager/custom-image/offline flows |
 | Builder residue | Shell history, VICE/TCPser build trees and development packages remain | Sealed image excludes builder/private state; retain corresponding source separately |
 | Broad sudo | Arbitrary root tee/mount/rm/mkdir permissions | Fixed-purpose validated helpers, negative privilege tests, user-owned preferences |
-| TCPser mismatch | Enabled unit contradicts documented disabled default | Explicit opt-in policy; listener review and controlled IP232 connection tests |
+| TCPser mismatch | v1.0 enabled unit contradicts its documented disabled intent; no running-listener proof | ADR recommends 1.1 opt-in; freeze exact service policy before assembly, then listener review and controlled IP232 tests |
 | Samba inconsistency | SMB-only config vs nmbd helper and other enabled links | Coherent enabled/active/absent policy; test Samba credentials separately from Unix password |
 | USB import | RM-bit selection, writable mount, fragile cleanup/filenames/skips | Root/boot exclusion, explicit device selection, read-only constrained mount and reliable cleanup/reporting |
 | Installer | Resets preferences, no alternate root, sudoers installed before validation | Idempotent offline-root installation; validate before activation |
@@ -62,7 +64,8 @@ also require review; a bundle inherits its history's visibility, not a blanket
 public label. Keep public verification keys/signatures/trust transitions; private
 signing recovery and unlock custody belong in a separate protected procedure.
 Checksums and matching embedded metadata do not prove publisher authenticity.
-The authoritative lock itself must be public-safe from construction; do not redact
-it into a different embedded copy after computing its digest. Acquisition credentials
+The external authoritative lock must be public-safe from construction; minimal E
+references its exact digest. Do not redact L after computing that digest. Do not embed
+L, full build/recovery records or closure in the runtime image. Acquisition credentials
 stay outside declared content inputs and all logs/locks. Public build records are
 generated summaries; private raw transcripts never become embedded recovery material.

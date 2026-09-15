@@ -63,3 +63,28 @@ A build passing syntax checks does not meet these gates. The accepted preservati
 bundles passed the actual offline all-ref/17-script restore test in this design pass.
 No 1.1 image/schema/runtime test is claimed; those components do not exist yet.
 Keep PASS/FAIL/UNTESTED/BLOCKED and exact candidate/test-suite identity in records.
+
+## Architecture and footprint qualification for 1.1
+
+[ADR-0001](adr/0001-base-distribution-and-image-architecture.md) is accepted design,
+not measured performance. Compare the same VICE workloads, services, display and
+storage settings. Do not compare a reduced-feature alternative with the full appliance.
+
+Record raw/XZ bytes, filesystem capacity/used bytes before and after first boot,
+runtime/development package inventory, installed identity size, free user-data bytes,
+peak initialization/update space and steady-state log/cache/swap growth. No 8 GB
+minimum is mandated. Agree safe free-space margin from measurements and publish the
+minimum usable storage bytes, not only a nominal card label. Test full-disk behavior,
+import/save/config failures and safe user recovery. No compiler/source/cache/recovery
+archive belongs in a public image without an explicit runtime need.
+
+Test the selected single-root expansion on SD, USB and NVMe where targeted; interrupted
+and repeated initialization; absence of cloned identity on two flashes; unclean power;
+verified backup/reflash/restore; package-update interruption; Samba and Unix credentials
+independently in both change directions. Record actual enabled/active/listening states
+for SSH/Samba/TCPser/Avahi against the declared candidate policy. All remain unperformed.
+
+The owner accepted the repository-only cold-start comprehension review on 2026-09-15.
+This is a project-continuity pass, not independent archive restore, Linux bootstrap,
+image-side identity validation or hardware qualification. Full recovery tests operate
+on the external kit; only the minimal installed identity is required on the appliance.

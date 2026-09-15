@@ -1,50 +1,44 @@
 # Project CBM Roadmap
 
-> 2026-09-15 continuity: read [CURRENT-STATE](CURRENT-STATE.md) for the reconciled
-> 1.0 history, maintenance policy and the next 1.1 reproducible-build milestone.
-> Preservation is complete; roadmap ideas are not implementation authorization.
+Updated 2026-09-15. [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md)
+accepts the 1.1 foundation. [CURRENT-STATE](CURRENT-STATE.md) and the
+[build handoff](docs/build-and-release.md#new-session-first-task) define the next
+milestone. Architecture approval does not authorize implementation or publication.
 
-This file tracks planned improvements, ideas, and wishlist items for future Project CBM releases.
+## Project CBM 1.1 priorities, in order
 
-Items listed here are not guaranteed features, but they represent areas being entertained and/or explored for future versions.
+1. **Reproducible-build foundation:** pinned Raspberry Pi OS Lite/arm64 pi-gen,
+   small CBM stage, versioned VICE/Menu/TCPser packages, retained input/host/source
+   closure, two clean builds, external release/provenance records and minimal
+   installed identity. Full black-box project recovery stays in repositories/kits.
+2. **Security and reliability:** image sealing, retry-safe first boot and expansion,
+   fresh device identity, bounded privileges, coherent service/credential policy,
+   safe imports, a shared validated launcher, non-destructive configuration and
+   corrected packaging/version behavior. Implement as separately reviewable work.
+3. **Qualification:** Pi 3 performance floor and 3A+ memory first; per-model graphics,
+   audio/input, networking, storage, power-loss/retry, backup/restore and credential
+   tests through Pi 500+. Measure system footprint and remaining user capacity;
+   determine minimum storage empirically. No mandated 8 GB minimum.
+4. **Bounded quality of life:** keyboard/controller guidance and reviewed profiles,
+   clearer status/version/import feedback, reversible VICE settings, screenshots
+   only after a working qualified capture path. These do not block the foundation.
 
-## Planned for v1.1.0
+## Existing behavior to retain
 
-- Add screenshot capture support
-- Expand documentation for importing games, demos, music, and ROM files
-- Add more first-boot setup guidance
-- Refine Samba/network sharing menu behavior
-- Improve joystick/controller setup documentation
-- Implement keyboard profiles for VICE (standard keyboard vs Pi 400/500/500+, vs Keyrah)
-- Tune VICE settings; screen / colors, 1541 Drive sounds (power-led indicates drive activity) - [Tune VICE](https://rrlm.cc/vice)
+Console boot, Bash/dialog front panel, SDL2 VICE/ALSA, default-machine selection,
+menu or direct-machine boot and return from emulator. Auto-launch is already present.
 
-## Wishlist / Future Ideas
+## Deferred pending concrete need and separate scope
 
-- Optional web-based management interface
-- Optional screenshot gallery generation
-- Built-in BBS dialer/preconfigured C64 BBS list
-- More polished first-run setup wizard
-- Optional theme support for menus and splash screens
-- Easier WiFi setup from the Project CBM menu
-- Additional emulator profiles for advanced users
-- Better VICE configuration backup/restore tools
-- Optional auto-launch behavior for a selected machine
-- Import/export Project CBM settings
-- Menu controls for Raspberry Pi 500+ LED behavior, including safe presets for default LEDs, quiet/dark mode, activity-only behavior (if possible), and restoring stock LED settings.
+Separate USERDATA partition, immutable/overlay root, system-preserving or A/B updater,
+user scripting API, web administration, themes/catalogs/scrapers, screenshot galleries,
+BBS directories and model-specific LED effects. Pi-specific optimization must preserve
+the Pi 3 baseline. No new subsystem is implied by this list.
 
-## Maybe / Research Needed
+## Product boundaries
 
-- Emulator screenshot support from framebuffer/SDL2 environments
-- Batocera-style screenshot handling
-- Optional RetroAchievements-style metadata or scraper support
-- More controller presets
-- Pi 3-specific performance tuning
-- Pi 5/500-specific performance tuning
-- Other emulator projects (not VICE/Commodore)
-- Research model-specific Raspberry Pi LED handling for Pi 500+ system before exposing LED controls in the Project CBM menu.
-
-## Not Currently Planned
-
-- Full desktop environment
-- Bundled copyrighted ROMs, games, or commercial software
-- Turning Project CBM into a general-purpose RetroPie/Batocera replacement
+No desktop requirement, no general multi-platform emulation distribution, and no
+unreviewed bundled content. Future redistribution follows per-asset rights review;
+[historical content findings](docs/v1.0-current-notes.md#content-and-distribution-policy)
+remain part of the record. 1.0.x receives important/security maintenance only;
+no 1.0.1 is created or approved by this roadmap.
