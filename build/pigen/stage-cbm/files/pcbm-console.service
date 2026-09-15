@@ -1,0 +1,25 @@
+[Unit]
+Description=Project CBM console front panel (private POC)
+Requires=pcbm-first-boot.service
+After=pcbm-first-boot.service systemd-user-sessions.service
+Conflicts=getty@tty1.service
+
+[Service]
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/pcbm
+Environment=HOME=/home/pi
+Environment=TERM=linux
+ExecStart=/bin/bash -lc '/usr/bin/pcbm-menu; exec /bin/bash'
+Restart=always
+RestartSec=2
+StandardInput=tty
+StandardOutput=tty
+StandardError=journal
+TTYPath=/dev/tty1
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+
+[Install]
+WantedBy=multi-user.target

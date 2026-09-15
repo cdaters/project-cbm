@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "candidate_policy": "private-engineering-poc",
+  "account": "pi",
+  "uid": 1000,
+  "content_root": "/home/pi/pcbm",
+  "boot_mode": "menu",
+  "default_machine": "x64sc",
+  "root": "writable-ext4",
+  "expansion_owner": "pcbm-first-boot.service",
+  "ssh_enabled": false,
+  "samba_enabled": false,
+  "tcpser_enabled": false,
+  "avahi_enabled": false,
+  "networkmanager_enabled": false,
+  "baked_password": false,
+  "passwordless_sudo": false
+}

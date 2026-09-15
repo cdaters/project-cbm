@@ -1,0 +1,39 @@
+--- a/export-image/01-user-rename/01-run.sh
++++ b/export-image/01-user-rename/01-run.sh
+@@ -1,9 +1,3 @@
+ #!/bin/bash -e
+-
+-if [[ "${DISABLE_FIRST_BOOT_USER_RENAME}" == "0" ]]; then
+-	on_chroot <<- EOF
+-		SUDO_USER="${FIRST_USER_NAME}" rename-user -f -s
+-	EOF
+-else
+-	rm -f "${ROOTFS_DIR}/etc/xdg/autostart/piwiz.desktop"
+-fi
++# CBM owns offline account initialization; no upstream rename on first boot.
++rm -f "${ROOTFS_DIR}/etc/xdg/autostart/piwiz.desktop"
+--- a/export-image/02-set-sources/01-run.sh
++++ b/export-image/02-set-sources/01-run.sh
+@@ -1,10 +1,8 @@
+ #!/bin/bash -e
+-
++# Frozen CBM stages already resolved and installed the complete package set.
+ rm -f "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
+ rm -f "${ROOTFS_DIR}/etc/apt/sources.list.d/00-temp.list"
+ find "${ROOTFS_DIR}/var/lib/apt/lists/" -type f -delete
+ on_chroot << EOF
+-apt-get update
+-apt-get -y dist-upgrade --auto-remove --purge
+ apt-get clean
+ EOF
+--- a/export-image/05-finalise/01-run.sh
++++ b/export-image/05-finalise/01-run.sh
+@@ -53,6 +53,8 @@
+ rm -f "${ROOTFS_DIR}"/usr/share/icons/*/icon-theme.cache
+ 
+ rm -f "${ROOTFS_DIR}/var/lib/dbus/machine-id"
++
++rm -f "${ROOTFS_DIR}/usr/sbin/policy-rc.d"
+ 
+ echo "uninitialized" > "${ROOTFS_DIR}/etc/machine-id"
+ 

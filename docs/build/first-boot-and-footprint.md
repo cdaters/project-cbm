@@ -1,7 +1,8 @@
 # First-boot and footprint contracts
 
-Design only, 2026-09-15. No first-boot unit/script, account flow, expansion mechanism,
-Samba/TCPser change or image is implemented. Keep writable ext4 and the existing
+Design baseline, 2026-09-15. A bounded private POC implementation is now being
+validated under [build/pigen](../../build/pigen/README.md); no image or physical
+first-boot pass is claimed. The specific POC policy there supersedes open choices below. Keep writable ext4 and the existing
 /home/pi/pcbm content path. Systemd plus the shared Bash launcher contract remains
 the selected lifecycle mechanism, without a user hook/plugin framework.
 

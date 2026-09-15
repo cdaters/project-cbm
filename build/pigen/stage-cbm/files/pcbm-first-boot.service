@@ -1,0 +1,13 @@
+[Unit]
+Description=Project CBM POC retry-checked initialization
+After=local-fs.target systemd-machine-id-commit.service
+Before=pcbm-console.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/project-cbm/first_boot.py
+RemainAfterExit=yes
+TimeoutStartSec=10min
+
+[Install]
+WantedBy=multi-user.target

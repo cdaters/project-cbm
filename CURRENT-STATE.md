@@ -73,9 +73,8 @@ No mandated 8 GB minimum: measure footprint, initialization/maintenance margin a
 free user capacity. Separate USERDATA and immutable roots are deferred.
 
 Milestone 1 is active on `feature/1.1-build-foundation`, created from verified main
-`29933789ec8d29bd55f2b00cbcf309132058413f`; Menu remains clean main at
-`bb4f24fadae6e852bf29fb0e32ad8ced9db7268c`. Host-only schemas/generator/validators
-and 20 tests are implemented; retention, packaging, integration and first-boot
+`29933789ec8d29bd55f2b00cbcf309132058413f`; Menu packaging now uses feature/1.1-debian-package (exact refs below).
+Host-only schemas/generator/validators and 26 tests are implemented; retention, packaging, integration and first-boot
 designs are documented. Owner approved Lima/VZ with 8 vCPU, **10 GiB RAM**, 160 GiB
 sparse disk. Core and full Linux/transfer/package capability tests passed. Continue
 Milestone 1 with exact pi-gen/component inputs, retained closure, versioned packages,
@@ -83,8 +82,8 @@ real lock, minimal integration/first-boot and one private POC image/offline vali
 Stop on a required capability failure or after that image; no automatic physical Pi
 testing, broad modernization or release publication. See the
 [approved host](docs/build/lima-build-host.md) and [build sequence](docs/build-and-release.md#new-session-first-task).
-No real release lock, retained candidate input closure, package recipe/stage exists. The Linux host is now available; its complete
-build dependency closure is not yet frozen. Synthetic fixtures cannot be used as build inputs.
+Package recipes and a minimal integration/first-boot implementation now exist.
+Input acquisition is complete pending freeze validation; no real lock or image exists yet. Synthetic fixtures cannot be used as build inputs.
 
 ### Black-box recovery requirement
 
@@ -127,7 +126,7 @@ work, with full offline restore checks. See its record for subsequent checkpoint
 - [Reconciled audit](docs/audit-2026-09-15.md); original report retained externally.
 
 TheBench is ~2 TB APFS with ~1.13 TB available at preservation time. Check actual
-space/mount before work. No Linux build filesystem exists. One device is not an
+space/mount before work. The approved guest supplies ext4 in its external sparse disk. One device is not an
 independent backup; owner review of a second encrypted backup destination remains.
 Unknowns: original base-XZ identity/full input lock, complete raw-to-shrunk command
 chain, VICE upstream tar provenance/patch state, content licenses and all physical
@@ -228,3 +227,29 @@ exact-version Debian snapshot recovery is underway, without upgrades/substitutio
 Inspect newer dirty scripts/state and build-host/records before resuming. Next:
 complete/verify retention, freeze real lock, review/test integration and first boot,
 then one private image and offline validation. No publication or physical Pi test.
+
+## Frozen factory implementation checkpoint (current, before first image)
+
+26 contract/retention/geometry tests pass on macOS and native Debian, with no skips.
+The initial Linux test copy omitted a worksheet and Git refs; the complete copy now
+passes. This was a test setup error, not a required Linux capability failure.
+Exact old host binaries (17) and sources (10) were recovered via Debian snapshots.
+All remaining runtime source acquisition completed, with explicit libftdi1 source-name
+reconciliation. Unneeded rpi-connect-lite is excluded before construction because its
+source entry was unavailable; original failed discovery records remain unchanged.
+
+The minimal factory is in tools/{freeze_poc_inputs,retained_inputs,construct_poc,
+install_poc_stage}.py and [integration notes](build/pigen/README.md). A frozen kit
+contains content-addressed direct inputs and nested source/package/metadata catalogs.
+Source .dsc SHA-256 payload lists and actual .deb identities are checked. Final assembly
+runs with loopback-only networking and frozen APT transport; absent inputs fail closed.
+Two explicit pi-gen patches exclude Connect and prevent export-time user rename/
+package upgrades. They do not rewrite upstream history or bypass APT authentication.
+
+Private POC policy: local pi console Menu, locked passwords, no broad sudo, no baked
+credentials; SSH/Samba/TCPser/Avahi/NetworkManager disabled. Binaries are installed,
+but network configuration and privileged Menu controls remain incomplete. No cover
+art/private historical content is imported. First boot owns root growth and seeds
+user state; pure geometry tests pass, actual first boot remains physically untested.
+Next: commit this input recipe, archive that commit, freeze/verify/export the real kit,
+construct one private image, validate offline, retain results and STOP for owner review.

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "first-controlled-build-not-reproducibility-proven",
+  "source_date_epoch": 1789513200,
+  "timezone": "UTC",
+  "locale": "C.UTF-8",
+  "cpu_target": "arm64 baseline ARMv8-A; no march=native",
+  "input_rule": "frozen release lock plus retained exact bytes; no live fallback during image construction",
+  "external_outputs": ["image hashes", "offline validation", "physical qualification", "build timings", "footprint"],
+  "known_nondeterminism_to_compare": ["filesystem UUIDs and disk IDs", "filesystem timestamps", "initramfs generation", "package maintainer scripts", "compression and tool versions", "random state", "build execution timestamps"],
+  "next_proof": "independent clean rebuild from identical declared inputs; compare bytes and explain differences"
+}
