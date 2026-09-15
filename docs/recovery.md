@@ -6,7 +6,9 @@ Owner clarification, 2026-09-15: full black-box recovery belongs to the project,
 repositories and retained build/release infrastructure. The appliance carries only
 minimal installed release identity. This supersedes the earlier requirement to embed
 the lock, build record, inventory, schemas and reconstruction recipes in every image.
-The original design remains in Git at `7f9c4a3` and the sealed design archive.
+The original design is now reachable at `93c96b123c26c803fd6d23e74fd7bb830f25ec64`.
+Its pre-rewrite identity `7f9c4a3` remains in the sealed design archive; see the
+[authorized privacy reconciliation](privacy-reconciliation-2026-09-15.md).
 The owner accepted the repository-only cold-start comprehension test in this phase.
 
 This specification supplements [build/release](build-and-release.md), [provenance](provenance.md)
@@ -74,7 +76,7 @@ sets the foundation and lean runtime/storage policy.
 
 | Scenario | Procedure / required retained material | Coverage at this checkpoint |
 | --- | --- | --- |
-| A: abandoned for years | Follow the read/resume sequence; project-owned docs explain purpose, rationale, Menu mapping, hardware, state and next work | PASS: owner accepted the repository-only cold-start comprehension review on 2026-09-15. This does not test restore or building; new commits are not pushed. |
+| A: abandoned for years | Follow the read/resume sequence; project-owned docs explain purpose, rationale, Menu mapping, hardware, state and next work | PASS: owner accepted the repository-only cold-start comprehension review on 2026-09-15. This does not test restore or building; current publication and restored checkpoint status is in the [privacy record](privacy-reconciliation-2026-09-15.md). |
 | B: GitHub lost | Verify recovery index, restore both full bundles and all inventoried refs, recover release JSON/assets/provenance separately | Accepted preservation bundles were restored offline and checked; see section 8. Later checkpoints need their own bundles. |
 | C: development Mac lost | Obtain an independent recovery kit, remap logical roots, restore source and verified inputs, install recorded tools | Paths are now explicitly non-normative; independent backup copy not established. TheBench survives only if it is separately available. |
 | D: Linux builder lost | Bootstrap a clean compatible Linux environment from retained host/tool inputs and recipe; no hidden installed packages or shell state | Required for 1.1; no builder/environment exists yet. |
@@ -310,6 +312,9 @@ catalog before loading it. The accepted baseline has `git/<repo>/after-local.bun
 The latest accepted design checkpoint must be retained separately, not written into
 that sealed preservation archive. A complete restore uses the index's latest
 checkpoint, not merely the first file named after-local.bundle found on disk.
+The [privacy reconciliation](privacy-reconciliation-2026-09-15.md#recovery-checkpoints)
+provides the replacement-ID mapping and later bundle catalog; older archives retain
+pre-rewrite history and must not be pushed wholesale to restore current refs.
 
 Example after setting absolute paths appropriate to the replacement machine:
 

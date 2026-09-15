@@ -61,9 +61,10 @@ The formal source has 12 exact shipped matches, five changed scripts (control,
 system, network, start, release-prep) and an extra experimental screenshot helper.
 Its source release is related to the product image, not a byte-identical dependency.
 
-New annotated Menu tag `recovered/image-v1.0.0-runtime` points to root commit
-`1cd5e0d378a4066f239c92a30aafdd97cb415dcf` (tag object
-`d3163efd4baca08fcdaf83a6db8854bee31509ee`). No historical Git parent is asserted.
+Following the authorized unpublished identity repair (see
+[old/new mapping](privacy-reconciliation-2026-09-15.md)), the annotated Menu tag `recovered/image-v1.0.0-runtime` points to root commit
+`a4148db54001790eaddb4e31104917c16149b181` (tag object
+`21ae1d2b8d595f0339295351bd34fcea44a78db4`). No historical Git parent is asserted.
 The commit contains exactly extracted scripts plus recovery/license/hash documentation;
 no normalization, reconstruction, configuration or private image state was imported.
 Original executable mode is represented in Git; uid/gid/modes are in the manifest.
@@ -79,7 +80,8 @@ It is forensic source evidence, not an installable package or normal release.
   formal release and silently claim equivalence. The immutable recovery tag stays fixed.
 - 1.0.x is the original Trixie appliance generation; 1.1.x is active current-Trixie
   reproducible-build work. There is no Bookworm maintenance branch. No 1.0.1 was
-  created or published. Branches and the recovery tag are local and externally bundled.
+  created or published. Current publication/checkpoint status is recorded in
+  [privacy reconciliation](privacy-reconciliation-2026-09-15.md).
 
 ## Preservation inventory and trust domains
 
@@ -158,8 +160,10 @@ JSON SHA-256 is `dd450d31a487dedf3e5c1ae99a0f513dea4d873ebe7dda13c49f69dfabbcc63
 is `7f9c4a363cf19154a9637ed8b251049bf23723e0`, Menu main
 `c3746a12e6146f880c49979df8da2a3567200924`. Use the latest verified checkpoint that
 actually contains the desired commits. These bundles predate the final architecture
-reconciliation and do not back up its newer commits. That gap is explicit until a
-new separately retained checkpoint is made; never overwrite sealed archives.
+reconciliation and identity repair. They retain their original checkpoint meaning
+and old commit IDs. Use the additive
+[privacy-reconciliation checkpoint](privacy-reconciliation-2026-09-15.md#recovery-checkpoints)
+for current refs and replacement IDs; never overwrite sealed archives.
 
 Full restore instructions are in [recovery](recovery.md#restore-git-without-github).
 Retain an independently trusted catalog: a colocated hash is not authentication.

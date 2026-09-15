@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-15",
+  "format": "project-cbm-unpublished-identity-reconciliation",
+  "reason": "Owner-authorized GH007 privacy repair; GitHub protections retained",
+  "repositories": {
+    "project-cbm": {
+      "commit_mapping": {
+        "7f9c4a363cf19154a9637ed8b251049bf23723e0": "93c96b123c26c803fd6d23e74fd7bb830f25ec64",
+        "8020d475e9a09421a2d9afde3226a1022d5cb18b": "0154a5031e601552b59dcd5d4a170813959b52f5",
+        "9d7ea95a770186dfc5814fb46474a2c84b4fc7e7": "41973da7b1d146c07f716398bcd197c4b9e57c75",
+        "a44e2a73051c84a3697a4093a30bcde18bb1ecc4": "31c75570ff588d1fc6d50ea885d9dc1f2359a51c"
+      },
+      "rewritten_main": "0154a5031e601552b59dcd5d4a170813959b52f5",
+      "tag_mapping": null,
+      "tree_message_dates_parent_order_preserved": true
+    },
+    "project-cbm-menu": {
+      "commit_mapping": {
+        "1cd5e0d378a4066f239c92a30aafdd97cb415dcf": "a4148db54001790eaddb4e31104917c16149b181",
+        "c3746a12e6146f880c49979df8da2a3567200924": "871d2cd1bd0c67a974e5286824868d35765dcd65",
+        "deb19f13c64ed9a604b942509e9366d5d0a740c4": "96ceb66494762efdab64a510e1302d4d24c580ad",
+        "ed16b3e8ef0d43581a5a8f31b2944f869ee5c12c": "a53b2ce02dbc0baa94e3fa3ded2b1640617b67e9"
+      },
+      "rewritten_main": "a53b2ce02dbc0baa94e3fa3ded2b1640617b67e9",
+      "tag_mapping": {
+        "annotation_preserved": true,
+        "new": "21ae1d2b8d595f0339295351bd34fcea44a78db4",
+        "old": "d3163efd4baca08fcdaf83a6db8854bee31509ee",
+        "tagger_date_preserved": true
+      },
+      "tree_message_dates_parent_order_preserved": true
+    }
+  },
+  "schema_version": 1
+}

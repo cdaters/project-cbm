@@ -14,7 +14,7 @@ No 1.1 builder, runtime changes, image build or release publication performed.
 | Kernels | arm64 vendor 6.12.75 v8 and 2712; no device EEPROM qualification implied |
 | VICE | Source-built 3.10 SDL2 under /usr/local, direct ALSA; retained build output matches installed x64sc |
 | TCPser | 1.1.6_beta, retained checkout `fe7feff4862406b277e009d14c219f5d16cf1222`; full integration unqualified |
-| Menu shipped | Exact 17 scripts recovered at `1cd5e0d378a4066f239c92a30aafdd97cb415dcf`, annotated `recovered/image-v1.0.0-runtime` in companion repo |
+| Menu shipped | Exact 17 scripts recovered at `a4148db54001790eaddb4e31104917c16149b181`, annotated `recovered/image-v1.0.0-runtime` in companion repo |
 | Formal Menu | Existing v1.0.0 peels to `399c6158caa8ed2762744d512c1841b94ad64403`; 12 script matches, five differences, extra experimental screenshot helper |
 | Source lineage | Historical v6.1/v6.3/v6.4 -> v6.5/GoldMaster/for65. v6.5 source equivalence is not byte identity or a full installed configuration snapshot |
 
@@ -27,8 +27,10 @@ shipped bytes; the new root recovery commit records recovery, not invented ances
 - Canonical main fast-forwarded 26 commits each: product `46fbf47` -> `493229c`;
   Menu `f185d91` -> `b7e4d85`, followed by local continuity commits. Full IDs and
   preservation records: [provenance](docs/provenance.md).
-- Continuity commits and new recovery/maintenance refs are local, also preserved
-  in TheBench bundles; no push was performed. GitHub release assets are unchanged.
+- The eight unpublished preservation/continuity commits received an owner-authorized
+  metadata-only privacy repair. Current refs and verified replacement bundles are in
+  [privacy reconciliation](docs/privacy-reconciliation-2026-09-15.md). Publication is
+  pending validation at this checkpoint; GitHub release assets are unchanged.
 - Product maintenance/1.0 starts at immutable product v1.0.0 `46fbf47d66596b2f3d0f6ab53d26bdd90632c73c`.
   Menu maintenance/1.0 starts at the exact recovery commit above, not formal Menu
   v1.0.0. It contains scripts and provenance only, not an installable image recipe.
@@ -65,7 +67,12 @@ content paths, external component .deb builds and backup/reflash/validated resto
 No mandated 8 GB minimum: measure footprint, initialization/maintenance margin and
 free user capacity. Separate USERDATA and immutable roots are deferred.
 
-The next milestone, requiring a NEW implementation instruction, is a pinned
+Milestone 1 is owner-authorized, with a mandatory build-host choice checkpoint.
+Resume after Git synchronization by creating `feature/1.1-build-foundation` from
+verified product main; leave Menu on main until actual Menu work is needed. Design
+contracts/tests/retention/packaging/integration/first boot and study the Linux host.
+STOP for owner approval before provisioning any host or allocating a Linux disk.
+No builder implementation is part of the privacy-repair task. The milestone is a pinned
 pi-gen arm64 Lite + small CBM stage + packaged VICE 3.10 + pinned Menu candidate +
 pinned TCPser proof-of-concept. Read the exact [new-session handoff](docs/build-and-release.md#new-session-first-task).
 No full release-lock mechanism or Linux build environment has been implemented.
@@ -96,8 +103,9 @@ on them. Spitfire's migrated reference copy has missing tools.
 Current local paths are deployment choices, not architecture. Independent encrypted
 backup/custody, Linux bootstrap environment, signing custody and standard SBOM format
 remain open. No infrastructure was provisioned. The earlier design checkpoint remains
-separate from the sealed preservation archive; this architecture phase updates Git
-only and its newer commits are not yet in those bundles.
+separate from the sealed preservation archive. The additive privacy-reconciliation
+checkpoint now retains all eight replacement commits, including the architecture
+work, with full offline restore checks. See its record for subsequent checkpoint phases.
 
 ## Evidence and storage
 
@@ -116,7 +124,7 @@ chain, VICE upstream tar provenance/patch state, content licenses and all physic
 qualification. Public availability/credential remediation and any new release need
 separate owner review. These do not prevent starting an explicitly authorized POC.
 
-## Final architecture phase checkpoint
+## Final architecture phase checkpoint (historical, pre-rewrite IDs)
 
 Inputs: product main `7f9c4a363cf19154a9637ed8b251049bf23723e0`; Menu main
 `c3746a12e6146f880c49979df8da2a3567200924`. Both began clean. Exact historical release,

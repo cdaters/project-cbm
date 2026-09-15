@@ -79,3 +79,19 @@ is the Project CBM 1.1 POC in docs/build-and-release.md, requiring a NEW impleme
 instruction. This architecture phase authorizes documentation/ADR commits only:
 stop before pi-gen, Linux provisioning, packaging, runtime changes, image build or
 publication. No push is authorized.
+
+## Commit identity and current owner authorization
+
+Use the contributor's GitHub-provided noreply identity when email privacy is enabled.
+Before commits, check effective author/committer identity and repository-local
+overrides; keep privacy protection enabled. Do not hard-code an operator email in
+project tooling. Never repair published history. The 2026-09-15 owner exception
+applied only to eight explicitly scoped unpublished commits and the dependent
+unpublished Menu forensic tag; see the product privacy reconciliation record.
+
+The owner has authorized Milestone 1 contracts/tests and build-host research, with
+a hard approval checkpoint before Linux host provisioning, disk allocation, package
+builds, pi-gen or images. The current identity-repair task authorizes its scoped
+rewrite, additive documentation/checkpoints and normal publication only; stop after
+verified pushes and offline recovery. Earlier phase-specific no-push/no-implementation
+statements above describe those completed phases, not a substitute for current scope.
