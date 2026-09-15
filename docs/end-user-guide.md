@@ -1,5 +1,9 @@
 # Project CBM End-User Guide
 
+> Historical image notice: the audit found ROM/media files and inherited machine
+> state in v1.0.0. Earlier blanket content-exclusion statements are not accurate
+> for that image. See [security/provenance findings](security.md).
+
 **Version covered:** Project CBM 1.0.0  
 **Build covered:** 2026.04.26  
 **Repository:** https://github.com/cdaters/project-cbm  

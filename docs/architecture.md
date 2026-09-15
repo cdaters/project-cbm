@@ -1,0 +1,49 @@
+# Architecture and ownership
+
+## Current appliance
+
+Pi firmware -> vendor kernel/initramfs -> systemd multi-user target -> tty1 getty
+autologin -> pi's .profile -> pcbm-start -> Bash/dialog menu or default VICE
+machine -> return to menu. VICE 3.10 uses SDL2 UI and ALSA. Full KMS is configured;
+the actual SDL backend/device selection needs physical qualification.
+
+Content lives under /home/pi/pcbm. Historical system settings live in /etc/pcbm,
+user preferences under /home/pi/.config/pcbm and VICE config under .config/vice.
+Services use systemd; the image contains NetworkManager/Netplan, SSH, Samba and
+optional-in-intent TCPser. See the [audit](audit-2026-09-15.md) for actual defaults.
+Configuration examples in source are not a snapshot of the installed image.
+
+## Repository contract
+
+| Authority | Owns |
+| --- | --- |
+| project-cbm | OS integration, image build system, product lock/manifest, VICE/TCPser/Menu mapping, qualification, artifacts, product docs, release notes, supported hardware policy |
+| project-cbm-menu | Independently versioned menu scripts/assets, menu interfaces/contracts, packaging and focused tests |
+
+Product docs here are authoritative. Menu public-docs/ is a historical packaging
+mirror, not a competing authority. Do not run its unsafe sync helper; migrate
+packaging to an explicit pinned docs input during later authorized work.
+
+The product must consume an explicit Menu version/tag, peeled commit and artifact
+SHA-256. Product and Menu version numbers need not match. A Menu source release
+alone is neither a product release nor proof of hardware qualification.
+
+## Interfaces to preserve and clarify in 1.1
+
+- Menu presents choices and dispatches launch/control helpers; VICE remains the
+  emulator and owns emulator interaction. Retain F10 and a reliable console return.
+- Product defines installed paths, account/home/content locations, service policy,
+  privileged operation boundary and configuration schema. Menu declares required
+  binaries, accepted settings, launch arguments, exit/error behavior and dependencies.
+- Converge RUN, MACHINES, CONTENT and direct boot on a validated launcher contract.
+  This is a planned change, not implemented during preservation.
+- Separate immutable defaults from validated user overrides, with atomic writes
+  and non-destructive upgrades. Never restore machine identity as user preferences.
+- One tested owner for expansion and first boot; do not layer competing PiShrink,
+  cloud-init and custom resize flows. Avoid broad root file commands and new network
+  services merely for UI convenience.
+- Pi 3 performance is a gate. No desktop, web admin, heavyweight catalog, runtime
+  containers, SDL3 migration or Pi 5-only optimization is part of the initial POC.
+
+See [build/release contract](build-and-release.md), [testing](testing.md) and
+[security](security.md). This document defines boundaries, not new runtime behavior.

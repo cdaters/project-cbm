@@ -37,3 +37,9 @@ For scripts:
 Large `.img`, `.img.gz`, and `.img.xz` files should not be committed to git.
 
 Use GitHub Releases for image artifacts.
+
+## Maintainer workflow
+
+Read [AGENTS.md](AGENTS.md) and [CURRENT-STATE.md](CURRENT-STATE.md). Follow
+[checks and qualification](docs/testing.md), update current state after meaningful
+work, and use the [ownership/release contract](docs/build-and-release.md).

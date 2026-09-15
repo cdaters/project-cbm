@@ -1,5 +1,9 @@
 # Project CBM Documentation
 
+> Historical image notice: the audit found ROM/media files and inherited machine
+> state in v1.0.0. Earlier blanket content-exclusion statements are not accurate
+> for that image. See [security/provenance findings](security.md).
+
 Welcome to the Project CBM documentation folder.
 
 These guides are written for users who want to download, verify, flash, boot, and use Project CBM without needing to build a Raspberry Pi system from scratch.
@@ -119,3 +123,9 @@ For project history and future plans, see:
 - [Roadmap](../ROADMAP.md)
 - [Contributing](../CONTRIBUTING.md)
 - [Support](../SUPPORT.md)
+
+## Maintainer continuity
+
+Start with [CURRENT-STATE](../CURRENT-STATE.md), [architecture](architecture.md),
+[build/release contract](build-and-release.md), [testing](testing.md),
+[security](security.md) and [provenance](provenance.md).

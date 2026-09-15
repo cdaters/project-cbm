@@ -1,4 +1,12 @@
 ![Platform](https://img.shields.io/badge/platform-raspberry%20pi-%23C51A4A)
+
+> Historical image notice: the audit found ROM/media files and inherited machine
+> state in v1.0.0. Earlier blanket content-exclusion statements are not accurate
+> for that image. See [security/provenance findings](docs/security.md).
+
+> 2026-09-15 continuity: read [CURRENT-STATE](CURRENT-STATE.md) for the reconciled
+> 1.0 history, maintenance policy and the next 1.1 reproducible-build milestone.
+> Preservation is complete; roadmap ideas are not implementation authorization.
 [![Project CBM Release](https://img.shields.io/github/v/release/cdaters/project-cbm?label=project-cbm%20release)](https://github.com/cdaters/project-cbm/releases/latest)
 [![Menu Release](https://img.shields.io/github/v/release/cdaters/project-cbm-menu?label=menu%20release)](https://github.com/cdaters/project-cbm-menu/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange)](LICENSE.md)

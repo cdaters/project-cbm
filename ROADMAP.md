@@ -1,5 +1,9 @@
 # Project CBM Roadmap
 
+> 2026-09-15 continuity: read [CURRENT-STATE](CURRENT-STATE.md) for the reconciled
+> 1.0 history, maintenance policy and the next 1.1 reproducible-build milestone.
+> Preservation is complete; roadmap ideas are not implementation authorization.
+
 This file tracks planned improvements, ideas, and wishlist items for future Project CBM releases.
 
 Items listed here are not guaranteed features, but they represent areas being entertained and/or explored for future versions.

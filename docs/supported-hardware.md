@@ -2,13 +2,22 @@
 
 Project CBM v1.0.0 targets Raspberry Pi 3 through Raspberry Pi 5 and Pi 500-class systems.
 
-## Supported Raspberry Pi Models
+## Target Raspberry Pi Models
 
 - Raspberry Pi 3
 - Raspberry Pi 4
 - Raspberry Pi 400
 - Raspberry Pi 5
 - Raspberry Pi 500 (and 500+)
+
+## Qualification status (2026-09-15)
+
+The list above is a product target, not a completed hardware qualification claim.
+Pi 3B/3A+/3B+, 4B/400, 5/500/500+ remain in scope where technically supportable.
+Pi 3 is the performance floor; 512 MiB Pi 3A+ needs separate memory testing.
+No physical Pi was tested by this audit/preservation work. Raspberry Pi OS support
+alone cannot qualify Project CBM. See [testing and the audit matrix](testing.md).
+Compute Modules and Zero 2 are not automatically included.
 
 ## Recommended Setup
 
@@ -37,4 +46,4 @@ For best performance, Project CBM recommends Raspberry Pi 5 or Raspberry Pi 500,
 
 - Controller behavior may vary by model.
 - Pi 5 and Pi 500 are recommended for the smoothest experience.
-- Pi 3 is supported, but heavier emulation or some demos may perform better on newer hardware.
+- Pi 3 is the performance floor. Model-specific performance and compatibility require qualification; heavier profiles may have documented limits.
