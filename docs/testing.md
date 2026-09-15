@@ -52,3 +52,14 @@ USB import, storage types, service/credential policy, IP232, power, backup/resto
 two-flash identity and release integrity. Keep per-candidate results in
 /Volumes/TheBench/ProjectCBM-Work/qualification and commit small summaries here.
 No physical tests were performed during audit or preservation.
+
+## Black-box recovery acceptance
+
+The [recovery test matrix](recovery.md#8-acceptance-tests-and-current-evidence) adds
+context-free handoff, offline bundle restore, mounted-image identity, lost-builder/
+upstream reconstruction, metadata agreement, privacy negatives, old-schema reading,
+qualification binding, hash-cycle rejection, relocation and independent-backup drills.
+A build passing syntax checks does not meet these gates. The accepted preservation
+bundles passed the actual offline all-ref/17-script restore test in this design pass.
+No 1.1 image/schema/runtime test is claimed; those components do not exist yet.
+Keep PASS/FAIL/UNTESTED/BLOCKED and exact candidate/test-suite identity in records.

@@ -120,3 +120,19 @@ invocation; independent VICE tarball authentication and any source patches; whet
 all art/media/fonts may be redistributed; actual two-flash identity behavior and
 per-model hardware performance remain unresolved. Preserved files improve evidence,
 but a build transcript, branch name or OS compatibility list cannot close these gaps.
+
+## Black-box recovery assessment
+
+[Recovery section 7](recovery.md#7-historical-10-assessment) distinguishes KNOWN,
+RECOVERED, STRONGLY INFERRED, UNKNOWN and conditionally UNRECOVERABLE. 1.0 preserves
+exact artifacts and substantial evidence; it does not retroactively meet the new
+1.1 lock/self-description/proven-rebuild requirements. No missing pin is manufactured.
+
+The accepted final bundles were restored offline into fresh mirrors during the
+2026-09-15 recovery-design pass: all five product refs and eight Menu refs matched
+their retained inventories; fsck and all 17 recovery-script hashes passed. This
+proves source/ref recovery from that checkpoint, not independent backup or full
+build recovery. New design commits are retained separately under the current
+ProjectCBM-Work/archive/black-box-design-2026-09-15 deployment. The sealed preservation
+archive is unchanged. Portable locators/configured roots must support later relocation;
+historical absolute roots remain evidence of the capture environment.

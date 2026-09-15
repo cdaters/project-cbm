@@ -1,0 +1,215 @@
+{
+  "format": "project-cbm.recovery-contract-design",
+  "schema_version": 1,
+  "example_only": true,
+  "status": "Design worksheet, not a release lock, schema, manifest or candidate. Nulls must fail validation as actual required 1.1 inputs.",
+  "release_lock_example": {
+    "format": "project-cbm.release-lock",
+    "schema_version": 1,
+    "product": {
+      "name": "Project CBM",
+      "version": null,
+      "candidate": null,
+      "architecture": "arm64"
+    },
+    "base": {
+      "method": "pi-gen-lite",
+      "distribution": "Raspberry Pi OS Lite",
+      "suite": "trixie",
+      "release_identity": null,
+      "official_image_artifact": null,
+      "builder": {
+        "repository_id": "raspberry-pi-pi-gen",
+        "advisory_url": null,
+        "object_format": null,
+        "commit": null,
+        "source_artifact": null
+      },
+      "stages": null,
+      "configuration_artifact": null,
+      "ordered_patch_artifacts": [],
+      "authenticated_repository_metadata_artifact": null,
+      "binary_package_closure_artifact": null,
+      "source_package_closure_artifact": null
+    },
+    "integration": {
+      "repository_id": "project-cbm",
+      "advisory_url": null,
+      "object_format": null,
+      "commit": null,
+      "source_artifact": null
+    },
+    "components": {
+      "menu": {
+        "version": null,
+        "source": {
+          "repository_id": "project-cbm-menu",
+          "advisory_url": null,
+          "object_format": null,
+          "commit": null,
+          "source_artifact": null
+        },
+        "ordered_patch_artifacts": [],
+        "build_flags_artifact": null,
+        "component_build_record_artifact": null,
+        "package_artifact": null,
+        "license_and_corresponding_source_artifact": null,
+        "tag": null,
+        "tag_object": null,
+        "peeled_commit": null,
+        "configuration_schema_compatibility": null
+      },
+      "vice": {
+        "version": "3.10",
+        "source": {
+          "repository_id": "vice",
+          "advisory_url": null,
+          "object_format": null,
+          "commit": null,
+          "source_artifact": null
+        },
+        "ordered_patch_artifacts": [],
+        "build_flags_artifact": null,
+        "component_build_record_artifact": null,
+        "package_artifact": null,
+        "license_and_corresponding_source_artifact": null,
+        "ui": "SDL2"
+      },
+      "tcpser": {
+        "version": null,
+        "source": {
+          "repository_id": "tcpser",
+          "advisory_url": null,
+          "object_format": null,
+          "commit": null,
+          "source_artifact": null
+        },
+        "ordered_patch_artifacts": [],
+        "build_flags_artifact": null,
+        "component_build_record_artifact": null,
+        "package_artifact": null,
+        "license_and_corresponding_source_artifact": null
+      }
+    },
+    "environment": {
+      "bootstrap_artifact": null,
+      "recipe_artifact": null,
+      "host_package_closure_artifact": null,
+      "toolchain_artifact": null,
+      "capability_requirements_artifact": null,
+      "source_date_epoch": null
+    },
+    "configuration": {
+      "schema_version": null,
+      "defaults_artifact": null,
+      "assets_license_inventory_artifact": null,
+      "sealing_recipe_artifact": null,
+      "first_boot_recipe_artifact": null
+    },
+    "hardware_policy": {
+      "performance_floor": "Raspberry Pi 3",
+      "target_range": "Pi 3 through Pi 500+ where qualified",
+      "qualification_plan_artifact": null
+    },
+    "artifacts": []
+  },
+  "artifact_record_template": {
+    "artifact_id": null,
+    "relative_path": null,
+    "size_bytes": null,
+    "digest": {
+      "algorithm": "sha256",
+      "value": null
+    },
+    "media_type": null,
+    "advisory_source_urls": [],
+    "license": null,
+    "handling_class": null,
+    "availability": null
+  },
+  "embedded_identity_example": {
+    "format": "project-cbm.image-identity",
+    "schema_version": 1,
+    "build_id": null,
+    "release_lock": {
+      "relative_path": "release-lock.json",
+      "digest": null
+    },
+    "product_projection": null,
+    "base_projection": null,
+    "builder_projection": null,
+    "integration_projection": null,
+    "component_projections": null,
+    "configuration_schema_version": null,
+    "build_record": {
+      "relative_path": "build-record.json",
+      "digest": null
+    },
+    "package_inventory": {
+      "relative_path": "packages.json",
+      "digest": null
+    },
+    "recipe_inventory": null,
+    "schema_inventory": null,
+    "hardware_policy_projection": null,
+    "qualification_state": "external-attestation-required",
+    "external_manifest_lookup": {
+      "format": "project-cbm.release-manifest",
+      "build_id": null
+    }
+  },
+  "external_release_manifest_example": {
+    "format": "project-cbm.release-manifest",
+    "schema_version": 1,
+    "build_id": null,
+    "release_designation": null,
+    "attempt_id": null,
+    "observed_build_time_utc": null,
+    "lock_artifact": null,
+    "build_record_artifact": null,
+    "embedded_identity_artifact": null,
+    "raw_image_artifact": null,
+    "compressed_image_artifact": null,
+    "package_inventory_artifact": null,
+    "sbom_artifact": null,
+    "qualification_artifact": null,
+    "release_notes_artifact": null,
+    "known_limitations": [],
+    "artifacts": []
+  },
+  "qualification_example": {
+    "format": "project-cbm.qualification",
+    "schema_version": 1,
+    "raw_image_digest": null,
+    "release_lock_digest": null,
+    "embedded_identity_digest": null,
+    "test_suite_commit": null,
+    "hardware_cases": [],
+    "allowed_test_statuses": [
+      "pass",
+      "fail",
+      "untested",
+      "blocked"
+    ],
+    "case_fields": [
+      "model",
+      "board_revision",
+      "ram_bytes",
+      "kernel",
+      "firmware",
+      "eeprom",
+      "test_environment",
+      "test_id",
+      "status",
+      "reason",
+      "measurements",
+      "evidence_artifacts"
+    ]
+  },
+  "intentional_exclusions": [
+    "No lock self-hash or hash of its containing Git commit.",
+    "No final image, external manifest or qualification hashes inside embedded identity.",
+    "No reference from qualification to a manifest which hashes it.",
+    "No passwords, private keys, tokens, user data, personal paths or live device identity."
+  ]
+}

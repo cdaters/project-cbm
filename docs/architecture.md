@@ -47,3 +47,13 @@ alone is neither a product release nor proof of hardware qualification.
 
 See [build/release contract](build-and-release.md), [testing](testing.md) and
 [security](security.md). This document defines boundaries, not new runtime behavior.
+
+## Recovery is a product requirement
+
+The [black-box recovery contract](recovery.md) explains how a stranger recovers
+source, inputs, rationale, build environment, release identity and qualification
+without original context/infrastructure. Self-describing offline images and portable
+retained-input locators are mandatory from 1.1. One lock generates identity; final
+image/qualification hashes remain external to avoid circular dependencies. Runtime
+identity reporting consumes generated metadata, not another version file. TheBench
+is the current bulk deployment, not a required product pathname or platform.

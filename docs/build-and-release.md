@@ -5,6 +5,12 @@ package changes, 1.1 image or new release is present. The original process was
 interactive source-Pi installation, card capture, PiShrink and XZ compression.
 Historical Menu build notes/workflow remain evidence, not the future image recipe.
 
+First-class [black-box recovery](recovery.md) is mandatory from 1.1. It defines the
+JSON lock/embedded/external/qualification relationship, offline identity, retained
+inputs/environment bootstrap and recovery tests. The design worksheet is not a
+usable lock; formal schemas/generators belong to the POC. A successful or repeatable
+build alone is insufficient for release readiness.
+
 ## Required mapping for every future product candidate
 
 | Field | Required identity/evidence |
@@ -31,7 +37,10 @@ are in [provenance](provenance.md), not a claim that a complete lock has been re
 Retain the entire package closure, not just a caching proxy or version list.
 Debian snapshots do not automatically preserve Raspberry Pi packages. Separate
 networked acquisition from clean repeatable assembly using retained verified inputs.
-Builder tooling and build-specific temp/cache paths belong on TheBench.
+Builder tooling and build-specific temp/cache paths belong on TheBench in this
+current deployment. Future tooling must accept configured roots and portable relative
+locators, without literal Mac paths. Retain bootstrap/toolchain and corresponding
+source closure, not only runtime package inputs.
 
 ## Reproducibility and release gates
 
@@ -50,22 +59,28 @@ implicitly authorized by building a POC. Preserve existing tags/assets unchanged
 
 With a NEW owner instruction authorizing the 1.1 POC, begin in ~/Code/project-cbm:
 
-1. Read AGENTS.md, CURRENT-STATE.md, this contract, provenance and testing. Inspect
-   clean Git state and verify the Menu recovery/formal release distinction.
+1. Read AGENTS.md, CURRENT-STATE.md, this contract, recovery.md, provenance and testing.
+   Inspect Git and preserve unfamiliar dirty work; verify Menu recovery versus the
+   formal release before choosing an input.
 2. Create a short POC feature branch off current main. Inspect TheBench mount/space
    and identify the available native arm64 Linux host or suitable Linux VM and
    Linux filesystem backed by TheBench. APFS folders are not a Linux rootfs.
    The build environment decision is still open; do not silently choose the Mac
    internal disk, change global temp settings or provision a costly remote host.
 3. Verify official current pi-gen arm64 Lite guidance and candidate Trixie inputs.
-   Record full builder/input identities and a small proposed input-lock schema
-   implementing the mapping above. Audit-era upstream versions are not a current lock.
+   Record full builder/input identities. First formalize the recovery contract's
+   lock/embedded/external/qualification schemas and offline validation fixtures,
+   including checksum-cycle rejection and retained environment/input closure.
+   Audit-era upstream versions are not a current lock.
 4. Establish the smallest pinned arm64 Lite stages plus one Project CBM integration
    stage. Package/pin VICE 3.10 SDL2, a reviewed Menu candidate/package with explicit
    tag/commit/hash, and TCPser. Do not substitute formal Menu v1.0.0 for the exact
    shipped runtime without recording the five changes and extra helper.
 5. Build one PRIVATE POC on Linux using TheBench-backed bulk storage, preserving
-   inputs/logs/output hashes. Validate image composition and record blockers; then
+   inputs/logs/output hashes plus embedded offline identity/recipe from that same lock.
+   Generate external image/qualification records after image freeze; never alter a
+   qualified image to insert its results. Validate recovery/image composition and
+   record blockers; then
    repeat cleanly and compare. Plan Pi 3B/3A+ checks early using the audit matrix.
 
 The first deliverable should establish the host/filesystem and pinned inputs,

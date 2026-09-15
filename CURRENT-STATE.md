@@ -1,6 +1,7 @@
 # Project CBM current state
 
-Updated 2026-09-15 — preservation/reconciliation/continuity complete.
+Updated 2026-09-15 — preservation/reconciliation/continuity accepted; first-class
+black-box recovery design added as a required part of the 1.1 builder architecture.
 No 1.1 builder, runtime changes, image build or release publication performed.
 
 ## What shipped
@@ -61,11 +62,39 @@ pi-gen arm64 Lite + small CBM stage + packaged VICE 3.10 + pinned Menu candidate
 pinned TCPser proof-of-concept. Read the exact [new-session handoff](docs/build-and-release.md#new-session-first-task).
 No full release-lock mechanism or Linux build environment has been implemented.
 
+### Black-box recovery requirement
+
+Read [recovery](docs/recovery.md) for scenarios A–H, historical confidence levels,
+portable storage, independent backup/restore and acceptance tests. A future developer
+must recover the product from CBM repositories/retained artifacts alone, without old
+sessions, the original Mac or reference projects.
+
+1.1 must generate offline-readable /usr/share/project-cbm/recovery/ identity,
+lock, inventory, schema and compact recipe data from the same frozen inputs.
+Proposed pcbm-info reads that authority; it is not implemented. Final image hashes
+and post-image qualification attestations remain external to avoid hash cycles.
+Only-image identification cannot replace missing external input bytes or prove
+qualification. JSON field contracts and a design-only worksheet are documented;
+production schemas/validators/generator remain an initial POC task.
+
+The accepted preservation bundles were restored into fresh mirrors without GitHub:
+all 5 product refs, 8 Menu refs and 17 recovered script hashes matched; fsck passed.
+Fresh-person comprehension, offline 1.1 image, clean Linux rebuild, schema/privacy
+negative tests and independent-medium restore remain unperformed. Read-only lessons
+from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
+on them. Spitfire's migrated reference copy has missing tools.
+
+Current local paths are deployment choices, not architecture. Independent encrypted
+backup/custody, Linux bootstrap environment, signing custody and standard SBOM format
+remain open. No infrastructure was provisioned. This additive design checkpoint is
+separate from the sealed accepted preservation archive.
+
 ## Evidence and storage
 
 - Original history (read-only by policy): `/Volumes/TheBench/Projects/Project CBM`.
 - New bulk work: `/Volumes/TheBench/ProjectCBM-Work/{inputs,packages,builds,cache,artifacts,qualification,scratch}`.
 - Durable inventory/Git snapshots/recovery: `ProjectCBM-Work/archive/preservation-2026-09-15`.
+- Additive design checkpoint/bundles: `ProjectCBM-Work/archive/black-box-design-2026-09-15`.
 - Original assets/extraction: `ProjectCBM-Work/archive/audit-2026-09-14/workspace`.
 - [Reconciled audit](docs/audit-2026-09-15.md); original report retained externally.
 

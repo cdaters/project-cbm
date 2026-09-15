@@ -44,3 +44,25 @@ Before any public artifact: review content provenance, first-boot identity/accou
 state, service exposure, privilege boundaries and qualification. Owner review is
 needed for any change to existing public image availability or a maintenance release;
 neither was performed. See [full audit](audit-2026-09-15.md#k-risks-and-unresolved-questions).
+
+## Public recovery metadata boundary
+
+[Black-box recovery](recovery.md) must never embed passwords/password hashes,
+private SSH/signing keys, API credentials, personal shell history, user files,
+private network credentials or sensitive builder-machine identifiers. Do not publish
+raw builder environment dumps, home paths, hostname/IP/MAC/serial identity, account
+or network config, private registry URLs/tokens, or unique test-device identities.
+Use build IDs, synthetic test IDs, source commits and sanitized toolchain facts.
+
+Public-field allowlists, secret-pattern scans and manual review complement each
+other; scans alone do not prove safe publication. Verify the actual sealed filesystem
+separately. Historical private archives retain original evidence under encryption/
+access policy and are not public recovery kits. Public Git history and legacy assets
+also require review; a bundle inherits its history's visibility, not a blanket
+public label. Keep public verification keys/signatures/trust transitions; private
+signing recovery and unlock custody belong in a separate protected procedure.
+Checksums and matching embedded metadata do not prove publisher authenticity.
+The authoritative lock itself must be public-safe from construction; do not redact
+it into a different embedded copy after computing its digest. Acquisition credentials
+stay outside declared content inputs and all logs/locks. Public build records are
+generated summaries; private raw transcripts never become embedded recovery material.
