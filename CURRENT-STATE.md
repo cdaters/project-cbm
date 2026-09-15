@@ -1,7 +1,7 @@
 # Project CBM current state
 
-Updated 2026-09-15 — owner accepted the cold-start continuity test; final architecture
-and documentation reconciliation complete. [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md)
+Updated 2026-09-15 — publication scope resolved; Milestone 1 host-only contracts
+and engineering designs complete through the mandatory owner build-host checkpoint. [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md)
 accepts Raspberry Pi OS Lite + pinned arm64 pi-gen with bounded appliance practices.
 No 1.1 builder, runtime changes, image build or release publication performed.
 
@@ -70,15 +70,18 @@ content paths, external component .deb builds and backup/reflash/validated resto
 No mandated 8 GB minimum: measure footprint, initialization/maintenance margin and
 free user capacity. Separate USERDATA and immutable roots are deferred.
 
-Milestone 1 is owner-authorized, with a mandatory build-host choice checkpoint.
-Resume after Git synchronization by creating `feature/1.1-build-foundation` from
-verified product main; leave Menu on main until actual Menu work is needed. Design
-contracts/tests/retention/packaging/integration/first boot and study the Linux host.
-STOP for owner approval before provisioning any host or allocating a Linux disk.
-No builder implementation is part of the privacy-repair task. The milestone is a pinned
+Milestone 1 is active on `feature/1.1-build-foundation`, created from verified main
+`29933789ec8d29bd55f2b00cbcf309132058413f`; Menu remains clean main at
+`bb4f24fadae6e852bf29fb0e32ad8ced9db7268c`. Host-only schemas/generator/validators
+and 15 tests are implemented; retention, packaging, integration and first-boot
+designs are documented. **STOPPED for owner build-host approval**, before Linux
+provisioning, disk allocation, package building, pi-gen or images. Read the concrete
+[host recommendation](docs/build/linux-build-host-study.md) and
+[checkpoint/handoff](docs/build/milestone1-checkpoint.md). The eventual milestone is a pinned
 pi-gen arm64 Lite + small CBM stage + packaged VICE 3.10 + pinned Menu candidate +
 pinned TCPser proof-of-concept. Read the exact [new-session handoff](docs/build-and-release.md#new-session-first-task).
-No full release-lock mechanism or Linux build environment has been implemented.
+No real release lock, retained candidate input closure, package recipe/stage or Linux
+build environment exists. Synthetic fixtures cannot be used as build inputs.
 
 ### Black-box recovery requirement
 
@@ -90,7 +93,8 @@ sessions, the original Mac or reference projects.
 Full project recovery belongs in repositories and retained build/release infrastructure.
 1.1 carries only minimal `/usr/share/project-cbm/identity.json`, generated from the
 same frozen lock: product/Menu/VICE/base/TCPser mapping, integration/build ID and config
-schema identity, with external provenance lookup. No full lock, recipes, schema corpus,
+schema identity, with external provenance lookup. The host-only generator is implemented;
+it has not been installed in any image. No full lock, recipes, schema corpus,
 archives or package closure merely for recovery in the appliance. Proposed pcbm-info
 reads E; it is not implemented. Final image hashes/qualification stay external to
 avoid cycles. A final manifest hashing the image cannot have its digest embedded in
@@ -99,8 +103,8 @@ that image; use a predecessor digest/build-ID lookup. JSON worksheet is design-o
 The accepted preservation bundles were restored into fresh mirrors without GitHub:
 all 5 product refs, 8 Menu refs and 17 recovered script hashes matched; fsck passed.
 Owner accepted repository-only cold-start comprehension on 2026-09-15. Offline 1.1
-identity, clean Linux rebuild, schema/privacy negatives and independent-medium restore
-remain unperformed. Read-only lessons from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
+identity on an actual image, clean Linux rebuild and independent-medium restore
+remain unperformed. Host-only schema/privacy negatives pass using synthetic fixtures. Read-only lessons from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
 on them. Spitfire's migrated reference copy has missing tools.
 
 Current local paths are deployment choices, not architecture. Independent encrypted
@@ -142,3 +146,24 @@ No builder, Linux provisioning, packaging, runtime/first-boot change, image, pus
 release. Stop after documentation commits. Independent backup/custody, Linux bootstrap,
 signing custody, SBOM format, measured acceptance budgets and historical 1.0 input/
 build-chain gaps remain open. Implementation is the next separately authorized task.
+
+## Milestone 1 current checkpoint
+
+Contract implementation commit: `e4d1556` (resolve full ID in Git); later design/handoff
+commit follows on the same local feature branch. Feature work is not pushed or merged.
+The 15 host-only tests passed, including published tag identities, strict JSON/schema
+validation, malformed/missing pins, safe locators, minimal-identity projection and
+workspace refusal cases. No physical Pi, Linux capability or real input-closure pass
+is claimed. The old worksheet remains visibly historical and fails lock validation.
+
+Current source recovery is additive under archive/milestone1-contracts-2026-09-15;
+its checkpoint.json and separate SHA-256 identify the final branch tip, bundles,
+validation/research/test-dependency artifacts and exact next step. Read its README
+after verifying the catalog. Published synchronization bundles remain under
+archive/privacy-reconciliation-2026-09-15/published, checkpoint SHA-256
+`6ff18bafcc57a7e054a22fff66efedd3618ea6bd1a6f9dedf2c6d1bacdbc255c`.
+
+Recommendation awaiting approval: Lima/VZ plain arm64 Debian VM, 8 vCPUs, 12 GiB RAM,
+160 GiB sparse ext4 disk on TheBench, explicit external download/cache placement.
+UTM is the main alternative. Approval must precede host installation/provisioning;
+exact bootstrap/input pins and actual Linux capability tests remain future work.

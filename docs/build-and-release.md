@@ -1,8 +1,8 @@
 # Build and release contract
 
-Status: architecture accepted in [ADR-0001](adr/0001-base-distribution-and-image-architecture.md), 2026-09-15; implementation handoff only.
-No builder, lock implementation,
-package changes, 1.1 image or new release is present. The original process was
+Status: architecture accepted in [ADR-0001](adr/0001-base-distribution-and-image-architecture.md), 2026-09-15. Host-only
+[POC contracts/tests](build/contracts.md) are implemented; real input closure, builder,
+packages, 1.1 image and new release are not present. The original process was
 interactive source-Pi installation, card capture, PiShrink and XZ compression.
 Historical Menu build notes/workflow remain evidence, not the future image recipe.
 
@@ -11,7 +11,7 @@ build/release infrastructure from 1.1. The image carries only minimal installed 
 locks, recipes, schema/test corpora and inventories stay external. The contract defines
 the JSON lock/identity/external qualification relationship, offline identity, retained
 inputs/environment bootstrap and recovery tests. The design worksheet is not a
-usable lock; formal schemas/generators belong to the POC. A successful or repeatable
+usable lock; formal input/identity schemas/generator are now in the POC branch. A successful or repeatable
 build alone is insufficient for release readiness.
 
 ## Required mapping for every future product candidate
@@ -60,7 +60,10 @@ implicitly authorized by building a POC. Preserve existing tags/assets unchanged
 
 ## New-session first task
 
-With a NEW owner instruction authorizing the 1.1 POC, begin in ~/Code/project-cbm:
+Milestone 1 is now authorized. Branch creation and host-only contract/design work
+are complete; see [current checkpoint](build/milestone1-checkpoint.md). **The next
+action is owner approval of the [Linux host proposal](build/linux-build-host-study.md),
+not provisioning.** The overall sequence below still describes the eventual POC:
 
 1. Read AGENTS.md, CURRENT-STATE.md, this contract, recovery.md, provenance and testing.
    Inspect Git and preserve unfamiliar dirty work; verify Menu recovery versus the
@@ -95,5 +98,6 @@ then a minimal reviewable recipe and private image evidence. Do not start option
 screenshots/themes/controller additions before the reproducible-build foundation.
 Runtime defect fixes belong in separately reviewable changes within the new scope.
 
-This completed architecture/reconciliation phase stops before step 2; a new owner
-instruction must authorize implementation. No host, packages or image were built.
+Current milestone boundary: stop at the host-choice checkpoint before provisioning,
+package builds, pi-gen or image construction. Read the latest CURRENT-STATE rather
+than treating historical phase boundaries as the current implementation status.

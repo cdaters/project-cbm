@@ -88,3 +88,13 @@ The owner accepted the repository-only cold-start comprehension review on 2026-0
 This is a project-continuity pass, not independent archive restore, Linux bootstrap,
 image-side identity validation or hardware qualification. Full recovery tests operate
 on the external kit; only the minimal installed identity is required on the appliance.
+
+## Milestone 1 host-only contract checks
+
+Use Python with requirements-contracts.txt and run
+`python -m unittest discover -s tests -v`. The 15 tests cover schema meta-validation,
+strict/duplicate JSON rejection, pins/package identity, checksums/locators, minimal
+identity/golden fixture, private/output fields, read-only workspace refusal and
+published tag regression checks. Companion-tag tests skip explicitly if its checkout
+is absent. Current local run had no skips. No builder, image or hardware pass follows
+from these tests. [Checkpoint](build/milestone1-checkpoint.md) records the scope.

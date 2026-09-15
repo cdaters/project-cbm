@@ -72,6 +72,8 @@ Follow docs/testing.md for focused behavioral and physical-device qualification.
 Keep logical commits and leave a clear git status. Do not claim hardware passes
 from static checks. Verify preservation manifests after preservation changes.
 
+### Completed architecture phase (historical boundary)
+
 Preservation and the owner-accepted cold-start review are complete. Final architecture
 and documentation reconciliation are complete under ADR-0001. Metadata schemas/generator,
 pcbm-info, first boot and independent backup remain unimplemented. The next milestone
@@ -108,3 +110,14 @@ contracts/tests and retention/package/integration/first-boot design plus Linux h
 research; STOP for the build-host options/recommendation checkpoint before installing
 software, provisioning a VM/container/host, allocating large disks, building packages,
 running pi-gen or building an image. No Menu feature branch without actual Menu work.
+
+## Milestone 1 owner checkpoint (latest)
+
+Host-only input/identity/workspace schemas, validators, generator and tests are now
+implemented on feature/1.1-build-foundation. See docs/build/contracts.md and
+docs/build/milestone1-checkpoint.md for exact checks/remaining limits. Package,
+integration-stage, first-boot and retention designs are documents only.
+STOP pending the owner's choice in docs/build/linux-build-host-study.md. Do not
+install/provision a Linux host, allocate disks, build packages, run pi-gen or build
+an image until that approval arrives. Do not treat synthetic fixtures as real pins.
+Do not retry product maintenance/1.0 publication; public v1.0.0 remains its baseline.
