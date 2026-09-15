@@ -1,0 +1,43 @@
+# Operator paths are rendered by tools/build_host.py; no upstream base templates.
+minimumLimaVersion: 2.2.0
+vmType: vz
+arch: aarch64
+os: Linux
+plain: true
+cpus: 8
+memory: 10GiB
+disk: 160GiB
+images:
+- location: __GUEST_IMAGE_JSON__
+  arch: aarch64
+  digest: sha512:8543d795f2fde630eb66c492f245a8c1da19dedc636e0a8e7b3d0f95920e1a05aa911ef2d82d177d41cc53ced5fccbd2a3945d07fa5e15018914c4d864bb07ed
+mounts: []
+networks: []
+containerd:
+  system: false
+  user: false
+ssh:
+  loadDotSSHPubKeys: false
+  forwardAgent: false
+  forwardX11: false
+user:
+  name: builder
+  comment: Project CBM disposable builder
+  uid: 1000
+  home: /home/builder
+  shell: /bin/bash
+  passwordlessSudo: true
+vmOpts:
+  vz:
+    diskImageFormat: raw
+    rosetta:
+      enabled: false
+      binfmt: false
+nestedVirtualization: false
+upgradePackages: false
+propagateProxyEnv: false
+timezone: UTC
+video:
+  display: none
+audio:
+  device: none

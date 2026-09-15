@@ -1,9 +1,11 @@
 # Project CBM current state
 
-Updated 2026-09-15 — publication scope resolved; Milestone 1 host-only contracts
-and engineering designs complete through the mandatory owner build-host checkpoint. [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md)
-accepts Raspberry Pi OS Lite + pinned arm64 pi-gen with bounded appliance practices.
-No 1.1 builder, runtime changes, image build or release publication performed.
+Updated 2026-09-15 — owner approved the Lima/VZ build host. The native ARM64
+Debian 13 guest is provisioned on TheBench and its Linux capability gate **passed**.
+[Approved recipe and reconstruction](docs/build/lima-build-host.md) and
+[capability evidence](docs/build/lima-capability-2026-09-15.md) are current authority.
+[ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md) remains accepted.
+No Project CBM image, component package or physical Pi pass exists yet.
 
 ## What shipped
 
@@ -73,15 +75,16 @@ free user capacity. Separate USERDATA and immutable roots are deferred.
 Milestone 1 is active on `feature/1.1-build-foundation`, created from verified main
 `29933789ec8d29bd55f2b00cbcf309132058413f`; Menu remains clean main at
 `bb4f24fadae6e852bf29fb0e32ad8ced9db7268c`. Host-only schemas/generator/validators
-and 15 tests are implemented; retention, packaging, integration and first-boot
-designs are documented. **STOPPED for owner build-host approval**, before Linux
-provisioning, disk allocation, package building, pi-gen or images. Read the concrete
-[host recommendation](docs/build/linux-build-host-study.md) and
-[checkpoint/handoff](docs/build/milestone1-checkpoint.md). The eventual milestone is a pinned
-pi-gen arm64 Lite + small CBM stage + packaged VICE 3.10 + pinned Menu candidate +
-pinned TCPser proof-of-concept. Read the exact [new-session handoff](docs/build-and-release.md#new-session-first-task).
-No real release lock, retained candidate input closure, package recipe/stage or Linux
-build environment exists. Synthetic fixtures cannot be used as build inputs.
+and 20 tests are implemented; retention, packaging, integration and first-boot
+designs are documented. Owner approved Lima/VZ with 8 vCPU, **10 GiB RAM**, 160 GiB
+sparse disk. Core and full Linux/transfer/package capability tests passed. Continue
+Milestone 1 with exact pi-gen/component inputs, retained closure, versioned packages,
+real lock, minimal integration/first-boot and one private POC image/offline validation.
+Stop on a required capability failure or after that image; no automatic physical Pi
+testing, broad modernization or release publication. See the
+[approved host](docs/build/lima-build-host.md) and [build sequence](docs/build-and-release.md#new-session-first-task).
+No real release lock, retained candidate input closure, package recipe/stage exists. The Linux host is now available; its complete
+build dependency closure is not yet frozen. Synthetic fixtures cannot be used as build inputs.
 
 ### Black-box recovery requirement
 
@@ -109,7 +112,7 @@ on them. Spitfire's migrated reference copy has missing tools.
 
 Current local paths are deployment choices, not architecture. Independent encrypted
 backup/custody, Linux bootstrap environment, signing custody and standard SBOM format
-remain open. No infrastructure was provisioned. The earlier design checkpoint remains
+remain open. At that earlier checkpoint no infrastructure was provisioned. The earlier design checkpoint remains
 separate from the sealed preservation archive. The additive privacy-reconciliation
 checkpoint now retains all eight replacement commits, including the architecture
 work, with full offline restore checks. See its record for subsequent checkpoint phases.
@@ -147,7 +150,7 @@ release. Stop after documentation commits. Independent backup/custody, Linux boo
 signing custody, SBOM format, measured acceptance budgets and historical 1.0 input/
 build-chain gaps remain open. Implementation is the next separately authorized task.
 
-## Milestone 1 current checkpoint
+## Milestone 1 pre-approval checkpoint (historical)
 
 Contract implementation commit: `e4d1556` (resolve full ID in Git); later design/handoff
 commit follows on the same local feature branch. Feature work is not pushed or merged.
@@ -167,3 +170,26 @@ Recommendation awaiting approval: Lima/VZ plain arm64 Debian VM, 8 vCPUs, 12 GiB
 160 GiB sparse ext4 disk on TheBench, explicit external download/cache placement.
 UTM is the main alternative. Approval must precede host installation/provisioning;
 exact bootstrap/input pins and actual Linux capability tests remain future work.
+
+## Milestone 1 approved host checkpoint (current)
+
+Lima 2.2.0, source `de0816ea4bdc5267b428ab21025889b8dd785526`; pinned dated
+Debian cloud bootstrap and checksums in build/host/inputs.json. Instance `cbm` is
+running on VZ, plain mode, no host mounts/container platform. Disk and state:
+`ProjectCBM-Work/build-host/lima/cbm/disk`; cache: `ProjectCBM-Work/cache/lima`.
+Actual root is ext4; Debian 13 kernel `6.12.95+deb13-cloud-arm64`. The guest is
+infrastructure, not Raspberry Pi qualification or a release base image.
+
+20 host tests passed. Full loop/partition/ext4/mount/chroot/device/xattr tests,
+APT HTTPS/authenticated metadata/install/remove/source, Git acquisition and 1 MiB
+bidirectional SSH/rsync hash test passed. Two probe defects (admin PATH and xattr
+read permissions) were corrected; original failed logs retained. APT export excludes
+transient lock/partial files after initial permission errors; important inputs were
+catalogued. No host capability workaround was needed. All details and limitations:
+[capability record](docs/build/lima-capability-2026-09-15.md).
+
+Retained bootstrap inputs: `ProjectCBM-Work/inputs/build-host/`; 82-file inventory
+and raw private infrastructure logs: `ProjectCBM-Work/build-host/records/`.
+Next: retain and select exact pi-gen arm64/VICE/Menu/TCPser inputs and package-build
+closure, then implement the smallest locked POC factory. Do not claim a frozen real
+release lock, complete source/package closure, image, reproducibility or hardware pass.

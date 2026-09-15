@@ -1,6 +1,8 @@
 # Linux build host: owner decision checkpoint
 
-Research date: **2026-09-15**. Status: **recommendation awaiting owner approval**.
+Research date: **2026-09-15**. Status: **historical proposal; owner approved Lima/VZ with 10 GiB RAM**.
+See [approved implementation](lima-build-host.md) for the current recipe/status.
+The observations and proposed 12 GiB below record the pre-approval study.
 No VM/container/hypervisor was installed or started, no Linux disk allocated, and no
 package or image built. ADR-0001 remains accepted; this selects a build host, not a
 new appliance foundation. Small host-only Python contract dependencies were installed

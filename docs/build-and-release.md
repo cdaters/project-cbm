@@ -60,18 +60,18 @@ implicitly authorized by building a POC. Preserve existing tags/assets unchanged
 
 ## New-session first task
 
-Milestone 1 is now authorized. Branch creation and host-only contract/design work
-are complete; see [current checkpoint](build/milestone1-checkpoint.md). **The next
-action is owner approval of the [Linux host proposal](build/linux-build-host-study.md),
-not provisioning.** The overall sequence below still describes the eventual POC:
+Milestone 1 and the Lima/VZ build host are owner-approved. The
+[host capability gate](build/lima-capability-2026-09-15.md) passed; use the
+[repository-controlled recipe](build/lima-build-host.md) and inspect CURRENT-STATE
+for newer work. The sequence below describes the remaining POC:
 
 1. Read AGENTS.md, CURRENT-STATE.md, this contract, recovery.md, provenance and testing.
    Inspect Git and preserve unfamiliar dirty work; verify Menu recovery versus the
    formal release before choosing an input.
-2. Create a short POC feature branch off current main. Inspect TheBench mount/space
+2. Continue existing feature/1.1-build-foundation. Inspect TheBench mount/space
    and identify the available native arm64 Linux host or suitable Linux VM and
    Linux filesystem backed by TheBench. APFS folders are not a Linux rootfs.
-   The build environment decision is still open; do not silently choose the Mac
+   The approved host is Lima/VZ plain Debian arm64; do not silently choose the Mac
    internal disk, change global temp settings or provision a costly remote host.
 3. Verify official current pi-gen arm64 Lite guidance and candidate Trixie inputs.
    Record full builder/input identities; follow accepted ADR-0001 rather than reopening
@@ -90,14 +90,15 @@ not provisioning.** The overall sequence below still describes the eventual POC:
    user capacity; no arbitrary nominal SD-card size is an acceptance requirement.
    Generate external image/qualification records after image freeze; never alter a
    qualified image to insert its results. Validate recovery/image composition and
-   record blockers; then
-   repeat cleanly and compare. Plan Pi 3B/3A+ checks early using the audit matrix.
+   record blockers, then STOP for owner review. A later clean repeat/comparison and
+   physical Pi 3B/3A+ qualification require the subsequent phase.
 
 The first deliverable should establish the host/filesystem and pinned inputs,
 then a minimal reviewable recipe and private image evidence. Do not start optional
 screenshots/themes/controller additions before the reproducible-build foundation.
 Runtime defect fixes belong in separately reviewable changes within the new scope.
 
-Current milestone boundary: stop at the host-choice checkpoint before provisioning,
-package builds, pi-gen or image construction. Read the latest CURRENT-STATE rather
+Current milestone boundary: stop on a required Linux capability failure, or after
+one private POC image and offline/static validation. No public release or automatic
+physical Raspberry Pi testing. Read the latest CURRENT-STATE rather
 than treating historical phase boundaries as the current implementation status.

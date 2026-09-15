@@ -48,7 +48,9 @@ input/recovery refs, checks, unresolved issues and the next task.
   Do not modify, rename, normalize, deduplicate, clean or execute it in place.
   Manifests and Git bundles: ProjectCBM-Work/archive/preservation-2026-09-15.
 - TheBench is APFS, unencrypted, case-insensitive, ownership disabled. A future
-  Linux builder needs suitable Linux filesystem semantics; no builder is set up.
+  Linux builder needs suitable Linux filesystem semantics. The approved Lima/VZ
+  guest now uses an ext4 filesystem in an external sparse disk; see
+  docs/build/lima-build-host.md and CURRENT-STATE.md for capability status.
 - Historical images/logs may contain identity, private keys, credentials, history,
   build residue and unlicensed media. Record presence/type, never private contents.
   Do not commit/publish image extracts beyond reviewed original source. Historical
@@ -111,7 +113,7 @@ research; STOP for the build-host options/recommendation checkpoint before insta
 software, provisioning a VM/container/host, allocating large disks, building packages,
 running pi-gen or building an image. No Menu feature branch without actual Menu work.
 
-## Milestone 1 owner checkpoint (latest)
+## Milestone 1 owner checkpoint (completed approval boundary)
 
 Host-only input/identity/workspace schemas, validators, generator and tests are now
 implemented on feature/1.1-build-foundation. See docs/build/contracts.md and
@@ -121,3 +123,21 @@ STOP pending the owner's choice in docs/build/linux-build-host-study.md. Do not
 install/provision a Linux host, allocate disks, build packages, run pi-gen or build
 an image until that approval arrives. Do not treat synthetic fixtures as real pins.
 Do not retry product maintenance/1.0 publication; public v1.0.0 remains its baseline.
+
+## Approved Linux host implementation (latest owner authority)
+
+Owner approved Lima/VZ native arm64 Debian 13 plain mode, initially 8 vCPU, 10 GiB
+RAM, 160 GiB sparse disk. Repository recipe is authoritative; VM is disposable.
+All large state/disks/cache/temp/inputs must stay on the guarded configured external
+workspace. See docs/build/lima-build-host.md. No container stack, host shares or
+architectural workaround may be introduced to repair a failed capability gate.
+
+On feature/1.1-build-foundation, prove the Linux capability gate before complete
+build-stack installation or pi-gen. STOP on any required unavailable/unreliable
+capability and report evidence for owner review. Only after all gates pass, continue
+pinned input retention, external component packaging, real release lock, minimal
+integration/first-boot and ONE private engineering POC image with offline validation.
+Then STOP. No physical Pi qualification, broad modernization or release publication
+is authorized in this phase. Do not treat one controlled build as reproducibility
+proven, or synthetic fixtures as real inputs. Earlier phase boundaries above are
+historical. No Menu feature branch until actual Menu source/packaging changes.
