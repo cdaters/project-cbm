@@ -2,7 +2,7 @@
   "format": "project-cbm.recovery-contract-design",
   "schema_version": 1,
   "example_only": true,
-  "status": "Design worksheet, not a release lock, schema, manifest or candidate. Nulls must fail validation as actual required 1.1 inputs.",
+  "status": "Historical design worksheet, not a release lock. Superseded for POC input/identity validation by schemas/release-lock.schema.json and schemas/installed-identity.schema.json; see docs/build/contracts.md. Nulls must fail actual required input validation.",
   "release_lock_example": {
     "format": "project-cbm.release-lock",
     "schema_version": 1,

@@ -1,0 +1,225 @@
+{
+  "$id": "urn:project-cbm:image-identity:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "architecture": {
+      "const": "arm64"
+    },
+    "base": {
+      "additionalProperties": false,
+      "properties": {
+        "distribution": {
+          "const": "Raspberry Pi OS Lite"
+        },
+        "pi_gen_commit": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        "release_identity": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+          "type": "string"
+        },
+        "suite": {
+          "const": "trixie"
+        }
+      },
+      "required": [
+        "distribution",
+        "suite",
+        "release_identity",
+        "pi_gen_commit"
+      ],
+      "type": "object"
+    },
+    "build_id": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "components": {
+      "additionalProperties": false,
+      "properties": {
+        "menu": {
+          "additionalProperties": false,
+          "properties": {
+            "package_sha256": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "package_version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+              "type": "string"
+            },
+            "version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:_-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "package_version",
+            "package_sha256"
+          ],
+          "type": "object"
+        },
+        "tcpser": {
+          "additionalProperties": false,
+          "properties": {
+            "package_sha256": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "package_version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+              "type": "string"
+            },
+            "version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:_-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "package_version",
+            "package_sha256"
+          ],
+          "type": "object"
+        },
+        "vice": {
+          "additionalProperties": false,
+          "properties": {
+            "package_sha256": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "package_version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+              "type": "string"
+            },
+            "version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:_-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "package_version",
+            "package_sha256"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "vice",
+        "menu",
+        "tcpser"
+      ],
+      "type": "object"
+    },
+    "configuration_schema_version": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "fixture": {
+      "type": "boolean"
+    },
+    "format": {
+      "const": "project-cbm.image-identity"
+    },
+    "integration_commit": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "^[a-f0-9]{40}$",
+      "type": "string"
+    },
+    "manifest_lookup": {
+      "additionalProperties": false,
+      "properties": {
+        "build_id": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "format": {
+          "const": "project-cbm.release-manifest"
+        }
+      },
+      "required": [
+        "format",
+        "build_id"
+      ],
+      "type": "object"
+    },
+    "product": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "candidate"
+      ],
+      "type": "object"
+    },
+    "release_lock_sha256": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "fixture",
+    "product",
+    "architecture",
+    "integration_commit",
+    "base",
+    "components",
+    "configuration_schema_version",
+    "build_id",
+    "release_lock_sha256",
+    "manifest_lookup"
+  ],
+  "type": "object"
+}

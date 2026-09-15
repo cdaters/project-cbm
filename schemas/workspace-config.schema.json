@@ -1,0 +1,42 @@
+{
+  "$id": "urn:project-cbm:workspace-config:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "project-cbm.workspace-config"
+    },
+    "minimum_free_bytes": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "mountpoint": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "workspace": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    },
+    "workspace_id": {
+      "maxLength": 512,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "mountpoint",
+    "workspace",
+    "workspace_id",
+    "minimum_free_bytes"
+  ],
+  "type": "object"
+}

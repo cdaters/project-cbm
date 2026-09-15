@@ -1,7 +1,9 @@
 # Black-box project recovery and installed identity
 
-Status: required project architecture for Project CBM 1.1, refined 2026-09-15; builder,
-metadata generator, runtime information command and first boot are **not implemented**.
+Status: required project architecture for Project CBM 1.1, refined 2026-09-15.
+Host-only input/identity schemas, generator and negative tests are now implemented
+in [Milestone 1 contracts](build/contracts.md). Builder, runtime information command,
+first boot, real candidate inputs and external attestation schemas remain incomplete.
 Owner clarification, 2026-09-15: full black-box recovery belongs to the project,
 repositories and retained build/release infrastructure. The appliance carries only
 minimal installed release identity. This supersedes the earlier requirement to embed
@@ -156,7 +158,10 @@ manifests better than executable shell fragments or ambiguous configuration synt
 Store a human-readable field guide alongside it. No network-resolved schema is
 required to identify an image. [Design worksheet](recovery-contract.example.json)
 uses nulls intentionally and **must never be accepted as an actual release lock**.
-Formal JSON Schemas and validators are an early 1.1 implementation task.
+The [Milestone 1 contracts](build/contracts.md) now supply input/installed-identity
+JSON Schemas, a generator, semantic validation and tests. Their field layout supersedes
+the worksheet for POC use. External build/qualification/release/closure catalog schemas
+remain future work; the following table describes the overall architecture.
 
 Each document has `format` (stable kind) and integer `schema_version`. Schema 1
 is the proposed first contract, not a claim that 1.0 used it. Hash exact saved bytes
@@ -397,9 +402,9 @@ never relabeled the exact old release. See [provenance](provenance.md) for hashe
 | B: GitHub unavailable | Restore both bundles into new locations, no remote access; compare all refs/tag objects/peeled commits and 17 recovery blob hashes; reject missing-prerequisite/corrupt bundles | PASS for accepted preservation checkpoint: product 5 refs, Menu 8 refs, 17 script hashes; both fsck passed, 2026-09-15 |
 | C: offline installed identity | Read mounted root on Linux and another ext4-capable reader with network disabled and no boot/Menu; read minimal E and resolve mapping against external records when provided | NOT RUN; 1.1 image does not exist |
 | D: lost builder/upstream | Bootstrap fresh Linux using only kit, relocated paths and documented tools; verify complete closure, build twice and compare defined semantic/bitwise result | NOT RUN; builder deferred |
-| E: metadata agreement | Generate minimal E from one L; compare external L/B/R/inventories with E; reject a changed Menu pin, absent artifact, stale lock, dirty integration source or wrong digest | DESIGNED; generator/schema validator deferred |
-| F: privacy | Public-field allowlist plus secret scans and manual review; synthetic forbidden categories are rejected; inspect actual filesystem sealing independently | Documentation reviewed; automated public-artifact/negative suite NOT IMPLEMENTED |
-| G: schema longevity | Offline read old schemas/fixtures, reject unsupported validation, preserve original bytes and unknown fields; detect duplicate keys and tampering | DESIGNED; fixtures/validator deferred |
+| E: metadata agreement | Generate minimal E from one L; compare external L/B/R/inventories with E; reject a changed Menu pin, absent artifact, stale lock, dirty integration source or wrong digest | Input/identity schemas, generator and synthetic tests PASS; actual package/image/external attestation agreement NOT RUN |
+| F: privacy | Public-field allowlist plus secret scans and manual review; synthetic forbidden categories are rejected; inspect actual filesystem sealing independently | Input/identity allowlist and privacy negatives PASS; actual image sealing/public-artifact scan NOT RUN |
+| G: schema longevity | Offline read old schemas/fixtures, reject unsupported validation, preserve original bytes and unknown fields; detect duplicate keys and tampering | Schema-1 synthetic fixtures, strict JSON and unknown-version rejection PASS; no released old-schema corpus exists yet |
 | H: qualification binding | Q names raw image digest + E/L + suite/hardware identity; changing image bytes invalidates association; PASS/FAIL/UNTESTED/BLOCKED cannot be collapsed | DESIGNED; no hardware tests |
 | I: only-image limitation | Remove external R/Q/inputs; still read base release/component identity offline and explicitly report absent recipe/qualification/authentication/rebuild inputs | DESIGNED |
 | J: checksum graph | Reject self-hashes/cycles and metadata rewritten after final image freeze; verify external checksums/signatures with independently trusted key | DESIGNED |

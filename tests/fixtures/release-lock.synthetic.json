@@ -1,0 +1,263 @@
+{
+  "architecture": "arm64",
+  "base": {
+    "authenticated_apt_metadata": {
+      "path": "fixtures/apt-metadata.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "binary_package_closure": {
+      "path": "fixtures/binary-closure.json",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "configuration": {
+      "path": "fixtures/pigen-config.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "distribution": "Raspberry Pi OS Lite",
+    "patches": [],
+    "pi_gen": {
+      "git": {
+        "commit": "2222222222222222222222222222222222222222",
+        "ref": "refs/tags/v1.0.0",
+        "repository": "https://example.invalid/pi-gen",
+        "tag_object": "3333333333333333333333333333333333333333"
+      },
+      "source": {
+        "path": "fixtures/pi-gen.bundle",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      }
+    },
+    "release_identity": "fixture-trixie",
+    "source_package_closure": {
+      "path": "fixtures/source-closure.json",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "stages": [
+      "stage0",
+      "stage1",
+      "stage2",
+      "stage-cbm"
+    ],
+    "suite": "trixie"
+  },
+  "build": {
+    "bootstrap": {
+      "path": "fixtures/bootstrap.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "environment_contract_version": 1,
+    "environment_recipe": {
+      "path": "fixtures/environment_recipe.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "host_package_closure": {
+      "path": "fixtures/host_package_closure.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "reproducibility_policy": {
+      "path": "fixtures/reproducibility_policy.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "source_date_epoch": 0,
+    "toolchain": {
+      "path": "fixtures/toolchain.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    }
+  },
+  "components": {
+    "menu": {
+      "build_options": [],
+      "build_record": {
+        "path": "fixtures/project-cbm-menu-build.json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "corresponding_source": {
+        "path": "fixtures/project-cbm-menu-source.tar",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "package": {
+        "architecture": "all",
+        "artifact": {
+          "path": "fixtures/project-cbm-menu.deb",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "size_bytes": 1
+        },
+        "name": "project-cbm-menu",
+        "revision": "1+pcbm1",
+        "upstream_version": "1.0.0",
+        "version": "1.0.0-1+pcbm1"
+      },
+      "patches": [],
+      "recipe": {
+        "path": "fixtures/project-cbm-menu-recipe.tar",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "source": {
+        "artifact": {
+          "path": "fixtures/project-cbm-menu.tar",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "size_bytes": 1
+        },
+        "git": {
+          "commit": "2222222222222222222222222222222222222222",
+          "ref": "refs/tags/v1.0.0",
+          "repository": "https://example.invalid/project-cbm-menu",
+          "tag_object": "3333333333333333333333333333333333333333"
+        },
+        "origin": "https://example.invalid/project-cbm-menu"
+      },
+      "version": "1.0.0"
+    },
+    "tcpser": {
+      "build_options": [],
+      "build_record": {
+        "path": "fixtures/project-cbm-tcpser-build.json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "corresponding_source": {
+        "path": "fixtures/project-cbm-tcpser-source.tar",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "package": {
+        "architecture": "arm64",
+        "artifact": {
+          "path": "fixtures/project-cbm-tcpser.deb",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "size_bytes": 1
+        },
+        "name": "project-cbm-tcpser",
+        "revision": "1+pcbm1",
+        "upstream_version": "1.1.6~beta",
+        "version": "1.1.6~beta-1+pcbm1"
+      },
+      "patches": [],
+      "recipe": {
+        "path": "fixtures/project-cbm-tcpser-recipe.tar",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "source": {
+        "artifact": {
+          "path": "fixtures/project-cbm-tcpser.tar",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "size_bytes": 1
+        },
+        "git": {
+          "commit": "2222222222222222222222222222222222222222",
+          "ref": "refs/tags/v1.0.0",
+          "repository": "https://example.invalid/project-cbm-tcpser",
+          "tag_object": "3333333333333333333333333333333333333333"
+        },
+        "origin": "https://example.invalid/project-cbm-tcpser"
+      },
+      "version": "1.1.6_beta"
+    },
+    "vice": {
+      "build_options": [
+        "--enable-sdl2ui",
+        "--with-alsa"
+      ],
+      "build_record": {
+        "path": "fixtures/project-cbm-vice-build.json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "corresponding_source": {
+        "path": "fixtures/project-cbm-vice-source.tar",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "package": {
+        "architecture": "arm64",
+        "artifact": {
+          "path": "fixtures/project-cbm-vice.deb",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "size_bytes": 1
+        },
+        "name": "project-cbm-vice",
+        "revision": "1+pcbm1",
+        "upstream_version": "3.10",
+        "version": "3.10-1+pcbm1"
+      },
+      "patches": [],
+      "recipe": {
+        "path": "fixtures/project-cbm-vice-recipe.tar",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size_bytes": 1
+      },
+      "source": {
+        "artifact": {
+          "path": "fixtures/project-cbm-vice.tar",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "size_bytes": 1
+        },
+        "git": {
+          "commit": "2222222222222222222222222222222222222222",
+          "ref": "refs/tags/v1.0.0",
+          "repository": "https://example.invalid/project-cbm-vice",
+          "tag_object": "3333333333333333333333333333333333333333"
+        },
+        "origin": "https://example.invalid/project-cbm-vice"
+      },
+      "version": "3.10"
+    }
+  },
+  "configuration": {
+    "assets_license_inventory": {
+      "path": "fixtures/assets_license_inventory.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "defaults": {
+      "path": "fixtures/defaults.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "first_boot_recipe": {
+      "path": "fixtures/first_boot_recipe.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    },
+    "schema_version": 1,
+    "sealing_recipe": {
+      "path": "fixtures/sealing_recipe.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    }
+  },
+  "fixture": true,
+  "format": "project-cbm.release-lock",
+  "integration": {
+    "git": {
+      "commit": "2222222222222222222222222222222222222222",
+      "ref": "refs/tags/v1.0.0",
+      "repository": "https://example.invalid/integration",
+      "tag_object": "3333333333333333333333333333333333333333"
+    },
+    "source": {
+      "path": "fixtures/integration.tar",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1
+    }
+  },
+  "product": {
+    "candidate": "fixture-only",
+    "version": "1.1.0~poc1"
+  },
+  "schema_version": 1
+}

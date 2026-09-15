@@ -1,0 +1,41 @@
+{
+  "architecture": "arm64",
+  "base": {
+    "distribution": "Raspberry Pi OS Lite",
+    "pi_gen_commit": "2222222222222222222222222222222222222222",
+    "release_identity": "fixture-trixie",
+    "suite": "trixie"
+  },
+  "build_id": "8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89",
+  "components": {
+    "menu": {
+      "package_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "package_version": "1.0.0-1+pcbm1",
+      "version": "1.0.0"
+    },
+    "tcpser": {
+      "package_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "package_version": "1.1.6~beta-1+pcbm1",
+      "version": "1.1.6_beta"
+    },
+    "vice": {
+      "package_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "package_version": "3.10-1+pcbm1",
+      "version": "3.10"
+    }
+  },
+  "configuration_schema_version": 1,
+  "fixture": true,
+  "format": "project-cbm.image-identity",
+  "integration_commit": "2222222222222222222222222222222222222222",
+  "manifest_lookup": {
+    "build_id": "8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89",
+    "format": "project-cbm.release-manifest"
+  },
+  "product": {
+    "candidate": "fixture-only",
+    "version": "1.1.0~poc1"
+  },
+  "release_lock_sha256": "8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89",
+  "schema_version": 1
+}

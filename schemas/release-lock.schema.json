@@ -1,0 +1,429 @@
+{
+  "$defs": {
+    "artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$",
+          "type": "string"
+        },
+        "sha256": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "type": "object"
+    },
+    "component": {
+      "additionalProperties": false,
+      "properties": {
+        "build_options": {
+          "items": {
+            "maxLength": 512,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 0,
+          "type": "array"
+        },
+        "build_record": {
+          "$ref": "#/$defs/artifact"
+        },
+        "corresponding_source": {
+          "$ref": "#/$defs/artifact"
+        },
+        "package": {
+          "$ref": "#/$defs/package"
+        },
+        "patches": {
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "maxItems": 256,
+          "minItems": 0,
+          "type": "array"
+        },
+        "recipe": {
+          "$ref": "#/$defs/artifact"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[0-9][0-9A-Za-z.+~:_-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "source",
+        "package",
+        "recipe",
+        "build_options",
+        "patches",
+        "build_record",
+        "corresponding_source"
+      ],
+      "type": "object"
+    },
+    "git": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        "ref": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^refs/(tags|heads)/[A-Za-z0-9._/-]+$",
+          "type": "string"
+        },
+        "repository": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^https://[^\\s]+$",
+          "type": "string"
+        },
+        "tag_object": {
+          "anyOf": [
+            {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[a-f0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "repository",
+        "commit",
+        "ref",
+        "tag_object"
+      ],
+      "type": "object"
+    },
+    "package": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "enum": [
+            "arm64",
+            "all"
+          ]
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifact"
+        },
+        "name": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[a-z0-9][a-z0-9+.-]+$",
+          "type": "string"
+        },
+        "revision": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[0-9][0-9A-Za-z.+~]*$",
+          "type": "string"
+        },
+        "upstream_version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "architecture",
+        "upstream_version",
+        "revision",
+        "version",
+        "artifact"
+      ],
+      "type": "object"
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/artifact"
+        },
+        "git": {
+          "$ref": "#/$defs/git"
+        },
+        "origin": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^https://[^\\s]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "origin",
+        "artifact"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:project-cbm:release-lock:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "architecture": {
+      "const": "arm64"
+    },
+    "base": {
+      "additionalProperties": false,
+      "properties": {
+        "authenticated_apt_metadata": {
+          "$ref": "#/$defs/artifact"
+        },
+        "binary_package_closure": {
+          "$ref": "#/$defs/artifact"
+        },
+        "configuration": {
+          "$ref": "#/$defs/artifact"
+        },
+        "distribution": {
+          "const": "Raspberry Pi OS Lite"
+        },
+        "patches": {
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "maxItems": 256,
+          "minItems": 0,
+          "type": "array"
+        },
+        "pi_gen": {
+          "additionalProperties": false,
+          "properties": {
+            "git": {
+              "$ref": "#/$defs/git"
+            },
+            "source": {
+              "$ref": "#/$defs/artifact"
+            }
+          },
+          "required": [
+            "git",
+            "source"
+          ],
+          "type": "object"
+        },
+        "release_identity": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+          "type": "string"
+        },
+        "source_package_closure": {
+          "$ref": "#/$defs/artifact"
+        },
+        "stages": {
+          "items": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "type": "array"
+        },
+        "suite": {
+          "const": "trixie"
+        }
+      },
+      "required": [
+        "distribution",
+        "suite",
+        "release_identity",
+        "pi_gen",
+        "stages",
+        "configuration",
+        "patches",
+        "authenticated_apt_metadata",
+        "binary_package_closure",
+        "source_package_closure"
+      ],
+      "type": "object"
+    },
+    "build": {
+      "additionalProperties": false,
+      "properties": {
+        "bootstrap": {
+          "$ref": "#/$defs/artifact"
+        },
+        "environment_contract_version": {
+          "const": 1
+        },
+        "environment_recipe": {
+          "$ref": "#/$defs/artifact"
+        },
+        "host_package_closure": {
+          "$ref": "#/$defs/artifact"
+        },
+        "reproducibility_policy": {
+          "$ref": "#/$defs/artifact"
+        },
+        "source_date_epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "toolchain": {
+          "$ref": "#/$defs/artifact"
+        }
+      },
+      "required": [
+        "environment_contract_version",
+        "environment_recipe",
+        "bootstrap",
+        "host_package_closure",
+        "toolchain",
+        "source_date_epoch",
+        "reproducibility_policy"
+      ],
+      "type": "object"
+    },
+    "components": {
+      "additionalProperties": false,
+      "properties": {
+        "menu": {
+          "$ref": "#/$defs/component"
+        },
+        "tcpser": {
+          "$ref": "#/$defs/component"
+        },
+        "vice": {
+          "$ref": "#/$defs/component"
+        }
+      },
+      "required": [
+        "vice",
+        "menu",
+        "tcpser"
+      ],
+      "type": "object"
+    },
+    "configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "assets_license_inventory": {
+          "$ref": "#/$defs/artifact"
+        },
+        "defaults": {
+          "$ref": "#/$defs/artifact"
+        },
+        "first_boot_recipe": {
+          "$ref": "#/$defs/artifact"
+        },
+        "schema_version": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "sealing_recipe": {
+          "$ref": "#/$defs/artifact"
+        }
+      },
+      "required": [
+        "schema_version",
+        "defaults",
+        "assets_license_inventory",
+        "sealing_recipe",
+        "first_boot_recipe"
+      ],
+      "type": "object"
+    },
+    "fixture": {
+      "type": "boolean"
+    },
+    "format": {
+      "const": "project-cbm.release-lock"
+    },
+    "integration": {
+      "additionalProperties": false,
+      "properties": {
+        "git": {
+          "$ref": "#/$defs/git"
+        },
+        "source": {
+          "$ref": "#/$defs/artifact"
+        }
+      },
+      "required": [
+        "git",
+        "source"
+      ],
+      "type": "object"
+    },
+    "product": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "candidate"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "fixture",
+    "product",
+    "architecture",
+    "integration",
+    "base",
+    "components",
+    "configuration",
+    "build"
+  ],
+  "type": "object"
+}
