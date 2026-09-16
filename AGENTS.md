@@ -288,3 +288,16 @@ never edit POC1–3 locks/images/packages or add bytes to a finished image. Sour
 uses validated registry profiles and preserves default/VICE preferences. No POC4,
 physical testing, service activation or publication in this addendum. Next product
 milestone remains first-boot/owner-account/runtime integration, not Menu architecture.
+
+
+## Runtime activation attempt stopped (latest checkpoint)
+
+Read CURRENT-STATE and docs/build/poc4-blocked.md. First-boot/runtime source and
+matching packages were implemented/tested; the new frozen lock is failed-attempt
+evidence. No POC4 image exists. A builder-only TMPDIR leaked into pi-gen's target
+chroot and AppArmor package configuration failed. STOP for owner review; do not
+bypass security, retry, overwrite the lock/attempt or claim image/hardware passes.
+Preserve POC1–3, all existing tags and optional-input rights classifications.
+StrikeTerm is privately admitted only; public rights remain pending. No push.
+Future approved construction must validate builder versus chroot environment;
+Linux guest /tmp is external-backed and distinct from macOS /private/tmp.

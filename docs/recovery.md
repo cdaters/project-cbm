@@ -1,6 +1,12 @@
 # Black-box project recovery and installed identity
 
-Latest source checkpoint: [optional applications/reference content](runtime/optional-applications-contract.md).
+Latest checkpoint: [runtime activation build-integrity stop](build/poc4-blocked.md).
+New frozen lock/packages are retained; no POC4 image exists. Current bundles and
+offline restore records: `archive/runtime-activation-blocked-2026-09-16` under the
+configured bulk workspace. Preserve this failed attempt; owner review precedes any
+construction-environment fix/retry. Independent custody is still unresolved.
+
+Prior source checkpoint: [optional applications/reference content](runtime/optional-applications-contract.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
 storage at `archive/optional-content-2026-09-16`. Retained admitted inputs are in
 `inputs/optional-software-2026-09-16`; its fragment is not a full candidate lock.

@@ -1,23 +1,53 @@
 # Project CBM current state
 
-## First-boot/runtime activation authorized — 2026-09-16 / IN PROGRESS
+## Runtime activation: build-integrity stop — 2026-09-16
 
-The owner accepted configuration maturation and optional-content work and authorized
-one new private engineering candidate. [Current work and native staging evidence](docs/build/runtime-activation.md)
-records implementation boundaries, the accepted-versus-rejected POC3 staging source
-check, actual account/PAM/sudo and disposable loop-growth tests, and remaining gates.
-Source implementation and preliminary native package/service/account/import tests now pass.
-See the staging record for exact limits and harness corrections. Final matching packages,
-a new frozen candidate lock/image and offline validation remain pending. No physical test.
+**No POC4 image exists. STOP for owner review; do not flash, retry or build another
+candidate automatically.** POC3 remains the last physically demonstrated Pi 3B
+foundation. [Attempt/report](docs/build/poc4-blocked.md), [exact inputs](docs/build/poc4-blocked.json),
+[native staging evidence](docs/build/runtime-activation.md).
 
-StrikeTerm's author-endorsed D64 has now been acquired and verified against the recorded
-Combian hash. It is privately admitted by the owner; its public redistribution gate
-remains pending. SID-Wizard uses the accepted exact core subset. Reference SID/demo
-payloads stay owner-supplied. Prior completed checkpoints below remain unchanged.
+First-boot/owner administration, the fixed backend, NetworkManager/service adapters,
+USB broker, boot preferences and matching runtime/Menu packages are source-implemented.
+138 product tests, 50 Menu tests plus the launcher checker pass. Native Debian tests
+verified package installation, account/PAM/sudo, helper restrictions, offline setup,
+services, private Wi-Fi keyfiles, terminal return and synthetic-media import. This is
+not physical qualification or proof that all candidate/runtime gates are complete.
 
-Next: complete/test runtime integration in disposable Linux staging, then matching
-packages and one frozen private candidate. No push, public release, physical test,
-other Pi model or boot optimization. Stop on a critical integrity/security failure.
+Integration: `cf3a289f99bd7599c8e6f1aa3da4753aa733f981`.
+Menu: `v1.1.0_poc4`, peeled `bb8a66ea9da994b30f978ad87d61c9aedb03dad6`.
+New schema-4 lock: `inputs/frozen-poc4/release-lock.json`, SHA-256
+`99f3985b8eac77398fbc71d66160f91beff50d04f6ae246757a4f081436bfacc`.
+The lock and packages remain frozen evidence of this failed attempt.
+
+Image construction failed during upstream stage1 AppArmor package configuration:
+the operator invocation exported a builder-only TMPDIR into the target chroot;
+`mktemp` could not use that absent path. No AppArmor/security bypass, frozen-input
+mutation, image repair or retry was attempted. Host inventory remained pinned; no
+build mounts/loops or proxy remain. The VM is stopped. See the report for the exact controlled failure.
+
+SID-Wizard 1.97 core is frozen under its accepted license. Author-endorsed StrikeTerm
+2014 Final bytes match the recorded Combian hash and are **PRIVATE-ENGINEERING-ADMITTED;
+PUBLIC-RELEASE-RIGHTS-GATE-PENDING**. Neither was delivered in a new image. Requested
+reference SID/demo payloads remain owner-supplied. Generic `.sid` autostart is blocked;
+a dedicated PSID/RSID player remains a later gate.
+
+Branches: product `feature/1.1-build-foundation`; Menu `feature/1.1-debian-package`.
+Recovery checkpoint: configured bulk storage `archive/runtime-activation-blocked-2026-09-16`;
+exact final refs, bundles and restoration verification are in its manifest. Build
+logs: `qualification/poc4-build-blocked-2026-09-16`; final packages: `packages/poc4-final`.
+POC1–3 and historical refs remain immutable. No push/publication or physical test.
+Independent backup/custody and independent clean rebuild remain unresolved.
+
+**Next owner action:** review the stopped attempt and authorize a bounded build-host
+versus chroot environment fix, regression test and new attempt location/input identity
+as needed. `/tmp` inside the external-backed Linux guest is not the Mac's internal
+`/private/tmp`. Do not remove AppArmor or weaken security to get an image. Complete
+remaining staging/offline/qualification-procedure gates before any physical test.
+Boot presentation/performance stays deferred until a new candidate physically passes.
+
+Earlier sections below are completed historical checkpoints and do not supersede
+this stop or the private StrikeTerm decision.
 
 ## Optional applications and reference-content addendum — 2026-09-16 / STOP
 

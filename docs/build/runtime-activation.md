@@ -1,6 +1,6 @@
 # First-boot/runtime activation engineering work
 
-In progress, 2026-09-16. Owner authorization covers one new private engineering
+Stopped at image construction, 2026-09-16. See [the failure report](poc4-blocked.md). Owner authorization covers one new private engineering
 candidate, following the accepted configuration and optional-content source work.
 No public release, push, physical test, other Pi model or boot cosmetic optimization.
 POC1–3 remain immutable; POC3 is the previous physically demonstrated Pi 3B baseline.
@@ -92,7 +92,7 @@ procedure and verified recovery bundles. No image or new hardware qualification 
 been produced by this work yet. Do not interpret intermediate fixture passes as a
 completed milestone or a physical pass.
 
-## Native staging gate (completed before candidate freezing)
+## Native staging checks completed before candidate freezing
 
 The two `1.1.0~poc4-0~staging1` packages installed into an independent accepted-POC3
 root copy; `dpkg --audit` reported no unresolved package/dependency state. These
@@ -171,3 +171,11 @@ no frozen candidate or image existed. The recipe now anchors the exclusion to th
 archive root. Retain the failed `packages/poc4` directory as a small attempt record;
 use new `packages/poc4-final` and a new integration archive/commit. Do not bypass
 source consistency checks or reuse an output directory.
+
+## Current stop
+
+The final package source/binary builds and frozen lock succeeded. Image construction
+did not: a builder-only TMPDIR inherited into the target chroot prevented AppArmor's
+postinst from creating a temporary file. No image, offline-image validation or
+physical qualification resulted. See [the exact stopped attempt](poc4-blocked.md).
+No retry or security workaround is authorized by this checkpoint.

@@ -1,0 +1,157 @@
+{
+  "format": "project-cbm.engineering-build-attempt",
+  "schema_version": 1,
+  "date": "2026-09-16",
+  "status": "STOPPED_BUILD_ENVIRONMENT_FAILURE",
+  "product": {
+    "candidate": "private-engineering-poc4",
+    "version": "1.1.0-poc.4"
+  },
+  "integration_commit": "cf3a289f99bd7599c8e6f1aa3da4753aa733f981",
+  "menu_git": {
+    "commit": "bb8a66ea9da994b30f978ad87d61c9aedb03dad6",
+    "ref": "refs/tags/v1.1.0_poc4",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "ddd6b681b9ce5d8bd6887eefb8357968bcc41373"
+  },
+  "release_lock": {
+    "path": "inputs/frozen-poc4/release-lock.json",
+    "sha256": "99f3985b8eac77398fbc71d66160f91beff50d04f6ae246757a4f081436bfacc"
+  },
+  "packages": {
+    "menu": {
+      "architecture": "all",
+      "artifact": {
+        "path": "objects/b1c95d128eb0f9b3d9ba59528ed7be39d7f94cf158933bd74c83f0eecb83999d",
+        "sha256": "b1c95d128eb0f9b3d9ba59528ed7be39d7f94cf158933bd74c83f0eecb83999d",
+        "size_bytes": 25492
+      },
+      "name": "project-cbm-menu",
+      "revision": "1+pcbm1",
+      "upstream_version": "1.1.0~poc4",
+      "version": "1.1.0~poc4-1+pcbm1"
+    },
+    "runtime": {
+      "architecture": "all",
+      "artifact": {
+        "path": "objects/fffbc2bd6b07b800e2562c8fc89a523e7e08df6bf0f7ce76786f9efebde9d303",
+        "sha256": "fffbc2bd6b07b800e2562c8fc89a523e7e08df6bf0f7ce76786f9efebde9d303",
+        "size_bytes": 25080
+      },
+      "name": "project-cbm-runtime",
+      "revision": "1",
+      "upstream_version": "1.1.0~poc4",
+      "version": "1.1.0~poc4-1"
+    },
+    "tcpser": {
+      "architecture": "arm64",
+      "artifact": {
+        "path": "objects/8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+        "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+        "size_bytes": 26872
+      },
+      "name": "project-cbm-tcpser",
+      "revision": "1+pcbm1",
+      "upstream_version": "1.1.6~beta",
+      "version": "1.1.6~beta-1+pcbm1"
+    },
+    "vice": {
+      "architecture": "arm64",
+      "artifact": {
+        "path": "objects/c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+        "sha256": "c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+        "size_bytes": 4650184
+      },
+      "name": "project-cbm-vice",
+      "revision": "1+pcbm3",
+      "upstream_version": "3.10",
+      "version": "3.10-1+pcbm3"
+    }
+  },
+  "optional_inputs": {
+    "sid_wizard": {
+      "artifact": {
+        "path": "objects/46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+        "sha256": "46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+        "size_bytes": 184320
+      },
+      "license": "LicenseRef-Hermit-WTF",
+      "origin": "https://csdb.dk/getinternalfile.php/281063/SID-Wizard-1.97-sources-examples.tar.gz",
+      "recipe": {
+        "path": "objects/e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+        "sha256": "e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+        "size_bytes": 8618
+      },
+      "rights_review": {
+        "path": "objects/ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+        "sha256": "ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+        "size_bytes": 1878
+      },
+      "source": {
+        "path": "objects/aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "sha256": "aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "size_bytes": 6140658
+      },
+      "version": "1.97"
+    },
+    "striketerm": {
+      "artifact": {
+        "path": "objects/72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+        "sha256": "72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+        "size_bytes": 174848
+      },
+      "classification": "PRIVATE-ENGINEERING-ADMITTED",
+      "origin": "https://csdb.dk/getinternalfile.php/129890/st2014final.d64",
+      "public_release_rights": "PUBLIC-RELEASE-RIGHTS-GATE-PENDING",
+      "rights_review": {
+        "path": "objects/db84b90cf8da8a748d4b4b3e37068a1fe2d15e45fedbd77b16062465f34b3e06",
+        "sha256": "db84b90cf8da8a748d4b4b3e37068a1fe2d15e45fedbd77b16062465f34b3e06",
+        "size_bytes": 1119
+      },
+      "version": "2014 Final"
+    }
+  },
+  "image": null,
+  "image_offline_validation": "NOT RUN: no image",
+  "physical_qualification": "NOT RUN",
+  "failure": {
+    "phase": "pi-gen stage1 package configuration",
+    "package": "apparmor 4.1.0-1",
+    "dpkg_status": 1,
+    "apt_status": 100,
+    "cause": "operator invocation exported builder TMPDIR into target chroot; mktemp target absent",
+    "security_workaround": false,
+    "retry_performed": false,
+    "lock_changed_after_freeze": false,
+    "log": "qualification/poc4-build-blocked-2026-09-16/poc4-build.log",
+    "log_sha256": "a2c5e9391f803d877145bbd002f542ab8b042c370a2dc9d73d670e27e39c3c91"
+  },
+  "tests": {
+    "product_fixture_tests": 138,
+    "menu_fixture_tests": 50,
+    "shared_launcher_checker": "PASS",
+    "native_results_document": "runtime-activation.md",
+    "host_package_guard_before_after": "PASS"
+  },
+  "resources": {
+    "internal_free_before_bytes": 81100800000,
+    "internal_free_after_bytes": 77004800000,
+    "bulk_free_before_bytes": 1036288000000,
+    "bulk_free_after_bytes": 1028096000000,
+    "vm_disk_logical_bytes": 171798691840,
+    "vm_disk_allocated_after_bytes": 82562383872,
+    "guest_free_after_bytes": 79943655424,
+    "failed_build_elapsed_seconds": "42.99",
+    "failed_build_maximum_rss_kib": 173716
+  },
+  "recovery_checkpoint": "archive/runtime-activation-blocked-2026-09-16",
+  "next_action": "Owner review: authorize bounded construction-environment sanitization/test and a new preserved build attempt; no hardware test yet.",
+  "preservation": {
+    "poc1_poc2_baseline_entries_verified": 5503,
+    "poc3_input_objects_verified": 2789,
+    "new_kit_objects_verified": 2809,
+    "poc3_raw_xz_lock_hashes": "PASS unchanged",
+    "existing_git_tags": "unchanged",
+    "builder": "stopped"
+  }
+}
