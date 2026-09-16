@@ -1,15 +1,18 @@
 # Black-box project recovery and installed identity
 
-Latest source checkpoint: [configuration maturation](runtime/configuration-maturation.md).
+Latest source checkpoint: [optional applications/reference content](runtime/optional-applications-contract.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
-storage at `archive/configuration-maturation-2026-09-16`. The earlier checkpoints
-remain unchanged. Source implementation is not a new installed/qualified image.
+storage at `archive/optional-content-2026-09-16`. Retained admitted inputs are in
+`inputs/optional-software-2026-09-16`; its fragment is not a full candidate lock.
+The manifest records exact input/object/bundle hashes and both output Git refs.
+Earlier configuration/audit/build checkpoints remain immutable. Source integration
+is not an installed/qualified image. Independent backup/custody remains unresolved.
 
 
 Current status: [CURRENT-STATE](../CURRENT-STATE.md), [POC3 build](build/private-poc3.md)
 and [additive Pi 3B physical attestation](qualification/poc3-pi3b-owner-report-2026-09-16.json).
 POC1–3 images/locks/packages and earlier qualification records remain frozen. The
-current documentation/evidence recovery checkpoint is
+POC3 physical-audit documentation/evidence recovery checkpoint is
 `archive/poc3-pi3b-product-audit-2026-09-16` beneath configured bulk storage; its manifest
 records bundle hashes and its restore report verifies both repositories offline.
 Photo manifest: `qualification/poc3/pi3b-owner-report-2026-09-16/evidence.json`;

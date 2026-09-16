@@ -94,8 +94,11 @@ def validate_lock(raw, allow_fixture=False):
     validate_schema(lock, 'release-lock')
     if lock['fixture'] and not allow_fixture:
         raise ValueError('synthetic fixture is not a candidate')
-    if (lock['schema_version'] == 2) != ('qualification_media' in lock):
+    version = lock['schema_version']
+    if version == 1 and 'qualification_media' in lock or version == 2 and 'qualification_media' not in lock:
         raise ValueError('schema 2 requires declared engineering media; schema 1 forbids it')
+    if (version == 3) != ('optional_software' in lock):
+        raise ValueError('schema 3 requires optional software; earlier schemas forbid it')
     seen = {}
     for artifact in artifacts(lock):
         relative_path(artifact['path'])

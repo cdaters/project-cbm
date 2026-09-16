@@ -77,6 +77,9 @@ def verify_kit(raw, root):
             raise ValueError('build record source mismatch')
     if 'qualification_media' in lock:
         verify_media(root/lock['qualification_media']['artifact']['path'],lock['qualification_media'])
+    if 'optional_software' in lock:
+        from optional_software import verify_optional
+        verify_optional(root, lock['optional_software']['sid_wizard'])
     return lock
 
 

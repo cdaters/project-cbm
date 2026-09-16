@@ -1,0 +1,495 @@
+{
+  "format": "project-cbm.reference-content-research",
+  "schema_version": 1,
+  "research_date": "2026-09-16",
+  "status": "research only; not a release lock or acquisition manifest",
+  "evidence_limit": "HVSC website metadata / creator statements; no media bytes acquired, headers verified or playback tested. Null means not established. Collection fields are advertised requirements, not per-track verification.",
+  "hvsc_release_source": "https://www.hvsc.c64.org/downloads",
+  "entries": [
+    {
+      "title": "Donkey Kong",
+      "author": "Sascha Zeidler (Linus)",
+      "release_credit": "2016 Oxyron",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 136867,
+      "hvsc_path": "/MUSICIANS/L/Linus/Donkey_Kong.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "8580"
+      ],
+      "second_sid_address": null,
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/136867"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Legend Intro",
+      "author": "Martijn Schutten",
+      "release_credit": "1992 Martijn Schutten",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 107971,
+      "hvsc_path": "/MUSICIANS/S/Schutten_Martijn/Legend_Intro.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        null
+      ],
+      "second_sid_address": null,
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/107971"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Ode to C64",
+      "author": "Søren Lund (Jeff)",
+      "release_credit": "2003 Viruz",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 116552,
+      "hvsc_path": "/MUSICIANS/J/Jeff/Ode_to_C64.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "6581"
+      ],
+      "second_sid_address": null,
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/116552"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Turbo Outrun",
+      "author": "Jeroen Tel",
+      "release_credit": "1989 US Gold/Probe",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 118540,
+      "hvsc_path": "/MUSICIANS/T/Tel_Jeroen/Turbo_Outrun.sid",
+      "type": "RSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "6581"
+      ],
+      "second_sid_address": null,
+      "subtunes": 12,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/118540"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Commando",
+      "author": "Rob Hubbard",
+      "release_credit": "1985 Elite",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 149387,
+      "hvsc_path": "/MUSICIANS/H/Hubbard_Rob/Commando.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "6581"
+      ],
+      "second_sid_address": null,
+      "subtunes": 19,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/149387"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Ghosts'n Goblins",
+      "author": "Mark Cooksey",
+      "release_credit": "1986 Elite",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 156371,
+      "hvsc_path": "/MUSICIANS/C/Cooksey_Mark/Ghosts_n_Goblins.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "6581"
+      ],
+      "second_sid_address": null,
+      "subtunes": 2,
+      "default_subtune": 2,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/156371"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Delta",
+      "author": "Rob Hubbard",
+      "release_credit": "1987 Thalamus",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 104524,
+      "hvsc_path": "/MUSICIANS/H/Hubbard_Rob/Delta.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "6581"
+      ],
+      "second_sid_address": null,
+      "subtunes": 13,
+      "default_subtune": 12,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/104524"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "The Last Ninja",
+      "author": "Ben Daglish & Anthony Lees",
+      "release_credit": "1987 System 3",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 140487,
+      "hvsc_path": "/MUSICIANS/D/Daglish_Ben/Last_Ninja.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "6581"
+      ],
+      "second_sid_address": null,
+      "subtunes": 11,
+      "default_subtune": 3,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/140487"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "RoboCop 3",
+      "author": "Jeroen Tel",
+      "release_credit": "1992 Ocean",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 145743,
+      "hvsc_path": "/MUSICIANS/T/Tel_Jeroen/RoboCop_3.sid",
+      "type": "PSID",
+      "format_version": 2,
+      "clock": "PAL",
+      "sid_count": 1,
+      "sid_models": [
+        "8580"
+      ],
+      "second_sid_address": null,
+      "subtunes": 20,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/145743"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": null
+    },
+    {
+      "title": "Singularity",
+      "author": "Carsten Berggreen (Scarzix)",
+      "release_credit": "2015 Scarzix",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 131839,
+      "hvsc_path": "/MUSICIANS/S/Scarzix/Singularity_2SID.sid",
+      "type": "PSID",
+      "format_version": 3,
+      "clock": "PAL",
+      "sid_count": 2,
+      "sid_models": [
+        "8580",
+        "8580"
+      ],
+      "second_sid_address": "D420",
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/131839",
+        "https://csdb.dk/release/?id=135891"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": 135891
+    },
+    {
+      "title": "Last Party",
+      "author": "Sylwester Hasiak (Buddha)",
+      "release_credit": "2013 Vulture Design",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 124290,
+      "hvsc_path": "/MUSICIANS/B/Buddha/Last_Party_2SID.sid",
+      "type": "PSID",
+      "format_version": 3,
+      "clock": "PAL",
+      "sid_count": 2,
+      "sid_models": [
+        "8580",
+        "8580"
+      ],
+      "second_sid_address": "D500",
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/124290",
+        "https://csdb.dk/release/?id=120196"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": 120196
+    },
+    {
+      "title": "Hardtek Jam",
+      "author": "Michael (Nobody)",
+      "release_credit": "2014 mozArt",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 135664,
+      "hvsc_path": "/MUSICIANS/N/Nobody/Hardtek_Jam_2SID.sid",
+      "type": "PSID",
+      "format_version": 3,
+      "clock": "PAL",
+      "sid_count": 2,
+      "sid_models": [
+        "8580",
+        "8580"
+      ],
+      "second_sid_address": "D420",
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/135664",
+        "https://csdb.dk/release/?id=127557"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": 127557
+    },
+    {
+      "title": "A Pointless Quest",
+      "author": "Aidan Crouzet-Pascal (acrouzet)",
+      "release_credit": "2022 Genesis Project",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 150087,
+      "hvsc_path": "/MUSICIANS/A/Acrouzet/A_Pointless_Quest_2SID.sid",
+      "type": "PSID",
+      "format_version": 3,
+      "clock": "PAL",
+      "sid_count": 2,
+      "sid_models": [
+        "8580",
+        "8580"
+      ],
+      "second_sid_address": "D420",
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/150087",
+        "https://csdb.dk/release/?id=224390"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": 224390
+    },
+    {
+      "title": "Rondo Droidissimo",
+      "author": "Zack Maxis (manganoid)",
+      "release_credit": "2025 Hokuto Force/TempesT",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": 85,
+      "hvsc_metadata_id": 157745,
+      "hvsc_path": "/MUSICIANS/M/Manganoid/Rondo_Droidissimo_2SID.sid",
+      "type": "PSID",
+      "format_version": 3,
+      "clock": "PAL",
+      "sid_count": 2,
+      "sid_models": [
+        "8580",
+        "8580"
+      ],
+      "second_sid_address": "D420",
+      "subtunes": 1,
+      "default_subtune": 1,
+      "sources": [
+        "https://www.hvsc.c64.org/api/v1/sids/157745",
+        "https://csdb.dk/release/?id=257861"
+      ],
+      "rights_source": "https://www.hvsc.c64.org/info#copyright",
+      "source_links_only": true,
+      "csdb_release_id": 257861
+    },
+    {
+      "title": "Dragon Fighter: Into the Depth",
+      "author": "Bansai (C64 port; original composition credits require separate confirmation)",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": null,
+      "hvsc_metadata_id": null,
+      "hvsc_path": null,
+      "csdb_release_id": 247170,
+      "type": "PRG / SID",
+      "clock": null,
+      "sid_count": 2,
+      "sid_models": [
+        null,
+        null
+      ],
+      "second_sid_address": "D420",
+      "sources": [
+        "https://csdb.dk/release/?id=247170"
+      ],
+      "source_links_only": true
+    },
+    {
+      "title": "2 SID Music $D420",
+      "author": "Samar; Data, JCH, Kozaki Soft, Leming, Phobos, Randy, Rayden",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": null,
+      "hvsc_metadata_id": null,
+      "hvsc_path": null,
+      "csdb_release_id": 219599,
+      "type": "D64 collection",
+      "clock": null,
+      "sid_count": 2,
+      "sid_models": null,
+      "second_sid_address": "D420",
+      "sources": [
+        "https://csdb.dk/release/?id=219599"
+      ],
+      "source_links_only": true
+    },
+    {
+      "title": "Wonderland XIV",
+      "author": "Censor Design",
+      "classification": "OWNER-SUPPLIED",
+      "redistribution_permission": null,
+      "bundling_approved": false,
+      "artifact_sha256": null,
+      "payload_acquired": false,
+      "hvsc_release": null,
+      "hvsc_metadata_id": null,
+      "hvsc_path": null,
+      "csdb_release_id": 232980,
+      "type": "four D64 disk sides",
+      "clock": null,
+      "sid_count": null,
+      "sid_models": null,
+      "second_sid_address": null,
+      "sources": [
+        "https://csdb.dk/release/?id=232980"
+      ],
+      "source_links_only": true
+    }
+  ]
+}

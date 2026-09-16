@@ -203,3 +203,14 @@ root trust chain and sudoers policy in a disposable Linux target; first-boot int
 owner authentication, hostname resolution, network secrets/failures and each service's
 readiness/listeners require separate verification. POC3 qualification cannot cover new
 source settings merely because its Menu, VICE and geometry passed on Pi 3B.
+
+## Optional applications/reference content source addendum
+
+120 product tests and 44 Menu tests plus the launcher checker passed. New tests
+cover source/member hashes, deterministic D64 chains/allocation, frozen-lock version
+admission, source-to-payload verification, user-state preservation, unsafe path/media
+rejection, registry profile selection and actual content-browser success/failure.
+See [contract/results](runtime/optional-applications-contract.md). The separate
+[physical procedure](qualification/optional-applications-procedure.md) is pending a
+new approved candidate; no reference SID, application or demo runtime pass is implied.
+Metadata catalog validation does not establish rights or media compatibility.

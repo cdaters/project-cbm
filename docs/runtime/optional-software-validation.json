@@ -1,0 +1,60 @@
+{
+  "scope": "offline source input and small-directory staging validation; no VICE execution, package or image build",
+  "entry": {
+    "artifact": {
+      "path": "objects/46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+      "sha256": "46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+      "size_bytes": 184320
+    },
+    "license": "LicenseRef-Hermit-WTF",
+    "origin": "https://csdb.dk/getinternalfile.php/281063/SID-Wizard-1.97-sources-examples.tar.gz",
+    "recipe": {
+      "path": "objects/e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+      "sha256": "e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+      "size_bytes": 8618
+    },
+    "rights_review": {
+      "path": "objects/ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+      "sha256": "ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+      "size_bytes": 1878
+    },
+    "source": {
+      "path": "objects/aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+      "sha256": "aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+      "size_bytes": 6140658
+    },
+    "version": "1.97"
+  },
+  "payload_manifest": {
+    "content_path": "music/Creation/SID-Wizard/SID-Wizard-1.97.d64",
+    "files": [
+      {
+        "name": "SID-Wizard-1.97.d64",
+        "sha256": "cec93ae1fd5fc846507c1883fd9cb210c6a3c0f40c1c081964e3b8450e26dc44",
+        "size_bytes": 174848
+      },
+      {
+        "name": "UPSTREAM-NOTICE.txt",
+        "sha256": "e0ca3e28b9106d497bb25d49ddf81ad33c92408a0dc08125e356951a66ef4b39",
+        "size_bytes": 3880
+      }
+    ],
+    "format": "project-cbm.optional-software",
+    "id": "sid-wizard",
+    "license": "LicenseRef-Hermit-WTF",
+    "profile": "x64sc",
+    "qualification": "PENDING",
+    "schema_version": 1,
+    "source_sha256": "aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+    "version": "1.97"
+  },
+  "checks": {
+    "pinned_upstream_sha256": "PASS",
+    "selected_prg_sha256": "PASS",
+    "repeat_payload_bytes": "PASS",
+    "only_admitted_members": "PASS",
+    "fresh_target_install": "PASS"
+  },
+  "physical_runtime": "UNTESTED",
+  "independent_assembler_rebuild": "UNTESTED"
+}

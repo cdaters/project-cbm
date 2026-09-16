@@ -93,6 +93,10 @@ explains locations and capacity instead of duplicating browsers. Safe automatic 
 import/ROM copying awaits a constrained storage broker; the old generic passwordless
 mount path has been retired. No removable device is mounted by this source interface.
 
+See [content locations and reference-media rights](reference-content.md) and
+[SID-Wizard / owner-supplied StrikeTerm](optional-applications.md) for the bounded
+application integration planned for a later candidate.
+
 Keep an external backup of content, user preferences and VICE configuration. For a
 major/base upgrade, back up → flash a fresh image → selectively restore and validate.
 Do not restore old machine identity, SSH keys or entire system configuration wholesale.

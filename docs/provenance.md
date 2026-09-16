@@ -1,5 +1,11 @@
 # Historical provenance and preservation
 
+Optional-content source addendum: [admission/input record](runtime/optional-applications-contract.md)
+and [reference-media catalog](design/reference-content-2026-09-16.md). The new
+`archive/optional-content-2026-09-16/manifest.json` under configured bulk storage
+records output refs/bundle hashes and retained optional-input hashes. Earlier
+checkpoint records remain historical evidence; no POC/release artifacts changed.
+
 Latest source checkpoint: [configuration maturation](runtime/configuration-maturation.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
 storage at `archive/configuration-maturation-2026-09-16`. The earlier checkpoints

@@ -111,6 +111,18 @@ def main():
             os.chown((root/'home/pi/pcbm'/dest).parent,1000,1000)
         owned_put('/usr/share/project-cbm/qualification-media.json',json.dumps(manifest,indent=2)+'\n')
         owned_put('/usr/share/doc/project-cbm-qualification/LICENSE',archive.extractfile('LICENSE').read())
+    # Add admitted optional inputs only during construction, never to a sealed image.
+    if 'optional_software' in lock:
+        from optional_software import verify_optional, install as install_optional
+        payload = verify_optional(args.kit, lock['optional_software']['sid_wizard'])
+        paths = install_optional(root, payload);owned.extend('/'+p for p in paths)
+        for name in paths:
+            if name.startswith('home/pi/pcbm/'):
+                path = root/name
+                os.chown(path,1000,1000)
+                for parent in path.parents:
+                    if parent == root/'home/pi/pcbm':break
+                    os.chown(parent,1000,1000)
     # One growth owner. The inspected vendor initramfs hooks both require ' resize'.
     cmdline=root/'boot/firmware/cmdline.txt'
     cmdline.write_text(' '.join(word for word in cmdline.read_text().split() if word!='resize')+'\n')

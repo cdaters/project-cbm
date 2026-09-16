@@ -272,3 +272,19 @@ are product gates. Preserve POC1–3, tags and earlier checkpoints. No POC4, pac
 build, service activation, new hardware test, boot optimization, optional software or
 push is authorized by this completed pass. Next owner review is first-boot/owner-account
 and runtime activation integration, not another Menu framework/architecture study.
+
+## Optional applications and reference content (latest source boundary / STOP)
+
+Owner added SID-Wizard/StrikeTerm integration and SID/demo rights research after the
+configuration pass. Read docs/runtime/optional-applications-contract.md and
+CURRENT-STATE. Only the reviewed native SID-Wizard 1.97 core is admitted for future
+frozen inputs. StrikeTerm and the requested HVSC/demo references remain owner-supplied;
+free downloads, freeware labels, archive inclusion and Combian possession do not
+establish redistribution rights. No automatic content downloader/scraper is authorized.
+
+Preserve original basic qualification media separately from third-party references.
+New application inputs require schema 3 and exact source/recipe/rights/payload hashes;
+never edit POC1–3 locks/images/packages or add bytes to a finished image. Source routing
+uses validated registry profiles and preserves default/VICE preferences. No POC4,
+physical testing, service activation or publication in this addendum. Next product
+milestone remains first-boot/owner-account/runtime integration, not Menu architecture.

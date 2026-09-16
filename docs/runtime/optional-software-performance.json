@@ -1,0 +1,14 @@
+{
+  "scope": "macOS development-host synthetic file benchmark; not Pi performance qualification",
+  "warm_routing_ms": {
+    "samples": 100,
+    "median": 0.05770850111730397,
+    "max": 0.2591669908724725
+  },
+  "new_process_registry_and_routing_ms": {
+    "samples": 10,
+    "median": 25.218187001883052,
+    "max": 26.476375001948327
+  },
+  "notes": "One content-profile process replaces default selection at content launch; normal browse/menu startup unaffected. No daemon, network probes, services or image."
+}

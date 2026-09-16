@@ -1,5 +1,54 @@
 # Project CBM current state
 
+## Optional applications and reference-content addendum — 2026-09-16 / STOP
+
+Configuration maturation below remains complete. The owner additionally authorized
+SID-Wizard/StrikeTerm source integration and rights/provenance research for selected
+SID/demo references. [User guide](docs/runtime/optional-applications.md),
+[exact input/rights/factory contract](docs/runtime/optional-applications-contract.md),
+[reference findings](docs/design/reference-content-2026-09-16.md).
+
+SID-Wizard **1.97 native one-SID core** is admitted under its author's explicit
+permissive notice. Source hash/member selection and deterministic D64/tar are retained;
+no example music, host application or full manual is installed. Schema 3 declares
+optional source/recipe/rights/payload inputs; schemas 1/2 and frozen locks remain intact.
+The stage installs a template/notice and fresh user working disk only when declared.
+No new full candidate lock, package, image, upstream binary rebuild or physical pass.
+
+StrikeTerm 2014 remains **OWNER-SUPPLIED**: source/version/author references resolved,
+complete-disk redistribution permission and upstream-byte comparison unresolved.
+CONTENT now asks the profile authority to route the two application folders to
+validated x64sc without changing the user's normal default. Shared launcher, F10,
+geometry, session, diagnostics, audio and privilege policy are unchanged.
+
+All **17 requested SID/demo references remain OWNER-SUPPLIED**. HVSC #85 metadata
+establishes 14 exact SID paths; Last Party's HVSC version is D500, not D420. No requested
+reference media was acquired. Wonderland XIV is a four-side D64 production; no clear
+redistribution grant or current VICE compatibility was established. SID discovery
+still does not establish PSID/RSID playback: a validated SID-player route remains
+future product work. Safe USB import remains pending the constrained broker.
+
+120 product tests and 44 Menu tests plus the launcher checker pass. Actual admitted
+source/subset hashes, deterministic preparation and small-directory staging verified.
+Mac routing median: 0.058 ms warm / 25.2 ms new process plus registry; not a Pi budget.
+[Validation](docs/runtime/optional-software-validation.json),
+[performance](docs/runtime/optional-software-performance.json),
+[future application physical procedure](docs/qualification/optional-applications-procedure.md).
+
+Product branch: feature/1.1-build-foundation. Menu: feature/1.1-debian-package.
+Menu source commit: `9f74202986ed16fde9f9b1f9da8cace70e784b72`.
+Exact output refs/bundles are recorded in the verified external checkpoint
+`archive/optional-content-2026-09-16` under the configured bulk workspace.
+Retained inputs: `inputs/optional-software-2026-09-16` (input fragment, not a full lock);
+original source review: `inputs/optional-software-review-2026-09-16`.
+Prior checkpoints and POC1–3 remain immutable. Independent backup/custody unresolved.
+
+**Next owner action:** review this addendum, then authorize first-boot/owner-account
+and runtime activation integration in Linux staging, including matching versioned
+packages and these optional-content contracts. SID/PSID/RSID dispatch, safe import
+and service/modem gates require implementation/qualification; no new architecture
+study. Do not automatically build POC4, test hardware, enable services or publish.
+
 ## Configuration maturation complete — 2026-09-16 / STOP
 
 The final concentrated Menu/configuration architecture pass is source-complete.
