@@ -1,10 +1,13 @@
 # Black-box project recovery and installed identity
 
 Current execution/qualification status: [CURRENT-STATE](../CURRENT-STATE.md) and
-[POC2 physical follow-up](qualification/poc2-pi3b-aspect-analysis.md). POC1/POC2
-build records remain frozen; physical results are external attestations, never
-changes to installed identity or input locks. The sections below retain recovery
-design/checkpoint context where they describe components as not yet implemented.
+[completed POC3 checkpoint](build/private-poc3.md). POC1/POC2 remain frozen; POC3
+has a separate lock/image and planned physical matrix. Final source bundles/ref
+inventories/offline restoration: `archive/milestone1-private-poc3-2026-09-16` beneath
+configured bulk storage. Accepted kit: `inputs/frozen-poc3-final`; do not confuse it
+with the retained unaccepted host-drift assembly. Physical results are external
+attestations, never changes to installed identity or input locks. Sections below
+retain recovery-design context where they describe components as not yet implemented.
 
 Status: required project architecture for Project CBM 1.1, refined 2026-09-15.
 Host-only input/identity schemas, generator and negative tests are now implemented

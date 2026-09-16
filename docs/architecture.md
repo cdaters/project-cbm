@@ -69,3 +69,15 @@ portable retained-input locators are mandatory from 1.1. One lock generates iden
 final image/qualification hashes remain external to avoid circular dependencies. Runtime
 identity reporting consumes generated metadata, not another version file. TheBench
 is the current bulk deployment, not a required product pathname or platform.
+
+## POC3 initial presentation policy
+
+[POC3 design](build/poc3-design.md) supplies initial VICE per-chip true aspect and
+desktop-resolution fullscreen. Fit the complete emulated canvas; accept black
+sidebars (pillarboxing) or top/bottom bars rather than stretch-to-fill. VICE owns
+PAL/NTSC pixel geometry; CBM does not enforce a universal 4:3 multiplier or legacy
+HDMI resolution. Root-owned reference defaults and a pi-owned initial config are
+created at image construction only. Normal launches/first boots preserve subsequent
+user settings. The existing shared Menu launcher and session/privilege contract stay
+unchanged. Generated profiles and software-reference tests are not physical passes.
+POC2's recorded Pi 3B success and geometry failure remain immutable evidence.

@@ -205,3 +205,13 @@ user preferences, bounded engineering evidence and one new frozen private POC3.
 Read docs/build/poc3-design.md. Preserve POC1/POC2 and photo/qualification records.
 STOP after POC3 offline validation, hash-bound Pi 3B procedure and recovery records;
 no physical test, POC4, other models, SSH, broad modernization or publication.
+
+## POC3 completed (latest checkpoint / STOP)
+
+Read docs/build/private-poc3.md and CURRENT-STATE. Accepted POC3 is built and
+offline-validated; physical results are UNTESTED. Preserve all three candidates and
+the separate rejected host-drift attempt. Builder is stopped. No new build, physical
+test, other Pi model, SSH, broad modernization or publication under this task.
+Next owner action is review, then the exact-hash Pi 3B geometry/regression procedure.
+Controlled future builds must pass the before/after host inventory/update-unit guard;
+intentional builder updates require retained inputs and a new lock.

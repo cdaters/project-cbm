@@ -1,24 +1,54 @@
 # Project CBM current state
 
-## POC3 implementation checkpoint — 2026-09-16
+## POC3 completed — 2026-09-16 / STOP for owner review
 
-Owner authorized the narrow geometry candidate in [the POC3 design](docs/build/poc3-design.md).
-The unchanged POC2 VICE preserves PAL/NTSC geometry in a software reference; actual
-Pi KMS/display mode is still unknown. Initial per-chip true-aspect/desktop-fullscreen
-defaults are generated once at construction, with user preferences left untouched
-on subsequent boots/launches. New VICE package telemetry and a read-only non-root
-DRM query extend the bounded engineering diagnostics. Menu/TCPser remain unchanged.
-No SSH, service/privilege or first-boot redesign. POC1/POC2 remain frozen.
+**Private POC3 built and offline-validated; physical POC3 remains UNTESTED.**
+[Completed build record](docs/build/private-poc3.md), [exact results](docs/build/private-poc3.json),
+[presentation policy/findings](docs/build/poc3-design.md) and
+[hash-bound Pi 3B procedure](docs/qualification/poc3-pi3b-smoke-test.md) are the current
+checkpoint. The [planned physical matrix](docs/qualification/poc3-pi3b.json) has no passes yet.
 
-Pre-build tests/reference passed. The first assembly is unaccepted: inherited VM
-unattended upgrades changed 13 host versions and added a kernel after the earlier
-host inventory. Its original lock/artifact remain evidence. Automatic update units
-are now masked only in the builder; exact supplemental inputs are retained and a
-before/after inventory guard prevents accepting stale host provenance.
+POC2's Pi 3B core launch/audio/media/return/VT/reboot passes and geometry failure
+remain unchanged. POC3 seeds per-chip true aspect + desktop fullscreen once, preserves
+saved user preferences and adds bounded presentation/DRM diagnostics. Menu/TCPser,
+first boot, tty/getty/PAM, F10/menu/Quit, privileges, service masks and media remain
+unchanged. No SSH. Root cause is still unconfirmed: software reference geometry works;
+actual Pi/SDL/KMS/display scaling needs the new physical evidence.
 
-Next: freeze `inputs/frozen-poc3-final` with corrected host closure, construct in a
-fresh workspace, validate offline, then STOP with Pi 3B procedure and recovery records. No physical testing, POC4, other Pi models or publication.
-The sections below describe the completed POC2 review, not current authorization.
+- Integration: `0a0e271d86c68a969d8b18189c561ed51a8b0e09`.
+- Lock: `inputs/frozen-poc3-final/release-lock.json`, SHA-256
+  `3f3180f50e5c990ad63fc3d564a56bbd86b80f9b38c6a4aff7b42ed9438b9f5e`.
+- Raw: `artifacts/private-poc3/2026-09-16-project-cbm-1.1.0-poc.3-lite-private-poc.img`,
+  3,095,396,352 bytes; SHA-256 `9a8b1e0465c93981dfa6b09772e9e3fbf5c487a915bba0046b5de034f9331f33`.
+- XZ: `artifacts/private-poc3/image_2026-09-16-project-cbm-1.1.0-poc.3-lite-private-poc.img.xz`,
+  596,947,568 bytes; SHA-256 `e7d9657bfbb1124b38c2f1f3479698e24a34be7234db80d766f189da946ace3c`.
+- VICE: `3.10-1+pcbm3`, SHA-256 `c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe`.
+  Menu `v1.1.0_poc2` / peeled `897cee7c792b11bfed80168a576f263340f5f57d`, TCPser
+  and original MIT media are reused exactly; all identities are in the build record.
+
+40 macOS/native Linux tests and Menu launcher tests passed. 12 software-reference
+cases cover 11 profiles plus PAL/NTSC; saved preferences/CLI precedence passed.
+85 read-only image checks, filesystems/systemd units and 113 ELF dependencies passed.
+2,789 frozen objects and raw/XZ agreement verified. 5,503 POC1/POC2 baseline files
+and the original 1,677-entry historical manifest remain unchanged. POC2 photographic
+evidence references/hashes remain in its formal record, not embedded in Git.
+
+An initial assembly was rejected for builder inventory drift from inherited automatic
+APT updates. Its old lock/artifact/log remain separate, **not accepted for flashing**.
+The corrected lock retains the exact host supplement; before/after inventory guards
+and masked builder update units now prevent accepting that drift. These are builder-only
+controls, not changed appliance service policy. See the build record for limitations.
+
+Bulk locators above are relative to configured ProjectCBM-Work. Recovery:
+`archive/milestone1-private-poc3-2026-09-16`; detailed evidence: `qualification/poc3`.
+Builder is stopped. Product remains `feature/1.1-build-foundation`; Menu remains
+`feature/1.1-debian-package` without changes. Nothing published. Independent backup,
+clean rebuild, acceptance budgets and full settings UX remain unresolved.
+
+**Next:** owner review, then exact-hash Pi 3B geometry + bounded regression test.
+If geometry fails, collect diagnostics and stop without manual repair. No physical
+test by this task, POC4, other model, SSH or broader modernization. The completed
+POC2 sections below are prior checkpoints, not current authorization/status.
 
 ## Completed POC2 review
 

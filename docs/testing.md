@@ -1,5 +1,11 @@
 # Validation and qualification
 
+Current checkpoint: [POC3 offline completion](build/private-poc3.md) and
+[planned exact-hash Pi 3B test](qualification/poc3-pi3b-smoke-test.md). 40 host/native
+tests, Menu launcher checks, 12 software-reference cases, 85 image checks and 113
+ELF objects passed. Physical POC3 remains UNTESTED. Earlier dated sections below
+retain their original checkpoint scope; they do not override CURRENT-STATE.
+
 ## Safe checks for continuity/source work
 
 - Run `git diff --check` and inspect staged paths/sizes and diff. Validate added
