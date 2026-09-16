@@ -34,7 +34,7 @@
         "Set a separate File Sharing password before enabling Samba.",
         "Setting applied.",
         "The value is not supported. Check the setting and try again.",
-        "Pending runtime activation. First-boot account and service setup must complete in a future candidate.",
+        "Complete local first-boot setup before changing this setting.",
         "The required system facility is unavailable. Review System Information or Advanced guidance.",
         "The operation could not be confirmed. Review current state before retrying; part of it may have applied.",
         "Another configuration operation is running. Try again when it finishes.",

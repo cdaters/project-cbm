@@ -1,5 +1,23 @@
 # Project CBM current state
 
+## First-boot/runtime activation authorized — 2026-09-16 / IN PROGRESS
+
+The owner accepted configuration maturation and optional-content work and authorized
+one new private engineering candidate. [Current work and native staging evidence](docs/build/runtime-activation.md)
+records implementation boundaries, the accepted-versus-rejected POC3 staging source
+check, actual account/PAM/sudo and disposable loop-growth tests, and remaining gates.
+Both feature branches have intentional uncommitted implementation work; inspect it.
+No new package/candidate lock/image has been frozen, built or physically tested yet.
+
+StrikeTerm's author-endorsed D64 has now been acquired and verified against the recorded
+Combian hash. It is privately admitted by the owner; its public redistribution gate
+remains pending. SID-Wizard uses the accepted exact core subset. Reference SID/demo
+payloads stay owner-supplied. Prior completed checkpoints below remain unchanged.
+
+Next: complete/test runtime integration in disposable Linux staging, then matching
+packages and one frozen private candidate. No push, public release, physical test,
+other Pi model or boot optimization. Stop on a critical integrity/security failure.
+
 ## Optional applications and reference-content addendum — 2026-09-16 / STOP
 
 Configuration maturation below remains complete. The owner additionally authorized

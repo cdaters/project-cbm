@@ -327,6 +327,9 @@
         },
         "vice": {
           "$ref": "#/$defs/component"
+        },
+        "runtime": {
+          "$ref": "#/$defs/component"
         }
       },
       "required": [
@@ -434,7 +437,8 @@
       "enum": [
         1,
         2,
-        3
+        3,
+        4
       ]
     },
     "optional_software": {
@@ -477,6 +481,38 @@
             "source",
             "artifact",
             "recipe",
+            "rights_review"
+          ]
+        },
+        "striketerm": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "const": "2014 Final"
+            },
+            "origin": {
+              "const": "https://csdb.dk/getinternalfile.php/129890/st2014final.d64"
+            },
+            "classification": {
+              "const": "PRIVATE-ENGINEERING-ADMITTED"
+            },
+            "public_release_rights": {
+              "const": "PUBLIC-RELEASE-RIGHTS-GATE-PENDING"
+            },
+            "artifact": {
+              "$ref": "#/$defs/artifact"
+            },
+            "rights_review": {
+              "$ref": "#/$defs/artifact"
+            }
+          },
+          "required": [
+            "version",
+            "origin",
+            "classification",
+            "public_release_rights",
+            "artifact",
             "rights_review"
           ]
         }

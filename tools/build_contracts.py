@@ -97,8 +97,15 @@ def validate_lock(raw, allow_fixture=False):
     version = lock['schema_version']
     if version == 1 and 'qualification_media' in lock or version == 2 and 'qualification_media' not in lock:
         raise ValueError('schema 2 requires declared engineering media; schema 1 forbids it')
-    if (version == 3) != ('optional_software' in lock):
-        raise ValueError('schema 3 requires optional software; earlier schemas forbid it')
+    if (version >= 3) != ('optional_software' in lock):
+        raise ValueError('schema 3/4 requires optional software; earlier schemas forbid it')
+    if (version == 4) != ('runtime' in lock['components']):
+        raise ValueError('schema 4 requires the runtime package; earlier schemas forbid it')
+    if version < 4 and 'striketerm' in lock.get('optional_software',{}):
+        raise ValueError('private StrikeTerm admission requires schema 4')
+    if 'striketerm' in lock.get('optional_software',{}):
+        from private_application import check_rights
+        check_rights(lock,'private-engineering')
     seen = {}
     for artifact in artifacts(lock):
         relative_path(artifact['path'])
@@ -124,12 +131,12 @@ def validate_lock(raw, allow_fixture=False):
         raise ValueError('unsupported POC stage sequence')
     for name, component in lock['components'].items():
         package = component['package']
-        expected_arch = 'all' if name == 'menu' else 'arm64'
+        expected_arch = 'all' if name in ('menu','runtime') else 'arm64'
         if (package['name'] != 'project-cbm-' + name or package['architecture'] != expected_arch
                 or package['upstream_version'] != component['version'].replace('_', '~')
                 or package['version'] != package['upstream_version'] + '-' + package['revision']):
             raise ValueError('component/package identity mismatch')
-        if name in ('menu', 'tcpser') and 'git' not in component['source']:
+        if name in ('menu', 'tcpser', 'runtime') and 'git' not in component['source']:
             raise ValueError('component requires exact Git source identity')
         if name == 'menu' and component['source']['git']['ref'] != 'refs/tags/v' + component['version']:
             raise ValueError('Menu pin requires version tag and peeled commit')

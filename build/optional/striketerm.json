@@ -1,0 +1,19 @@
+{
+  "format": "project-cbm.optional-admission",
+  "schema_version": 1,
+  "name": "StrikeTerm",
+  "version": "2014 Final",
+  "author": "Alwyz",
+  "origin": "https://csdb.dk/getinternalfile.php/129890/st2014final.d64",
+  "author_reference": "https://1200baud.wordpress.com/2014/05/17/striketerm-2014-final/",
+  "filename": "st2014final.d64",
+  "media_type": "D64",
+  "size_bytes": 174848,
+  "sha256": "72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+  "classification": "PRIVATE-ENGINEERING-ADMITTED",
+  "public_release_rights": "PUBLIC-RELEASE-RIGHTS-GATE-PENDING",
+  "redistribution_basis": "Owner explicitly authorized this private development/testing candidate on 2026-09-16. This is not a public redistribution license.",
+  "provenance_limits": "Author-endorsed archive acquisition; exact bytes match the recorded Combian copy. No upstream signature or complete corresponding-source identity established. Included third-party modules remain within the unresolved complete-disk rights gate.",
+  "profile": "x64sc",
+  "content_path": "programs/Communications/StrikeTerm/StrikeTerm-2014-Final.d64"
+}

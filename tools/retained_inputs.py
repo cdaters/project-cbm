@@ -80,6 +80,9 @@ def verify_kit(raw, root):
     if 'optional_software' in lock:
         from optional_software import verify_optional
         verify_optional(root, lock['optional_software']['sid_wizard'])
+        if 'striketerm' in lock['optional_software']:
+            from private_application import verify
+            verify(root,lock['optional_software']['striketerm'])
     return lock
 
 

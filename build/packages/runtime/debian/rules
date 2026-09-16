@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build:
+	true
+
+override_dh_auto_test:
+	python3 -c "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('runtime').rglob('*.py')]"
+
+override_dh_auto_install:
+	install -d debian/project-cbm-runtime/usr/share/project-cbm/runtime debian/project-cbm-runtime/usr/bin debian/project-cbm-runtime/usr/libexec
+	cp -a runtime/project_cbm runtime/data runtime/bin debian/project-cbm-runtime/usr/share/project-cbm/runtime/
+	chmod 755 debian/project-cbm-runtime/usr/share/project-cbm/runtime/bin/*
+	set -e; for p in runtime/bin/*; do ln -s ../share/project-cbm/runtime/bin/$$(basename $$p) debian/project-cbm-runtime/usr/bin/$$(basename $$p); done
+	install -m755 runtime/libexec/* debian/project-cbm-runtime/usr/libexec/

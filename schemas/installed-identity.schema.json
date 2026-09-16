@@ -131,6 +131,35 @@
             "package_sha256"
           ],
           "type": "object"
+        },
+        "runtime": {
+          "additionalProperties": false,
+          "properties": {
+            "package_sha256": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "package_version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:-]*$",
+              "type": "string"
+            },
+            "version": {
+              "maxLength": 512,
+              "minLength": 1,
+              "pattern": "^[0-9][0-9A-Za-z.+~:_-]*$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "package_version",
+            "package_sha256"
+          ],
+          "type": "object"
         }
       },
       "required": [

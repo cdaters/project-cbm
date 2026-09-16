@@ -1,14 +1,13 @@
 [Unit]
 Description=Optional Project CBM TCP modem bridge
 After=network-online.target pcbm-first-boot.service
-ConditionPathExists=/etc/pcbm/tcpser.conf
+ConditionPathExists=/etc/project-cbm/modem.json
 
 [Service]
 Type=simple
 User=pi
 Group=pi
-EnvironmentFile=/etc/pcbm/tcpser.conf
-ExecStart=/usr/bin/tcpser $TCPSER_ARGS
+ExecStart=/usr/bin/pcbm-modem
 Restart=on-failure
 NoNewPrivileges=yes
 PrivateTmp=yes

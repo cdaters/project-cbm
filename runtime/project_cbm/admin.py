@@ -7,7 +7,7 @@ from .config_backend import policy
 
 
 def command(action, owner=None):
-    if action=='terminal':return ['/bin/bash','--noprofile','--norc','-i']
+    if action=='terminal':return ['/bin/su','--login',owner]
     if action=='owner':return ['/bin/su','--login',owner]
     if action=='raspi-config':return ['/bin/su','--login',owner,'--command','sudo -k -- /usr/bin/raspi-config']
     raise ValueError('action')
@@ -20,7 +20,7 @@ def main(argv=None):
         print('Use this entry from the normal Project CBM user.',file=sys.stderr);return 2
     try:
         owner=None
-        if args.action!='terminal':
+        if args.action in ('terminal','owner','raspi-config'):
             p=policy()
             if not p['system_ready']:raise ValueError('not_initialized')
             owner=p['owner_user']

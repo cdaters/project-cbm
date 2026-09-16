@@ -183,7 +183,7 @@ def initialize(path=None, profiles=None, legacy_raw=None):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description='Project CBM user preferences (boot preference is not yet applied)')
+    parser = argparse.ArgumentParser(description='Project CBM user preferences')
     sub = parser.add_subparsers(dest='action', required=True)
     sub.add_parser('show')
     setting = sub.add_parser('set'); setting.add_argument('key', choices=['default_machine', 'boot_preference']); setting.add_argument('value'); setting.add_argument('--recover', action='store_true'); setting.add_argument('--confirm', action='store_true')

@@ -32,7 +32,7 @@ def main(argv=None):
         try:
             from .config_backend import policy
             p=policy()
-            ready=p['system_ready'] and (p['network_ready'] if args.ready in ('network','wifi-country','wifi-enroll') else True)
+            ready=p['system_ready'] and (p['network_ready'] if args.ready in ('network','wifi-country','wifi-enroll','wifi-rescan','wifi-disconnect','wifi-forget') else True)
             return 0 if ready else 2
         except (OSError,ValueError,TypeError):return 2
     try:

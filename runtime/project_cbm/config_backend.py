@@ -12,6 +12,8 @@ import subprocess
 import sys
 import tempfile
 import re
+import pwd
+import grp
 import xml.etree.ElementTree as ET
 from .configuration import decode, validate, result, SERVICES, keyfile, match, WIFI_UUID
 from .data import read_json
@@ -70,37 +72,92 @@ class Linux:
         return self.run(['/usr/bin/setupcon','--save-only','--keyboard-only'])
 
     def credential_ready(self, user):
-        p=subprocess.run(['/usr/bin/pdbedit','-L','-u',user],capture_output=True,text=True,env=ENV,timeout=5)
-        return p.returncode==0 and any(line.startswith(user+':') for line in p.stdout.splitlines())
+        p=subprocess.run(['/usr/bin/pdbedit','-L','-v','-u',user],capture_output=True,text=True,env=ENV,timeout=5)
+        flags=re.search(r'^Account Flags:\s*\[([^]]+)\]',p.stdout,re.M)
+        return p.returncode==0 and flags is not None and 'D' not in flags[1] and 'N' not in flags[1]
 
     def country_ready(self):
         p=subprocess.run(['/usr/bin/raspi-config','nonint','get_wifi_country'],capture_output=True,text=True,env=ENV,timeout=5)
         country=p.stdout.strip()
         return p.returncode==0 and match(country,r'[A-Z]{2}') and self.listed('country',country)
 
-    def write(self,path,content):
+    def write(self,path,content,mode=0o600):
         path=Path(path);trusted(path.parent)
         if path.exists() or path.is_symlink():trusted(path)
         fd,tmp=tempfile.mkstemp(prefix='.pcbm-',dir=path.parent)
         try:
-            with os.fdopen(fd,'w') as f:f.write(content);f.flush();os.fsync(f.fileno())
+            with os.fdopen(fd,'w') as f:
+                os.fchmod(f.fileno(),mode);f.write(content);f.flush();os.fsync(f.fileno())
             os.replace(tmp,path)
             d=os.open(path.parent,os.O_DIRECTORY);os.fsync(d);os.close(d)
         finally:
             if os.path.exists(tmp):os.unlink(tmp)
 
 
+    def setup_read(self):
+        from .setup import STATE, initial
+        trusted(STATE.parent)
+        if not STATE.exists():return initial()
+        return read_json(trusted(STATE))
+
+    def setup_save(self,state):
+        from .setup import STATE, STATUS
+        self.write(STATE,json.dumps(state,sort_keys=True)+'\n')
+        # Safe projection only; status has no credentials or machine identifiers.
+        self.write(STATUS,json.dumps(state,sort_keys=True)+'\n',0o644)
+
+    def owner_expected(self,user):
+        try:
+            account=pwd.getpwnam(user)
+            return (user=='owner' and account.pw_uid==1001 and account.pw_dir=='/home/owner'
+                    and account.pw_shell=='/bin/bash' and user in grp.getgrnam('sudo').gr_mem)
+        except KeyError:return False
+
+    def owner_ready(self,user):
+        if not self.owner_expected(user):return False
+        for line in trusted(Path('/etc/shadow')).read_text().splitlines():
+            fields=line.split(':')
+            if fields[0]==user:
+                return len(fields)>1 and fields[1].startswith('$') and len(fields[1])>20
+        return False
+
+    def setup_prerequisites(self):
+        growth=read_json(trusted(Path('/var/lib/project-cbm/first-boot/complete.json')))
+        machine=trusted(Path('/etc/machine-id')).read_text().strip()
+        return (growth=={'schema_version':1,'root_growth_verified':True}
+                and re.fullmatch('[0-9a-f]{32}',machine) is not None and machine!='0'*32
+                and self.run(['/usr/sbin/visudo','-c','-f','/etc/sudoers']))
+
+    def setup_activate(self,p):
+        self.write(POLICY,json.dumps({**p,'system_ready':True},sort_keys=True)+'\n',0o644)
+
+    def ssh_keys(self):
+        return self.run(['/usr/bin/ssh-keygen','-A'])
+
+    def modem(self,values):
+        self.write('/etc/project-cbm/modem.json',json.dumps({'schema_version':1,**values},sort_keys=True)+'\n',0o644)
+        # Only restart an already active service. Saving settings never enables it.
+        if self.run(['/usr/bin/systemctl','--quiet','is-active','tcpser.service']):
+            return self.run(['/usr/bin/systemctl','--no-ask-password','restart','tcpser.service'])
+        return True
+
+
 def apply(request, p, system):
     """Injectable executor; tests supply a fake OS. Caller serializes real mutations."""
     validate(request);op=request['operation'];v=request['values']
+    if op.startswith('setup-'):
+        from .setup import apply as setup_apply
+        return setup_apply(request,p,system,apply)
     if not p['system_ready']:return result('pending')
-    if op in ('network','wifi-enroll','wifi-country') and not p['network_ready']:return result('pending')
+    if op in ('network','wifi-enroll','wifi-country','wifi-disconnect','wifi-forget','wifi-rescan') and not p['network_ready']:return result('pending')
     if op=='service':
         name=v['service']
         if name not in p['ready_services']:return result('pending')
         if name=='sharing' and v['enabled'] and not system.credential_ready(p['appliance_user']):return result('credentials_required')
+        if name=='ssh' and v['enabled'] and not system.ssh_keys():return result('failed')
         # No unmask here. Masks are an intentional policy boundary, not an error to bypass.
         args=['/usr/bin/systemctl','--no-ask-password','enable' if v['enabled'] else 'disable','--now',SERVICES[name]]
+        if name=='discovery':args.append('avahi-daemon.socket')
     elif op=='hostname':args=['/usr/bin/hostnamectl','--no-ask-password','hostname',v['value']]
     elif op=='timezone':
         if not system.listed('timezone',v['value']):return result('invalid')
@@ -126,13 +183,14 @@ def apply(request, p, system):
         system.write(path,keyfile(v['ssid'],v['password']))
         if not system.run(['/usr/bin/nmcli','connection','load',path]):return result('failed')
         args=['/usr/bin/nmcli','--wait','30','connection','up','uuid',WIFI_UUID]
+    elif op in ('wifi-disconnect','wifi-forget','wifi-rescan'):
+        args=['/usr/bin/nmcli','connection','down' if op=='wifi-disconnect' else 'delete','uuid',WIFI_UUID]
     elif op=='sharing-password':
         # Initial credential enrollment precedes adding sharing to ready_services.
         ok=system.run(['/usr/bin/smbpasswd','-s','-a',p['appliance_user']],stdin=v['password']+'\n'+v['password']+'\n')
         return result('ok' if ok else 'failed')
     elif op=='modem':
-        system.write('/etc/project-cbm/modem.json',json.dumps({'schema_version':1,**v},sort_keys=True)+'\n')
-        return result('saved_pending')  # Typed intent only; safe TCPser adapter/listener qualification is a later gate.
+        return result('ok' if system.modem(v) else 'failed')
     elif op=='power':args=['/usr/bin/systemctl','--no-ask-password',v['action']]
     else:return result('invalid')
     return result('ok' if system.run(args) else 'failed')

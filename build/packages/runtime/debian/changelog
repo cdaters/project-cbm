@@ -1,0 +1,5 @@
+project-cbm-runtime (1.1.0~poc4-1) unstable; urgency=medium
+
+  * Private engineering first-boot and runtime activation candidate.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Wed, 16 Sep 2026 15:00:00 -0700

@@ -62,7 +62,7 @@ def main():
     for component in lock['components'].values():
         actual=chroot('dpkg-query','-W','-f=${Version}',component['package']['name']).strip()
         if actual!=component['package']['version']: raise ValueError('installed package version mismatch')
-    for dirname in ['etc/pcbm','usr/share/project-cbm','usr/libexec/project-cbm','var/lib/project-cbm/first-boot']:
+    for dirname in ['etc/project-cbm','var/lib/project-cbm/setup','run/project-cbm','run/project-cbm/import','run/project-cbm/import/source','etc/pcbm','usr/share/project-cbm','usr/libexec/project-cbm','var/lib/project-cbm/first-boot']:
         (root/dirname).mkdir(parents=True,exist_ok=True)
     (root/'var/lib/project-cbm/first-boot').chmod(0o700)
     owned_put('/usr/share/project-cbm/identity.json',encode(make_identity(raw)))
@@ -84,6 +84,41 @@ def main():
         target=root/'home/pi/pcbm'/directory;target.mkdir(exist_ok=True);os.chown(target,1000,1000)
     chroot('usermod','--password','*','pi');chroot('usermod','--password','*','root')
     chroot('usermod','--shell','/bin/bash','pi')
+    if 'runtime' not in lock['components']:raise ValueError('activated candidate requires declared runtime package')
+    chroot('groupadd','--system','pcbm-operators')
+    chroot('usermod','--append','--groups','pcbm-operators','pi')
+    chroot('useradd','--uid','1001','--create-home','--shell','/bin/bash','--groups','sudo','owner')
+    chroot('usermod','--password','!','owner')
+    # No universal credential and no normal-user blanket sudo. Debian %sudo is
+    # authenticated; only the separate owner account is added for administration.
+    chroot('gpasswd','--delete','pi','sudo')
+    policy={'schema_version':1,'owner_user':'owner','appliance_user':'pi',
+            'system_ready':False,'network_ready':True,
+            'ready_services':['ssh','sharing','modem','discovery']}
+    owned_put('/etc/project-cbm/configuration-policy.json',encode(policy))
+    owned_put('/etc/project-cbm/modem.json',encode({'schema_version':1,'port':25232,'baud':2400}))
+    owned_put('/etc/sudoers.d/pcbm-operations',(REPO/'runtime/config/sudoers.example').read_bytes(),0o440)
+    owned_put('/usr/lib/tmpfiles.d/project-cbm.conf',
+              'd /run/project-cbm 0755 root root -\nd /run/project-cbm/import 0755 root root -\nd /run/project-cbm/import/source 0755 root root -\n')
+    owned_put('/etc/NetworkManager/NetworkManager.conf',
+              '[main]\nplugins=keyfile\n[ifupdown]\nmanaged=false\n')
+    owned_put('/var/lib/NetworkManager/NetworkManager.state',
+              '[main]\nNetworkingEnabled=false\nWirelessEnabled=false\nWWANEnabled=false\n',0o600)
+    owned_put('/etc/ssh/sshd_config.d/20-project-cbm.conf',
+              'PermitRootLogin no\nAllowUsers owner\nPasswordAuthentication yes\nKbdInteractiveAuthentication no\n')
+    smb=('[global]\n    server role = standalone server\n    security = user\n'
+         '    map to guest = Never\n    server min protocol = SMB2\n'
+         '    disable netbios = yes\n    smb ports = 445\n    load printers = no\n'
+         '    disable spoolss = yes\n    log level = 0\n    max log size = 1000\n')
+    owned_put('/etc/samba/smb.conf',smb+(REPO/'runtime/config/file-sharing.example.conf').read_text())
+    # systemd may apply presets when it sees the sealed first-boot identity marker.
+    # Explicit policy prevents that normal mechanism from enabling optional services.
+    optional_units=['ssh.service','ssh.socket','smbd.service','nmbd.service',
+                    'samba-ad-dc.service','tcpser.service','avahi-daemon.service','avahi-daemon.socket']
+    owned_put('/etc/systemd/system-preset/00-project-cbm.preset',
+              ''.join('disable '+u+'\n' for u in optional_units)+
+              'enable NetworkManager.service\nenable pcbm-first-boot.service\n')
+
     # Standard getty/login/PAM owns tty sessions; no direct competing tty service.
     for tty in ['tty1','tty2']:
         owned_put('/etc/systemd/system/getty@'+tty+'.service.d/autologin.conf',
@@ -115,7 +150,12 @@ def main():
     if 'optional_software' in lock:
         from optional_software import verify_optional, install as install_optional
         payload = verify_optional(args.kit, lock['optional_software']['sid_wizard'])
-        paths = install_optional(root, payload);owned.extend('/'+p for p in paths)
+        paths = install_optional(root, payload)
+        if 'striketerm' in lock['optional_software']:
+            from private_application import check_rights, verify as verify_private, install as install_private
+            check_rights(lock,'private-engineering')
+            paths.extend(install_private(root,verify_private(args.kit,lock['optional_software']['striketerm'])))
+        owned.extend('/'+p for p in paths)
         for name in paths:
             if name.startswith('home/pi/pcbm/'):
                 path = root/name
@@ -127,14 +167,16 @@ def main():
     cmdline=root/'boot/firmware/cmdline.txt'
     cmdline.write_text(' '.join(word for word in cmdline.read_text().split() if word!='resize')+'\n')
     disabled=['rpi-resize.service','systemd-growfs-root.service','userconfig.service',
-              'regenerate_ssh_host_keys.service','ssh.service','ssh.socket','sshswitch.service',
-              'sshd-keygen.service','avahi-daemon.service','avahi-daemon.socket','smbd.service',
-              'nmbd.service','samba-ad-dc.service','tcpser.service','NetworkManager.service',
+              'regenerate_ssh_host_keys.service','ssh.socket','sshswitch.service',
+              'sshd-keygen.service','nmbd.service','samba-ad-dc.service',
               'pcbm-console.service']
     for unit in disabled:
         subprocess.run(['systemctl','--root',str(root),'disable',unit],check=False,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         subprocess.run(['systemctl','--root',str(root),'mask',unit],check=True)
-    for unit in ['pcbm-first-boot.service','getty@tty1.service','getty@tty2.service']:
+    for unit in ['NetworkManager.service','ssh.service','smbd.service','tcpser.service','avahi-daemon.service','avahi-daemon.socket']:
+        subprocess.run(['systemctl','--root',str(root),'unmask',unit],check=True)
+        subprocess.run(['systemctl','--root',str(root),'disable',unit],check=True)
+    for unit in ['NetworkManager.service','pcbm-first-boot.service','getty@tty1.service','getty@tty2.service']:
         subprocess.run(['systemctl','--root',str(root),'enable',unit],check=True)
     # VM credentials/state are never imported. Remove identities generated in chroots.
     for pattern in ['etc/ssh/ssh_host_*','home/pi/.ssh/*']:
@@ -155,6 +197,9 @@ def main():
             for child in path.iterdir():
                 if child.is_file() or child.is_symlink(): child.unlink()
                 elif child.is_dir(): shutil.rmtree(child)
+    # Samba must also establish its own per-device state after flashing.
+    if list((root/'var/lib/samba').rglob('*.tdb')) or list((root/'var/lib/samba').rglob('*.ldb')):
+        raise ValueError('unexpected reusable Samba database state in construction root')
     # Final pi-gen exporter also seals logs and removes its APT proxy configuration.
     owned_put('/usr/share/project-cbm/owned-paths.txt','\n'.join(sorted(owned))+'\n')
     print('Private CBM stage installed and sealed; offline image validation still required')

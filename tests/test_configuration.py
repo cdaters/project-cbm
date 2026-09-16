@@ -28,6 +28,8 @@ class FakeLinux:
     def __init__(self):self.calls=[];self.writes={};self.good=True;self.allowed=True;self.country=True
     def run(self,args,stdin=None):self.calls.append((args,stdin));return self.good
     def listed(self,kind,value):return self.allowed
+    def ssh_keys(self):return self.good
+    def modem(self,values):self.writes["/etc/project-cbm/modem.json"]=values;return self.good
     def country_ready(self):return self.country
     def credential_ready(self, user):return self.allowed
     def keyboard(self, value):self.calls.append((['keyboard-next-boot',value],None));return self.good
@@ -79,7 +81,9 @@ class Configuration(unittest.TestCase):
         for name,unit in c.SERVICES.items():
             for enabled in [False,True]:
                 system=FakeLinux();b.apply(req('service',service=name,enabled=enabled),POLICY,system)
-                self.assertEqual(system.calls,[(['/usr/bin/systemctl','--no-ask-password','enable' if enabled else 'disable','--now',unit],None)])
+                expected=['/usr/bin/systemctl','--no-ask-password','enable' if enabled else 'disable','--now',unit]
+                if name=='discovery':expected.append('avahi-daemon.socket')
+                self.assertEqual(system.calls,[(expected,None)])
 
     def test_failure_not_reported_as_success(self):
         for request in CASES:
@@ -148,7 +152,7 @@ class Configuration(unittest.TestCase):
             self.assertNotIn('shell',k);self.assertEqual(k['env']['HOME'],'/run/project-cbm')
 
     def test_admin_paths_authenticate_without_broad_passwordless_api(self):
-        self.assertEqual(admin.command('terminal'),['/bin/bash','--noprofile','--norc','-i'])
+        self.assertEqual(admin.command('terminal','owner_fixture'),['/bin/su','--login','owner_fixture'])
         self.assertEqual(admin.command('owner','owner_fixture'),['/bin/su','--login','owner_fixture'])
         self.assertEqual(admin.command('raspi-config','owner_fixture')[-1],'sudo -k -- /usr/bin/raspi-config')
         with self.assertRaises(ValueError):admin.command('arbitrary')

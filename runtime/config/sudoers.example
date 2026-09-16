@@ -4,3 +4,5 @@ Defaults!/usr/libexec/pcbm-config-root env_reset, !setenv, !log_input, !log_outp
 %pcbm-operators ALL=(root) NOPASSWD: /usr/libexec/pcbm-config-root ""
 # Authenticated owners belong to Debian's sudo group; never pcbm-operators alone.
 # Retain Debian's ordinary authenticated %sudo policy, with no universal password.
+Defaults!/usr/libexec/pcbm-import-root env_reset, !setenv, !log_input, !log_output
+%pcbm-operators ALL=(root) NOPASSWD: /usr/libexec/pcbm-import-root ""
