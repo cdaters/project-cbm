@@ -10,9 +10,14 @@ on subsequent boots/launches. New VICE package telemetry and a read-only non-roo
 DRM query extend the bounded engineering diagnostics. Menu/TCPser remain unchanged.
 No SSH, service/privilege or first-boot redesign. POC1/POC2 remain frozen.
 
-Next: complete pre-build reference/static gates, freeze a distinct POC3 input kit,
-construct the authorized image, validate offline, then STOP with Pi 3B procedure
-and recovery records. No physical testing, POC4, other Pi models or publication.
+Pre-build tests/reference passed. The first assembly is unaccepted: inherited VM
+unattended upgrades changed 13 host versions and added a kernel after the earlier
+host inventory. Its original lock/artifact remain evidence. Automatic update units
+are now masked only in the builder; exact supplemental inputs are retained and a
+before/after inventory guard prevents accepting stale host provenance.
+
+Next: freeze `inputs/frozen-poc3-final` with corrected host closure, construct in a
+fresh workspace, validate offline, then STOP with Pi 3B procedure and recovery records. No physical testing, POC4, other Pi models or publication.
 The sections below describe the completed POC2 review, not current authorization.
 
 ## Completed POC2 review

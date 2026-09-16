@@ -126,7 +126,7 @@ No issue justifies editing old frozen inputs or silently disabling validation.
 Build VICE only using `build/packages/build.sh RECIPE WORKSPACE poc3-final vice-only`.
 Reuse unchanged frozen Menu, TCPser, OS closure and qualification media. Commit the
 integration recipe, export `git archive --prefix=project-cbm/ COMMIT` to externally
-retained `inputs/project-cbm-integration-poc3.tar`, then run
+retained `inputs/project-cbm-integration-poc3-final.tar`, then run
 `tools/freeze_poc3_inputs.py WORKSPACE RECIPE COMMIT` in Linux. It verifies POC2's
 kit, adds new content-addressed objects and writes a distinct POC3 lock. Existing
 object hard links must never be written in place. Construct with the same isolated
@@ -146,3 +146,28 @@ Primary interfaces checked 2026-09-16:
 Exact VICE 3.10 source and the versioned diagnostic patch take precedence over
 moving web documentation. Per-machine geometry is specified in the
 [POC2 analysis](../qualification/poc2-pi3b-aspect-analysis.md).
+
+## Host drift discovered and corrected before candidate acceptance
+
+The VM's inherited unattended-upgrade timer ran on 2026-09-16 around 08:56–08:57 UTC.
+It changed 13 versions and added one kernel package. This is **builder drift**, not
+an appliance package upgrade. An initial assembly completed with the old host
+inventory in its lock; it is retained as an unaccepted provenance attempt and must
+not be flashed/qualified as POC3. Its lock starts `d7f801ef`; it is not overwritten.
+
+Automatic APT/unattended-upgrade units are now masked in the disposable VM during
+controlled work. This is not a change to appliance services. Retain the exact
+changed binaries, corresponding sources, repository metadata and current inventory
+under `inputs/poc3-host-supplement`. The corrected kit is `inputs/frozen-poc3-final`.
+The running kernel remained 6.12.95+deb13-cloud-arm64; 6.12.107 was installed but
+not booted. No host reboot intervened. Final package build started 09:05:22 UTC,
+after logged automatic updates ended; its buildinfo and dependency inventory are
+retained. Final image construction uses the corrected closure and a fresh workspace.
+
+The factory now checks package names/versions against the lock and requires the
+five automatic-update units masked before and after construction. Negative tests
+reject drift, duplicate inventory and enabled update units. Do not weaken this
+guard to rebuild. For intentional host maintenance, stop builds, review/unmask the
+units or update explicitly, retain the new exact closure, and freeze a new lock.
+Do not leave security maintenance forgotten merely because the disposable builder
+uses controlled update windows. The repository recipe, not the VM state, is authority.

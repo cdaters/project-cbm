@@ -13,6 +13,7 @@ import time
 from urllib.request import urlopen
 from build_contracts import read_json
 from retained_inputs import verify_kit
+from build_host_guard import verify as verify_host
 
 
 def main():
@@ -24,6 +25,7 @@ def main():
     subprocess.run(['ip','link','set','lo','up'],check=True)
     kit=args.kit.resolve(strict=True);w=args.workspace.resolve(strict=True)
     raw=args.lock.read_bytes();lock=verify_kit(raw,kit)
+    verify_host(lock,kit)
     subprocess.run(['arch-test','-n','arm64'],check=True)
     if subprocess.check_output(['findmnt','-T',str(w),'-no','FSTYPE'],text=True).strip()!='ext4':raise SystemExit('Linux ext4 required')
     if shutil.disk_usage(w).free<40*1024**3:raise SystemExit('insufficient guest build headroom')
@@ -75,6 +77,7 @@ def main():
         subprocess.run(['/usr/bin/time','-v','./build.sh'],cwd=pg,check=True)
     finally:
         proxy.terminate();proxy.wait(timeout=10);log.close()
+    verify_host(lock,kit)
     print('First controlled private POC build completed; offline validation required')
 
 

@@ -136,3 +136,15 @@ and explicit destinations; CBM verifies against the lock after acquisition. Mult
 mirror orchestration is not yet required. Neither downloader is a trust authority.
 aria2 is not an appliance dependency. Revisit only on measured acquisition reliability
 problems that simpler transport cannot handle.
+
+## Controlled package-update windows
+
+Before package/image work, stop and mask the guest's `apt-daily.timer`,
+`apt-daily-upgrade.timer`, `apt-daily.service`, `apt-daily-upgrade.service` and
+`unattended-upgrades.service` after confirming no update is in progress. These are
+builder-only settings. POC3 exposed inherited unattended-upgrade drift; see
+[the reconciliation](poc3-design.md#host-drift-discovered-and-corrected-before-candidate-acceptance).
+Construction checks masked state and exact locked host package versions before
+and after building. Retain changed inputs and freeze a new lock for intentional
+maintenance; review updates between build windows. Never silently run a stale lock
+against a newly updated host or apply these builder settings to the appliance.
