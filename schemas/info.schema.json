@@ -1,0 +1,685 @@
+{
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "project-cbm.info"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "built_as": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fixture": {
+              "type": "boolean"
+            },
+            "product_version": {
+              "$ref": "#/$defs/text"
+            },
+            "candidate": {
+              "$ref": "#/$defs/text"
+            },
+            "build_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "release_lock_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "integration_commit": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            },
+            "architecture": {
+              "$ref": "#/$defs/text"
+            },
+            "configuration_schema_version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "base": {
+              "type": "object",
+              "properties": {
+                "distribution": {
+                  "$ref": "#/$defs/text"
+                },
+                "suite": {
+                  "$ref": "#/$defs/text"
+                },
+                "release_identity": {
+                  "$ref": "#/$defs/text"
+                }
+              },
+              "required": [
+                "distribution",
+                "suite",
+                "release_identity"
+              ],
+              "additionalProperties": false
+            },
+            "components": {
+              "type": "object",
+              "properties": {
+                "menu": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "version": {
+                          "$ref": "#/$defs/text"
+                        },
+                        "package_version": {
+                          "$ref": "#/$defs/text"
+                        }
+                      },
+                      "required": [
+                        "version",
+                        "package_version"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "vice": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "version": {
+                          "$ref": "#/$defs/text"
+                        },
+                        "package_version": {
+                          "$ref": "#/$defs/text"
+                        }
+                      },
+                      "required": [
+                        "version",
+                        "package_version"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "tcpser": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "version": {
+                          "$ref": "#/$defs/text"
+                        },
+                        "package_version": {
+                          "$ref": "#/$defs/text"
+                        }
+                      },
+                      "required": [
+                        "version",
+                        "package_version"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "menu",
+                "vice",
+                "tcpser"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "fixture",
+            "product_version",
+            "candidate",
+            "build_id",
+            "release_lock_sha256",
+            "integration_commit",
+            "architecture",
+            "configuration_schema_version",
+            "base",
+            "components"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "running_on": {
+      "type": "object",
+      "properties": {
+        "architecture": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "kernel": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "model": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "soc": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "cpu_model": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "os": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "name": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "pretty_name": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "version_id": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "version_codename": {
+                  "$ref": "#/$defs/nullableText"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "pretty_name",
+                "version_id",
+                "version_codename"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "debian_version": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "memory": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "usable_total_bytes": {
+                  "$ref": "#/$defs/byteCount"
+                },
+                "available_bytes": {
+                  "$ref": "#/$defs/nullableByteCount"
+                }
+              },
+              "required": [
+                "usable_total_bytes",
+                "available_bytes"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "root_storage": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "total_bytes": {
+                  "$ref": "#/$defs/byteCount"
+                },
+                "available_bytes": {
+                  "$ref": "#/$defs/byteCount"
+                },
+                "free_bytes": {
+                  "$ref": "#/$defs/byteCount"
+                }
+              },
+              "required": [
+                "total_bytes",
+                "available_bytes",
+                "free_bytes"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "displays": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "connector": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "enabled": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "active_mode": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "width",
+                          "height",
+                          "refresh_hz"
+                        ],
+                        "properties": {
+                          "width": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32768
+                          },
+                          "height": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 32768
+                          },
+                          "refresh_hz": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ],
+                            "minimum": 1,
+                            "maximum": 1000
+                          }
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "connector",
+                  "enabled",
+                  "active_mode"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "architecture",
+        "kernel",
+        "model",
+        "soc",
+        "cpu_model",
+        "os",
+        "debian_version",
+        "memory",
+        "root_storage",
+        "displays"
+      ],
+      "additionalProperties": false
+    },
+    "current_state": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "packages": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "menu": {
+                  "$ref": "#/$defs/installedPackage"
+                },
+                "vice": {
+                  "$ref": "#/$defs/installedPackage"
+                },
+                "tcpser": {
+                  "$ref": "#/$defs/installedPackage"
+                }
+              },
+              "required": [
+                "menu",
+                "vice",
+                "tcpser"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "services": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "ssh": {
+                  "$ref": "#/$defs/nullableServiceState"
+                },
+                "samba": {
+                  "$ref": "#/$defs/nullableServiceState"
+                },
+                "tcpser": {
+                  "$ref": "#/$defs/nullableServiceState"
+                },
+                "avahi": {
+                  "$ref": "#/$defs/nullableServiceState"
+                },
+                "network_manager": {
+                  "$ref": "#/$defs/nullableServiceState"
+                },
+                "first_boot": {
+                  "$ref": "#/$defs/nullableServiceState"
+                }
+              },
+              "required": [
+                "ssh",
+                "samba",
+                "tcpser",
+                "avahi",
+                "network_manager",
+                "first_boot"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "network_links": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "interface": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "operstate": {
+                    "$ref": "#/$defs/text"
+                  }
+                },
+                "required": [
+                  "interface",
+                  "operstate"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "default_machine": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/nullableText"
+            },
+            "name": {
+              "$ref": "#/$defs/nullableText"
+            },
+            "source": {
+              "enum": [
+                "legacy_configuration",
+                null
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "source"
+          ],
+          "additionalProperties": false
+        },
+        "boot_mode": {
+          "type": "object",
+          "properties": {
+            "configured": {
+              "$ref": "#/$defs/nullableText"
+            },
+            "effective": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "configured",
+            "effective"
+          ],
+          "additionalProperties": false
+        },
+        "preferences": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ok",
+                    "default",
+                    "invalid"
+                  ]
+                },
+                "source": {
+                  "enum": [
+                    "user",
+                    "defaults"
+                  ]
+                },
+                "values": {
+                  "type": "object",
+                  "properties": {
+                    "schema_version": {
+                      "const": 1
+                    },
+                    "default_machine": {
+                      "enum": [
+                        "x64",
+                        "x64sc",
+                        "xscpu64",
+                        "x64dtv",
+                        "x128",
+                        "x128-80col",
+                        "xcbm2",
+                        "xcbm5x0",
+                        "xvic",
+                        "xplus4",
+                        "xpet"
+                      ]
+                    },
+                    "boot_preference": {
+                      "enum": [
+                        "menu",
+                        "emulator"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "schema_version",
+                    "default_machine",
+                    "boot_preference"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "hostname",
+        "packages",
+        "services",
+        "network_links",
+        "default_machine",
+        "boot_mode",
+        "preferences"
+      ],
+      "additionalProperties": false
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "collector": {
+            "$ref": "#/$defs/text"
+          },
+          "code": {
+            "enum": [
+              "unavailable_or_invalid",
+              "not_exposed_by_collector"
+            ]
+          }
+        },
+        "required": [
+          "collector",
+          "code"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 128
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "built_as",
+    "running_on",
+    "current_state",
+    "issues"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:project-cbm:info:1",
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+    },
+    "nullableText": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "byteCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nullableByteCount": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/byteCount"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "installedPackage": {
+      "type": "object",
+      "properties": {
+        "installed": {
+          "type": "boolean"
+        },
+        "version": {
+          "$ref": "#/$defs/nullableText"
+        }
+      },
+      "required": [
+        "installed",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "nullableServiceState": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "LoadState": {
+              "$ref": "#/$defs/nullableText"
+            },
+            "ActiveState": {
+              "$ref": "#/$defs/nullableText"
+            },
+            "SubState": {
+              "$ref": "#/$defs/nullableText"
+            },
+            "UnitFileState": {
+              "$ref": "#/$defs/nullableText"
+            }
+          },
+          "required": [
+            "LoadState",
+            "ActiveState",
+            "SubState",
+            "UnitFileState"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "format": "project-cbm.source-validation",
+  "schema_version": 1,
+  "recorded_date": "2026-09-16",
+  "product_tests": 75,
+  "new_runtime_tests": 35,
+  "menu_ui_tests": 10,
+  "menu_launcher_checker": "PASS",
+  "menu_bash_syntax_files": 24,
+  "shellcheck": "unavailable",
+  "physical_testing": false,
+  "native_linux_integration": "not performed",
+  "image_or_package_build": false,
+  "menu_commit": "fa2e5d8ef46f20c18a7e9735beee1cd1ac5961e3",
+  "runtime_dependencies": "Python 3.11+ standard library; existing read-only OS utilities",
+  "preservation_evidence": "qualification/runtime-foundation-2026-09-16/preservation.json",
+  "recovery_checkpoint": "archive/runtime-foundation-2026-09-16",
+  "performance": "performance.json",
+  "fixture_hardware": [
+    "Pi 3",
+    "Pi 3A+",
+    "Pi 4",
+    "Pi 5",
+    "Pi 500",
+    "Pi 500+",
+    "unknown future model"
+  ],
+  "fixture_limit": "Synthetic strings/data, not board qualification"
+}

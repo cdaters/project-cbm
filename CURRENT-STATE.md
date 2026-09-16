@@ -1,5 +1,44 @@
 # Project CBM current state
 
+## First runtime foundation slice complete — 2026-09-16 / STOP
+
+Owner-approved boundaries now have their first bounded source implementation:
+[checkpoint](docs/runtime/foundation-slice.md), [user guide](docs/runtime/pcbm-info.md),
+[JSON information contract](docs/runtime/info-contract.md), and
+[user preference/profile contract](docs/runtime/preferences.md).
+
+- `runtime/bin/pcbm-info` is read-only, standalone and independent of dialog: human
+  output or schema-1 JSON separates built identity, running hardware and current state.
+  Missing data is explicit; no network probes, secrets, daemon or Python runtime extras.
+  Optional active display mode uses the already-present engineering DRM helper only.
+- User-owned typed preferences use XDG config, private permissions, validation, locking,
+  atomic replacement and explicit malformed-data recovery. Reads never create state.
+  **Not yet wired into the existing Menu/boot consumers**; no automatic legacy import.
+- Eleven-profile registry now supplies info/preference validation. Existing Menu/
+  launcher mappings remain unchanged until a targeted compatibility migration.
+- Menu's opt-in Bash/dialog library defines selection/Cancel/Back/error/result contracts;
+  no broad menu reorganization or privileged backend was implemented.
+
+75 product tests (35 new), 10 Menu UI tests, the existing launcher checker and 24
+per-file Bash syntax checks pass. Python 3.14.5/Bash 3.2 on macOS; no native Linux
+integration or hardware pass claimed. CLI median 43.56 ms, observed peak 21.64 MiB;
+these are Mac measurements, not Pi 3/3A+ budgets. ShellCheck unavailable.
+
+Product remains feature/1.1-build-foundation; Menu remains feature/1.1-debian-package
+at `fa2e5d8ef46f20c18a7e9735beee1cd1ac5961e3`.
+No package/image was built, VM started, POC4 created, services enabled or code pushed.
+POC1–3 and existing tags are unchanged. Recovery checkpoint:
+`archive/runtime-foundation-2026-09-16` under configured external bulk storage, including
+both bundles, exact source identities, test/performance/preservation evidence and
+offline restoration report. Prior checkpoints remain intact. Independent backup remains
+unresolved; this checkpoint alone is not a second custody location.
+
+**Next owner action:** review this source slice, then authorize the targeted information
+view and machine-preference/registry consumer migration described in the checkpoint.
+No broad configuration redesign, first boot, network/service implementation, optional
+software, new image or additional hardware testing is authorized automatically.
+The POC3 physical/audit results below remain the preceding completed checkpoint.
+
 ## POC3 physical pass and product audit — 2026-09-16 / STOP
 
 **Exact POC3 passed the owner's bounded Pi 3B appliance/geometry smoke test.**

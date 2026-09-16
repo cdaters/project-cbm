@@ -1,0 +1,22 @@
+Project CBM System Information
+SYNTHETIC FIXTURE — not a release or hardware result
+Project CBM        1.1.0~poc1
+Candidate          fixture-only
+Build              8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89
+Menu               1.0.0 (current package: 1.0.0-1+pcbm1)
+VICE               3.10 (current package: 3.10-1+pcbm3)
+TCPser             1.1.6_beta (current package: 1.1.6~beta-1+pcbm1)
+Hardware           Raspberry Pi 3 Model B Rev 1.2
+Architecture       aarch64
+Memory (usable)    0.90 GiB
+OS                 Debian GNU/Linux 13 (trixie)
+Kernel             6.12-fixture
+Display            card1-HDMI-A-1 (mode unavailable)
+Root storage       16.00 GiB total; 12.00 GiB available
+Hostname           cbm-fixture
+Default machine    Commodore 64
+Boot mode          unknown (configured: menu)
+Network links      eth0: up
+Services           SSH: unavailable (masked), Samba: unavailable (masked), Modem/BBS: not installed, mDNS: unavailable (masked), Network: unavailable (masked), First boot: unavailable (masked)
+User preferences   defaults (foundation only; not applied to Menu/boot)
+Some information is unavailable; --json includes collection status.

@@ -1,0 +1,153 @@
+{
+  "built_as": {
+    "architecture": "arm64",
+    "base": {
+      "distribution": "Raspberry Pi OS Lite",
+      "release_identity": "fixture-trixie",
+      "suite": "trixie"
+    },
+    "build_id": "8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89",
+    "candidate": "fixture-only",
+    "components": {
+      "menu": {
+        "package_version": "1.0.0-1+pcbm1",
+        "version": "1.0.0"
+      },
+      "tcpser": {
+        "package_version": "1.1.6~beta-1+pcbm1",
+        "version": "1.1.6_beta"
+      },
+      "vice": {
+        "package_version": "3.10-1+pcbm1",
+        "version": "3.10"
+      }
+    },
+    "configuration_schema_version": 1,
+    "fixture": true,
+    "integration_commit": "2222222222222222222222222222222222222222",
+    "product_version": "1.1.0~poc1",
+    "release_lock_sha256": "8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89"
+  },
+  "current_state": {
+    "boot_mode": {
+      "configured": "menu",
+      "effective": null
+    },
+    "default_machine": {
+      "id": "x64sc",
+      "name": "Commodore 64",
+      "source": "legacy_configuration"
+    },
+    "hostname": "cbm-fixture",
+    "network_links": [
+      {
+        "interface": "eth0",
+        "operstate": "up"
+      }
+    ],
+    "packages": {
+      "menu": {
+        "installed": true,
+        "version": "1.0.0-1+pcbm1"
+      },
+      "tcpser": {
+        "installed": true,
+        "version": "1.1.6~beta-1+pcbm1"
+      },
+      "vice": {
+        "installed": true,
+        "version": "3.10-1+pcbm3"
+      }
+    },
+    "preferences": {
+      "source": "defaults",
+      "status": "default",
+      "values": {
+        "boot_preference": "menu",
+        "default_machine": "x64sc",
+        "schema_version": 1
+      }
+    },
+    "services": {
+      "avahi": {
+        "ActiveState": "inactive",
+        "LoadState": "masked",
+        "SubState": "dead",
+        "UnitFileState": "masked"
+      },
+      "first_boot": {
+        "ActiveState": "inactive",
+        "LoadState": "masked",
+        "SubState": "dead",
+        "UnitFileState": "masked"
+      },
+      "network_manager": {
+        "ActiveState": "inactive",
+        "LoadState": "masked",
+        "SubState": "dead",
+        "UnitFileState": "masked"
+      },
+      "samba": {
+        "ActiveState": "inactive",
+        "LoadState": "masked",
+        "SubState": "dead",
+        "UnitFileState": "masked"
+      },
+      "ssh": {
+        "ActiveState": "inactive",
+        "LoadState": "masked",
+        "SubState": "dead",
+        "UnitFileState": "masked"
+      },
+      "tcpser": {
+        "ActiveState": "inactive",
+        "LoadState": "not-found",
+        "SubState": "dead",
+        "UnitFileState": null
+      }
+    }
+  },
+  "format": "project-cbm.info",
+  "issues": [
+    {
+      "code": "not_exposed_by_collector",
+      "collector": "display_mode"
+    },
+    {
+      "code": "not_exposed_by_collector",
+      "collector": "effective_boot_mode"
+    }
+  ],
+  "running_on": {
+    "architecture": "aarch64",
+    "cpu_model": "ARMv8 Processor",
+    "debian_version": "13.0",
+    "displays": [
+      {
+        "active_mode": null,
+        "connector": "card1-HDMI-A-1",
+        "enabled": true
+      }
+    ],
+    "kernel": "6.12-fixture",
+    "memory": {
+      "available_bytes": 655360000,
+      "usable_total_bytes": 970752000
+    },
+    "model": "Raspberry Pi 3 Model B Rev 1.2",
+    "os": {
+      "id": "debian",
+      "name": "Debian GNU/Linux",
+      "pretty_name": "Debian GNU/Linux 13 (trixie)",
+      "version_codename": "trixie",
+      "version_id": "13"
+    },
+    "root_storage": {
+      "available_bytes": 12884901888,
+      "free_bytes": 13958643712,
+      "total_bytes": 17179869184
+    },
+    "soc": "brcm,bcm2837"
+  },
+  "schema_version": 1
+}

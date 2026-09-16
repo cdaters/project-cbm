@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Pi 3",
+    "model": "Raspberry Pi 3 Model B Rev 1.2",
+    "usable_kib": 948000,
+    "synthetic": true
+  },
+  {
+    "name": "Pi 3A+",
+    "model": "Raspberry Pi 3 Model A Plus Rev 1.0",
+    "usable_kib": 448000,
+    "synthetic": true
+  },
+  {
+    "name": "Pi 4",
+    "model": "Raspberry Pi 4 Model B Rev 1.5",
+    "usable_kib": 3900000,
+    "synthetic": true
+  },
+  {
+    "name": "Pi 5",
+    "model": "Raspberry Pi 5 Model B Rev 1.0",
+    "usable_kib": 7900000,
+    "synthetic": true
+  },
+  {
+    "name": "Pi 500",
+    "model": "Raspberry Pi 500 Rev 1.0",
+    "usable_kib": 7900000,
+    "synthetic": true
+  },
+  {
+    "name": "Pi 500+",
+    "model": "Raspberry Pi 500 Plus Rev 1.0",
+    "usable_kib": 15900000,
+    "synthetic": true
+  },
+  {
+    "name": "Future",
+    "model": "Raspberry Pi Future Example Board",
+    "usable_kib": 1234567,
+    "synthetic": true
+  }
+]

@@ -1,5 +1,11 @@
 # Historical provenance and preservation
 
+Latest source checkpoint: [runtime foundation](runtime/foundation-slice.md).
+Current bundles/manifests and offline restore evidence are under configured bulk
+storage at `archive/runtime-foundation-2026-09-16`. The earlier POC3/audit checkpoints
+below remain unchanged. Source implementation is not a new installed/qualified image.
+
+
 Latest additive evidence: [POC3 Pi 3B physical report](qualification/poc3-pi3b-owner-report-2026-09-16.json)
 and [product audit](design/appliance-audit-2026-09-16.md). Current Git bundles and their
 SHA-256 manifest/offline restore report are under configured bulk storage at

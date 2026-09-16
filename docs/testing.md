@@ -1,5 +1,11 @@
 # Validation and qualification
 
+Latest source checkpoint: [runtime foundation](runtime/foundation-slice.md).
+Current bundles/manifests and offline restore evidence are under configured bulk
+storage at `archive/runtime-foundation-2026-09-16`. The earlier POC3/audit checkpoints
+below remain unchanged. Source implementation is not a new installed/qualified image.
+
+
 Current physical checkpoint: [POC3 owner attestation](qualification/poc3-pi3b-owner-report-2026-09-16.json)
 records the bounded Pi 3B pass, including corrected geometry and joystick. The
 [completed build](build/private-poc3.md) and [planned procedure](qualification/poc3-pi3b-smoke-test.md)

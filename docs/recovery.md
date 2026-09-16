@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+Latest source checkpoint: [runtime foundation](runtime/foundation-slice.md).
+Current bundles/manifests and offline restore evidence are under configured bulk
+storage at `archive/runtime-foundation-2026-09-16`. The earlier POC3/audit checkpoints
+below remain unchanged. Source implementation is not a new installed/qualified image.
+
+
 Current status: [CURRENT-STATE](../CURRENT-STATE.md), [POC3 build](build/private-poc3.md)
 and [additive Pi 3B physical attestation](qualification/poc3-pi3b-owner-report-2026-09-16.json).
 POC1–3 images/locks/packages and earlier qualification records remain frozen. The
@@ -12,7 +18,8 @@ The prior build checkpoint `archive/milestone1-private-poc3-2026-09-16` remains 
 Accepted kit: `inputs/frozen-poc3-final`, distinct from rejected host-drift assembly.
 Physical results/design reviews are external attestations, not input-lock changes.
 Design-era sections below are historical where they describe now-built components
-as unimplemented. pcbm-info, full setup UX and independent clean rebuild remain pending.
+as unimplemented. pcbm-info is now source-implemented in the runtime checkpoint;
+full setup UX and independent clean rebuild remain pending.
 
 Status: required project architecture for Project CBM 1.1, refined 2026-09-15.
 Host-only input/identity schemas, generator and negative tests are now implemented

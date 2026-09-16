@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "default_machine": {
+      "enum": [
+        "x64",
+        "x64sc",
+        "xscpu64",
+        "x64dtv",
+        "x128",
+        "x128-80col",
+        "xcbm2",
+        "xcbm5x0",
+        "xvic",
+        "xplus4",
+        "xpet"
+      ]
+    },
+    "boot_preference": {
+      "enum": [
+        "menu",
+        "emulator"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "default_machine",
+    "boot_preference"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:project-cbm:preferences:1"
+}

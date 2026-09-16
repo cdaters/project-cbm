@@ -232,3 +232,14 @@ is not protected when it demonstrably obstructs use. Require concrete before/aft
 benefit, predictable Back/Cancel, tested narrow privilege and equal/better measured
 Pi 3 response; separately qualify the Pi 3A+ 512 MiB constraint. No renderer migration
 merely for novelty. Recommendations in the audit are not implementation authorization.
+
+## First runtime foundation slice (latest completed boundary / STOP)
+
+Owner approved pcbm-info, shared UI/results and user-owned preferences only. Read
+CURRENT-STATE and docs/runtime/foundation-slice.md. Source implementation/tests are
+complete; no image/package build, broader Menu/CONTROL reorganization, first boot,
+network/services, optional software, other-model test or push. Preserve POC1–3.
+The new registry/preferences are not yet activated in existing Menu/boot consumers;
+never present desired preferences as effective state. pcbm-info JSON is the detection
+authority for future configuration UI; no pretty-output scraping or duplicate probes.
+STOP after the verified recovery checkpoint for owner review and the next bounded slice.

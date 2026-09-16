@@ -84,3 +84,12 @@ created at image construction only. Normal launches/first boots preserve subsequ
 user settings. The existing shared Menu launcher and session/privilege contract stay
 unchanged. Generated profiles and software-reference tests are not physical passes.
 POC2's recorded Pi 3B success and geometry failure remain immutable evidence.
+
+## Approved component boundaries and first source slice
+
+The owner accepted the appliance audit's pcbm-menu / pcbm-config / pcbm-info /
+narrow-privileged-backend separation and retaining Bash + dialog. The
+[first implemented slice](runtime/foundation-slice.md) adds read-only info, opt-in UI
+contracts and user preference/profile foundations. Broader configuration UI/backends
+are not implemented. Existing POC consumers still use their old configuration; later
+migration must switch them coherently rather than create competing effective values.

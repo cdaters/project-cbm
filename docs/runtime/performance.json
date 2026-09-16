@@ -1,0 +1,26 @@
+{
+  "platform": "Darwin",
+  "architecture": "arm64",
+  "python": "3.14.5",
+  "units": "milliseconds unless noted",
+  "physical_pi": false,
+  "fixture_collection": {
+    "samples": 100,
+    "median_ms": 0.18868749612011015,
+    "max_ms": 0.5525839951587841,
+    "command_calls_per_collection": 2
+  },
+  "local_cli": {
+    "samples": 20,
+    "median_ms": 43.555354001000524,
+    "max_ms": 46.25537499669008,
+    "maximum_rss_bytes_macos": 22691840,
+    "limitation": "Mac missing Linux interfaces; includes cold Python/process startup, not Linux/Pi collector latency"
+  },
+  "ui_source_result": {
+    "samples": 20,
+    "median_ms": 2.4096874985843897,
+    "max_ms": 3.1822500022826716,
+    "limitation": "Includes Bash startup; no real dialog rendering measured"
+  }
+}
