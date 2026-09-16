@@ -1,3 +1,10 @@
+project-cbm-vice (3.10-1+pcbm3) trixie; urgency=medium
+
+  * Add opt-in bounded presentation telemetry for private POC3 qualification.
+  * Include an unprivileged read-only DRM mode reporter for engineering diagnostics.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Wed, 16 Sep 2026 09:00:00 +0000
+
 project-cbm-vice (3.10-1+pcbm2) trixie; urgency=medium
 
   * Declare SDL KMS desktop OpenGL/EGL/GLES dynamically loaded runtime closure.

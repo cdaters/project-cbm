@@ -68,7 +68,8 @@ def snapshot(pid=None):
             'sessions':command(['loginctl','list-sessions','--no-legend','--no-pager']),
             'audio':command(['aplay','-l']),
             'services':command(['systemctl','is-active','getty@tty1','getty@tty2','pcbm-first-boot','ssh','NetworkManager']),
-            'drm':{},'processes':[]}
+            'drm':{},'processes':[],
+            'active_drm':command(['/usr/libexec/project-cbm-vice/drm-state']) or 'unavailable; no result (permissions/profile/device)'}
     try:result['identity']=json.loads(IDENTITY.read_text())
     except (OSError,ValueError):result['identity']='unavailable'
     # No full argv/environment, network addresses, device serials, machine-id or EDID.
@@ -114,6 +115,7 @@ def run_launch(argv, profile, state=STATE, audio=('/usr/bin/pcbm-audio','auto','
     for key in ENV_KEYS:
         if key in os.environ:env[key]=os.environ[key];record['environment'][key]=clean(os.environ[key])
     env['SDL_AUDIODRIVER']='alsa'
+    env['CBM_PRESENTATION_DIAGNOSTICS']='1' # opt-in numeric/video-only package telemetry
     try:record['identity']=json.loads(IDENTITY.read_text())
     except (OSError,ValueError):record['identity']='unavailable'
     atomic(directory/'record.json',record);atomic(directory/'before.json',snapshot())

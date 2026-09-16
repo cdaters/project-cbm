@@ -13,3 +13,15 @@ override_dh_autoreconf:
 
 override_dh_autoreconf_clean:
 	true
+
+override_dh_auto_build:
+	dh_auto_build
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -Wall -Wextra $$(pkg-config --cflags libdrm) debian/drm-state.c -ldrm -o debian/drm-state
+
+override_dh_auto_install:
+	dh_auto_install
+	install -D -m 0755 debian/drm-state debian/project-cbm-vice/usr/libexec/project-cbm-vice/drm-state
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f debian/drm-state

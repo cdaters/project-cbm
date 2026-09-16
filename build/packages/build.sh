@@ -21,6 +21,8 @@ print('Selected source input hashes verified')
 PY
 attempt=${3:-poc1}
 [[ $attempt =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]*$ ]]
+selection=${4:-all}
+[[ $selection == all || $selection == vice-only ]]
 out="$workspace/packages/$attempt"
 mkdir "$out"  # Refuse reuse; failed build inspection/resume is explicit.
 cd "$out"
@@ -31,6 +33,7 @@ cp -a "$recipe/build/packages/vice/debian" vice-3.10/debian
  cd vice-3.10
  dpkg-buildpackage -us -uc -sa
 ) > vice-build.log 2>&1
+if [[ $selection == all ]]; then
 tar -xf "$workspace/inputs/tcpser-fe7feff.tar"
 tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner -cf - tcpser | gzip -n > project-cbm-tcpser_1.1.6~beta.orig.tar.gz
 cp -a "$recipe/build/packages/tcpser/debian" tcpser/debian
@@ -44,6 +47,7 @@ tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owne
  cd project-cbm-menu-1.1.0_poc2
  dpkg-buildpackage -us -uc -sa
 ) > menu-build.log 2>&1
+fi
 sha256sum ./*.deb > package-sha256sums.txt
 dpkg-query -W -f='${binary:Package}\t${Version}\t${Architecture}\n' > host-packages.tsv
 printf 'Private package build completed; offline metadata/license/runtime audit still required\n'

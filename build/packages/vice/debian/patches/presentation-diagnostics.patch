@@ -1,0 +1,45 @@
+Description: Bounded opt-in engineering presentation telemetry; no rendering change
+Author: Project CBM contributors
+Forwarded: not-needed
+
+--- a/src/arch/sdl/video_sdl2.c
++++ b/src/arch/sdl/video_sdl2.c
+@@ -924,6 +924,38 @@
+         SDL_RenderCopyEx(canvas->container->renderer, canvas->texture, NULL, NULL, angle, NULL, flip);
+     }
+ 
++    /* Private CBM engineering telemetry, bounded even during repeated resizes.
++       Do not log user filenames, environment or device identities. */
++    {
++        static unsigned int cbm_frames, cbm_records;
++        if (getenv("CBM_PRESENTATION_DIAGNOSTICS") != NULL &&
++            (++cbm_frames == 60 || cbm_frames == 300 || cbm_frames == 900) && cbm_records < 3) {
++            SDL_RendererInfo cbm_info = {0};
++            SDL_Rect cbm_view = {0};
++            SDL_DisplayMode cbm_mode = {0};
++            int ww=0, wh=0, ow=0, oh=0, lw=0, lh=0, standard=-1;
++            float sx=0, sy=0;
++            SDL_GetWindowSize(canvas->container->window, &ww, &wh);
++            SDL_GetRendererOutputSize(canvas->container->renderer, &ow, &oh);
++            SDL_RenderGetLogicalSize(canvas->container->renderer, &lw, &lh);
++            SDL_RenderGetViewport(canvas->container->renderer, &cbm_view);
++            SDL_RenderGetScale(canvas->container->renderer, &sx, &sy);
++            SDL_GetRendererInfo(canvas->container->renderer, &cbm_info);
++            SDL_GetCurrentDisplayMode(SDL_GetWindowDisplayIndex(canvas->container->window), &cbm_mode);
++            resources_get_int("MachineVideoStandard", &standard);
++            log_message(sdlvideo_log, "CBM_PRESENTATION chip=%s aspect_mode=%d pixel_aspect=%.8f standard=%d fullscreen=%d fullmode=%d driver=%s renderer=%s capabilities=%u max_texture=%dx%d window=%dx%d output=%dx%d logical=%dx%d viewport=%d,%d,%d,%d scale=%.6f,%.6f flags=%u display=%dx%d@%d",
++                canvas->videoconfig->chip_name, canvas->videoconfig->aspect_mode,
++                canvas->geometry->pixel_aspect_ratio, standard,
++                canvas->fullscreenconfig->enable, canvas->fullscreenconfig->mode,
++                SDL_GetCurrentVideoDriver(), cbm_info.name ? cbm_info.name : "unknown",
++                cbm_info.flags, cbm_info.max_texture_width, cbm_info.max_texture_height,
++                ww, wh, ow, oh, lw, lh, cbm_view.x, cbm_view.y, cbm_view.w, cbm_view.h,
++                sx, sy, SDL_GetWindowFlags(canvas->container->window),
++                cbm_mode.w, cbm_mode.h, cbm_mode.refresh_rate);
++            ++cbm_records;
++        }
++    }
++
+     SDL_RenderPresent(canvas->container->renderer);
+ 
+     /* Swap the textures references so we can easily re-render this frame under the next frame. */

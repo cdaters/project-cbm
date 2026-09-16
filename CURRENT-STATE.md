@@ -1,5 +1,22 @@
 # Project CBM current state
 
+## POC3 implementation checkpoint — 2026-09-16
+
+Owner authorized the narrow geometry candidate in [the POC3 design](docs/build/poc3-design.md).
+The unchanged POC2 VICE preserves PAL/NTSC geometry in a software reference; actual
+Pi KMS/display mode is still unknown. Initial per-chip true-aspect/desktop-fullscreen
+defaults are generated once at construction, with user preferences left untouched
+on subsequent boots/launches. New VICE package telemetry and a read-only non-root
+DRM query extend the bounded engineering diagnostics. Menu/TCPser remain unchanged.
+No SSH, service/privilege or first-boot redesign. POC1/POC2 remain frozen.
+
+Next: complete pre-build reference/static gates, freeze a distinct POC3 input kit,
+construct the authorized image, validate offline, then STOP with Pi 3B procedure
+and recovery records. No physical testing, POC4, other Pi models or publication.
+The sections below describe the completed POC2 review, not current authorization.
+
+## Completed POC2 review
+
 Updated 2026-09-16 — **POC2 physical Pi 3B smoke test completed; geometry defect remains.**
 [Formal physical results](docs/qualification/poc2-pi3b.json) and
 [aspect-ratio investigation / narrow POC3 proposal](docs/qualification/poc2-pi3b-aspect-analysis.md)

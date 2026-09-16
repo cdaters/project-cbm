@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import subprocess
 from build_contracts import encode, make_identity, validate_lock
+from vice_presentation import defaults as presentation_defaults
 
 
 def output(*args):
@@ -95,9 +96,18 @@ def main():
         check('PAM_systemd_present','pam_systemd.so' in (root/'etc/pam.d/common-session').read_text())
         passwd=[line.split(':') for line in (root/'etc/passwd').read_text().splitlines()]
         check('pi_valid_unprivileged_shell',any(x[0]=='pi' and x[2]=='1000' and x[-1]=='/bin/bash' for x in passwd))
-        check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()=='private-engineering-poc2\n')
+        check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()==lock['product']['candidate']+'\n')
         check('diagnostic_programs_present',all((root/p).is_file() for p in ['usr/bin/pcbm-diagnostics','usr/libexec/project-cbm/engineering.py']))
         observer=(root/'usr/libexec/project-cbm/engineering.py').read_text()
+        if lock['product']['candidate']=='private-engineering-poc3':
+            template=root/'usr/share/project-cbm/vice-defaults.ini'
+            user=root/'home/pi/.config/vice/sdl-vicerc'
+            check('presentation_template_exact',template.read_bytes()==presentation_defaults() and template.stat().st_uid==0)
+            check('presentation_user_copy_exact',user.read_bytes()==template.read_bytes() and user.stat().st_uid==1000 and user.stat().st_gid==1000)
+            check('user_config_not_system_owned','/home/pi/.config/vice/sdl-vicerc' not in (root/'usr/share/project-cbm/owned-paths.txt').read_text().splitlines())
+            check('active_DRM_reporter_present',(root/'usr/libexec/project-cbm-vice/drm-state').is_file())
+            check('engineering_geometry_opt_in',"env['CBM_PRESENTATION_DIAGNOSTICS']='1'" in observer and 'active_drm' in observer)
+            check('VICE_telemetry_patch_present',b'CBM_PRESENTATION chip=' in (root/'usr/bin/x64sc').read_bytes())
         check('bounded_diagnostics','LIMIT = 128 * 1024' in observer and 'KEEP = 4' in observer and 'samples<3' in observer)
         launcher=(root/'usr/bin/pcbm-run-vice').read_text()
         check('VICE_unprivileged_F10','EUID != 0' in launcher and '-menukey 291' in launcher)

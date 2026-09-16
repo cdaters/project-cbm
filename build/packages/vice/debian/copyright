@@ -9,3 +9,8 @@ Copyright: VICE contributors; per-file notices in retained corresponding source
 License: GPL-2+
  See /usr/share/common-licenses/GPL-2 and upstream COPYING.
  ROM/data files may have distinct upstream notices; this is not a blanket ROM license.
+
+Files: debian/*
+Copyright: 2026 Project CBM contributors
+License: GPL-2+
+ See /usr/share/common-licenses/GPL-2.

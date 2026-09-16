@@ -20,5 +20,13 @@
     "reboot"
   ],
   "console_session": "getty-login-pam",
-  "engineering_diagnostic_vt": "tty2"
+  "engineering_diagnostic_vt": "tty2",
+  "vice_presentation": {
+    "initial_aspect_mode": 2,
+    "initial_fullscreen": true,
+    "initial_fullscreen_mode": 0,
+    "user_preferences_preserved": true,
+    "initialization": "image-construction-only",
+    "pixel_geometry": "VICE per-chip PAL/NTSC"
+  }
 }

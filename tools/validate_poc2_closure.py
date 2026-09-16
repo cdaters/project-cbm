@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Additional read-only POC2 filesystem, unit and ELF-closure verification on Linux."""
+"""Additional read-only POC filesystem, unit and ELF-closure verification on Linux."""
 import argparse
 import json
 from pathlib import Path
@@ -19,6 +19,8 @@ def inspect(root):
         raise ValueError('link cycle')
     paths=[root/'usr/lib/aarch64-linux-gnu',root/'usr/lib/aarch64-linux-gnu/pulseaudio']
     todo=[root/'usr/bin/x64sc']+[paths[0]/name for name in ['libSDL2-2.0.so.0','libGL.so.1','libGLX_mesa.so.0','libEGL_mesa.so.0','dri/vc4_dri.so']]
+    helper=root/'usr/libexec/project-cbm-vice/drm-state'
+    if helper.is_file():todo.append(helper)
     seen=set();missing=set()
     while todo:
         path=resolve(todo.pop())

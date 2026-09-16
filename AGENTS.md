@@ -197,3 +197,11 @@ documentation updates are authorized now. STOP before implementing the proposed
 POC3, building, additional-model testing, networking or publication. Frozen candidates
 and historical records remain immutable; this new external qualification does not
 change installed identity or the input lock. Preserve UNTESTED items explicitly.
+
+## Authorized POC3 geometry work (current owner boundary)
+
+Owner authorizes only native VICE per-chip geometry/fullscreen defaults, preserved
+user preferences, bounded engineering evidence and one new frozen private POC3.
+Read docs/build/poc3-design.md. Preserve POC1/POC2 and photo/qualification records.
+STOP after POC3 offline validation, hash-bound Pi 3B procedure and recovery records;
+no physical test, POC4, other models, SSH, broad modernization or publication.

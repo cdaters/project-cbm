@@ -13,6 +13,7 @@ import tarfile
 import hashlib
 from build_contracts import encode, make_identity, read_json
 from retained_inputs import verify_kit
+from vice_presentation import defaults as presentation_defaults, seed as seed_presentation
 
 REPO=Path(__file__).resolve().parents[1]
 
@@ -74,6 +75,11 @@ def main():
     owned_put('/usr/libexec/project-cbm/first_boot.py',(REPO/'build/pigen/stage-cbm/files/first_boot.py').read_bytes(),0o755)
     for directory in ['pcbm','.config','.config/pcbm','.config/vice','.local','.local/state','.local/state/vice','.local/share','.local/share/vice']:
         target=root/'home/pi'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
+    owned_put('/usr/share/project-cbm/vice-defaults.ini',presentation_defaults())
+    user_config=root/'home/pi/.config/vice/sdl-vicerc'
+    if seed_presentation(user_config):
+        os.chown(user_config,1000,1000)
+    # The user copy is user state, deliberately excluded from owned-paths.txt.
     for directory in ['games','demos','music','programs','roms','screenshots','saves']:
         target=root/'home/pi/pcbm'/directory;target.mkdir(exist_ok=True);os.chown(target,1000,1000)
     chroot('usermod','--password','*','pi');chroot('usermod','--password','*','root')
@@ -86,7 +92,7 @@ def main():
     for name in ['pcbm-console-session','engineering.py']:
         owned_put('/usr/libexec/project-cbm/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes(),0o755)
     owned_put('/usr/bin/pcbm-diagnostics',(REPO/'build/pigen/stage-cbm/files/pcbm-diagnostics').read_bytes(),0o755)
-    owned_put('/etc/pcbm/engineering-poc','private-engineering-poc2\n')
+    owned_put('/etc/pcbm/engineering-poc',lock['product']['candidate']+'\n')
     # Only exact no-argument power actions, required for safe qualification shutdown.
     owned_put('/etc/sudoers.d/pcbm-power','pi ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n',0o440)
     chroot('visudo','-cf','/etc/sudoers')
