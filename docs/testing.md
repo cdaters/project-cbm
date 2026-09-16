@@ -127,3 +127,15 @@ embedding any test payload. No media exists or was obtained in this analysis.
 Owner authorization is required before implementing fixes/diagnostics/media or
 building POC2. Freeze a new candidate, verify diagnostic access before launch, and
 stop on failure without repairing the running qualification artifact.
+
+
+## POC2 offline completion (latest, 2026-09-15)
+
+[POC2 checkpoint](build/private-poc2.md): 34 host/native tests, shared Menu launcher
+checks, 79 offline image checks, read-only filesystems/systemd units and 112 ELF
+objects passed. Exact original-media hashes and scoped reference results are in
+[the result](build/private-poc2.json). These are not Pi graphics/audio/input passes.
+[The planned Pi 3B record](qualification/poc2-pi3b.json) remains entirely UNTESTED.
+Use [the exact-hash smoke procedure](qualification/poc2-pi3b-smoke-test.md), verify
+diagnostic access first, and stop on failure without repairing the candidate.
+POC1's evidence remains unchanged. STOP for owner review; no automatic next build.

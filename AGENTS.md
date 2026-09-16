@@ -179,3 +179,10 @@ concise start-to-finish how-to guides alongside architecture/reference material.
 A capable Raspberry Pi/retro-computing user should not need release-engineering
 expertise. Preserve historical documents as evidence; never modernize their words
 to imply that later architecture existed at the time.
+
+## POC2 completed (latest checkpoint / STOP)
+
+POC2 built and passed offline/static checks; see docs/build/private-poc2.md and
+CURRENT-STATE. VM stopped. Preserve both frozen candidates, locks/packages/media,
+physical records and checkpoints. STOP for owner review and the hash-bound Pi 3B
+procedure; no automatic physical testing, POC3, SSH, broad redesign or publication.

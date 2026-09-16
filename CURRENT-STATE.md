@@ -1,35 +1,53 @@
 # Project CBM current state
 
-Updated 2026-09-15 — **Owner authorized bounded POC2 implementation; in progress.**
-POC1 remains immutable: Pi 3B boot/Menu/input passed, x64sc display and console
-recovery failed; later VICE qualification untested. Its [record](docs/qualification/poc1-pi3b-2026-09-15.json)
-and [analysis](docs/qualification/poc1-pi3b-analysis.md) are unchanged.
+Updated 2026-09-15 — **POC2 built; offline/static validation passed. STOP for owner review.**
+[Completed POC2 checkpoint](docs/build/private-poc2.md),
+[exact machine-readable results](docs/build/private-poc2.json) and
+[Pi 3B smoke-test procedure](docs/qualification/poc2-pi3b-smoke-test.md) are the
+current authority. No physical POC2 test, POC3, SSH enablement, public release or push.
+The approved Lima/VZ VM is stopped. This is a controlled build, not reproducibility proven.
 
-POC2 adds declared GL runtime, standard getty/login/PAM tty1 ownership, unprivileged
-shared RUN/content launch with F10 menu/quit, bounded private diagnostics and tty2,
-original declared media and truthful unsupported-setup guidance. No SSH or broad
-settings redesign. [Implementation/build guide](docs/build/poc2-design.md).
-Menu source is locally tagged v1.1.0_poc2 at
-897cee7c792b11bfed80168a576f263340f5f57d (tag object
-4ff0f9c5d94f16064e2c43c960a429ecb275372b); source archive SHA-256
-c60eb7b43e266931668535cd656e9ec356b237e90d8f4a7644aaf23d260f4a3f.
-Original MIT media source is committed at 14e4ade (resolve full ID in Git).
-34 host tests pass; package candidates built in guest packages/poc2-engineering.
-New retained GL closure requires five packages, zero base upgrades. POC2 frozen
-lock/image are not yet produced. VM is running; all bulk work remains external.
+POC1 remains immutable: Pi 3B boot/Menu/input PASS, x64sc display/console recovery
+FAIL, later VICE qualification UNTESTED. All 2,731 baseline files, including the
+[physical record](docs/qualification/poc1-pi3b-2026-09-15.json), rehash unchanged.
+Its physical cause remains unconfirmed. POC2 adds explicit GL runtime, standard
+getty/login/PAM tty1, unprivileged shared RUN/content/F10-menu-quit behavior, bounded
+persistent diagnostics, non-root tty2 and original declared media. Full settings/
+privilege UX remains deferred; masked services are not failures. No broad sudo.
 
-Independent software-rendered VICE reference runs show smoke and disk PASS screens,
-SID program completion and graphics test rendering. The reference SID WAV contains nonzero mono 48 kHz/16-bit samples. Physical
-audio/input remain untested. A stdout-only/color logging crash was reproduced and traced to VICE
-3.10 log.c null stripped-color pointers; +logcolorize avoids it. This new reference
-finding does not prove POC1's physical cause. GDB and its changed host dependencies
-are separately retained; no debugger belongs in the appliance.
+- Integration: `2b894ad187f0b603d2e0c9965aba242073e2cb90`.
+- Lock: `inputs/frozen-poc2/release-lock.json`, SHA-256
+  `bc1c6e16c32d6285973933b8d50371899bc18e5407dd654c9a14d1187eb194ac`.
+- Raw image: `artifacts/private-poc2/2026-09-16-project-cbm-1.1.0-poc.2-lite-private-poc.img`, 3095396352 bytes,
+  SHA-256 `ef221dc09ea65d3976f88e65cde8f153a9c32989be09c6b35d545b111ccb7467`.
+- XZ image: `artifacts/private-poc2/image_2026-09-16-project-cbm-1.1.0-poc.2-lite-private-poc.img.xz`, 596406680 bytes,
+  SHA-256 `757aca812835c676d75eaad651b6739fc79461c25c8aa7426524f6692a6b3d9f`.
+- Menu input: `v1.1.0_poc2`, peeled `897cee7c792b11bfed80168a576f263340f5f57d`,
+  package SHA-256 `e29bc3598f3be0869f79184250f88a03f4c59f1304a20a428223bac58c97bd11`.
+- Original MIT media: source `14e4ade77ec83e0429d194a6b5ecfa5ef7655e75`,
+  bundle SHA-256 `61673c45058ba31d2e28c699c631e99173c4e44b8b49c82c83735c2c5614d0af`.
 
-Next: finalize prebuild checks/recipe, freeze NEW POC2 kit, construct one image,
-validate offline, export exact hashes/test guide and recovery checkpoint, then STOP.
-No physical testing, POC3, SSH, broad modernization, push or publication.
-The historical checkpoints below retain their original context and are superseded
-for active authorization/status by this section and the owner's POC2 instruction.
+Paths are relative to configured bulk storage, currently TheBench/ProjectCBM-Work.
+34 macOS/native Linux tests, shared Bash launcher tests, 79 image checks, read-only
+filesystem/unit checks and 112 ELF-object closure checks passed. All 2,738 retained
+objects rehashed, XZ/raw agree, historical 1,677-entry manifest and existing tags
+are unchanged. Reference software-rendered VICE checks demonstrate original-media
+loading/execution and generated SID samples, not physical audio/input/graphics.
+Supported no-color stdout logging avoids a reproduced VICE 3.10 logger crash; this
+does not retrospectively diagnose POC1's physical failure. Exact limitations and
+package/source/build identities are in the checkpoint above.
+
+Current branches remain product feature/1.1-build-foundation and Menu
+feature/1.1-debian-package. Later validation/continuity commits do not alter frozen
+input identities. Final Git bundles/ref inventories and offline restore evidence:
+`archive/milestone1-private-poc2-2026-09-15`; detailed evidence: `qualification/poc2`.
+Independent encrypted backup remains unresolved. Existing historical/preservation/
+POC1 checkpoints are untouched.
+
+**Next:** owner review, then perform only the hash-bound Pi 3B smoke test. Do not
+start a build, change the frozen candidate, enable SSH or begin broader 1.1 work.
+Historical sections below retain their checkpoint context; this section supersedes
+older authorization/status statements.
 
 ## What shipped
 
@@ -89,7 +107,7 @@ divergence; PiShrink/manual build limitations; content/license provenance gaps.
 Current guidance is corrected in [v1.0 notes](docs/v1.0-current-notes.md); no runtime
 fixes were applied. Historical audit/release notes/assets/checksum bytes are preserved.
 
-## Direction and next task
+## POC1 direction and next task (historical; superseded above)
 
 Keep the console Bash/dialog -> SDL2 VICE -> ALSA appliance, with product-owned
 integration and an independently versioned Menu. ADR-0001 selects writable ext4
@@ -303,7 +321,7 @@ user state; pure geometry tests pass, actual first boot remains physically untes
 Next: commit this input recipe, archive that commit, freeze/verify/export the real kit,
 construct one private image, validate offline, retain results and STOP for owner review.
 
-## Final private POC recovery checkpoint (current)
+## Final POC1 recovery checkpoint (historical)
 
 `ProjectCBM-Work/archive/milestone1-private-poc1-2026-09-15` is the additive current
 checkpoint: README, checkpoint.json plus SHA-256, both full Git bundles/ref lists,

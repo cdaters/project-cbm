@@ -89,3 +89,36 @@ updates despite apt's --no-upgrade option). Supplemental exact binaries, sources
 metadata and inventory are retained for image-assembly provenance. Component
 packages were built before that diagnostic installation. None of these debugging
 dependencies are added to the appliance.
+
+## Rebuild from the retained kit (only after a new build is authorized)
+
+This path needs no GitHub or upstream package access during assembly. Restore the
+approved Linux host from its documented recipe and retained host inputs first.
+Use a fresh ext4 work directory on the external-backed Linux disk; never reuse a
+candidate's completed build directory. Example guest paths are configurable.
+
+```sh
+cbm_kit=/srv/project-cbm/inputs/frozen-poc2
+cbm_recipe=/srv/project-cbm/scratch/poc2-replay-source
+cbm_work=/srv/project-cbm/scratch/poc2-clean-replay
+mkdir "$cbm_recipe"
+mkdir -p "$cbm_work/builds" "$cbm_work/artifacts"
+# From a restored product checkout with requirements-contracts available:
+PYTHONPATH=tools python3 - "$cbm_kit" "$cbm_recipe" <<'PY'
+import sys, tarfile
+from pathlib import Path
+from retained_inputs import verify_kit
+kit, dest = map(Path, sys.argv[1:])
+lock = verify_kit((kit/'release-lock.json').read_bytes(), kit)
+with tarfile.open(kit/lock['integration']['source']['path']) as archive:
+    archive.extractall(dest, filter='data')
+PY
+sudo unshare --net python3 "$cbm_recipe/project-cbm/tools/construct_poc.py" \
+  "$cbm_kit/release-lock.json" "$cbm_kit" "$cbm_work"
+```
+
+Keep the replay log and run the read-only validators against its new output. A
+rebuild must compare inputs/package/application/configuration identities and image
+hashes; explain differing filesystem IDs/timestamps rather than replacing POC2.
+The first completed POC2 build used the same command with /srv/project-cbm as its
+work root and integration 2b894ad187f0b603d2e0c9965aba242073e2cb90.

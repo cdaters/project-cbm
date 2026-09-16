@@ -1,0 +1,249 @@
+{
+  "candidate": {
+    "candidate": "private-engineering-poc2",
+    "version": "1.1.0-poc.2"
+  },
+  "closure_validation": {
+    "elf_objects_checked": 112,
+    "filesystem_checks": {
+      "FAT": "fsck.fat 4.2 (2021-01-31)\n/dev/loop0p1: 433 files, 153166/1032408 clusters\n",
+      "ext4": "e2fsck 1.47.2 (1-Jan-2025)\nPass 1: Checking inodes, blocks, and sizes\nPass 2: Checking directory structure\nPass 3: Checking directory connectivity\nPass 4: Checking reference counts\nPass 5: Checking group summary information\nrootfs: 53607/155648 files (0.2% non-contiguous), 430511/622592 blocks\n"
+    },
+    "missing_dependencies": [],
+    "result": "PASS",
+    "scope": "read-only static; no target executable or physical Pi test",
+    "unit_output": "",
+    "units": "PASS"
+  },
+  "components": {
+    "menu": {
+      "sha256": "e29bc3598f3be0869f79184250f88a03f4c59f1304a20a428223bac58c97bd11",
+      "source_commit": "897cee7c792b11bfed80168a576f263340f5f57d",
+      "version": "1.1.0~poc2-1+pcbm1"
+    },
+    "tcpser": {
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "source_commit": "fe7feff4862406b277e009d14c219f5d16cf1222",
+      "version": "1.1.6~beta-1+pcbm1"
+    },
+    "vice": {
+      "sha256": "ea941c6d7e2e7c61366bd8b6b45bbf9a1dc538c013e336f6c96ae94265535ab0",
+      "source_commit": null,
+      "version": "3.10-1+pcbm2"
+    }
+  },
+  "existing_tags_unchanged": true,
+  "frozen_objects_rehashed": 2738,
+  "integration_commit": "2b894ad187f0b603d2e0c9965aba242073e2cb90",
+  "lock_sha256": "bc1c6e16c32d6285973933b8d50371899bc18e5407dd654c9a14d1187eb194ac",
+  "physical_qualification": "UNTESTED",
+  "pi_gen_commit": "6fcca44892d5d4b36f826d2b8fb16d716369fada",
+  "poc1_files_unchanged": 2731,
+  "qualification_media": {
+    "bundle_sha256": "61673c45058ba31d2e28c699c631e99173c4e44b8b49c82c83735c2c5614d0af",
+    "files": [
+      {
+        "destination": "music/Qualification/pcbm-sid-check.prg",
+        "expected_behavior": "Three separate original tones, triangle/saw/pulse; mono SID, no stereo or PSID/RSID claim.",
+        "license": "MIT",
+        "name": "pcbm-sid-check.prg",
+        "sha256": "f3433a637606898f9d5d6e1988027e08a28537476b8275ed698f902a6e64d12d",
+        "size_bytes": 527,
+        "source": "qualification/media/src/pcbm-sid-check.bas"
+      },
+      {
+        "destination": "programs/Qualification/pcbm-smoke.prg",
+        "expected_behavior": "Visible PASS means BASIC loaded and executed; arithmetic result must be 4.",
+        "license": "MIT",
+        "name": "pcbm-smoke.prg",
+        "sha256": "e5607be032ddf5ecbe9e14eceaace640d9eff86845204227d69012ebdb499989",
+        "size_bytes": 192,
+        "source": "qualification/media/src/pcbm-smoke.bas"
+      },
+      {
+        "destination": "demos/Qualification/pcbm-video-input.prg",
+        "expected_behavior": "16 colors, moving star, key-code changes; joystick port 2 values printed; absent joystick UNTESTED.",
+        "license": "MIT",
+        "name": "pcbm-video-input.prg",
+        "sha256": "ab4c892a62265435d875f7868dedcffecdba6760ea882691743aa4ae330dc75c",
+        "size_bytes": 607,
+        "source": "qualification/media/src/pcbm-video-input.bas"
+      },
+      {
+        "destination": "programs/Qualification/pcbm-check.d64",
+        "expected_behavior": "Disk autostarts the same smoke program; directory contains CBM SMOKE.",
+        "license": "MIT",
+        "name": "pcbm-check.d64",
+        "sha256": "84bfb28bf97fd7073131e7b672ee6bb012f0da82bdf1ef4da87f6bc01440cc5f",
+        "size_bytes": 174848,
+        "source": "qualification/media/src/pcbm-smoke.bas"
+      }
+    ],
+    "reference_results": {
+      "disk": "expected PASS screen",
+      "known_good_scope": "reference loading/execution only; physical audio/input not qualified",
+      "sid": {
+        "auditory_check": "UNTESTED",
+        "channels": 1,
+        "frames": 428288,
+        "max": 3097,
+        "min": -3472,
+        "rate": 48000
+      },
+      "smoke": "expected PASS screen",
+      "video": "colors/star/neutral joystick rendered; interactive input UNTESTED"
+    },
+    "source_commit": "14e4ade77ec83e0429d194a6b5ecfa5ef7655e75"
+  },
+  "raw": {
+    "path": "artifacts/private-poc2/2026-09-16-project-cbm-1.1.0-poc.2-lite-private-poc.img",
+    "sha256": "ef221dc09ea65d3976f88e65cde8f153a9c32989be09c6b35d545b111ccb7467",
+    "size_bytes": 3095396352
+  },
+  "reproducibility": "controlled build only; independent clean repeat not performed",
+  "tcpser_rebuild": {
+    "accepted_sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+    "rebuilt_selected": false,
+    "rebuilt_sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f"
+  },
+  "validation": {
+    "boot_filesystem_used_bytes": 78420992,
+    "checks": {
+      "Menu_present": "PASS",
+      "PAM_systemd_present": "PASS",
+      "TCPser_present": "PASS",
+      "VICE_unprivileged_F10": "PASS",
+      "VICE_x64sc_present": "PASS",
+      "boot_vfat": "PASS",
+      "both_vendor_initramfs_present": "PASS",
+      "bounded_diagnostics": "PASS",
+      "content_directory_owned_by_pi": "PASS",
+      "diagnostic_programs_present": "PASS",
+      "enabled_getty_tty1": "PASS",
+      "enabled_getty_tty2": "PASS",
+      "enabled_pcbm-first-boot.service": "PASS",
+      "engineering_only_marker": "PASS",
+      "fresh_machine_id_marker": "PASS",
+      "graphics_loader_libEGL.so.1": "PASS",
+      "graphics_loader_libGL.so.1": "PASS",
+      "graphics_loader_libGLESv2.so.2": "PASS",
+      "graphics_loader_libGLX.so.0": "PASS",
+      "graphics_runtime_libegl-mesa0": "PASS",
+      "graphics_runtime_libegl1": "PASS",
+      "graphics_runtime_libgbm1": "PASS",
+      "graphics_runtime_libgl1": "PASS",
+      "graphics_runtime_libgl1-mesa-dri": "PASS",
+      "graphics_runtime_libgles2": "PASS",
+      "graphics_runtime_libglx-mesa0": "PASS",
+      "graphics_runtime_libglx0": "PASS",
+      "installed_payload_project-cbm-menu": "PASS",
+      "installed_payload_project-cbm-tcpser": "PASS",
+      "installed_payload_project-cbm-vice": "PASS",
+      "locked_local_passwords": "PASS",
+      "login_PAM_tty1": "PASS",
+      "login_PAM_tty2": "PASS",
+      "masked_NetworkManager.service": "PASS",
+      "masked_avahi-daemon.service": "PASS",
+      "masked_avahi-daemon.socket": "PASS",
+      "masked_nmbd.service": "PASS",
+      "masked_pcbm-console.service": "PASS",
+      "masked_regenerate_ssh_host_keys.service": "PASS",
+      "masked_rpi-resize.service": "PASS",
+      "masked_samba-ad-dc.service": "PASS",
+      "masked_smbd.service": "PASS",
+      "masked_ssh.service": "PASS",
+      "masked_ssh.socket": "PASS",
+      "masked_sshswitch.service": "PASS",
+      "masked_systemd-growfs-root.service": "PASS",
+      "masked_tcpser.service": "PASS",
+      "masked_userconfig.service": "PASS",
+      "media_pcbm-check.d64": "PASS",
+      "media_pcbm-sid-check.prg": "PASS",
+      "media_pcbm-smoke.prg": "PASS",
+      "media_pcbm-video-input.prg": "PASS",
+      "media_source_matches_lock": "PASS",
+      "minimal_identity_matches_lock": "PASS",
+      "no_authorized_keys": "PASS",
+      "no_build_or_excluded_packages": "PASS",
+      "no_build_proxy": "PASS",
+      "no_build_workspace": "PASS",
+      "no_builder_home": "PASS",
+      "no_cloud_state": "PASS",
+      "no_completed_first_boot": "PASS",
+      "no_dbus_machine_id": "PASS",
+      "no_history": "PASS",
+      "no_obvious_builder_path_or_key_residue": "PASS",
+      "no_other_passwordless_grants": "PASS",
+      "no_package_cache": "PASS",
+      "no_random_seed": "PASS",
+      "no_reusable_SSH_host_keys": "PASS",
+      "no_source_tree": "PASS",
+      "no_temporary_policy_rc": "PASS",
+      "only_exact_power_sudo": "PASS",
+      "package_project-cbm-menu": "PASS",
+      "package_project-cbm-tcpser": "PASS",
+      "package_project-cbm-vice": "PASS",
+      "pi_valid_unprivileged_shell": "PASS",
+      "root_ext4": "PASS",
+      "single_growth_owner": "PASS",
+      "single_shared_launch_path": "PASS",
+      "two_partition_DOS_layout": "PASS"
+    },
+    "component_installed_size_bytes": {
+      "project-cbm-menu": 105472,
+      "project-cbm-tcpser": 79872,
+      "project-cbm-vice": 41765888
+    },
+    "debian_version": "13.7",
+    "image_sha256": "ef221dc09ea65d3976f88e65cde8f153a9c32989be09c6b35d545b111ccb7467",
+    "image_size_bytes": 3095396352,
+    "initramfs_files": [
+      "initramfs8",
+      "initramfs_2712"
+    ],
+    "installed_identity_bytes": 1443,
+    "maintenance_margin": "UNMEASURED; no minimum card size established",
+    "obvious_builder_residue_paths": [],
+    "partition_table": {
+      "device": "/dev/loop0",
+      "id": "0x6a94bd11",
+      "label": "dos",
+      "partitions": [
+        {
+          "node": "/dev/loop0p1",
+          "size": 1048576,
+          "start": 16384,
+          "type": "c"
+        },
+        {
+          "node": "/dev/loop0p2",
+          "size": 4980736,
+          "start": 1064960,
+          "type": "83"
+        }
+      ],
+      "sectorsize": 512,
+      "unit": "sectors"
+    },
+    "physical_qualification": "UNTESTED",
+    "post_first_boot_capacity": "UNTESTED; depends on target media and successful expansion",
+    "release_lock_sha256": "bc1c6e16c32d6285973933b8d50371899bc18e5407dd654c9a14d1187eb194ac",
+    "result": "PASS",
+    "root_filesystem_bytes": {
+      "available_to_user": 642482176,
+      "capacity": 2439266304,
+      "free": 786763776,
+      "used": 1652502528
+    },
+    "runtime_package_count": 671,
+    "runtime_package_installed_size_bytes": 1597286400,
+    "scope": "offline/static only; no Raspberry Pi runtime qualification",
+    "unexpected_packages": []
+  },
+  "xz": {
+    "path": "artifacts/private-poc2/image_2026-09-16-project-cbm-1.1.0-poc.2-lite-private-poc.img.xz",
+    "sha256": "757aca812835c676d75eaad651b6739fc79461c25c8aa7426524f6692a6b3d9f",
+    "size_bytes": 596406680
+  },
+  "xz_stream_matches_raw": true
+}

@@ -1,0 +1,32 @@
+{
+  "format": "project-cbm.physical-qualification",
+  "schema_version": 1,
+  "record_id": "poc2-pi3b-planned",
+  "status": "PLANNED \u2014 NOT EXECUTED",
+  "model": "Raspberry Pi 3B",
+  "image_sha256": "ef221dc09ea65d3976f88e65cde8f153a9c32989be09c6b35d545b111ccb7467",
+  "compressed_sha256": "757aca812835c676d75eaad651b6739fc79461c25c8aa7426524f6692a6b3d9f",
+  "release_lock_sha256": "bc1c6e16c32d6285973933b8d50371899bc18e5407dd654c9a14d1187eb194ac",
+  "results": {
+    "boot": "UNTESTED",
+    "menu_arrival": "UNTESTED",
+    "menu_rendering": "UNTESTED",
+    "menu_keyboard": "UNTESTED",
+    "diagnostic_vt_before_launch": "UNTESTED",
+    "x64sc_video": "UNTESTED",
+    "vice_keyboard": "UNTESTED",
+    "F10_quit_return": "UNTESTED",
+    "repeated_launch_return": "UNTESTED",
+    "diagnostic_capture": "UNTESTED",
+    "smoke_prg": "UNTESTED",
+    "sid_audio": "UNTESTED",
+    "video_pattern": "UNTESTED",
+    "joystick_port2": "UNTESTED",
+    "D64_loading": "UNTESTED",
+    "reboot": "UNTESTED",
+    "configuration_persistence": "UNTESTED",
+    "root_expansion": "UNTESTED"
+  },
+  "image_changes_permitted": false,
+  "procedure": "poc2-pi3b-smoke-test.md"
+}

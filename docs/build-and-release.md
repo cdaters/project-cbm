@@ -1,10 +1,11 @@
 # Build and release contract
 
-Status: architecture accepted in [ADR-0001](adr/0001-base-distribution-and-image-architecture.md), 2026-09-15. Host-only
-[POC contracts/tests](build/contracts.md) are implemented; real input closure, builder,
-packages, 1.1 image and new release are not present. The original process was
-interactive source-Pi installation, card capture, PiShrink and XZ compression.
-Historical Menu build notes/workflow remain evidence, not the future image recipe.
+Status: [ADR-0001](adr/0001-base-distribution-and-image-architecture.md) remains
+accepted. The frozen-input factory has produced private POC1 and POC2; see the
+[current POC2 checkpoint](build/private-poc2.md). POC1 failed physical Pi 3B x64sc
+display/console recovery after boot/Menu success. POC2 passed offline checks and
+awaits owner physical testing. Neither a public 1.1 release nor independent image
+reproducibility is established. Historical manual construction is evidence only.
 
 Full [black-box project recovery](recovery.md) is mandatory for the repositories and
 build/release infrastructure from 1.1. The image carries only minimal installed identity;
@@ -60,10 +61,10 @@ implicitly authorized by building a POC. Preserve existing tags/assets unchanged
 
 ## New-session first task
 
-**STOP for owner review:** the first private POC image and offline validation are
-complete. Read [the current checkpoint](build/private-poc1.md) and CURRENT-STATE.
-Next proposed step is physical Pi 3B testing, requiring separate authorization.
-Do not automatically rerun the construction sequence below.
+**STOP for owner review:** POC2 is built and offline validation complete. Read
+[the current checkpoint](build/private-poc2.md), CURRENT-STATE and the
+[hash-bound Pi 3B procedure](qualification/poc2-pi3b-smoke-test.md).
+Do not automatically construct another image, perform a physical test or publish.
 
 ### Completed first-POC construction sequence (historical)
 
