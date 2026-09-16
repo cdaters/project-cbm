@@ -85,9 +85,39 @@
     "timings": null
   },
   "visual_evidence": {
-    "status": "NOT SUPPLIED / LOCATOR PENDING",
-    "artifacts": [],
-    "retention_policy": "Keep original operator photos/reports externally under qualification/poc2-pi3b-owner-report-2026-09-15 when supplied; append relative locators, hashes and descriptions. Never invent evidence or embed large photos in Git."
+    "status": "FOUR OWNER-SUPPLIED PHOTOGRAPHS RETAINED AND VISUALLY REVIEWED",
+    "received_date": "2026-09-16",
+    "manifest": "qualification/poc2-pi3b-photos-2026-09-16/evidence.json",
+    "manifest_sha256": "00d9028d621441a5f18b990835c7d51008c7108d3a30c3f7867f16ece516b05d",
+    "artifacts": [
+      {
+        "path": "qualification/poc2-pi3b-photos-2026-09-16/01-poc2-run-works.jpg",
+        "size_bytes": 10914107,
+        "sha256": "14fa724c2546731212643e5f48fb610a1c335aa593071592f199b22fa9d6d198",
+        "caption": "Physical display shows Commodore 64 BASIC V2 startup/READY screen with horizontally stretched presentation."
+      },
+      {
+        "path": "qualification/poc2-pi3b-photos-2026-09-16/02-poc2-smoke-works.jpg",
+        "size_bytes": 11148461,
+        "sha256": "25060e5fea3f4e156a413e54509adf80259dbe76e318e726754361583eda22ce",
+        "caption": "PROJECT CBM SMOKE 0.1.0, PASS: PROGRAM LOADED AND RAN, arithmetic FOUR = 4 and READY are visible."
+      },
+      {
+        "path": "qualification/poc2-pi3b-photos-2026-09-16/03-poc2-sid-works.jpg",
+        "size_bytes": 10604226,
+        "sha256": "941293d362f85a75b4c0861413a553109f3a8d515974f516a6b4a1e52a11af74",
+        "caption": "SID CHECK 0.1.0 shows VOICE 1/2/3, DONE and READY. Still photograph supports program completion; audible tones remain owner-reported."
+      },
+      {
+        "path": "qualification/poc2-pi3b-photos-2026-09-16/04-poc2-video-input-works.jpg",
+        "size_bytes": 6884580,
+        "sha256": "f3ea302accb0f348a4ab9f39dd26a02ed8a35c5f36baded765f30187c064ad63",
+        "caption": "VIDEO/INPUT 0.1.0 shows color cells, star, KEY CODE 71 and JOY2 31. Still photograph does not establish motion, key transitions or joystick operation."
+      }
+    ],
+    "candidate_binding": "Owner identifies photographs as this exact POC2 test; photographs alone do not authenticate the installed image hash.",
+    "limits": "Still images corroborate visible output and stretching; audio/motion/interaction remain owner-reported. No diagnostic reports supplied, no root cause established and no result classifications changed.",
+    "retention_policy": "Private original bytes retained outside Git; source photos and earlier sealed checkpoints unchanged."
   },
   "analysis": "poc2-pi3b-aspect-analysis.md",
   "next_action": "Owner review of narrow POC3 proposal; no implementation, build or additional-model test authorized by this record."

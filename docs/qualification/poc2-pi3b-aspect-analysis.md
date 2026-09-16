@@ -28,7 +28,8 @@ Evidence is the owner's report, not an assistant-observed test or an instrumente
 measurement. Test date/time, board revision, monitor/model/mode/scaling, card,
 power supply and detailed timings were not supplied. No physical photographs or
 card diagnostic files were available in the retained qualification folders at
-review. Existing `qualification/poc2/media-reference` pictures are reference
+the original September 15 review; the September 16 photo supplement below updates
+that evidence availability. Existing `qualification/poc2/media-reference` pictures are reference
 software-renderer checks, not photographs from this physical test. When operator
 photos/reports arrive, retain original bytes externally, record SHA-256/relative
 locator/caption and add an evidence supplement. Do not rewrite image/lock/build
@@ -256,3 +257,28 @@ POC1 physical and POC2 build records remain byte-identical. POC2 raw/XZ, lock,
 VICE source/package and Menu package checks pass; installed x64sc matches its
 package. The 1,677-entry original historical manifest verifies unchanged. No
 runtime test or new physical observation was performed in this review.
+
+## Photo supplement — 2026-09-16
+
+The owner supplied four photographs, found at `/Volumes/TheBench/temp/01-poc2-run-works.jpg`
+through `04-poc2-video-input-works.jpg` (the supplied `~/TheBench` shorthand did
+not exist on this host). Byte-identical copies, original filenames and a manifest
+are retained under `qualification/poc2-pi3b-photos-2026-09-16`; source files and
+prior sealed checkpoints were left unchanged. The [formal record](poc2-pi3b.json)
+lists exact relative locators, byte counts, SHA-256 digests and individual captions.
+Manifest SHA-256: `00d9028d621441a5f18b990835c7d51008c7108d3a30c3f7867f16ece516b05d`.
+
+The photos show the C64 BASIC/READY screen, smoke PASS/arithmetic result, SID
+program DONE screen and video/input display with color cells, star, key code 71
+and joystick-neutral value 31. The broad horizontal presentation corroborates
+the reported stretching. A still image cannot establish movement, audible sound,
+key transitions, joystick operation or successful VT/return/reboot transitions.
+The owner's report remains the evidence for those observed behaviors; joystick
+remains UNTESTED. Photographs alone cannot authenticate the installed candidate
+hash or identify the actual renderer, connector timing, monitor scaling or root
+cause. No classification or POC3 recommendation changes.
+
+No JPEGs or embedded camera metadata were imported into Git. Keep original files
+private with qualification material; any future publication requires separate
+review. Additive source/ref recovery checkpoint:
+`archive/poc2-pi3b-photos-2026-09-16`. No runtime change, build or push.

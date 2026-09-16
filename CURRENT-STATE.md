@@ -1,6 +1,6 @@
 # Project CBM current state
 
-Updated 2026-09-15 — **POC2 physical Pi 3B smoke test completed; geometry defect remains.**
+Updated 2026-09-16 — **POC2 physical Pi 3B smoke test completed; geometry defect remains.**
 [Formal physical results](docs/qualification/poc2-pi3b.json) and
 [aspect-ratio investigation / narrow POC3 proposal](docs/qualification/poc2-pi3b-aspect-analysis.md)
 are the current qualification authority. Boot/Menu/input, diagnostic VT in both
@@ -64,13 +64,17 @@ with bars where needed, without hard-coded 4:3 or HDMI-resolution hacks.
 **Next:** owner authorization for a narrow POC3 geometry/defaults/measurement change,
 new frozen candidate and offline validation, followed by owner Pi 3B geometry and
 regression testing before other models. STOP pending that decision. Full settings/
-privilege redesign remains deferred. No physical photos/reports supplied; their
-external locators/hashes can be added later without changing candidate evidence.
+privilege redesign remains deferred. Four owner-supplied photos are now retained
+and visually reviewed under `qualification/poc2-pi3b-photos-2026-09-16`, with
+per-file hashes/captions in the formal physical record. They corroborate visible
+C64/media output and stretching; no diagnostic reports or confirmed cause. All
+result classifications and frozen candidate identities remain unchanged.
 
 This review's small evidence is under `qualification/poc2-pi3b-owner-report-2026-09-15`;
 additive Git recovery/ref/offline-restore checkpoint:
 `archive/poc2-pi3b-review-2026-09-15`. Earlier checkpoints retain their original
-meaning. This top section supersedes older physical-pending statements below.
+meaning. Photo-supplement source recovery: `archive/poc2-pi3b-photos-2026-09-16`.
+This top section supersedes older physical-pending statements below.
 
 ## What shipped
 
