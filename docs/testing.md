@@ -135,7 +135,24 @@ stop on failure without repairing the running qualification artifact.
 checks, 79 offline image checks, read-only filesystems/systemd units and 112 ELF
 objects passed. Exact original-media hashes and scoped reference results are in
 [the result](build/private-poc2.json). These are not Pi graphics/audio/input passes.
-[The planned Pi 3B record](qualification/poc2-pi3b.json) remains entirely UNTESTED.
+At that build checkpoint, physical testing remained UNTESTED; the linked
+[Pi 3B record](qualification/poc2-pi3b.json) now contains the subsequent owner report.
 Use [the exact-hash smoke procedure](qualification/poc2-pi3b-smoke-test.md), verify
 diagnostic access first, and stop on failure without repairing the candidate.
 POC1's evidence remains unchanged. STOP for owner review; no automatic next build.
+
+## POC2 physical follow-up (current, 2026-09-15)
+
+[Formal owner-reported matrix](qualification/poc2-pi3b.json): core boot/Menu/VT,
+x64sc rendering/observed stability/keyboard/F10/Quit/return, original PRG/SID-tone/
+video-input/D64 tests and normal reboot pass. Aspect-ratio preservation fails;
+joystick, broader profiles/models/persistence, first-boot interruption, deferred
+services and independent reproducibility remain untested. No single POC1 cause is
+confirmed. [Geometry investigation](qualification/poc2-pi3b-aspect-analysis.md)
+recommends a narrow POC3 before additional Pi models; owner approval is pending.
+
+For geometry, distinguish emulator canvas screenshots from the final HDMI display.
+Record true-aspect resources, PAL/NTSC/model/border, renderer, physical connector
+mode and observed margins/cropping. Use external photos with locators/hashes when
+available; do not claim physical proof from source defaults or a screenshot alone.
+Preserve the frozen candidate; proposed defaults require a new input lock/image.

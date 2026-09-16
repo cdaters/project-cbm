@@ -1,6 +1,8 @@
 # POC2 Raspberry Pi 3B smoke test
 
-**Ready for owner testing; not performed.** This private image is not a public
+**Owner completed the bounded test; see [results](poc2-pi3b.json) and
+[geometry follow-up](poc2-pi3b-aspect-analysis.md).** This remains the procedure
+used for POC2; its requested steps are not proof that each was performed. This private image is not a public
 release or qualified appliance. Do not repair it during qualification.
 
 ## 1. Verify and flash the exact candidate
@@ -94,6 +96,6 @@ is not permission to repair the OS, launcher or image. Reboot through CBM System
 confirm Menu arrival, diagnostics retention and the saved preference. Network/setup
 screens should explain their engineering limitation; masked services are not failures.
 
-Record results against [the planned record](poc2-pi3b.json), with failures and
+Record results against [the qualification record](poc2-pi3b.json), with failures and
 untested items separate. Stop after this smoke test for owner review. No POC3 or
 broader qualification follows automatically.

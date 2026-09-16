@@ -186,3 +186,14 @@ POC2 built and passed offline/static checks; see docs/build/private-poc2.md and
 CURRENT-STATE. VM stopped. Preserve both frozen candidates, locks/packages/media,
 physical records and checkpoints. STOP for owner review and the hash-bound Pi 3B
 procedure; no automatic physical testing, POC3, SSH, broad redesign or publication.
+
+## POC2 physical review (current owner boundary)
+
+Owner-reported Pi 3B results are in docs/qualification/poc2-pi3b.json; read the
+companion aspect analysis before proposing geometry changes. Core launch/rendering/
+return/audio/media/diagnostic VT/reboot passed; aspect preservation failed. POC1
+precise cause remains unconfirmed. Only read-only investigation and qualification/
+documentation updates are authorized now. STOP before implementing the proposed
+POC3, building, additional-model testing, networking or publication. Frozen candidates
+and historical records remain immutable; this new external qualification does not
+change installed identity or the input lock. Preserve UNTESTED items explicitly.

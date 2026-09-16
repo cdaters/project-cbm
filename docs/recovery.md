@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+Current execution/qualification status: [CURRENT-STATE](../CURRENT-STATE.md) and
+[POC2 physical follow-up](qualification/poc2-pi3b-aspect-analysis.md). POC1/POC2
+build records remain frozen; physical results are external attestations, never
+changes to installed identity or input locks. The sections below retain recovery
+design/checkpoint context where they describe components as not yet implemented.
+
 Status: required project architecture for Project CBM 1.1, refined 2026-09-15.
 Host-only input/identity schemas, generator and negative tests are now implemented
 in [Milestone 1 contracts](build/contracts.md). Builder, runtime information command,

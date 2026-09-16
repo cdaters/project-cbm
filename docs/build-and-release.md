@@ -4,8 +4,10 @@ Status: [ADR-0001](adr/0001-base-distribution-and-image-architecture.md) remains
 accepted. The frozen-input factory has produced private POC1 and POC2; see the
 [current POC2 checkpoint](build/private-poc2.md). POC1 failed physical Pi 3B x64sc
 display/console recovery after boot/Menu success. POC2 passed offline checks and
-awaits owner physical testing. Neither a public 1.1 release nor independent image
-reproducibility is established. Historical manual construction is evidence only.
+[bounded physical Pi 3B testing](qualification/poc2-pi3b.json), with aspect-ratio
+preservation failing. The [geometry review](qualification/poc2-pi3b-aspect-analysis.md)
+recommends a narrow POC3 before additional models; implementation is not yet authorized.
+Neither a public 1.1 release nor independent image reproducibility is established. Historical manual construction is evidence only.
 
 Full [black-box project recovery](recovery.md) is mandatory for the repositories and
 build/release infrastructure from 1.1. The image carries only minimal installed identity;

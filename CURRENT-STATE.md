@@ -1,11 +1,20 @@
 # Project CBM current state
 
-Updated 2026-09-15 — **POC2 built; offline/static validation passed. STOP for owner review.**
-[Completed POC2 checkpoint](docs/build/private-poc2.md),
-[exact machine-readable results](docs/build/private-poc2.json) and
-[Pi 3B smoke-test procedure](docs/qualification/poc2-pi3b-smoke-test.md) are the
-current authority. No physical POC2 test, POC3, SSH enablement, public release or push.
-The approved Lima/VZ VM is stopped. This is a controlled build, not reproducibility proven.
+Updated 2026-09-15 — **POC2 physical Pi 3B smoke test completed; geometry defect remains.**
+[Formal physical results](docs/qualification/poc2-pi3b.json) and
+[aspect-ratio investigation / narrow POC3 proposal](docs/qualification/poc2-pi3b-aspect-analysis.md)
+are the current qualification authority. Boot/Menu/input, diagnostic VT in both
+directions, RUN/x64sc, C64 rendering and observed stability, keyboard, F10 menu,
+Quit/return, PRG, original SID tones, video/input program, D64 and basic reboot
+passed. **Correct aspect-ratio preservation FAILED:** horizontal widescreen stretch.
+Joystick was unavailable. Other profiles/models, PSID/RSID, broader configuration
+persistence, first-boot interruption, services/setup and clean-rebuild reproducibility
+remain UNTESTED. No full model/release qualification follows from this bounded test.
+
+The [completed build checkpoint](docs/build/private-poc2.md) and
+[exact artifact results](docs/build/private-poc2.json) remain unchanged historical
+build evidence. No POC2 image, lock, package, media or POC1 record changed. VM remains
+stopped. No runtime fix, POC3, additional-model test, networking, release or push.
 
 POC1 remains immutable: Pi 3B boot/Menu/input PASS, x64sc display/console recovery
 FAIL, later VICE qualification UNTESTED. All 2,731 baseline files, including the
@@ -44,10 +53,24 @@ input identities. Final Git bundles/ref inventories and offline restore evidence
 Independent encrypted backup remains unresolved. Existing historical/preservation/
 POC1 checkpoints are untouched.
 
-**Next:** owner review, then perform only the hash-bound Pi 3B smoke test. Do not
-start a build, change the frozen candidate, enable SSH or begin broader 1.1 work.
-Historical sections below retain their checkpoint context; this section supersedes
-older authorization/status statements.
+**Investigation:** the frozen image has no VICE geometry configuration/arguments;
+upstream 3.10 nevertheless defaults to per-chip true aspect mode (2). Historical
+v1.0 has explicit window sizes/filtering, but no explicit aspect/fullscreen setting.
+Leading hypothesis: implicit windowed KMS mode selection plus downstream scaling;
+actual renderer/mode/resource capture is missing. Do not claim adding mode 2 alone
+fixes it. Prefer true per-chip aspect + explicit desktop-resolution fullscreen,
+with bars where needed, without hard-coded 4:3 or HDMI-resolution hacks.
+
+**Next:** owner authorization for a narrow POC3 geometry/defaults/measurement change,
+new frozen candidate and offline validation, followed by owner Pi 3B geometry and
+regression testing before other models. STOP pending that decision. Full settings/
+privilege redesign remains deferred. No physical photos/reports supplied; their
+external locators/hashes can be added later without changing candidate evidence.
+
+This review's small evidence is under `qualification/poc2-pi3b-owner-report-2026-09-15`;
+additive Git recovery/ref/offline-restore checkpoint:
+`archive/poc2-pi3b-review-2026-09-15`. Earlier checkpoints retain their original
+meaning. This top section supersedes older physical-pending statements below.
 
 ## What shipped
 
@@ -90,10 +113,10 @@ shipped bytes; the new root recovery commit records recovery, not invented ances
 
 Goal: Pi 3B/3A+/3B+, 4B/400, 5/500/500+ where technically supportable. Pi 3 is
 the performance floor; 3A+ needs a separate 512 MiB memory qualification. The
-historical audit did not qualify hardware. The owner has now tested exact POC1
-on Pi 3B: boot/Menu/input passed, x64sc display and console recovery failed. This
-is not full model qualification; other models and performance budgets remain
-unqualified. See [testing](docs/testing.md) and the new physical record.
+historical audit did not qualify hardware. Exact POC1 failed x64sc/console recovery;
+exact POC2 now passes bounded Pi 3B emulation/return/audio/media checks with an
+aspect-ratio failure. This is not full model qualification; other models and
+performance budgets remain unqualified. See [testing](docs/testing.md) and the new physical record.
 
 Verified static/integrity checks cover image hashes, runtime extraction/lineage,
 Git preservation and individual Bash syntax. They do not qualify boot, graphics,
