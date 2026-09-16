@@ -98,3 +98,12 @@ identity/golden fixture, private/output fields, read-only workspace refusal and
 published tag regression checks. Companion-tag tests skip explicitly if its checkout
 is absent. Current local run had no skips. No builder, image or hardware pass follows
 from these tests. [Checkpoint](build/milestone1-checkpoint.md) records the scope.
+
+## First private POC validation (current, 2026-09-15)
+
+[POC result](build/private-poc1.md) supersedes earlier no-image checkpoint statements.
+26 tests passed on macOS and native Debian; all 50 read-only image checks passed,
+plus ext4/FAT integrity, enabled CBM systemd unit validation and exact XZ/raw hash
+agreement. Historical 1,677-entry manifest and immutable tags remain unchanged.
+No physical Pi behavior, first-boot interruption safety, performance budget or
+independent reproducibility pass is implied. Owner review is the current stop.

@@ -141,3 +141,12 @@ Then STOP. No physical Pi qualification, broad modernization or release publicat
 is authorized in this phase. Do not treat one controlled build as reproducibility
 proven, or synthetic fixtures as real inputs. Earlier phase boundaries above are
 historical. No Menu feature branch until actual Menu source/packaging changes.
+
+## First private POC completed (latest checkpoint)
+
+The approved host gate passed and one frozen-input private image now exists, with
+50 offline checks passing. See docs/build/private-poc1.md and CURRENT-STATE.md.
+STOP for owner review. No automatic physical Pi testing, second image, package rebuild,
+broad modernization or publication. Frozen integration/lock/image bytes are immutable
+checkpoint inputs/outputs; later validators/docs must not silently alter them.
+Current VM is stopped, not deleted. Preserve external inputs and both feature branches.

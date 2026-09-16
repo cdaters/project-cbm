@@ -1,11 +1,12 @@
 # Project CBM current state
 
-Updated 2026-09-15 — owner approved the Lima/VZ build host. The native ARM64
-Debian 13 guest is provisioned on TheBench and its Linux capability gate **passed**.
-[Approved recipe and reconstruction](docs/build/lima-build-host.md) and
-[capability evidence](docs/build/lima-capability-2026-09-15.md) are current authority.
+Updated 2026-09-15 — **first private Project CBM 1.1 POC image and offline/static
+validation are complete. STOP for owner review.** The approved Lima/VZ capability
+gate passed; the VM is now stopped after inputs/artifacts were exported to TheBench.
+[Current POC checkpoint](docs/build/private-poc1.md) and its
+[machine-readable measurements](docs/build/private-poc1.json) are the latest authority.
+No physical Pi test, independent clean rebuild, public release or push was performed.
 [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md) remains accepted.
-Three private component packages now build; no Project CBM image or physical Pi pass exists yet.
 
 ## What shipped
 
@@ -72,18 +73,24 @@ content paths, external component .deb builds and backup/reflash/validated resto
 No mandated 8 GB minimum: measure footprint, initialization/maintenance margin and
 free user capacity. Separate USERDATA and immutable roots are deferred.
 
-Milestone 1 is active on `feature/1.1-build-foundation`, created from verified main
-`29933789ec8d29bd55f2b00cbcf309132058413f`; Menu packaging now uses feature/1.1-debian-package (exact refs below).
-Host-only schemas/generator/validators and 26 tests are implemented; retention, packaging, integration and first-boot
-designs are documented. Owner approved Lima/VZ with 8 vCPU, **10 GiB RAM**, 160 GiB
-sparse disk. Core and full Linux/transfer/package capability tests passed. Continue
-Milestone 1 with exact pi-gen/component inputs, retained closure, versioned packages,
-real lock, minimal integration/first-boot and one private POC image/offline validation.
-Stop on a required capability failure or after that image; no automatic physical Pi
-testing, broad modernization or release publication. See the
-[approved host](docs/build/lima-build-host.md) and [build sequence](docs/build-and-release.md#new-session-first-task).
-Package recipes and a minimal integration/first-boot implementation now exist.
-Input acquisition is complete pending freeze validation; no real lock or image exists yet. Synthetic fixtures cannot be used as build inputs.
+Milestone 1 reached its first controlled-build checkpoint on
+`feature/1.1-build-foundation`. The image uses integration commit
+`024db4985202ef0675b12e12b8982af91c6d6ad3`; later validation/docs commits do not
+change its frozen identity. Menu packaging is on `feature/1.1-debian-package` at
+`77a708019c9d8a11e657d7e5d2dde7b7ecb340ba`, local annotated `v1.1.0_poc1`.
+Both published main branches and existing release/recovery tags are unchanged.
+
+Real lock: `inputs/frozen-poc1/release-lock.json` under the configured bulk root;
+SHA-256 `703aa6e1b0d278262a2dc83c31740b3c589788e3953e3ac822e948133529d566`.
+Private raw/XZ and records: `artifacts/private-poc1`. Raw SHA-256
+`ae8d2032736e1d3ae2e49d4370aa62d00fc06f9fc567e70e400491900d45bf9f`;
+XZ SHA-256 `b9adaaa55a7543441607fc90f7651cc35588f9c024e8a160110d857919ef2a06`.
+26 macOS/Linux tests and 50 offline image checks passed; physical first boot/VICE
+behavior remains untested. This is a controlled build, not reproducibility proven.
+
+Next: owner review, then separately authorize the Pi 3B smoke test described in
+[the checkpoint](docs/build/private-poc1.md#exact-next-step--requires-owner-review).
+Do not automatically boot a Pi, rebuild, modernize further or publish anything.
 
 ### Black-box recovery requirement
 
@@ -95,8 +102,8 @@ sessions, the original Mac or reference projects.
 Full project recovery belongs in repositories and retained build/release infrastructure.
 1.1 carries only minimal `/usr/share/project-cbm/identity.json`, generated from the
 same frozen lock: product/Menu/VICE/base/TCPser mapping, integration/build ID and config
-schema identity, with external provenance lookup. The host-only generator is implemented;
-it has not been installed in any image. No full lock, recipes, schema corpus,
+schema identity, with external provenance lookup. The generator is implemented; its 1,443-byte output is installed and verified
+offline in the private POC. No full lock, recipes, schema corpus,
 archives or package closure merely for recovery in the appliance. Proposed pcbm-info
 reads E; it is not implemented. Final image hashes/qualification stay external to
 avoid cycles. A final manifest hashing the image cannot have its digest embedded in
@@ -104,9 +111,8 @@ that image; use a predecessor digest/build-ID lookup. JSON worksheet is design-o
 
 The accepted preservation bundles were restored into fresh mirrors without GitHub:
 all 5 product refs, 8 Menu refs and 17 recovered script hashes matched; fsck passed.
-Owner accepted repository-only cold-start comprehension on 2026-09-15. Offline 1.1
-identity on an actual image, clean Linux rebuild and independent-medium restore
-remain unperformed. Host-only schema/privacy negatives pass using synthetic fixtures. Read-only lessons from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
+Owner accepted repository-only cold-start comprehension on 2026-09-15. Offline 1.1 identity now passes on the private image. An independent clean Linux
+rebuild and independent-medium restore remain unperformed. Host-only schema/privacy negatives pass using synthetic fixtures. Read-only lessons from Spitfire/FireComm/CircuitNET are summarized in recovery.md; CBM does not depend
 on them. Spitfire's migrated reference copy has missing tools.
 
 Current local paths are deployment choices, not architecture. Independent encrypted
@@ -170,7 +176,7 @@ Recommendation awaiting approval: Lima/VZ plain arm64 Debian VM, 8 vCPUs, 12 GiB
 UTM is the main alternative. Approval must precede host installation/provisioning;
 exact bootstrap/input pins and actual Linux capability tests remain future work.
 
-## Milestone 1 approved host checkpoint (current)
+## Milestone 1 approved host checkpoint (historical, before package work)
 
 Lima 2.2.0, source `de0816ea4bdc5267b428ab21025889b8dd785526`; pinned dated
 Debian cloud bootstrap and checksums in build/host/inputs.json. Instance `cbm` is
@@ -193,7 +199,7 @@ Next: retain and select exact pi-gen arm64/VICE/Menu/TCPser inputs and package-b
 closure, then implement the smallest locked POC factory. Do not claim a frozen real
 release lock, complete source/package closure, image, reproducibility or hardware pass.
 
-## Private component packages and retention work (in progress)
+## Private component packages and retention work (historical, before input freeze)
 
 Successful private Debian candidates retained under `ProjectCBM-Work/packages/poc1/`:
 
@@ -228,7 +234,7 @@ Inspect newer dirty scripts/state and build-host/records before resuming. Next:
 complete/verify retention, freeze real lock, review/test integration and first boot,
 then one private image and offline validation. No publication or physical Pi test.
 
-## Frozen factory implementation checkpoint (current, before first image)
+## Frozen factory implementation checkpoint (historical, before first image)
 
 26 contract/retention/geometry tests pass on macOS and native Debian, with no skips.
 The initial Linux test copy omitted a worksheet and Git refs; the complete copy now
@@ -253,3 +259,17 @@ art/private historical content is imported. First boot owns root growth and seed
 user state; pure geometry tests pass, actual first boot remains physically untested.
 Next: commit this input recipe, archive that commit, freeze/verify/export the real kit,
 construct one private image, validate offline, retain results and STOP for owner review.
+
+## Final private POC recovery checkpoint (current)
+
+`ProjectCBM-Work/archive/milestone1-private-poc1-2026-09-15` is the additive current
+checkpoint: README, checkpoint.json plus SHA-256, both full Git bundles/ref lists,
+offline mirror restoration/fsck results and validation/remote-ref records. Its exact
+final branch tips are recorded externally to avoid a self-referential commit hash.
+The frozen kit has 2,697 rehashed objects; images and component artifacts remain in
+their existing external locations, without duplicating historical images.
+
+Original historical manifest verifies all 1,677 entries unchanged. Both formal v1.0.0
+tags, Menu recovery refs and published main refs are unchanged. Product maintenance/1.0
+remains local/bundled. Independent encrypted custody remains unresolved; a second
+folder on TheBench is not an independent backup. Current VM is stopped, not deleted.

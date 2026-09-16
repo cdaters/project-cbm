@@ -60,10 +60,17 @@ implicitly authorized by building a POC. Preserve existing tags/assets unchanged
 
 ## New-session first task
 
+**STOP for owner review:** the first private POC image and offline validation are
+complete. Read [the current checkpoint](build/private-poc1.md) and CURRENT-STATE.
+Next proposed step is physical Pi 3B testing, requiring separate authorization.
+Do not automatically rerun the construction sequence below.
+
+### Completed first-POC construction sequence (historical)
+
 Milestone 1 and the Lima/VZ build host are owner-approved. The
 [host capability gate](build/lima-capability-2026-09-15.md) passed; use the
 [repository-controlled recipe](build/lima-build-host.md) and inspect CURRENT-STATE
-for newer work. The sequence below describes the remaining POC:
+for newer work. The sequence below records the first POC workflow:
 
 1. Read AGENTS.md, CURRENT-STATE.md, this contract, recovery.md, provenance and testing.
    Inspect Git and preserve unfamiliar dirty work; verify Menu recovery versus the

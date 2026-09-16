@@ -1,6 +1,7 @@
 # Input retention and recovery plan
 
-Milestone 1 design, 2026-09-15; no candidate input closure exists. Full recovery is
+Milestone 1 policy, updated 2026-09-15. The first real frozen kit now exists; see
+[private POC results](private-poc1.md). Full recovery is
 external infrastructure responsibility. See [contracts](contracts.md) and
 [project recovery](../recovery.md). Classifications apply to future CBM inputs;
 they do not authorize deletion, normalization or replacement of historical evidence.
@@ -29,17 +30,18 @@ file is not automatically licensed for public redistribution.
 A configured bulk root has `inputs/`, `packages/`, `builds/`, `cache/`, `artifacts/`,
 `qualification/`, `scratch/`, `archive/`, plus approved `build-host/` storage.
 Current deployment: `/Volumes/TheBench/ProjectCBM-Work`. Source Git stays in ~/Code.
-A future external catalog records relative path, hash/size, source, role, handling
-class, license, closure dependencies and acquisition/authentication results. Never
+Current external catalogs record relative path, hash/size, source and role.
+Handling classes and license/trust decisions are in the associated policy and records;
+per-file structured license coverage still needs refinement before public distribution. Never
 bind a lock to this Mac's absolute pathname. Predecessor lock references are immutable;
 a new acquisition does not overwrite old bytes under an existing accepted identity.
 
 Binary/source closure catalogs must enumerate **every file**, not just top-level
 package names or URLs. Distinguish target runtime, component build and host bootstrap
 closures, including versioned toolchain dependencies. Retain archive metadata before
-expiry; any later offline trust decision needs an explicit record. Formal closure
-catalog/SBOM readers and exact bootstrap pins remain an implementation task after the
-host checkpoint; schema validation today verifies direct descriptor files only.
+expiry; any later offline trust decision needs an explicit record. The implemented retained-input validator checks direct and nested closure files,
+component build-record references and Debian metadata. Exact bootstrap is pinned.
+A standard SBOM format and independent closure replay remain future work.
 
 ## Acquisition and freeze gates
 
@@ -50,10 +52,10 @@ used to resolve dependencies and run a later assembly with upstream access unava
 An identical lock does not prove identical images: compare clean builds and document
 all differences before claiming bitwise reproducibility.
 
-Current tests use synthetic locators and digests. No real Menu candidate tag, VICE
-source authentication, TCPser input choice, Raspberry Pi package snapshot or host
-bootstrap is represented as resolved. Existing released/recovered refs are evidence,
-not automatic acceptance of a 1.1 Menu input.
+Synthetic fixtures remain negative/contract test data. The real POC lock separately
+pins selected Menu, VICE, TCPser, pi-gen, package/metadata/source closures and bootstrap.
+Source acquisition/trust limitations are explicit in the POC record. Existing released/
+recovered refs remain historical evidence, not automatic acceptance of a 1.1 input.
 
 ## Acceptance, custody and capacity
 
