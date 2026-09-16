@@ -150,3 +150,13 @@ STOP for owner review. No automatic physical Pi testing, second image, package r
 broad modernization or publication. Frozen integration/lock/image bytes are immutable
 checkpoint inputs/outputs; later validators/docs must not silently alter them.
 Current VM is stopped, not deleted. Preserve external inputs and both feature branches.
+
+## POC1 physical failure analysis (latest owner boundary)
+
+The owner tested exact POC1 on Pi 3B: boot/Menu/keyboard passed; x64sc display and
+console recovery failed. See docs/qualification/poc1-pi3b-analysis.md and the
+separate setup-ux-review.md. Read-only comparison and documentation/qualification
+records are authorized; runtime, packaging, stage, privilege/network changes,
+media acquisition/creation and POC2 are NOT yet authorized. STOP for owner review.
+Intentionally masked POC1 services are not failures. Do not change frozen POC1 or
+infer process state from the activity LED. Preserve UNTESTED later qualification.

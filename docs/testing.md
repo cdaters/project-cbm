@@ -107,3 +107,23 @@ plus ext4/FAT integrity, enabled CBM systemd unit validation and exact XZ/raw ha
 agreement. Historical 1,677-entry manifest and immutable tags remain unchanged.
 No physical Pi behavior, first-boot interruption safety, performance budget or
 independent reproducibility pass is implied. Owner review is the current stop.
+
+
+## POC1 physical Pi 3B follow-up (latest, 2026-09-15)
+
+The owner reports the exact frozen POC1 booted and reached a correctly rendered,
+keyboard-operable tty1 Menu. RUN/x64sc produced a black screen with no console
+recovery. [Formal record](qualification/poc1-pi3b-2026-09-15.json) separates these
+PASS/FAIL results from UNTESTED later VICE behavior. The previous offline checks
+remain valid within their original limited scope.
+
+[Read-only analysis](qualification/poc1-pi3b-analysis.md) ranks hypotheses without
+claiming a proven cause. [Setup review](qualification/setup-ux-review.md) separately
+records the raspi-config privilege UX gap and required offline-capable 1.1 setup.
+Masked services are not failures. [Media plan](qualification/poc2-media-plan.md)
+requires licensing, actual checksums and independent known-good validation before
+embedding any test payload. No media exists or was obtained in this analysis.
+
+Owner authorization is required before implementing fixes/diagnostics/media or
+building POC2. Freeze a new candidate, verify diagnostic access before launch, and
+stop on failure without repairing the running qualification artifact.

@@ -1,11 +1,16 @@
 # Project CBM current state
 
-Updated 2026-09-15 — **first private Project CBM 1.1 POC image and offline/static
-validation are complete. STOP for owner review.** The approved Lima/VZ capability
-gate passed; the VM is now stopped after inputs/artifacts were exported to TheBench.
-[Current POC checkpoint](docs/build/private-poc1.md) and its
-[machine-readable measurements](docs/build/private-poc1.json) are the latest authority.
-No physical Pi test, independent clean rebuild, public release or push was performed.
+Updated 2026-09-15 — **POC1 physical Pi 3B test exposed a launch/display failure;
+read-only analysis is complete. STOP for owner review before source/runtime changes
+or POC2.** Boot, tty1 Menu rendering and keyboard navigation passed; RUN blacked
+the display and console recovery failed. Later VICE qualification remains UNTESTED.
+[Physical record](docs/qualification/poc1-pi3b-2026-09-15.json),
+[failure analysis](docs/qualification/poc1-pi3b-analysis.md),
+[setup/privilege review](docs/qualification/setup-ux-review.md) and
+[proposed media](docs/qualification/poc2-media-plan.md) are the latest checkpoint.
+The [POC1 build record](docs/build/private-poc1.md) remains authoritative for frozen
+inputs and the earlier 50 offline checks, which did not establish runtime behavior.
+The VM remains stopped. No POC2, independent clean rebuild, public release or push.
 [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md) remains accepted.
 
 ## What shipped
@@ -48,9 +53,11 @@ shipped bytes; the new root recovery commit records recovery, not invented ances
 ## Qualification and known problems
 
 Goal: Pi 3B/3A+/3B+, 4B/400, 5/500/500+ where technically supportable. Pi 3 is
-the performance floor; 3A+ needs a separate 512 MiB memory qualification. All
-hardware cells remain unqualified by this audit: no physical Pi tests or measured
-performance budgets exist. See [testing](docs/testing.md) and its retained matrix.
+the performance floor; 3A+ needs a separate 512 MiB memory qualification. The
+historical audit did not qualify hardware. The owner has now tested exact POC1
+on Pi 3B: boot/Menu/input passed, x64sc display and console recovery failed. This
+is not full model qualification; other models and performance budgets remain
+unqualified. See [testing](docs/testing.md) and the new physical record.
 
 Verified static/integrity checks cover image hashes, runtime extraction/lineage,
 Git preservation and individual Bash syntax. They do not qualify boot, graphics,
@@ -85,12 +92,30 @@ SHA-256 `703aa6e1b0d278262a2dc83c31740b3c589788e3953e3ac822e948133529d566`.
 Private raw/XZ and records: `artifacts/private-poc1`. Raw SHA-256
 `ae8d2032736e1d3ae2e49d4370aa62d00fc06f9fc567e70e400491900d45bf9f`;
 XZ SHA-256 `b9adaaa55a7543441607fc90f7651cc35588f9c024e8a160110d857919ef2a06`.
-26 macOS/Linux tests and 50 offline image checks passed; physical first boot/VICE
-behavior remains untested. This is a controlled build, not reproducibility proven.
+26 macOS/Linux tests and 50 offline image checks passed at construction. Physical
+Pi 3B boot/Menu now passed; x64sc display and console recovery failed. First-boot
+expansion/identity measurements and later VICE qualification remain UNTESTED.
+This is a controlled build, not reproducibility proven.
 
-Next: owner review, then separately authorize the Pi 3B smoke test described in
-[the checkpoint](docs/build/private-poc1.md#exact-next-step--requires-owner-review).
-Do not automatically boot a Pi, rebuild, modernize further or publish anything.
+Read-only analysis found missing desktop GL runtime (v1 used the OpenGL renderer),
+a direct tty service without the previous PAM/login session, and differing kernel/
+Mesa stacks. SDL has a GLES fallback, so no root cause is confirmed without runtime
+logs. POC1 raspi-config calls also lack an authorization path; this is a separate
+setup UX gap, not a failure of intentionally masked services. The required 1.1
+setup UX is offline-capable with narrowly authorized operations, not broad sudo.
+
+Next: owner review of the bounded POC2 proposal and authorization before fixes,
+engineering diagnostics, media creation or rebuilding. Do not modify frozen POC1,
+restart the builder, modernize broadly or publish anything. Product remains on
+feature/1.1-build-foundation; Menu working branch is feature/1.1-debian-package at
+99063f8299192877f7d17d0ccd9635f135b89fdc (the frozen POC1 input stays the earlier
+77a7080 commit above). This analysis changes product documentation/records only.
+Both retained raw-image hashes were reverified; inspected package/launcher payloads
+match the frozen image. Documentation JSON/local links/diff and immutable-tag
+checks are recorded in the analysis checkpoint; no physical rerun was performed.
+Private detailed comparison and additive source checkpoint are retained under
+qualification/poc1-pi3b-2026-09-15 within the configured external workspace.
+Earlier build/recovery checkpoints remain unchanged; no image is duplicated.
 
 ### Black-box recovery requirement
 
