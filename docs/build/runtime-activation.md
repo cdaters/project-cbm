@@ -160,3 +160,14 @@ Staging credentials were generated in memory and invalidated. Do not preserve th
 staging root, shadow backups, Samba databases or journals as build/recovery evidence.
 Preserve source harnesses and sanitized results; the candidate is constructed afresh
 from the frozen package closure, never by cleaning this staging root.
+
+### Source-package recipe preflight correction
+
+The first final-version source-package attempt stopped before producing a package:
+GNU tar's unanchored `runtime/debian` exclusion also removed the nested, source-owned
+`build/packages/runtime/debian` recipe from the upstream tarball. `dpkg-source`
+correctly rejected the resulting difference. The Git archive/source tree was intact;
+no frozen candidate or image existed. The recipe now anchors the exclusion to the
+archive root. Retain the failed `packages/poc4` directory as a small attempt record;
+use new `packages/poc4-final` and a new integration archive/commit. Do not bypass
+source consistency checks or reuse an output directory.

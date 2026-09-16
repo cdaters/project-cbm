@@ -35,16 +35,16 @@ def main():
     lock['schema_version']=4
     lock['product']={'version':'1.1.0-poc.4','candidate':'private-engineering-poc4'}
     lock['integration']['git']['commit']=a.integration_commit
-    lock['integration']['source']=store(w/'inputs/project-cbm-integration-poc4.tar')
+    lock['integration']['source']=store(w/'inputs/project-cbm-integration-poc4-final.tar')
     lock['base']['configuration']=store(recipe/'build/pigen/config.json')
     for k,p in {'defaults':'build/pigen/defaults.json','assets_license_inventory':'build/pigen/assets-license-inventory.json','sealing_recipe':'tools/install_poc_stage.py','first_boot_recipe':'build/pigen/stage-cbm/files/first_boot.py'}.items():
         lock['configuration'][k]=store(recipe/p)
-    packages=w/'packages/poc4'
+    packages=w/'packages/poc4-final'
     for name,commit,origin,ref,tag,source,recipe_dir in [
         ('menu',a.menu_commit,'https://github.com/cdaters/project-cbm-menu','refs/tags/v1.1.0_poc4',a.menu_tag_object,
          w/'inputs/project-cbm-menu-1.1.0_poc4.tar',packages/'menu/debian'),
         ('runtime',a.integration_commit,'https://github.com/cdaters/project-cbm','refs/heads/feature/1.1-build-foundation',None,
-         w/'inputs/project-cbm-integration-poc4.tar',recipe/'build/packages/runtime/debian')]:
+         w/'inputs/project-cbm-integration-poc4-final.tar',recipe/'build/packages/runtime/debian')]:
         debs=list(packages.glob('project-cbm-'+name+'_*.deb'))
         if len(debs)!=1:raise ValueError('ambiguous package')
         fields=dict(line.split(': ',1) for line in subprocess.check_output(['dpkg-deb','-f',str(debs[0]),'Package','Version','Architecture'],text=True).splitlines())
