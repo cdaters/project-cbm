@@ -13,10 +13,13 @@ explain precedence over historical release/audit statements.
 
 ## Current appliance
 
-Pi firmware -> vendor kernel/initramfs -> systemd multi-user target -> tty1 getty
-autologin -> pi's .profile -> pcbm-start -> Bash/dialog menu or default VICE
-machine -> return to menu. VICE 3.10 uses SDL2 UI and ALSA. Full KMS is configured;
-the actual SDL backend/device selection needs physical qualification.
+Private POC3: Pi firmware → kernel/initramfs → systemd → tty1 getty/login/PAM →
+pi's profile → product console-session loop → Bash/dialog Menu → unprivileged VICE
+→ Menu. This differs from the historical v1.0 pcbm-start/bootmode path. Do not treat
+both as simultaneous startup authorities. See the [audit](design/appliance-audit-2026-09-16.md)
+for proposed preference/UI/backend boundaries; they are not implemented changes.
+VICE 3.10 SDL2/ALSA launch, geometry, audio/input and return are physically demonstrated
+on the owner's Pi 3B/display only. Exact backend/mode and other profiles remain unqualified.
 
 Content lives under /home/pi/pcbm. Historical system settings live in /etc/pcbm,
 user preferences under /home/pi/.config/pcbm and VICE config under .config/vice.

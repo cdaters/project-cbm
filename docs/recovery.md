@@ -1,13 +1,18 @@
 # Black-box project recovery and installed identity
 
-Current execution/qualification status: [CURRENT-STATE](../CURRENT-STATE.md) and
-[completed POC3 checkpoint](build/private-poc3.md). POC1/POC2 remain frozen; POC3
-has a separate lock/image and planned physical matrix. Final source bundles/ref
-inventories/offline restoration: `archive/milestone1-private-poc3-2026-09-16` beneath
-configured bulk storage. Accepted kit: `inputs/frozen-poc3-final`; do not confuse it
-with the retained unaccepted host-drift assembly. Physical results are external
-attestations, never changes to installed identity or input locks. Sections below
-retain recovery-design context where they describe components as not yet implemented.
+Current status: [CURRENT-STATE](../CURRENT-STATE.md), [POC3 build](build/private-poc3.md)
+and [additive Pi 3B physical attestation](qualification/poc3-pi3b-owner-report-2026-09-16.json).
+POC1–3 images/locks/packages and earlier qualification records remain frozen. The
+current documentation/evidence recovery checkpoint is
+`archive/poc3-pi3b-product-audit-2026-09-16` beneath configured bulk storage; its manifest
+records bundle hashes and its restore report verifies both repositories offline.
+Photo manifest: `qualification/poc3/pi3b-owner-report-2026-09-16/evidence.json`;
+its digest and per-photo hashes are directly in the physical attestation.
+The prior build checkpoint `archive/milestone1-private-poc3-2026-09-16` remains intact.
+Accepted kit: `inputs/frozen-poc3-final`, distinct from rejected host-drift assembly.
+Physical results/design reviews are external attestations, not input-lock changes.
+Design-era sections below are historical where they describe now-built components
+as unimplemented. pcbm-info, full setup UX and independent clean rebuild remain pending.
 
 Status: required project architecture for Project CBM 1.1, refined 2026-09-15.
 Host-only input/identity schemas, generator and negative tests are now implemented

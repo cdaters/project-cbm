@@ -215,3 +215,20 @@ test, other Pi model, SSH, broad modernization or publication under this task.
 Next owner action is review, then the exact-hash Pi 3B geometry/regression procedure.
 Controlled future builds must pass the before/after host inventory/update-unit guard;
 intentional builder updates require retained inputs and a new lock.
+
+## POC3 physical qualification and product audit (latest boundary / STOP)
+
+The owner reported a bounded Pi 3B POC3 pass including geometry, joystick and SID
+voices. Read the additive physical attestation and docs/design/appliance-audit-2026-09-16.md.
+Earlier physical-UNTESTED/build authorizations above describe completed checkpoints.
+This task authorizes only read-only research, additive evidence retention and current
+qualification/continuity/design documentation. Preserve POC1–3 and original Combian
+reference material; do not acquire/embed optional software, build POC4, implement the
+redesign, test other models, enable services/SSH or publish. STOP for owner review.
+
+Menu changes should preserve Project CBM's personality while streamlining organization,
+common task steps, state ownership and shared implementation. Historical menu structure
+is not protected when it demonstrably obstructs use. Require concrete before/after
+benefit, predictable Back/Cancel, tested narrow privilege and equal/better measured
+Pi 3 response; separately qualify the Pi 3A+ 512 MiB constraint. No renderer migration
+merely for novelty. Recommendations in the audit are not implementation authorization.

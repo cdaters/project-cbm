@@ -1,10 +1,12 @@
 # Validation and qualification
 
-Current checkpoint: [POC3 offline completion](build/private-poc3.md) and
-[planned exact-hash Pi 3B test](qualification/poc3-pi3b-smoke-test.md). 40 host/native
-tests, Menu launcher checks, 12 software-reference cases, 85 image checks and 113
-ELF objects passed. Physical POC3 remains UNTESTED. Earlier dated sections below
-retain their original checkpoint scope; they do not override CURRENT-STATE.
+Current physical checkpoint: [POC3 owner attestation](qualification/poc3-pi3b-owner-report-2026-09-16.json)
+records the bounded Pi 3B pass, including corrected geometry and joystick. The
+[completed build](build/private-poc3.md) and [planned procedure](qualification/poc3-pi3b-smoke-test.md)
+remain unchanged. Photos and owner observations have separate evidence limits.
+[Product audit](design/appliance-audit-2026-09-16.md) proposes next work; no new runtime
+or additional-model qualification is authorized. Earlier sections retain their dated
+checkpoint scope; they do not override CURRENT-STATE.
 
 ## Safe checks for continuity/source work
 

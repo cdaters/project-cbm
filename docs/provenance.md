@@ -1,5 +1,11 @@
 # Historical provenance and preservation
 
+Latest additive evidence: [POC3 Pi 3B physical report](qualification/poc3-pi3b-owner-report-2026-09-16.json)
+and [product audit](design/appliance-audit-2026-09-16.md). Current Git bundles and their
+SHA-256 manifest/offline restore report are under configured bulk storage at
+`archive/poc3-pi3b-product-audit-2026-09-16`. This supplements, rather than replaces,
+the completed POC3 build checkpoint and all historical preservation records.
+
 Reconciled 2026-09-15. The [full audit](audit-2026-09-15.md) retains the original
 assessment, corrections and qualification matrix. Facts below come from inspected
 bytes/refs; inferences and unknowns are labeled.

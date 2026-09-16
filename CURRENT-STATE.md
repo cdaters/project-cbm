@@ -1,6 +1,52 @@
 # Project CBM current state
 
-## POC3 completed — 2026-09-16 / STOP for owner review
+## POC3 physical pass and product audit — 2026-09-16 / STOP
+
+**Exact POC3 passed the owner's bounded Pi 3B appliance/geometry smoke test.**
+The [additive physical attestation](docs/qualification/poc3-pi3b-owner-report-2026-09-16.json)
+supplements the unchanged planned/build records below. Boot/Menu, both VT directions,
+x64sc/C64 rendering and corrected geometry/pillarboxing, keyboard, smoke/SID/video-input
+PRGs, all three expected SID tones, joystick, D64, F10/Quit/return and reboot passed.
+No new failure was reported. Other machines/models/PAL–NTSC comparisons, measured mode,
+network/services/setup, broader persistence and clean-rebuild reproducibility remain
+unestablished. POC1's precise cause and POC2's exact scaling component remain unconfirmed.
+
+Seven owner photographs were inspected read-only and copied with verified hashes to
+`qualification/poc3/pi3b-owner-report-2026-09-16/photos/` beneath configured bulk storage.
+The adjacent `evidence.json` SHA-256 is
+`f9aef329cf04fb37ef4b11cf7ced0198050625cd5e8368f2502f8985655de422`.
+Originals at `/Volumes/TheBench/temp/0?-poc3*.jpg` remain unchanged. No images in Git;
+still photos do not prove audio/movement/input transitions. POC3 raw/lock/package
+identities remain exactly those in the completed build checkpoint below.
+
+[Product audit and recommended work order](docs/design/appliance-audit-2026-09-16.md)
+is the current design checkpoint, with linked Menu/framework, Combian/optional-software
+and boot studies. Recommendation: retain familiar Bash/dialog, streamline CONTROL,
+separate read-only pcbm-info from configuration UI and narrow product backends, consolidate
+preference ownership, and measure boot before optimization. Concrete before/after
+workflows cover fewer levels, duplicate actions, unsupported commands and safe saves.
+StrikeTerm redistribution remains unverified; SID-Wizard inclusion is conditional on
+exact release/license/source review. No optional software acquired or embedded.
+
+POC3 is a suitable basic factory + bounded Pi 3B appliance foundation, **not a release,
+beta/RC, all-model qualification or reproducibility proof**. No runtime changes, VM
+start, POC4, other-model test, service/SSH enablement or publication occurred. Menu stays
+unchanged at `5cf863312a62ac458d5f6c362a9e81b9d14ec20c` on feature/1.1-debian-package.
+Product stays on feature/1.1-build-foundation. Documentation/JSON/link/content checks
+and external preservation verification are recorded with the additive audit checkpoint:
+`archive/poc3-pi3b-product-audit-2026-09-16` (manifest and offline Git restore report).
+Earlier checkpoints are retained unchanged; no duplicated image archive is needed.
+
+**Next owner action:** review the proposed boundaries/navigation and authorize one
+bounded next implementation slice. Suggested first slice: read-only pcbm-info plus
+shared UI/result and preference contracts, then separately approved offline setup and
+narrow privileged operations. Do not infer POC4/build or broad modernization approval.
+Independent custody/backup, signing/SBOM choices, measured budgets, historical input
+closure/build-chain gaps and independent clean rebuild remain unresolved.
+
+The sections below are completed historical checkpoints, not current status or authorization.
+
+## Completed POC3 build checkpoint (before physical test)
 
 **Private POC3 built and offline-validated; physical POC3 remains UNTESTED.**
 [Completed build record](docs/build/private-poc3.md), [exact results](docs/build/private-poc3.json),
