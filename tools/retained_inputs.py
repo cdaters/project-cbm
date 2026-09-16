@@ -75,6 +75,14 @@ def verify_kit(raw, root):
             raise ValueError('build record package mismatch')
         if record.get('source_sha256') != component['source']['artifact']['sha256']:
             raise ValueError('build record source mismatch')
+    if lock['schema_version']>=4:
+        runtime=root/lock['components']['runtime']['package']['artifact']['path']
+        menu=root/lock['components']['menu']['package']['artifact']['path']
+        provided=subprocess.check_output(['dpkg-deb','-f',str(runtime),'Provides'],text=True)
+        required=subprocess.check_output(['dpkg-deb','-f',str(menu),'Depends'],text=True)
+        contract='project-cbm-runtime-api (= 1)'
+        if contract not in provided.strip().split(', ') or contract not in required.strip().split(', '):
+            raise ValueError('product/Menu runtime interface mismatch')
     if 'qualification_media' in lock:
         verify_media(root/lock['qualification_media']['artifact']['path'],lock['qualification_media'])
     if 'optional_software' in lock:

@@ -16,6 +16,16 @@ from build_contracts import validate_lock, encode, make_identity
 
 
 class Boundaries(unittest.TestCase):
+    def test_inaccessible_source_directory_is_skipped_not_privileged(self):
+        with tempfile.TemporaryDirectory() as t:
+            r=Path(t);src=r/'source';src.mkdir();(src/'lost+found').mkdir();dest=r/'content';dest.mkdir()
+            original=os.open
+            def opened(path,*args,**kwargs):
+                if path=='lost+found':raise PermissionError('root-only fixture')
+                return original(path,*args,**kwargs)
+            with patch.object(importer,'CONTENT',dest),patch.object(importer.os,'geteuid',return_value=1000),patch.object(importer.os,'open',side_effect=opened):
+                self.assertEqual(importer.copy_content(src,'programs'),{'copied':0,'skipped':1,'bytes':0})
+
     def test_discovery_rejects_system_disk_including_nested_device_mapper(self):
         part={'name':'/dev/sda1','type':'part','fstype':'vfat','mountpoints':[None],'size':100000,'maj:min':'8:1'}
         disk={'name':'/dev/sda','type':'disk','tran':'usb','mountpoints':[None],'children':[part]}

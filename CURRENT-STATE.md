@@ -6,8 +6,9 @@ The owner accepted configuration maturation and optional-content work and author
 one new private engineering candidate. [Current work and native staging evidence](docs/build/runtime-activation.md)
 records implementation boundaries, the accepted-versus-rejected POC3 staging source
 check, actual account/PAM/sudo and disposable loop-growth tests, and remaining gates.
-Both feature branches have intentional uncommitted implementation work; inspect it.
-No new package/candidate lock/image has been frozen, built or physically tested yet.
+Source implementation and preliminary native package/service/account/import tests now pass.
+See the staging record for exact limits and harness corrections. Final matching packages,
+a new frozen candidate lock/image and offline validation remain pending. No physical test.
 
 StrikeTerm's author-endorsed D64 has now been acquired and verified against the recorded
 Combian hash. It is privately admitted by the owner; its public redistribution gate

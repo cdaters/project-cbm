@@ -30,7 +30,7 @@ def main():
     if subprocess.check_output(['findmnt','-T',str(w),'-no','FSTYPE'],text=True).strip()!='ext4':raise SystemExit('Linux ext4 required')
     if shutil.disk_usage(w).free<40*1024**3:raise SystemExit('insufficient guest build headroom')
     candidate=lock['product']['candidate']
-    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3']:raise ValueError('unknown candidate workspace')
+    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4']:raise ValueError('unknown candidate workspace')
     suffix='private-'+candidate.rsplit('-',1)[1]
     work=w/'builds'/suffix;work.mkdir()
     for descriptor in [lock['base']['pi_gen']['source'],lock['integration']['source']]:

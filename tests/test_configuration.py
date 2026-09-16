@@ -33,10 +33,28 @@ class FakeLinux:
     def country_ready(self):return self.country
     def credential_ready(self, user):return self.allowed
     def keyboard(self, value):self.calls.append((['keyboard-next-boot',value],None));return self.good
+    def hostname(self, value):return self.run(['/usr/bin/hostnamectl','--no-ask-password','hostname',value])
     def write(self,path,data):self.writes[path]=data
 
 
 class Configuration(unittest.TestCase):
+    def test_hostname_preserves_local_resolution_aliases_and_readability(self):
+        system=b.Linux()
+        with patch.object(b,'trusted',side_effect=lambda p:p),patch.object(Path,'stat') as status,patch.object(Path,'read_text',return_value='127.0.0.1 localhost\n127.0.1.1 old-name owner-alias # local\n'),patch.object(system,'run',return_value=True),patch.object(system,'write') as write:
+            status.return_value.st_size=100
+            self.assertTrue(system.hostname('new-name'))
+            write.assert_called_once_with(Path('/etc/hosts'),'127.0.0.1 localhost\n127.0.1.1\tnew-name owner-alias # local\n',0o644)
+
+    def test_wifi_scan_disconnect_forget_are_distinct(self):
+        for operation, args in {
+            'wifi-rescan':['device','wifi','rescan'],
+            'wifi-disconnect':['connection','down','uuid',c.WIFI_UUID],
+            'wifi-forget':['connection','delete','uuid',c.WIFI_UUID],
+        }.items():
+            system=FakeLinux()
+            self.assertEqual(b.apply(req(operation),POLICY,system)['status'],'ok')
+            self.assertEqual(system.calls,[(['/usr/bin/nmcli',*args],None)])
+
     def test_valid_requests_and_results(self):
         for request in CASES:
             with self.subTest(request['operation']):

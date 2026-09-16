@@ -31,6 +31,7 @@ def main():
     image = args.image.resolve(strict=True)
     raw = args.lock.read_bytes()
     lock = validate_lock(raw)
+    activated=lock['schema_version']>=4
     args.results.mkdir()
     root = args.results/'mounted-root'
     boot = args.results/'mounted-boot'
@@ -82,10 +83,13 @@ def main():
         for unit in ['pcbm-first-boot.service']:
             path=root/'etc/systemd/system/multi-user.target.wants'/unit
             check('enabled_'+unit,path.is_symlink() and path.readlink().name==unit)
-        for unit in ['rpi-resize.service','systemd-growfs-root.service','userconfig.service',
+        legacy_masks=['rpi-resize.service','systemd-growfs-root.service','userconfig.service',
                      'regenerate_ssh_host_keys.service','ssh.service','ssh.socket','sshswitch.service',
                      'avahi-daemon.service','avahi-daemon.socket','smbd.service','nmbd.service',
-                     'samba-ad-dc.service','tcpser.service','NetworkManager.service','pcbm-console.service']:
+                     'samba-ad-dc.service','tcpser.service','NetworkManager.service','pcbm-console.service']
+        if activated:
+            legacy_masks=[u for u in legacy_masks if u not in ['ssh.service','avahi-daemon.service','avahi-daemon.socket','smbd.service','tcpser.service','NetworkManager.service']]
+        for unit in legacy_masks:
             path=root/'etc/systemd/system'/unit
             check('masked_'+unit,path.is_symlink() and str(path.readlink())=='/dev/null')
         for tty in ['tty1','tty2']:
@@ -99,7 +103,7 @@ def main():
         check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()==lock['product']['candidate']+'\n')
         check('diagnostic_programs_present',all((root/p).is_file() for p in ['usr/bin/pcbm-diagnostics','usr/libexec/project-cbm/engineering.py']))
         observer=(root/'usr/libexec/project-cbm/engineering.py').read_text()
-        if lock['product']['candidate']=='private-engineering-poc3':
+        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4'):
             template=root/'usr/share/project-cbm/vice-defaults.ini'
             user=root/'home/pi/.config/vice/sdl-vicerc'
             check('presentation_template_exact',template.read_bytes()==presentation_defaults() and template.stat().st_uid==0)
@@ -115,7 +119,10 @@ def main():
         power=(root/'etc/sudoers.d/pcbm-power').read_text()
         check('only_exact_power_sudo',power=='pi ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n')
         grants=[p.name for p in (root/'etc/sudoers.d').iterdir() if p.is_file() and 'NOPASSWD' in p.read_text()]
-        check('no_other_passwordless_grants',grants==['pcbm-power'])
+        check('no_other_passwordless_grants',set(grants)==({'pcbm-power','pcbm-operations'} if activated else {'pcbm-power'}))
+        if activated:
+            from validate_activation import inspect
+            inspect(root,lock,check,digest)
         media=json.loads((root/'usr/share/project-cbm/qualification-media.json').read_text())
         check('media_source_matches_lock',media['source_commit']==lock['qualification_media']['source_commit'])
         for entry in media['files']:

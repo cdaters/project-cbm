@@ -71,6 +71,23 @@ class Linux:
         # Compile for next boot; do not seize tty1 or force a live keymap reload.
         return self.run(['/usr/bin/setupcon','--save-only','--keyboard-only'])
 
+    def hostname(self, value):
+        path=trusted(Path('/etc/hosts'))
+        if path.stat().st_size>65536:raise ValueError('hosts_size')
+        lines=path.read_text().splitlines();found=False;updated=[]
+        for line in lines:
+            fields=line.split('#',1)[0].split()
+            if fields and fields[0]=='127.0.1.1':
+                # Preserve additional administrator aliases and comments.
+                comment=(' #'+line.split('#',1)[1]) if '#' in line else ''
+                line='127.0.1.1\t'+' '.join([value,*fields[2:]])+comment
+                found=True
+            updated.append(line)
+        if not found:updated.append('127.0.1.1\t'+value)
+        if not self.run(['/usr/bin/hostnamectl','--no-ask-password','hostname',value]):return False
+        self.write(path,'\n'.join(updated)+'\n',0o644)
+        return True
+
     def credential_ready(self, user):
         p=subprocess.run(['/usr/bin/pdbedit','-L','-v','-u',user],capture_output=True,text=True,env=ENV,timeout=5)
         flags=re.search(r'^Account Flags:\s*\[([^]]+)\]',p.stdout,re.M)
@@ -158,7 +175,7 @@ def apply(request, p, system):
         # No unmask here. Masks are an intentional policy boundary, not an error to bypass.
         args=['/usr/bin/systemctl','--no-ask-password','enable' if v['enabled'] else 'disable','--now',SERVICES[name]]
         if name=='discovery':args.append('avahi-daemon.socket')
-    elif op=='hostname':args=['/usr/bin/hostnamectl','--no-ask-password','hostname',v['value']]
+    elif op=='hostname':return result('ok' if system.hostname(v['value']) else 'failed')
     elif op=='timezone':
         if not system.listed('timezone',v['value']):return result('invalid')
         args=['/usr/bin/timedatectl','--no-ask-password','set-timezone',v['value']]
@@ -183,7 +200,9 @@ def apply(request, p, system):
         system.write(path,keyfile(v['ssid'],v['password']))
         if not system.run(['/usr/bin/nmcli','connection','load',path]):return result('failed')
         args=['/usr/bin/nmcli','--wait','30','connection','up','uuid',WIFI_UUID]
-    elif op in ('wifi-disconnect','wifi-forget','wifi-rescan'):
+    elif op=='wifi-rescan':
+        args=['/usr/bin/nmcli','device','wifi','rescan']
+    elif op in ('wifi-disconnect','wifi-forget'):
         args=['/usr/bin/nmcli','connection','down' if op=='wifi-disconnect' else 'delete','uuid',WIFI_UUID]
     elif op=='sharing-password':
         # Initial credential enrollment precedes adding sharing to ready_services.

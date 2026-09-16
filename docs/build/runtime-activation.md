@@ -91,3 +91,72 @@ one controlled image, offline checks, footprint measurements, hash-bound owner P
 procedure and verified recovery bundles. No image or new hardware qualification has
 been produced by this work yet. Do not interpret intermediate fixture passes as a
 completed milestone or a physical pass.
+
+## Native staging gate (completed before candidate freezing)
+
+The two `1.1.0~poc4-0~staging1` packages installed into an independent accepted-POC3
+root copy; `dpkg --audit` reported no unresolved package/dependency state. These
+preliminary packages are not final candidate artifacts. Source corrections below
+were tested in the disposable copy and must be included in the final packages.
+
+Existing `unshare`/systemd utilities supplied private mount, PID, network, UTS, IPC
+and cgroup namespaces; no container platform was installed. A temporary delegated
+`pcbm-native-staging` unit limited memory to 2 GiB and devices to basic character
+interfaces, with one explicitly admitted synthetic loop device for import testing.
+The namespace had loopback only, no external route, private service bus and hidden
+hardware sysfs. Its root/getty/hardware units were inhibited **only in staging**.
+The namespace's expected EEPROM/remount failures do not constitute a Pi boot test.
+The builder hostname/network, account databases and package inventory were unchanged.
+See the opt-in [native harnesses](../../tests/native/README.md). Upstream
+[systemd namespace requirements](https://systemd.io/CONTAINER_INTERFACE/) and
+[util-linux unshare](https://man7.org/linux/man-pages/man1/unshare.1.html) were consulted
+on 2026-09-16. This is test isolation, not a new runtime/build foundation.
+
+**Passed in native Linux staging:**
+
+- Matching package installation and installed `pcbm-info --json`.
+- Exact no-argument helper sudoers parses; `pi` can invoke approved requests;
+  arbitrary root `id`, helper arguments and unknown operations are rejected.
+- Real locale generation, next-boot keyboard compilation and timezone application.
+- Real local owner password initialization, incorrect-password rejection,
+  authenticated sudo to UID 0 and refusal of password reset after setup completion.
+- First-boot state transitions with an offline choice; completion prerequisites.
+  Its growth marker was injected from the separately verified loop-growth contract,
+  not misrepresented as expansion of the namespace root.
+- Actual Advanced Terminal authentication failure/success and return, using a
+  pseudo-terminal; no password echoed. Authenticated raspi-config noninteractive
+  invocation. Full interactive raspi-config and physical keymaps remain Pi tests.
+- Hostname update and user-readable local resolution without changing the builder.
+- Samba's separate credential enrollment/readiness and service start/stop.
+- SSH key absence before explicit generation, fresh generation, config syntax,
+  deliberate service start/stop. No external SSH login was attempted.
+- TCPser actual start/stop and loopback-only IP232 plus ephemeral inbound listener.
+  The first readiness assertion raced process startup; bounded observation confirmed
+  both loopback listeners. This is not BBS connectivity qualification.
+- mDNS daemon/socket start/stop. No physical LAN name-resolution claim.
+- NetworkManager offline selection; real private keyfile parsing and exact synthetic
+  password round trip (including punctuation/backslash); missing-radio activation
+  fails. Only redacted result flags were emitted; the test connection was deleted.
+- Synthetic read-only ext4 mount/copy/unmount: two files copied as UID 1000, a symlink
+  and root-only directory skipped, SID classified under music; retry copied nothing
+  and preserved destinations; the source image SHA-256 remained unchanged.
+  Test discovery was explicitly substituted; production cannot request loop devices.
+
+**Corrections from review/staging:** Wi-Fi rescan now dispatches rescan rather than
+forget; hostname changes keep `/etc/hosts` readable and locally consistent; ext4
+import uses `noload` to prevent journal replay and skips inaccessible directories
+without elevating the copying process. The terminal harness initially failed to
+recognize ANSI-colored prompts; authentication itself was working.
+
+Product tests: **138 pass**. Menu tests: **50 pass**, plus its shared-launcher checker.
+AST, JSON, per-file changed-shell syntax and diff whitespace checks pass. Fixtures
+cover interruption before every setup marker, prerequisites, no false completion,
+no completed-setup password reset, secret exclusion and operation/path/unit rejection.
+These tests do not simulate power interruption during filesystem resize/PAM writes.
+Physical power-loss recovery, Pi hardware, Wi-Fi/Ethernet, external Samba/SSH/mDNS,
+BBS connectivity and application/media execution remain physical qualification gates.
+
+Staging credentials were generated in memory and invalidated. Do not preserve the
+staging root, shadow backups, Samba databases or journals as build/recovery evidence.
+Preserve source harnesses and sanitized results; the candidate is constructed afresh
+from the frozen package closure, never by cleaning this staging root.

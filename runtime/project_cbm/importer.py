@@ -76,7 +76,11 @@ def copy_content(source,category):
             if not name.isprintable() or len(name.encode())>240:skipped+=1;continue
             status=os.stat(name,dir_fd=src,follow_symlinks=False)
             if stat.S_ISDIR(status.st_mode):
-                child=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=src)
+                try:child=os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=src)
+                except PermissionError:
+                    # A normal ext4 drive may contain root-only lost+found.
+                    # Never elevate copying privileges to traverse it.
+                    skipped+=1;continue
                 try:walk(child,[*parts,name],depth+1)
                 finally:os.close(child)
                 continue
@@ -126,7 +130,10 @@ def perform(entry,category):
     try:
         s=os.fstat(fd);number=f'{os.major(s.st_rdev)}:{os.minor(s.st_rdev)}'
         if not stat.S_ISBLK(s.st_mode) or number!=entry['number'] or entry not in discover():raise ValueError('device_changed')
-        subprocess.run(['/usr/bin/mount','-t',entry['filesystem'],'-o','ro,nodev,nosuid,noexec',
+        # ext4 may replay a journal even for a read-only mount. Source media
+        # must remain unchanged; unclean media requiring recovery is refused.
+        options='ro,nodev,nosuid,noexec'+(',noload' if entry['filesystem']=='ext4' else '')
+        subprocess.run(['/usr/bin/mount','-t',entry['filesystem'],'-o',options,
                         '--',f'/proc/self/fd/{fd}',str(target)],pass_fds=(fd,),env=ENV,
                        stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True,timeout=20)
         pid=None;reaped=False
