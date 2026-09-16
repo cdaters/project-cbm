@@ -1,5 +1,28 @@
 # Project CBM current state
 
+## POC4 attempt #2 environment correction — in progress, 2026-09-16
+
+Owner authorized a bounded builder/chroot correction and ONE fresh attempt. Attempt #1
+below remains immutable failed-attempt evidence; no image resulted from it. Read the
+[environment boundary](docs/build/environment-boundary.md). The retained AppArmor
+postinst and native negative reproduction confirm inherited builder TMPDIR as the cause.
+Fixed explicit environments now cover factory entry, debootstrap, pi-gen on_chroot and
+CBM direct chroot calls. No AppArmor/package check or privilege weakening.
+
+142 product tests, 50 Menu tests plus launcher checker pass. Native invalid-TMPDIR
+mktemp/AppArmor reproduction followed by sanitized success passes; package/AppArmor/
+dpkg/APT and optional-input install checks pass. Native owner/PAM/sudo, offline setup, service lifecycle, NetworkManager private-keyfile
+parsing/redaction, terminal return, authenticated raspi-config and synthetic USB broker
+revalidation pass. New input freeze/build/offline validation remain in progress. This is not a new image
+or physical qualification claim. Attempt #1 checkpoint and 2,834 retained files verify.
+
+No runtime/Menu component source or package bytes are changed by this correction.
+New integration source, environment patch and sealing recipe change the complete input
+set and generated installed identity. Preserve all historical tags and POC1–3; no push.
+Stop on another integrity failure, otherwise after attempt #2 offline validation and
+verified recovery with an exact-hash Pi 3B procedure. No physical test or boot optimization.
+
+
 ## Runtime activation: build-integrity stop — 2026-09-16
 
 **No POC4 image exists. STOP for owner review; do not flash, retry or build another

@@ -1,0 +1,37 @@
+--- a/scripts/common
++++ b/scripts/common
+@@ -7,7 +7,6 @@
+ 	local BOOTSTRAP_CMD=debootstrap
+ 	local BOOTSTRAP_ARGS=()
+ 
+-	export http_proxy=${APT_PROXY}
+ 
+ 	BOOTSTRAP_ARGS+=(--arch arm64)
+ 	BOOTSTRAP_ARGS+=(--include gnupg)
+@@ -18,7 +17,10 @@
+ 	BOOTSTRAP_ARGS+=("$@")
+ 	printf -v BOOTSTRAP_STR '%q ' "${BOOTSTRAP_ARGS[@]}"
+ 
+-	capsh $CAPSH_ARG -- -c "'${BOOTSTRAP_CMD}' $BOOTSTRAP_STR" || true
++	/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
++		HOME=/root USER=root LOGNAME=root LANG=C.UTF-8 LC_ALL=C.UTF-8 \
++		TMPDIR=/tmp TMP=/tmp TEMP=/tmp PYTHONDONTWRITEBYTECODE=1 \
++		DEBIAN_FRONTEND=noninteractive SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:?}" http_proxy="${APT_PROXY}" /usr/sbin/capsh $CAPSH_ARG -- -c "'${BOOTSTRAP_CMD}' $BOOTSTRAP_STR" || true
+ 
+ 	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1050719
+ 	rm -f wget-log*
+@@ -104,7 +106,13 @@
+ 		mount -t tmpfs  tmpfs "${ROOTFS_DIR}/tmp"
+ 	fi
+ 
+-	capsh $CAPSH_ARG "--chroot=${ROOTFS_DIR}/" -- -e "$@"
++	# Host exports/functions are not target package-configuration inputs.
++	[[ "${SOURCE_DATE_EPOCH}" =~ ^[0-9]{1,12}$ ]] || return 1
++	chmod 1777 "${ROOTFS_DIR}/tmp"
++	/usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
++		HOME=/root USER=root LOGNAME=root LANG=C.UTF-8 LC_ALL=C.UTF-8 \
++		TMPDIR=/tmp TMP=/tmp TEMP=/tmp PYTHONDONTWRITEBYTECODE=1 \
++		DEBIAN_FRONTEND=noninteractive SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:?}" /usr/sbin/capsh $CAPSH_ARG "--chroot=${ROOTFS_DIR}/" -- -e "$@"
+ }
+ export -f on_chroot
+ 

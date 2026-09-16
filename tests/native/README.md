@@ -34,3 +34,17 @@ source SHA agreement. Run only in a new disposable staging directory; retain the
 small result, not an unnecessary image. Actual USB discovery/hot unplug needs Pi
 testing. An earlier harness without the hidden-sysfs accommodation stopped before
 mounting; the importer itself was not relaxed to admit loop devices.
+
+## Environment correction revalidation
+
+`build_environment.sh` is the before/after AppArmor regression; see the
+[boundary contract](../../docs/build/environment-boundary.md). `services.py` repeats
+actual native service operations and in-memory NetworkManager credential parsing.
+It emits only result flags and cleans test credentials. nmcli output escaping is
+explicitly disabled for the exact in-memory comparison.
+
+The disposable copied runtime root is not a full newly assembled image. Its fresh
+namespace `/run` must receive the three directories declared by the frozen stage's
+`/usr/lib/tmpfiles.d/project-cbm.conf` before helper tests. Create them with root 0755,
+or install/apply that exact tmpfiles declaration. A missing directory is a harness
+preparation failure, not permission to relax the helper's trusted-path checks.

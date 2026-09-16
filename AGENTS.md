@@ -301,3 +301,13 @@ Preserve POC1–3, all existing tags and optional-input rights classifications.
 StrikeTerm is privately admitted only; public rights remain pending. No push.
 Future approved construction must validate builder versus chroot environment;
 Linux guest /tmp is external-backed and distinct from macOS /private/tmp.
+
+## POC4 attempt #2 authorization
+
+The owner authorizes only the documented builder/chroot environment correction,
+regression/native revalidation and ONE new POC4 build attempt. Attempt #1 lock,
+packages, failed tree and evidence remain unchanged. Use a distinct frozen kit and
+attempt output path. Preserve AppArmor and package verification. Stop on recurring
+or new build-integrity failure; otherwise finish offline validation, exact hashes,
+Pi 3B procedure and recovery checkpoint. No physical test, POC5, push or publication.
+Read docs/build/environment-boundary.md and CURRENT-STATE for current progress.

@@ -13,6 +13,7 @@ import tarfile
 import hashlib
 from build_contracts import encode, make_identity, read_json
 from retained_inputs import verify_kit
+from build_environment import environment
 from vice_presentation import defaults as presentation_defaults, seed as seed_presentation
 
 REPO=Path(__file__).resolve().parents[1]
@@ -30,7 +31,12 @@ def main():
         raise ValueError('frozen defaults disagree with integration recipe')
     if (args.kit/lock['configuration']['first_boot_recipe']['path']).read_bytes() != (REPO/'build/pigen/stage-cbm/files/first_boot.py').read_bytes():
         raise ValueError('frozen first-boot recipe disagrees with integration source')
-    def chroot(*cmd): return subprocess.check_output(['chroot',str(root),*cmd],text=True)
+    target_env=environment(lock['build']['source_date_epoch'],target=True)
+    def chroot(*cmd):
+        return subprocess.check_output(['/usr/sbin/chroot',str(root),*cmd],text=True,env=target_env)
+    if (root/'tmp').is_symlink():raise ValueError('target tmp must be a real directory')
+    (root/'tmp').mkdir(exist_ok=True);(root/'tmp').chmod(0o1777)
+    chroot('/bin/sh','-ec','test $(stat -c %a /tmp) = 1777; p=$(mktemp); rm -- "$p"')
     def put(path,data,mode=0o644):
         dest=root/path.lstrip('/');dest.parent.mkdir(parents=True,exist_ok=True)
         dest.write_bytes(data if isinstance(data,bytes) else data.encode());dest.chmod(mode)

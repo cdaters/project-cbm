@@ -14,12 +14,16 @@ from urllib.request import urlopen
 from build_contracts import read_json
 from retained_inputs import verify_kit
 from build_host_guard import verify as verify_host
+from build_environment import environment
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('lock',type=Path);parser.add_argument('kit',type=Path);parser.add_argument('workspace',type=Path)
+    parser.add_argument('--attempt',type=int,choices=range(1,100),default=1)
     args=parser.parse_args()
+    # Replace, rather than subtract from, inherited operator variables before probes.
+    os.environ.clear();os.environ.update(environment())
     if os.geteuid()!=0:raise SystemExit('run as root inside unshare --net')
     if subprocess.check_output(['ip','route','show'],text=True).strip():raise SystemExit('external network routes forbidden for frozen construction')
     subprocess.run(['ip','link','set','lo','up'],check=True)
@@ -32,6 +36,7 @@ def main():
     candidate=lock['product']['candidate']
     if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4']:raise ValueError('unknown candidate workspace')
     suffix='private-'+candidate.rsplit('-',1)[1]
+    if args.attempt != 1: suffix += '-attempt-'+str(args.attempt)
     work=w/'builds'/suffix;work.mkdir()
     for descriptor in [lock['base']['pi_gen']['source'],lock['integration']['source']]:
         with tarfile.open(kit/descriptor['path']) as archive:archive.extractall(work,filter='data')
@@ -64,8 +69,9 @@ def main():
         'CBM_KIT':str(kit),'CBM_RELEASE_LOCK':str(args.lock.resolve()),'CBM_RECIPE_DIR':str(recipe),
         'SOURCE_DATE_EPOCH':str(lock['build']['source_date_epoch'])}
     (pg/'config').write_text(''.join('export '+key+'='+shlex.quote(value)+'\n' for key,value in envconfig.items()))
+    build_env=environment(lock['build']['source_date_epoch'])
     log=(work/'apt-frozen.log').open('w')
-    proxy=subprocess.Popen(['python3',str(recipe/'tools/apt_retention_proxy.py'),'--root',str(proxyroot),'--mode','frozen'],stdout=log,stderr=subprocess.STDOUT)
+    proxy=subprocess.Popen(['python3',str(recipe/'tools/apt_retention_proxy.py'),'--root',str(proxyroot),'--mode','frozen'],stdout=log,stderr=subprocess.STDOUT,env=build_env)
     try:
         for attempt in range(20):
             if proxy.poll() is not None:raise RuntimeError('frozen transport failed to start')
@@ -74,10 +80,10 @@ def main():
                 break
             except OSError:time.sleep(0.2)
         else:raise RuntimeError('frozen transport readiness timeout')
-        subprocess.run(['/usr/bin/time','-v','./build.sh'],cwd=pg,check=True)
+        subprocess.run(['/usr/bin/time','-v','./build.sh'],cwd=pg,check=True,env=build_env)
     finally:
         proxy.terminate();proxy.wait(timeout=10);log.close()
-    verify_host(lock,kit)
+        verify_host(lock,kit)
     print('First controlled private POC build completed; offline validation required')
 
 
