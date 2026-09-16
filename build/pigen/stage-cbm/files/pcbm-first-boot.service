@@ -1,7 +1,7 @@
 [Unit]
 Description=Project CBM POC retry-checked initialization
 After=local-fs.target systemd-machine-id-commit.service
-Before=pcbm-console.service
+Before=getty@tty1.service getty@tty2.service
 
 [Service]
 Type=oneshot

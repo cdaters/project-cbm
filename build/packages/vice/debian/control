@@ -9,7 +9,7 @@ Homepage: https://vice-emu.sourceforge.io/
 
 Package: project-cbm-vice
 Architecture: arm64
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgl1, libglx-mesa0, libegl1, libegl-mesa0, libgles2, libgbm1, libgl1-mesa-dri
 Conflicts: vice
 Replaces: vice
 Description: VICE 3.10 SDL2 for the private Project CBM engineering appliance

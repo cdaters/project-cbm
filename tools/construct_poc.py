@@ -27,7 +27,10 @@ def main():
     subprocess.run(['arch-test','-n','arm64'],check=True)
     if subprocess.check_output(['findmnt','-T',str(w),'-no','FSTYPE'],text=True).strip()!='ext4':raise SystemExit('Linux ext4 required')
     if shutil.disk_usage(w).free<40*1024**3:raise SystemExit('insufficient guest build headroom')
-    work=w/'builds/private-poc1';work.mkdir()
+    candidate=lock['product']['candidate']
+    if candidate not in ['private-engineering-poc1','private-engineering-poc2']:raise ValueError('unknown candidate workspace')
+    suffix='private-'+candidate.rsplit('-',1)[1]
+    work=w/'builds'/suffix;work.mkdir()
     for descriptor in [lock['base']['pi_gen']['source'],lock['integration']['source']]:
         with tarfile.open(kit/descriptor['path']) as archive:archive.extractall(work,filter='data')
     recipe=work/'project-cbm';pg=work/'pi-gen'
@@ -50,7 +53,7 @@ def main():
     envconfig={
         'IMG_NAME':config['image_name'],'IMG_DATE':config['image_date'],
         'GIT_HASH':lock['base']['pi_gen']['git']['commit'],'RELEASE':config['release'],
-        'WORK_DIR':str(work/'work'),'DEPLOY_DIR':str(w/'artifacts/private-poc1'),
+        'WORK_DIR':str(work/'work'),'DEPLOY_DIR':str(w/'artifacts'/suffix),
         'STAGE_LIST':'stage0 stage1 stage2 stage-cbm','APT_PROXY':'http://127.0.0.1:3142',
         'ENABLE_CLOUD_INIT':'0','ENABLE_SSH':'0','PASSWORDLESS_SUDO':'0','FIRST_USER_NAME':'pi',
         'TIMEZONE_DEFAULT':config['timezone'],'LOCALE_DEFAULT':config['locale'],

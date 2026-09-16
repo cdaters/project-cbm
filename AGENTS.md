@@ -160,3 +160,22 @@ records are authorized; runtime, packaging, stage, privilege/network changes,
 media acquisition/creation and POC2 are NOT yet authorized. STOP for owner review.
 Intentionally masked POC1 services are not failures. Do not change frozen POC1 or
 infer process state from the activity LED. Preserve UNTESTED later qualification.
+
+## Authorized POC2 implementation (current owner boundary)
+
+Owner authorized bounded graphics runtime/session/return corrections, private
+persistent diagnostics and non-root diagnostic VT, original tiny qualification
+media, a new frozen POC2 build and offline validation. No SSH, physical testing,
+POC3, broad settings/privilege redesign, public release or push. Preserve all POC1
+artifacts/lock/packages/qualification record unchanged. Stop after POC2 validation,
+physical smoke-test instructions and continuity/recovery checkpoint.
+
+## Documentation style
+
+Use established software/Linux/Debian/Raspberry Pi/release terminology when it
+improves precision; historical labels such as "Phase" are not protected in current
+docs. Explain specialized terms on first use, prefer plain English, and maintain
+concise start-to-finish how-to guides alongside architecture/reference material.
+A capable Raspberry Pi/retro-computing user should not need release-engineering
+expertise. Preserve historical documents as evidence; never modernize their words
+to imply that later architecture existed at the time.

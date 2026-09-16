@@ -16,13 +16,13 @@
     "sha256": "8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1"
   },
   "menu": {
-    "version": "1.1.0_poc1",
+    "version": "1.1.0_poc2",
     "repository": "https://github.com/cdaters/project-cbm-menu.git",
-    "ref": "refs/tags/v1.1.0_poc1",
-    "tag_object": "e265f3cbb995ad0a9a7748987b2d9c88019aa787",
-    "commit": "77a708019c9d8a11e657d7e5d2dde7b7ecb340ba",
-    "filename": "project-cbm-menu-1.1.0_poc1.tar",
-    "sha256": "ba568d8fda6b9e0bca827455fee15df6315c30e5ca1afd8f3de27d1d488426ff"
+    "ref": "refs/tags/v1.1.0_poc2",
+    "tag_object": "4ff0f9c5d94f16064e2c43c960a429ecb275372b",
+    "commit": "897cee7c792b11bfed80168a576f263340f5f57d",
+    "filename": "project-cbm-menu-1.1.0_poc2.tar",
+    "sha256": "c60eb7b43e266931668535cd656e9ec356b237e90d8f4a7644aaf23d260f4a3f"
   },
   "tcpser": {
     "version": "1.1.6_beta",

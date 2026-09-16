@@ -9,6 +9,8 @@ import shlex
 import shutil
 import subprocess
 import sys
+import tarfile
+import hashlib
 from build_contracts import encode, make_identity, read_json
 from retained_inputs import verify_kit
 
@@ -67,7 +69,7 @@ def main():
     owned_put('/etc/pcbm/version.conf',version_conf)
     owned_put('/etc/pcbm/boot-mode.conf','menu\n')
     owned_put('/etc/pcbm/default-machine.conf','x64sc\n')
-    for name in ['pcbm-first-boot.service','pcbm-console.service','tcpser.service']:
+    for name in ['pcbm-first-boot.service','tcpser.service']:
         owned_put('/usr/lib/systemd/system/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes())
     owned_put('/usr/libexec/project-cbm/first_boot.py',(REPO/'build/pigen/stage-cbm/files/first_boot.py').read_bytes(),0o755)
     for directory in ['pcbm','.config','.config/pcbm','.config/vice','.local','.local/state','.local/state/vice','.local/share','.local/share/vice']:
@@ -75,6 +77,34 @@ def main():
     for directory in ['games','demos','music','programs','roms','screenshots','saves']:
         target=root/'home/pi/pcbm'/directory;target.mkdir(exist_ok=True);os.chown(target,1000,1000)
     chroot('usermod','--password','*','pi');chroot('usermod','--password','*','root')
+    chroot('usermod','--shell','/bin/bash','pi')
+    # Standard getty/login/PAM owns tty sessions; no direct competing tty service.
+    for tty in ['tty1','tty2']:
+        owned_put('/etc/systemd/system/getty@'+tty+'.service.d/autologin.conf',
+                  (REPO/'build/pigen/stage-cbm/files/getty-autologin.conf').read_bytes())
+    owned_put('/etc/profile.d/pcbm-console.sh',(REPO/'build/pigen/stage-cbm/files/pcbm-profile.sh').read_bytes())
+    for name in ['pcbm-console-session','engineering.py']:
+        owned_put('/usr/libexec/project-cbm/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes(),0o755)
+    owned_put('/usr/bin/pcbm-diagnostics',(REPO/'build/pigen/stage-cbm/files/pcbm-diagnostics').read_bytes(),0o755)
+    owned_put('/etc/pcbm/engineering-poc','private-engineering-poc2\n')
+    # Only exact no-argument power actions, required for safe qualification shutdown.
+    owned_put('/etc/sudoers.d/pcbm-power','pi ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n',0o440)
+    chroot('visudo','-cf','/etc/sudoers')
+    media=lock.get('qualification_media')
+    if not media:raise ValueError('POC2 requires declared qualification media')
+    with tarfile.open(args.kit/media['artifact']['path']) as archive:
+        manifest=json.load(archive.extractfile('manifest.json'))
+        if manifest['source_commit']!=media['source_commit']:raise ValueError('media source revision mismatch')
+        for entry in manifest['files']:
+            dest=entry['destination']
+            if not re.fullmatch(r'(programs|music|demos)/Qualification/[a-z0-9.-]+',dest):raise ValueError('unsafe media destination')
+            data=archive.extractfile(entry['name']).read()
+            if hashlib.sha256(data).hexdigest()!=entry['sha256']:raise ValueError('media digest mismatch')
+            owned_put('/home/pi/pcbm/'+dest,data)
+            os.chown(root/'home/pi/pcbm'/dest,1000,1000)
+            os.chown((root/'home/pi/pcbm'/dest).parent,1000,1000)
+        owned_put('/usr/share/project-cbm/qualification-media.json',json.dumps(manifest,indent=2)+'\n')
+        owned_put('/usr/share/doc/project-cbm-qualification/LICENSE',archive.extractfile('LICENSE').read())
     # One growth owner. The inspected vendor initramfs hooks both require ' resize'.
     cmdline=root/'boot/firmware/cmdline.txt'
     cmdline.write_text(' '.join(word for word in cmdline.read_text().split() if word!='resize')+'\n')
@@ -82,11 +112,11 @@ def main():
               'regenerate_ssh_host_keys.service','ssh.service','ssh.socket','sshswitch.service',
               'sshd-keygen.service','avahi-daemon.service','avahi-daemon.socket','smbd.service',
               'nmbd.service','samba-ad-dc.service','tcpser.service','NetworkManager.service',
-              'getty@tty1.service']
+              'pcbm-console.service']
     for unit in disabled:
         subprocess.run(['systemctl','--root',str(root),'disable',unit],check=False,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         subprocess.run(['systemctl','--root',str(root),'mask',unit],check=True)
-    for unit in ['pcbm-first-boot.service','pcbm-console.service']:
+    for unit in ['pcbm-first-boot.service','getty@tty1.service','getty@tty2.service']:
         subprocess.run(['systemctl','--root',str(root),'enable',unit],check=True)
     # VM credentials/state are never imported. Remove identities generated in chroots.
     for pattern in ['etc/ssh/ssh_host_*','home/pi/.ssh/*']:

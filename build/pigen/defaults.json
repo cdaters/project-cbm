@@ -14,5 +14,11 @@
   "avahi_enabled": false,
   "networkmanager_enabled": false,
   "baked_password": false,
-  "passwordless_sudo": false
+  "unrestricted_passwordless_sudo": false,
+  "passwordless_power_actions": [
+    "poweroff",
+    "reboot"
+  ],
+  "console_session": "getty-login-pam",
+  "engineering_diagnostic_vt": "tty2"
 }

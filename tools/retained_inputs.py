@@ -2,6 +2,9 @@
 """Verify transitive retained-input catalogs and actual Debian package metadata."""
 import argparse
 import json
+import hashlib
+import re
+import tarfile
 from pathlib import Path
 import subprocess
 from build_contracts import artifacts, read_json, validate_lock, verify_artifact, public_url
@@ -34,6 +37,29 @@ def verify_deb(path, expected):
         raise ValueError('Debian control identity mismatch')
 
 
+def verify_media(path, expected):
+    with tarfile.open(path) as archive:
+        members=archive.getmembers()
+        if any(not m.isfile() or m.size>200*1024 or '/' in m.name for m in members):
+            raise ValueError('unsafe qualification archive member')
+        names=[m.name for m in members]
+        if len(names)!=len(set(names)) or set(names)!={'manifest.json','LICENSE','pcbm-smoke.prg','pcbm-sid-check.prg','pcbm-video-input.prg','pcbm-check.d64'}:
+            raise ValueError('qualification archive inventory mismatch')
+        manifest=json.loads(archive.extractfile('manifest.json').read())
+        if manifest['source_commit']!=expected['source_commit'] or manifest['license']!='MIT':
+            raise ValueError('qualification source/license mismatch')
+        files=manifest['files']
+        if len(files)!=4 or {f['name'] for f in files}!=set(names)-{'manifest.json','LICENSE'}:
+            raise ValueError('qualification manifest file mismatch')
+        for f in files:
+            raw=archive.extractfile(f['name']).read()
+            if len(raw)!=f['size_bytes'] or hashlib.sha256(raw).hexdigest()!=f['sha256']:
+                raise ValueError('qualification payload hash mismatch')
+            if not re.fullmatch(r'(programs|music|demos)/Qualification/[a-z0-9.-]+',f['destination']):
+                raise ValueError('qualification destination invalid')
+        return manifest
+
+
 def verify_kit(raw, root):
     root=Path(root).resolve(strict=True)
     lock=validate_lock(raw)
@@ -49,6 +75,8 @@ def verify_kit(raw, root):
             raise ValueError('build record package mismatch')
         if record.get('source_sha256') != component['source']['artifact']['sha256']:
             raise ValueError('build record source mismatch')
+    if 'qualification_media' in lock:
+        verify_media(root/lock['qualification_media']['artifact']['path'],lock['qualification_media'])
     return lock
 
 

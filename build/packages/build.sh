@@ -38,10 +38,10 @@ cp -a "$recipe/build/packages/tcpser/debian" tcpser/debian
  cd tcpser
  dpkg-buildpackage -us -uc -sa
 ) > tcpser-build.log 2>&1
-tar -xf "$workspace/inputs/project-cbm-menu-1.1.0_poc1.tar"
-tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner --exclude='*/debian' -cf - project-cbm-menu-1.1.0_poc1 | gzip -n > project-cbm-menu_1.1.0~poc1.orig.tar.gz
+tar -xf "$workspace/inputs/project-cbm-menu-1.1.0_poc2.tar"
+tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner --exclude='*/debian' -cf - project-cbm-menu-1.1.0_poc2 | gzip -n > project-cbm-menu_1.1.0~poc2.orig.tar.gz
 (
- cd project-cbm-menu-1.1.0_poc1
+ cd project-cbm-menu-1.1.0_poc2
  dpkg-buildpackage -us -uc -sa
 ) > menu-build.log 2>&1
 sha256sum ./*.deb > package-sha256sums.txt

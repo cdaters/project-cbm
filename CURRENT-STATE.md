@@ -1,17 +1,35 @@
 # Project CBM current state
 
-Updated 2026-09-15 — **POC1 physical Pi 3B test exposed a launch/display failure;
-read-only analysis is complete. STOP for owner review before source/runtime changes
-or POC2.** Boot, tty1 Menu rendering and keyboard navigation passed; RUN blacked
-the display and console recovery failed. Later VICE qualification remains UNTESTED.
-[Physical record](docs/qualification/poc1-pi3b-2026-09-15.json),
-[failure analysis](docs/qualification/poc1-pi3b-analysis.md),
-[setup/privilege review](docs/qualification/setup-ux-review.md) and
-[proposed media](docs/qualification/poc2-media-plan.md) are the latest checkpoint.
-The [POC1 build record](docs/build/private-poc1.md) remains authoritative for frozen
-inputs and the earlier 50 offline checks, which did not establish runtime behavior.
-The VM remains stopped. No POC2, independent clean rebuild, public release or push.
-[ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md) remains accepted.
+Updated 2026-09-15 — **Owner authorized bounded POC2 implementation; in progress.**
+POC1 remains immutable: Pi 3B boot/Menu/input passed, x64sc display and console
+recovery failed; later VICE qualification untested. Its [record](docs/qualification/poc1-pi3b-2026-09-15.json)
+and [analysis](docs/qualification/poc1-pi3b-analysis.md) are unchanged.
+
+POC2 adds declared GL runtime, standard getty/login/PAM tty1 ownership, unprivileged
+shared RUN/content launch with F10 menu/quit, bounded private diagnostics and tty2,
+original declared media and truthful unsupported-setup guidance. No SSH or broad
+settings redesign. [Implementation/build guide](docs/build/poc2-design.md).
+Menu source is locally tagged v1.1.0_poc2 at
+897cee7c792b11bfed80168a576f263340f5f57d (tag object
+4ff0f9c5d94f16064e2c43c960a429ecb275372b); source archive SHA-256
+c60eb7b43e266931668535cd656e9ec356b237e90d8f4a7644aaf23d260f4a3f.
+Original MIT media source is committed at 14e4ade (resolve full ID in Git).
+34 host tests pass; package candidates built in guest packages/poc2-engineering.
+New retained GL closure requires five packages, zero base upgrades. POC2 frozen
+lock/image are not yet produced. VM is running; all bulk work remains external.
+
+Independent software-rendered VICE reference runs show smoke and disk PASS screens,
+SID program completion and graphics test rendering. The reference SID WAV contains nonzero mono 48 kHz/16-bit samples. Physical
+audio/input remain untested. A stdout-only/color logging crash was reproduced and traced to VICE
+3.10 log.c null stripped-color pointers; +logcolorize avoids it. This new reference
+finding does not prove POC1's physical cause. GDB and its changed host dependencies
+are separately retained; no debugger belongs in the appliance.
+
+Next: finalize prebuild checks/recipe, freeze NEW POC2 kit, construct one image,
+validate offline, export exact hashes/test guide and recovery checkpoint, then STOP.
+No physical testing, POC3, SSH, broad modernization, push or publication.
+The historical checkpoints below retain their original context and are superseded
+for active authorization/status by this section and the owner's POC2 instruction.
 
 ## What shipped
 

@@ -78,15 +78,39 @@ def main():
         check('no_build_proxy',not (root/'etc/apt/apt.conf.d/51cache').exists())
         check('single_growth_owner','resize' not in (boot/'cmdline.txt').read_text().split())
         check('no_completed_first_boot',not (root/'var/lib/project-cbm/first-boot/complete.json').exists())
-        for unit in ['pcbm-first-boot.service','pcbm-console.service']:
+        for unit in ['pcbm-first-boot.service']:
             path=root/'etc/systemd/system/multi-user.target.wants'/unit
             check('enabled_'+unit,path.is_symlink() and path.readlink().name==unit)
         for unit in ['rpi-resize.service','systemd-growfs-root.service','userconfig.service',
                      'regenerate_ssh_host_keys.service','ssh.service','ssh.socket','sshswitch.service',
                      'avahi-daemon.service','avahi-daemon.socket','smbd.service','nmbd.service',
-                     'samba-ad-dc.service','tcpser.service','NetworkManager.service','getty@tty1.service']:
+                     'samba-ad-dc.service','tcpser.service','NetworkManager.service','pcbm-console.service']:
             path=root/'etc/systemd/system'/unit
             check('masked_'+unit,path.is_symlink() and str(path.readlink())=='/dev/null')
+        for tty in ['tty1','tty2']:
+            link=root/'etc/systemd/system/getty.target.wants'/('getty@'+tty+'.service')
+            check('enabled_getty_'+tty,link.is_symlink() and link.readlink().name=='getty@.service')
+            conf=(root/'etc/systemd/system'/('getty@'+tty+'.service.d/autologin.conf')).read_text()
+            check('login_PAM_'+tty,'--autologin pi' in conf and '--login-program' not in conf)
+        check('PAM_systemd_present','pam_systemd.so' in (root/'etc/pam.d/common-session').read_text())
+        passwd=[line.split(':') for line in (root/'etc/passwd').read_text().splitlines()]
+        check('pi_valid_unprivileged_shell',any(x[0]=='pi' and x[2]=='1000' and x[-1]=='/bin/bash' for x in passwd))
+        check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()=='private-engineering-poc2\n')
+        check('diagnostic_programs_present',all((root/p).is_file() for p in ['usr/bin/pcbm-diagnostics','usr/libexec/project-cbm/engineering.py']))
+        observer=(root/'usr/libexec/project-cbm/engineering.py').read_text()
+        check('bounded_diagnostics','LIMIT = 128 * 1024' in observer and 'KEEP = 4' in observer and 'samples<3' in observer)
+        launcher=(root/'usr/bin/pcbm-run-vice').read_text()
+        check('VICE_unprivileged_F10','EUID != 0' in launcher and '-menukey 291' in launcher)
+        check('single_shared_launch_path','pcbm-run-vice' in (root/'usr/bin/pcbm-boot').read_text() and 'pcbm-run-vice' in (root/'usr/bin/pcbm-dialog-lib.sh').read_text())
+        power=(root/'etc/sudoers.d/pcbm-power').read_text()
+        check('only_exact_power_sudo',power=='pi ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n')
+        grants=[p.name for p in (root/'etc/sudoers.d').iterdir() if p.is_file() and 'NOPASSWD' in p.read_text()]
+        check('no_other_passwordless_grants',grants==['pcbm-power'])
+        media=json.loads((root/'usr/share/project-cbm/qualification-media.json').read_text())
+        check('media_source_matches_lock',media['source_commit']==lock['qualification_media']['source_commit'])
+        for entry in media['files']:
+            p=root/'home/pi/pcbm'/entry['destination']
+            check('media_'+entry['name'],p.is_file() and digest(p)==entry['sha256'] and p.stat().st_uid==1000)
         shadow={row.split(':')[0]:row.split(':')[1] for row in (root/'etc/shadow').read_text().splitlines()}
         check('locked_local_passwords',all(shadow.get(name)=='*' for name in ['root','pi']))
         inventory=output('dpkg-query','--admindir='+str(root/'var/lib/dpkg'),'-W',
@@ -96,6 +120,11 @@ def main():
         for line in inventory.splitlines():
             name,version,arch,size,status=line.split('\t')
             if status=='installed': packages[name.split(':')[0]]=(version,arch,int(size or 0))
+        for name in ['libgl1','libglx0','libglx-mesa0','libegl1','libegl-mesa0','libgles2','libgbm1','libgl1-mesa-dri']:
+            check('graphics_runtime_'+name,name in packages)
+        for name in ['libGL.so.1','libGLX.so.0','libEGL.so.1','libGLESv2.so.2']:
+            p=root/'usr/lib/aarch64-linux-gnu'/name
+            check('graphics_loader_'+name,p.is_symlink() and (p.parent/p.readlink()).is_file())
         record['runtime_package_count']=len(packages)
         record['runtime_package_installed_size_bytes']=sum(p[2]*1024 for p in packages.values())
         record['component_installed_size_bytes']={}

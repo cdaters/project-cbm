@@ -1,0 +1,12 @@
+#!/bin/bash
+# Entered only from tty1 login/PAM, after first-boot unit completion.
+set -u
+(( EUID == 1000 )) || exit 1
+[[ $(tty) == /dev/tty1 ]] || exit 1
+export HISTFILE=/dev/null
+cd /home/pi/pcbm || exit 1
+while true; do
+  /usr/bin/pcbm-menu
+  stty sane 2>/dev/null || true
+  sleep 1
+done
