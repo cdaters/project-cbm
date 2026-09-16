@@ -1,7 +1,12 @@
 # Security, defects and provenance follow-up
 
-These are audit findings, not fixes. Preservation and architecture reconciliation
-changed no runtime behavior. Read [current v1.0 corrections](v1.0-current-notes.md)
+Current source: [configuration privilege contract](runtime/configuration-contract.md)
+implements fixed validated operations, separate authenticated owner administration
+and explicit first-boot/service gates. It is not installed in POC3. No broad sudo rule
+or listener has been enabled. USB import's constrained broker remains pending.
+
+The table below retains historical audit findings. Preservation and architecture
+reconciliation changed no runtime behavior. Read [current v1.0 corrections](v1.0-current-notes.md)
 and the accepted [ADR-0001](adr/0001-base-distribution-and-image-architecture.md).
 Historical images are PRIVATE-HISTORICAL even when previously published; publication
 does not establish clean identity or redistribution rights. Preserve originals,

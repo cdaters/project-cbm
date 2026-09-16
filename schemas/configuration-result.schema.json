@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "format",
+    "schema_version",
+    "status",
+    "message"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "project-cbm.config-result"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "saved_restart",
+        "credentials_required",
+        "ok",
+        "invalid",
+        "pending",
+        "unavailable",
+        "failed",
+        "busy",
+        "saved_pending"
+      ]
+    },
+    "message": {
+      "enum": [
+        "Keyboard layout saved. It applies after reboot; current console input is unchanged.",
+        "Set a separate File Sharing password before enabling Samba.",
+        "Setting applied.",
+        "The value is not supported. Check the setting and try again.",
+        "Pending runtime activation. First-boot account and service setup must complete in a future candidate.",
+        "The required system facility is unavailable. Review System Information or Advanced guidance.",
+        "The operation could not be confirmed. Review current state before retrying; part of it may have applied.",
+        "Another configuration operation is running. Try again when it finishes.",
+        "Settings saved; runtime integration is pending. The service was not enabled."
+      ]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-16",
+  "platform": "Darwin",
+  "architecture": "arm64",
+  "python": "3.14.5",
+  "physical_qualification": false,
+  "limits": "Mac source/fake dialog/fake Linux. Not Pi latency, real UI rendering, service execution or package footprint.",
+  "request_decode_validate": {
+    "samples": 100,
+    "median_ms": 0.002,
+    "max_ms": 0.061
+  },
+  "fixed_adapter_fake_linux": {
+    "samples": 100,
+    "median_ms": 0.001,
+    "max_ms": 0.005
+  },
+  "validation_cli_startup": {
+    "samples": 30,
+    "median_ms": 35.15,
+    "max_ms": 37.555
+  },
+  "configuration_open_back_fake_dialog": {
+    "samples": 20,
+    "median_ms": 13.166,
+    "max_ms": 360.491
+  },
+  "configuration_region_back_fake_dialog": {
+    "samples": 20,
+    "median_ms": 28.692,
+    "max_ms": 31.749
+  },
+  "configuration_about_fake_dialog": {
+    "samples": 20,
+    "median_ms": 58.537,
+    "max_ms": 172.745
+  },
+  "configuration_apply_fixture_hostname": {
+    "samples": 20,
+    "median_ms": 90.12,
+    "max_ms": 229.498
+  },
+  "validation_cli_peak_rss_bytes": 21020672
+}

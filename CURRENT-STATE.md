@@ -1,5 +1,50 @@
 # Project CBM current state
 
+## Configuration maturation complete — 2026-09-16 / STOP
+
+The final concentrated Menu/configuration architecture pass is source-complete.
+[User guide](docs/runtime/pcbm-config.md), [implementation and activation contract](docs/runtime/configuration-contract.md),
+[checkpoint/results](docs/runtime/configuration-maturation.md).
+
+CONTROL opens the coherent Bash/dialog pcbm-config. Nine shallow task areas separate
+normal settings, System Information, About and Advanced. pcbm-info JSON remains the
+information authority. Registry/default preferences and POC3 launcher/geometry are
+preserved. Terminal is a returning child shell; dead QUIT and competing legacy startup,
+status/version, generic USB mount and broad service paths are retired. Audio settings
+are parsed as data and saved atomically, not sourced as shell.
+
+Product now implements schemas, unprivileged JSON client, fixed validated root adapters
+and separate authenticated owner/raspi-config dispatch. Normal UI never asks for broad
+sudo; owner administration uses a separate initialized account and ordinary authenticated
+sudo. No root helper/policy/sudoers/account or service was installed in this source pass.
+
+**Pending runtime activation:** matching versioned packages, first-boot owner credentials,
+trusted helper/policy setup, NetworkManager and each service's explicit readiness.
+Boot intent still needs its session consumer; typed TCPser settings need a fixed launch
+adapter; safe USB import needs the constrained broker defined in the contract. These
+are pending implementation/integration gates, not claims of working runtime features.
+Services remain off/masked in POC3. No new image/package, VM start, Pi test or publication.
+
+108 product tests, 43 Menu tests plus the launcher checker pass. Schema/syntax/link/
+privacy/size/tag checks and sudoers syntax pass. Mac fixture timings are retained;
+real dialog, Linux installation/account/service behavior and Pi performance are untested.
+POC1–3 artifacts and historical evidence remain unchanged; all existing tags are intact.
+
+Branches: product feature/1.1-build-foundation; Menu feature/1.1-debian-package.
+Menu source commit: `87a16af19e7329b7cf8dbc16ee9420613f35245f`.
+Recovery: configured bulk workspace archive/configuration-maturation-2026-09-16,
+with exact source commits/ref inventories, both bundles and verified offline restoration.
+Preservation report: qualification/configuration-maturation-2026-09-16/preservation.json.
+Prior checkpoints remain immutable; independent backup/custody is still unresolved.
+
+**Next owner action:** approve first-boot/owner-account and runtime activation integration
+in a disposable Linux staging target. Complete exact package/dependency/authentication/
+network/service gates and the required storage/modem/boot consumers before a later
+explicitly approved candidate. No more Menu framework/architecture study is recommended.
+Do not automatically build POC4, change POC1–3, enable services, optimize boot, include
+optional software, test another Pi or push. Earlier sections below are historical
+completed checkpoints and do not replace this current state.
+
 ## System Information and machine consumers complete — 2026-09-16 / STOP
 
 Menu source commit: `4feda57c2ff1f5d0807a6873c0b88b5d84435bd8` on

@@ -1,0 +1,7 @@
+#!/usr/bin/python3 -I
+# Installed root-owned entry point; no environment-selected modules or arguments.
+import sys
+sys.dont_write_bytecode = True
+sys.path.insert(0, '/usr/share/project-cbm/runtime')
+from project_cbm.config_backend import main
+raise SystemExit(main())

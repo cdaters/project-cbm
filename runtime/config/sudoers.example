@@ -1,0 +1,6 @@
+# RECIPE ONLY. Do not install until first-boot/activation gates and visudo checks pass.
+# No command-line arguments are accepted; fixed requests arrive on stdin.
+Defaults!/usr/libexec/pcbm-config-root env_reset, !setenv, !log_input, !log_output
+%pcbm-operators ALL=(root) NOPASSWD: /usr/libexec/pcbm-config-root ""
+# Authenticated owners belong to Debian's sudo group; never pcbm-operators alone.
+# Retain Debian's ordinary authenticated %sudo policy, with no universal password.

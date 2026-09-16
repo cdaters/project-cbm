@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "owner_user": "owner_example",
+  "appliance_user": "pi",
+  "system_ready": false,
+  "network_ready": false,
+  "ready_services": []
+}

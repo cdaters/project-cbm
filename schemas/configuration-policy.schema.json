@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "owner_user",
+    "appliance_user",
+    "system_ready",
+    "network_ready",
+    "ready_services"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "owner_user": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,30}$"
+    },
+    "appliance_user": {
+      "const": "pi"
+    },
+    "system_ready": {
+      "type": "boolean"
+    },
+    "network_ready": {
+      "type": "boolean"
+    },
+    "ready_services": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "ssh",
+          "sharing",
+          "modem",
+          "discovery"
+        ]
+      }
+    }
+  }
+}

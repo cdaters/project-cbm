@@ -255,3 +255,20 @@ Boot preferences remain inactive; retire/migrate dormant pcbm-start before activ
 that path. Preserve POC1–3, tags and earlier checkpoints. No POC4, image/package build,
 broad CONTROL/settings changes, services/SSH, new hardware test or push in this slice.
 STOP for owner review after tests and verified source recovery checkpoint.
+
+
+## Configuration maturation (latest completed boundary / STOP)
+
+The owner-approved final concentrated configuration pass is source-complete. Read
+CURRENT-STATE and the product docs/runtime/configuration-contract.md. Retain the
+pcbm-menu / pcbm-config / read-only pcbm-info / narrow backend boundaries. Ordinary
+preferences remain user-owned; root operations are fixed, validated and readiness-gated.
+Authenticated owner administration remains available after first-boot account setup;
+never replace it with universal credentials or unrestricted passwordless root.
+
+Do not mistake source adapters or saved boot/modem intent for activated runtime behavior.
+Matching packages, account/service integration and constrained storage/modem/boot consumers
+are product gates. Preserve POC1–3, tags and earlier checkpoints. No POC4, package/image
+build, service activation, new hardware test, boot optimization, optional software or
+push is authorized by this completed pass. Next owner review is first-boot/owner-account
+and runtime activation integration, not another Menu framework/architecture study.

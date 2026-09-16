@@ -54,7 +54,7 @@ with tempfile.TemporaryDirectory() as tmp:
             if result.returncode: raise RuntimeError('fixture_screen_failed')
         report['system_information_entry_fake_dialog']=measure(lambda:screen('pcbm-system-info',['MESSAGE']),20)
         report['machines_entry_fake_dialog']=measure(lambda:screen('pcbm-machines',['RETURN']),20)
-        report['main_entry_fake_dialog']=measure(lambda:screen('pcbm-menu',['QUIT']),20)
+        report['main_entry_fake_dialog']=measure(lambda:screen('pcbm-menu',['TEST_EXIT']),20)
     finally:
         case.doCleanups()
     print(json.dumps(report,indent=2))

@@ -1,9 +1,9 @@
 # Validation and qualification
 
-Latest source checkpoint: [runtime foundation](runtime/foundation-slice.md).
+Latest source checkpoint: [configuration maturation](runtime/configuration-maturation.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
-storage at `archive/runtime-foundation-2026-09-16`. The earlier POC3/audit checkpoints
-below remain unchanged. Source implementation is not a new installed/qualified image.
+storage at `archive/configuration-maturation-2026-09-16`. The earlier checkpoints
+remain unchanged. Source implementation is not a new installed/qualified image.
 
 
 Current physical checkpoint: [POC3 owner attestation](qualification/poc3-pi3b-owner-report-2026-09-16.json)
@@ -170,3 +170,36 @@ Record true-aspect resources, PAL/NTSC/model/border, renderer, physical connecto
 mode and observed margins/cropping. Use external photos with locators/hashes when
 available; do not claim physical proof from source defaults or a screenshot alone.
 Preserve the frozen candidate; proposed defaults require a new input lock/image.
+
+
+## Configuration source validation (2026-09-16)
+
+Use the product's pinned developer requirements in an external/disposable environment.
+Run from each repository respectively (Python 3.11+; jsonschema for developer tests):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+```
+
+Product tests exercise exact allowlists, invalid input, readiness, secret exclusion,
+private/atomic writes and fake Linux adapters. Menu tests invoke actual controllers with
+fake dialog/commands, checking cancellation, errors, typed requests, return paths and
+existing machine/launcher behavior. No host system changes occur. Run the Menu suite
+with the sibling product checkout present. The standalone launcher checker is also
+included in discovery. Do not count it as a new hardware test.
+
+Reproduce source timings from product:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 tests/benchmark_configuration.py
+PYTHONDONTWRITEBYTECODE=1 python3 tests/benchmark_information_machines.py
+```
+
+The optional macOS process-memory measurement requires permitted resource accounting.
+The [results](runtime/configuration-validation.json) distinguish static/fixture success
+from unperformed native Linux installation, real dialog, service/account/network and
+physical Pi tests. Before runtime activation, test the exact dependency paths/catalogs,
+root trust chain and sudoers policy in a disposable Linux target; first-boot interruptions,
+owner authentication, hostname resolution, network secrets/failures and each service's
+readiness/listeners require separate verification. POC3 qualification cannot cover new
+source settings merely because its Menu, VICE and geometry passed on Pi 3B.

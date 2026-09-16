@@ -17,7 +17,9 @@ Private POC3: Pi firmware → kernel/initramfs → systemd → tty1 getty/login/
 pi's profile → product console-session loop → Bash/dialog Menu → unprivileged VICE
 → Menu. This differs from the historical v1.0 pcbm-start/bootmode path. Do not treat
 both as simultaneous startup authorities. See the [audit](design/appliance-audit-2026-09-16.md)
-for proposed preference/UI/backend boundaries; they are not implemented changes.
+for the accepted design. Current source implements those boundaries in the
+[configuration contract](runtime/configuration-contract.md); they are not yet installed
+in POC3. Runtime activation remains a separate product gate.
 VICE 3.10 SDL2/ALSA launch, geometry, audio/input and return are physically demonstrated
 on the owner's Pi 3B/display only. Exact backend/mode and other profiles remain unqualified.
 

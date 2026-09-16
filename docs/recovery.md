@@ -1,9 +1,9 @@
 # Black-box project recovery and installed identity
 
-Latest source checkpoint: [information and machine consumers](runtime/information-machines-slice.md).
+Latest source checkpoint: [configuration maturation](runtime/configuration-maturation.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
-storage at `archive/information-machines-2026-09-16`. The earlier POC3/audit checkpoints
-below remain unchanged. Source implementation is not a new installed/qualified image.
+storage at `archive/configuration-maturation-2026-09-16`. The earlier checkpoints
+remain unchanged. Source implementation is not a new installed/qualified image.
 
 
 Current status: [CURRENT-STATE](../CURRENT-STATE.md), [POC3 build](build/private-poc3.md)
