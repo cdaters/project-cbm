@@ -20,7 +20,7 @@ or hidden telemetry. Live values naturally change between calls.
 | `schema_version` | Integer 1; incompatible shape/semantics require a new version |
 | `built_as` | Allowlisted projection of installed identity, or null |
 | `running_on` | Hardware/OS/kernel/memory/storage/display observations |
-| `current_state` | Current packages/services/links, legacy configuration and separately labeled new preferences |
+| `current_state` | Current packages/services/links, resolved default selection, legacy boot configuration and user preferences |
 | `issues` | Collector name and stable reason code, never raw exception or command stderr |
 
 `null` means unavailable/not established for this collector. `issues` distinguishes
@@ -60,7 +60,7 @@ public provider requires separate review. Do not guess from the first advertised
 | Display | Bounded DRM connector observations; optional existing engineering helper for active mode; no EDID/serial extraction |
 | Service state | One fixed systemctl show request for SSH, Samba, TCPser, Avahi, NetworkManager and first boot |
 | Network | Bounded sysfs operstate for non-loopback interfaces; no scan, addresses or secrets |
-| Settings | Strict literal legacy default/boot files plus separate user preference reader |
+| Settings | Shared default-selection authority (user, validated legacy fallback, registry default); literal legacy boot file and user preference reader |
 
 Two base command attempts, plus an optional engineering DRM query, have a one-second
 timeout each, absolute executable paths,
@@ -102,7 +102,8 @@ formatting. No eval, shell sourcing or `jq`/grep of pretty output. Missing field
 state should display Unknown with optional detail, not abort the configuration UI.
 A cached view is session-only and must offer Refresh; no permanent competing identity.
 
-This slice does not implement pcbm-config or wire new detection into every existing
+The first [System Information consumer](information-machines-contract.md) is implemented.
+This does not implement broad pcbm-config or wire new detection into every existing
 About screen. Future consumers need an interface-version compatibility test. Additive
 fields require schema/tests/documentation changes and explicit consumer handling;
 strict current consumers must not silently accept an incompatible future version.

@@ -1,0 +1,29 @@
+PROJECT CBM
+SYNTHETIC EXAMPLE - not a release
+Version: 1.1.0~poc1
+Candidate: fixture-only
+Build: 8210dce5fe8d30ef153bb99deed77654600c2b4a7ed803696fe084355a12ff89
+Menu: 1.0.0 built; package 1.0.0-1+pcbm1
+VICE: 3.10 built; package 3.10-1+pcbm3
+TCPser: 1.1.6_beta built; package 1.1.6~beta-1+pcbm1
+
+HARDWARE
+Model: Raspberry Pi 3 Model B Rev 1.2
+Architecture: aarch64
+Memory (usable): 0.90 GiB
+Display: card1-HDMI-A-1: mode unavailable
+
+SYSTEM
+OS: Debian GNU/Linux 13 (trixie)
+Debian: 13.0
+Kernel: 6.12-fixture
+Storage: 16.00 GiB total; 12.00 GiB available
+Hostname: cbm-fixture
+Network: Network management disabled
+
+CONFIGURATION
+Default machine: Commodore 64
+Boot mode: Menu configured; active mode unavailable
+Some information is unavailable. Other details remain usable.
+
+Up/Down or PgUp/PgDn scroll. Enter or Escape returns.

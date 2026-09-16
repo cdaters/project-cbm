@@ -5,63 +5,68 @@
       "id": "x64",
       "name": "Commodore 64 (fast)",
       "executable": "x64",
-      "description": "Commodore 64 (fast) emulator profile",
+      "description": "Fast C64 emulation",
       "video_chips": [
         "VICII"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "c64"
     },
     {
       "id": "x64sc",
       "name": "Commodore 64",
       "executable": "x64sc",
-      "description": "Commodore 64 emulator profile",
+      "description": "Cycle-accurate C64; recommended for games and demos",
       "video_chips": [
         "VICII"
       ],
       "recommended": true,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "c64"
     },
     {
       "id": "xscpu64",
       "name": "SuperCPU 64",
       "executable": "xscpu64",
-      "description": "SuperCPU 64 emulator profile",
+      "description": "C64 with CMD SuperCPU",
       "video_chips": [
         "VICII"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "c64"
     },
     {
       "id": "x64dtv",
       "name": "Commodore 64 DTV",
       "executable": "x64dtv",
-      "description": "Commodore 64 DTV emulator profile",
+      "description": "C64 Direct-to-TV hardware",
       "video_chips": [
         "VICII"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "c64"
     },
     {
       "id": "x128",
       "name": "Commodore 128 (40 column)",
       "executable": "x128",
-      "description": "Commodore 128 (40 column) emulator profile",
+      "description": "40-column VIC-II display",
       "video_chips": [
         "VICII",
         "VDC"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "c128"
     },
     {
       "id": "x128-80col",
       "name": "Commodore 128 (80 column)",
       "executable": "x128",
-      "description": "Commodore 128 (80 column) emulator profile",
+      "description": "80-column VDC display",
       "video_chips": [
         "VICII",
         "VDC"
@@ -69,62 +74,68 @@
       "recommended": false,
       "launch_options": [
         "-80col"
-      ]
+      ],
+      "cover_asset": "c128"
     },
     {
       "id": "xcbm2",
       "name": "Commodore CBM-II",
       "executable": "xcbm2",
-      "description": "Commodore CBM-II emulator profile",
+      "description": "CBM-II business computer",
       "video_chips": [
         "CRTC"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "cbm2"
     },
     {
       "id": "xcbm5x0",
       "name": "Commodore CBM-II 5x0",
       "executable": "xcbm5x0",
-      "description": "Commodore CBM-II 5x0 emulator profile",
+      "description": "CBM-II 5x0 with VIC-II video",
       "video_chips": [
         "VICII"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "cbm5"
     },
     {
       "id": "xvic",
       "name": "Commodore VIC-20",
       "executable": "xvic",
-      "description": "Commodore VIC-20 emulator profile",
+      "description": "VIC-20 home computer",
       "video_chips": [
         "VIC"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "vic20"
     },
     {
       "id": "xplus4",
       "name": "Commodore Plus/4",
       "executable": "xplus4",
-      "description": "Commodore Plus/4 emulator profile",
+      "description": "Plus/4 family with TED video",
       "video_chips": [
         "TED"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "plus4"
     },
     {
       "id": "xpet",
       "name": "Commodore PET",
       "executable": "xpet",
-      "description": "Commodore PET emulator profile",
+      "description": "PET business computer",
       "video_chips": [
         "CRTC"
       ],
       "recommended": false,
-      "launch_options": []
+      "launch_options": [],
+      "cover_asset": "pet"
     }
   ]
 }

@@ -1,0 +1,71 @@
+{
+  "platform": "Darwin",
+  "architecture": "arm64",
+  "python": "3.14.5",
+  "hardware_qualification": false,
+  "fixture_info_collect": {
+    "samples": 100,
+    "median_ms": 0.237,
+    "max_ms": 0.276
+  },
+  "view_parse_and_prepare_80_columns": {
+    "samples": 100,
+    "median_ms": 0.067,
+    "max_ms": 0.11
+  },
+  "registry_load_and_validate": {
+    "samples": 100,
+    "median_ms": 0.076,
+    "max_ms": 0.094
+  },
+  "preference_read": {
+    "samples": 100,
+    "median_ms": 0.028,
+    "max_ms": 0.037
+  },
+  "preference_atomic_write": {
+    "samples": 30,
+    "median_ms": 0.216,
+    "max_ms": 1.657
+  },
+  "default_selection": {
+    "samples": 100,
+    "median_ms": 0.028,
+    "max_ms": 0.045
+  },
+  "info_cli_missing_linux_interfaces": {
+    "samples": 20,
+    "median_ms": 42.256,
+    "max_ms": 43.331
+  },
+  "main_default_query_cli": {
+    "samples": 20,
+    "median_ms": 34.808,
+    "max_ms": 36.184
+  },
+  "machines_model_cli": {
+    "samples": 20,
+    "median_ms": 34.719,
+    "max_ms": 35.269
+  },
+  "bash_shared_helper_start": {
+    "samples": 20,
+    "median_ms": 2.26,
+    "max_ms": 3.246
+  },
+  "system_information_entry_fake_dialog": {
+    "samples": 20,
+    "median_ms": 57.23,
+    "max_ms": 340.729
+  },
+  "machines_entry_fake_dialog": {
+    "samples": 20,
+    "median_ms": 93.593,
+    "max_ms": 174.005
+  },
+  "main_entry_fake_dialog": {
+    "samples": 20,
+    "median_ms": 90.805,
+    "max_ms": 94.144
+  }
+}

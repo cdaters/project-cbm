@@ -1,5 +1,34 @@
 # Project CBM current state
 
+## System Information and machine consumers complete — 2026-09-16 / STOP
+
+Menu source commit: `4feda57c2ff1f5d0807a6873c0b88b5d84435bd8` on
+`feature/1.1-debian-package`; product stays on `feature/1.1-build-foundation`.
+
+Read the [source checkpoint](docs/runtime/information-machines-slice.md),
+[user workflow](docs/runtime/information-and-machines.md) and
+[consumer contract](docs/runtime/information-machines-contract.md).
+
+CONTROL now has a read-only System Information view consuming pcbm-info JSON. MACHINES,
+RUN, cover selection and the shared content default use the product registry/preferences.
+Missing user state imports a validated legacy default once; valid new state wins.
+Malformed state is preserved with explicit backed-up recovery. No sudo to choose a
+default. Boot preference remains inactive; dormant pcbm-start migration is deferred.
+
+86 product tests and 26 Menu tests plus the launcher checker pass. Syntax/schema/link/
+privacy/size/ref checks pass; source/fixture Mac timings are recorded, not Pi budgets.
+No real dialog/Linux installation or new physical qualification. POC1–3 and all existing
+tags remain unchanged. No VM start, package/image build, POC4, service change or push.
+
+Recovery: configured bulk workspace `archive/information-machines-2026-09-16`, with
+exact commits/ref inventories, both bundles and verified offline restoration. Earlier
+checkpoints remain intact; independent backup/custody is still unresolved.
+
+**Next owner action:** review this slice, then authorize the bounded About/current-status
+cleanup described in the checkpoint. Broader CONTROL/settings work and any future
+package/image/hardware work require their own scope. The preceding foundation and POC
+sections below are historical completed checkpoints, not the present consumer state.
+
 ## First runtime foundation slice complete — 2026-09-16 / STOP
 
 Owner-approved boundaries now have their first bounded source implementation:

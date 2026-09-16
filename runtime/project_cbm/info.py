@@ -251,11 +251,15 @@ def collect(source=None, preference_path=None, profiles=None):
         if value not in allowed:
             raise ValueError('invalid_legacy_setting')
         return value
-    machine = attempt('default_machine', lambda: legacy('/etc/pcbm/default-machine.conf', {p['id'] for p in profiles}))
-    current['default_machine'] = {'id': machine, 'name': next((p['name'] for p in profiles if p['id'] == machine), None), 'source': 'legacy_configuration' if machine else None}
+    current['preferences'] = preferences.read(preference_path, profiles) if profiles else None
+    legacy_raw = ''
+    if current['preferences'] is not None and current['preferences']['status'] != 'ok':
+        legacy_raw = attempt('legacy_default', lambda: source.read('/etc/pcbm/default-machine.conf'), '')
+    selected = attempt('default_machine', lambda: preferences.selection(preference_path, profiles,
+        legacy_raw=legacy_raw, snapshot=current['preferences'])) if profiles else None
+    current['default_machine'] = {key: selected[key] if selected else None for key in ('id', 'name', 'source')}
     current['boot_mode'] = {'configured': attempt('boot_mode', lambda: legacy('/etc/pcbm/boot-mode.conf', {'menu', 'machine', 'MENU', 'MACHINE', 'Menu', 'Machine'})), 'effective': None}
     issues.append({'collector': 'effective_boot_mode', 'code': 'not_exposed_by_collector'})
-    current['preferences'] = preferences.read(preference_path, profiles) if profiles else None
     if current['preferences'] is not None and current['preferences']['status'] == 'invalid':
         issues.append({'collector': 'preferences', 'code': 'unavailable_or_invalid'})
     return {'format': 'project-cbm.info', 'schema_version': 1, 'built_as': built, 'running_on': running, 'current_state': current, 'issues': issues}
@@ -297,7 +301,7 @@ def human(data):
                 return 'unavailable (masked)'
             return {'active': 'running', 'inactive': 'stopped', 'failed': 'failed'}.get(value['ActiveState'], 'unknown')
         lines.append('Services           ' + ', '.join(labels[key] + ': ' + state(v) for key, v in c['services'].items()))
-    lines.append('User preferences   ' + (c['preferences'] or {}).get('source', 'unavailable') + ' (foundation only; not applied to Menu/boot)')
+    lines.append('User preferences   ' + (c['preferences'] or {}).get('source', 'unavailable') + ' (default machine applied; boot preference not applied)')
     if data['issues']:
         lines.append('Some information is unavailable; --json includes collection status.')
     return '\n'.join(lines) + '\n'

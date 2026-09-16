@@ -1,4 +1,4 @@
-"""User-only preference storage. No migration, launcher or system configuration writes."""
+"""User-only preference storage. Validated legacy import; no system configuration writes."""
 import argparse
 from contextlib import contextmanager
 import fcntl
@@ -81,7 +81,7 @@ def read(path=None, profiles=None):
         return {'status': 'invalid', 'source': 'defaults', 'values': defaults(profiles)}
 
 
-def update(changes, path=None, profiles=None, recover=False):
+def update(changes, path=None, profiles=None, recover=False, initialize=None):
     profiles = registry() if profiles is None else profiles
     if not isinstance(changes, dict) or not set(changes) <= {'default_machine', 'boot_preference'}:
         raise ValueError('preference_fields')
@@ -94,8 +94,12 @@ def update(changes, path=None, profiles=None, recover=False):
             malformed = False
             try:
                 current = validate(_load_at(directory), profiles)
+                if initialize is not None:
+                    return current  # Recheck under lock: concurrent user choice wins.
             except FileNotFoundError:
                 current = defaults(profiles)
+                if initialize is not None:
+                    current['default_machine'] = initialize
             except (ValueError, TypeError):
                 if not recover:
                     raise ValueError('repair_required') from None
@@ -140,18 +144,58 @@ def update(changes, path=None, profiles=None, recover=False):
             os.close(lock)
 
 
+LEGACY_MACHINE = Path('/etc/pcbm/default-machine.conf')
+
+
+def legacy_machine(profiles, raw=None):
+    """One bounded literal ID, never shell configuration or an executable path."""
+    try:
+        if raw is None:
+            with LEGACY_MACHINE.open('r') as stream:
+                raw = stream.read(257)
+        value = raw.strip()
+        return value if len(raw) <= 256 and value in {p['id'] for p in profiles} else None
+    except (OSError, UnicodeError, AttributeError):
+        return None
+
+
+def selection(path=None, profiles=None, legacy_raw=None, *, snapshot=None):
+    """Read-only effective RUN selection, including conservative compatibility fallback."""
+    profiles = registry() if profiles is None else profiles
+    state = read(path, profiles) if snapshot is None else snapshot
+    machine = state['values']['default_machine']
+    origin = state['source']
+    if state['status'] != 'ok':
+        legacy = legacy_machine(profiles, legacy_raw)
+        if legacy:
+            machine, origin = legacy, 'legacy_configuration'
+    profile = next(p for p in profiles if p['id'] == machine)
+    return {'id': machine, 'name': profile['name'], 'source': origin, 'preference_status': state['status']}
+
+
+def initialize(path=None, profiles=None, legacy_raw=None):
+    """Only missing preferences are initialized. Invalid/unsafe data stays untouched."""
+    profiles = registry() if profiles is None else profiles
+    state = selection(path, profiles, legacy_raw)
+    if state['preference_status'] == 'default':
+        update({}, path, profiles, initialize=state['id'])
+    return selection(path, profiles, legacy_raw)
+
+
 def main(argv=None):
-    parser = argparse.ArgumentParser(description='Project CBM user preferences (not yet wired to Menu/boot)')
+    parser = argparse.ArgumentParser(description='Project CBM user preferences (boot preference is not yet applied)')
     sub = parser.add_subparsers(dest='action', required=True)
     sub.add_parser('show')
-    setting = sub.add_parser('set'); setting.add_argument('key', choices=['default_machine', 'boot_preference']); setting.add_argument('value')
+    setting = sub.add_parser('set'); setting.add_argument('key', choices=['default_machine', 'boot_preference']); setting.add_argument('value'); setting.add_argument('--recover', action='store_true'); setting.add_argument('--confirm', action='store_true')
     repair = sub.add_parser('recover'); repair.add_argument('--confirm', action='store_true', required=True)
     args = parser.parse_args(argv)
     try:
         if args.action == 'show':
             result = read()
         else:
-            result = update({args.key: args.value} if args.action == 'set' else {}, recover=args.action == 'recover')
+            if args.action == 'set' and args.recover != args.confirm:
+                raise ValueError('recovery_confirmation_required')
+            result = update({args.key: args.value} if args.action == 'set' else {}, recover=args.action == 'recover' or args.recover)
         print(json.dumps(result, sort_keys=True, indent=2))
         return 0
     except (ValueError, OSError, TypeError):

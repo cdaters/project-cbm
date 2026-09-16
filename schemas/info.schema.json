@@ -463,6 +463,8 @@
             "source": {
               "enum": [
                 "legacy_configuration",
+                "user",
+                "defaults",
                 null
               ]
             }

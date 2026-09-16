@@ -199,11 +199,12 @@ class Information(unittest.TestCase):
             self.assertEqual(kwargs['env']['LC_ALL'],'C');self.assertNotIn('HOME',kwargs['env'])
             self.assertFalse(kwargs.get('shell',False));self.assertEqual(kwargs['timeout'],1)
 
-    def test_preferences_are_not_current_launcher_state(self):
+    def test_preferences_are_default_launcher_state_but_not_boot(self):
         preferences.update({'default_machine':'xvic'},self.prefs)
         d=self.collect()['current_state']
         self.assertEqual(d['preferences']['values']['default_machine'],'xvic')
-        self.assertEqual(d['default_machine']['id'],'x64sc')
+        self.assertEqual(d['default_machine']['id'],'xvic')
+        self.assertEqual(d['default_machine']['source'],'user')
         self.assertIsNone(d['boot_mode']['effective'])
 
     def test_human_output_and_read_only_collection(self):

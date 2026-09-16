@@ -1,8 +1,8 @@
 # Black-box project recovery and installed identity
 
-Latest source checkpoint: [runtime foundation](runtime/foundation-slice.md).
+Latest source checkpoint: [information and machine consumers](runtime/information-machines-slice.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
-storage at `archive/runtime-foundation-2026-09-16`. The earlier POC3/audit checkpoints
+storage at `archive/information-machines-2026-09-16`. The earlier POC3/audit checkpoints
 below remain unchanged. Source implementation is not a new installed/qualified image.
 
 
@@ -104,7 +104,7 @@ sets the foundation and lean runtime/storage policy.
 | C: development Mac lost | Obtain an independent recovery kit, remap logical roots, restore source and verified inputs, install recorded tools | Paths are now explicitly non-normative; independent backup copy not established. TheBench survives only if it is separately available. |
 | D: Linux builder lost | Bootstrap a clean compatible Linux environment from retained host/tool inputs and recipe; no hidden installed packages or shell state | Required for 1.1; no builder/environment exists yet. |
 | E: only image survives | Read minimal installed identity without boot or network; resolve full provenance/recovery externally when available | Minimal identity required from 1.1; 1.0 needs forensic inspection. Full recipes, qualification and input closure remain external and cannot be recreated from a digest. |
-| F: running system | pcbm-info displays the immutable base-image identity and separately labels live drift, if checked | Interface defined below; not implemented. Base-image identity does not certify an updated machine's current packages. |
+| F: running system | pcbm-info displays the immutable base-image identity and separately labels live drift, if checked | Read-only CLI and first System Information consumer implemented in source; not installed into frozen POCs. Base-image identity does not certify an updated machine's current packages. |
 | G: upstream inputs vanish | Resolve every lock entry from verified retained source/package/tool closure, not a moving URL or cache | Required before 1.1 release. 1.0 closure is incomplete. |
 | H: TheBench lost/corrupt | Restore an independently held recovery checkpoint; verify catalog, artifacts and refs before use | Open disaster-recovery gap; Mac + associated disk alone do not satisfy it. |
 

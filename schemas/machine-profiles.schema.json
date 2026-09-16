@@ -23,7 +23,19 @@
           },
           "executable": {
             "type": "string",
-            "pattern": "^x[a-z0-9]+$"
+            "pattern": "^x[a-z0-9]+$",
+            "enum": [
+              "x64",
+              "x64sc",
+              "xscpu64",
+              "x64dtv",
+              "x128",
+              "xcbm2",
+              "xcbm5x0",
+              "xvic",
+              "xplus4",
+              "xpet"
+            ]
           },
           "description": {
             "type": "string",
@@ -55,6 +67,10 @@
                 "-80col"
               ]
             ]
+          },
+          "cover_asset": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+$"
           }
         },
         "required": [
@@ -64,7 +80,8 @@
           "description",
           "video_chips",
           "recommended",
-          "launch_options"
+          "launch_options",
+          "cover_asset"
         ],
         "additionalProperties": false
       }

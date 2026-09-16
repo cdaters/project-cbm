@@ -56,11 +56,15 @@ def registry(path=None):
         raise ValueError('registry_size')
     seen = set()
     for p in profiles:
-        if not isinstance(p, dict) or set(p) != {'id', 'name', 'executable', 'description', 'video_chips', 'recommended', 'launch_options'}:
+        if not isinstance(p, dict) or set(p) != {'id', 'name', 'executable', 'description', 'video_chips', 'recommended', 'launch_options', 'cover_asset'}:
             raise ValueError('registry_fields')
         token(p['id'], r'x[a-z0-9]+(?:-80col)?')
         token(p['executable'], r'x[a-z0-9]+')
+        # Security allowlist of VICE package entry points, not a second profile table.
+        if p['executable'] not in {'x64', 'x64sc', 'xscpu64', 'x64dtv', 'x128', 'xcbm2', 'xcbm5x0', 'xvic', 'xplus4', 'xpet'}:
+            raise ValueError('not_a_vice_entry_point')
         text(p['name']); text(p['description'])
+        token(p['cover_asset'], r'[a-z0-9]+')
         if p['id'] in seen or type(p['recommended']) is not bool:
             raise ValueError('registry_duplicate')
         expected = ['-80col'] if p['id'] == 'x128-80col' else []

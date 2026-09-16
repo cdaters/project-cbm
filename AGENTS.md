@@ -243,3 +243,15 @@ The new registry/preferences are not yet activated in existing Menu/boot consume
 never present desired preferences as effective state. pcbm-info JSON is the detection
 authority for future configuration UI; no pretty-output scraping or duplicate probes.
 STOP after the verified recovery checkpoint for owner review and the next bounded slice.
+
+## Information and machine consumers (latest completed boundary / STOP)
+
+The owner-authorized source slice is complete; read CURRENT-STATE and
+`docs/runtime/information-machines-slice.md`. System Information consumes pcbm-info JSON;
+MACHINES/RUN/shared content selection consume product registry/user preferences. Valid
+new preferences win, missing state may import legacy once, malformed state requires
+explicit recovery. Never restore sudo-based default writes or duplicate machine tables.
+Boot preferences remain inactive; retire/migrate dormant pcbm-start before activating
+that path. Preserve POC1–3, tags and earlier checkpoints. No POC4, image/package build,
+broad CONTROL/settings changes, services/SSH, new hardware test or push in this slice.
+STOP for owner review after tests and verified source recovery checkpoint.

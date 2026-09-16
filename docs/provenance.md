@@ -1,8 +1,8 @@
 # Historical provenance and preservation
 
-Latest source checkpoint: [runtime foundation](runtime/foundation-slice.md).
+Latest source checkpoint: [information and machine consumers](runtime/information-machines-slice.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
-storage at `archive/runtime-foundation-2026-09-16`. The earlier POC3/audit checkpoints
+storage at `archive/information-machines-2026-09-16`. The earlier POC3/audit checkpoints
 below remain unchanged. Source implementation is not a new installed/qualified image.
 
 

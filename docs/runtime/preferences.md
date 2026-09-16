@@ -1,9 +1,9 @@
 # User preferences and machine profiles
 
-Implemented foundation only, 2026-09-16. Existing POC Menu/launcher/boot paths still
-read their existing configuration. This slice does not migrate those consumers or
-change any frozen image. New preferences are explicit desired values, not evidence
-that an existing session applied them.
+Current source contract, 2026-09-16. The migrated Menu/MACHINES/RUN and shared content
+reader apply `default_machine`. Boot preference remains inactive. Frozen POC1–3 are
+unchanged. See [the user guide](information-and-machines.md) and
+[consumer/migration contract](information-machines-contract.md).
 
 ## Location, format and defaults
 
@@ -77,19 +77,21 @@ confirmation may mean replacement already happened: read state before retrying.
 Power-loss guarantees still depend on filesystem/storage behavior and need Linux/
 physical interruption tests. No such qualification is inferred from mocked failures.
 
-## Migration and future consumer work
+## Migration and consumer work
 
-Historical/current `/etc/pcbm/default-machine.conf` is a literal profile ID;
-`boot-mode.conf` uses `menu`/`machine` with historical case variants. They are read as
-data, never sourced. `pcbm-info` reports them separately from this new foundation;
-effective boot behavior is not inferred from a file that the POC session bypasses.
+Valid new preferences win. Otherwise a bounded recognized literal ID from
+`/etc/pcbm/default-machine.conf` supplies a compatibility fallback; otherwise the
+registry's recommended profile wins. Menu/MACHINES initialize only a missing user
+file, under the writer lock. The legacy file stays unchanged. The new file is the
+one-time initialization record; no separate migration flag is needed. Malformed new
+state is never silently imported over. Reads, including pcbm-info, remain read-only.
 
-A later authorized slice should switch each consumer to one shared preference reader,
-import validated legacy values once, map `machine` to `emulator`, retain a migration
-record/backup, and avoid overwriting an existing valid user file. The product session
-and Menu must agree on that transition before boot preference is advertised as active.
-No automatic import or privileged writeback is implemented here. VICE continues to
-own emulator resources/saved preferences; do not duplicate them in this file.
+Explicit UI recovery retains malformed bytes and saves the selected default in one
+locked update. The CLI equivalent is `pcbm-preferences set default_machine xvic
+--recover --confirm`. Unsafe/oversized files still require manual local recovery.
+Boot legacy `boot-mode.conf` and dormant `pcbm-start` await a separate coordinated
+migration; neither a saved boot preference nor the configured legacy file proves
+current session behavior. VICE owns emulator resource preferences; they are unchanged.
 
 ## Machine-profile registry
 
@@ -99,15 +101,16 @@ and semantic checks. It covers all 11 existing profile IDs: x64, x64sc, xscpu64,
 x64dtv, x128, x128-80col, xcbm2, xcbm5x0, xvic, xplus4, xpet.
 
 Fields are stable ID, name, description, executable basename, video chips,
-recommended flag and a tightly constrained launch-options list. Only x128-80col
+recommended flag, cover asset name and a tightly constrained launch-options list. Only x128-80col
 uses `-80col`; all other lists are empty. Exactly one profile is recommended; IDs are
 unique. No paths, shell fragments, downloadable plugins or user executable overrides.
 The registry describes launch metadata, not physical qualification or a claim that
 all machines/standards have identical geometry.
 
-`pcbm-info` and preferences consume this registry now. Existing Menu/launcher mappings
-remain frozen-compatible code until the next targeted migration; they do not read
-this file yet. Tests require exact current coverage and schema/default agreement.
-Content categories/format compatibility are intentionally deferred rather than encoded
-as unverified capabilities. Adding a profile requires source/package/resource review,
-registry/schema/tests and appropriate qualification; it is not a dynamic plugin feature.
+`pcbm-info`, preferences and `pcbm-profiles` consume this registry. The migrated Menu,
+MACHINES, default content reader, cover selection and launcher use its command
+interfaces. No machine-label/tag tables remain in the migrated shared helpers.
+The dormant legacy `pcbm-start` retains old definitions until boot activation/retirement.
+See the [consumer contract](information-machines-contract.md) for exact interfaces,
+remaining debt, extension rules and package installation gate. Content categories and
+format compatibility remain deferred rather than encoded as unverified capabilities.

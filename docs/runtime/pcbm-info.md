@@ -58,3 +58,9 @@ keeps them separate from the legacy configuration that existing consumers read.
 Effective boot mode remains unknown: a saved choice alone does not prove which boot
 path ran. See the [preference guide](preferences.md); do not edit a frozen candidate
 to try this foundation during physical qualification.
+
+## Menu access
+
+The new source Menu adds **CONTROL → INFO — System Information** using the same
+JSON authority. See [the concise workflow guide](information-and-machines.md). This
+is not installed in frozen POC1–3; no new image has been built.
