@@ -507,3 +507,12 @@ and measured reproducibility/qualification acceptance. Do not invent those choic
 as historical facts. The requirement and proposed metadata/interface design are
 documented now; no backup service, Linux environment, schema generator or release
 has been provisioned/implemented/published by this task.
+
+## Post-attempt-2 cover source checkpoint
+
+`archive/covers-source-2026-09-16` preserves the later cover implementation, exact
+repository refs and verified offline Git restoration. Native test evidence is under
+`qualification/covers-source-2026-09-16`. It references the immutable attempt #2
+checkpoint without changing or duplicating its images. Read
+[cover status](runtime/covers.md): source completion is not image integration or Pi
+qualification. Future frozen inputs require a new Menu version/tag/package and hashes.

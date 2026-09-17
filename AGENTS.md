@@ -320,3 +320,10 @@ Attempt #1 remains immutable failed evidence; attempt #2 is a distinct frozen in
 and offline-validated private image, not physically qualified or reproducibility-proven.
 Preserve both attempts, POC1–3, all tags and rights gates. Builder stopped. STOP for owner
 review; no physical test, next build, other Pi model, boot optimization, push or publication.
+
+## Post-attempt-2 cover follow-up
+
+Read CURRENT-STATE and docs/runtime/covers.md. Machine COVERS are source-implemented
+after the frozen attempt #2 image; do not claim that image contains them. Preserve
+all completed artifacts/locks/checkpoints. New Menu packaging/input freeze/build needs
+owner review; no automatic third attempt. Boot presentation remains deferred.

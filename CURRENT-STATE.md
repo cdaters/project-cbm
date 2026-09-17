@@ -1,5 +1,27 @@
 # Project CBM current state
 
+## Cover source follow-up — 2026-09-16 / STOP
+
+The owner subsequently requested preservation of existing Menu COVERS. The bounded
+[cover implementation](docs/runtime/covers.md) is source-complete, with exact unchanged
+artwork, registry-driven shared-launcher selection, unprivileged short SDL transition,
+and nonfatal bounded fallback. 60 Menu tests/launcher checker and native headless SDL
+lifecycle/timeout tests pass. Physical KMS/VT/VICE handoff remains UNTESTED.
+
+**The already-frozen POC4 attempt #2 below does not contain this later work.** Its image,
+lock/packages/checkpoint remain immutable. No additional image/package was built.
+Source checkpoint: `archive/covers-source-2026-09-16`; native evidence:
+`qualification/covers-source-2026-09-16`. Owner identified the existing /covers artwork
+as theirs; constituent third-party graphics/fonts have not independently been cleared
+for public distribution. See the exact Menu artwork manifest and evidence limits.
+
+**Next owner action:** review the successful attempt #2 plus this source-only follow-up.
+If covers are required for the next physical test, authorize new versioned Menu packaging
+and a distinct frozen POC4 build attempt; do not retag/reuse attempt #2. Bind the
+[cover test addendum](docs/qualification/covers-next-candidate.md) to the new hashes.
+No physical test, additional build, other Pi model, boot optimization or publication
+has occurred. Earlier completed checkpoints below remain historical records.
+
 ## POC4 attempt #2 complete — 2026-09-16 / STOP
 
 **Project CBM 1.1.0-poc.4 / private-engineering-poc4, build attempt 2, is built and

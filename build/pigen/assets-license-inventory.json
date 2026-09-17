@@ -2,11 +2,50 @@
   "schema_version": 1,
   "scope": "private-engineering-poc",
   "items": [
-    {"component": "Project CBM integration", "origin": "product Git source", "license": "MIT", "payload": "first-boot/console/service/configuration source"},
-    {"component": "Project CBM Menu", "origin": "v1.1.0_poc1 Git source", "license": "MIT", "payload": "16 reviewed scripts; no cover art or experimental screenshot helper"},
-    {"component": "VICE 3.10", "origin": "official upstream source archive", "license": "GPL-2+ code; upstream per-file ROM/data notices", "payload": "SDL2 executables and upstream runtime data", "public_distribution": "requires separate ROM/data rights review"},
-    {"component": "TCPser", "origin": "go4retro upstream fe7feff4862406b277e009d14c219f5d16cf1222", "license": "GPL-2 per upstream notices", "payload": "tcpser executable"},
-    {"component": "Raspberry Pi OS packages", "origin": "retained authenticated Debian/Raspberry Pi repository metadata", "license": "per-package /usr/share/doc copyright and retained source", "payload": "pinned Lite runtime/dependencies/firmware"}
+    {
+      "component": "Project CBM integration",
+      "origin": "product Git source",
+      "license": "MIT",
+      "payload": "first-boot/console/service/configuration source"
+    },
+    {
+      "component": "Project CBM Menu",
+      "origin": "exact tagged Menu source selected by future frozen release lock",
+      "license": "MIT",
+      "payload": "reviewed Menu source and explicitly listed machine covers; no experimental screenshot helper"
+    },
+    {
+      "component": "VICE 3.10",
+      "origin": "official upstream source archive",
+      "license": "GPL-2+ code; upstream per-file ROM/data notices",
+      "payload": "SDL2 executables and upstream runtime data",
+      "public_distribution": "requires separate ROM/data rights review"
+    },
+    {
+      "component": "TCPser",
+      "origin": "go4retro upstream fe7feff4862406b277e009d14c219f5d16cf1222",
+      "license": "GPL-2 per upstream notices",
+      "payload": "tcpser executable"
+    },
+    {
+      "component": "Raspberry Pi OS packages",
+      "origin": "retained authenticated Debian/Raspberry Pi repository metadata",
+      "license": "per-package /usr/share/doc copyright and retained source",
+      "payload": "pinned Lite runtime/dependencies/firmware"
+    },
+    {
+      "component": "Project CBM machine covers",
+      "origin": "existing project-cbm-menu/covers; exact files in Menu docs/cover-artwork.json",
+      "license": "owner-identified Project CBM artwork; constituent third-party rights not independently resolved",
+      "payload": "seven unchanged machine-specific JPEGs",
+      "scope": "future private candidate only; absent from immutable POC1\u20134 attempt 2",
+      "public_distribution": "requires constituent graphics/font rights review"
+    }
   ],
-  "excluded": ["historical private image extracts", "personal media", "commercial content collections", "unreviewed Menu cover art"]
+  "excluded": [
+    "historical private image extracts",
+    "personal media",
+    "commercial content collections",
+    "generic numbered covers and historical source-art archives"
+  ]
 }

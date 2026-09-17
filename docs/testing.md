@@ -223,3 +223,13 @@ See [contract/results](runtime/optional-applications-contract.md). The separate
 [physical procedure](qualification/optional-applications-procedure.md) is pending a
 new approved candidate; no reference SID, application or demo runtime pass is implied.
 Metadata catalog validation does not establish rights or media compatibility.
+
+## Post-attempt-2 cover source checks
+
+60 Menu tests plus launcher checker cover registry selection, exact asset hashes,
+default/explicit/content launches, missing/failed renderer fallback and SDL lifetime.
+Native Debian arm64 headless SDL decoded two real covers and released video between
+runs; GNU timeout stopped a simulated hung renderer. No physical KMS/VT evidence.
+See [cover design/results](runtime/covers.md) and the
+[future candidate test addendum](qualification/covers-next-candidate.md). These tests
+do not change or qualify the already-frozen POC4 attempt #2 image.
