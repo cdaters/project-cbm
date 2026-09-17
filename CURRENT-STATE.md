@@ -29,6 +29,8 @@ Source commits (not installed in the frozen candidate):
 - Menu `e3a82eee578691ae1f648c38e06859abfd627f46`: common human-readable choices,
   Back/retry/resume, working feedback, explicit hidden-password explanation.
 - Menu `020294c`: three consecutive Menu launch/return fixture cycles.
+- Menu follow-ups hide internal selection tags and return Advanced Back to its
+  selection screen; exact commits are in the recovery source inventory.
 
 These are defensive correctness/instrumentation changes, **not root-cause proof or a
 physical fix PASS**. Host validation: Product 155 tests, 154 PASS and the same pre-existing
