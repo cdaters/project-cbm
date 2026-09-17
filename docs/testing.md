@@ -1,5 +1,13 @@
 # Validation and qualification
 
+Current 2026-09-17 checkpoint: [POC4 physical-regression investigation](qualification/poc4-regression-investigation-2026-09-17.md).
+The exact attempt #3 owner report establishes missing Cover and post-VICE keyboard/VT
+FAIL, despite successful VICE/F10/Quit/visual return. No cause or corrected candidate
+is qualified. Source baseline: Menu 65/65 PASS; Product 142/143 PASS with one existing
+macOS mktemp expectation failure. New [physical procedure](qualification/poc4-next-candidate-regression-draft.md)
+is an unbound NOT READY TO FLASH draft. [Existing-card evidence collection](qualification/poc4-regression-collect-evidence.md)
+is the next owner action; no automatic retest. Earlier checkpoint claims below are historical.
+
 Current bounded result: [POC4 attempt #3](build/poc4-attempt3-owner-review.md): 143 Product,
 65 Menu plus launcher checker PASS; actual native ARM64 package/owner/backend/service/
 USB-loop/Cover/utility/environment checks PASS within stated limits. Construction is

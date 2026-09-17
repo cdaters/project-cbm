@@ -1,5 +1,14 @@
 # Black-box project recovery and installed identity
 
+Current 2026-09-17 evidence stop: [POC4 physical-regression investigation](qualification/poc4-regression-investigation-2026-09-17.md).
+New additive checkpoint: `archive/poc4-regression-investigation-2026-09-17`; evidence:
+`qualification/poc4-regression-2026-09-17`. Manifest and restore report bind both
+final refs/bundles, documentation and qualification identities, exact source comparison,
+tests, preservation checks and offline restoration. No runtime correction or new
+candidate. Existing POC3/POC4 artifacts are referenced by exact retained hashes, not
+copied. Owner [collects existing-card evidence](qualification/poc4-regression-collect-evidence.md)
+next. Independent backup/custody remains unresolved; earlier checkpoints stay immutable.
+
 Latest completed checkpoint: [POC4 attempt #3](build/private-poc4-attempt3.md).
 `archive/poc4-attempt3-2026-09-16` retains final repository bundles, exact offline
 restoration/fsck, bounded evidence and references to the unchanged frozen input kit

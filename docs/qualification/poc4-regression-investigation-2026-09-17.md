@@ -99,6 +99,17 @@ not confidence that an unobserved event occurred.
 
 No row is classified CONFIRMED CAUSE for either physical lifecycle failure.
 
+Exact dependency-source references (relative to `inputs/frozen-poc4-attempt3/objects`):
+SDL source archive `d364cded8bf41f3f503014d3fb6473f1a7077ff468da1638dae4a6bec6ef2277`,
+members `SDL2-2.32.4/src/core/linux/SDL_evdev_kbd.c` and
+`SDL2-2.32.4/src/video/kmsdrm/SDL_kmsdrmvideo.c`; coreutils archive
+`e8bb26ad0293f9b5a1fc43fb42ba970e312c66ce92c1b0b16713d7500db251bf`, member
+`coreutils-9.7/src/timeout.c`. Their retained Debian source descriptors identify versions
+2.32.4+dfsg-1 and 9.7-3. Sources were read, not modified or executed. GNU's
+[timeout manual](https://www.gnu.org/software/coreutils/manual/html_node/timeout-invocation.html)
+corroborates the foreground-TTY distinction; the retained 9.7 implementation is the
+version-specific evidence. Background group creation alone is not a reproduced Pi failure.
+
 ## D. Complete Cover path
 
 RUN uses `pcbm_load_default_machine` → `pcbm_launch_machine` → `pcbm-boot` → shared
@@ -303,6 +314,12 @@ or replaced and neither AGENTS.md was edited. New ordinary evidence/continuity c
 are listed with full IDs in the recovery manifest and final owner handoff. Contributor
 noreply identity was checked before commits. Branches remain Product
 `feature/1.1-build-foundation` and Menu `feature/1.1-debian-package`; nothing pushed.
+Product evidence commit `8736383` contains the additive physical record, analysis,
+first-boot findings and collection/future-test procedures. Subsequent continuity commits
+reference it without rewriting it. No implementation commit is offered as a correction.
+Menu checkpoint: `1a075433d4217dea1a12f68e311caceafb7cf7b1`, documentation/continuity
+only. Both feature branches have no configured upstream; ahead/behind against cached
+origin/main is a local comparison, not a fresh remote synchronization claim.
 
 Evidence: configured bulk root `qualification/poc4-regression-2026-09-17`.
 Recovery: `archive/poc4-regression-investigation-2026-09-17`. Its manifest/checksum and

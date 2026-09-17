@@ -1,5 +1,54 @@
 # Project CBM current state
 
+## POC4 attempt #3 physical regressions — 2026-09-17 / EVIDENCE STOP
+
+The owner physically tested exact attempt #3 on Pi 3B. First boot, Menu, VICE,
+F10/Quit and visual Menu return passed; **Cover visibility and post-return keyboard,
+Ctrl+Alt+F2 and Ctrl+C failed**. mc launched; SID-Wizard/StrikeTerm presence is not
+functional qualification. First-boot feedback/navigation/technical input/password UX
+defects are recorded. [Additive results](docs/qualification/poc4-attempt3-pi3b-owner-report-2026-09-17.json)
+supersede prior physical-UNTESTED claims only for the reported observations.
+
+[Full investigation and owner review](docs/qualification/poc4-regression-investigation-2026-09-17.md)
+compares exact POC3/POC4 source/inputs. Base package hashes and VICE are unchanged.
+New Cover timeout/SDL cleanup followed by saving already-altered keyboard state is a
+strong candidate; **neither physical cause nor a shared cause is confirmed**. No used-card
+logs were found in retained evidence, and Cover status/mode data were not logged.
+No lifecycle/first-boot source correction was selected at the owner's evidence stop.
+
+5,681 frozen input/image/checkpoint files rehash correctly; a separate 14,163-file
+earlier-evidence check also passes (overlapping scopes, not a unique total).
+Menu 65/65 baseline tests
+and launcher checker pass; Product 142/143 pass, with one existing macOS mktemp
+expectation failure. Host/headless tests cannot qualify physical KMS/VT/input behavior.
+[First-boot audit](docs/qualification/poc4-first-boot-ux-findings-2026-09-17.md) records
+confirmed source defects and required later corrections; no credential bytes retained.
+
+Inputs remain POC3 integration `0a0e271d86c68a969d8b18189c561ed51a8b0e09`, Menu
+`897cee7c792b11bfed80168a576f263340f5f57d`; POC4 integration
+`b362c70215cef0e2c6c6a845635c47fd39b3ebbf`, Menu
+`407ced58b711209631cdfb4db6dcd741a555f408`. Attempt #3 lock SHA-256 remains
+`435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9`;
+raw `37d2699c7a639e050e531a4d5a132d4b197e5a60270a969814c573f436036cd8`.
+Frozen artifacts, owner-scope commits `8a93683`/`be73ff1`, tags and AGENTS are unchanged.
+
+Evidence: `qualification/poc4-regression-2026-09-17`; recovery:
+`archive/poc4-regression-investigation-2026-09-17` under configured external storage.
+Its manifest/restore report records final ordinary docs commits, bundles and checks.
+Product evidence commit: `8736383` (physical attestation and investigation/procedures).
+Menu continuity commit: `1a075433d4217dea1a12f68e311caceafb7cf7b1`.
+No new package/version/tag, release lock, image, physical test, VM start or push.
+Independent backup/custody and rights gates remain unresolved. The next-candidate
+[physical draft](docs/qualification/poc4-next-candidate-regression-draft.md) is unbound,
+NOT READY TO FLASH. Dosbian-derived organization remains unaccepted backlog input.
+
+**One next owner action:** [collect existing used-card diagnostic/setup/identity evidence
+read-only](docs/qualification/poc4-regression-collect-evidence.md), without reflash or
+another VICE launch. If the failed live session still exists, report that before power-off.
+Stop for owner review; do not proceed to source changes or candidate construction until
+the missing evidence is assessed. Earlier completed checkpoints below retain their
+historical wording and do not describe the current physical qualification state.
+
 ## POC4 attempt #3 complete — 2026-09-16 / STOP FOR OWNER REVIEW
 
 **Build PASS. READY FOR OWNER PHYSICAL TEST. READY TO FLASH: YES.**

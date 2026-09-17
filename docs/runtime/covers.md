@@ -1,5 +1,12 @@
 # Machine-launch covers
 
+Physical follow-up, 2026-09-17: Covers are installed in frozen POC4 attempt #3, but
+the owner did **not** see the Cover and reported dead keyboard/VT after VICE Quit.
+[Investigation](../qualification/poc4-regression-investigation-2026-09-17.md) records
+the exact evidence and UNKNOWN cause/relationship. No runtime correction selected;
+existing-card evidence is needed. The source/build-era account below is preserved and
+does not establish a physical Cover or cleanup pass.
+
 Project CBM's **cover** is its existing machine-specific launch artwork. It is
 separate from the deferred power-on boot splash/presentation work.
 
