@@ -1,9 +1,9 @@
-# POC4 attempt #3 — Pi 3B procedure DRAFT
+# POC4 attempt #3 — exact-hash Pi 3B procedure
 
-**NOT READY TO FLASH. NO ATTEMPT #3 IMAGE EXISTS.** Construction was blocked by automatic
-approval. This is a prepared test plan, not authorization to substitute attempt #2.
-Finalize only after the single frozen build and complete offline validation succeed.
-Do not perform physical testing now. No other Pi model or additional candidate.
+**READY FOR OWNER PHYSICAL TEST. READY TO FLASH: YES.** Construction and all required
+offline validation passed. Physical results remain UNTESTED; this engineering session
+performed no hardware test. Stop for owner review before owner execution. No other Pi
+model or additional candidate is authorized.
 
 | Identity | Binding |
 | --- | --- |
@@ -12,13 +12,13 @@ Do not perform physical testing now. No other Pi model or additional candidate.
 | Menu | v1.1.0_poc4.1 / 407ced58b711209631cdfb4db6dcd741a555f408 |
 | Lock | `inputs/frozen-poc4-attempt3/release-lock.json` |
 | Lock SHA-256 | `435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9` |
-| Raw path/size/SHA-256 | NOT PRODUCED — required before use |
-| XZ path/size/SHA-256 | NOT PRODUCED — required before use |
-| Raw/XZ agreement | NOT RUN — required before use |
+| Raw path/size/SHA-256 | `artifacts/private-poc4-attempt-3/2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img` / 3087007744 bytes / `37d2699c7a639e050e531a4d5a132d4b197e5a60270a969814c573f436036cd8` |
+| XZ path/size/SHA-256 | `artifacts/private-poc4-attempt-3/image_2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz` / 598813860 bytes / `4a6bce98e089e3c39246393b7476c687a7818ea5a6b67fa811fb6bee8da5a83e` |
+| Raw/XZ agreement | PASS; exact raw hash preserved after read-only inspection and external transfer |
 
-[Owner report](../build/poc4-attempt3-owner-review.md) explains status/evidence limits.
-Bulk root: `/Volumes/TheBench/ProjectCBM-Work` for this deployment. Once finalized,
-verify exact raw/XZ hashes before flashing. Do not apply Imager OS customization:
+[Completed build report](../build/private-poc4-attempt3.md) explains status/evidence limits.
+Recovery: `archive/poc4-attempt3-2026-09-16` beneath configured bulk storage.
+Bulk root: `/Volumes/TheBench/ProjectCBM-Work` for this deployment. Verify exact raw/XZ hashes before flashing. Do not apply Imager OS customization:
 Project CBM owns initialization. Keep master image/lock/packages immutable. The
 flashed test card is expected to receive supported setup/user writes.
 
@@ -121,7 +121,7 @@ settings to bypass a failure. Never put credential screenshots in retained evide
   bounded SID audio. Save a small owner-created work to the working disk; exit and
   relaunch to verify persistence. The root template must remain unchanged. F10/Quit
   returns to CBM. Do not claim general composition/fidelity qualification.
-- **StrikeTerm**, only if the new lock retains the reviewed private admission:
+- **StrikeTerm**, with the frozen private admission retained:
   CONTENT→Programs→Communications→StrikeTerm. Discovery/launch/geometry/keyboard,
   F10/Quit/return. BBS connectivity is the separate service test. Physical success
   **does not establish public redistribution rights**.

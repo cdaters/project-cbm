@@ -1,5 +1,55 @@
 # Project CBM current state
 
+## POC4 attempt #3 complete — 2026-09-16 / STOP FOR OWNER REVIEW
+
+**Build PASS. READY FOR OWNER PHYSICAL TEST. READY TO FLASH: YES.**
+Project CBM **1.1.0-poc.4 / private-engineering-poc4, attempt 3** is built and
+fully offline-validated. Physical qualification remains **UNTESTED**.
+[Build report](docs/build/private-poc4-attempt3.md),
+[exact results](docs/build/private-poc4-attempt3.json),
+[hash-bound Pi 3B procedure](docs/qualification/poc4-attempt3-pi3b-smoke-test.md).
+
+Frozen integration `b362c70215cef0e2c6c6a845635c47fd39b3ebbf`; Menu
+`v1.1.0_poc4.1`, peeled `407ced58b711209631cdfb4db6dcd741a555f408`.
+Lock `inputs/frozen-poc4-attempt3/release-lock.json`, SHA-256
+`435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9`. No frozen input changed.
+
+Artifacts under `artifacts/private-poc4-attempt-3` in configured bulk storage:
+
+- Raw `2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img`, 3,087,007,744 bytes,
+  SHA-256 `37d2699c7a639e050e531a4d5a132d4b197e5a60270a969814c573f436036cd8`.
+- XZ `image_2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz`, 598,813,860 bytes,
+  SHA-256 `4a6bce98e089e3c39246393b7476c687a7818ea5a6b67fa811fb6bee8da5a83e`.
+
+121 main + 20 supplemental + 26 Cover/utility checks, FAT/ext4/systemd integrity,
+127 ELF objects, all 672 installed package identities, raw/XZ agreement and external
+copy hashes PASS. Root used 1,651,511,296 bytes; ordinary-user available capacity
+635,580,416 bytes before expansion. Post-expansion capacity/margins remain UNTESTED.
+
+Both repositories began clean with matching current owner scopes. Historical refs,
+POC1–3, attempts #1/#2 and both attempt #3 prebuild/blocked checkpoints verify intact.
+The owner had removed the excluded staging copies; no additional cleanup/deletion.
+Builder configuration, frozen kit, environment/TMPDIR protection and before/after host
+inventory/update guards PASS. Exactly one construction succeeded; VM stopped, no active
+build/proxy/mounts/loops. No AppArmor, authentication, package or rights gate weakened.
+
+Recovery: `archive/poc4-attempt3-2026-09-16`; final refs, bundles, manifest and exact
+offline restoration/fsck are recorded there. Evidence:
+`qualification/poc4-attempt3-construction-2026-09-16`. Both branches remain local.
+Earlier artifacts/locks/checkpoints are immutable; earlier stop entries below are history.
+
+SID-Wizard 1.97, privately admitted StrikeTerm, all seven Covers, mc/Advanced Mixer,
+first boot/owner/admin/config/info/network/services/USB and original media are installed.
+Third-party reference SID/demo media remain unbundled. PSID/RSID playback remains deferred;
+StrikeTerm public rights and constituent Cover rights remain separate gates.
+
+**Next owner action:** review, then the exact-hash Pi 3B procedure. First boot/expansion/
+interruption, owner UI, real display/audio/input, Cover handoff, USB, applications and
+persistence need physical evidence; radio/AP, service clients and BBS need external
+environments. Independent rebuild/reproducibility and independent custody remain open.
+No automatic physical test, next candidate, other model, boot optimization, SID-player
+implementation, push or publication. STOP for owner review.
+
 ## POC4 attempt #3 explicit resume — automatic review rejected again / STOP
 
 The owner explicitly authorized the frozen build, narrow AGENTS reconciliation and

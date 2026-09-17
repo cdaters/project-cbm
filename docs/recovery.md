@@ -1,5 +1,16 @@
 # Black-box project recovery and installed identity
 
+Latest completed checkpoint: [POC4 attempt #3](build/private-poc4-attempt3.md).
+`archive/poc4-attempt3-2026-09-16` retains final repository bundles, exact offline
+restoration/fsck, bounded evidence and references to the unchanged frozen input kit
+and successful image artifacts. Evidence: `qualification/poc4-attempt3-construction-2026-09-16`;
+images: `artifacts/private-poc4-attempt-3`. The hash-bound Pi 3B procedure is ready for
+owner review/testing; physical qualification remains UNTESTED. VM stopped. Preserve
+both earlier blocked checkpoints below as historical evidence. The owner removed the
+two excluded accidental copies before this session; no further cleanup occurred.
+No push/publication; independent encrypted custody remains unresolved.
+
+
 Latest subsequent stop: [attempt #3 explicit resume blocked again](build/poc4-attempt3-resume-blocked.md).
 New documentation/bundle checkpoint `archive/poc4-attempt3-resume-blocked-2026-09-16`;
 no cleanup or build ran. Preserve the accepted prebuild checkpoint below unchanged.
