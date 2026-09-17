@@ -1,5 +1,16 @@
 # Validation and qualification
 
+Run2/source continuation (2026-09-17): [review and limits](qualification/poc4-run2-source-review-2026-09-17.md).
+Final retained host run: Product 155 tests, 154 PASS; unchanged unsandboxed macOS
+`test_mktemp_regression` expectation FAIL. Menu 70/70 PASS. Nine focused lifecycle
+tests cover pre-Cover keyboard baseline, actual host PTY three-cycle termios restoration,
+failure-open status, missing renderer, timeout/escalation/reap, per-operation restoration
+failure, no forced foreground/foreign VT ownership, and signal cancellation. First-boot
+tests cover Back/change, mismatch/invalid retry, Wi-Fi retry/alternate/offline/resume,
+working feedback before backend, narrow setup gates and secret/malformed-response bounds.
+Host tests do not prove physical KMS/VT/visible Cover or real Wi-Fi/account behavior.
+Next native/package/candidate/physical gates remain in the linked report; no build here.
+
 Current 2026-09-17 checkpoint: [POC4 physical-regression investigation](qualification/poc4-regression-investigation-2026-09-17.md).
 The exact attempt #3 owner report establishes missing Cover and post-VICE keyboard/VT
 FAIL, despite successful VICE/F10/Quit/visual return. No cause or corrected candidate

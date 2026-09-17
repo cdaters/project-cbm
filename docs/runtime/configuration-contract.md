@@ -1,5 +1,16 @@
 # Configuration implementation and activation contract
 
+2026-09-17 source addendum: [run2 review](../qualification/poc4-run2-source-review-2026-09-17.md).
+Common selections/Advanced, explicit working/hidden-password feedback and retry-safe
+first boot are now source-implemented. During incomplete setup only fixed
+`setup-wifi-country`, `setup-wifi-rescan`, `setup-wifi-enroll` requests can use Wi-Fi
+after region/owner/network markers and owner-ready verification; network policy and
+input validation remain enforced. This does not activate unrelated services or ordinary
+system operations early. Region/network may be reapplied before completion; owner
+enrollment remains non-resettable. Fixed `wifi_failed` / `wifi_country_required` results
+do not claim a positively identified authentication failure. Compound command budgets
+are 65s below client 75s. Matching Menu/runtime versions are required in a future lock.
+
 2026-09-16. This completes the owner-approved configuration architecture pass.
 [User guide](pcbm-config.md) • [source checkpoint](configuration-maturation.md) •
 [accepted audit](../design/appliance-audit-2026-09-16.md).

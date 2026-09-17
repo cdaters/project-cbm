@@ -1,5 +1,60 @@
 # Project CBM current state
 
+## POC4 run 2 evidence and defensive source corrections — 2026-09-17
+
+[Owner-review report](docs/qualification/poc4-run2-source-review-2026-09-17.md) and
+[separate run2 attestation](docs/qualification/poc4-attempt3-run2-2026-09-17.json)
+supersede the evidence stop below. Owner accepted read-only engineering extraction
+from the used Paragon-mounted card, not pristine forensic capture. Root was verified
+currently read-only; installed identity matched exact attempt #3. No card writes,
+mount changes, repair, new diagnostics or credential/profile reads occurred.
+
+One slot records x64sc on tty1, UID1000, KMSDRM/OpenGL 1080p60, VICE exit0/no signal.
+Before Cover is uninstrumented; before.json is **after Cover, before VICE**. No
+postcleanup snapshot exists. Physical Cover and keyboard/VT causes/relationship remain
+UNKNOWN. Owner's second run establishes working keyboard/VT before RUN and failure
+after return. Nine allowlisted card files and five verified photos are retained in
+`qualification/poc4-run2-2026-09-17`; inventory SHA-256
+`4852ff9f49f5f785fdead33ec28cdda5dccae2d72a7b63676b4de5f8af5aa23b`.
+
+Source commits (not installed in the frozen candidate):
+
+- Product `77afb0187835df68847e4f897621598ff4485367`: second-run evidence/collection exception.
+- Product `83241a145ad69dfb6579d0b6fd88ec83c6e66451`: pre-Cover terminal ownership,
+  same-foreground-group bounded Cover, readback restoration and structured diagnostics.
+- Product `d7a74bcfde422ca289ab0c9438877e1a89ca3f4d`: retry-safe setup networking,
+  fixed result codes, region prevalidation and compound-command budget.
+- Menu `be16c4033a748366c01dea8229f4afa0757bddd1`: guarded `run-with-cover` handoff,
+  renderer stage telemetry/cleanup and no held-key skip.
+- Menu `e3a82eee578691ae1f648c38e06859abfd627f46`: common human-readable choices,
+  Back/retry/resume, working feedback, explicit hidden-password explanation.
+- Menu `020294c`: three consecutive Menu launch/return fixture cycles.
+
+These are defensive correctness/instrumentation changes, **not root-cause proof or a
+physical fix PASS**. Host validation: Product 155 tests, 154 PASS and the same pre-existing
+unsandboxed macOS mktemp expectation FAIL; Menu 70/70 PASS. Nine focused lifecycle tests
+PASS, including real PTY three-cycle restoration and child timeout/signal/reap behavior.
+Earlier sandboxed Product full suites passed153/153 before the last two focused tests
+were added; do not hide the final retained context-dependent failure. ShellCheck absent;
+per-file Bash syntax, Python parsing, JSON, local links and diff/secret scans pass.
+Native installed Linux SDL/VT/network/account behavior remains UNTESTED in this slice.
+
+Related recovery: `archive/poc4-run2-source-correction-2026-09-17`. Its manifest binds
+final refs/bundles/offline restore/fsck, source inventory, validation and prior evidence
+references; original images are not duplicated. Earlier checkpoint's 50 files and its
+preserved POC3/POC4 artifact references rehash correctly; run2 copy/photo hashes agree.
+Independent encrypted custody remains unresolved. Owner-scope commits 8a93683/be73ff1,
+both AGENTS files, protected refs/tags, all frozen candidates/packages/locks and artwork
+are unchanged. No package build/version/tag, VM start, image, physical test or push.
+
+**One next owner action:** review the linked source report and authorize a separate
+next-candidate milestone. It needs rebuilt/versioned Product runtime and Menu, refreshed
+integration/lifecycle/schema/test inputs, native installed validation and the unbound
+[physical regression procedure](docs/qualification/poc4-next-candidate-regression-draft.md).
+No candidate hashes or READY TO FLASH claim exist for these corrections. Stop at this
+explicit build boundary. Remaining application/service/persistence tests stay UNTESTED.
+Historical completed checkpoints below retain their original dated statements.
+
 ## POC4 attempt #3 physical regressions — 2026-09-17 / EVIDENCE STOP
 
 The owner physically tested exact attempt #3 on Pi 3B. First boot, Menu, VICE,

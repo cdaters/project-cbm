@@ -1,5 +1,13 @@
 # Black-box project recovery and installed identity
 
+2026-09-17 run2/source continuation: [owner review](qualification/poc4-run2-source-review-2026-09-17.md).
+Related checkpoint `archive/poc4-run2-source-correction-2026-09-17`; evidence
+`qualification/poc4-run2-2026-09-17`. Manifest binds final source refs/bundles, offline
+refs/peeled tags/fsck, source/docs/test inventory and exact preserved evidence hashes.
+Used-card files are private read-only engineering evidence with accepted unknown prior
+Paragon journal history, not immutable candidate bytes. No image duplication or new
+candidate. The earlier checkpoint below remains unchanged; independent custody unresolved.
+
 Current 2026-09-17 evidence stop: [POC4 physical-regression investigation](qualification/poc4-regression-investigation-2026-09-17.md).
 New additive checkpoint: `archive/poc4-regression-investigation-2026-09-17`; evidence:
 `qualification/poc4-regression-2026-09-17`. Manifest and restore report bind both

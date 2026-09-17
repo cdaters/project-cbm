@@ -1,5 +1,13 @@
 # Machine-launch covers
 
+Source continuation, 2026-09-17: [run2 evidence and defensive corrections](../qualification/poc4-run2-source-review-2026-09-17.md).
+Physical causes remain unconfirmed. New source delegates Cover plus VICE to Product's
+`engineering.py run-with-cover` owner: pre-Cover baseline, same-group bounded child,
+structured telemetry, restoration/readback before VICE and after return. No frozen
+candidate changed. Renderer keeps 0.75s intended presentation and desktop aspect fit;
+held keys no longer skip decoration. Native/physical validation remains pending.
+The following earlier account is historical, not the current source contract.
+
 Physical follow-up, 2026-09-17: Covers are installed in frozen POC4 attempt #3, but
 the owner did **not** see the Cover and reported dead keyboard/VT after VICE Quit.
 [Investigation](../qualification/poc4-regression-investigation-2026-09-17.md) records
