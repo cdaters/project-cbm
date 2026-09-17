@@ -1,0 +1,445 @@
+{
+  "artifacts": {
+    "raw": {
+      "path": "artifacts/private-poc4-attempt-2/2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img",
+      "sha256": "e7c0b971ff3c12c09483477f760a09718a038143384774a7d43eca4a790aa217",
+      "size_bytes": 3087007744
+    },
+    "raw_xz_equivalence": "PASS",
+    "xz": {
+      "path": "artifacts/private-poc4-attempt-2/image_2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz",
+      "sha256": "0ced0321d84777a0e65ac4ebbf4bbae7c42f5680ceba37dc16a5820e5ec50bdf",
+      "size_bytes": 597702372
+    },
+    "xz_expanded_sha256": "e7c0b971ff3c12c09483477f760a09718a038143384774a7d43eca4a790aa217"
+  },
+  "attempt": 2,
+  "build_usage": {
+    "elapsed_seconds": 166.47,
+    "max_process_rss_kib": 489572,
+    "note": "time -v is not aggregate VM memory/CPU utilization",
+    "swaps": 0,
+    "system_cpu_seconds": 28.84,
+    "user_cpu_seconds": 316.07
+  },
+  "candidate": {
+    "candidate": "private-engineering-poc4",
+    "version": "1.1.0-poc.4"
+  },
+  "closure_validation": {
+    "elf_objects_checked": 113,
+    "filesystem_checks": {
+      "FAT": "fsck.fat 4.2 (2021-01-31)\n/dev/loop0p1: 433 files, 153166/1032408 clusters\n",
+      "ext4": "e2fsck 1.47.2 (1-Jan-2025)\nPass 1: Checking inodes, blocks, and sizes\nPass 2: Checking directory structure\nPass 3: Checking directory connectivity\nPass 4: Checking reference counts\nPass 5: Checking group summary information\nrootfs: 53697/155344 files (0.2% non-contiguous), 429954/620544 blocks\n"
+    },
+    "missing_dependencies": [],
+    "result": "PASS",
+    "scope": "read-only static; no target executable or physical Pi test",
+    "unit_output": "",
+    "units": "PASS"
+  },
+  "components": {
+    "menu": {
+      "architecture": "all",
+      "artifact": {
+        "path": "objects/b1c95d128eb0f9b3d9ba59528ed7be39d7f94cf158933bd74c83f0eecb83999d",
+        "sha256": "b1c95d128eb0f9b3d9ba59528ed7be39d7f94cf158933bd74c83f0eecb83999d",
+        "size_bytes": 25492
+      },
+      "name": "project-cbm-menu",
+      "revision": "1+pcbm1",
+      "source_commit": "bb8a66ea9da994b30f978ad87d61c9aedb03dad6",
+      "upstream_version": "1.1.0~poc4",
+      "version": "1.1.0~poc4-1+pcbm1"
+    },
+    "runtime": {
+      "architecture": "all",
+      "artifact": {
+        "path": "objects/fffbc2bd6b07b800e2562c8fc89a523e7e08df6bf0f7ce76786f9efebde9d303",
+        "sha256": "fffbc2bd6b07b800e2562c8fc89a523e7e08df6bf0f7ce76786f9efebde9d303",
+        "size_bytes": 25080
+      },
+      "name": "project-cbm-runtime",
+      "revision": "1",
+      "source_commit": "cf3a289f99bd7599c8e6f1aa3da4753aa733f981",
+      "upstream_version": "1.1.0~poc4",
+      "version": "1.1.0~poc4-1"
+    },
+    "tcpser": {
+      "architecture": "arm64",
+      "artifact": {
+        "path": "objects/8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+        "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+        "size_bytes": 26872
+      },
+      "name": "project-cbm-tcpser",
+      "revision": "1+pcbm1",
+      "source_commit": "fe7feff4862406b277e009d14c219f5d16cf1222",
+      "upstream_version": "1.1.6~beta",
+      "version": "1.1.6~beta-1+pcbm1"
+    },
+    "vice": {
+      "architecture": "arm64",
+      "artifact": {
+        "path": "objects/c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+        "sha256": "c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+        "size_bytes": 4650184
+      },
+      "name": "project-cbm-vice",
+      "revision": "1+pcbm3",
+      "source_commit": null,
+      "upstream_version": "3.10",
+      "version": "3.10-1+pcbm3"
+    }
+  },
+  "evidence": "qualification/poc4-attempt2-2026-09-16",
+  "host_after": {
+    "automatic_update_units": "masked",
+    "environment_contract": "explicit allowlist; no raw operator environment retained",
+    "host_drift_guard": "PASS",
+    "kernel": "6.12.107+deb13-cloud-arm64",
+    "platform": "aarch64"
+  },
+  "host_before": {
+    "automatic_update_units": "masked",
+    "environment_contract": "explicit allowlist; no raw operator environment retained",
+    "host_drift_guard": "PASS",
+    "kernel": "6.12.107+deb13-cloud-arm64",
+    "platform": "aarch64"
+  },
+  "input_changes": {
+    "attempt": 2,
+    "candidate": "private-engineering-poc4",
+    "changes": [
+      "integration commit/source",
+      "target-environment pi-gen patch",
+      "sealing recipe chroot environment"
+    ],
+    "construction_argument": "--attempt 2",
+    "installed_identity_changes": "integration commit and exact release-lock digest; not identical complete build inputs",
+    "integration_commit": "93d264adf3bac6a397112ecd7349ab8105257852",
+    "previous_attempt_lock_sha256": "99f3985b8eac77398fbc71d66160f91beff50d04f6ae246757a4f081436bfacc",
+    "release_lock_sha256": "27f0e8ca522f745e240d088fc8fe8feab8f98c15eb165d72fad1a9ef18ee3fdf",
+    "unchanged": [
+      "all component package/source identities",
+      "base package/host closures",
+      "configuration defaults",
+      "first-boot payload",
+      "qualification media",
+      "optional software"
+    ]
+  },
+  "integration_commit": "93d264adf3bac6a397112ecd7349ab8105257852",
+  "lock_path": "inputs/frozen-poc4-attempt2/release-lock.json",
+  "lock_sha256": "27f0e8ca522f745e240d088fc8fe8feab8f98c15eb165d72fad1a9ef18ee3fdf",
+  "offline_validation": {
+    "boot_filesystem_used_bytes": 78420992,
+    "checks": {
+      "Menu_present": "PASS",
+      "NM_offline_initial_state": "PASS",
+      "PAM_systemd_present": "PASS",
+      "SID_autostart_refused": "PASS",
+      "TCPser_present": "PASS",
+      "VICE_telemetry_patch_present": "PASS",
+      "VICE_unprivileged_F10": "PASS",
+      "VICE_x64sc_present": "PASS",
+      "activation_not_falsely_ready": "PASS",
+      "active_DRM_reporter_present": "PASS",
+      "boot_vfat": "PASS",
+      "both_vendor_initramfs_present": "PASS",
+      "bounded_diagnostics": "PASS",
+      "content_directory_owned_by_pi": "PASS",
+      "diagnostic_programs_present": "PASS",
+      "enabled_getty_tty1": "PASS",
+      "enabled_getty_tty2": "PASS",
+      "enabled_pcbm-first-boot.service": "PASS",
+      "engineering_geometry_opt_in": "PASS",
+      "engineering_only_marker": "PASS",
+      "first_boot_presets_keep_services_off": "PASS",
+      "first_run_before_menu": "PASS",
+      "fresh_machine_id_marker": "PASS",
+      "graphics_loader_libEGL.so.1": "PASS",
+      "graphics_loader_libGL.so.1": "PASS",
+      "graphics_loader_libGLESv2.so.2": "PASS",
+      "graphics_loader_libGLX.so.0": "PASS",
+      "graphics_runtime_libegl-mesa0": "PASS",
+      "graphics_runtime_libegl1": "PASS",
+      "graphics_runtime_libgbm1": "PASS",
+      "graphics_runtime_libgl1": "PASS",
+      "graphics_runtime_libgl1-mesa-dri": "PASS",
+      "graphics_runtime_libgles2": "PASS",
+      "graphics_runtime_libglx-mesa0": "PASS",
+      "graphics_runtime_libglx0": "PASS",
+      "helper_policy_exact": "PASS",
+      "helper_policy_permissions": "PASS",
+      "installed_payload_project-cbm-menu": "PASS",
+      "installed_payload_project-cbm-runtime": "PASS",
+      "installed_payload_project-cbm-tcpser": "PASS",
+      "installed_payload_project-cbm-vice": "PASS",
+      "locked_local_passwords": "PASS",
+      "login_PAM_tty1": "PASS",
+      "login_PAM_tty2": "PASS",
+      "masked_nmbd.service": "PASS",
+      "masked_pcbm-console.service": "PASS",
+      "masked_regenerate_ssh_host_keys.service": "PASS",
+      "masked_rpi-resize.service": "PASS",
+      "masked_samba-ad-dc.service": "PASS",
+      "masked_ssh.socket": "PASS",
+      "masked_sshswitch.service": "PASS",
+      "masked_systemd-growfs-root.service": "PASS",
+      "masked_userconfig.service": "PASS",
+      "media_pcbm-check.d64": "PASS",
+      "media_pcbm-sid-check.prg": "PASS",
+      "media_pcbm-smoke.prg": "PASS",
+      "media_pcbm-video-input.prg": "PASS",
+      "media_source_matches_lock": "PASS",
+      "menu_entry_pcbm-config": "PASS",
+      "menu_entry_pcbm-first-run": "PASS",
+      "menu_entry_pcbm-system-info": "PASS",
+      "minimal_identity_matches_lock": "PASS",
+      "modem_default_loopback_settings": "PASS",
+      "modem_typed_adapter": "PASS",
+      "network_manager_enabled": "PASS",
+      "no_authorized_keys": "PASS",
+      "no_build_or_excluded_packages": "PASS",
+      "no_build_proxy": "PASS",
+      "no_build_workspace": "PASS",
+      "no_builder_home": "PASS",
+      "no_cloud_state": "PASS",
+      "no_completed_first_boot": "PASS",
+      "no_dbus_machine_id": "PASS",
+      "no_enrolled_wifi": "PASS",
+      "no_generic_passwordless_grants": "PASS",
+      "no_history": "PASS",
+      "no_obvious_builder_path_or_key_residue": "PASS",
+      "no_other_passwordless_grants": "PASS",
+      "no_package_cache": "PASS",
+      "no_preset_owner_password": "PASS",
+      "no_random_seed": "PASS",
+      "no_reference_SID_payloads": "PASS",
+      "no_reusable_SSH_host_keys": "PASS",
+      "no_samba_databases": "PASS",
+      "no_setup_completion": "PASS",
+      "no_source_tree": "PASS",
+      "no_temporary_policy_rc": "PASS",
+      "normal_user_helper_group": "PASS",
+      "one_direct_boot_attempt": "PASS",
+      "only_exact_power_sudo": "PASS",
+      "optional_services_initially_disabled": "PASS",
+      "owner_authenticated_sudo_group": "PASS",
+      "package_project-cbm-menu": "PASS",
+      "package_project-cbm-runtime": "PASS",
+      "package_project-cbm-tcpser": "PASS",
+      "package_project-cbm-vice": "PASS",
+      "pi_valid_unprivileged_shell": "PASS",
+      "presentation_template_exact": "PASS",
+      "presentation_user_copy_exact": "PASS",
+      "root_ext4": "PASS",
+      "runtime_entry_pcbm-admin": "PASS",
+      "runtime_entry_pcbm-config-operation": "PASS",
+      "runtime_entry_pcbm-import-operation": "PASS",
+      "runtime_entry_pcbm-info": "PASS",
+      "runtime_entry_pcbm-setup-state": "PASS",
+      "runtime_entry_pcbm-start-profile": "PASS",
+      "runtime_entry_pcbm-wifi-list": "PASS",
+      "separate_owner_account": "PASS",
+      "sid_wizard_exact_core": "PASS",
+      "sid_wizard_working_disk": "PASS",
+      "single_growth_owner": "PASS",
+      "single_shared_launch_path": "PASS",
+      "ssh_owner_only": "PASS",
+      "striketerm_exact_private_input": "PASS",
+      "striketerm_public_gate_pending": "PASS",
+      "striketerm_working_copy": "PASS",
+      "system_information_structured": "PASS",
+      "trusted_pcbm-config-root": "PASS",
+      "trusted_pcbm-import-root": "PASS",
+      "two_partition_DOS_layout": "PASS",
+      "user_config_not_system_owned": "PASS"
+    },
+    "component_installed_size_bytes": {
+      "project-cbm-menu": 111616,
+      "project-cbm-runtime": 126976,
+      "project-cbm-tcpser": 79872,
+      "project-cbm-vice": 41705472
+    },
+    "debian_version": "13.7",
+    "image_sha256": "e7c0b971ff3c12c09483477f760a09718a038143384774a7d43eca4a790aa217",
+    "image_size_bytes": 3087007744,
+    "initramfs_files": [
+      "initramfs8",
+      "initramfs_2712"
+    ],
+    "installed_identity_bytes": 1630,
+    "maintenance_margin": "UNMEASURED; no minimum card size established",
+    "obvious_builder_residue_paths": [],
+    "partition_table": {
+      "device": "/dev/loop0",
+      "id": "0x90ffc22b",
+      "label": "dos",
+      "partitions": [
+        {
+          "node": "/dev/loop0p1",
+          "size": 1048576,
+          "start": 16384,
+          "type": "c"
+        },
+        {
+          "node": "/dev/loop0p2",
+          "size": 4964352,
+          "start": 1064960,
+          "type": "83"
+        }
+      ],
+      "sectorsize": 512,
+      "unit": "sectors"
+    },
+    "physical_qualification": "UNTESTED",
+    "post_first_boot_capacity": "UNTESTED; depends on target media and successful expansion",
+    "release_lock_sha256": "27f0e8ca522f745e240d088fc8fe8feab8f98c15eb165d72fad1a9ef18ee3fdf",
+    "result": "PASS",
+    "root_filesystem_bytes": {
+      "available_to_user": 636792832,
+      "capacity": 2430955520,
+      "free": 780656640,
+      "used": 1650298880
+    },
+    "runtime_package_count": 672,
+    "runtime_package_installed_size_bytes": 1597359104,
+    "scope": "offline/static only; no Raspberry Pi runtime qualification",
+    "unexpected_packages": []
+  },
+  "optional_software": {
+    "sid_wizard": {
+      "artifact": {
+        "path": "objects/46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+        "sha256": "46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+        "size_bytes": 184320
+      },
+      "license": "LicenseRef-Hermit-WTF",
+      "origin": "https://csdb.dk/getinternalfile.php/281063/SID-Wizard-1.97-sources-examples.tar.gz",
+      "recipe": {
+        "path": "objects/e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+        "sha256": "e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+        "size_bytes": 8618
+      },
+      "rights_review": {
+        "path": "objects/ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+        "sha256": "ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+        "size_bytes": 1878
+      },
+      "source": {
+        "path": "objects/aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "sha256": "aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "size_bytes": 6140658
+      },
+      "version": "1.97"
+    },
+    "striketerm": {
+      "artifact": {
+        "path": "objects/72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+        "sha256": "72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+        "size_bytes": 174848
+      },
+      "classification": "PRIVATE-ENGINEERING-ADMITTED",
+      "origin": "https://csdb.dk/getinternalfile.php/129890/st2014final.d64",
+      "public_release_rights": "PUBLIC-RELEASE-RIGHTS-GATE-PENDING",
+      "rights_review": {
+        "path": "objects/db84b90cf8da8a748d4b4b3e37068a1fe2d15e45fedbd77b16062465f34b3e06",
+        "sha256": "db84b90cf8da8a748d4b4b3e37068a1fe2d15e45fedbd77b16062465f34b3e06",
+        "size_bytes": 1119
+      },
+      "version": "2014 Final"
+    }
+  },
+  "physical_procedure": "docs/qualification/poc4-attempt2-pi3b-smoke-test.md",
+  "physical_qualification": "UNTESTED",
+  "pi_gen_commit": "6fcca44892d5d4b36f826d2b8fb16d716369fada",
+  "preservation": {
+    "new_image_created": false,
+    "object_counts_rehashed": {
+      "frozen-poc3-final": 2789,
+      "frozen-poc4": 2809,
+      "frozen-poc4-attempt2": 2812
+    },
+    "poc1_poc2_baseline_entries_verified": 5503,
+    "poc3_frozen_artifacts_verified": {
+      "artifacts/private-poc3/2026-09-16-project-cbm-1.1.0-poc.3-lite-private-poc.img": "9a8b1e0465c93981dfa6b09772e9e3fbf5c487a915bba0046b5de034f9331f33",
+      "artifacts/private-poc3/image_2026-09-16-project-cbm-1.1.0-poc.3-lite-private-poc.img.xz": "e7d9657bfbb1124b38c2f1f3479698e24a34be7234db80d766f189da946ace3c",
+      "inputs/frozen-poc3-final/release-lock.json": "3f3180f50e5c990ad63fc3d564a56bbd86b80f9b38c6a4aff7b42ed9438b9f5e"
+    },
+    "result": "PASS",
+    "scope": "Pre-build POC1\u20133 and frozen-object preservation verification; new_image_created=false refers to that snapshot, not the later successful build."
+  },
+  "previous_attempt": {
+    "checkpoint": "archive/runtime-activation-blocked-2026-09-16",
+    "immutable": true,
+    "lock_path": "inputs/frozen-poc4/release-lock.json",
+    "lock_sha256": "99f3985b8eac77398fbc71d66160f91beff50d04f6ae246757a4f081436bfacc",
+    "status": "FAILED AT IMAGE CONSTRUCTION; no image"
+  },
+  "psid_rsid": "generic autostart refused; player gate remains incomplete",
+  "published": false,
+  "recovery_checkpoint": "archive/poc4-attempt2-2026-09-16",
+  "reproducibility": "first successful controlled POC4 build, not independently reproducibility-proven",
+  "rights": {
+    "reference_SID_demo": "OWNER-SUPPLIED; NOT BUNDLED",
+    "sid_wizard": "accepted native core subset",
+    "striketerm": "PRIVATE-ENGINEERING-ADMITTED / PUBLIC-RELEASE-RIGHTS-GATE-PENDING"
+  },
+  "status": "BUILT; OFFLINE VALIDATION PASS; PHYSICAL UNTESTED",
+  "supplemental_validation": {
+    "activation_packages": {
+      "apparmor": "4.1.0-1",
+      "avahi-daemon": "0.8-16",
+      "cloud-guest-utils": "0.33-1",
+      "console-setup": "1.242~deb13u1",
+      "keyboard-configuration": "1.242~deb13u1",
+      "locales": "2.41-12+rpt1+deb13u4",
+      "network-manager": "1.52.1-1+rpt4",
+      "openssh-server": "1:10.0p1-7+deb13u4",
+      "raspi-config": "20260730",
+      "samba": "2:4.22.11+dfsg-0+deb13u1",
+      "sudo": "1.9.16p2-3+deb13u2"
+    },
+    "checks": {
+      "about_view_present": true,
+      "admin_auth_paths": true,
+      "authenticated_owner_sudo": true,
+      "firstboot_payloads_present": true,
+      "installed_apparmor": true,
+      "installed_avahi-daemon": true,
+      "installed_cloud-guest-utils": true,
+      "installed_console-setup": true,
+      "installed_keyboard-configuration": true,
+      "installed_locales": true,
+      "installed_network-manager": true,
+      "installed_openssh-server": true,
+      "installed_raspi-config": true,
+      "installed_samba": true,
+      "installed_sudo": true,
+      "only_expected_local_accounts": true,
+      "public_rights_gate_retained": true,
+      "runtime_dirs_recreated": true,
+      "samba_only_content_share": true,
+      "tmp_mode_1777": true
+    },
+    "installed_package_count": 672,
+    "installed_package_size_sum_bytes": 1597359104,
+    "optional_application_bytes": {
+      "fresh_user_working_disks": 349696,
+      "sid-wizard_system": 179423,
+      "striketerm_system": 175967
+    },
+    "result": "PASS",
+    "scope": "read-only offline; no executable from target is run"
+  },
+  "tests": {
+    "menu": 50,
+    "native_environment": "mktemp and real AppArmor fail before; pass after",
+    "native_revalidation": "PASS; scope/limitations in companion report",
+    "product": 142,
+    "shared_launcher": "PASS"
+  },
+  "vm": "stopped after validation"
+}

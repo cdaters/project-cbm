@@ -1,6 +1,15 @@
 # Black-box project recovery and installed identity
 
-Latest checkpoint: [runtime activation build-integrity stop](build/poc4-blocked.md).
+Latest checkpoint: [POC4 attempt #2](build/private-poc4-attempt2.md), successful controlled
+build/offline validation, physical UNTESTED. Frozen kit `inputs/frozen-poc4-attempt2`,
+artifacts `artifacts/private-poc4-attempt-2`, evidence `qualification/poc4-attempt2-2026-09-16`.
+Both final repository refs/bundles and offline restore are recorded in
+`archive/poc4-attempt2-2026-09-16`. All are relative to configured bulk storage.
+Attempt #1 below remains unchanged, separately retained failed-attempt evidence.
+The environment correction changes integration/recipe/patch identity, not component
+packages; do not call complete inputs identical. Independent custody remains unresolved.
+
+Prior failed checkpoint: [runtime activation build-integrity stop](build/poc4-blocked.md).
 New frozen lock/packages are retained; no POC4 image exists. Current bundles and
 offline restore records: `archive/runtime-activation-blocked-2026-09-16` under the
 configured bulk workspace. Preserve this failed attempt; owner review precedes any

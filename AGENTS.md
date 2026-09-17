@@ -311,3 +311,12 @@ attempt output path. Preserve AppArmor and package verification. Stop on recurri
 or new build-integrity failure; otherwise finish offline validation, exact hashes,
 Pi 3B procedure and recovery checkpoint. No physical test, POC5, push or publication.
 Read docs/build/environment-boundary.md and CURRENT-STATE for current progress.
+
+## POC4 attempt #2 completed / STOP
+
+Read CURRENT-STATE, docs/build/private-poc4-attempt2.md and the exact-hash Pi 3B procedure.
+The bounded environment correction, native revalidation and ONE fresh build succeeded.
+Attempt #1 remains immutable failed evidence; attempt #2 is a distinct frozen input set
+and offline-validated private image, not physically qualified or reproducibility-proven.
+Preserve both attempts, POC1–3, all tags and rights gates. Builder stopped. STOP for owner
+review; no physical test, next build, other Pi model, boot optimization, push or publication.

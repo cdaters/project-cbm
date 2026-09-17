@@ -1,5 +1,14 @@
 # Validation and qualification
 
+Latest build checkpoint: [POC4 attempt #2](build/private-poc4-attempt2.md): 142 product
+and 50 Menu tests plus launcher checker; native environment/package/runtime revalidation;
+121 main + 20 supplemental offline checks; FAT/ext4/systemd and 113 ELF objects PASS.
+[Environment regression](../tests/native/build_environment.sh) reproduces the old actual
+AppArmor failure before verifying the corrected boundary. Native namespaces/fixture
+results do not certify Pi first boot, peripherals, networking or optional applications.
+Follow only the [exact-hash Pi 3B procedure](qualification/poc4-attempt2-pi3b-smoke-test.md)
+after owner review. Preserve original attempt #1 and POC1–3 records unchanged.
+
 Latest source checkpoint: [configuration maturation](runtime/configuration-maturation.md).
 Current bundles/manifests and offline restore evidence are under configured bulk
 storage at `archive/configuration-maturation-2026-09-16`. The earlier checkpoints

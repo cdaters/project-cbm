@@ -1,5 +1,13 @@
 # Build and release contract
 
+Current checkpoint: [POC4 attempt #2](build/private-poc4-attempt2.md) is built and
+offline-validated; [Pi 3B qualification](qualification/poc4-attempt2-pi3b-smoke-test.md)
+is pending owner review/testing. Attempt #1 remains immutable failed construction.
+Use the [explicit builder/target environment contract](build/environment-boundary.md),
+new frozen attempt kit and `--attempt 2` workspace. Host drift guard remains mandatory.
+No physical behavior or independent reproducibility is claimed. STOP before another
+build, hardware test or publication; older phase boundaries below are historical.
+
 Status: [ADR-0001](adr/0001-base-distribution-and-image-architecture.md) remains
 accepted. Exact private POC3 has a [bounded physical Pi 3B pass](qualification/poc3-pi3b-owner-report-2026-09-16.json),
 including corrected geometry, alongside its unchanged [build checkpoint](build/private-poc3.md).

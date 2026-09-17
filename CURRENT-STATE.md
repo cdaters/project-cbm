@@ -1,27 +1,57 @@
 # Project CBM current state
 
-## POC4 attempt #2 environment correction — in progress, 2026-09-16
+## POC4 attempt #2 complete — 2026-09-16 / STOP
 
-Owner authorized a bounded builder/chroot correction and ONE fresh attempt. Attempt #1
-below remains immutable failed-attempt evidence; no image resulted from it. Read the
-[environment boundary](docs/build/environment-boundary.md). The retained AppArmor
-postinst and native negative reproduction confirm inherited builder TMPDIR as the cause.
-Fixed explicit environments now cover factory entry, debootstrap, pi-gen on_chroot and
-CBM direct chroot calls. No AppArmor/package check or privilege weakening.
+**Project CBM 1.1.0-poc.4 / private-engineering-poc4, build attempt 2, is built and
+offline-validated. Physical qualification remains UNTESTED.** POC3 remains the previous
+physically demonstrated Pi 3B foundation. [Report](docs/build/private-poc4-attempt2.md),
+[exact inputs/results](docs/build/private-poc4-attempt2.json),
+[exact-hash Pi 3B procedure](docs/qualification/poc4-attempt2-pi3b-smoke-test.md).
 
-142 product tests, 50 Menu tests plus launcher checker pass. Native invalid-TMPDIR
-mktemp/AppArmor reproduction followed by sanitized success passes; package/AppArmor/
-dpkg/APT and optional-input install checks pass. Native owner/PAM/sudo, offline setup, service lifecycle, NetworkManager private-keyfile
-parsing/redaction, terminal return, authenticated raspi-config and synthetic USB broker
-revalidation pass. New input freeze/build/offline validation remain in progress. This is not a new image
-or physical qualification claim. Attempt #1 checkpoint and 2,834 retained files verify.
+Attempt #1 below is immutable FAILED construction evidence, no image. Its root cause
+was confirmed by actual native mktemp/AppArmor failure followed by sanitized success.
+[Environment boundary](docs/build/environment-boundary.md): fixed factory/debootstrap/
+chroot environments, valid target /tmp, no AppArmor or package-check weakening.
 
-No runtime/Menu component source or package bytes are changed by this correction.
-New integration source, environment patch and sealing recipe change the complete input
-set and generated installed identity. Preserve all historical tags and POC1–3; no push.
-Stop on another integrity failure, otherwise after attempt #2 offline validation and
-verified recovery with an exact-hash Pi 3B procedure. No physical test or boot optimization.
+Frozen integration: `93d264adf3bac6a397112ecd7349ab8105257852`.
+Menu remains `v1.1.0_poc4`, peeled `bb8a66ea9da994b30f978ad87d61c9aedb03dad6`.
+All component packages/source mappings and optional/media inputs match attempt #1.
+Integration source, declared pi-gen patch and sealing recipe changed; complete inputs
+and generated installed identity are not identical.
 
+Lock: `inputs/frozen-poc4-attempt2/release-lock.json`, SHA-256
+`27f0e8ca522f745e240d088fc8fe8feab8f98c15eb165d72fad1a9ef18ee3fdf`.
+Artifacts under configured bulk workspace `artifacts/private-poc4-attempt-2`:
+
+- Raw `2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img`, 3,087,007,744 bytes,
+  SHA-256 `e7c0b971ff3c12c09483477f760a09718a038143384774a7d43eca4a790aa217`.
+- XZ `image_2026-09-16-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz`, 597,702,372 bytes,
+  SHA-256 `0ced0321d84777a0e65ac4ebbf4bbae7c42f5680ceba37dc16a5820e5ec50bdf`.
+
+142 product + 50 Menu tests and launcher checker PASS; actual Linux package/AppArmor,
+owner authentication, helper, setup/offline, service, NetworkManager credential and USB
+broker revalidation PASS within documented namespace limits. 121 main + 20 supplemental
+offline checks, FAT/ext4 integrity, systemd units, 113 ELF closure objects and raw/XZ
+agreement PASS. Host inventory/environment unchanged; VM stopped, no live build mounts,
+loops or proxy. No builder credentials/identity or full recovery kit in the image.
+
+SID-Wizard 1.97 core is installed with immutable template/user working disk. StrikeTerm
+2014 Final is PRIVATE-ENGINEERING-ADMITTED / PUBLIC-RELEASE-RIGHTS-GATE-PENDING. Public
+rights gate remains fail-closed. Requested SID/demo reference payloads are owner-supplied,
+not bundled. Generic .sid autostart is refused; dedicated PSID/RSID playback remains open.
+
+Recovery: `archive/poc4-attempt2-2026-09-16`; evidence:
+`qualification/poc4-attempt2-2026-09-16`. Checkpoint manifest records final refs, bundles
+and verified offline restore. Both feature branches remain local; no push/publication.
+POC1–3, historical tags and attempt #1 checkpoint/2,834 retained files verify unchanged.
+Independent clean-rebuild reproducibility and independent backup/custody remain open.
+
+**Next owner action:** review the result, then perform the exact-hash attempt #2 Pi 3B
+procedure. First boot/interruption recovery, real hardware, owner UI, networking/external
+services, USB discovery and optional applications need physical evidence. Stop at failure,
+retain diagnostics, do not repair the running candidate. No automatic next build, other
+Pi model or publication. Boot optimization stays deferred until this physical gate passes
+unless a more important blocker emerges. Earlier checkpoints below are historical.
 
 ## Runtime activation: build-integrity stop — 2026-09-16
 
