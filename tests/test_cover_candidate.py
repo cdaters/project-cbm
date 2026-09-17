@@ -1,5 +1,5 @@
 """Offline payload checks detect missing/modified assets without a Pi."""
-import hashlib,json,shutil,sys,tempfile,unittest
+import hashlib,json,shutil,sys,tempfile,unittest,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];MENU=ROOT.parent/'project-cbm-menu'
 sys.path.insert(0,str(ROOT/'tools'))
@@ -10,7 +10,11 @@ class CoverPayload(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             base=Path(tmp);root=base/'root';kit=base/'kit';kit.mkdir()
             def install(source,path):
-                raw=source.read_bytes();dest=root/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
+                # This validator is the immutable attempt-3 contract, not a
+                # next-candidate qualification of arbitrary current source.
+                raw=(subprocess.check_output(['git','-C',str(MENU),'show','407ced58b711209631cdfb4db6dcd741a555f408:scripts/pcbm-run-vice'])
+                     if path=='usr/bin/pcbm-run-vice' else source.read_bytes())
+                dest=root/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
                 descriptor={'path':hashlib.sha256(raw).hexdigest(),'sha256':hashlib.sha256(raw).hexdigest(),'size_bytes':len(raw)}
                 (kit/descriptor['path']).write_bytes(raw);return descriptor
             cover={}

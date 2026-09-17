@@ -151,5 +151,5 @@ class OptionalApplications(unittest.TestCase):
         menu=ROOT.parent/'project-cbm-menu'
         self.assertIn('pcbm-profiles content-profile "${files[$PCBM_CHOICE]}"',(menu/'scripts/pcbm-content').read_text())
         launcher=(menu/'scripts/pcbm-run-vice').read_text()
-        for literal in ['pcbm-profiles resolve', '-menukey 291', 'args+=(-autostart "$1")', 'trap cleanup EXIT', 'SDL_AUDIODRIVER=alsa']:
+        for literal in ['pcbm-profiles resolve', '-menukey 291', 'args+=(-autostart "$1")', 'exec /usr/libexec/project-cbm/engineering.py run', 'SDL_AUDIODRIVER=alsa']:
             self.assertIn(literal,launcher)
