@@ -1,61 +1,125 @@
 # Working on Project CBM
 
-## Current owner scope: frozen POC4 attempt #3
+## Current owner scope: POC4 attempt #3 physical-regression investigation
 
-This section is the current owner-approved engineering scope. Earlier
-milestone-specific STOP/no-build boundaries below are retained as historical
-records of those completed milestones and do not prohibit later work that is
-explicitly authorized here.
+POC4 attempt #3 construction and offline validation are complete. The frozen
+candidate, release lock, packages, images, checkpoints and exact-hash physical
+procedure are immutable qualification evidence.
 
-The owner authorizes construction of the already reviewed and frozen Project
-CBM POC4 attempt #3 using:
+The owner has physically tested the exact POC4 attempt #3 image on Raspberry
+Pi 3B and observed new qualification results that supersede the previous
+"physically untested" state.
 
-`/Volumes/TheBench/ProjectCBM-Work/inputs/frozen-poc4-attempt3/release-lock.json`
+Current owner-reported observations include:
 
-Expected SHA-256:
+- first boot fundamentally completed;
+- first-boot pacing/feedback was poor enough that some transitions appeared
+  hung;
+- region/locale/Wi-Fi-country interaction was awkward and exposed technical
+  input expectations;
+- Back navigation did not reliably return to the previous first-boot step;
+- Wi-Fi password entry gave no visible masked-input feedback;
+- one attempted Wi-Fi password was rejected with an unhelpful error while a
+  simple alphanumeric password succeeded;
+- Midnight Commander launched successfully;
+- SID-Wizard and StrikeTerm are present but are not yet functionally qualified;
+- RUN launched the selected/default VICE machine;
+- the expected Project CBM machine Cover was not visibly presented before VICE;
+- VICE itself ran;
+- F10 opened the VICE menu;
+- Quit exited VICE and visually returned to the Project CBM Menu;
+- after return, Project CBM keyboard input was non-responsive;
+- Ctrl+Alt+F2 did not switch to diagnostic VT2;
+- Ctrl+C did not respond;
+- POC3 previously physically passed the complete Menu -> VICE -> Menu lifecycle,
+  including responsive keyboard input and VT switching after return.
 
-`435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9`
+The missing Cover and post-VICE input/VT failure are priority regressions
+against the intended lifecycle. The SDL2 Cover renderer is new in POC4 and is
+a legitimate investigation target, but it must not be assumed to be the cause
+without evidence.
 
-The frozen inputs must not be regenerated or mutated. If target inputs require
-a change, STOP for owner review.
+The owner authorizes a bounded forensic investigation and correction of these
+POC4 physical regressions.
 
-The owner manually removed the two previously identified disposable attempt #3
-native staging directories. No additional deletion or destructive cleanup is
-authorized.
+Authorized work:
 
-Authorized work for this milestone is limited to:
+- record the new owner-reported physical qualification evidence;
+- compare exact POC4 attempt #3 behavior/configuration/source with the
+  physically known-good POC3 lifecycle;
+- inspect retained POC4 engineering diagnostics and launch/session evidence;
+- determine why the Cover was not visibly presented;
+- determine why keyboard/VT ownership or terminal state was not restored after
+  VICE exit;
+- investigate whether the Cover renderer, launcher, SDL/KMS/DRM behavior,
+  session/getty/PAM state, terminal cleanup, signal handling or another POC4
+  change caused or contributed to the regression;
+- reproduce relevant lifecycle behavior in safe host/native tests where useful;
+- implement the smallest evidence-based source correction necessary;
+- add focused regression tests for Cover presentation/cleanup and repeated
+  Menu -> Cover -> VICE -> Menu lifecycle behavior;
+- analyze the first-boot UX findings and implement bounded corrections for
+  progress feedback, human-readable region/Wi-Fi-country choices, Back/Cancel/
+  retry behavior, password-entry feedback and useful validation errors where
+  evidence supports the change;
+- update qualification, continuity and recovery documentation;
+- prepare the next versioned package/input/candidate work required to
+  physically verify the corrections.
 
-- normal preconstruction/build-host validation;
-- one POC4 attempt #3 image construction using the established Lima/VZ +
-  pinned pi-gen factory;
-- complete offline validation of that image;
-- exact raw/XZ artifact hashes and footprint measurements;
-- normal post-build recovery/checkpoint creation and verification;
-- binding the existing Pi 3B physical-test procedure to the successful exact
-  image hashes and marking it ready for owner testing only if all required
-  offline validation passes.
+Do not modify the frozen POC4 attempt #3 image, lock, packages or evidence.
 
-Preserve POC1, POC2, POC3, POC4 attempt #1, POC4 attempt #2, all existing
-locks/images/checkpoints/tags, historical evidence, security boundaries and
-third-party rights gates.
+Do not hide a lifecycle failure with retries, forced resets, broad privilege,
+arbitrary VT manipulation or timing sleeps unless evidence establishes a
+bounded timing requirement.
 
-STOP on any frozen-input, build-host drift, builder/chroot, AppArmor/package,
-security, filesystem, construction or offline-validation failure rather than
-weakening an accepted gate.
+Presentation must not own emulator lifecycle. Cover failure must not prevent
+VICE startup, and Cover cleanup must release all interactive/display resources.
+
+One authoritative unprivileged VICE launch path must remain.
+
+The corrected lifecycle must preserve POC3's known-good geometry, audio,
+F10/Quit behavior and Menu return contract.
+
+First-boot UX corrections must remain offline-capable, retry-safe and
+appliance-oriented. Users should choose human concepts such as country,
+keyboard and network rather than entering Linux implementation strings where
+a safe selection can be provided.
+
+Long-running first-boot/configuration operations must provide immediate,
+truthful working-state feedback and bounded failure behavior so normal work
+does not appear to be a hang.
+
+Wi-Fi password handling must not expose credentials in logs, process
+arguments, diagnostics or output. Do not weaken accepted NetworkManager or
+credential-security boundaries merely to accept more passwords.
+
+The recent Dosbian 4.0 analysis is design/reference input only. Do not copy
+Dosbian code or reorganize Project CBM around Dosbian during this regression
+milestone.
+
+Do not implement the proposed MEDIA/TOOLS/POWER/recovery information-
+architecture refinements yet. Preserve them as later Project CBM 1.1 design
+input.
 
 This scope does NOT authorize:
 
-- physical Raspberry Pi testing;
-- another candidate/build after attempt #3;
+- mutation of any frozen POC1-POC4 candidate;
+- broad Menu redesign;
+- implementation of unrelated Dosbian-derived features;
 - boot-presentation optimization;
 - PSID/RSID playback implementation;
-- testing another Pi model;
-- additional destructive cleanup;
+- testing another Raspberry Pi model;
 - push;
 - publication.
 
-After successful construction, offline validation, artifact recording and
-recovery verification, STOP for owner review.
+If the investigation establishes a correction requiring a new image, stop
+after the corrected source, tests, package/input/candidate plan and recovery
+checkpoint are ready for owner review.
+
+Do not automatically build the next image unless a later current owner scope
+explicitly authorizes that build.
+
+Preserve all historical evidence, rights gates and recovery records.
 
 Read CURRENT-STATE.md first, then docs/recovery.md, docs/architecture.md,
 docs/provenance.md and docs/testing.md. Repository files are the continuity record; old Codex sessions
