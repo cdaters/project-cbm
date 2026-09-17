@@ -1,5 +1,62 @@
 # Working on Project CBM
 
+## Current owner scope: frozen POC4 attempt #3
+
+This section is the current owner-approved engineering scope. Earlier
+milestone-specific STOP/no-build boundaries below are retained as historical
+records of those completed milestones and do not prohibit later work that is
+explicitly authorized here.
+
+The owner authorizes construction of the already reviewed and frozen Project
+CBM POC4 attempt #3 using:
+
+`/Volumes/TheBench/ProjectCBM-Work/inputs/frozen-poc4-attempt3/release-lock.json`
+
+Expected SHA-256:
+
+`435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9`
+
+The frozen inputs must not be regenerated or mutated. If target inputs require
+a change, STOP for owner review.
+
+The owner manually removed the two previously identified disposable attempt #3
+native staging directories. No additional deletion or destructive cleanup is
+authorized.
+
+Authorized work for this milestone is limited to:
+
+- normal preconstruction/build-host validation;
+- one POC4 attempt #3 image construction using the established Lima/VZ +
+  pinned pi-gen factory;
+- complete offline validation of that image;
+- exact raw/XZ artifact hashes and footprint measurements;
+- normal post-build recovery/checkpoint creation and verification;
+- binding the existing Pi 3B physical-test procedure to the successful exact
+  image hashes and marking it ready for owner testing only if all required
+  offline validation passes.
+
+Preserve POC1, POC2, POC3, POC4 attempt #1, POC4 attempt #2, all existing
+locks/images/checkpoints/tags, historical evidence, security boundaries and
+third-party rights gates.
+
+STOP on any frozen-input, build-host drift, builder/chroot, AppArmor/package,
+security, filesystem, construction or offline-validation failure rather than
+weakening an accepted gate.
+
+This scope does NOT authorize:
+
+- physical Raspberry Pi testing;
+- another candidate/build after attempt #3;
+- boot-presentation optimization;
+- PSID/RSID playback implementation;
+- testing another Pi model;
+- additional destructive cleanup;
+- push;
+- publication.
+
+After successful construction, offline validation, artifact recording and
+recovery verification, STOP for owner review.
+
 Read CURRENT-STATE.md first, then docs/recovery.md, docs/architecture.md,
 docs/provenance.md and docs/testing.md. Repository files are the continuity record; old Codex sessions
 are not required. Update CURRENT-STATE.md after meaningful work, including exact
