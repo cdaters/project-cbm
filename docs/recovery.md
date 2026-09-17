@@ -1,5 +1,15 @@
 # Black-box project recovery and installed identity
 
+Latest **pre-build** checkpoint: [POC4 attempt #3 owner report](build/poc4-attempt3-owner-review.md).
+`archive/poc4-attempt3-prebuild-blocked-2026-09-16` retains both repositories, frozen
+`inputs/frozen-poc4-attempt3`, new Menu package and bounded native evidence. Automatic
+approval blocked construction; no attempt #3 image. Do not physically test pre-Cover
+attempt #2. See CURRENT-STATE for the exact approval/accidental-copy cleanup blockers.
+Disposable copies under the new evidence native/environment and native/runtime are
+NOT preservation material and explicitly excluded. Earlier checkpoints below remain
+immutable. Independent custody remains unresolved.
+
+
 Latest checkpoint: [POC4 attempt #2](build/private-poc4-attempt2.md), successful controlled
 build/offline validation, physical UNTESTED. Frozen kit `inputs/frozen-poc4-attempt2`,
 artifacts `artifacts/private-poc4-attempt-2`, evidence `qualification/poc4-attempt2-2026-09-16`.

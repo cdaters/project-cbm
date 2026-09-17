@@ -1,5 +1,8 @@
 # POC4 attempt #3: integration plan
 
+Status: steps 1–5 complete; step 6 blocked by automatic approval before construction.
+See the [owner report](poc4-attempt3-owner-review.md). No image exists.
+
 Owner authorization: one new private candidate after the
 [bounded actual Combian V3.7 review](../design/combian-v37-bounded-review.md).
 Do not physically test attempt #2. It remains immutable pre-Cover evidence.

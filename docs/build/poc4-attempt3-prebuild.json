@@ -1,0 +1,481 @@
+{
+  "accidental_copies_excluded_from_evidence": [
+    "qualification/poc4-attempt3-2026-09-16/native/environment",
+    "qualification/poc4-attempt3-2026-09-16/native/runtime"
+  ],
+  "attempt": 3,
+  "candidate": "private-engineering-poc4",
+  "cleanup_status": "automatic approval rejected; owner review required",
+  "components": {
+    "menu": {
+      "build_options": [
+        "dpkg-buildpackage -us -uc -sa",
+        "SOURCE_DATE_EPOCH=1789513200"
+      ],
+      "build_record": {
+        "path": "objects/0b82ac66a928d117d9fc23cf19da9ea26b403caef271458596df21cb6bab82b7",
+        "sha256": "0b82ac66a928d117d9fc23cf19da9ea26b403caef271458596df21cb6bab82b7",
+        "size_bytes": 5120
+      },
+      "corresponding_source": {
+        "path": "objects/4e838ff2b1f79aded326b9e7162b871903e4d35b1afe9483e30e71e1b0efeb82",
+        "sha256": "4e838ff2b1f79aded326b9e7162b871903e4d35b1afe9483e30e71e1b0efeb82",
+        "size_bytes": 1966080
+      },
+      "package": {
+        "architecture": "all",
+        "artifact": {
+          "path": "objects/6df8fb42a10b16e12ac114032accc149c49ebf51f0e5f45c34b77d2cefbb2767",
+          "sha256": "6df8fb42a10b16e12ac114032accc149c49ebf51f0e5f45c34b77d2cefbb2767",
+          "size_bytes": 1100344
+        },
+        "name": "project-cbm-menu",
+        "revision": "1+pcbm1",
+        "upstream_version": "1.1.0~poc4.1",
+        "version": "1.1.0~poc4.1-1+pcbm1"
+      },
+      "patches": [],
+      "recipe": {
+        "path": "objects/ead0f380190e252083d213c49485ef228fb6cbb2be5c4145ca41048b40fa1455",
+        "sha256": "ead0f380190e252083d213c49485ef228fb6cbb2be5c4145ca41048b40fa1455",
+        "size_bytes": 20480
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/435a057140ee92b1c5dfef023797664a349891906d1efb1c4b927a4836139cb1",
+          "sha256": "435a057140ee92b1c5dfef023797664a349891906d1efb1c4b927a4836139cb1",
+          "size_bytes": 2426880
+        },
+        "git": {
+          "commit": "407ced58b711209631cdfb4db6dcd741a555f408",
+          "ref": "refs/tags/v1.1.0_poc4.1",
+          "repository": "https://github.com/cdaters/project-cbm-menu",
+          "tag_object": "003ff32cb3dce01292304511430e541c800f79e6"
+        },
+        "origin": "https://github.com/cdaters/project-cbm-menu"
+      },
+      "version": "1.1.0_poc4.1"
+    },
+    "runtime": {
+      "build_options": [
+        "dpkg-buildpackage -us -uc -sa",
+        "SOURCE_DATE_EPOCH=1789513200"
+      ],
+      "build_record": {
+        "path": "objects/319244394b70c55bdcff8cd57b258b3627d771954a471fb3d6c850ec281fa511",
+        "sha256": "319244394b70c55bdcff8cd57b258b3627d771954a471fb3d6c850ec281fa511",
+        "size_bytes": 811
+      },
+      "corresponding_source": {
+        "path": "objects/2afd2a90981be448ef7ffb0063f242f2fa7074ec9cbd85fef223c8b948881dee",
+        "sha256": "2afd2a90981be448ef7ffb0063f242f2fa7074ec9cbd85fef223c8b948881dee",
+        "size_bytes": 1064960
+      },
+      "package": {
+        "architecture": "all",
+        "artifact": {
+          "path": "objects/fffbc2bd6b07b800e2562c8fc89a523e7e08df6bf0f7ce76786f9efebde9d303",
+          "sha256": "fffbc2bd6b07b800e2562c8fc89a523e7e08df6bf0f7ce76786f9efebde9d303",
+          "size_bytes": 25080
+        },
+        "name": "project-cbm-runtime",
+        "revision": "1",
+        "upstream_version": "1.1.0~poc4",
+        "version": "1.1.0~poc4-1"
+      },
+      "patches": [],
+      "recipe": {
+        "path": "objects/0d4767010080b1796362b84ab6ef39700298c21952a5ad88e8800550bf8fe45e",
+        "sha256": "0d4767010080b1796362b84ab6ef39700298c21952a5ad88e8800550bf8fe45e",
+        "size_bytes": 10240
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/7982a8ddb3e64b5d16d1aeb589943192d2d35ed74b522bbee5fb872c6e500291",
+          "sha256": "7982a8ddb3e64b5d16d1aeb589943192d2d35ed74b522bbee5fb872c6e500291",
+          "size_bytes": 2170880
+        },
+        "git": {
+          "commit": "cf3a289f99bd7599c8e6f1aa3da4753aa733f981",
+          "ref": "refs/heads/feature/1.1-build-foundation",
+          "repository": "https://github.com/cdaters/project-cbm",
+          "tag_object": null
+        },
+        "origin": "https://github.com/cdaters/project-cbm"
+      },
+      "version": "1.1.0_poc4"
+    },
+    "tcpser": {
+      "build_options": [],
+      "build_record": {
+        "path": "objects/94a33ba5f47dc4f90023ada24c5ffb790cf9811157584f97bf48dd1444a292b3",
+        "sha256": "94a33ba5f47dc4f90023ada24c5ffb790cf9811157584f97bf48dd1444a292b3",
+        "size_bytes": 713
+      },
+      "corresponding_source": {
+        "path": "objects/d183cc20b42c35d61e4e84c2508a8b4607a0c889b190f8746400baf69a16a0c0",
+        "sha256": "d183cc20b42c35d61e4e84c2508a8b4607a0c889b190f8746400baf69a16a0c0",
+        "size_bytes": 153600
+      },
+      "package": {
+        "architecture": "arm64",
+        "artifact": {
+          "path": "objects/8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+          "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+          "size_bytes": 26872
+        },
+        "name": "project-cbm-tcpser",
+        "revision": "1+pcbm1",
+        "upstream_version": "1.1.6~beta",
+        "version": "1.1.6~beta-1+pcbm1"
+      },
+      "patches": [],
+      "recipe": {
+        "path": "objects/7526f381c97bf15c82b10908b0d289530e66ce0e8b91d95f7e3aa25ceeaa07a4",
+        "sha256": "7526f381c97bf15c82b10908b0d289530e66ce0e8b91d95f7e3aa25ceeaa07a4",
+        "size_bytes": 10240
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/b80ec19d5262a8a64035f4f4db04ceee41940017cbc55271c984a1ae2cc50f17",
+          "sha256": "b80ec19d5262a8a64035f4f4db04ceee41940017cbc55271c984a1ae2cc50f17",
+          "size_bytes": 491520
+        },
+        "git": {
+          "commit": "fe7feff4862406b277e009d14c219f5d16cf1222",
+          "ref": "refs/heads/master",
+          "repository": "https://github.com/go4retro/tcpser.git",
+          "tag_object": null
+        },
+        "origin": "https://github.com/go4retro/tcpser.git"
+      },
+      "version": "1.1.6_beta"
+    },
+    "vice": {
+      "build_options": [
+        "--enable-sdl2ui",
+        "--with-alsa",
+        "--with-sdlsound",
+        "--without-pulse",
+        "--disable-arch",
+        "--enable-x64",
+        "--disable-html-docs"
+      ],
+      "build_record": {
+        "path": "objects/57c04d819422bd8ce661a1806b81b04d3d7cb98444bb8a17e4d26f835288eea7",
+        "sha256": "57c04d819422bd8ce661a1806b81b04d3d7cb98444bb8a17e4d26f835288eea7",
+        "size_bytes": 677
+      },
+      "corresponding_source": {
+        "path": "objects/dd5e2a66e730e53b42adce798558c1218febef6920ca50d854cab018d5a9fc6c",
+        "sha256": "dd5e2a66e730e53b42adce798558c1218febef6920ca50d854cab018d5a9fc6c",
+        "size_bytes": 14376960
+      },
+      "package": {
+        "architecture": "arm64",
+        "artifact": {
+          "path": "objects/c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+          "sha256": "c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+          "size_bytes": 4650184
+        },
+        "name": "project-cbm-vice",
+        "revision": "1+pcbm3",
+        "upstream_version": "3.10",
+        "version": "3.10-1+pcbm3"
+      },
+      "patches": [
+        {
+          "path": "objects/3e4ed4d0b6a22bc1ad0da4c38dea96a650c7007eb8ddd0460eb95e0a109720e0",
+          "sha256": "3e4ed4d0b6a22bc1ad0da4c38dea96a650c7007eb8ddd0460eb95e0a109720e0",
+          "size_bytes": 2695
+        }
+      ],
+      "recipe": {
+        "path": "objects/4e61eadbd2f66b37d06491e15cd884852296789d88ab794ef531c9136e376147",
+        "sha256": "4e61eadbd2f66b37d06491e15cd884852296789d88ab794ef531c9136e376147",
+        "size_bytes": 20480
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1",
+          "sha256": "8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1",
+          "size_bytes": 14366175
+        },
+        "origin": "https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.10.tar.gz"
+      },
+      "version": "3.10"
+    }
+  },
+  "compressed_image": null,
+  "cover_assets": [
+    {
+      "cover_identity": "c64",
+      "path": "covers/pcbmcover-c64.jpg",
+      "sha256": "6e5b155eecb6c719f57ecdfba036f11e5ead23327424268d215ab865cdc1f76b",
+      "size_bytes": 151271
+    },
+    {
+      "cover_identity": "c128",
+      "path": "covers/pcbmcover-c128.jpg",
+      "sha256": "c306250c04358b6bc94f97faa9976e714de61710629f3ce2d26c90e66f395367",
+      "size_bytes": 153259
+    },
+    {
+      "cover_identity": "cbm2",
+      "path": "covers/pcbmcover-cbm2.jpg",
+      "sha256": "7d996ead73fa0954dc99037eaf14ecf4c2001541380e86327395862ac3c7012f",
+      "size_bytes": 169129
+    },
+    {
+      "cover_identity": "cbm5",
+      "path": "covers/pcbmcover-cbm5.jpg",
+      "sha256": "09c6c01e2ef05ca25038fc0ac8795b3ecb464ebd192f6efa28828fce8ca66068",
+      "size_bytes": 169122
+    },
+    {
+      "cover_identity": "pet",
+      "path": "covers/pcbmcover-pet.jpg",
+      "sha256": "25336594429d9c6a55cb711032fba6c4b076c5db416213ab976b228395e387ff",
+      "size_bytes": 171423
+    },
+    {
+      "cover_identity": "plus4",
+      "path": "covers/pcbmcover-plus4.jpg",
+      "sha256": "32a85daa631215e28bb9a39d1b2b14d0b2b8bfc477cad0b602c6b776f40d4afb",
+      "size_bytes": 172897
+    },
+    {
+      "cover_identity": "vic20",
+      "path": "covers/pcbmcover-vic20.jpg",
+      "sha256": "4cf2660de2d6bd6a952b633d85891cb69d272d789f7c15fb4f9baf70b1d90523",
+      "size_bytes": 193056
+    }
+  ],
+  "evidence": "qualification/poc4-attempt3-2026-09-16",
+  "host_guard": "PASS before/after staging; no build run",
+  "image_footprint": null,
+  "integration_commit": "b362c70215cef0e2c6c6a845635c47fd39b3ebbf",
+  "lock": {
+    "objects": 2832,
+    "path": "inputs/frozen-poc4-attempt3/release-lock.json",
+    "sha256": "435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9"
+  },
+  "menu_build_record": {
+    "bounded_changes": [
+      "Advanced Mixer without sudo/global store",
+      "explicit import destinations"
+    ],
+    "build_info": {
+      "path": "objects/e662065eb37e52bd572ceccea5ecaa449d71d2bf8f39b192aa1e1de272d7ca13",
+      "sha256": "e662065eb37e52bd572ceccea5ecaa449d71d2bf8f39b192aa1e1de272d7ca13",
+      "size_bytes": 5175
+    },
+    "component": "menu",
+    "configuration_request_version": 1,
+    "covers": {
+      "assets": [
+        {
+          "path": "objects/6e5b155eecb6c719f57ecdfba036f11e5ead23327424268d215ab865cdc1f76b",
+          "sha256": "6e5b155eecb6c719f57ecdfba036f11e5ead23327424268d215ab865cdc1f76b",
+          "size_bytes": 151271
+        },
+        {
+          "path": "objects/c306250c04358b6bc94f97faa9976e714de61710629f3ce2d26c90e66f395367",
+          "sha256": "c306250c04358b6bc94f97faa9976e714de61710629f3ce2d26c90e66f395367",
+          "size_bytes": 153259
+        },
+        {
+          "path": "objects/7d996ead73fa0954dc99037eaf14ecf4c2001541380e86327395862ac3c7012f",
+          "sha256": "7d996ead73fa0954dc99037eaf14ecf4c2001541380e86327395862ac3c7012f",
+          "size_bytes": 169129
+        },
+        {
+          "path": "objects/09c6c01e2ef05ca25038fc0ac8795b3ecb464ebd192f6efa28828fce8ca66068",
+          "sha256": "09c6c01e2ef05ca25038fc0ac8795b3ecb464ebd192f6efa28828fce8ca66068",
+          "size_bytes": 169122
+        },
+        {
+          "path": "objects/25336594429d9c6a55cb711032fba6c4b076c5db416213ab976b228395e387ff",
+          "sha256": "25336594429d9c6a55cb711032fba6c4b076c5db416213ab976b228395e387ff",
+          "size_bytes": 171423
+        },
+        {
+          "path": "objects/32a85daa631215e28bb9a39d1b2b14d0b2b8bfc477cad0b602c6b776f40d4afb",
+          "sha256": "32a85daa631215e28bb9a39d1b2b14d0b2b8bfc477cad0b602c6b776f40d4afb",
+          "size_bytes": 172897
+        },
+        {
+          "path": "objects/4cf2660de2d6bd6a952b633d85891cb69d272d789f7c15fb4f9baf70b1d90523",
+          "sha256": "4cf2660de2d6bd6a952b633d85891cb69d272d789f7c15fb4f9baf70b1d90523",
+          "size_bytes": 193056
+        }
+      ],
+      "launcher": {
+        "path": "objects/fa2b15c9621aea571557b62f1aea593b82e6eb71d2dde421a5d09891c37e4c58",
+        "sha256": "fa2b15c9621aea571557b62f1aea593b82e6eb71d2dde421a5d09891c37e4c58",
+        "size_bytes": 2159
+      },
+      "manifest": {
+        "path": "objects/53db8e3baa3b66d83b796d72510ef54dbf2e55a0d6607e76a1f2b5630123ec79",
+        "sha256": "53db8e3baa3b66d83b796d72510ef54dbf2e55a0d6607e76a1f2b5630123ec79",
+        "size_bytes": 2145
+      },
+      "registry": {
+        "path": "objects/0e532de0fe6d05a49edebc1b7fff4ddbbce6c369ee98ab770fb30a733318afda",
+        "sha256": "0e532de0fe6d05a49edebc1b7fff4ddbbce6c369ee98ab770fb30a733318afda",
+        "size_bytes": 3184
+      },
+      "renderer": {
+        "path": "objects/46ba0784744f47577b6df191130cac25fb274dc7335dd66aa465411fe88ce81a",
+        "sha256": "46ba0784744f47577b6df191130cac25fb274dc7335dd66aa465411fe88ce81a",
+        "size_bytes": 5722
+      },
+      "wrapper": {
+        "path": "objects/3e59715906697bf992e401ccfabb1345d8f2b2fe8abf02aaca96084d191ac672",
+        "sha256": "3e59715906697bf992e401ccfabb1345d8f2b2fe8abf02aaca96084d191ac672",
+        "size_bytes": 2213
+      }
+    },
+    "information_schema_version": 1,
+    "package": {
+      "path": "objects/6df8fb42a10b16e12ac114032accc149c49ebf51f0e5f45c34b77d2cefbb2767",
+      "sha256": "6df8fb42a10b16e12ac114032accc149c49ebf51f0e5f45c34b77d2cefbb2767",
+      "size_bytes": 1100344
+    },
+    "physical_qualification": "UNTESTED",
+    "runtime_api_version": 1,
+    "source_commit": "407ced58b711209631cdfb4db6dcd741a555f408",
+    "source_date_epoch": 1789513200,
+    "source_sha256": "435a057140ee92b1c5dfef023797664a349891906d1efb1c4b927a4836139cb1",
+    "utilities": {
+      "alsa-utils": {
+        "artifact": {
+          "path": "objects/0751d5b8bb6812167c67b6b77e51cb85c97febad540bc75667a4a6a5899e800c",
+          "sha256": "0751d5b8bb6812167c67b6b77e51cb85c97febad540bc75667a4a6a5899e800c",
+          "size_bytes": 1417370
+        },
+        "metadata": {
+          "Architecture": "arm64",
+          "Package": "alsa-utils",
+          "Version": "1.2.14-1+rpt1"
+        },
+        "origin": "https://archive.raspberrypi.com/debian/pool/main/a/alsa-utils/alsa-utils_1.2.14-1%2brpt1_arm64.deb"
+      },
+      "mc": {
+        "artifact": {
+          "path": "objects/3b3e6d73b7305ef77e4ebc5a13277ce36704dc5d7a43d04034710d71429722ac",
+          "sha256": "3b3e6d73b7305ef77e4ebc5a13277ce36704dc5d7a43d04034710d71429722ac",
+          "size_bytes": 516544
+        },
+        "metadata": {
+          "Architecture": "arm64",
+          "Package": "mc",
+          "Version": "3:4.8.33-1+deb13u1"
+        },
+        "origin": "https://deb.debian.org/debian/pool/main/m/mc/mc_4.8.33-1%2bdeb13u1_arm64.deb"
+      },
+      "mc-data": {
+        "artifact": {
+          "path": "objects/b5ee7e2f5108c29a720675b1e0c9809741c85094e638e29b0c27bd56bdcc50bc",
+          "sha256": "b5ee7e2f5108c29a720675b1e0c9809741c85094e638e29b0c27bd56bdcc50bc",
+          "size_bytes": 1340812
+        },
+        "metadata": {
+          "Architecture": "all",
+          "Package": "mc-data",
+          "Version": "3:4.8.33-1+deb13u1"
+        },
+        "origin": "https://deb.debian.org/debian/pool/main/m/mc/mc-data_4.8.33-1%2bdeb13u1_all.deb"
+      }
+    }
+  },
+  "optional_software": {
+    "sid_wizard": {
+      "artifact": {
+        "path": "objects/46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+        "sha256": "46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+        "size_bytes": 184320
+      },
+      "license": "LicenseRef-Hermit-WTF",
+      "origin": "https://csdb.dk/getinternalfile.php/281063/SID-Wizard-1.97-sources-examples.tar.gz",
+      "recipe": {
+        "path": "objects/e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+        "sha256": "e4fc09464ab0fcef16c6e287a68692373d1f0c6fa5ae13354336afea966bb782",
+        "size_bytes": 8618
+      },
+      "rights_review": {
+        "path": "objects/ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+        "sha256": "ea4af7ddfd9884d62a0b28b3c473a31fa51d01073d58d0d8545b0400c98942ef",
+        "size_bytes": 1878
+      },
+      "source": {
+        "path": "objects/aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "sha256": "aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "size_bytes": 6140658
+      },
+      "version": "1.97"
+    },
+    "striketerm": {
+      "artifact": {
+        "path": "objects/72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+        "sha256": "72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+        "size_bytes": 174848
+      },
+      "classification": "PRIVATE-ENGINEERING-ADMITTED",
+      "origin": "https://csdb.dk/getinternalfile.php/129890/st2014final.d64",
+      "public_release_rights": "PUBLIC-RELEASE-RIGHTS-GATE-PENDING",
+      "rights_review": {
+        "path": "objects/db84b90cf8da8a748d4b4b3e37068a1fe2d15e45fedbd77b16062465f34b3e06",
+        "sha256": "db84b90cf8da8a748d4b4b3e37068a1fe2d15e45fedbd77b16062465f34b3e06",
+        "size_bytes": 1119
+      },
+      "version": "2014 Final"
+    }
+  },
+  "published": false,
+  "pushed": false,
+  "qualification_media": {
+    "artifact": {
+      "path": "objects/61673c45058ba31d2e28c699c631e99173c4e44b8b49c82c83735c2c5614d0af",
+      "sha256": "61673c45058ba31d2e28c699c631e99173c4e44b8b49c82c83735c2c5614d0af",
+      "size_bytes": 194560
+    },
+    "files": [
+      {
+        "path": "pcbm-check.d64",
+        "sha256": "84bfb28bf97fd7073131e7b672ee6bb012f0da82bdf1ef4da87f6bc01440cc5f",
+        "size_bytes": 174848
+      },
+      {
+        "path": "pcbm-sid-check.prg",
+        "sha256": "f3433a637606898f9d5d6e1988027e08a28537476b8275ed698f902a6e64d12d",
+        "size_bytes": 527
+      },
+      {
+        "path": "pcbm-smoke.prg",
+        "sha256": "e5607be032ddf5ecbe9e14eceaace640d9eff86845204227d69012ebdb499989",
+        "size_bytes": 192
+      },
+      {
+        "path": "pcbm-video-input.prg",
+        "sha256": "ab4c892a62265435d875f7868dedcffecdba6760ea882691743aa4ae330dc75c",
+        "size_bytes": 607
+      }
+    ],
+    "profile": "private-engineering",
+    "source_commit": "14e4ade77ec83e0429d194a6b5ecfa5ef7655e75"
+  },
+  "raw_image": null,
+  "recovery": "archive/poc4-attempt3-prebuild-blocked-2026-09-16",
+  "schema_version": 1,
+  "status": "APPROVAL-BLOCKED BEFORE CONSTRUCTION",
+  "test_results": {
+    "launcher_checker": "PASS",
+    "menu": 65,
+    "native_staging": "PASS with documented hardware/namespace limits",
+    "offline_image": "NOT RUN",
+    "physical": "UNTESTED",
+    "product": 143
+  },
+  "version": "1.1.0-poc.4"
+}

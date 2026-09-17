@@ -1,5 +1,12 @@
 # Validation and qualification
 
+Current bounded result: [POC4 attempt #3](build/poc4-attempt3-owner-review.md): 143 Product,
+65 Menu plus launcher checker PASS; actual native ARM64 package/owner/backend/service/
+USB-loop/Cover/utility/environment checks PASS within stated limits. Construction is
+automatic-approval blocked, so new-image offline tests NOT RUN and physical UNTESTED.
+The attempt #3 procedure remains an unbound draft; no flash instruction yet.
+
+
 Latest build checkpoint: [POC4 attempt #2](build/private-poc4-attempt2.md): 142 product
 and 50 Menu tests plus launcher checker; native environment/package/runtime revalidation;
 121 main + 20 supplemental offline checks; FAT/ext4/systemd and 113 ELF objects PASS.

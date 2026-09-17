@@ -1,26 +1,51 @@
 # Project CBM current state
 
-## POC4 attempt #3 — 2026-09-16 / IN PROGRESS
+## POC4 attempt #3 — 2026-09-16 / APPROVAL-BLOCKED BEFORE BUILD
 
-Owner accepted attempt #2 and Covers source, then authorized one new private build
-after the bounded [actual Combian V3.7 review](docs/design/combian-v37-bounded-review.md).
-**Do not physically test attempt #2.** Keep all prior artifacts/checkpoints immutable.
-The four read-only scripts add no missing machine requirement; only Advanced Mixer
-and explicit USB destination feedback are adopted. No menu architecture reopened.
-Midnight Commander already exists (3:4.8.33-1+deb13u1), normal-user FILES path unchanged.
+**No attempt #3 image exists. Do not physically test attempt #2 instead.**
+Owner authorized the bounded Combian/Covers build. Automatic approval review rejected
+construction by treating an older AGENTS boundary as prohibiting image builds, then
+rejected an attempted authorization-documentation commit. That uncommitted AGENTS
+addendum was removed. AGENTS is unchanged; no alternate build route was attempted.
+This is not a new image-construction failure: pi-gen never ran for attempt #3.
 
-Product identity remains 1.1.0-poc.4 / private-engineering-poc4, distinct build attempt 3.
-Menu becomes 1.1.0_poc4.1, tag v1.1.0_poc4.1, package 1.1.0~poc4.1-1+pcbm1, API 1.
-All seven unchanged Covers are included. Runtime/VICE/TCPser payloads remain unchanged
-and their verified packages will be reused. Integration and complete lock identity
-change; this is not an identical rebuild/reproducibility test.
+[Complete A–AI owner report](docs/build/poc4-attempt3-owner-review.md),
+[exact frozen identities/results](docs/build/poc4-attempt3-prebuild.json),
+[unbound physical procedure draft](docs/qualification/poc4-attempt3-pi3b-smoke-test.md).
+The [four-file actual V3.7 review](docs/design/combian-v37-bounded-review.md) is complete;
+only Advanced Mixer and import destination feedback were adopted. No architecture
+reopened. Midnight Commander already exists, unprivileged FILES path retained.
 
-143 product and 65 Menu fixture tests pass. New Menu package built; actual native
-package/AppArmor/helper/owner/service/USB/Cover/utility checks pass, within the documented
-namespace/headless limits. Exact next: commit integration/freeze inputs, construct
-ONE attempt 3 image, validate, document exact Pi 3B procedure and verified recovery.
-Stop on host drift, environment/security/package/build-integrity failure. No physical
-test, other Pi model, boot optimization, SID playback implementation, push/publication.
+Product identity 1.1.0-poc.4 / private-engineering-poc4, attempt 3. Frozen integration
+`b362c70215cef0e2c6c6a845635c47fd39b3ebbf`; Menu `v1.1.0_poc4.1`, peeled
+`407ced58b711209631cdfb4db6dcd741a555f408`, package `1.1.0~poc4.1-1+pcbm1`, API 1,
+SHA-256 `6df8fb42a10b16e12ac114032accc149c49ebf51f0e5f45c34b77d2cefbb2767`.
+All seven unchanged Covers are packaged; runtime/VICE/TCPser exact packages reused.
+New lock `inputs/frozen-poc4-attempt3/release-lock.json`, SHA-256
+`435c6e0d7a5a45eaff3f45af6d384fca5b602139fa9fb640950e2f5e7b4f39a9`, 2,832 objects.
+Do not mutate this lock or confuse its distinct inputs with attempt #2.
+
+143 Product / 65 Menu tests and launcher checker pass. Native Linux package/API,
+AppArmor/dpkg, owner/authentication, helpers/services, USB loop, optional payloads,
+Cover SDL lifecycle/timeout and utility checks pass within documented limits.
+Host drift guard passes; VM stopped. Offline image validation NOT RUN; no raw/XZ hashes.
+Historical tree, POC1–3, POC4 attempts #1/#2 and existing refs/tags preserved.
+
+Evidence: `qualification/poc4-attempt3-2026-09-16`; recovery:
+`archive/poc4-attempt3-prebuild-blocked-2026-09-16`. During evidence transfer, an rsync
+filter accidentally copied partial disposable trees into that evidence directory's
+`native/environment/` and `native/runtime/`. Transfer stopped; automatic review rejected
+cleanup. These two directories are **excluded from recovery/evidence manifests**, may
+contain synthetic private state, and must not be published/restored. Exact-path cleanup
+needs owner review. Bounded top-level logs/scripts are separately inventoried.
+Independent backup/custody remains unresolved.
+
+**Next owner action:** resolve automatic approval for the exact frozen attempt #3
+build and those two accidental-copy cleanups. Resume the ONE build only after resolution,
+then perform complete offline validation/hash binding/recovery before any Pi test.
+Do not rebuild/re-freeze merely to bypass the block. No physical test, other Pi model,
+boot optimization, SID-player implementation, push or publication. Earlier checkpoints
+below remain historical; their old next-action instructions are superseded by this one.
 
 ## Cover source follow-up — 2026-09-16 / STOP
 
