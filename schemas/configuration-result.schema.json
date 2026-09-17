@@ -25,7 +25,9 @@
         "unavailable",
         "failed",
         "busy",
-        "saved_pending"
+        "saved_pending",
+        "wifi_failed",
+        "wifi_country_required"
       ]
     },
     "message": {
@@ -38,7 +40,9 @@
         "The required system facility is unavailable. Review System Information or Advanced guidance.",
         "The operation could not be confirmed. Review current state before retrying; part of it may have applied.",
         "Another configuration operation is running. Try again when it finishes.",
-        "Settings saved; runtime integration is pending. The service was not enabled."
+        "Settings saved; runtime integration is pending. The service was not enabled.",
+        "Could not connect to Wi-Fi. Check the password, signal and router settings, then retry or choose another network. Authentication failure was not separately identified.",
+        "Set the Wi-Fi country where this Pi is used before connecting."
       ]
     }
   }

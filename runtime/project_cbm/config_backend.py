@@ -11,6 +11,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+import time
 import re
 import pwd
 import grp
@@ -42,10 +43,16 @@ def policy():
 
 
 class Linux:
+    def __init__(self):
+        # One budget across a compound request, below the client's 75s limit.
+        self.deadline=time.monotonic()+65
+
     def run(self,argv,stdin=None):
         # No shell, raw error logging, inherited environment or command return text.
+        remaining=self.deadline-time.monotonic()
+        if remaining<=0:raise subprocess.TimeoutExpired(argv,65)
         return subprocess.run(argv,input=stdin,text=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
-                              env=ENV,timeout=60,check=False).returncode==0
+                              env=ENV,timeout=min(60,remaining),check=False).returncode==0
 
     def listed(self,kind,value):
         if kind=='country':
@@ -194,7 +201,7 @@ def apply(request, p, system):
     elif op=='wifi-enroll':
         # Country must have been configured separately; readiness gate enforces activation.
         path='/etc/NetworkManager/system-connections/pcbm-wifi.nmconnection'
-        if not system.country_ready():return result('invalid')
+        if not system.country_ready():return result('wifi_country_required')
         if not system.run(['/usr/bin/nmcli','networking','on']):return result('failed')
         if not system.run(['/usr/bin/nmcli','radio','wifi','on']):return result('failed')
         system.write(path,keyfile(v['ssid'],v['password']))
@@ -212,7 +219,9 @@ def apply(request, p, system):
         return result('ok' if system.modem(v) else 'failed')
     elif op=='power':args=['/usr/bin/systemctl','--no-ask-password',v['action']]
     else:return result('invalid')
-    return result('ok' if system.run(args) else 'failed')
+    try:ok=system.run(args)
+    except subprocess.TimeoutExpired:ok=False
+    return result('ok' if ok else 'wifi_failed' if op=='wifi-enroll' else 'failed')
 
 
 def main():

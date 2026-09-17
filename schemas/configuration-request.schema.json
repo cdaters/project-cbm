@@ -551,6 +551,97 @@
           "properties": {}
         }
       }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "operation",
+        "values"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "operation": {
+          "const": "setup-wifi-country"
+        },
+        "values": {
+          "type": "object",
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "operation",
+        "values"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "operation": {
+          "const": "setup-wifi-rescan"
+        },
+        "values": {
+          "type": "object",
+          "required": [],
+          "additionalProperties": false,
+          "properties": {}
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "operation",
+        "values"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "operation": {
+          "const": "setup-wifi-enroll"
+        },
+        "values": {
+          "type": "object",
+          "required": [
+            "password",
+            "ssid"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "ssid": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "password": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        }
+      }
     }
   ]
 }

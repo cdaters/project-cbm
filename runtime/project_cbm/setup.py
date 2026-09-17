@@ -41,10 +41,19 @@ def apply(request, policy, system, configure):
             return result('ok')
         return result('invalid')
     step = op.removeprefix('setup-')
-    if step in state['completed']: return result('ok')
+    if op in ('setup-wifi-country','setup-wifi-rescan','setup-wifi-enroll'):
+        if not set(STEPS)<=set(state['completed']) or not system.owner_ready(policy['owner_user']):
+            return result('pending')
+        return configure({'schema_version':1,'operation':step,'values':values},
+                         {**policy,'system_ready':True},system)
+    # Owner enrollment is never a reset API. Region/network may be revisited
+    # before completion; already applied system changes are not rolled back.
+    if step=='owner' and step in state['completed']: return result('ok')
     required={'owner':{'region'},'network':{'region','owner'}}.get(step,set())
     if not required<=set(state['completed']):return result('invalid')
     if op == 'setup-region':
+        if not all(system.listed(setting,values[setting]) for setting in ('locale','keyboard','timezone')):
+            return result('invalid')
         for setting in ('locale', 'keyboard', 'timezone'):
             answer = configure({'schema_version': 1, 'operation': setting,
                                 'values': {'value': values[setting]}},
@@ -71,6 +80,6 @@ def apply(request, policy, system, configure):
         return result('ok')
     else:
         return result('invalid')
-    state['completed'].append(step)
+    if step not in state['completed']:state['completed'].append(step)
     system.setup_save(state)
     return result('ok')

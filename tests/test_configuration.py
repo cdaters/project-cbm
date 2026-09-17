@@ -124,7 +124,7 @@ class Configuration(unittest.TestCase):
         self.assertEqual(system.calls[-1][0][-2:],['uuid',c.WIFI_UUID])
         self.assertIn(('/usr/bin/nmcli'),system.calls[0][0])
         system=FakeLinux();system.country=False
-        self.assertEqual(b.apply(request,POLICY,system)['status'],'invalid');self.assertFalse(system.writes)
+        self.assertEqual(b.apply(request,POLICY,system)['status'],'wifi_country_required');self.assertFalse(system.writes)
         for ssid in ['x\n[ipv4]\nmethod=manual','', 'x'*33,'1;2;3;']:
             with self.assertRaises(ValueError):c.validate(req('wifi-enroll',ssid=ssid,password=secret))
 
@@ -200,6 +200,35 @@ class Configuration(unittest.TestCase):
             validator=Draft202012Validator(schema)
             cases=CASES if name=='configuration-request' else [POLICY] if name=='configuration-policy' else [c.result(k) for k in c.RESULTS]
             for case in cases:validator.validate(case)
+
+    def test_compound_command_budget_and_wifi_failure_message(self):
+        with patch.object(b.time,'monotonic',side_effect=[100,120]),patch.object(b.subprocess,'run') as run:
+            run.return_value.returncode=0
+            self.assertTrue(b.Linux().run(['/usr/bin/fixture']))
+            self.assertEqual(run.call_args.kwargs['timeout'],45)
+        system=FakeLinux()
+        original=system.run
+        system.run=lambda args,stdin=None: False if 'up' in args else original(args,stdin)
+        answer=b.apply(req('wifi-enroll',ssid='fixture',password='synthetic ! space'),POLICY,system)
+        self.assertEqual(answer['status'],'wifi_failed')
+        self.assertNotIn('synthetic',json.dumps(answer));self.assertIn('not separately identified',answer['message'])
+
+    def test_representative_wifi_passphrases_keep_transport_and_keyfile_boundaries(self):
+        for secret in ['synthetic letters','synthetic !#;=:$[]','synthetic \\ slash',' leading and trailing ']:
+            request=req('wifi-enroll',ssid='synthetic network',password=secret)
+            c.decode(json.dumps(request).encode())
+            system=FakeLinux();self.assertEqual(b.apply(request,POLICY,system)['status'],'ok')
+            self.assertNotIn(secret,str(system.calls))
+            data=next(iter(system.writes.values()))
+            encoded=data.split('psk=',1)[1].splitlines()[0]
+            # Decode the two explicit keyfile escapes produced by this adapter.
+            decoded='';i=0
+            while i<len(encoded):
+                if encoded[i]=='\\':
+                    i+=1;decoded+=' ' if encoded[i]=='s' else encoded[i]
+                else:decoded+=encoded[i]
+                i+=1
+            self.assertEqual(decoded,secret)
 
     def test_fixed_file_atomicity_and_mode(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -63,12 +63,23 @@ class Activation(unittest.TestCase):
         s.prerequisites=False
         self.assertEqual(self.apply(req('setup-finish'),s)['status'],'failed')
         self.assertFalse(s.state['complete']);self.assertFalse(s.active)
-    def test_completed_markers_skip_reinitialization(self):
+    def test_completed_owner_marker_never_resets_but_region_network_can_be_revisited(self):
         s=SetupLinux()
         for r in self.requests()[:3]:self.apply(r,s)
         count=len(s.calls)
-        for r in self.requests()[:3]:self.apply(r,s)
+        self.apply(self.requests()[1],s)
         self.assertEqual(len(s.calls),count)
+        for r in [self.requests()[0],self.requests()[2]]:self.apply(r,s)
+        self.assertGreater(len(s.calls),count)
+        self.assertEqual(s.state['completed'],['region','owner','network'])
+    def test_wifi_setup_narrow_gate_does_not_activate_services(self):
+        s=SetupLinux()
+        for op,values in [('setup-wifi-country',{'value':'US'}),('setup-wifi-rescan',{}),('setup-wifi-enroll',{'ssid':'fixture','password':'synthetic space !'})]:
+            self.assertEqual(self.apply(req(op,**values),s)['status'],'pending')
+        for r in self.requests()[:3]:self.apply(r,s)
+        self.assertEqual(self.apply(req('setup-wifi-rescan'),s)['status'],'ok')
+        self.assertFalse(s.active);self.assertFalse(s.state['complete'])
+        self.assertEqual(self.apply(req('service',service='ssh',enabled=True),s)['status'],'pending')
     def test_corrupt_state_fails_closed(self):
         for state in [{}, {'schema_version':1,'completed':['owner'],'complete':True},
                       {'schema_version':1,'completed':['owner','owner'],'complete':False}]:
