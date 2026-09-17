@@ -244,6 +244,13 @@ PSID/RSID playback, additional Pi model, broad privilege or rights change.
 
 ## Validation, refs and recovery
 
+The first recovery-script run at `archive/poc4-run2-source-correction-2026-09-17`
+is preserved **incomplete, not sealed**. Its private archive umask077 propagated
+to a permissions test that expects normal umask022, causing an additional fixture
+failure; no integrity mismatch or runtime-source defect was established. The distinct
+`-verified` checkpoint supplies explicit test umask022 while retaining private output
+permissions. Both test outcomes remain evidence; no candidate/build retry occurred.
+
 Final retained host results: Product 155 tests, 154 PASS and one unchanged contextual
 macOS `test_mktemp_regression` FAIL (the earlier baseline has the same failure);
 Menu 70/70 PASS. Nine focused lifecycle tests pass. The unprivileged macOS sandbox
@@ -255,7 +262,7 @@ time, not physical first-boot operation time.
 
 Final suite totals, exact logical commits, clean branch status, manifest hash and
 offline restoration results are retained in the related external checkpoint
-`archive/poc4-run2-source-correction-2026-09-17`. It contains both Git bundles,
+`archive/poc4-run2-source-correction-2026-09-17-verified`. It contains both Git bundles,
 refs/peeled tags/fsck, source-change inventories, this documentation, validation logs,
 run2 evidence references and hashes for preserved POC3/POC4 artifacts. Images are
 referenced, not duplicated. The preceding checkpoint remains unchanged. Independent

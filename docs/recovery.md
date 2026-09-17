@@ -1,7 +1,7 @@
 # Black-box project recovery and installed identity
 
 2026-09-17 run2/source continuation: [owner review](qualification/poc4-run2-source-review-2026-09-17.md).
-Related checkpoint `archive/poc4-run2-source-correction-2026-09-17`; evidence
+Related checkpoint `archive/poc4-run2-source-correction-2026-09-17-verified`; evidence
 `qualification/poc4-run2-2026-09-17`. Manifest binds final source refs/bundles, offline
 refs/peeled tags/fsck, source/docs/test inventory and exact preserved evidence hashes.
 Used-card files are private read-only engineering evidence with accepted unknown prior

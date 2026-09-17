@@ -41,7 +41,7 @@ were added; do not hide the final retained context-dependent failure. ShellCheck
 per-file Bash syntax, Python parsing, JSON, local links and diff/secret scans pass.
 Native installed Linux SDL/VT/network/account behavior remains UNTESTED in this slice.
 
-Related recovery: `archive/poc4-run2-source-correction-2026-09-17`. Its manifest binds
+Related recovery: `archive/poc4-run2-source-correction-2026-09-17-verified`. Its manifest binds
 final refs/bundles/offline restore/fsck, source inventory, validation and prior evidence
 references; original images are not duplicated. Earlier checkpoint's 50 files and its
 preserved POC3/POC4 artifact references rehash correctly; run2 copy/photo hashes agree.
