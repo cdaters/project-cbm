@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+Latest subsequent stop: [attempt #3 explicit resume blocked again](build/poc4-attempt3-resume-blocked.md).
+New documentation/bundle checkpoint `archive/poc4-attempt3-resume-blocked-2026-09-16`;
+no cleanup or build ran. Preserve the accepted prebuild checkpoint below unchanged.
+Automatic approval rejected the explicit owner authorization; see CURRENT-STATE.
+
+
 Latest **pre-build** checkpoint: [POC4 attempt #3 owner report](build/poc4-attempt3-owner-review.md).
 `archive/poc4-attempt3-prebuild-blocked-2026-09-16` retains both repositories, frozen
 `inputs/frozen-poc4-attempt3`, new Menu package and bounded native evidence. Automatic

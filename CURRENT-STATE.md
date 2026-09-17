@@ -1,5 +1,28 @@
 # Project CBM current state
 
+## POC4 attempt #3 explicit resume — automatic review rejected again / STOP
+
+The owner explicitly authorized the frozen build, narrow AGENTS reconciliation and
+exact two-path disposable cleanup. Automatic approval again rejected both the policy
+reconciliation commit and the separately submitted exact-path cleanup, describing
+owner authorization as untrusted transcript content. Neither command ran. Temporary
+AGENTS/CURRENT-STATE reconciliation edits were removed; AGENTS remains unchanged.
+No deletion, VM start, input change or build. Both accidental copies still exist.
+
+[Resume report A–AD](docs/build/poc4-attempt3-resume-blocked.md) records exact rejection
+reasons and limits. Read-only verification: original lock/checkpoint hashes unchanged,
+32 checkpoint files and 25 retained evidence files PASS; both deletion paths resolve
+exactly and are explicitly excluded. No accepted evidence removed. Existing prebuild
+results remain accepted; no image/physical pass is claimed.
+
+Subsequent stop checkpoint: `archive/poc4-attempt3-resume-blocked-2026-09-16`.
+Keep the earlier `archive/poc4-attempt3-prebuild-blocked-2026-09-16` unchanged.
+Next: resolve execution approval's refusal to recognize the already-explicit owner
+instruction. Do not re-freeze, bypass the review, retry automatically or flash attempt
+#2. The prepared attempt #3 procedure stays NOT READY TO FLASH. All original security,
+input/host/build/validation stop gates remain. No push/publication.
+
+
 ## POC4 attempt #3 — 2026-09-16 / APPROVAL-BLOCKED BEFORE BUILD
 
 **No attempt #3 image exists. Do not physically test attempt #2 instead.**
