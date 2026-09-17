@@ -1,5 +1,27 @@
 # Project CBM current state
 
+## POC4 attempt #3 — 2026-09-16 / IN PROGRESS
+
+Owner accepted attempt #2 and Covers source, then authorized one new private build
+after the bounded [actual Combian V3.7 review](docs/design/combian-v37-bounded-review.md).
+**Do not physically test attempt #2.** Keep all prior artifacts/checkpoints immutable.
+The four read-only scripts add no missing machine requirement; only Advanced Mixer
+and explicit USB destination feedback are adopted. No menu architecture reopened.
+Midnight Commander already exists (3:4.8.33-1+deb13u1), normal-user FILES path unchanged.
+
+Product identity remains 1.1.0-poc.4 / private-engineering-poc4, distinct build attempt 3.
+Menu becomes 1.1.0_poc4.1, tag v1.1.0_poc4.1, package 1.1.0~poc4.1-1+pcbm1, API 1.
+All seven unchanged Covers are included. Runtime/VICE/TCPser payloads remain unchanged
+and their verified packages will be reused. Integration and complete lock identity
+change; this is not an identical rebuild/reproducibility test.
+
+143 product and 65 Menu fixture tests pass. New Menu package built; actual native
+package/AppArmor/helper/owner/service/USB/Cover/utility checks pass, within the documented
+namespace/headless limits. Exact next: commit integration/freeze inputs, construct
+ONE attempt 3 image, validate, document exact Pi 3B procedure and verified recovery.
+Stop on host drift, environment/security/package/build-integrity failure. No physical
+test, other Pi model, boot optimization, SID playback implementation, push/publication.
+
 ## Cover source follow-up — 2026-09-16 / STOP
 
 The owner subsequently requested preservation of existing Menu COVERS. The bounded

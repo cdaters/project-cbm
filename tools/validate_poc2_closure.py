@@ -21,6 +21,8 @@ def inspect(root):
     todo=[root/'usr/bin/x64sc']+[paths[0]/name for name in ['libSDL2-2.0.so.0','libGL.so.1','libGLX_mesa.so.0','libEGL_mesa.so.0','dri/vc4_dri.so']]
     helper=root/'usr/libexec/project-cbm-vice/drm-state'
     if helper.is_file():todo.append(helper)
+    for relative in ('usr/lib/aarch64-linux-gnu/libSDL2_image-2.0.so.0','usr/bin/mc','usr/bin/alsamixer'):
+        if (root/relative).exists():todo.append(root/relative)
     seen=set();missing=set()
     while todo:
         path=resolve(todo.pop())

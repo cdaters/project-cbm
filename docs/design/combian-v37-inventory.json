@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "reference_root": "/Volumes/TheBench/Projects/Combian/Combian64 - V37_update_updatedEN",
+  "scope": "four read-only utility sources; no execution or source copying",
+  "files": [
+    {
+      "filename": "alsa",
+      "size_bytes": 47,
+      "sha256": "490bdf5832e157b3beabaee39f282d5210c1689750dc7ff1c411d01cee8f2752",
+      "mode": "0o755",
+      "mtime_ns": 1689526200000000000
+    },
+    {
+      "filename": "fixusb",
+      "size_bytes": 250,
+      "sha256": "f26450ed5d1fd4f72ba8a6e304abad551e70123b3a63ed753841cb471b406b23",
+      "mode": "0o755",
+      "mtime_ns": 1689526200000000000
+    },
+    {
+      "filename": "menu",
+      "size_bytes": 8858,
+      "sha256": "7a2e7800de3f948ae0d58004667a104a06aa0937885b98069482f7994cc3c5eb",
+      "mode": "0o755",
+      "mtime_ns": 1697353851000000000
+    },
+    {
+      "filename": "usbcopy",
+      "size_bytes": 917,
+      "sha256": "7bab5fc499d795004bba02bb3c04193a0a355682dc67e36a18f5c0e00baf2464",
+      "mode": "0o755",
+      "mtime_ns": 1697353674000000000
+    }
+  ]
+}
