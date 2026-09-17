@@ -1,5 +1,17 @@
 # Collect existing POC4 attempt #3 evidence
 
+## Owner-approved run 2 engineering exception — 2026-09-17
+
+The owner explicitly accepted unknown historical Paragon journal/mount behavior and
+authorized reading the **already-mounted, currently read-only** `/Volumes/rootfs`,
+after verifying device correspondence and installed identity. No remount, repair or
+card write is authorized. This is read-only engineering evidence from a used card,
+**not pristine forensic capture or immutable candidate evidence**. The Linux ro,noload
+procedure below remains the preferred prospective method, not a retroactive guarantee.
+See [run2/source review](poc4-run2-source-review-2026-09-17.md) for the collected inventory,
+classification, limits and source-correction decision. A writable mount or identity
+mismatch still requires stopping without changing mount state.
+
 This procedure supports the [regression investigation](poc4-regression-investigation-2026-09-17.md).
 It is for owner review and execution. Do not reflash the tested card, launch VICE again,
 repair its terminal, enable SSH or change its installed packages to collect evidence.
