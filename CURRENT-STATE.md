@@ -1,3 +1,50 @@
+# POC4 corrective attempt #4 complete — 2026-09-17 / OWNER REVIEW
+
+**READY TO FLASH: YES. READY FOR OWNER PHYSICAL TEST.** One new private engineering
+Project CBM **1.1.0-poc.4 / private-engineering-poc4, attempt 4** passed construction
+and offline validation. [Report](docs/build/private-poc4-attempt4.md),
+[exact results](docs/build/private-poc4-attempt4.json),
+[hash-bound Pi 3B procedure](docs/qualification/poc4-attempt4-pi3b-regression.md).
+Physical Cover/KMS/VT/keyboard and Wi-Fi behavior remain UNTESTED; no root-cause proof.
+
+Frozen integration `f5511e10154e6db93f472716e9ddefd04abadb26`; Menu `v1.1.0_poc4.2`, peeled
+`171e67b3de181074245fb2bdc70cb60af5688b8e`. New Runtime `1.1.0~poc4.1-1`, Menu
+`1.1.0~poc4.2-1+pcbm1`; unchanged VICE/TCPser/media/optional inputs reused exactly.
+Schema-4 lock `inputs/frozen-poc4-attempt4/release-lock.json`, SHA-256
+`b3430b626d5156c582f4e3e457d47916a16b527c3dcf7586a90cae96c3882b72`; all 2,872 retained objects verify.
+
+Raw `artifacts/private-poc4-attempt-4/2026-09-17-project-cbm-1.1.0-poc.4-lite-private-poc.img`: 3087007744 bytes,
+SHA-256 `f699595fdd31a7f8125bb1882ce8d468ce7dd1b4734d85986b1962e992875b21`.
+XZ `artifacts/private-poc4-attempt-4/image_2026-09-17-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz`: 597616864 bytes,
+SHA-256 `076a42911faa24bc4f2d4c225c92d621498261b630e63de35b6c7dc8af0760e2`. Raw/XZ equivalence and external copies PASS.
+
+206 offline checks, FAT/ext4/systemd, 127 ELF objects and 672 package identities PASS.
+Product native 156/156; Menu native/host 70/70; installed lifecycle 9/9 plus all seven
+SDL Covers and three renderer/VICE-fixture cycles PASS. Product host final 155/156:
+the same known macOS mktemp expectation FAIL, not a product/Linux blocker. Initial
+154/155 result is retained separately. Native setup/privilege/accounts/services/import
+pass within namespace limits; no physical Pi behavior is inferred.
+
+Root capacity 2,430,955,520; used 1,651,539,968; ordinary-user available 635,551,744 bytes
+before expansion. No minimum card claim. Before/after host inventory/update guards PASS,
+no drift; builder stopped, no build mounts/loops/processes. Lifecycle terminal/Cover
+phase diagnostics and corrected first boot are verified in the actual image.
+
+Recovery: `archive/poc4-attempt4-2026-09-17`; manifest/restore report bind final refs,
+full bundles, offline refs/peeled tags/symbolic HEAD/fsck, inputs/artifacts and procedure.
+Evidence: `qualification/poc4-attempt4-2026-09-17`. Earlier candidates and accepted source
+checkpoint verify unchanged, as do 1,677 original historical entries. Both AGENTS files
+and owner-scope commits remain intact. Private StrikeTerm/public-rights gate, Cover
+constituent rights, independent encrypted custody and reproducibility limits remain.
+
+**ONE next owner action: flash the exact new image and perform the linked Pi 3B
+physical regression procedure.** Prioritize responsive Menu/VT before and after
+RUN/Cover/VICE/F10/Quit, three cycles; collect diagnostics on failure before reboot.
+Then qualify first boot, Wi-Fi, media/audio/input, applications/utilities, USB, services
+and persistence. STOP for owner review. No second build, physical test by Codex, other
+model, unrelated backlog, boot optimization, PSID/RSID work, push or publication.
+Historical checkpoints below retain their original dated wording.
+
 # POC4 corrective attempt #4 preparation — 2026-09-17
 
 Top AGENTS owner scope at `59c36d15d5a5f619895262aa6a02e6c5d9ca31e3` authorizes

@@ -1,5 +1,13 @@
 # Validation and qualification
 
+2026-09-17 corrective attempt #4: [results and limits](build/private-poc4-attempt4.md).
+Product host final 155/156 PASS, same known contextual macOS mktemp expectation FAIL;
+native Product 156/156 and Menu host/native 70/70 PASS. Installed lifecycle 9/9,
+all seven native SDL dummy Covers and three renderer/VICE-fixture cycles PASS.
+Actual image: 206 checks, FAT/ext4/systemd, 127 ELF objects, all 672 installed package
+identities, raw/XZ equality and host drift guard PASS. Physical KMS/VT/input/Wi-Fi
+remain UNTESTED; follow only the [bound procedure](qualification/poc4-attempt4-pi3b-regression.md).
+
 Run2/source continuation (2026-09-17): [review and limits](qualification/poc4-run2-source-review-2026-09-17.md).
 Final retained host run: Product 155 tests, 154 PASS; unchanged unsandboxed macOS
 `test_mktemp_regression` expectation FAIL. Menu 70/70 PASS. Nine focused lifecycle

@@ -1,0 +1,283 @@
+{
+  "artifacts": {
+    "external_copy_and_xz_equivalence": "PASS",
+    "raw": {
+      "guest_path": "builds/private-poc4-attempt-4/work/export-image/2026-09-17-project-cbm-1.1.0-poc.4-lite-private-poc.img",
+      "path": "artifacts/private-poc4-attempt-4/2026-09-17-project-cbm-1.1.0-poc.4-lite-private-poc.img",
+      "sha256": "f699595fdd31a7f8125bb1882ce8d468ce7dd1b4734d85986b1962e992875b21",
+      "size_bytes": 3087007744
+    },
+    "raw_unchanged_after_inspection": true,
+    "raw_xz_equivalence": "PASS",
+    "xz": {
+      "guest_path": "artifacts/private-poc4-attempt-4/image_2026-09-17-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz",
+      "path": "artifacts/private-poc4-attempt-4/image_2026-09-17-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz",
+      "sha256": "076a42911faa24bc4f2d4c225c92d621498261b630e63de35b6c7dc8af0760e2",
+      "size_bytes": 597616864
+    },
+    "xz_expanded_sha256": "f699595fdd31a7f8125bb1882ce8d468ce7dd1b4734d85986b1962e992875b21"
+  },
+  "attempt": 4,
+  "components": [
+    {
+      "disposition": "NEW",
+      "filename": "project-cbm-menu_1.1.0~poc4.2-1+pcbm1_all.deb",
+      "name": "menu",
+      "path": "objects/15f7d10c37fd67195941d56e1067bb87a45bb5aed1adcc0dbd2dc35e978bf5ac",
+      "reason": "Accepted source corrections require new bytes",
+      "sha256": "15f7d10c37fd67195941d56e1067bb87a45bb5aed1adcc0dbd2dc35e978bf5ac",
+      "size_bytes": 1102572,
+      "source": {
+        "artifact": {
+          "path": "objects/a9e01c25e521ec84d583fd6f226e95786746015c86da96eaa40d09853c3774d5",
+          "sha256": "a9e01c25e521ec84d583fd6f226e95786746015c86da96eaa40d09853c3774d5",
+          "size_bytes": 2457600
+        },
+        "git": {
+          "commit": "171e67b3de181074245fb2bdc70cb60af5688b8e",
+          "ref": "refs/tags/v1.1.0_poc4.2",
+          "repository": "https://github.com/cdaters/project-cbm-menu",
+          "tag_object": "d670e0436fe8b01f9b52416fe661baa97670cd0c"
+        },
+        "origin": "https://github.com/cdaters/project-cbm-menu"
+      },
+      "version": "1.1.0~poc4.2-1+pcbm1"
+    },
+    {
+      "disposition": "NEW",
+      "filename": "project-cbm-runtime_1.1.0~poc4.1-1_all.deb",
+      "name": "runtime",
+      "path": "objects/0803ff827b7fa9f688858b2ee0ed6758e640ad37942588a58de327a55f55d56c",
+      "reason": "Accepted source corrections require new bytes",
+      "sha256": "0803ff827b7fa9f688858b2ee0ed6758e640ad37942588a58de327a55f55d56c",
+      "size_bytes": 25708,
+      "source": {
+        "artifact": {
+          "path": "objects/d31d90265a4f9fdd960db11f929430ea8c24a2a2bfec37ec44817266c5cc49f6",
+          "sha256": "d31d90265a4f9fdd960db11f929430ea8c24a2a2bfec37ec44817266c5cc49f6",
+          "size_bytes": 2590720
+        },
+        "git": {
+          "commit": "f5511e10154e6db93f472716e9ddefd04abadb26",
+          "ref": "refs/heads/feature/1.1-build-foundation",
+          "repository": "https://github.com/cdaters/project-cbm",
+          "tag_object": null
+        },
+        "origin": "https://github.com/cdaters/project-cbm"
+      },
+      "version": "1.1.0~poc4.1-1"
+    },
+    {
+      "disposition": "REUSED",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "name": "tcpser",
+      "path": "objects/8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "reason": "Exact unchanged package/source identity and compatibility verified",
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "size_bytes": 26872,
+      "source": {
+        "artifact": {
+          "path": "objects/b80ec19d5262a8a64035f4f4db04ceee41940017cbc55271c984a1ae2cc50f17",
+          "sha256": "b80ec19d5262a8a64035f4f4db04ceee41940017cbc55271c984a1ae2cc50f17",
+          "size_bytes": 491520
+        },
+        "git": {
+          "commit": "fe7feff4862406b277e009d14c219f5d16cf1222",
+          "ref": "refs/heads/master",
+          "repository": "https://github.com/go4retro/tcpser.git",
+          "tag_object": null
+        },
+        "origin": "https://github.com/go4retro/tcpser.git"
+      },
+      "version": "1.1.6~beta-1+pcbm1"
+    },
+    {
+      "disposition": "REUSED",
+      "filename": "project-cbm-vice_3.10-1+pcbm3_arm64.deb",
+      "name": "vice",
+      "path": "objects/c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+      "reason": "Exact unchanged package/source identity and compatibility verified",
+      "sha256": "c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe",
+      "size_bytes": 4650184,
+      "source": {
+        "artifact": {
+          "path": "objects/8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1",
+          "sha256": "8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1",
+          "size_bytes": 14366175
+        },
+        "origin": "https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.10.tar.gz"
+      },
+      "version": "3.10-1+pcbm3"
+    },
+    {
+      "disposition": "REUSED",
+      "filename": "objects/46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+      "name": "sid_wizard",
+      "path": "objects/46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+      "reason": "Unchanged reviewed input and retained rights classification; integrated payload, not Debian package",
+      "sha256": "46872e5c937f681fa161a2acf88937040f2b90a091b03d8153513035bd62223e",
+      "size_bytes": 184320,
+      "source": {
+        "path": "objects/aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "sha256": "aeb265f4a778b2acb5aad13e8e98af882888292f749f29f4d18cbf49850e57bc",
+        "size_bytes": 6140658
+      },
+      "version": "1.97"
+    },
+    {
+      "disposition": "REUSED",
+      "filename": "objects/72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+      "name": "striketerm",
+      "path": "objects/72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+      "reason": "Unchanged reviewed input and retained rights classification; integrated payload, not Debian package",
+      "sha256": "72b803c54c7892857c0ddb5674dabc841d59a496285975546bef689308940595",
+      "size_bytes": 174848,
+      "source": {
+        "origin": "https://csdb.dk/getinternalfile.php/129890/st2014final.d64"
+      },
+      "version": "2014 Final"
+    },
+    {
+      "disposition": "REUSED",
+      "filename": "qualification-media.tar",
+      "name": "qualification_media",
+      "path": "objects/61673c45058ba31d2e28c699c631e99173c4e44b8b49c82c83735c2c5614d0af",
+      "reason": "Unchanged original media; exact manifest/payload verification",
+      "sha256": "61673c45058ba31d2e28c699c631e99173c4e44b8b49c82c83735c2c5614d0af",
+      "size_bytes": 194560,
+      "source": {
+        "commit": "14e4ade77ec83e0429d194a6b5ecfa5ef7655e75",
+        "repository": "https://github.com/cdaters/project-cbm"
+      },
+      "version": "0.1.0"
+    }
+  ],
+  "construction": {
+    "elapsed_seconds": 182.81,
+    "exit_status": 0,
+    "factory_commit": "6fcca44892d5d4b36f826d2b8fb16d716369fada",
+    "invocations": 1,
+    "maximum_individual_process_rss_kib": 508908
+  },
+  "designation_reason": "Corrective iteration of existing POC4 milestone using distinct attempt/lock/build ID, consistent with attempts 2 and 3; not POC5",
+  "evidence": "qualification/poc4-attempt4-2026-09-17",
+  "format": "project-cbm.private-candidate-result",
+  "host": {
+    "VM": "STOPPED",
+    "automatic_update_masks": "PASS",
+    "before_after_inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "drift": "NONE",
+    "guest_ext4_available_after_bytes": 43381764096,
+    "guest_ext4_available_before_bytes": 52893679616,
+    "no_build_mounts_loops_or_processes": true
+  },
+  "integration_commit": "f5511e10154e6db93f472716e9ddefd04abadb26",
+  "menu": {
+    "commit": "171e67b3de181074245fb2bdc70cb60af5688b8e",
+    "ref": "refs/tags/v1.1.0_poc4.2",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "d670e0436fe8b01f9b52416fe661baa97670cd0c"
+  },
+  "menu_version": "1.1.0_poc4.2",
+  "offline": {
+    "categories": [
+      "lock-bound installed identity",
+      "exact packages and corrective payloads",
+      "dependency closure",
+      "systemd/service policy",
+      "first boot and owner/admin integration",
+      "narrow privilege policy",
+      "SSH default state and NetworkManager integration",
+      "Menu/Runtime/VICE/TCPser",
+      "Covers/renderer/mappings/diagnostics",
+      "POC3 geometry/ALSA/F10",
+      "qualification media",
+      "storage/import/configuration/status",
+      "SID-Wizard and private StrikeTerm rights metadata",
+      "secret/identity/builder-residue sealing"
+    ],
+    "corrective_checks": 65,
+    "elf_objects": 127,
+    "filesystems": "FAT/ext4 PASS, read-only, no repair",
+    "installed_package_identities": 672,
+    "main_checks": 121,
+    "missing_dependencies": [],
+    "result": "PASS",
+    "retained_package_descriptors": 709,
+    "root_filesystem_bytes": {
+      "available_to_user": 635551744,
+      "capacity": 2430955520,
+      "free": 779415552,
+      "used": 1651539968
+    },
+    "supplement_checks": 20,
+    "total_checks": 206,
+    "units": "PASS"
+  },
+  "physical_procedure": "docs/qualification/poc4-attempt4-pi3b-regression.md",
+  "physical_status": "UNTESTED",
+  "preservation": {
+    "AGENTS_modified": false,
+    "accepted_source_checkpoint_manifest_sha256": "b79f26c9649e24c4532d1e1545f15e0a142b9ad183c2eab903740187b3744ed3",
+    "actual_owner_scope_commits": {
+      "menu": "aeb43508c53c11fe62a5a1e7f4bafc08e4bafa29",
+      "product": "59c36d15d5a5f619895262aa6a02e6c5d9ca31e3"
+    },
+    "historical_entries": 1677,
+    "menu_prompt_commit_spelling": "deb4350 is not the actual repository authorization commit",
+    "prior_candidates_inputs_checkpoints_refs": "PASS"
+  },
+  "product": {
+    "candidate": "private-engineering-poc4",
+    "version": "1.1.0-poc.4"
+  },
+  "public_release": false,
+  "pushed": false,
+  "ready_for_owner_physical_test": true,
+  "ready_to_flash": true,
+  "recovery_checkpoint": "archive/poc4-attempt4-2026-09-17",
+  "release_lock": {
+    "path": "inputs/frozen-poc4-attempt4/release-lock.json",
+    "schema_version": 4,
+    "sha256": "b3430b626d5156c582f4e3e457d47916a16b527c3dcf7586a90cae96c3882b72"
+  },
+  "remaining_gates": [
+    "owner Pi 3B regression",
+    "independent rebuild/reproducibility",
+    "independent encrypted recovery custody",
+    "StrikeTerm and constituent Cover public rights"
+  ],
+  "schema_version": 1,
+  "tests": {
+    "actual_SDL_and_VICE_fixture_cycles": 3,
+    "actual_SDL_dummy_covers": 7,
+    "installed_focused_lifecycle": {
+      "pass": 9,
+      "total": 9
+    },
+    "menu_host": {
+      "pass": 70,
+      "total": 70
+    },
+    "menu_native_linux": {
+      "pass": 70,
+      "total": 70
+    },
+    "product_host_baseline": {
+      "known_failure": "context-dependent macOS test_mktemp_regression expectation",
+      "pass": 154,
+      "total": 155
+    },
+    "product_host_final": {
+      "known_failure": "same test_mktemp_regression expectation; no product behavior changed",
+      "pass": 155,
+      "total": 156
+    },
+    "product_native_linux": {
+      "pass": 156,
+      "total": 156
+    },
+    "scope": "Fixtures/native namespaces and headless SDL; physical KMS/VT/radio UNTESTED"
+  },
+  "wifi_association": "UNTESTED"
+}

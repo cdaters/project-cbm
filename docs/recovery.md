@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+2026-09-17 corrective attempt #4: [owner handoff](build/private-poc4-attempt4.md).
+New checkpoint `archive/poc4-attempt4-2026-09-17` binds final source refs/bundles,
+offline restoration/fsck, frozen lock, validation, exact image references and the
+hash-bound Pi 3B procedure. Prior checkpoints remain immutable; no image duplication.
+Disposable staging credentials/roots are excluded. Independent encrypted custody remains open.
+
 2026-09-17 run2/source continuation: [owner review](qualification/poc4-run2-source-review-2026-09-17.md).
 Related checkpoint `archive/poc4-run2-source-correction-2026-09-17-verified`; evidence
 `qualification/poc4-run2-2026-09-17`. Manifest binds final source refs/bundles, offline
