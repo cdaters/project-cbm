@@ -557,6 +557,113 @@
               "type": "null"
             }
           ]
+        },
+        "network_interfaces": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "maxItems": 32,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "interface",
+                  "type",
+                  "operstate",
+                  "state",
+                  "ipv4",
+                  "ipv6",
+                  "mac",
+                  "ssid"
+                ],
+                "properties": {
+                  "interface": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:-]{1,15}$"
+                  },
+                  "type": {
+                    "enum": [
+                      "unknown",
+                      "ethernet",
+                      "wifi",
+                      "bridge",
+                      "bond",
+                      "tunnel",
+                      "other"
+                    ]
+                  },
+                  "operstate": {
+                    "enum": [
+                      "up",
+                      "down",
+                      "unknown",
+                      "dormant",
+                      "lowerlayerdown",
+                      "notpresent",
+                      "testing"
+                    ]
+                  },
+                  "state": {
+                    "enum": [
+                      "unknown",
+                      "unmanaged",
+                      "unavailable",
+                      "disconnected",
+                      "connecting",
+                      "authentication-required",
+                      "connected",
+                      "disconnecting",
+                      "failed"
+                    ]
+                  },
+                  "ipv4": {
+                    "type": "array",
+                    "maxItems": 8,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "maxLength": 18
+                    }
+                  },
+                  "ipv6": {
+                    "type": "array",
+                    "maxItems": 8,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "maxLength": 43
+                    }
+                  },
+                  "mac": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$"
+                      }
+                    ]
+                  },
+                  "ssid": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 32
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
         }
       },
       "required": [

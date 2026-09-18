@@ -278,3 +278,11 @@ runs; GNU timeout stopped a simulated hung renderer. No physical KMS/VT evidence
 See [cover design/results](runtime/covers.md) and the
 [future candidate test addendum](qualification/covers-next-candidate.md). These tests
 do not change or qualify the already-frozen POC4 attempt #2 image.
+
+## POC4 attempt #5 source prebuild (2026-09-18)
+
+[Cover/network correction](runtime/cover-network-correction-2026-09-18.md) adds focused
+kernel-query fixtures and structured network parser/UI tests. Host Product 162/163
+(known macOS mktemp expectation), Menu 76/76; native Linux 163/163 and 76/76.
+Native synthetic-interface collection checks actual ip/nmcli command syntax.
+Physical active-VT admission, Cover visibility and Wi-Fi remain untested.

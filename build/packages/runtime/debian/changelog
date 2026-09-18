@@ -1,3 +1,9 @@
+project-cbm-runtime (1.1.0~poc4.2-1) unstable; urgency=medium
+
+  * Add bounded authoritative live interface addresses, state, MAC and active SSID.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Fri, 18 Sep 2026 00:00:00 -0700
+
 project-cbm-runtime (1.1.0~poc4.1-1) trixie; urgency=medium
 
   * Include accepted retry-safe first-boot backend and bounded operations.

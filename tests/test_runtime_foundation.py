@@ -53,6 +53,8 @@ class Fixture:
 
     def command(self, args):
         self.calls.append(args)
+        if args[0].endswith('/ip'):return 0, '[]'
+        if args[0].endswith('/nmcli'):return 0, ''
         if args[0].endswith('dpkg-query'):
             return self.package_result
         return 0, '\n\n'.join('Id='+unit+'\nLoadState='+('not-found' if name=='tcpser' else 'masked')+'\nActiveState=inactive\nSubState=dead\nUnitFileState='+('' if name=='tcpser' else 'masked') for name,unit in info.SERVICES.items())
@@ -81,7 +83,7 @@ class Information(unittest.TestCase):
         d = self.collect()
         self.assertEqual(d['built_as']['components']['vice']['package_version'], '3.10-1+pcbm1')
         self.assertEqual(d['current_state']['packages']['vice']['version'], '3.10-1+pcbm3')
-        self.assertEqual(len(self.source.calls), 2)
+        self.assertTrue(all(call[0] in ('/usr/bin/dpkg-query', '/usr/bin/systemctl', '/usr/sbin/ip', '/usr/bin/nmcli') for call in self.source.calls))
 
     def test_schema_and_unknown_field_rejection(self):
         validator=Draft202012Validator(json.loads((ROOT/'schemas/info.schema.json').read_text()))

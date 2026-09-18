@@ -112,3 +112,12 @@ if covers are required in the next physical candidate. Then run the
 [cover qualification addendum](../qualification/covers-next-candidate.md) alongside the
 full POC4 Pi 3B procedure, bound to that new candidate's hashes. No new image, physical
 test, additional Pi model, boot optimization or publication is part of this source follow-up.
+
+## Attempt #5 admission correction
+
+See the [2026-09-18 correction contract](cover-network-correction-2026-09-18.md).
+Admission now queries the real controlling tty identity, active VT and foreground
+group, accepting the supervisor's `/dev/tty` alias when it denotes active tty1.
+Fixed skip stages make failure-open admission observable in retained `cover.json`.
+Terminal ownership and all seven artwork files are unchanged. Physical rendering
+requires the new candidate's owner test; attempt #4's Cover FAIL remains evidence.

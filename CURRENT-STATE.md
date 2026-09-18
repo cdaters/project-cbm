@@ -1,3 +1,31 @@
+# POC4 attempt #5 source correction and native prebuild — 2026-09-18
+
+Owner committed standing governance at Product `e098244` / Menu `668ff0a`; both
+AGENTS files are unchanged. The stale uncommitted-governance handoff below is historical.
+The current user instruction authorizes source/package/freeze/build/offline/recovery
+through an exact-hash Pi 3B procedure, without push, publication or physical testing.
+
+[Correction contract](docs/runtime/cover-network-correction-2026-09-18.md): kernel tty1
+identity/active foreground VT admission replaces the pathname guard; fixed skip events;
+Product-owned per-interface IP/MAC/type/state/active SSID and existing Menu consumers.
+The passing Product supervisor/terminal restoration path is unchanged. Seven Covers
+are unchanged. Attempt #4 lifecycle remains owner-reported PHYSICALLY PASSING and Cover
+FAIL; no physical result is inferred for the new source.
+
+Host Product 162/163 (only known macOS mktemp expectation); Menu 76/76. Native Linux
+source Product 163/163; Menu 76/76. Native ip/nmcli syntax and synthetic live interface
+collection pass. Full capability gate passes; builder inventory matches the retained
+baseline and update masks remain enforced. Native installed-package validation and
+construction are next. Distinct test roots preserve old builder state.
+
+Candidate plan: POC4 corrective attempt #5 / Product `1.1.0-poc.4`, Runtime
+`1.1.0~poc4.2-1`, Menu `1.1.0_poc4.3`. Only these two packages need new bytes.
+Attempt #4's 2,872 retained objects, artifacts and card-evidence checkpoint are verified
+unchanged in `qualification/poc4-attempt5-2026-09-18/starting-preservation.json`.
+No attempt #5 image or frozen lock yet. Continue installed/native validation, commit
+exact sources, package, freeze and construct through normal gates. Quiet/fast boot
+remain backlog. No push or publication.
+
 # Current checkpoint: standing governance refactor — 2026-09-17
 
 [AGENTS.md](AGENTS.md) now defines standing private-engineering authority and hard

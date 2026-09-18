@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 from .data import LIMIT, loads, registry, text, token
-from . import preferences
+from . import preferences, network_info
 
 PACKAGES = {'menu': 'project-cbm-menu', 'vice': 'project-cbm-vice', 'tcpser': 'project-cbm-tcpser'}
 SERVICES = {'ssh': 'ssh.service', 'samba': 'smbd.service', 'tcpser': 'tcpser.service', 'avahi': 'avahi-daemon.service', 'network_manager': 'NetworkManager.service', 'first_boot': 'pcbm-first-boot.service'}
@@ -246,6 +246,7 @@ def collect(source=None, preference_path=None, profiles=None):
                 result.append({'interface': token(name), 'operstate': token(source.read(path).strip())})
         return result
     current['network_links'] = attempt('network', network) if uname.get('system') == 'Linux' else None
+    current['network_interfaces'] = network_info.collect(source, attempt) if uname.get('system') == 'Linux' else None
     def legacy(path, allowed):
         value = source.read(path).strip()
         if value not in allowed:
@@ -290,6 +291,12 @@ def human(data):
     lines += [f'{key:18} {value if value is not None else "unknown"}' for key, value in rows]
     links = c['network_links']
     lines.append('Network links      ' + ('unknown' if links is None else ', '.join(v['interface'] + ': ' + v['operstate'] for v in links) or 'none observed'))
+    for row in c.get('network_interfaces') or []:
+        lines.append(f"  {row['interface']} ({row['type']}): {row['state']}; link {row['operstate']}")
+        lines.append('    MAC: ' + (row['mac'] or 'unavailable'))
+        for family in ('ipv4', 'ipv6'):
+            lines.append('    ' + family.upper() + ': ' + (', '.join(row[family]) or 'none assigned'))
+        if row['ssid'] is not None: lines.append('    SSID: ' + row['ssid'])
     if c['services'] is not None:
         labels = {'ssh': 'SSH', 'samba': 'Samba', 'tcpser': 'Modem/BBS', 'avahi': 'mDNS', 'network_manager': 'Network', 'first_boot': 'First boot'}
         def state(value):

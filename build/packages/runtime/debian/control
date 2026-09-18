@@ -10,7 +10,7 @@ Homepage: https://github.com/cdaters/project-cbm
 Package: project-cbm-runtime
 Architecture: all
 Provides: project-cbm-runtime-api (= 1)
-Depends: ${misc:Depends}, python3 (>= 3.11), bash, coreutils, util-linux, systemd, sudo, passwd, locales, keyboard-configuration, console-setup, raspi-config, network-manager, samba, openssh-server, avahi-daemon, rsync
+Depends: ${misc:Depends}, python3 (>= 3.11), bash, coreutils, util-linux, systemd, sudo, passwd, locales, keyboard-configuration, console-setup, raspi-config, network-manager, iproute2, samba, openssh-server, avahi-daemon, rsync
 Description: Project CBM information, preferences and validated appliance operations
  Read-only information, profile and preference authorities, local setup state
  machine and fixed configuration operations. Image integration owns activation
