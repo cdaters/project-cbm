@@ -1,5 +1,12 @@
 # Validation and qualification
 
+2026-09-18 corrective attempt #5: [results](build/private-poc4-attempt5.md).
+Host Product 162/163 (only known macOS mktemp expectation); Menu 76/76. Native Linux
+Product 163/163, Menu 76/76; installed lifecycle 9/9, seven SDL Covers and three cycles.
+Actual-image 220 checks, 127 ELF objects, 672 package identities, filesystems/units,
+raw/XZ equivalence and host drift guard PASS. Physical Pi behavior remains UNTESTED;
+use the [bound procedure](qualification/poc4-attempt5-pi3b-regression.md).
+
 2026-09-17 read-only attempt #4 card collection: [review](qualification/poc4-attempt4-card-review-2026-09-17.md).
 Exact identity and 41 copied files verify; four Cover wrappers exit0 in about10ms
 without renderer events, and four VICE exits/restoration pairs pass their recorded

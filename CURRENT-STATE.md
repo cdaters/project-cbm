@@ -1,3 +1,54 @@
+# POC4 corrective attempt #5 complete — 2026-09-18 / OWNER REVIEW
+
+**READY TO FLASH: YES. READY FOR OWNER PHYSICAL TEST.**
+Project CBM **1.1.0-poc.4 / private-engineering-poc4, attempt 5** passed construction
+and all offline gates. [Report](docs/build/private-poc4-attempt5.md),
+[exact results](docs/build/private-poc4-attempt5.json),
+[hash-bound Pi 3B procedure](docs/qualification/poc4-attempt5-pi3b-regression.md).
+This candidate's physical Cover/KMS/VT/input and Wi-Fi behavior remain UNTESTED.
+Attempt #4 remains lifecycle PHYSICALLY PASSING within the owner report and Cover FAIL.
+
+Frozen Product integration/runtime `9b0220beaf49dca44862a6e9fe874f5e4fa96e8d`; Menu
+`v1.1.0_poc4.3`, peeled `664b0a76b798a64d697e0d2d3baa0d45a5406ebd`. New Runtime
+`1.1.0~poc4.2-1` and Menu `1.1.0~poc4.3-1+pcbm1`; other component/input bytes reused
+exactly. Kernel tty admission and fixed skip events correct the confirmed alias defect;
+Product supervisor/restoration and seven artwork files remain unchanged. pcbm-info is
+the sole per-interface network authority; existing information views consume it.
+
+Schema-4 lock `inputs/frozen-poc4-attempt5/release-lock.json`, SHA-256
+`4568aa184063aa7e3a0ae5217a98320f68735665f5e08340d48368530c88968e`; all 2,894 objects verify.
+Raw `artifacts/private-poc4-attempt-5/2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img`: 3087007744 bytes,
+SHA-256 `5385acc822d7f280dd2eb5654368ef282ed941d4dc946368871510d98c752e66`.
+XZ `artifacts/private-poc4-attempt-5/image_2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz`: 597605380 bytes,
+SHA-256 `3923c319e485bbccad642b8a8b8039fc8acd0694a308ec631aeeffa64ed3e567`. External transfer and raw/XZ equivalence PASS.
+
+220 offline checks, FAT/ext4/systemd, 127 ELF objects and all 672 installed package
+identities PASS. Native Product 163/163; Menu host/native 76/76; installed lifecycle
+9/9; seven SDL dummy Covers and three renderer/VICE-fixture cycles PASS. Product host
+162/163 retains only the known macOS mktemp expectation failure. Native first-boot,
+privilege, service, import, kernel alias and synthetic IP/MAC probes pass within their
+fixture limits. No physical correction, association or unsupported hardware pass claimed.
+
+Root capacity 2430955520; used 1651560448; ordinary-user available
+635531264 bytes before expansion; no minimum card-size inference.
+Host before/after inventory and update masks PASS, no drift. Builder stopped; no
+remaining factory processes/mounts/loops. Prior evidence/refs and 1,677 historical
+entries verify unchanged. Owner governance commits `e098244` / `668ff0a` and AGENTS
+preserved. The prior uncommitted-governance handoff below is historical.
+
+Recovery `archive/poc4-attempt5-2026-09-18` binds final refs/bundles, exact offline
+restoration/peeled tags/symbolic HEAD/fsck, lock, validation, artifacts and procedure.
+Evidence `qualification/poc4-attempt5-2026-09-18`; credential-bearing staging roots
+are excluded. Manifest checksum remains external to avoid a recovery hash cycle.
+Private/public rights gates, independent encrypted custody and reproducibility remain.
+Quiet/fast boot and unrelated design features remain backlog. Nothing pushed/published.
+
+**Next owner action: flash the exact new image and perform the linked Pi 3B physical
+regression.** Prioritize visible Cover and preservation of immediate Menu keyboard/VT
+return, three cycles; collect diagnostic stages before reboot on failure. Then qualify
+first boot, Wi-Fi/network information, media/audio/input, applications/utilities, USB,
+services and persistence. Stop for owner review; no physical testing by Codex.
+
 # POC4 attempt #5 source correction and native prebuild — 2026-09-18
 
 Owner committed standing governance at Product `e098244` / Menu `668ff0a`; both

@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+2026-09-18 corrective attempt #5: [owner handoff](build/private-poc4-attempt5.md).
+New checkpoint `archive/poc4-attempt5-2026-09-18` binds final Git bundles/refs,
+verified offline restoration, frozen lock, input/package/artifact inventories, validation
+and exact-hash Pi 3B procedure. No historical image duplication or evidence mutation.
+Disposable staging roots/credentials/journals excluded; independent custody remains open.
+
 2026-09-17 attempt #4 card evidence successor: [review](qualification/poc4-attempt4-card-review-2026-09-17.md).
 Distinct checkpoint `archive/poc4-attempt4-card-analysis-2026-09-17` binds final refs,
 offline bundle restoration and 41 allowlisted files from the now-read-only used card.

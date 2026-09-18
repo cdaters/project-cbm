@@ -1,5 +1,10 @@
 # Historical provenance and preservation
 
+2026-09-18: [POC4 corrective attempt #5](build/private-poc4-attempt5.md) binds the new
+Runtime/Menu sources and packages to a distinct frozen lock and image. Seven Cover
+artwork files, VICE/TCPser, media and optional inputs retain exact prior bytes and
+rights classifications. All earlier candidates and physical evidence remain immutable.
+
 Optional-content source addendum: [admission/input record](runtime/optional-applications-contract.md)
 and [reference-media catalog](design/reference-content-2026-09-16.md). The new
 `archive/optional-content-2026-09-16/manifest.json` under configured bulk storage
