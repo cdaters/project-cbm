@@ -1,3 +1,12 @@
+# Attempt #7 validation — 2026-09-18
+
+Product host/native 184/184; Menu host/native 96/96; installed lifecycle 10/10.
+253 actual-image checks, 672 package identities, 127 ELF objects, filesystems/systemd,
+service/account/discovery/docs/privilege, raw/XZ and host integrity PASS. Native actual
+SSH login/disable, local SMB mDNS, Computer Name/services/restart and real dialog pass;
+physical clients/radio/reboot remain UNTESTED. [Exact report and limits](build/private-poc4-attempt7.md).
+[Owner physical procedure](qualification/poc4-attempt7-pi3b-regression.md).
+
 # Current validation entry — 2026-09-18
 
 Read [CURRENT-STATE](../CURRENT-STATE.md) for the latest candidate and gates.

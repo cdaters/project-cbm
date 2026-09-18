@@ -1,0 +1,175 @@
+{
+  "format": "project-cbm.private-release-refinement-result",
+  "schema_version": 1,
+  "date": "2026-09-18",
+  "product": {
+    "candidate": "private-engineering-poc4",
+    "version": "1.1.0-poc.4"
+  },
+  "attempt": 7,
+  "integration_commit": "33347bb9c11e87e70069da5d160e03ec197efe31",
+  "menu_source": {
+    "commit": "4c88fa38ce28c63b6342adfb5d7a084a21248684",
+    "ref": "refs/tags/v1.1.0_poc4.5",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "5e80d20cddbeb1a52dc5c3e1d0dc3576f31cc110"
+  },
+  "physical_baseline": "docs/qualification/poc4-attempt6-pi3b-owner-report-2026-09-18.json",
+  "decisions": "docs/runtime/release-refinement-2026-09-18.md",
+  "packages": {
+    "menu": {
+      "status": "NEW",
+      "version": "1.1.0~poc4.5-1+pcbm1",
+      "filename": "project-cbm-menu_1.1.0~poc4.5-1+pcbm1_all.deb",
+      "size_bytes": 1106552,
+      "sha256": "de724923dc088838cfaea9c7699b28e3a8df86b623a385caec61b08c7eef0f5a"
+    },
+    "runtime": {
+      "status": "NEW",
+      "version": "1.1.0~poc4.4-1",
+      "filename": "project-cbm-runtime_1.1.0~poc4.4-1_all.deb",
+      "size_bytes": 42324,
+      "sha256": "822165eb18ed75aea402ff5868d73b1cd2cf822e8286dd510deb65dd992744ae"
+    },
+    "tcpser": {
+      "status": "REUSED",
+      "version": "1.1.6~beta-1+pcbm1",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "size_bytes": 26872,
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f"
+    },
+    "vice": {
+      "status": "REUSED",
+      "version": "3.10-1+pcbm3",
+      "filename": "project-cbm-vice_3.10-1+pcbm3_arm64.deb",
+      "size_bytes": 4650184,
+      "sha256": "c9d798a591c22faa9ffc3141b7f5177ece36a05e53d9d2c8aae1ce93c22fcfbe"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt7/release-lock.json",
+    "sha256": "1c25d7f7850c63c41e2730bdaef2deef9cd6d0ccf1321c9b23fd4d9228926b3d",
+    "objects_verified": 2956
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-poc4-attempt-7/work/export-image/2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img",
+      "size_bytes": 3087007744,
+      "sha256": "cbab8327981eaf0d1d632d6637d3117fd2c2d68ac6d529c434b52fed995b60ba",
+      "path": "artifacts/private-poc4-attempt-7/2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-poc4-attempt-7/image_2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz",
+      "size_bytes": 598188816,
+      "sha256": "b8119c4f3bb1c9361cd4d0c047eaa454447884e36dad9d345b50673ba9e7b687",
+      "path": "artifacts/private-poc4-attempt-7/image_2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz"
+    },
+    "xz_expanded_sha256": "cbab8327981eaf0d1d632d6637d3117fd2c2d68ac6d529c434b52fed995b60ba",
+    "raw_xz_equivalence": "PASS",
+    "raw_unchanged_after_inspection": true,
+    "external_copy_and_xz_equivalence": "PASS"
+  },
+  "tests": {
+    "Product_host": {
+      "passed": 184,
+      "total": 184
+    },
+    "Product_native": {
+      "passed": 184,
+      "total": 184
+    },
+    "Menu_host": {
+      "passed": 96,
+      "total": 96
+    },
+    "Menu_native": {
+      "passed": 96,
+      "total": 96
+    },
+    "installed_lifecycle": {
+      "passed": 10,
+      "total": 10
+    },
+    "native_services": "PASS: enable/disable actual listeners, restart/enablement, name change/resolution, enrollment, share boundaries, redaction",
+    "native_discovery": "PASS: actual local SMB mDNS response over synthetic isolated interface",
+    "native_ssh": "PASS: actual owner/password loopback login and refused new connection after disable",
+    "real_dialog": "PASS: 40x12, 80x24, 100x36 service layout/cancel",
+    "native_utilities_import": "PASS within stated fixture/namespace limits",
+    "native_status_latency_ms": [
+      50.62,
+      49.67,
+      50.16,
+      50.28,
+      50.05
+    ],
+    "limits": "No physical Pi, client SMB login, Finder/Explorer browsing or physical reboot claims. Contextual source/harness failures retained; corrected final runs pass."
+  },
+  "offline": {
+    "result": "PASS",
+    "checks": 253,
+    "main": 121,
+    "supplemental": 20,
+    "refinement": 112,
+    "installed_packages": 672,
+    "ELF_objects": 127,
+    "filesystems": "FAT/ext4 PASS",
+    "systemd_units": "PASS",
+    "identity": "PASS",
+    "service_account_discovery_security_lifecycle_docs": "PASS",
+    "host_drift": "PASS",
+    "raw_xz_equivalence": "PASS in guest and external copy"
+  },
+  "construction": {
+    "exit_code": 0,
+    "wall_seconds": 157.35,
+    "process_peak_RSS_KiB": 510832,
+    "platform": "approved native arm64 Debian Lima/VZ plain mode + pinned pi-gen",
+    "reproducibility_proven": false
+  },
+  "footprint": {
+    "root": {
+      "available_to_user": 635461632,
+      "capacity": 2430955520,
+      "free": 779325440,
+      "used": 1651630080
+    },
+    "boot_used_bytes": 78420992,
+    "native_overlay_allocated_bytes": 16293888,
+    "changed_compressed_packages_bytes": 1148876,
+    "changed_installed_packages_bytes": 1522688,
+    "conservative_remaining_user_margin_bytes": 616496180,
+    "limits": "Measured native overlay + changed-package allowance, not physical first-boot peak/full OS upgrade proof; expansion/card capacity require physical testing."
+  },
+  "host_final": {
+    "final_host_guard": "PASS",
+    "no_mounts_or_loops": true,
+    "guest_free_bytes": 47069032448
+  },
+  "recovery": {
+    "path": "archive/poc4-attempt7-2026-09-18",
+    "verification_authority": "manifest.json + restore-report.json, external to avoid checksum cycle",
+    "independent_custody": false
+  },
+  "physical_procedure": "docs/qualification/poc4-attempt7-pi3b-regression.md",
+  "new_candidate_physical": "UNTESTED",
+  "pushed": false,
+  "published": false,
+  "boot_changes": false,
+  "release_readiness": {
+    "RELEASE_BLOCKER": [
+      "Existing public redistribution/admission gates must be resolved or gated content omitted before public release; no new rights decision made."
+    ],
+    "PHYSICAL_QUALIFICATION_REQUIRED": [
+      "Exact-hash Pi 3B core and service/account/discovery/utility procedure.",
+      "Dedicated quiet boot + measured fast boot + final RC polish remains the next owner-directed milestone after a pass."
+    ],
+    "DOCUMENTATION_FOLLOW_UP": [
+      "Add exact physical results; current release/user/build/customization guides complete."
+    ],
+    "OPTIONAL_POST_1_1_IMPROVEMENT": [
+      "Supported upstream VICE-active keyboard VT switching.",
+      "WS-Discovery if direct Windows access proves insufficient.",
+      "Independent clean-build reproducibility and independent encrypted recovery custody remain open verification work."
+    ]
+  }
+}

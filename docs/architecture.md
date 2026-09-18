@@ -1,3 +1,8 @@
+> Current 1.1 release-readiness checkpoint: [attempt #7](build/private-poc4-attempt7.md)
+> and [CURRENT-STATE](../CURRENT-STATE.md). Start with the [release documentation](README.md),
+> [actual build walkthrough](release/build-your-own.md) and [factory explanation](release/factory.md).
+> Dated checkpoints below retain historical evidence; they do not override current governance.
+
 # Architecture and ownership
 
 ## Decision and precedence

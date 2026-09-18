@@ -1,3 +1,41 @@
+# Attempt #7 release-readiness candidate complete — 2026-09-18
+
+**READY TO FLASH: YES. STOP FOR OWNER PHYSICAL TEST.**
+[Report](docs/build/private-poc4-attempt7.md), [exact results](docs/build/private-poc4-attempt7.json),
+[hash-bound Pi 3B procedure](docs/qualification/poc4-attempt7-pi3b-regression.md).
+Attempt #6's [owner baseline](docs/qualification/poc4-attempt6-pi3b-owner-report-2026-09-18.json)
+now confirms the stated first-boot/Wi-Fi/masking/IP/Covers/VICE/Menu/input/persistence
+passes, with active-VICE VT and observed macOS sharing discovery failures. Unreported
+functions remain UNTESTED. Attempt #7 has no physical qualification yet.
+
+New Runtime `1.1.0~poc4.4-1` and Menu `1.1.0~poc4.5-1+pcbm1` provide hierarchical actual
+service/network status, useful actions, projectcbm Computer Name, explicit owner login
+and separate sharing-password help, Samba/Avahi discovery and contextual connection
+addresses. Release/user/network/build/factory/customization/developer/recovery guides are
+complete. Existing session/Cover/VICE/input path remains; SDL-active VT limitation is
+accepted without a fragile workaround. No quiet/fast boot changes.
+
+Frozen integration `33347bb9c11e87e70069da5d160e03ec197efe31`; Menu `v1.1.0_poc4.5`
+peeled `4c88fa38ce28c63b6342adfb5d7a084a21248684`. Lock `inputs/frozen-poc4-attempt7/release-lock.json`
+SHA-256 `1c25d7f7850c63c41e2730bdaef2deef9cd6d0ccf1321c9b23fd4d9228926b3d`.
+Raw SHA-256 `cbab8327981eaf0d1d632d6637d3117fd2c2d68ac6d529c434b52fed995b60ba`.
+XZ SHA-256 `b8119c4f3bb1c9361cd4d0c047eaa454447884e36dad9d345b50673ba9e7b687`.
+Artifacts: `artifacts/private-poc4-attempt-7`; exact paths/bytes are in the report.
+
+Product host/native 184/184; Menu host/native 96/96; installed lifecycle 10/10 PASS.
+Native SSH login/disable, actual services/name/persistence, local SMB mDNS and real dialog
+pass within isolated limits. Actual image 253 checks, 672 package identities, 127 ELF
+objects, filesystems/systemd, installed identity/docs, raw/XZ equivalence and host-drift
+PASS. Full frozen input and external byte checks PASS; no finished image edits.
+
+Recovery: `archive/poc4-attempt7-2026-09-18`, with external manifest, full bundles,
+restored exact refs/peeled tags/fsck and retained-input/artifact locators. Its manifest is
+the verification authority, avoiding a checksum cycle. Independent encrypted custody,
+clean-build reproducibility and existing public rights gates remain open. Nothing pushed
+or published. Next owner action: flash the exact image and follow the procedure. Then,
+if qualification passes, quiet boot + measured fast boot + final RC polish; no new broad
+architecture/feature milestone. Earlier checkpoint readiness applies only to its candidate.
+
 # Release-readiness refinement in progress — 2026-09-18
 
 Attempt #6 now has [owner-reported Pi 3B results](docs/qualification/poc4-attempt6-pi3b-owner-report-2026-09-18.json):
