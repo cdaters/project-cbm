@@ -293,3 +293,7 @@ kernel-query fixtures and structured network parser/UI tests. Host Product 162/1
 (known macOS mktemp expectation), Menu 76/76; native Linux 163/163 and 76/76.
 Native synthetic-interface collection checks actual ip/nmcli command syntax.
 Physical active-VT admission, Cover visibility and Wi-Fi remain untested.
+
+## 2026-09-18 private attempt #6
+
+Attempt #6: Product host/native 173/173, Menu 85/85, installed lifecycle 10/10, 230 actual-image checks, 127 ELF objects and 672 package identities PASS. Physical corrections UNTESTED. See [build record](build/private-poc4-attempt6.md).

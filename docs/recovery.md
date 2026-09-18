@@ -584,3 +584,7 @@ repository refs and verified offline Git restoration. Native test evidence is un
 checkpoint without changing or duplicating its images. Read
 [cover status](runtime/covers.md): source completion is not image integration or Pi
 qualification. Future frozen inputs require a new Menu version/tag/package and hashes.
+
+## 2026-09-18 private attempt #6
+
+Attempt #6 recovery: archive/poc4-attempt6-2026-09-18 binds final exact refs/bundles, offline restore/peeled tags/fsck, frozen inputs/images and private evidence references. Independent custody remains open. See [build record](build/private-poc4-attempt6.md).

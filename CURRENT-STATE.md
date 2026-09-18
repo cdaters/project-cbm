@@ -1,3 +1,31 @@
+# Private attempt #6 complete — 2026-09-18
+
+**READY TO FLASH: YES. STOP FOR OWNER PHYSICAL TEST.**
+[Build/result](docs/build/private-poc4-attempt6.md),
+[exact-hash Pi 3B procedure](docs/qualification/poc4-attempt6-pi3b-regression.md).
+[Attempt #5 evidence and corrections](docs/runtime/physical-ux-correction-2026-09-18.md)
+record lifecycle/IP PASS, Cover/first scan FAIL and unreported UNTESTED. Read-only card
+identity and all 27 photographs/35 copied files verify; no tested candidate mutation.
+
+Attempt6 integration `5992e2a7b1a84cbad016a293624d48aaa7cdd1cf`; Menu `v1.1.0_poc4.4`
+peeled `6522111691ce494b00637549365d6a5f2a7773ff`. Runtime `1.1.0~poc4.3-1`,
+Menu `1.1.0~poc4.4-1+pcbm1`; unchanged components reused exactly.
+Lock SHA-256 `8a5f7c929e73ac38ab42945b2bf22d577eb2b8a9e0500dd69c27f005f75c6de2`.
+Raw SHA-256 `bf81b1f95ab65d19753f85fdafbb5a93f45eae68b0bea4208bef62c9d6a2c328`.
+XZ SHA-256 `028d9b8b0fbc92bcfe75741b9d842885efda9e194cfbc6d1e8cfe26b8967354f`.
+Output directory `artifacts/private-poc4-attempt-6`; see report for exact filenames/bytes.
+
+Product host/native 173/173; Menu host/native 85/85; installed lifecycle 10/10; actual
+image 230 checks, 127 ELF objects, 672 package identities, filesystems/systemd and
+raw/XZ equivalence PASS. Host capability/inventory/update/integrity gates PASS;
+builder stopped. Native masking/ASCII, scan timeout and summary latency pass within
+fixture limits. Physical Cover/radio/Pi performance remain UNTESTED for this image.
+
+Recovery `archive/poc4-attempt6-2026-09-18` binds final bundles/refs, offline restore,
+peeled tags/fsck, exact inputs/outputs and retained private evidence. Independent
+custody/reproducibility/rights gates remain. Quiet/fast boot deferred. Nothing pushed
+or published. Next action is solely owner exact-hash Pi 3B testing under the procedure.
+
 # Attempt #6 source checkpoint — 2026-09-18
 
 Attempt #5 Pi 3B owner report is recorded exactly: lifecycle and information IP PASS,

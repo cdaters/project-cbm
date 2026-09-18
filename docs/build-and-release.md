@@ -118,3 +118,7 @@ Current milestone boundary: stop on a required Linux capability failure, or afte
 one private POC image and offline/static validation. No public release or automatic
 physical Raspberry Pi testing. Read the latest CURRENT-STATE rather
 than treating historical phase boundaries as the current implementation status.
+
+## 2026-09-18 private attempt #6
+
+Attempt #6 is a distinct private lock/image using Runtime 1.1.0~poc4.3-1 and Menu 1.1.0~poc4.4-1+pcbm1; construction/offline gates pass. No reproducibility or physical success claim. See [build record](build/private-poc4-attempt6.md).
