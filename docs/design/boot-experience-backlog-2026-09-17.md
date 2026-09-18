@@ -21,3 +21,10 @@ security boundaries. Do not infer speed from systemd timing alone or a hidden co
 This is backlog only, not implementation or a performance promise. No boot splash,
 cmdline, service/getty/PAM/session, firmware or startup optimization is authorized by
 this physical-evidence follow-up. See the [physical review](../qualification/poc4-attempt4-physical-review-2026-09-17.md).
+
+## Attempt #5 owner observation, 2026-09-18
+
+The owner again reports the Raspberry Pi rainbow and Linux/kernel/userspace startup
+messages. Quiet appliance presentation and a Project CBM boot splash remain deferred.
+Measured boot-time optimization remains a separate deferred task. This correction
+cycle makes no firmware, cmdline, getty, PAM, TTY or session boot changes.

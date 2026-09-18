@@ -81,7 +81,7 @@ def main():
     if args.command == 'preflight':
         print(json.dumps({'bulk_free_bytes': shutil.disk_usage(root).free,
                           'internal_free_bytes': shutil.disk_usage(Path.home()).free,
-                          'disk_capacity_bytes': 160 * 1024**3,
+                          'disk_capacity_bytes': 192 * 1024**3,
                           'paths': {k: str(v) for k, v in paths.items()}}, indent=2))
         return
     if args.command == 'prepare':

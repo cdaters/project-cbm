@@ -27,7 +27,8 @@
         "busy",
         "saved_pending",
         "wifi_failed",
-        "wifi_country_required"
+        "wifi_country_required",
+        "wifi_scan_unconfirmed"
       ]
     },
     "message": {
@@ -42,7 +43,8 @@
         "Another configuration operation is running. Try again when it finishes.",
         "Settings saved; runtime integration is pending. The service was not enabled.",
         "Could not connect to Wi-Fi. Check the password, signal and router settings, then retry or choose another network. Authentication failure was not separately identified.",
-        "Set the Wi-Fi country where this Pi is used before connecting."
+        "Set the Wi-Fi country where this Pi is used before connecting.",
+        "Wi-Fi readiness or scan completion could not be confirmed within 25 seconds. Retry, check the radio/country settings, or stay offline."
       ]
     }
   }

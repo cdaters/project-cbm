@@ -1,3 +1,10 @@
+project-cbm-runtime (1.1.0~poc4.3-1) unstable; urgency=medium
+
+  * Wait for ready radios and completed fresh Wi-Fi scans with bounded retries.
+  * Add a bounded pcbm-info network projection for the Main Menu.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Fri, 18 Sep 2026 12:00:00 -0700
+
 project-cbm-runtime (1.1.0~poc4.2-1) unstable; urgency=medium
 
   * Add bounded authoritative live interface addresses, state, MAC and active SSID.

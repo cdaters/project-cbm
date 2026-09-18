@@ -7,6 +7,7 @@ import re
 import shlex
 import subprocess
 import sys
+import time
 
 from .data import LIMIT, loads, registry, text, token
 from . import preferences, network_info
@@ -17,6 +18,7 @@ SERVICES = {'ssh': 'ssh.service', 'samba': 'smbd.service', 'tcpser': 'tcpser.ser
 
 class Local:
     """Injectable OS boundary; no shell, inherited credentials or network requests."""
+    deadline = None
     def read(self, path):
         with open(path, 'rb') as stream:
             raw = stream.read(LIMIT + 1)
@@ -40,7 +42,9 @@ class Local:
         return {'total_bytes': s.f_blocks * s.f_frsize, 'available_bytes': s.f_bavail * s.f_frsize, 'free_bytes': s.f_bfree * s.f_frsize}
 
     def command(self, args):
-        result = subprocess.run(args, capture_output=True, text=True, timeout=1,
+        timeout = 1 if self.deadline is None else min(1,self.deadline-time.monotonic())
+        if timeout <= 0: raise TimeoutError('collection_budget')
+        result = subprocess.run(args, capture_output=True, text=True, timeout=timeout,
                                 env={'PATH': '/usr/bin:/bin', 'LC_ALL': 'C', 'SYSTEMD_COLORS': '0', 'SYSTEMD_PAGER': 'cat'})
         if len(result.stdout) > LIMIT:
             raise ValueError('too_large')
@@ -314,10 +318,34 @@ def human(data):
     return '\n'.join(lines) + '\n'
 
 
+def collect_network(source=None):
+    """Small current-IP projection for front panels; same authoritative collector.
+
+    No hardware, services, package, SSID, saved profile or credential collection.
+    One second total command budget preserves bounded Main Menu return latency.
+    """
+    if source is None:
+        source = Local()
+        source.deadline = time.monotonic()+1
+    issues=[]
+    def attempt(name, fn, fallback=None):
+        try: return fn()
+        except (OSError,ValueError,KeyError,TypeError,UnicodeError,subprocess.SubprocessError):
+            issues.append({'collector':name,'code':'unavailable_or_invalid'})
+            return fallback
+    return {'format':'project-cbm.network-info','schema_version':1,
+            'interfaces':network_info.collect(source,attempt,include_ssids=False),'issues':issues}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description='Read-only Project CBM system information')
     parser.add_argument('--json', action='store_true', help='versioned structured information for tools')
+    parser.add_argument('--network-only', action='store_true', help='bounded network JSON projection for front panels')
     args = parser.parse_args(argv)
+    if args.network_only:
+        if not args.json: parser.error('--network-only requires --json')
+        print(json.dumps(collect_network(),sort_keys=True))
+        return 0
     try:
         data = collect()
     except (ValueError, OSError, TypeError):

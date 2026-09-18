@@ -110,7 +110,7 @@ def active_ssids(raw):
     return result
 
 
-def collect(source, attempt):
+def collect(source, attempt, include_ssids=True):
     def query(args, parser):
         code,raw=source.command(args)
         if code:raise ValueError('query_failed')
@@ -120,7 +120,7 @@ def collect(source, attempt):
     status=attempt('network_manager_devices',lambda:query(DEVICES,devices),{})
     for row in rows:row.update(status.get(row['interface'],{}))
     # A cached AP list only, never a scan; never confuse a connection name with SSID.
-    if any(row['type']=='wifi' and row['state']=='connected' for row in rows):
+    if include_ssids and any(row['type']=='wifi' and row['state']=='connected' for row in rows):
         ssids=attempt('network_active_ssid',lambda:query(WIFI,active_ssids),{})
         for row in rows:
             if row['type']=='wifi' and row['state']=='connected':row['ssid']=ssids.get(row['interface'])

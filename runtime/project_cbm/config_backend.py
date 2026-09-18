@@ -105,6 +105,27 @@ class Linux:
         country=p.stdout.strip()
         return p.returncode==0 and match(country,r'[A-Z]{2}') and self.listed('country',country)
 
+    def wifi_rescan(self):
+        from .wifi_scan import scan
+        original_deadline = self.deadline
+        self.deadline = min(self.deadline,time.monotonic()+25)
+        def query(argv):
+            remaining = self.deadline-time.monotonic()
+            if remaining <= 0: return None
+            try:
+                p = subprocess.run(argv, capture_output=True, text=True, env=ENV,
+                                   timeout=min(1,remaining), check=False)
+                return p.stdout if p.returncode == 0 and len(p.stdout) <= 65536 else None
+            except (OSError,subprocess.SubprocessError): return None
+        def request(argv):
+            try: return self.run(argv)
+            except (OSError,subprocess.SubprocessError): return False
+        try: observation = scan(query, request, self.deadline)
+        finally: self.deadline = original_deadline
+        self.write('/var/lib/project-cbm/setup/wifi-scan.json',
+                   json.dumps(observation,sort_keys=True)+'\n',0o644)
+        return observation['result']=='complete'
+
     def write(self,path,content,mode=0o600):
         path=Path(path);trusted(path.parent)
         if path.exists() or path.is_symlink():trusted(path)
@@ -208,7 +229,7 @@ def apply(request, p, system):
         if not system.run(['/usr/bin/nmcli','connection','load',path]):return result('failed')
         args=['/usr/bin/nmcli','--wait','30','connection','up','uuid',WIFI_UUID]
     elif op=='wifi-rescan':
-        args=['/usr/bin/nmcli','device','wifi','rescan']
+        return result('ok' if system.wifi_rescan() else 'wifi_scan_unconfirmed')
     elif op in ('wifi-disconnect','wifi-forget'):
         args=['/usr/bin/nmcli','connection','down' if op=='wifi-disconnect' else 'delete','uuid',WIFI_UUID]
     elif op=='sharing-password':

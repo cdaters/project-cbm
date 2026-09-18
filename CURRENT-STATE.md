@@ -1,3 +1,25 @@
+# Attempt #6 source checkpoint — 2026-09-18
+
+Attempt #5 Pi 3B owner report is recorded exactly: lifecycle and information IP PASS,
+Cover and first scan FAIL; unreported functions UNTESTED. Read-only card identity,
+35 diagnostic files and 27 externally retained/captioned photographs are verified.
+[Findings and corrections](docs/runtime/physical-ux-correction-2026-09-18.md) describe
+Cover timeout/dwell, completed-scan readiness, masked passwords/ASCII prompts and
+Main Menu authoritative IP summary. No quiet/fast boot work or lifecycle architecture
+change. The tested image, locks, source tags and evidence are unchanged.
+
+Planned distinct candidate: attempt #6; Runtime `1.1.0~poc4.3-1`, Menu
+`1.1.0~poc4.4-1+pcbm1` / `v1.1.0_poc4.4`. No frozen lock/image yet. Native dialog
+masking/ASCII and old byte-locale reproduction pass. Complete source/installed/native
+checks, freeze clean inputs, construct and validate actual image, verify recovery and
+prepare exact-hash procedure. Do not flash, push or publish. Physical corrections
+remain UNTESTED. Standing private authority applies; historical STOPs below do not.
+
+Builder grew nondestructively from160 to192GiB after a fully hashed stopped APFS
+clone checkpoint; host inventory/update masks and full capability gate pass.
+Evidence `qualification/poc4-attempt6-2026-09-18`; stopped builder checkpoint
+`build-host/records/pre-attempt6-disk-growth` is private and same-volume custody.
+
 # POC4 corrective attempt #5 complete — 2026-09-18 / OWNER REVIEW
 
 **READY TO FLASH: YES. READY FOR OWNER PHYSICAL TEST.**

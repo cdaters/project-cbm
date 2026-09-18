@@ -149,9 +149,12 @@ def restore_tty(fd, saved):
             'state':terminal_record(actual)}
 
 
-def run_cover(argv, stdin, active, timeout=2.0, grace=.5, env=None):
+def run_cover(argv, stdin, active, timeout=6.0, grace=.5, env=None):
     """Same foreground group as Menu; bounded drain/TERM/KILL/reap before VICE.
 
+    Pi 3B attempt5 exhausted the old two-second total before renderer creation.
+    Six seconds bounds cold startup + presentation + release, with no fixed wait
+    on success. This is a qualification budget, not measured Pi startup latency.
     Only structured renderer telemetry is retained. Untrusted SDL/backend text
     is discarded, not copied into diagnostics with potentially private strings.
     """

@@ -31,6 +31,7 @@ class FakeLinux:
     def ssh_keys(self):return self.good
     def modem(self,values):self.writes["/etc/project-cbm/modem.json"]=values;return self.good
     def country_ready(self):return self.country
+    def wifi_rescan(self):self.calls.append((['completed-scan'],None));return self.good
     def credential_ready(self, user):return self.allowed
     def keyboard(self, value):self.calls.append((['keyboard-next-boot',value],None));return self.good
     def hostname(self, value):return self.run(['/usr/bin/hostnamectl','--no-ask-password','hostname',value])
@@ -47,13 +48,17 @@ class Configuration(unittest.TestCase):
 
     def test_wifi_scan_disconnect_forget_are_distinct(self):
         for operation, args in {
-            'wifi-rescan':['device','wifi','rescan'],
             'wifi-disconnect':['connection','down','uuid',c.WIFI_UUID],
             'wifi-forget':['connection','delete','uuid',c.WIFI_UUID],
         }.items():
             system=FakeLinux()
             self.assertEqual(b.apply(req(operation),POLICY,system)['status'],'ok')
             self.assertEqual(system.calls,[(['/usr/bin/nmcli',*args],None)])
+        system=FakeLinux()
+        self.assertEqual(b.apply(req('wifi-rescan'),POLICY,system)['status'],'ok')
+        self.assertEqual(system.calls,[(['completed-scan'],None)])
+        system.good=False
+        self.assertEqual(b.apply(req('wifi-rescan'),POLICY,system)['status'],'wifi_scan_unconfirmed')
 
     def test_valid_requests_and_results(self):
         for request in CASES:

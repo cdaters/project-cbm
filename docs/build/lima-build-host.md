@@ -148,3 +148,16 @@ Construction checks masked state and exact locked host package versions before
 and after building. Retain changed inputs and freeze a new lock for intentional
 maintenance; review updates between build windows. Never silently run a stale lock
 against a newly updated host or apply these builder settings to the appliance.
+
+## Additive capacity increase, 2026-09-18
+
+The preserved attempts leave 33,800,425,472 available guest bytes, below the factory's
+40 GiB gate. For attempt #6, retain and byte-verify a stopped 160 GiB disk/config
+snapshot under `build-host/records/pre-attempt6-disk-growth` before growing the
+existing disk to **192 GiB** using pinned Lima 2.2.0 `edit --disk 192`. The repository
+template and preflight capacity now describe 192 GiB; earlier allocations stay
+historical. This is capacity maintenance within the existing native arm64 Debian
+Lima/VZ/plain/ext4 architecture; CPU, RAM, host package closure, isolation and
+security remain unchanged. Rerun capability and package/update guards after growth.
+The same-volume COW snapshot is private builder state, not independent custody,
+and must never be published. No historical tree or unexported state is deleted.

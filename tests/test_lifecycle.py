@@ -46,6 +46,14 @@ class Lifecycle(unittest.TestCase):
         self.assertNotIn('synthetic-never-retain',json.dumps(result))
         self.assertEqual(result['events'],[{'stage':'presented','width':1920}])
 
+    def test_cold_cover_past_old_deadline_finishes_and_is_reaped(self):
+        code='import time;time.sleep(2.1);print(\'PCBM_COVER {"stage":"released","elapsed_ms":2100}\')'
+        result=eng.run_cover([sys.executable,'-c',code],subprocess.DEVNULL,lambda _:None)
+        self.assertEqual(result['exit_status'],0)
+        self.assertFalse(result['timeout'])
+        self.assertEqual(result['events'],[{'stage':'released','elapsed_ms':2100}])
+        with self.assertRaises(ChildProcessError):os.waitpid(result['pid'],os.WNOHANG)
+
     def test_three_cycles_restore_precover_termios_before_vice_and_after(self):
         master,slave=pty.openpty();self.addCleanup(os.close,master);self.addCleanup(os.close,slave)
         original=termios.tcgetattr(slave)

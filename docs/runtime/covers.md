@@ -121,3 +121,12 @@ group, accepting the supervisor's `/dev/tty` alias when it denotes active tty1.
 Fixed skip stages make failure-open admission observable in retained `cover.json`.
 Terminal ownership and all seven artwork files are unchanged. Physical rendering
 requires the new candidate's owner test; attempt #4's Cover FAIL remains evidence.
+
+## Attempt #6 physical timing correction
+
+[Exact attempt #5 findings and correction](physical-ux-correction-2026-09-18.md):
+admission/artwork succeed, two cold paths time out before renderer completion and
+a third submits a frame without proven visibility. Whole-process limit is now six
+seconds plus 0.5-second grace; dwell begins after first submission. Fixed phase
+timings extend diagnostics. Same-group/reap/pre-and-post restoration stays intact.
+Physical visibility is UNTESTED in the new source.

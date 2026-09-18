@@ -8,6 +8,22 @@ from test_runtime_foundation import Fixture
 from jsonschema import Draft202012Validator
 ROW={'ifname':'wlan0','operstate':'UP','address':'02:00:00:00:00:01','addr_info':[{'family':'inet','local':'192.0.2.2','prefixlen':24},{'family':'inet6','local':'fe80::1234','prefixlen':64},{'family':'inet6','local':'2001:db8::2','prefixlen':64}]}
 class Network(unittest.TestCase):
+ def test_small_network_projection_uses_only_existing_authority(self):
+  calls=[]
+  class Source:
+   def command(self,args):
+    calls.append(args)
+    if args==net.IP:return 0,json.dumps([ROW])
+    if args==net.DEVICES:return 0,'GENERAL.DEVICE:wlan0\nGENERAL.TYPE:wifi\nGENERAL.STATE:100 (connected)\n'
+    raise AssertionError('unexpected probe')
+  data=info.collect_network(Source())
+  self.assertEqual(calls,[net.IP,net.DEVICES]);self.assertIsNone(data['interfaces'][0]['ssid'])
+  Draft202012Validator(json.loads((Path(__file__).resolve().parents[1]/'schemas/network-info.schema.json').read_text())).validate(data)
+ def test_small_network_projection_failure_is_fixed_safe_result(self):
+  class Source:
+   def command(self,args):raise TimeoutError('private raw error')
+  data=info.collect_network(Source())
+  self.assertIsNone(data['interfaces']);self.assertNotIn('private raw',json.dumps(data))
  def test_live_multiple_addresses_and_current_mac(self):
   row=net.addresses(json.dumps([ROW]))[0]
   self.assertEqual(row['ipv4'],['192.0.2.2/24']);self.assertEqual(row['ipv6'],['fe80::1234/64','2001:db8::2/64']);self.assertEqual(row['mac'],'02:00:00:00:00:01')

@@ -1,0 +1,66 @@
+{
+  "format": "project-cbm.physical-owner-attestation",
+  "schema_version": 1,
+  "reported_date": "2026-09-18",
+  "hardware": "Raspberry Pi 3B",
+  "product_version": "1.1.0-poc.4",
+  "candidate": "private-engineering-poc4 attempt #5",
+  "reported_image_filename": "2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img",
+  "release_lock_sha256": "4568aa184063aa7e3a0ae5217a98320f68735665f5e08340d48368530c88968e",
+  "image_sha256": "5385acc822d7f280dd2eb5654368ef282ed941d4dc946368871510d98c752e66",
+  "compressed_sha256": "3923c319e485bbccad642b8a8b8039fc8acd0694a308ec631aeeffa64ed3e567",
+  "identity_binding": "PASS: installed projection byte-equal to frozen attempt5 lock-derived identity, checked only after verified read-only mount",
+  "results": {
+    "boot": "PASS",
+    "first_boot_fundamentally_completes": "PASS",
+    "menu": "PASS",
+    "ctrl_alt_f2_and_f1": "PASS",
+    "run": "PASS",
+    "vice": "PASS",
+    "f10_quit": "PASS",
+    "responsive_menu_return": "PASS",
+    "other_machine_profile_launches": "PASS",
+    "striketerm_launch": "PASS",
+    "subsequent_boot": "PASS",
+    "first_boot_wizard_does_not_rerun": "PASS",
+    "connected_interface_ip_visible_in_information_status": "PASS",
+    "visible_cover": "FAIL",
+    "first_wifi_scan": "FAIL",
+    "password_mask_feedback": "OBSERVED UX DEFECT",
+    "password_range_prompt_rendering": "FAIL",
+    "main_menu_ip": "REQUESTED IMPROVEMENT"
+  },
+  "unreported_functions": "UNTESTED; no inference from pictures, previous candidates or related passing functions",
+  "limits": [
+    "Other launched profiles were not individually named",
+    "No exact cycle count or timings reported",
+    "StrikeTerm launch does not qualify BBS/network functions",
+    "IP information visibility does not qualify every interface type or networking function",
+    "First boot completes with reported UX defects"
+  ],
+  "card_state": "Initially writable: collection deferred. Owner changed Paragon mount; mount and diskutil verified read-only before and after collection. Used-card engineering evidence, not pristine forensic evidence.",
+  "evidence_directory": "qualification/poc4-attempt5-physical-2026-09-18",
+  "photos": {
+    "count": 27,
+    "inventory": "photo-inventory.json",
+    "captions": "photo-captions.json",
+    "inventory_sha256": "c7474564febddbacbf96a231e474a617f7c3805dfea33d8d77308ec227b4ccb1",
+    "captions_sha256": "d052704e4239deee3d7558416bf882ee31c3e0dfe42058413e265c1760938a1a"
+  },
+  "boot_backlog": [
+    "Rainbow still visible",
+    "Linux/kernel/userspace messages still visible",
+    "Later quiet boot and Project CBM boot presentation",
+    "Separate measured boot-time optimization"
+  ],
+  "physical_testing_by_codex": false,
+  "tested_candidate_mutated": false,
+  "card_evidence": {
+    "directory": "card-evidence",
+    "inventory_sha256": "c1a5e4102ee6af1968394e5899cf73ef59b3b97a90211b96f29e67bfa89a0bf4",
+    "files": 35,
+    "slots": 3,
+    "read_only_verified": true,
+    "identity_verified_before_interpretation": true
+  }
+}
