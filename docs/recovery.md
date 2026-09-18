@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+2026-09-17 attempt #4 physical follow-up: [review](qualification/poc4-attempt4-physical-review-2026-09-17.md).
+New additive checkpoint `archive/poc4-attempt4-physical-review-2026-09-17` retains
+owner results, source investigation and verified offline source restoration. Card
+contents are not collected while rootfs is writable. Prior build recovery remains
+immutable; no runtime/package/image change or image duplication.
+
 2026-09-17 corrective attempt #4: [owner handoff](build/private-poc4-attempt4.md).
 New checkpoint `archive/poc4-attempt4-2026-09-17` binds final source refs/bundles,
 offline restoration/fsck, frozen lock, validation, exact image references and the

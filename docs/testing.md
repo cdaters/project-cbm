@@ -1,5 +1,10 @@
 # Validation and qualification
 
+Additive physical status: owner-tested attempt #4 Pi 3B lifecycle passes; Cover fails.
+Three isolated wrapper characterization checks and nine existing lifecycle tests pass.
+Card diagnostics remain uncollected behind the read-only mount gate. See the
+[physical review](qualification/poc4-attempt4-physical-review-2026-09-17.md).
+
 2026-09-17 corrective attempt #4: [results and limits](build/private-poc4-attempt4.md).
 Product host final 155/156 PASS, same known contextual macOS mktemp expectation FAIL;
 native Product 156/156 and Menu host/native 70/70 PASS. Installed lifecycle 9/9,

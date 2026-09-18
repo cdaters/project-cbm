@@ -1,3 +1,46 @@
+# POC4 attempt #4 physical follow-up — 2026-09-17 / EVIDENCE GATE
+
+**Pi 3B lifecycle: PHYSICALLY PASSING for owner-reported behavior. Cover: FAIL.**
+[Additive review](docs/qualification/poc4-attempt4-physical-review-2026-09-17.md) and
+[attestation](docs/qualification/poc4-attempt4-pi3b-owner-report-2026-09-17.json) bind
+exact attempt #4. Fresh flash/basic setup/Menu/pre-run VT, VICE/F10/Quit, immediate
+Menu keyboard and post-return VT pass. Owner reports each available profile returned
+to responsive Menu. Attempt #3 dead keyboard/VT is NOT REPRODUCED; its precise cause
+is not retrospectively proven. Unreported setup/network/media/application/service/
+persistence tests remain UNTESTED. Original build/procedure records stay unchanged.
+
+Read-only card collection is BLOCKED: rootfs on `/dev/disk4s2` is currently writable
+in Paragon. Only device/mount metadata read; no card identity/diagnostics/private files,
+card writes, remount or repair. Owner asked to make rootfs read-only. Card identity is
+UNVERIFIED pending that gate. Master raw/XZ/lock/component identities and two previous
+checkpoint manifests rehash correctly. Owner's accepted unknown historical journal
+semantics does not establish a currently read-only mount or pristine forensic capture.
+
+Confirmed source mismatch: lifecycle passes an opened `/dev/tty` descriptor, while
+Cover admits only a literal `/dev/tty1` result from `tty`. Isolated host PTY reproduces
+alias naming; 3/3 wrapper characterization and existing 9/9 lifecycle tests pass.
+This is a strong Cover cause hypothesis, not a recovered Pi diagnosis. New phase
+records have not been read. Prepared collection refuses writable/mismatched identity.
+
+Network gap confirmed: pcbm-info/schema/UI expose only name/link state. Review proposes
+bounded authoritative per-interface type/state/IP/MAC/optional active SSID and reuse
+of existing System Information/Network status, without credential reads or Menu probes.
+[Quiet/fast boot backlog](docs/design/boot-experience-backlog-2026-09-17.md) is separate,
+measurement-first work; known-good getty/PAM/TTY/session must remain intact.
+
+No runtime/source correction, version/tag/package/image or boot change: top scopes
+still describe the completed single-candidate milestone; new request conditions code
+changes on source-work scope. AGENTS unchanged. Evidence is
+`qualification/poc4-attempt4-physical-2026-09-17`; recovery is
+`archive/poc4-attempt4-physical-review-2026-09-17`. Manifest/restore report bind final
+refs, full bundles, offline refs/peeled tags/symbolic HEAD/fsck, tests and preserved
+artifact references. No images duplicated. No push/publication or physical test by Codex.
+
+**ONE next owner action: make rootfs read-only through Paragon and resume allowlisted
+attempt #4 evidence collection.** Do not reflash/build another candidate. Review and
+explicit bounded source scope are needed before implementing the proposed changes.
+Earlier dated checkpoints below retain their original contemporaneous statements.
+
 # POC4 corrective attempt #4 complete — 2026-09-17 / OWNER REVIEW
 
 **READY TO FLASH: YES. READY FOR OWNER PHYSICAL TEST.** One new private engineering
