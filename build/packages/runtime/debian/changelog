@@ -1,3 +1,11 @@
+project-cbm-runtime (1.1.0~poc4.1-1) trixie; urgency=medium
+
+  * Include accepted retry-safe first-boot backend and bounded operations.
+  * Preserve fixed validated setup Wi-Fi requests and credential protection.
+  * Pair with corrective lifecycle integration and Menu 1.1.0_poc4.2.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Thu, 17 Sep 2026 17:50:00 -0700
+
 project-cbm-runtime (1.1.0~poc4-1) unstable; urgency=medium
 
   * Private engineering first-boot and runtime activation candidate.

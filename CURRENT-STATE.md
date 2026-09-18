@@ -1,3 +1,31 @@
+# POC4 corrective attempt #4 preparation — 2026-09-17
+
+Top AGENTS owner scope at `59c36d15d5a5f619895262aa6a02e6c5d9ca31e3` authorizes
+one corrective engineering candidate. Menu scope is actually `aeb4350`, not the
+prompt's `deb4350`. Both AGENTS files remain unchanged. Both worktrees began clean.
+Accepted source checkpoint manifest verifies as
+`b79f26c9649e24c4532d1e1545f15e0a142b9ad183c2eab903740187b3744ed3`, with all 73 files
+and accepted current source bytes matching. Prior candidate inputs, artifacts,
+checkpoints and protected refs rehash correctly; see new external evidence
+`qualification/poc4-attempt4-2026-09-17/starting-preservation.json`.
+
+Designation remains **1.1.0-poc.4 / private-engineering-poc4, attempt 4**: a corrective
+iteration of the same POC4 milestone, consistent with attempts 2/3 and the recovery
+contract's distinct lock/build ID per changed input. No POC5 scope is introduced.
+New Runtime package is `1.1.0~poc4.1-1`; new independent Menu is
+`1.1.0_poc4.2` / `1.1.0~poc4.2-1+pcbm1`. VICE/TCPser, artwork, qualification media,
+optional payloads, upstream factory and package closures are unchanged inputs.
+Only package metadata, image date, new freeze recipe and corrective validator change
+beyond accepted source. No runtime feature expansion or historical validator mutation.
+
+Prebuild host suites reproduce Product 154/155 (known macOS mktemp expectation FAIL)
+and Menu 70/70 PASS. New validator rejects stale/missing/symlinked payloads. Builder
+started: native arm64/ext4, roughly 50.9 GiB guest and 919 GiB external free; exact host
+package/update guard PASS. No package, lock or image produced yet. Next: build changed
+packages, native/install validation, distinct freeze, one construction, complete
+offline validation and recovery; then hash-bound Pi 3B owner handoff. Physical tty/KMS,
+Cover visibility and Wi-Fi remain UNTESTED. No push or physical testing.
+
 # Project CBM current state
 
 ## POC4 run 2 evidence and defensive source corrections — 2026-09-17
