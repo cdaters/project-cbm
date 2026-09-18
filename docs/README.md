@@ -1,132 +1,30 @@
-# Project CBM Documentation
+# Project CBM documentation
 
-> Historical image notice: the audit found ROM/media files and inherited machine
-> state in v1.0.0. Earlier blanket content-exclusion statements are not accurate
-> for that image. See [security/provenance findings](security.md).
+These entry points describe the current private 1.1 implementation. A guide describes
+intended behavior; only a hash-bound qualification record establishes a physical PASS.
+See [current state](../CURRENT-STATE.md) for the candidate and exact owner procedure.
 
-Welcome to the Project CBM documentation folder.
+| Task | Authoritative guide |
+| --- | --- |
+| Flash, first boot, use Menu/VICE, content, USB and utilities | [User guide](release/user-guide.md) |
+| Computer Name, owner credentials, SSH, sharing and discovery | [Networking and services](release/networking.md) |
+| Build an image from retained inputs | [Build Your Own](release/build-your-own.md) |
+| Understand pi-gen and the actual factory | [Factory guide](release/factory.md) |
+| Change branding, defaults, content or packages | [Customization](release/customization.md) |
+| Return to development after time away | [Developer entry](release/development.md) |
+| Diagnose or recover an appliance | [User recovery](release/recovery.md) |
+| Restore source/input/build records | [Engineering recovery](recovery.md) |
+| Check model qualification | [Hardware status](supported-hardware.md) |
 
-These guides are written for users who want to download, verify, flash, boot, and use Project CBM without needing to build a Raspberry Pi system from scratch.
+Canonical engineering contracts: [architecture](architecture.md),
+[configuration](runtime/configuration-contract.md), [Covers](runtime/covers.md),
+[security](security.md), [testing](testing.md), [build/release](build-and-release.md),
+[environment boundary](build/environment-boundary.md) and [rights](provenance.md).
+Dated build/qualification records are historical evidence and are never current
+instructions merely because they once said READY. Current governance is in
+[AGENTS](../AGENTS.md).
 
-Project CBM is intended to behave like a small Commodore-focused appliance:
-
-> Power on. Boot fast. No desktop required. Just Commodore.
-
-## Start Here
-
-If you are new to Project CBM, read these in order:
-
-1. [Hardware Targets and Qualification](supported-hardware.md)
-   Check whether your model is a target and whether it has qualification evidence.
-
-2. [Checksums and Verification](checksums-and-verification.md)  
-   Verify that your downloaded release files are complete and unmodified before flashing.
-
-3. [Flashing the Image](flashing-the-image.md)  
-   Write the Project CBM `.img.xz` release image to a microSD card.
-
-4. [End-User Guide](end-user-guide.md)  
-   Learn how to boot Project CBM, use the menu system, launch Commodore machines, import files, use Samba sharing, and adjust basic settings.
-
-5. [Troubleshooting](troubleshooting.md)  
-   Use this if something does not work as expected.
-
-## Documentation Index
-
-| Guide | Purpose |
-|---|---|
-| [End-User Guide](end-user-guide.md) | The main user manual for Project CBM. Covers first boot, menu usage, machines, content folders, import tools, networking, Samba, SSH, boot modes, and legal notes. |
-| [Flashing the Image](flashing-the-image.md) | Explains how to write the Project CBM release image to a microSD card using Raspberry Pi Imager, BalenaEtcher, or Linux command-line tools. |
-| [Checksums and Verification](checksums-and-verification.md) | Explains how to verify downloaded Project CBM release files using `SHA256SUMS`. |
-| [Hardware Targets and Qualification](supported-hardware.md) | Lists target Raspberry Pi models, qualification status and suggested hardware. |
-| [Screenshot Gallery](screenshots.md) | Shows Project CBM v1.0.0 menus, splash screen, control panel, network screen, system screen, and VICE emulator examples. |
-| [Troubleshooting](troubleshooting.md) | Common fixes for menu, emulator, network, Samba, WiFi, USB import, and command-line issues. |
-
-## Quick Download Checklist
-
-From the Project CBM GitHub Release, download:
-
-```text
-pcbm-v1.0.0-rpi3-5.img.xz
-pcbm-v1.0.0-docs.zip
-SHA256SUMS
-```
-
-Then verify the downloaded files before flashing.
-
-Linux / Raspberry Pi OS:
-
-```bash
-sha256sum -c SHA256SUMS
-```
-
-macOS:
-
-```bash
-shasum -a 256 -c SHA256SUMS
-```
-
-If verification succeeds, you should see output similar to:
-
-```text
-pcbm-v1.0.0-rpi3-5.img.xz: OK
-pcbm-v1.0.0-docs.zip: OK
-```
-
-## Quick Flashing Reminder
-
-The Project CBM release image is a complete Raspberry Pi system image.
-
-Do not copy the `.img.xz` file to the SD card like a normal document.
-
-Use an imaging tool such as:
-
-- Raspberry Pi Imager
-- BalenaEtcher
-- `dd` on Linux, for advanced users
-
-See [Flashing the Image](flashing-the-image.md) for details.
-
-## First Boot Defaults
-
-| Item | Default |
-|---|---|
-| Linux user | `pi` |
-| Default password | `cbm-ready` |
-| Hostname | `pcbm` |
-| Default Project CBM machine | Commodore 64 accurate/recommended emulator |
-| Default emulator profile | `x64sc` |
-| Project CBM content folder | `/home/pi/pcbm` |
-| VICE emulator menu key | `F10` |
-| SSH | Enabled by default |
-| Samba file sharing | Enabled by default |
-| WiFi | Intentionally left unconfigured |
-
-After first boot, change the default password.
-
-## Legal Note
-
-Public distribution policy is to include only software and content with reviewed redistribution rights and required license/source notices. The audited v1.0.0 image contains ROMs and media whose complete redistribution provenance remains unresolved. Historical private archives may contain additional unreviewed material. See [content and release corrections](v1.0-current-notes.md). Users must have the necessary rights for content they add.
-
-Users are responsible for making sure they have the legal right to use any ROMs, games, demos, music, programs, or disk images they add.
-
-Freeware, public domain software, homebrew projects, and user-owned backups are the safest places to begin.
-
-## For Developers and Contributors
-
-This documentation describes the public Project CBM v1.0.0 release.
-
-For project history and future plans, see:
-
-- [Current v1.0 corrections](v1.0-current-notes.md)
-- [Historical Release Notes](../release-notes/v1.0.0.md)
-- [Changelog](../CHANGELOG.md)
-- [Roadmap](../ROADMAP.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Support](../SUPPORT.md)
-
-## Maintainer continuity
-
-Start with [CURRENT-STATE](../CURRENT-STATE.md), [architecture](architecture.md),
-[build/release contract](build-and-release.md), [testing](testing.md),
-[security](security.md) and [provenance](provenance.md).
+Historical 1.0 guides: [end-user guide](end-user-guide.md),
+[flashing](flashing-the-image.md), [troubleshooting](troubleshooting.md),
+[screenshots](screenshots.md), and [audit corrections](v1.0-current-notes.md).
+The new guides replace their account/service/default advice for 1.1.

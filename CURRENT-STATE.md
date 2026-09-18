@@ -1,3 +1,24 @@
+# Release-readiness refinement in progress — 2026-09-18
+
+Attempt #6 now has [owner-reported Pi 3B results](docs/qualification/poc4-attempt6-pi3b-owner-report-2026-09-18.json):
+first boot/Wi-Fi/masking/IP/Covers/VICE/Menu lifecycle and stated persistence PASS;
+VICE-active keyboard VT switching FAIL, before/after VT PASS. Discovery was not visible
+in macOS after enabling sharing. Unreported functions remain UNTESTED.
+
+Attempt #7 source work: actual appliance/service status, state-aware UI, predictable
+owner login/help, separate sharing password, projectcbm Computer Name and Samba/Avahi
+discovery. SDL console source explains active-VICE VT limitation; no fragile workaround.
+Release/user/build/customization documentation is complete. Product host 184/184, native 183/183 before final policy-readiness test
+and Menu host/native 96/96 pass; installed lifecycle 10/10, native service enable/disable/
+restart, owner administration, import, Computer Name and local SMB mDNS response pass.
+Historical-harness hostname/missing-file/overlay-fragment issues were corrected and retained. No quiet/fast boot
+changes. Prior candidates and recovery verify; no card evidence claim added.
+
+Next: finish tests/native validation, freeze clean changed Runtime/Menu sources, build
+with approved factory, validate actual image and recovery, then stop for exact-hash owner
+testing. **READY TO FLASH: NO for attempt #7 until all required gates pass.** Nothing
+pushed/published. Earlier READY statements below refer only to their historical candidates.
+
 # Private attempt #6 complete — 2026-09-18
 
 **READY TO FLASH: YES. STOP FOR OWNER PHYSICAL TEST.**

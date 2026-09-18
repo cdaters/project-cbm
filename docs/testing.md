@@ -1,3 +1,13 @@
+# Current validation entry — 2026-09-18
+
+Read [CURRENT-STATE](../CURRENT-STATE.md) for the latest candidate and gates.
+Attempt #6 now has [owner Pi 3B results](qualification/poc4-attempt6-pi3b-owner-report-2026-09-18.json).
+The records below are historical. Current release-refinement tests cover actual
+service state, connection contracts, credential redaction, discovery, Computer Name
+and the unchanged Cover/VICE/Menu lifecycle. Native mDNS response is not physical
+Finder/Explorer qualification. [Developer guide](release/development.md) gives current
+source commands; [build walkthrough](release/build-your-own.md) gives image gates.
+
 # Validation and qualification
 
 2026-09-18 corrective attempt #5: [results](build/private-poc4-attempt5.md).

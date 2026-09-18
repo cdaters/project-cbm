@@ -23,7 +23,7 @@ inconsistent after credential invalidation: discard the root after testing.
 
 The root-growth completion marker injected by the activation test stands for the
 **separate real loop-image growth test**; it is not proof of growth or Pi boot.
-The terminal probe expects the controlled `cbm-staging` hostname and Debian's
+The terminal probe reads the controlled root's current Computer Name and Debian's
 standard colored prompt. A terminal prompt mismatch is a harness failure.
 
 `import_loop.sh` creates a tiny synthetic ext4 image. It explicitly substitutes
@@ -48,3 +48,15 @@ namespace `/run` must receive the three directories declared by the frozen stage
 `/usr/lib/tmpfiles.d/project-cbm.conf` before helper tests. Create them with root 0755,
 or install/apply that exact tmpfiles declaration. A missing directory is a harness
 preparation failure, not permission to relax the helper's trusted-path checks.
+
+## Release refinement probes
+
+`release_services.py` verifies Computer Name changes/local resolution, safe enrollment
+metadata, actual On/Off listeners, restart and persisted enablement, owner-only content
+share configuration, Samba Avahi build support and redaction. `discovery_local.py`
+creates/removes only its synthetic namespace interface and verifies an SMB mDNS answer.
+`ssh_login.py` tests real loopback owner/password SSH and refusal after disable; its
+secret exists only in memory/stdin. `dialog_status.py` exercises real dialog service
+prompts at 40x12, 80x24 and 100x36. These require already completed isolated setup,
+not a fresh uninitialized root. The account/credentials are invalidated afterward.
+They do not prove physical reboot, remote client reachability or Finder/Explorer browsing.

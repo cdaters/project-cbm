@@ -1,3 +1,7 @@
+> **Historical v1.0 documentation.** For current 1.1 instructions use the
+> [user guide](release/user-guide.md), [networking guide](release/networking.md)
+> and [recovery help](release/recovery.md). Old credentials and service defaults do not apply.
+
 # Flashing the Project CBM Image
 
 Project CBM is distributed as a compressed Raspberry Pi image:

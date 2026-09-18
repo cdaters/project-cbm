@@ -1,3 +1,7 @@
+> **Historical v1.0 documentation.** For current 1.1 instructions use the
+> [user guide](release/user-guide.md), [networking guide](release/networking.md)
+> and [recovery help](release/recovery.md). Old credentials and service defaults do not apply.
+
 # Troubleshooting
 
 ## I do not see the Project CBM menu

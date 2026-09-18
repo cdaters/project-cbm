@@ -1,3 +1,14 @@
+# Current release refinement
+
+See [networking guide](../release/networking.md) for the complete user workflow.
+`pcbm-info --json --appliance` owns bounded network/service observations (schema 1);
+Menu presents them without probing. First-boot/SSH account remains owner; pi owns
+console/content. File Sharing separately enrolls owner, forces content writes to pi,
+and explicitly enables Avahi discovery on sharing opt-in. On requires unit activity
+and the expected listener; credentials and private stores never enter the projection.
+Default Computer Name is projectcbm, changeable through the existing validated helper.
+The rest of this contract retains request/privilege/recovery boundaries.
+
 # Configuration implementation and activation contract
 
 2026-09-17 source addendum: [run2 review](../qualification/poc4-run2-source-review-2026-09-17.md).
@@ -44,20 +55,20 @@ moves to Advanced, and duplicate system power/service/status/version paths are r
 | Setting | Authority / operation | Source status |
 | --- | --- | --- |
 | Default machine | `$XDG_CONFIG_HOME/project-cbm/preferences.json` (default `~/.config`), validated registry ID | Implemented; migrated path retained |
-| Boot preference | Same user-owned JSON; `menu` or `emulator` | Save implemented; session consumer pending |
+| Boot preference | Same user-owned JSON; `menu` or `emulator` | Implemented; active session consumer |
 | Audio | User `~/.config/pcbm/audio.conf`, AUTO/HDMI intent and bounded numeric legacy fields | Data-only parsing and atomic mode-0600 save; existing ALSA resolver retained |
 | VICE geometry/input | Existing initialized per-profile VICE user configuration | Unchanged POC3 policy; UI explains VICE controls |
-| Hostname | Fixed hostnamectl command, lowercase single label | Adapter implemented; system activation pending |
+| Hostname | Fixed hostnamectl command, lowercase single label | Implemented; validated hostnamectl and local hosts alias update |
 | Locale | Installed `/usr/share/i18n/SUPPORTED` UTF-8 member; localedef + update-locale | Adapter implemented; new-session effect |
 | Keyboard | Installed XKB base.xml layout; fixed `/etc/default/keyboard` XKBLAYOUT update | Adapter implemented; compile with setupcon for next boot |
 | Timezone | Named file confined to `/usr/share/zoneinfo`; timedatectl | Adapter implemented |
 | Wi-Fi country | Installed ISO country; fixed raspi-config noninteractive country operation | Adapter implemented; explicit radio-enable confirmation |
-| Network | Fixed NetworkManager commands, one managed WPA personal connection | Adapter implemented; network activation pending |
-| Optional services | Fixed aliases/units below, deliberate enable/disable | Adapters implemented; individual readiness pending |
-| Samba password | smbpasswd stdin for fixed appliance user `pi` | Implemented; separate from Unix credentials |
-| TCPser settings | Root-owned `/etc/project-cbm/modem.json`, typed port/baud | Saved intent only; launch adapter pending |
-| Power/reboot | Fixed systemctl poweroff/reboot | Adapter implemented; package/system readiness pending |
-| USB import / ROM copy | Future constrained removable-media broker | Design complete below; runtime implementation pending |
+| Network | Fixed NetworkManager commands, one managed WPA personal connection | Implemented; NetworkManager activation and bounded scan readiness |
+| Optional services | Fixed aliases/units below, deliberate enable/disable | Implemented; actual unit/listener state and bounded confirmation |
+| Samba password | smbpasswd stdin for fixed owner account `owner` | Implemented; separate from Unix credentials |
+| TCPser settings | Root-owned `/etc/project-cbm/modem.json`, typed port/baud | Validated intent consumed by loopback launch adapter |
+| Power/reboot | Fixed systemctl poweroff/reboot | Implemented; fixed system operation |
+| USB import / ROM copy | Constrained removable-media broker | Implemented; isolated read-only source/copy/unmount |
 
 Malformed primary preferences use the existing explicit backed-up recovery contract;
 valid new state wins over imported legacy state. Audio's older format is read only as
@@ -194,7 +205,7 @@ the normal privileged helper. `exit` returns to configuration. Accounts not yet
 initialized produce a useful pending state. Existing authenticated Linux logins are
 not removed or restricted by this design.
 
-Future short, retry-safe first boot must:
+Implemented retry-safe first-boot requirements:
 
 1. Preserve the existing single expansion/identity initialization owner; do not stack
    another partition expander. Seal generic machine-id/SSH keys as already designed.

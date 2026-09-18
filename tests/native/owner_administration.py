@@ -5,6 +5,7 @@ assert Path('/var/lib/project-cbm/native-staging-only').read_text()=='DISPOSABLE
 assert Path('/run/systemd/container').read_text().strip()=='pcbm-staging'
 os.chdir('/')
 secret=secrets.token_urlsafe(24)
+computer=Path('/etc/hostname').read_text().strip()
 def run(args,stdin=None):return subprocess.run(args,input=stdin,text=True,capture_output=True,timeout=15)
 def terminal(password,success):
  pid,fd=pty.fork()
@@ -21,7 +22,7 @@ def terminal(password,success):
     seen=(seen+data)[-32768:]
     if not sent and b'Password:' in seen:
      os.write(fd,password.encode()+b'\n');sent=True
-    if success and sent and not command and b'owner@cbm-staging' in seen:
+    if success and sent and not command and ('owner@'+computer).encode() in seen:
      os.write(fd,b"printf '\\nCBMUID=%s\\n' \"$(id -u)\"; exit\n");command=True
    p,status=os.waitpid(pid,os.WNOHANG)
    if p:break
@@ -41,7 +42,7 @@ try:
  terminal(secret,True)
  # Actual authenticated vendor invocation: no hardware country is presumed.
  p=run(['runuser','-u','owner','--','sudo','-k','-S','-p','','--','/usr/bin/raspi-config','nonint','get_hostname'],secret+'\n')
- assert p.returncode==0 and p.stdout.strip()=='cbm-staging'
+ assert p.returncode==0 and p.stdout.strip()==computer
  print('Authenticated raspi-config noninteractive invocation: PASS',flush=True)
 finally:
  run(['usermod','--password','!','owner']);secret=None

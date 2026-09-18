@@ -1,9 +1,11 @@
 # Security, defects and provenance follow-up
 
-Current source: [configuration privilege contract](runtime/configuration-contract.md)
-implements fixed validated operations, separate authenticated owner administration
-and explicit first-boot/service gates. It is not installed in POC3. No broad sudo rule
-or listener has been enabled. USB import's constrained broker remains pending.
+Current 1.1 uses fixed validated operations, authenticated owner administration,
+local first-boot credentials and opt-in listeners. The constrained USB import broker
+is implemented. It is a single-owner home-LAN appliance, not a hardened Internet
+server. Read the practical [service/security guide](release/networking.md) and the
+[privilege contract](runtime/configuration-contract.md). Do not expose service ports
+to the Internet by default. No universal password or broad passwordless root is supplied.
 
 The table below retains historical audit findings. Preservation and architecture
 reconciliation changed no runtime behavior. Read [current v1.0 corrections](v1.0-current-notes.md)

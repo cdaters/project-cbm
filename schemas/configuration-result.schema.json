@@ -34,7 +34,7 @@
     "message": {
       "enum": [
         "Keyboard layout saved. It applies after reboot; current console input is unchanged.",
-        "Set a separate File Sharing password before enabling Samba.",
+        "Set a separate File Sharing password before turning it on.",
         "Setting applied.",
         "The value is not supported. Check the setting and try again.",
         "Complete local first-boot setup before changing this setting.",

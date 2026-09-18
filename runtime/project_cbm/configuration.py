@@ -13,7 +13,7 @@ FIELDS = {'hostname': {'value'}, 'locale': {'value'}, 'timezone': {'value'}, 'ke
           'setup-network': {'enabled'}, 'setup-finish': set(), 'wifi-rescan':set(), 'wifi-disconnect': set(), 'wifi-forget': set()}
 for _op in ('wifi-country','wifi-rescan','wifi-enroll'):
     FIELDS['setup-'+_op]=FIELDS[_op]
-RESULTS = {'saved_restart': 'Keyboard layout saved. It applies after reboot; current console input is unchanged.', 'credentials_required': 'Set a separate File Sharing password before enabling Samba.', 'ok': 'Setting applied.', 'invalid': 'The value is not supported. Check the setting and try again.',
+RESULTS = {'saved_restart': 'Keyboard layout saved. It applies after reboot; current console input is unchanged.', 'credentials_required': 'Set a separate File Sharing password before turning it on.', 'ok': 'Setting applied.', 'invalid': 'The value is not supported. Check the setting and try again.',
            'pending': 'Complete local first-boot setup before changing this setting.',
            'unavailable': 'The required system facility is unavailable. Review System Information or Advanced guidance.',
            'failed': 'The operation could not be confirmed. Review current state before retrying; part of it may have applied.',

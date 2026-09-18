@@ -93,6 +93,11 @@ def main():
     if 'runtime' not in lock['components']:raise ValueError('activated candidate requires declared runtime package')
     chroot('groupadd','--system','pcbm-operators')
     chroot('usermod','--append','--groups','pcbm-operators','pi')
+    owned_put('/etc/hostname','projectcbm\n')
+    hosts=(root/'etc/hosts').read_text()
+    hosts=re.sub(r'^127\.0\.1\.1\s+.*$', '127.0.1.1\tprojectcbm', hosts, flags=re.M)
+    if not re.search(r'^127\.0\.1\.1\s',hosts,re.M):hosts+='\n127.0.1.1\tprojectcbm\n'
+    owned_put('/etc/hosts',hosts)
     chroot('useradd','--uid','1001','--create-home','--shell','/bin/bash','--groups','sudo','owner')
     chroot('usermod','--password','!','owner')
     # No universal credential and no normal-user blanket sudo. Debian %sudo is
@@ -115,7 +120,7 @@ def main():
     smb=('[global]\n    server role = standalone server\n    security = user\n'
          '    map to guest = Never\n    server min protocol = SMB2\n'
          '    disable netbios = yes\n    smb ports = 445\n    load printers = no\n'
-         '    disable spoolss = yes\n    log level = 0\n    max log size = 1000\n')
+         '    mdns name = mdns\n    disable spoolss = yes\n    log level = 0\n    max log size = 1000\n')
     owned_put('/etc/samba/smb.conf',smb+(REPO/'runtime/config/file-sharing.example.conf').read_text())
     # systemd may apply presets when it sees the sealed first-boot identity marker.
     # Explicit policy prevents that normal mechanism from enabling optional services.

@@ -1,196 +1,33 @@
-![Platform](https://img.shields.io/badge/platform-raspberry%20pi-%23C51A4A)
-
-> Historical image notice: the audit found ROM/media files and inherited machine
-> state in v1.0.0. Earlier blanket content-exclusion statements are not accurate
-> for that image. See [security/provenance findings](docs/security.md).
-
-> 2026-09-15 continuity: read [CURRENT-STATE](CURRENT-STATE.md) for the reconciled
-> 1.0 history, maintenance policy and the next 1.1 reproducible-build milestone.
-> Foundation decision: [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md).
-> Architecture is accepted; implementation still requires a new owner instruction.
-[![Project CBM Release](https://img.shields.io/github/v/release/cdaters/project-cbm?label=project-cbm%20release)](https://github.com/cdaters/project-cbm/releases/latest)
-[![Menu Release](https://img.shields.io/github/v/release/cdaters/project-cbm-menu?label=menu%20release)](https://github.com/cdaters/project-cbm-menu/releases/latest)
-[![License: MIT](https://img.shields.io/badge/license-MIT-orange)](LICENSE.md)
-![GitHub last commit](https://img.shields.io/github/last-commit/cdaters/project-cbm)
-![GitHub Issues](https://img.shields.io/github/issues/cdaters/project-cbm)
-
-<p align="center">
-  <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">
-</p>
-
 # Project CBM
 
-**Project CBM** is a ready-to-boot Raspberry Pi image that turns a Raspberry Pi into a clean, keyboard-friendly Commodore emulation environment.
+Project CBM is a keyboard-driven Commodore appliance for Raspberry Pi, built from
+Raspberry Pi OS Lite arm64, SDL2 VICE, ALSA and a Bash/dialog Menu. It preserves user
+control, a reliable console/emulator lifecycle and an independently recoverable image
+factory. Pi 3 is the performance floor; each model requires its own qualification.
 
-It is built around Raspberry Pi OS Lite, the console/SDL2 version of VICE, and a custom Project CBM menu system. The goal is simple:
+**1.1 is in private release-readiness refinement, not a public release.** Start with
+[the documentation](docs/README.md). [CURRENT-STATE](CURRENT-STATE.md) identifies the
+exact current candidate, qualification, remaining work and recovery checkpoint.
 
-> Power on. Boot fast. No desktop required. Just Commodore.
+| I want to… | Start here |
+| --- | --- |
+| Use Project CBM | [User guide](docs/release/user-guide.md) |
+| Configure networking and services | [Connection guide](docs/release/networking.md) |
+| Add my content | [Content and utilities](docs/release/user-guide.md#content-and-utilities) |
+| Build Project CBM | [Build Your Own](docs/release/build-your-own.md) |
+| Customize my image | [Customization](docs/release/customization.md) |
+| Develop Project CBM | [Developer entry](docs/release/development.md) |
+| Troubleshoot or recover | [Recovery help](docs/release/recovery.md) |
 
-## Project Background
+The Product repository owns OS/runtime integration, image construction, qualification,
+rights and recovery. The independently versioned [Menu repository](https://github.com/cdaters/project-cbm-menu)
+owns presentation, scripts, Covers and UI packaging. Project CBM is independently
+assembled and is not a fork of Combian64; see [acknowledgements](ACKNOWLEDGEMENTS.md).
 
-Project CBM exists in appreciation of the path [Carmelo Maiolino's Combian64](https://cmaiolino.wordpress.com/combian-64-v2/) helped establish: a fast-booting, appliance-style Commodore emulation experience on Raspberry Pi hardware.
+Project source licensing is in [LICENSE.md](LICENSE.md). Upstream software and third-party
+content keep their own licenses. Private input admission is not public redistribution
+permission; see [provenance](docs/provenance.md) and [optional applications](docs/runtime/optional-applications-contract.md).
 
-Project CBM is not a fork of Combian64 and is not affiliated with or endorsed by Combian64 or Carmelo Maiolino. It is an independently assembled Raspberry Pi OS Lite-based image using VICE and a custom Project CBM menu system.
-
-This project was also born from a practical goal: to create a more modern, current Commodore emulation build that I could share with friends and family who wanted a simple, ready-to-use Raspberry Pi setup without having to assemble every piece by hand.
-
-Project CBM is intended as an independent alternative for users who want a Raspberry Pi OS Lite-based Commodore environment on newer Raspberry Pi hardware, especially Raspberry Pi 5 and Raspberry Pi 500-class systems, while still targeting earlier Pi 3 and Pi 4-class machines subject to qualification.
-
-## Current Release
-
-**Version:** v1.0.0  
-**Image artifact:** `pcbm-v1.0.0-rpi3-5.img.xz`
-
-The release image is distributed through **GitHub Releases**. Large image files are not stored directly in this repository.
-
-## Hardware Targets
-
-Intended targets, not completed qualification claims (see [hardware status](docs/supported-hardware.md)):
-
-- Raspberry Pi 3
-- Raspberry Pi 4
-- Raspberry Pi 400
-- Raspberry Pi 5
-- Raspberry Pi 500 (and 500+)
-
-Recommended:
-
-- Raspberry Pi 5 or Pi 500 for best performance
-- Quality storage with enough capacity for the image and your content; the historical 16 GB recommendation is not a measured 1.1 minimum
-- HDMI display/audio
-- USB keyboard
-- Optional USB gamepad/controller
-- Optional Ethernet connection for easiest first network setup
-
-## What Is Included
-
-Project CBM includes:
-
-- Raspberry Pi OS Lite base
-- VICE 3.10 console/SDL2 build
-- Project CBM menu system
-- Commodore machine launchers
-- Splash/cover screen support
-- USB import helpers
-- Samba/network sharing helpers
-- BBS/modem support hooks using TCPser
-- Appliance-style runtime configuration
-
-## Screenshots
-
-<p align="center">
-  <img src="screenshots/v1.0.0/02-main-menu.png" alt="Project CBM Main Menu" width="45%">
-  <img src="screenshots/v1.0.0/03-machines-menu.png" alt="Project CBM Machines Menu" width="45%">
-</p>
-
-<p align="center">
-  <img src="screenshots/v1.0.0/04-content-menu.png" alt="Project CBM Content Menu" width="45%">
-  <img src="screenshots/v1.0.0/09-vice-c64-startup.png" alt="VICE C64 startup through Project CBM" width="45%">
-</p>
-
-See the full [Screenshot Gallery](docs/screenshots.md).
-
-## Download
-
-Public distribution policy is to include only software and content with reviewed redistribution rights and required license/source notices. The audited v1.0.0 image contains ROMs and media whose complete redistribution provenance remains unresolved. Historical private archives may contain additional unreviewed material. See [content and release corrections](docs/v1.0-current-notes.md). Users must have the necessary rights for content they add.
-
-Download the latest Project CBM release from the **GitHub Releases** page:
-
-- [Download the latest Project CBM release](https://github.com/cdaters/project-cbm/releases/latest)
-
-From the release assets, download:
-
-```text
-pcbm-v1.0.0-rpi3-5.img.xz
-pcbm-v1.0.0-docs.zip
-SHA256SUMS
-```
-
-Then verify the image before flashing:
-
-```bash
-sha256sum -c SHA256SUMS
-```
-
-On macOS, you can also use:
-
-```bash
-shasum -a 256 -c SHA256SUMS
-```
-
-If the files are valid, you should see output similar to:
-
-```text
-pcbm-v1.0.0-rpi3-5.img.xz: OK
-pcbm-v1.0.0-docs.zip: OK
-```
-
-If verification fails, delete the downloaded file and download it again from the official Project CBM GitHub Release.
-
-## Flashing the Image
-
-Use Raspberry Pi Imager, BalenaEtcher, or another imaging tool that supports `.img.xz` files.
-
-Do **not** copy the `.img.xz` file to the SD card like a normal document. The image must be written to the card.
-
-See the full guide:
-
-- [End-User Guide](docs/end-user-guide.md)
-- [Flashing the Image](docs/flashing-the-image.md)
-- [Hardware Targets and Qualification](docs/supported-hardware.md)
-- [Checksums and Verification](docs/checksums-and-verification.md)
-- [Troubleshooting](docs/troubleshooting.md)
-
-## First Boot Defaults
-
-| Item | Default |
-|---|---|
-| Linux user | `pi` |
-| Default password | `cbm-ready` |
-| Hostname | `pcbm` |
-| Default Project CBM machine | Commodore 64 accurate/recommended emulator |
-| Default emulator profile | `x64sc` |
-| Project CBM content folder | `/home/pi/pcbm` |
-| VICE emulator menu key | `F10` |
-| SSH | Enabled by default |
-| Samba file sharing | Enabled by default |
-| BBS / Modem (TCPser) | Documented intent was disabled; v1.0.0 contains an enabled unit; operation unqualified |
-| WiFi | Intentionally left unconfigured |
-
-After first boot, change the Unix password and review Samba credentials separately.
-Read the [current v1.0 notes](docs/v1.0-current-notes.md) for inherited identity,
-service and content findings before using historical release instructions.
-
-## Repository Layout
-
-```text
-README.md                 Project overview and quick start
-LICENSE.md                License for Project CBM scripts and documentation
-CHANGELOG.md              Project changelog
-CONTRIBUTING.md           Contribution guidelines
-SUPPORT.md                Support and issue-reporting guidance
-docs/                     End-user documentation
-release-notes/            Release-specific notes
-checksums/                Archived checksum files by release version
-screenshots/              Project screenshots and UI examples
-```
-
-## Releases
-
-- [Current corrections to v1.0 documentation](docs/v1.0-current-notes.md)
-- [Historical v1.0.0 Release Notes](release-notes/v1.0.0.md)
-- [Changelog](CHANGELOG.md)
-
-## Roadmap
-
-Project CBM is actively evolving. Planned ideas, possible future features, and wishlist items are tracked in the [Roadmap](ROADMAP.md).
-
-## License and Upstream Software
-
-Project CBM scripts and documentation are provided under the license included in this repository.
-
-The downloadable image contains upstream software with its own licenses, including Raspberry Pi OS, Debian packages, VICE, SDL2, and other tools. See [LICENSE.md](LICENSE.md) for details.
-
-## Status
-
-Project CBM v1.0.0 is the first public image release. It is usable, but still young enough to occasionally knock over a candle in the wizard tower.
+The historical v1.0.0 release remains documented in [corrected historical notes](docs/v1.0-current-notes.md)
+and [release notes](release-notes/v1.0.0.md). Its inherited accounts/content/service
+defaults are not 1.1 defaults. Do not use old instructions to initialize a 1.1 image.

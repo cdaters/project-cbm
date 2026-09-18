@@ -10,7 +10,7 @@ import sys
 import time
 
 from .data import LIMIT, loads, registry, text, token
-from . import preferences, network_info
+from . import preferences, network_info, service_info
 
 PACKAGES = {'menu': 'project-cbm-menu', 'vice': 'project-cbm-vice', 'tcpser': 'project-cbm-tcpser'}
 SERVICES = {'ssh': 'ssh.service', 'samba': 'smbd.service', 'tcpser': 'tcpser.service', 'avahi': 'avahi-daemon.service', 'network_manager': 'NetworkManager.service', 'first_boot': 'pcbm-first-boot.service'}
@@ -251,6 +251,10 @@ def collect(source=None, preference_path=None, profiles=None):
         return result
     current['network_links'] = attempt('network', network) if uname.get('system') == 'Linux' else None
     current['network_interfaces'] = network_info.collect(source, attempt) if uname.get('system') == 'Linux' else None
+    if uname.get('system') == 'Linux':
+        mapped={new:(current['services'] or {}).get(old) for new,old in [('ssh','ssh'),('sharing','samba'),('modem','tcpser'),('discovery','avahi')]}
+        current['appliance']=service_info.collect(source,attempt,current['network_interfaces'],mapped)
+        current['appliance']['issues']=[]
     def legacy(path, allowed):
         value = source.read(path).strip()
         if value not in allowed:
@@ -337,11 +341,30 @@ def collect_network(source=None):
             'interfaces':network_info.collect(source,attempt,include_ssids=False),'issues':issues}
 
 
+def collect_appliance(source=None):
+    if source is None:
+        source=Local();source.deadline=time.monotonic()+2
+    issues=[]
+    def attempt(name,fn,fallback=None):
+        try:return fn()
+        except (OSError,ValueError,KeyError,TypeError,UnicodeError,subprocess.SubprocessError):
+            issues.append({'collector':name,'code':'unavailable_or_invalid'});return fallback
+    interfaces=network_info.collect(source,attempt)
+    result=service_info.collect(source,attempt,interfaces)
+    result['issues']=issues
+    return result
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description='Read-only Project CBM system information')
     parser.add_argument('--json', action='store_true', help='versioned structured information for tools')
     parser.add_argument('--network-only', action='store_true', help='bounded network JSON projection for front panels')
+    parser.add_argument('--appliance', action='store_true', help='bounded appliance/service JSON for Menu')
     args = parser.parse_args(argv)
+    if args.appliance:
+        if not args.json or args.network_only: parser.error('--appliance requires --json and excludes --network-only')
+        print(json.dumps(collect_appliance(),sort_keys=True))
+        return 0
     if args.network_only:
         if not args.json: parser.error('--network-only requires --json')
         print(json.dumps(collect_network(),sort_keys=True))

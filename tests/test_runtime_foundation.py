@@ -83,7 +83,7 @@ class Information(unittest.TestCase):
         d = self.collect()
         self.assertEqual(d['built_as']['components']['vice']['package_version'], '3.10-1+pcbm1')
         self.assertEqual(d['current_state']['packages']['vice']['version'], '3.10-1+pcbm3')
-        self.assertTrue(all(call[0] in ('/usr/bin/dpkg-query', '/usr/bin/systemctl', '/usr/sbin/ip', '/usr/bin/nmcli') for call in self.source.calls))
+        self.assertTrue(all(call[0] in ('/usr/bin/dpkg-query', '/usr/bin/systemctl', '/usr/sbin/ip', '/usr/bin/nmcli', '/usr/bin/ss') for call in self.source.calls))
 
     def test_schema_and_unknown_field_rejection(self):
         validator=Draft202012Validator(json.loads((ROOT/'schemas/info.schema.json').read_text()))

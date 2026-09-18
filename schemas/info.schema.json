@@ -664,6 +664,412 @@
               }
             }
           ]
+        },
+        "appliance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "format",
+            "schema_version",
+            "interfaces",
+            "issues",
+            "computer_name",
+            "owner_username",
+            "sharing_username",
+            "sharing_password_set",
+            "share_name",
+            "modem_port",
+            "services"
+          ],
+          "properties": {
+            "format": {
+              "const": "project-cbm.appliance-info"
+            },
+            "schema_version": {
+              "const": 1
+            },
+            "interfaces": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "array",
+                  "maxItems": 32,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "interface",
+                      "type",
+                      "operstate",
+                      "state",
+                      "ipv4",
+                      "ipv6",
+                      "mac",
+                      "ssid"
+                    ],
+                    "properties": {
+                      "interface": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9_.:-]{1,15}$"
+                      },
+                      "type": {
+                        "enum": [
+                          "unknown",
+                          "ethernet",
+                          "wifi",
+                          "bridge",
+                          "bond",
+                          "tunnel",
+                          "other"
+                        ]
+                      },
+                      "operstate": {
+                        "enum": [
+                          "up",
+                          "down",
+                          "unknown",
+                          "dormant",
+                          "lowerlayerdown",
+                          "notpresent",
+                          "testing"
+                        ]
+                      },
+                      "state": {
+                        "enum": [
+                          "unknown",
+                          "unmanaged",
+                          "unavailable",
+                          "disconnected",
+                          "connecting",
+                          "authentication-required",
+                          "connected",
+                          "disconnecting",
+                          "failed"
+                        ]
+                      },
+                      "ipv4": {
+                        "type": "array",
+                        "maxItems": 8,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "maxLength": 18
+                        }
+                      },
+                      "ipv6": {
+                        "type": "array",
+                        "maxItems": 8,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "maxLength": 43
+                        }
+                      },
+                      "mac": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$"
+                          }
+                        ]
+                      },
+                      "ssid": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 32
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "issues": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "collector": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "code": {
+                    "enum": [
+                      "unavailable_or_invalid",
+                      "not_exposed_by_collector"
+                    ]
+                  }
+                },
+                "required": [
+                  "collector",
+                  "code"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 128
+            },
+            "computer_name": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9-]{0,61}[a-z0-9]$|^[a-z]$"
+            },
+            "owner_username": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9_-]{0,30}$"
+            },
+            "sharing_username": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9_-]{0,30}$"
+            },
+            "sharing_password_set": {
+              "type": "boolean"
+            },
+            "share_name": {
+              "const": "Project CBM"
+            },
+            "modem_port": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535
+            },
+            "services": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ssh",
+                "sharing",
+                "modem",
+                "discovery"
+              ],
+              "properties": {
+                "ssh": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "state",
+                    "enabled",
+                    "listening"
+                  ],
+                  "properties": {
+                    "state": {
+                      "enum": [
+                        "off",
+                        "on",
+                        "pending",
+                        "unavailable",
+                        "failed"
+                      ]
+                    },
+                    "enabled": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "listening": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "sharing": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "state",
+                    "enabled",
+                    "listening"
+                  ],
+                  "properties": {
+                    "state": {
+                      "enum": [
+                        "off",
+                        "on",
+                        "pending",
+                        "unavailable",
+                        "failed"
+                      ]
+                    },
+                    "enabled": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "listening": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "modem": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "state",
+                    "enabled",
+                    "listening"
+                  ],
+                  "properties": {
+                    "state": {
+                      "enum": [
+                        "off",
+                        "on",
+                        "pending",
+                        "unavailable",
+                        "failed"
+                      ]
+                    },
+                    "enabled": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "listening": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "discovery": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "state",
+                    "enabled",
+                    "listening"
+                  ],
+                  "properties": {
+                    "state": {
+                      "enum": [
+                        "off",
+                        "on",
+                        "pending",
+                        "unavailable",
+                        "failed"
+                      ]
+                    },
+                    "enabled": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "listening": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "$defs": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+            },
+            "nullableText": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "byteCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "nullableByteCount": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/byteCount"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "installedPackage": {
+              "type": "object",
+              "properties": {
+                "installed": {
+                  "type": "boolean"
+                },
+                "version": {
+                  "$ref": "#/$defs/nullableText"
+                }
+              },
+              "required": [
+                "installed",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "nullableServiceState": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "LoadState": {
+                      "$ref": "#/$defs/nullableText"
+                    },
+                    "ActiveState": {
+                      "$ref": "#/$defs/nullableText"
+                    },
+                    "SubState": {
+                      "$ref": "#/$defs/nullableText"
+                    },
+                    "UnitFileState": {
+                      "$ref": "#/$defs/nullableText"
+                    }
+                  },
+                  "required": [
+                    "LoadState",
+                    "ActiveState",
+                    "SubState",
+                    "UnitFileState"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
         }
       },
       "required": [

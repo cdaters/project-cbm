@@ -1,3 +1,7 @@
+> **Historical v1.0 documentation.** For current 1.1 instructions use the
+> [user guide](release/user-guide.md), [networking guide](release/networking.md)
+> and [recovery help](release/recovery.md). Old credentials and service defaults do not apply.
+
 # Project CBM End-User Guide
 
 > Historical image notice: the audit found ROM/media files and inherited machine

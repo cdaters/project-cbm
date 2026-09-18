@@ -1,3 +1,9 @@
+project-cbm-runtime (1.1.0~poc4.4-1) unstable; urgency=medium
+
+  * Authoritative appliance/service state and complete owner connection workflows.
+
+ -- Project CBM contributors <noreply@project-cbm.invalid>  Fri, 18 Sep 2026 18:00:00 +0000
+
 project-cbm-runtime (1.1.0~poc4.3-1) unstable; urgency=medium
 
   * Wait for ready radios and completed fresh Wi-Fi scans with bounded retries.

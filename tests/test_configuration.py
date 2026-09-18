@@ -27,6 +27,10 @@ CASES=[req('hostname',value='cbm-fixture'),req('locale',value='en_US.UTF-8'),req
 class FakeLinux:
     def __init__(self):self.calls=[];self.writes={};self.good=True;self.allowed=True;self.country=True
     def run(self,args,stdin=None):self.calls.append((args,stdin));return self.good
+    def service(self,name,enabled):
+        args=['/usr/bin/systemctl','--no-ask-password','enable' if enabled else 'disable','--now',c.SERVICES[name]]
+        if name=='discovery':args.append('avahi-daemon.socket')
+        return self.run(args)
     def listed(self,kind,value):return self.allowed
     def ssh_keys(self):return self.good
     def modem(self,values):self.writes["/etc/project-cbm/modem.json"]=values;return self.good
@@ -35,7 +39,7 @@ class FakeLinux:
     def credential_ready(self, user):return self.allowed
     def keyboard(self, value):self.calls.append((['keyboard-next-boot',value],None));return self.good
     def hostname(self, value):return self.run(['/usr/bin/hostnamectl','--no-ask-password','hostname',value])
-    def write(self,path,data):self.writes[path]=data
+    def write(self,path,data,mode=0o600):self.writes[path]=data
 
 
 class Configuration(unittest.TestCase):
@@ -100,6 +104,11 @@ class Configuration(unittest.TestCase):
             system=FakeLinux();self.assertEqual(b.apply(req('service',service=name,enabled=True),{**POLICY,'ready_services':[]},system)['status'],'pending')
             self.assertFalse(system.calls)
 
+    def test_sharing_cannot_bypass_discovery_readiness_policy(self):
+        system=FakeLinux()
+        answer=b.apply(req('service',service='sharing',enabled=True),{**POLICY,'ready_services':['sharing']},system)
+        self.assertEqual(answer['status'],'pending');self.assertFalse(system.calls)
+
     def test_service_enable_disable_exact_allowlist_no_unmask(self):
         for name,unit in c.SERVICES.items():
             for enabled in [False,True]:
@@ -135,7 +144,7 @@ class Configuration(unittest.TestCase):
 
     def test_samba_credential_is_separate_and_stdin_only(self):
         system=FakeLinux();b.apply(req('sharing-password',password='fixture-samba-pass'),POLICY,system)
-        self.assertEqual(system.calls[0][0],['/usr/bin/smbpasswd','-s','-a','pi'])
+        self.assertEqual(system.calls[0][0],['/usr/bin/smbpasswd','-s','-a','owner_fixture'])
         self.assertEqual(system.calls[0][1],'fixture-samba-pass\nfixture-samba-pass\n')
         self.assertNotIn('passwd',system.calls[0][0][0].split('/')[-1].replace('smbpasswd',''))
 

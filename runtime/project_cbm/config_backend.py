@@ -54,6 +54,33 @@ class Linux:
         return subprocess.run(argv,input=stdin,text=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
                               env=ENV,timeout=min(60,remaining),check=False).returncode==0
 
+    def service(self, name, enabled):
+        from .service_info import units, listeners, state, PORTS
+        # File Sharing opt-in includes local discovery, stated in its UI action.
+        if name=='sharing' and enabled and not self.service('discovery',True):return False
+        args=['/usr/bin/systemctl','--no-ask-password','enable' if enabled else 'disable','--now',SERVICES[name]]
+        if name=='discovery':args.append('avahi-daemon.socket')
+        if not self.run(args):return False
+        end=min(self.deadline,time.monotonic()+3)
+        port=25232
+        if name=='modem':port=read_json(trusted(Path('/etc/project-cbm/modem.json')))['port']
+        expected=PORTS.get(name,('tcp',port))
+        while time.monotonic()<end:
+            try:
+                def query(argv):
+                    remaining=end-time.monotonic()
+                    if remaining<=0:raise TimeoutError()
+                    p=subprocess.run(argv,capture_output=True,text=True,env=ENV,timeout=min(1,remaining))
+                    if p.returncode or len(p.stdout)>65536:raise ValueError('service_query')
+                    return p.stdout
+                rows=units(query(['/usr/bin/systemctl','--system','--no-pager','show','--property=Id,LoadState,ActiveState,SubState,UnitFileState',SERVICES[name]]))
+                listening=expected in listeners(query(['/usr/bin/ss','-H','-ltnu']))
+                actual=state(rows.get(name),listening)
+                if enabled and actual=='on' or not enabled and actual=='off' and not listening:return True
+            except (OSError,ValueError,subprocess.SubprocessError):pass
+            time.sleep(min(.1,max(0,end-time.monotonic())))
+        return False
+
     def listed(self,kind,value):
         if kind=='country':
             return value in {line.split()[0] for line in Path('/usr/share/zoneinfo/iso3166.tab').read_text().splitlines() if line and not line.startswith('#')}
@@ -198,11 +225,10 @@ def apply(request, p, system):
     if op=='service':
         name=v['service']
         if name not in p['ready_services']:return result('pending')
-        if name=='sharing' and v['enabled'] and not system.credential_ready(p['appliance_user']):return result('credentials_required')
+        if name=='sharing' and v['enabled'] and not system.credential_ready(p['owner_user']):return result('credentials_required')
+        if name=='sharing' and v['enabled'] and 'discovery' not in p['ready_services']:return result('pending')
         if name=='ssh' and v['enabled'] and not system.ssh_keys():return result('failed')
-        # No unmask here. Masks are an intentional policy boundary, not an error to bypass.
-        args=['/usr/bin/systemctl','--no-ask-password','enable' if v['enabled'] else 'disable','--now',SERVICES[name]]
-        if name=='discovery':args.append('avahi-daemon.socket')
+        return result('ok' if system.service(name,v['enabled']) else 'failed')
     elif op=='hostname':return result('ok' if system.hostname(v['value']) else 'failed')
     elif op=='timezone':
         if not system.listed('timezone',v['value']):return result('invalid')
@@ -234,7 +260,9 @@ def apply(request, p, system):
         args=['/usr/bin/nmcli','connection','down' if op=='wifi-disconnect' else 'delete','uuid',WIFI_UUID]
     elif op=='sharing-password':
         # Initial credential enrollment precedes adding sharing to ready_services.
-        ok=system.run(['/usr/bin/smbpasswd','-s','-a',p['appliance_user']],stdin=v['password']+'\n'+v['password']+'\n')
+        ok=system.run(['/usr/bin/smbpasswd','-s','-a',p['owner_user']],stdin=v['password']+'\n'+v['password']+'\n')
+        if ok:ok=system.credential_ready(p['owner_user'])
+        if ok:system.write('/var/lib/project-cbm/sharing-status.json',json.dumps({'schema_version':1,'username':p['owner_user'],'password_set':True})+'\n',0o644)
         return result('ok' if ok else 'failed')
     elif op=='modem':
         return result('ok' if system.modem(v) else 'failed')

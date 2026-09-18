@@ -46,6 +46,6 @@ try:
  print('NetworkManager keyfile parsing/redaction, offline path, installed info/config/boot interfaces: PASS',flush=True)
 finally:
  run(['nmcli','connection','delete','uuid',WIFI_UUID]);path.unlink(missing_ok=True)
- run(['smbpasswd','-x','pi'])
+ run(['smbpasswd','-x','owner'])
  for p in Path('/etc/ssh').glob('ssh_host_*'):p.unlink()
  secret=None
