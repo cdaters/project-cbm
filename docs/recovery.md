@@ -1,5 +1,11 @@
 # Black-box project recovery and installed identity
 
+2026-09-17 attempt #4 card evidence successor: [review](qualification/poc4-attempt4-card-review-2026-09-17.md).
+Distinct checkpoint `archive/poc4-attempt4-card-analysis-2026-09-17` binds final refs,
+offline bundle restoration and 41 allowlisted files from the now-read-only used card.
+Identity matches exact attempt #4; no card mutation. Earlier build and blocked-collection
+checkpoints remain unchanged. Engineering evidence is not pristine forensic capture.
+
 2026-09-17 attempt #4 physical follow-up: [review](qualification/poc4-attempt4-physical-review-2026-09-17.md).
 New additive checkpoint `archive/poc4-attempt4-physical-review-2026-09-17` retains
 owner results, source investigation and verified offline source restoration. Card

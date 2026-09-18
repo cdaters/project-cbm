@@ -1,3 +1,47 @@
+# POC4 attempt #4 card diagnostics collected — 2026-09-17 / OWNER REVIEW
+
+**Pi 3B lifecycle remains PHYSICALLY PASSING; visible Cover FAIL.**
+[New card review](docs/qualification/poc4-attempt4-card-review-2026-09-17.md) and
+[exact diagnostic analysis](docs/qualification/poc4-attempt4-card-analysis-2026-09-17.json)
+supersede the collection blocker below without changing the earlier attestation/report.
+Owner made rootfs read-only; mount and diskutil agree. Installed identity is byte-exact
+with attempt #4's generated frozen-lock projection. Forty-one allowlisted files from
+four retained launches copied with source/copy/source hash verification. No card write,
+remount, repair, execution, boot access or credential/private-network-profile read.
+Used-card engineering evidence, not pristine forensic capture; prior journal behavior
+remains unknown under the accepted owner limitation.
+
+Evidence `qualification/poc4-attempt4-physical-2026-09-17/card-evidence`;
+inventory SHA-256 `e098884fc5621696b587eb3a24a73e9bf38b7267ac879b65751bafcf46b5adf8`.
+All seven assets plus installed wrapper/renderer/lifecycle helper match reviewed bytes.
+Retained x128-80col/xvic/xplus4/xcbm5x0 Cover wrappers exit0 in about10ms, no renderer
+events, timeout or signal. The Product-supplied terminal descriptor is `/dev/tty`,
+rejected by Menu's literal `/dev/tty1` guard before resolution/SDL. Confirmed admission
+contract defect; HIGH-CONFIDENCE physical explanation from matching code and records,
+with no explicit stored guard-rejection reason. No Cover backend/presentation was
+reached by that code path; fixing admission does not yet qualify rendering on the Pi.
+
+All four VICE runs exit0 and both restorations verify without error/mismatch. Recorded
+termios/keyboard/display/VT/group state agrees across phases. Parent/foreground group
+and session900; separate child PGID/reap flag unavailable, wait/reap inferred from
+completed supervisor path. Pre-VICE/during-VICE DRM is1080p60; VICE KMSDRM/OpenGL/ALSA.
+These are not Cover-time observations or extra physical audio/geometry passes. Attempt
+#3's precise dead-input cause is not retrospectively proven; unreported tests UNTESTED.
+
+Network authority/UI extension and quiet/fast boot backlog remain as documented;
+no source/runtime/boot/package/tag/image changes. Current top scopes still describe
+the completed one-candidate milestone. Preserve supervisor/TTY/VICE behavior and
+correct only Cover admission under a bounded source authorization. AGENTS untouched.
+Existing focused results remain3/3 wrapper characterization and9/9 lifecycle PASS;
+new evidence hash/identity/phase consistency checks pass, no native run claimed.
+
+New recovery `archive/poc4-attempt4-card-analysis-2026-09-17` retains final refs/bundles,
+offline refs/peeled tags/symbolic HEAD/fsck, card evidence and preserved artifact refs.
+Prior build and initial physical-review checkpoints remain intact. No push/publication.
+**ONE next owner action: authorize source-only Cover admission/diagnostic correction
+and the pcbm-info/network-information extension, preserving the passing lifecycle
+and excluding a new image build.** STOP for owner review. Earlier dated records follow.
+
 # POC4 attempt #4 physical follow-up — 2026-09-17 / EVIDENCE GATE
 
 **Pi 3B lifecycle: PHYSICALLY PASSING for owner-reported behavior. Cover: FAIL.**

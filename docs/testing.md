@@ -1,5 +1,11 @@
 # Validation and qualification
 
+2026-09-17 read-only attempt #4 card collection: [review](qualification/poc4-attempt4-card-review-2026-09-17.md).
+Exact identity and 41 copied files verify; four Cover wrappers exit0 in about10ms
+without renderer events, and four VICE exits/restoration pairs pass their recorded
+checks. Tty alias guard explains early skips with high confidence; no corrected
+renderer or extra physical test is claimed. Earlier blocked collection remains history.
+
 Additive physical status: owner-tested attempt #4 Pi 3B lifecycle passes; Cover fails.
 Three isolated wrapper characterization checks and nine existing lifecycle tests pass.
 Card diagnostics remain uncollected behind the read-only mount gate. See the

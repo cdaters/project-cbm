@@ -1,0 +1,409 @@
+{
+  "format": "project-cbm.physical-card-analysis",
+  "schema_version": 1,
+  "date": "2026-09-17",
+  "candidate": "POC4 corrective attempt #4",
+  "release_lock_sha256": "b3430b626d5156c582f4e3e457d47916a16b527c3dcf7586a90cae96c3882b72",
+  "raw_image_sha256": "f699595fdd31a7f8125bb1882ce8d468ce7dd1b4734d85986b1962e992875b21",
+  "compressed_image_sha256": "076a42911faa24bc4f2d4c225c92d621498261b630e63de35b6c7dc8af0760e2",
+  "evidence_directory": "qualification/poc4-attempt4-physical-2026-09-17/card-evidence",
+  "inventory_sha256": "e098884fc5621696b587eb3a24a73e9bf38b7267ac879b65751bafcf46b5adf8",
+  "card_identity": "PASS exact generated frozen-lock projection",
+  "classification": "READ-ONLY ENGINEERING RUNTIME EVIDENCE FROM USED PHYSICAL CARD; NOT PRISTINE FORENSIC",
+  "files_collected": 41,
+  "slots": 4,
+  "source_payloads_and_seven_artwork_hashes_match": true,
+  "launches": [
+    {
+      "slot": "launch-1789710217806165252",
+      "profile": "x128-80col",
+      "expected_registry_cover": "/usr/share/project-cbm-menu/covers/pcbmcover-c128.jpg",
+      "actual_cover_selection": "not recorded; guard rejection precedes resolver",
+      "uid": 1000,
+      "launcher_pid": 1638,
+      "vice_pid": 1672,
+      "vice_phase": "exited",
+      "vice_exit_status": 0,
+      "vice_termination_signal": null,
+      "vice_started_after_audio_monotonic": 883.035015059,
+      "vice_ended_monotonic": 914.506951627,
+      "cover": {
+        "ended_monotonic": 882.72842929,
+        "events": [],
+        "exit_status": 0,
+        "killed": false,
+        "pid": 1641,
+        "started_monotonic": 882.718347284,
+        "termination_signal": null,
+        "timeout": false
+      },
+      "cover_duration_ms": 10.082006,
+      "cover_pid_interpretation": "wrapper PID; renderer invocation not established by events; source guard prevents reaching it",
+      "parent_group": 900,
+      "foreground_group": 900,
+      "session": 900,
+      "terminal_descriptor": "/dev/tty",
+      "inherited_stdin_snapshot_tty": "/dev/tty1",
+      "terminal_keyboard_mode": 3,
+      "terminal_display_mode": 0,
+      "terminal_vt_mode": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_terminal_phase_values_equal": true,
+      "cover_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "vice_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "active_drm_before_vice": {
+        "connectors": [
+          {
+            "card": 0,
+            "connector_id": 35,
+            "type": 11,
+            "type_id": 1,
+            "connected": true,
+            "active": {
+              "width": 1920,
+              "height": 1080,
+              "refresh_hz": 60,
+              "clock_khz": 148500,
+              "htotal": 2200,
+              "vtotal": 1125,
+              "flags": 5,
+              "crtc_width": 1920,
+              "crtc_height": 1080,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "vice_presentation": [
+        {
+          "chip": "VDC",
+          "aspect_mode": "2",
+          "driver": "KMSDRM",
+          "renderer": "opengl",
+          "window": "1920x1080",
+          "output": "1920x1080",
+          "logical": "789x576"
+        },
+        {
+          "chip": "VDC",
+          "aspect_mode": "2",
+          "driver": "KMSDRM",
+          "renderer": "opengl",
+          "window": "1920x1080",
+          "output": "1920x1080",
+          "logical": "789x576"
+        }
+      ],
+      "samples": [
+        "sample-0.json",
+        "sample-1.json"
+      ]
+    },
+    {
+      "slot": "launch-1789710256908875096",
+      "profile": "xvic",
+      "expected_registry_cover": "/usr/share/project-cbm-menu/covers/pcbmcover-vic20.jpg",
+      "actual_cover_selection": "not recorded; guard rejection precedes resolver",
+      "uid": 1000,
+      "launcher_pid": 1706,
+      "vice_pid": 1740,
+      "vice_phase": "exited",
+      "vice_exit_status": 0,
+      "vice_termination_signal": null,
+      "vice_started_after_audio_monotonic": 922.153114226,
+      "vice_ended_monotonic": 932.98937972,
+      "cover": {
+        "ended_monotonic": 921.833801999,
+        "events": [],
+        "exit_status": 0,
+        "killed": false,
+        "pid": 1709,
+        "started_monotonic": 921.823782804,
+        "termination_signal": null,
+        "timeout": false
+      },
+      "cover_duration_ms": 10.019195,
+      "cover_pid_interpretation": "wrapper PID; renderer invocation not established by events; source guard prevents reaching it",
+      "parent_group": 900,
+      "foreground_group": 900,
+      "session": 900,
+      "terminal_descriptor": "/dev/tty",
+      "inherited_stdin_snapshot_tty": "/dev/tty1",
+      "terminal_keyboard_mode": 3,
+      "terminal_display_mode": 0,
+      "terminal_vt_mode": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_terminal_phase_values_equal": true,
+      "cover_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "vice_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "active_drm_before_vice": {
+        "connectors": [
+          {
+            "card": 0,
+            "connector_id": 35,
+            "type": 11,
+            "type_id": 1,
+            "connected": true,
+            "active": {
+              "width": 1920,
+              "height": 1080,
+              "refresh_hz": 60,
+              "clock_khz": 148500,
+              "htotal": 2200,
+              "vtotal": 1125,
+              "flags": 5,
+              "crtc_width": 1920,
+              "crtc_height": 1080,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "vice_presentation": [
+        {
+          "chip": "VIC",
+          "aspect_mode": "2",
+          "driver": "KMSDRM",
+          "renderer": "opengl",
+          "window": "1920x1080",
+          "output": "1920x1080",
+          "logical": "746x568"
+        }
+      ],
+      "samples": []
+    },
+    {
+      "slot": "launch-1789710278149500778",
+      "profile": "xplus4",
+      "expected_registry_cover": "/usr/share/project-cbm-menu/covers/pcbmcover-plus4.jpg",
+      "actual_cover_selection": "not recorded; guard rejection precedes resolver",
+      "uid": 1000,
+      "launcher_pid": 1756,
+      "vice_pid": 1790,
+      "vice_phase": "exited",
+      "vice_exit_status": 0,
+      "vice_termination_signal": null,
+      "vice_started_after_audio_monotonic": 943.404804374,
+      "vice_ended_monotonic": 955.190676376,
+      "cover": {
+        "ended_monotonic": 943.097356328,
+        "events": [],
+        "exit_status": 0,
+        "killed": false,
+        "pid": 1759,
+        "started_monotonic": 943.087358435,
+        "termination_signal": null,
+        "timeout": false
+      },
+      "cover_duration_ms": 9.997893,
+      "cover_pid_interpretation": "wrapper PID; renderer invocation not established by events; source guard prevents reaching it",
+      "parent_group": 900,
+      "foreground_group": 900,
+      "session": 900,
+      "terminal_descriptor": "/dev/tty",
+      "inherited_stdin_snapshot_tty": "/dev/tty1",
+      "terminal_keyboard_mode": 3,
+      "terminal_display_mode": 0,
+      "terminal_vt_mode": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_terminal_phase_values_equal": true,
+      "cover_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "vice_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "active_drm_before_vice": {
+        "connectors": [
+          {
+            "card": 0,
+            "connector_id": 35,
+            "type": 11,
+            "type_id": 1,
+            "connected": true,
+            "active": {
+              "width": 1920,
+              "height": 1080,
+              "refresh_hz": 60,
+              "clock_khz": 148500,
+              "htotal": 2200,
+              "vtotal": 1125,
+              "flags": 5,
+              "crtc_width": 1920,
+              "crtc_height": 1080,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "vice_presentation": [
+        {
+          "chip": "TED",
+          "aspect_mode": "2",
+          "driver": "KMSDRM",
+          "renderer": "opengl",
+          "window": "1920x1080",
+          "output": "1920x1080",
+          "logical": "796x576"
+        }
+      ],
+      "samples": []
+    },
+    {
+      "slot": "launch-1789710308320898627",
+      "profile": "xcbm5x0",
+      "expected_registry_cover": "/usr/share/project-cbm-menu/covers/pcbmcover-cbm5.jpg",
+      "actual_cover_selection": "not recorded; guard rejection precedes resolver",
+      "uid": 1000,
+      "launcher_pid": 1807,
+      "vice_pid": 1841,
+      "vice_phase": "exited",
+      "vice_exit_status": 0,
+      "vice_termination_signal": null,
+      "vice_started_after_audio_monotonic": 973.551650888,
+      "vice_ended_monotonic": 1010.407719292,
+      "cover": {
+        "ended_monotonic": 973.252091104,
+        "events": [],
+        "exit_status": 0,
+        "killed": false,
+        "pid": 1810,
+        "started_monotonic": 973.242054601,
+        "termination_signal": null,
+        "timeout": false
+      },
+      "cover_duration_ms": 10.036503,
+      "cover_pid_interpretation": "wrapper PID; renderer invocation not established by events; source guard prevents reaching it",
+      "parent_group": 900,
+      "foreground_group": 900,
+      "session": 900,
+      "terminal_descriptor": "/dev/tty",
+      "inherited_stdin_snapshot_tty": "/dev/tty1",
+      "terminal_keyboard_mode": 3,
+      "terminal_display_mode": 0,
+      "terminal_vt_mode": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_terminal_phase_values_equal": true,
+      "cover_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "vice_restore": {
+        "attempted": true,
+        "verified": true,
+        "errors": [],
+        "mismatch": []
+      },
+      "active_drm_before_vice": {
+        "connectors": [
+          {
+            "card": 0,
+            "connector_id": 35,
+            "type": 11,
+            "type_id": 1,
+            "connected": true,
+            "active": {
+              "width": 1920,
+              "height": 1080,
+              "refresh_hz": 60,
+              "clock_khz": 148500,
+              "htotal": 2200,
+              "vtotal": 1125,
+              "flags": 5,
+              "crtc_width": 1920,
+              "crtc_height": 1080,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "vice_presentation": [
+        {
+          "chip": "VICII",
+          "aspect_mode": "2",
+          "driver": "KMSDRM",
+          "renderer": "opengl",
+          "window": "1920x1080",
+          "output": "1920x1080",
+          "logical": "719x544"
+        },
+        {
+          "chip": "VICII",
+          "aspect_mode": "2",
+          "driver": "KMSDRM",
+          "renderer": "opengl",
+          "window": "1920x1080",
+          "output": "1920x1080",
+          "logical": "719x544"
+        }
+      ],
+      "samples": [
+        "sample-0.json",
+        "sample-1.json"
+      ]
+    }
+  ],
+  "cause_classification": {
+    "confirmed_source_defect": "literal /dev/tty1 admission check rejects the /dev/tty controlling-terminal descriptor passed by supervisor",
+    "recovered_launch_explanation": "HIGH CONFIDENCE: early tty guard exit before profile resolution/SDL renderer",
+    "limitation": "no explicit stored guard-rejection reason or captured tty stdout; branch diagnosis derives from matching installed code and recorded descriptor/exit/events",
+    "attempt3_root_cause": "NOT RETROSPECTIVELY PROVEN",
+    "cover_renderer_after_admission_correction": "PHYSICALLY UNTESTED"
+  },
+  "physical_lifecycle": "PASS for separately owner-reported Pi 3B behavior; four retained normal VICE exits and verified restores support it",
+  "card_modified_by_codex": false,
+  "credentials_or_unrelated_private_files_read": false,
+  "runtime_source_changed": false
+}
