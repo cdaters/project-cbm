@@ -1,3 +1,47 @@
+# Current checkpoint: standing governance refactor — 2026-09-17
+
+[AGENTS.md](AGENTS.md) now defines standing private-engineering authority and hard
+owner gates. It supersedes historical milestone authorization/STOP clauses, including
+those quoted in the records below and linked build/recovery/qualification documents.
+Those records retain their original evidence and wording; they are not current
+permission gates. Use this top entry for current status and next action, and canonical
+records for exact candidate identities, technical procedures and evidence limits.
+
+This task changes only both repositories' AGENTS.md and CURRENT-STATE.md. The user
+requested review-ready, uncommitted changes: no source correction, commit, tag,
+package, image, builder operation, push or publication is part of this cleanup.
+The previous complete Product AGENTS is preserved in Git at
+`33cf4c8bc2a474082986f0b0098b343516fb54b0:AGENTS.md`; the companion Menu version is at
+`a6ecf0a59e8ff5c5b8b94c046aca1eacb003a1b6:AGENTS.md`. Existing qualification/build/
+recovery records and all prior CURRENT-STATE text remain unchanged. The existing
+`archive/poc4-attempt4-card-analysis-2026-09-17` checkpoint predates these edits;
+this governance cleanup does not claim a new verified recovery checkpoint.
+
+Engineering status remains: attempt #4 Pi 3B owner-reported lifecycle PASS, visible
+Cover FAIL. The [card review](docs/qualification/poc4-attempt4-card-review-2026-09-17.md)
+establishes the `/dev/tty` versus literal `/dev/tty1` admission contract defect and
+its high-confidence explanation of the observed failure; corrected physical rendering
+is not yet proven. Preserve the passing supervisor/TTY/VICE lifecycle and seven Covers.
+Network information remains a proposed authoritative pcbm-info/schema extension with
+existing Menu consumers. [Quiet/fast boot](docs/design/boot-experience-backlog-2026-09-17.md)
+remains separate, measurement-first backlog; unreported physical tests stay UNTESTED.
+
+**Exact next action for this handoff:** review and commit the two documentation
+changes in each repository. The requested uncommitted handoff is a task limit, not
+an ongoing owner-approval requirement for private engineering.
+
+**Next engineering action:** correct tty1 device-identity admission and add explicit
+Cover guard diagnostics with focused regression tests; extend Product pcbm-info/schema
+for bounded per-interface state/type/IP/MAC and appropriate active SSID, with no
+credential reads or competing Menu probes. Update existing information views. Then
+validate natively, version/package changed components, freeze a distinct private POC4
+corrective attempt, build through the approved factory, validate and checkpoint under
+standing governance. Preserve previous candidates; bind the next physical procedure
+to exact successful image hashes. The owner gate remains physical testing/qualification,
+not permission to prepare successive private candidates.
+
+## Historical checkpoints (original text follows unchanged)
+
 # POC4 attempt #4 card diagnostics collected — 2026-09-17 / OWNER REVIEW
 
 **Pi 3B lifecycle remains PHYSICALLY PASSING; visible Cover FAIL.**
