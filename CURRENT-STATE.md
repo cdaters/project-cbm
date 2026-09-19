@@ -1,3 +1,45 @@
+# Attempt #8 performance candidate complete — 2026-09-18
+
+**READY TO FLASH: YES with verified external recovery. STOP FOR OWNER PI 3 B+ TEST.**
+[Report](docs/build/private-poc4-attempt8.md), [exact results](docs/build/private-poc4-attempt8.json),
+[hash-bound performance procedure](docs/qualification/poc4-attempt8-pi3b-plus-performance.md).
+Recovery `archive/poc4-attempt8-2026-09-18` is finalized/verified externally; its manifest
+and restore report are the authority and must show PASS before flashing.
+
+Attempt #7's below-real-time C64 result remains a release blocker until the new exact
+image passes physical performance qualification. The matching private `kong_arcade.prg`,
+six captures and read-only card diagnostics are retained externally; no unreported
+function is promoted to PASS. The native evidence supports portable -O3 plus reSID
+interpolation while retaining x64sc, filters, accuracy resources and working lifecycle.
+Native owner-reference CPU cost fell 36.9%; this is not a Pi speed/fidelity PASS.
+
+Default administrator/network username is `pcbm`, Computer Name `projectcbm`; owner
+remains the role. Console/content remain pi; Samba has a separate sharing password.
+Nine expanded release manuals cover actual user/network/account/VICE/build/factory/
+customization/development/recovery workflows. Public-from-source bootstrap and existing
+public rights gates are explicitly incomplete. No quiet/fast boot or VT workaround.
+
+Product host/native 195/195; Menu host/native 96/96; installed lifecycle 10/10; ten VICE
+cores/hardening checks; final 71.048-second audio/12-sample native telemetry PASS.
+Native account/SSH/services/local mDNS/dialog/import/utilities pass within isolated limits.
+260 actual-image checks, 672 package identities, 127 ELF objects, filesystems/systemd,
+sealing/security/accounts/discovery/docs, raw/XZ equivalence and host integrity PASS.
+Builder stopped; remaining guest 36,183,490,560 bytes needs planning before another build.
+
+Integration `9aef29a7e87f7a88bd47d9f01c430aa3eb0c0b21`; Menu `v1.1.0_poc4.6`, peeled
+`2ec5f8dcb04b5d86f64a2ce6a96625c3528eac73`, annotated `085ab4bd820709bf0407cdbba35d25060e2541fd`.
+New Runtime 1.1.0~poc4.5-1, Menu 1.1.0~poc4.6-1+pcbm1 and VICE 3.10-1+pcbm4;
+TCPser and unchanged verified inputs reused. Lock `inputs/frozen-poc4-attempt8/release-lock.json`
+SHA-256 `53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57`.
+Artifacts in `artifacts/private-poc4-attempt-8`:
+raw 3,095,396,352 bytes SHA-256 `e4bb7f03ed26583097f92e8b8d1c2e9e4e3616d4d39940c78f70618ca3a81c40`;
+XZ 599,057,044 bytes SHA-256 `892082b4ef8468dab3273b4746350863f9bc75c17e6c2e18a0ef3b4eb62129e4`.
+Exact filenames and all package/input hashes are in the report. Prior evidence unchanged.
+
+Next owner action: flash the exact new image and perform the linked Pi 3 B+ performance
+procedure. Stop for physical results. Independent encrypted recovery custody and clean
+rebuild reproducibility remain open. Nothing pushed/published; no tested-card writes.
+
 # Pi 3 B+ performance correction selected — 2026-09-18
 
 **READY TO FLASH: NO; attempt #8 construction/validation pending.** Attempt #7 has

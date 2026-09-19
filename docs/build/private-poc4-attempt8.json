@@ -1,0 +1,259 @@
+{
+  "format": "project-cbm.private-performance-candidate-result",
+  "schema_version": 1,
+  "date": "2026-09-18",
+  "attempt": 8,
+  "product": {
+    "candidate": "private-engineering-poc4",
+    "version": "1.1.0-poc.4"
+  },
+  "integration_commit": "9aef29a7e87f7a88bd47d9f01c430aa3eb0c0b21",
+  "menu_source": {
+    "commit": "2ec5f8dcb04b5d86f64a2ce6a96625c3528eac73",
+    "ref": "refs/tags/v1.1.0_poc4.6",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "085ab4bd820709bf0407cdbba35d25060e2541fd"
+  },
+  "physical_baseline": "docs/qualification/poc4-attempt7-pi3b-plus-performance-2026-09-18.json",
+  "decision": "docs/runtime/c64-performance-2026-09-18.md",
+  "packages": {
+    "menu": {
+      "status": "NEW",
+      "version": "1.1.0~poc4.6-1+pcbm1",
+      "filename": "project-cbm-menu_1.1.0~poc4.6-1+pcbm1_all.deb",
+      "size_bytes": 1106624,
+      "sha256": "4df04ab44ebd44313f94e77c1130e3d792f7c0ea9911ca51760b3b765a0b7827"
+    },
+    "runtime": {
+      "status": "NEW",
+      "version": "1.1.0~poc4.5-1",
+      "filename": "project-cbm-runtime_1.1.0~poc4.5-1_all.deb",
+      "size_bytes": 60460,
+      "sha256": "b1c412835fd8c9b55d275c66bfecdbe656d48c43bd5a83cecb445ce1cfbc9479"
+    },
+    "tcpser": {
+      "status": "REUSED",
+      "version": "1.1.6~beta-1+pcbm1",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "size_bytes": 26872,
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f"
+    },
+    "vice": {
+      "status": "NEW",
+      "version": "3.10-1+pcbm4",
+      "filename": "project-cbm-vice_3.10-1+pcbm4_arm64.deb",
+      "size_bytes": 5069684,
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt8/release-lock.json",
+    "sha256": "53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57",
+    "objects_verified": 2986
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-poc4-attempt-8/work/export-image/2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img",
+      "size_bytes": 3095396352,
+      "sha256": "e4bb7f03ed26583097f92e8b8d1c2e9e4e3616d4d39940c78f70618ca3a81c40",
+      "path": "artifacts/private-poc4-attempt-8/2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-poc4-attempt-8/image_2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz",
+      "size_bytes": 599057044,
+      "sha256": "892082b4ef8468dab3273b4746350863f9bc75c17e6c2e18a0ef3b4eb62129e4",
+      "path": "artifacts/private-poc4-attempt-8/image_2026-09-18-project-cbm-1.1.0-poc.4-lite-private-poc.img.xz"
+    },
+    "xz_expanded_sha256": "e4bb7f03ed26583097f92e8b8d1c2e9e4e3616d4d39940c78f70618ca3a81c40",
+    "raw_xz_equivalence": "PASS",
+    "raw_unchanged_after_inspection": true,
+    "external_copy_and_xz_equivalence": "PASS"
+  },
+  "tests": {
+    "Product_host": {
+      "passed": 195,
+      "total": 195
+    },
+    "Product_native": {
+      "passed": 195,
+      "total": 195
+    },
+    "Menu_host": {
+      "passed": 96,
+      "total": 96
+    },
+    "Menu_native": {
+      "passed": 96,
+      "total": 96
+    },
+    "installed_lifecycle": {
+      "passed": 10,
+      "total": 10
+    },
+    "VICE_machine_core_smoke_and_hardening": {
+      "passed": 10,
+      "total": 10
+    },
+    "performance_account_manifest_focused": {
+      "passed": 11,
+      "total": 11,
+      "included_in_Product_total": true
+    },
+    "native_numeric_telemetry": "12 consecutive samples PASS; 71.048 seconds non-silent audio; no Pi claim",
+    "native_services_accounts_ssh_discovery_dialog_import_utilities": "PASS within isolated fixture limits; exact evidence under qualification/poc4-attempt8-2026-09-18/native",
+    "contextual_failures": {
+      "product_integrity_failures": 0,
+      "image_build_failures": 0,
+      "host_Product": {
+        "passed": 195,
+        "total": 195
+      },
+      "host_Menu": {
+        "passed": 96,
+        "total": 96
+      },
+      "focused": "6 performance + 3 account + 2 package-manifest tests included in Product total",
+      "harness_corrections": [
+        "Initial account static test assumed Samba fragment was inline; corrected to actual template authority.",
+        "Native source fixture used write_text for byte-valued VICE seed; retained failed log and used separate continuation.",
+        "Final host check needed administrative PATH for losetup; unchanged check passed under intended sudo context.",
+        "Already-exited transient staging unit reported cleanup warning; absence, mounts/loops and lower image hash independently verified.",
+        "macOS Python lacks os.listxattr; existing original manifest checked using read-only xattr CLI."
+      ],
+      "performance_exploration": "Rejected no-sample dummy/warp and incompatible audio recording runs retained; accepted comparisons validate actual non-silent WAV output. First prototype malformed patch retained; corrected distinct prototype and final clean package compile PASS.",
+      "factory_nonfatal": "Frozen offline APT could not fetch optional changelog text; package authentication/input and exit gates passed.",
+      "physical_new_candidate": "UNTESTED",
+      "full_kit_verification": "native Linux; external objects independently byte-hashed",
+      "no_claims": [
+        "No physical Pi speed, graphics/audio, client browsing, physical reboot or another-model PASS",
+        "No independent clean-build reproducibility or independent encrypted backup custody"
+      ]
+    }
+  },
+  "offline": {
+    "result": "PASS",
+    "checks": 260,
+    "main": 121,
+    "supplemental": 20,
+    "refinement": 119,
+    "ELF_objects": 127,
+    "installed_packages": 672,
+    "filesystems": "vfat/ext4 PASS",
+    "systemd": "PASS",
+    "identity": "PASS",
+    "accounts_services_discovery_security_lifecycle_documentation": "PASS",
+    "host_drift": "PASS",
+    "raw_xz_equivalence": "PASS in guest and external storage"
+  },
+  "installed_package_manifest": {
+    "path": "qualification/poc4-attempt8-2026-09-18/packages.json",
+    "sha256": "6afd2a46095f26268565090af82d3ab1b96c7399f9b04cc2fdaac1f641b24080",
+    "package_count": 672
+  },
+  "documentation": {
+    "result": "PASS",
+    "release_documents": 9,
+    "local_links": 66,
+    "exact_source_paths": [
+      "build/inputs-poc.json",
+      "build/optional/sid-wizard.json",
+      "build/packages",
+      "build/packages/runtime/debian",
+      "build/packages/tcpser/debian",
+      "build/packages/vice/debian",
+      "build/pigen/config.json",
+      "build/pigen/defaults.json",
+      "build/pigen/exclude-connect.patch",
+      "build/pigen/frozen-export.patch",
+      "build/pigen/stage-cbm",
+      "build/pigen/stage-cbm/00-cbm/00-run.sh",
+      "build/pigen/stage-cbm/EXPORT_IMAGE",
+      "build/pigen/stage-cbm/files",
+      "build/pigen/stage-cbm/prerun.sh",
+      "build/pigen/target-environment.patch",
+      "runtime/data/profiles.json",
+      "runtime/project_cbm/applications.py",
+      "runtime/project_cbm/config_backend.py",
+      "runtime/project_cbm/data.py",
+      "runtime/project_cbm/info.py",
+      "runtime/project_cbm/service_info.py",
+      "runtime/project_cbm/setup.py",
+      "schemas/machine-profiles.schema.json",
+      "tests/native",
+      "tests/test_poc3.py",
+      "tools/benchmark_vice.py",
+      "tools/construct_poc.py",
+      "tools/install_poc_stage.py",
+      "tools/validate_poc_image.py",
+      "tools/vice_performance.py",
+      "tools/vice_presentation.py"
+    ],
+    "commands": "Reviewed against actual argparse, Debian recipes, pi-gen integration and executed private package/freeze/build workflow; illustrative edits are identified",
+    "public_bootstrap": "Explicitly incomplete; three build objectives and exact missing public inputs/initial-lock tooling documented",
+    "private_operator_paths_in_release_guides": false,
+    "credential_patterns": "source review PASS"
+  },
+  "footprint": {
+    "root": {
+      "available_to_user": 639762432,
+      "capacity": 2439266304,
+      "free": 784044032,
+      "used": 1655222272
+    },
+    "boot_used_bytes": 78420992,
+    "native_overlay_allocated_bytes": 174383104,
+    "changed_compressed_packages_bytes": 6236768,
+    "changed_installed_packages_bytes": 46824448,
+    "conservative_remaining_user_margin_bytes": 412318112,
+    "limits": "Overlay includes native test/package/debug writes; allowance is conservative, not a physical first-boot peak or full OS upgrade proof. Post-expansion user capacity depends on actual media. No nominal minimum card size invented."
+  },
+  "construction": {
+    "exit_code": 0,
+    "wall_seconds": 194.63,
+    "peak_RSS_KiB": 514696,
+    "factory": "native arm64 Debian Lima/VZ plain mode and pinned pi-gen",
+    "reproducibility_proven": false
+  },
+  "host_final": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capabilities_before_after": "PASS",
+    "update_guards": "PASS",
+    "AppArmor": "preserved",
+    "frozen_inputs": "PASS",
+    "no_builder_mounts_loops_or_emulators": true,
+    "available_bytes": 36183490560
+  },
+  "builder_final": "STOPPED; disk retained",
+  "recovery": {
+    "path": "archive/poc4-attempt8-2026-09-18",
+    "verification_authority": "external manifest.json and restore-report.json; verify PASS before flashing",
+    "independent_custody": false
+  },
+  "physical_procedure": "docs/qualification/poc4-attempt8-pi3b-plus-performance.md",
+  "physical_new_candidate": "UNTESTED",
+  "boot_changes": false,
+  "pushed": false,
+  "published": false,
+  "release_readiness": {
+    "RELEASE_BLOCKER": [
+      "Pi 3 B+ real-time performance until exact new candidate passes physical qualification.",
+      "Public release: existing rights gates and complete public source/input bootstrap publication/initial-lock tooling remain incomplete. Private candidate does not resolve these."
+    ],
+    "PHYSICAL_QUALIFICATION_REQUIRED": [
+      "Exact-hash Pi 3 B+ performance/core/account/service procedure; other profiles/models qualify separately."
+    ],
+    "DOCUMENTATION_FOLLOW_UP": [
+      "Record exact owner outcomes and publish a release-specific public input/package manifest only when authorized."
+    ],
+    "OPTIONAL_POST_1_1_IMPROVEMENT": [
+      "Supported active-VICE VT handling and Windows browse enhancement if justified."
+    ],
+    "NEXT_DEDICATED_MILESTONE": [
+      "Quiet boot, separately measured fast boot and final RC polish only after owner qualification."
+    ],
+    "RECOVERY_LIMITATION": [
+      "Independent encrypted custody and independent clean-build reproducibility remain unproven."
+    ]
+  }
+}
