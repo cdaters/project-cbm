@@ -10,11 +10,14 @@ remains evidence only for that native comparison. No hardware-tier default is se
 The [owner SSH output](poc4-attempt8-live-identity.json) matches the exact attempt #8
 installed identity, VICE package version and both binary hashes listed below. x64 is
 confirmed present on the running Pi. These checks need not be repeated before this A/B;
-the VICE settings and payload hashes below also now match owner readback. Only the
-preferences fingerprint remains pending. An earlier procedure incorrectly used
+the VICE settings and payload hashes below also now match owner readback. The
+preferences fingerprint is also captured; all pre-test hash gates are complete. An earlier procedure incorrectly used
 `.config/pcbm`; the source authority is `.config/project-cbm`. No file should be
 created at the incorrect path.
 This does not establish performance or whole-card byte identity.
+
+Preferences baseline: `5de2328d7a9ade0d5ca4fb8a80c6ac9bfd76a2b360cd692fe46e9006b72e08f8`.
+Use it for the final unchanged-state comparison; no further pre-test hash output is needed.
 
 ## Identity and settings gate — existing owner SSH shell
 

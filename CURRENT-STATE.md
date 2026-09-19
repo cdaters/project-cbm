@@ -1,3 +1,15 @@
+# Attempt #8 pre-test checks complete — ready for owner live A/B
+
+The [readback record](docs/qualification/poc4-attempt8-live-settings.json) now includes
+the corrected preferences baseline. Installed identity, both engines, saved VICE seed
+and payload match; preferences SHA-256:
+`5de2328d7a9ade0d5ca4fb8a80c6ac9bfd76a2b360cd692fe46e9006b72e08f8`.
+Next: preserve original slow-run telemetry, then fresh A=x64sc and B=x64 through MACHINES,
+matching active workload segments. Collect speed/CPU/clock/throttling and audiovisual
+observations; verify hashes after quitting. Do not select DEFAULT or save VICE settings.
+Physical A/B UNTESTED; performance blocker/no-attempt9 remain. No appliance changes.
+Recovery: `archive/poc4-attempt8-ab-baseline`; external manifest/restore report is authority.
+
 # Attempt #8 settings/payload match; procedure path corrected
 
 [Owner readback](docs/qualification/poc4-attempt8-live-settings.json) confirms the saved

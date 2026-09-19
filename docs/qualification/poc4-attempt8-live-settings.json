@@ -17,5 +17,13 @@
     "correct_path_live_hash": "PENDING"
   },
   "physical_AB": "UNTESTED",
-  "candidate_modified": false
+  "candidate_modified": false,
+  "followup_preferences_readback": {
+    "source": "Owner-pasted corrected read-only sha256sum output",
+    "path": "/home/pi/.config/project-cbm/preferences.json",
+    "sha256": "5de2328d7a9ade0d5ca4fb8a80c6ac9bfd76a2b360cd692fe46e9006b72e08f8",
+    "use": "Before/after fingerprint, not a prescribed preference value",
+    "pretest_hash_gates": "COMPLETE",
+    "physical_AB": "UNTESTED"
+  }
 }
