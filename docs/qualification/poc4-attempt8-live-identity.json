@@ -1,0 +1,42 @@
+{
+  "format": "project-cbm.owner-reported-live-identity",
+  "schema_version": 1,
+  "candidate": "private-engineering-poc4 attempt #8",
+  "source": "Owner-pasted read-only SSH command output",
+  "commands": [
+    "cat /usr/share/project-cbm/identity.json",
+    "dpkg-query -W project-cbm-vice",
+    "sha256sum /usr/bin/x64sc /usr/bin/x64"
+  ],
+  "observed": {
+    "architecture": "arm64",
+    "fixture": false,
+    "product_version": "1.1.0-poc.4",
+    "build_id": "53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57",
+    "release_lock_sha256": "53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57",
+    "integration_commit": "9aef29a7e87f7a88bd47d9f01c430aa3eb0c0b21",
+    "pi_gen_commit": "6fcca44892d5d4b36f826d2b8fb16d716369fada",
+    "vice_package_version": "3.10-1+pcbm4",
+    "vice_package_sha256_in_identity": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+    "binary_sha256": {
+      "/usr/bin/x64sc": "bc046286c8071a2e9ebeeabb923afb977528bf64b409e8fd8a7845cbda2ad69b",
+      "/usr/bin/x64": "df642b3c2d690a74f39273fe1d0fdc86cecd7e7180487dfde2b8398851d638c5"
+    }
+  },
+  "verification": {
+    "installed_identity_matches_attempt8": "PASS",
+    "reported_dpkg_version_matches": "PASS",
+    "both_engine_hashes_match_retained_package": "PASS"
+  },
+  "limits": [
+    "Owner-reported command output, not direct agent SSH observation.",
+    "Package SHA is from installed identity; no live .deb archive hash was requested.",
+    "Installed identity and binary hashes do not establish whole-card byte identity.",
+    "Saved configuration and payload hashes remain pending.",
+    "x64 physical performance and compatibility remain UNTESTED."
+  ],
+  "prior_failure": "poc4-attempt8-pi3b-plus-performance-fail-2026-09-18.json",
+  "procedure": "poc4-attempt8-live-c64-ab.md",
+  "candidate_modified": false,
+  "new_build_started": false
+}

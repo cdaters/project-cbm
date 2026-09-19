@@ -5,6 +5,14 @@
 The 36.9% native CPU reduction did not deliver sufficient Pi 3 B+ performance. It
 remains evidence only for that native comparison. No hardware-tier default is selected.
 
+## Live readback received
+
+The [owner SSH output](poc4-attempt8-live-identity.json) matches the exact attempt #8
+installed identity, VICE package version and both binary hashes listed below. x64 is
+confirmed present on the running Pi. These checks need not be repeated before this A/B;
+the remaining pre-test command is the settings/payload/preferences hash block below.
+This does not establish performance or whole-card byte identity.
+
 ## Identity and settings gate — existing owner SSH shell
 
 These commands only read identity, package metadata and hashes. The owner enters any
@@ -37,7 +45,7 @@ Expected attempt #8 identity:
   `a80816ec175ffcbc44b4127f43ea43091df28494e8da9ef9e93bff72c1fdd554`.
 
 The exact frozen package/image validation establishes that both binaries were shipped.
-Current live hashes must confirm that state. The preferences hash is a before/after
+Owner-reported live hashes now confirm that state. The preferences hash is a before/after
 fingerprint, not a prescribed value. If a file is missing, the identity differs, or the
 saved VICE configuration differs from the initial seed, retain the output and inspect
 only relevant resources before proceeding; do not reset or overwrite it. If the owner

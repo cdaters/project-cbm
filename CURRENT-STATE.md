@@ -1,3 +1,15 @@
+# Attempt #8 live identity and both C64 engines verified
+
+[Owner SSH readback](docs/qualification/poc4-attempt8-live-identity.json) matches the
+exact attempt #8 installed identity, VICE 3.10-1+pcbm4, and both retained x64sc/x64
+binary hashes. Live x64 availability is now confirmed. Earlier pending-identity notes
+below describe the previous checkpoint. Configuration/payload hashes and physical
+A/B remain pending; performance FAIL/release blocker and no-attempt9 instruction stand.
+Next: settings/payload hashes, then the existing bounded physical A/B procedure.
+No Pi, package, preference or candidate changes. No new functional/performance PASS.
+Additive recovery: `archive/poc4-attempt8-live-identity`; external manifest/restore report
+bind final refs and verification. Independent custody remains unresolved.
+
 # Attempt #8 physical performance FAIL — live A/B only
 
 **RELEASE BLOCKER. DO NOT BUILD ATTEMPT #9. READY TO FLASH: NO for a correction.**
