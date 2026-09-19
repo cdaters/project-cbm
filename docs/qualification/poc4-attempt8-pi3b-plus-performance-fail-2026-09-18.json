@@ -1,0 +1,48 @@
+{
+  "format": "project-cbm.physical-owner-attestation",
+  "schema_version": 1,
+  "reported_date": "2026-09-18",
+  "hardware": "Raspberry Pi 3 B+",
+  "candidate": "private-engineering-poc4 attempt #8",
+  "image_sha256": "e4bb7f03ed26583097f92e8b8d1c2e9e4e3616d4d39940c78f70618ca3a81c40",
+  "compressed_sha256": "892082b4ef8468dab3273b4746350863f9bc75c17e6c2e18a0ef3b4eb62129e4",
+  "release_lock_sha256": "53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57",
+  "identity_binding": "Owner identifies the exact attempt8 candidate currently running. Frozen identity and engine hashes retained; fresh live readback is requested and pending. Do not conflate installed identity with hashing a changed running SD card.",
+  "results": {
+    "c64_demanding_reference_realtime": "FAIL",
+    "audio_realtime": "FAIL",
+    "visual_realtime": "FAIL",
+    "x64_physical_AB": "UNTESTED"
+  },
+  "workload": {
+    "name": "owner-supplied Oxyron Donkey Kong reference",
+    "filename": "kong_arcade.prg",
+    "expected_sha256": "a80816ec175ffcbc44b4127f43ea43091df28494e8da9ef9e93bff72c1fdd554",
+    "redistribution": "Not admitted; private external reference only"
+  },
+  "owner_observations": {
+    "x64sc_main_thread_cpu_percent_approx": 99.3,
+    "sdl_audio_cpu_percent_approx": 3.3,
+    "overall_system_idle_percent_approx": 72.6,
+    "arm_clock_hz_approx": 1400000000,
+    "temperature_c": 58.0,
+    "get_throttled": "0x0",
+    "visual": "Substantially below real time",
+    "audio": "SID/music substantially below real time"
+  },
+  "interpretation": "Attempt8 -O3/reSID-interpolation did not solve physical Pi3B+ real time. Main-thread saturation continues with full observed clock and no reported throttling. Native 36.9% reduction remains valid only in its native comparison and did not establish adequate Pi headroom. Internal dominant cost and x64 physical outcome are not yet established.",
+  "evidence": {
+    "workspace_relative": "qualification/poc4-attempt8-physical-performance-2026-09-18",
+    "manifest_sha256": "7bbc02931c399bcab42ec0c220555864778053e7518f8c0904158e66475e8485",
+    "screenshots": 2,
+    "screenshot_distinction": "Separate captures show 99.7% main/3.0% audio/72.3% idle, and 56.9 C/1,400,144,000 Hz/throttled0x0. These are additional snapshots, not replacements for the owner readings.",
+    "privacy": "Originals private outside Git; first capture contains LAN address and host-key fingerprint."
+  },
+  "unreported_functions": "UNTESTED; preserve previous exact functional results without inventing additional passes",
+  "classification": "RELEASE BLOCKER",
+  "next_action": "Verify live engines/settings; controlled physical A=x64sc, B=x64 through existing launch path; no attempt9 until physical evidence supports correction",
+  "procedure": "docs/qualification/poc4-attempt8-live-c64-ab.md",
+  "physical_testing_by_codex": false,
+  "candidate_modified_by_codex": false,
+  "new_image_authorized": false
+}

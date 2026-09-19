@@ -1,3 +1,36 @@
+# Attempt #8 physical performance FAIL — live A/B only
+
+**RELEASE BLOCKER. DO NOT BUILD ATTEMPT #9. READY TO FLASH: NO for a correction.**
+[Exact owner report](docs/qualification/poc4-attempt8-pi3b-plus-performance-fail-2026-09-18.json)
+and [bounded live A/B procedure](docs/qualification/poc4-attempt8-live-c64-ab.md).
+The owner reports the exact attempt8 running on Pi 3 B+: Donkey Kong remains severely
+slow in graphics and SID/music, main thread ~99.3%, audio ~3.3%, system idle ~72.6%,
+ARM ~1.4 GHz, 58.0 C, throttled=0x0. O3/reSID interpolation did not solve it. The 36.9%
+native CPU saving remains native comparison evidence only. Earlier offline READY results
+below are historical and do not establish physical performance.
+
+Two new screenshots are privately preserved/hashed/captioned under
+`qualification/poc4-attempt8-physical-performance-2026-09-18`, manifest SHA-256
+`7bbc02931c399bcab42ec0c220555864778053e7518f8c0904158e66475e8485`.
+Capture values differ slightly from the owner readings; both are retained distinctly.
+No unreported functional PASS is inferred. Frozen image/lock/packages/recovery unchanged.
+
+Frozen attempt8 contains both x64sc and x64 and a direct MACHINES → Commodore 64 (fast)
+launch profile. The initial C64/C64SC settings match. Live readback remains pending:
+automated SSH lacks authentication and the computer-use terminal interface is unavailable.
+Owner has been asked for identity/package/engine hashes; no credentials requested.
+
+Next: verify live identity/configuration/payload hashes; preserve current failed-run
+telemetry; fresh A=x64sc and B=x64 launches through the existing physical Menu, observe
+matching segments and numeric speed/CPU/clock/throttling, then verify unchanged preferences.
+Do not change DEFAULT or save VICE settings. No third case or hardware-tier policy yet.
+No persistent Pi edits, packages, image build, quiet/fast boot, push or publication.
+
+This documentation/evidence checkpoint is retained at
+`archive/poc4-attempt8-physical-ab-2026-09-18`; the external manifest and offline
+restore report record exact final refs and verification. It adds no candidate.
+Independent custody remains unresolved; prior candidate recovery stays intact.
+
 # Attempt #8 performance candidate complete — 2026-09-18
 
 **READY TO FLASH: YES with verified external recovery. STOP FOR OWNER PI 3 B+ TEST.**

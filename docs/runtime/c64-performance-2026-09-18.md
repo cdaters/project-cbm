@@ -1,5 +1,13 @@
 # C64 performance correction and account refinement — 2026-09-18
 
+**Physical follow-up: attempt #8 FAIL.** The [owner result](../qualification/poc4-attempt8-pi3b-plus-performance-fail-2026-09-18.json)
+shows that the selected O3/interpolation candidate remains severely below real time on
+Pi 3 B+. The native 36.9% reduction below did not predict sufficient physical headroom.
+It is not Pi performance evidence. Follow the [live A/B procedure](../qualification/poc4-attempt8-live-c64-ab.md);
+no new candidate or hardware-tier policy until physical evidence supports a correction.
+The original investigation and candidate decision below remain historical evidence.
+
+
 Attempt #7's [owner report](../qualification/poc4-attempt7-pi3b-plus-performance-2026-09-18.json)
 is a Pi 3 B+ **release-blocking real-time failure**, not just missing frames. Music and
 graphics both slow while x64sc's main thread occupies approximately one core. Captured
