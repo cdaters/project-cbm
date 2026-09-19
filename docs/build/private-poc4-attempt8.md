@@ -87,7 +87,7 @@ Nine substantial release guides ship in Runtime. Start at [documentation](../REA
 [user recovery](../release/recovery.md) and [engineering recovery](../recovery.md).
 The manuals explain actual stage0/1/2/stage-cbm, package composition, source/build flags,
 filesystem/services, practical edits and rebuild/validation consequences. All 66 local
-links and 33 concrete source paths in the release audit pass; actual documented private
+links and 32 concrete source paths in the release audit pass; actual documented private
 package/export/freeze/build/validation commands were exercised.
 
 Public release replay, derivatives and private predecessor-kit engineering are distinct.
@@ -162,7 +162,7 @@ installed 46824448. Reserving all three leaves
 412318112 bytes. This is conservative measured
 headroom, not a physical first-boot peak/full OS upgrade guarantee or a nominal card minimum.
 
-Recovery: `archive/poc4-attempt8-2026-09-18`. Verify its external manifest SHA-256 and
+Recovery: `archive/poc4-attempt8-final-2026-09-18`. Verify its external manifest SHA-256 and
 `restore-report.json`: complete bundles, exact refs/peeled/symbolic tags, offline source
 restore and fsck must pass. The manifest is external to avoid a checksum cycle. Original
 historical/audit byte/metadata/xattr manifests and earlier candidate/input/recovery records

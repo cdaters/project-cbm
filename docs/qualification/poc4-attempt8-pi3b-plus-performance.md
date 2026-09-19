@@ -17,7 +17,7 @@ All new physical results start UNTESTED. Verify the recovery manifest/restore re
 
 Paths are relative to `/Volumes/TheBench/ProjectCBM-Work`. Raw/XZ equivalence passes.
 [Build report](../build/private-poc4-attempt8.md) / [exact results](../build/private-poc4-attempt8.json).
-Recovery: `archive/poc4-attempt8-2026-09-18`; its manifest is the external authority.
+Recovery: `archive/poc4-attempt8-final-2026-09-18`; its manifest is the external authority.
 
 ## Before flashing
 

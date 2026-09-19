@@ -226,7 +226,7 @@
   },
   "builder_final": "STOPPED; disk retained",
   "recovery": {
-    "path": "archive/poc4-attempt8-2026-09-18",
+    "path": "archive/poc4-attempt8-final-2026-09-18",
     "verification_authority": "external manifest.json and restore-report.json; verify PASS before flashing",
     "independent_custody": false
   },

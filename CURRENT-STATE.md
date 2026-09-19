@@ -3,7 +3,7 @@
 **READY TO FLASH: YES with verified external recovery. STOP FOR OWNER PI 3 B+ TEST.**
 [Report](docs/build/private-poc4-attempt8.md), [exact results](docs/build/private-poc4-attempt8.json),
 [hash-bound performance procedure](docs/qualification/poc4-attempt8-pi3b-plus-performance.md).
-Recovery `archive/poc4-attempt8-2026-09-18` is finalized/verified externally; its manifest
+Recovery `archive/poc4-attempt8-final-2026-09-18` is finalized/verified externally; its manifest
 and restore report are the authority and must show PASS before flashing.
 
 Attempt #7's below-real-time C64 result remains a release blocker until the new exact
