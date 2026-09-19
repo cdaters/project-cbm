@@ -1,0 +1,21 @@
+{
+  "format": "project-cbm.owner-reported-live-settings",
+  "schema_version": 1,
+  "candidate": "private-engineering-poc4 attempt #8",
+  "source": "Owner-pasted read-only sha256sum output",
+  "observed_sha256": {
+    "/home/pi/.config/vice/sdl-vicerc": "48dbc0a4132ea8dcdd44e43a0052f3e9ee9689918161943e0555ad158b8440e9",
+    "/usr/share/project-cbm/vice-defaults.ini": "48dbc0a4132ea8dcdd44e43a0052f3e9ee9689918161943e0555ad158b8440e9",
+    "/home/pi/pcbm/demos/kong_arcade.prg": "a80816ec175ffcbc44b4127f43ea43091df28494e8da9ef9e93bff72c1fdd554"
+  },
+  "verification": "Saved VICE seed and payload match retained expected hashes",
+  "procedure_error": {
+    "supplied_path": "/home/pi/.config/pcbm/preferences.json",
+    "owner_result": "No such file or directory",
+    "correct_source_path": "/home/pi/.config/project-cbm/preferences.json",
+    "authority": "runtime/project_cbm/preferences.py:location",
+    "correct_path_live_hash": "PENDING"
+  },
+  "physical_AB": "UNTESTED",
+  "candidate_modified": false
+}

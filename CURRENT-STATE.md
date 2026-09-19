@@ -1,3 +1,15 @@
+# Attempt #8 settings/payload match; procedure path corrected
+
+[Owner readback](docs/qualification/poc4-attempt8-live-settings.json) confirms the saved
+VICE configuration and installed seed match, and the Donkey Kong payload hash matches.
+The supplied preference path `.config/pcbm/preferences.json` was a procedure error:
+`runtime/project_cbm/preferences.py:location` uses `.config/project-cbm/preferences.json`.
+The [A/B procedure](docs/qualification/poc4-attempt8-live-c64-ab.md) is corrected. Obtain
+that existing file's before/after fingerprint; do not create/reset anything. Actual
+x64 performance remains UNTESTED; attempt8 FAIL and no-attempt9 build remain in force.
+Recovery: `archive/poc4-attempt8-settings-readback` (external manifest/restore authority).
+No runtime, package, candidate, Menu or default change. Prior evidence remains intact.
+
 # Attempt #8 live identity and both C64 engines verified
 
 [Owner SSH readback](docs/qualification/poc4-attempt8-live-identity.json) matches the
