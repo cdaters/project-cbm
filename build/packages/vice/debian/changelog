@@ -1,3 +1,10 @@
+project-cbm-vice (3.10-1+pcbm4) trixie; urgency=medium
+
+  * Restore portable -O3 optimization while retaining Debian hardening.
+  * Add bounded numeric performance telemetry independent of synchronization resets.
+
+ -- Project CBM contributors <noreply@project-cbm.invalid>  Fri, 18 Sep 2026 23:30:00 +0000
+
 project-cbm-vice (3.10-1+pcbm3) trixie; urgency=medium
 
   * Add opt-in bounded presentation telemetry for private POC3 qualification.

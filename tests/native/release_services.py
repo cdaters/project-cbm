@@ -34,7 +34,7 @@ try:
   else:raise AssertionError('restart readiness')
   if name=='sharing':
    assert snapshot()['services']['discovery']['state']=='on'
-   cfg=run(['testparm','-s','--parameter-name=valid users','--section-name=Project CBM']);assert cfg.stdout.strip()=='owner'
+   cfg=run(['testparm','-s','--parameter-name=valid users','--section-name=Project CBM']);assert cfg.stdout.strip()=='pcbm'
    assert run(['testparm','-s','--parameter-name=force user','--section-name=Project CBM']).stdout.strip()=='pi'
    assert run(['testparm','-s','--parameter-name=path','--section-name=Project CBM']).stdout.strip()=='/home/pi/pcbm'
    assert 'WITH_AVAHI_SUPPORT' in run(['smbd','-b']).stdout
@@ -42,7 +42,7 @@ try:
   request('service',service=name,enabled=False);assert snapshot()['services'][name]['state']=='off'
   assert run(['systemctl','is-enabled',unit]).stdout.strip()=='disabled'
   checks[name+'_actual_on_restart_enabled_off_disabled']=True
- d=snapshot();assert d['owner_username']==d['sharing_username']=='owner'
+ d=snapshot();assert d['owner_username']==d['sharing_username']=='pcbm'
  for args in (['pcbm-info','--json'],['pcbm-info','--json','--appliance']):
   assert secret not in run(['runuser','-u','pi','--',*args]).stdout
  checks['owner_contract_and_redaction']=True
@@ -51,5 +51,5 @@ finally:
  for name in ('ssh','sharing','modem','discovery'):
   try:request('service',service=name,enabled=False)
   except Exception:pass
- run(['smbpasswd','-x','owner']);marker=Path('/var/lib/project-cbm/sharing-status.json');marker.unlink(missing_ok=True)
+ run(['smbpasswd','-x','pcbm']);marker=Path('/var/lib/project-cbm/sharing-status.json');marker.unlink(missing_ok=True)
  secret=None

@@ -22,7 +22,7 @@ def terminal(password,success):
     seen=(seen+data)[-32768:]
     if not sent and b'Password:' in seen:
      os.write(fd,password.encode()+b'\n');sent=True
-    if success and sent and not command and ('owner@'+computer).encode() in seen:
+    if success and sent and not command and ('pcbm@'+computer).encode() in seen:
      os.write(fd,b"printf '\\nCBMUID=%s\\n' \"$(id -u)\"; exit\n");command=True
    p,status=os.waitpid(pid,os.WNOHANG)
    if p:break
@@ -37,12 +37,12 @@ def terminal(password,success):
   try:os.kill(pid,signal.SIGKILL);os.waitpid(pid,0)
   except (ProcessLookupError,ChildProcessError):pass
 try:
- assert run(['chpasswd'],'owner:'+secret+'\n').returncode==0
+ assert run(['chpasswd'],'pcbm:'+secret+'\n').returncode==0
  terminal('deliberately-invalid-password',False)
  terminal(secret,True)
  # Actual authenticated vendor invocation: no hardware country is presumed.
- p=run(['runuser','-u','owner','--','sudo','-k','-S','-p','','--','/usr/bin/raspi-config','nonint','get_hostname'],secret+'\n')
+ p=run(['runuser','-u','pcbm','--','sudo','-k','-S','-p','','--','/usr/bin/raspi-config','nonint','get_hostname'],secret+'\n')
  assert p.returncode==0 and p.stdout.strip()==computer
  print('Authenticated raspi-config noninteractive invocation: PASS',flush=True)
 finally:
- run(['usermod','--password','!','owner']);secret=None
+ run(['usermod','--password','!','pcbm']);secret=None

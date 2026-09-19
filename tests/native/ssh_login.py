@@ -9,10 +9,10 @@ def request(enabled):
  assert json.loads(p.stdout)['status']=='ok'
 secret=secrets.token_urlsafe(24);pid=None
 try:
- assert run(['chpasswd'],'owner:'+secret+'\n').returncode==0
+ assert run(['chpasswd'],'pcbm:'+secret+'\n').returncode==0
  request(True)
  pid,fd=pty.fork()
- if pid==0:os.execvp('runuser',['runuser','-u','pi','--','ssh','-o','StrictHostKeyChecking=no','-o','UserKnownHostsFile=/dev/null','-o','NumberOfPasswordPrompts=1','owner@127.0.0.1','id','-u'])
+ if pid==0:os.execvp('runuser',['runuser','-u','pi','--','ssh','-o','StrictHostKeyChecking=no','-o','UserKnownHostsFile=/dev/null','-o','NumberOfPasswordPrompts=1','pcbm@127.0.0.1','id','-u'])
  raw=b'';sent=False;end=time.monotonic()+10
  while time.monotonic()<end:
   if select.select([fd],[],[],.1)[0]:
@@ -24,7 +24,7 @@ try:
  assert sent and b'1001\r\n' in raw and secret.encode() not in raw
  os.close(fd);os.waitpid(pid,0);pid=None
  request(False)
- assert run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=2','owner@127.0.0.1','true']).returncode!=0
+ assert run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=2','pcbm@127.0.0.1','true']).returncode!=0
  print(json.dumps({'local_ssh_owner_password_login_uid1001':'PASS','secret_not_echoed':'PASS','new_connection_after_disable':'REFUSED','physical_other_computer':'UNTESTED'}))
 finally:
  if pid:
@@ -32,4 +32,4 @@ finally:
   except (ProcessLookupError,ChildProcessError):pass
  try:request(False)
  except Exception:pass
- run(['usermod','--password','!','owner']);secret=None
+ run(['usermod','--password','!','pcbm']);secret=None

@@ -10,14 +10,14 @@ def inspect(root,lock,check,digest):
         p=root/name;s=p.lstat()
         return not p.is_symlink() and s.st_uid==0 and not s.st_mode&0o022 and (mode is None or stat.S_IMODE(s.st_mode)==mode)
     p=json.loads(text('etc/project-cbm/configuration-policy.json'))
-    check('activation_not_falsely_ready',p=={'schema_version':1,'owner_user':'owner','appliance_user':'pi','system_ready':False,'network_ready':True,'ready_services':['ssh','sharing','modem','discovery']})
+    check('activation_not_falsely_ready',p=={'schema_version':1,'owner_user':'pcbm','appliance_user':'pi','system_ready':False,'network_ready':True,'ready_services':['ssh','sharing','modem','discovery']})
     check('no_setup_completion',not (root/'var/lib/project-cbm/setup/state.json').exists() and not (root/'var/lib/project-cbm/setup/status.json').exists())
     users={r.split(':')[0]:r.split(':') for r in text('etc/passwd').splitlines()}
-    check('separate_owner_account',users['owner'][2]=='1001' and users['owner'][5:]==['/home/owner','/bin/bash'])
+    check('separate_owner_account',users['pcbm'][2]=='1001' and users['pcbm'][5:]==['/home/pcbm','/bin/bash'])
     shadow={r.split(':')[0]:r.split(':')[1] for r in text('etc/shadow').splitlines()}
-    check('no_preset_owner_password',shadow.get('owner')=='!')
+    check('no_preset_owner_password',shadow.get('pcbm')=='!')
     groups={r.split(':')[0]:r.split(':')[-1].split(',') for r in text('etc/group').splitlines()}
-    check('owner_authenticated_sudo_group','owner' in groups['sudo'] and 'pi' not in groups['sudo'])
+    check('owner_authenticated_sudo_group','pcbm' in groups['sudo'] and 'pi' not in groups['sudo'])
     check('normal_user_helper_group','pi' in groups['pcbm-operators'])
     check('helper_policy_exact',text('etc/sudoers.d/pcbm-operations')==(repo/'runtime/config/sudoers.example').read_text())
     check('helper_policy_permissions',trusted('etc/sudoers.d/pcbm-operations',0o440))
@@ -27,7 +27,7 @@ def inspect(root,lock,check,digest):
     check('NM_offline_initial_state','NetworkingEnabled=false' in text('var/lib/NetworkManager/NetworkManager.state') and 'WirelessEnabled=false' in text('var/lib/NetworkManager/NetworkManager.state'))
     check('no_enrolled_wifi',not list((root/'etc/NetworkManager/system-connections').glob('*')))
     check('no_samba_databases',not list((root/'var/lib/samba').rglob('*.tdb')) and not list((root/'var/lib/samba').rglob('*.ldb')))
-    check('ssh_owner_only','AllowUsers owner' in text('etc/ssh/sshd_config.d/20-project-cbm.conf') and 'PermitRootLogin no' in text('etc/ssh/sshd_config.d/20-project-cbm.conf'))
+    check('ssh_owner_only','AllowUsers pcbm' in text('etc/ssh/sshd_config.d/20-project-cbm.conf') and 'PermitRootLogin no' in text('etc/ssh/sshd_config.d/20-project-cbm.conf'))
     optional=['ssh.service','ssh.socket','smbd.service','nmbd.service','samba-ad-dc.service','tcpser.service','avahi-daemon.service','avahi-daemon.socket']
     enabled={p.name for p in (root/'etc/systemd/system').glob('*.wants/*')}
     check('optional_services_initially_disabled',not set(optional)&enabled)

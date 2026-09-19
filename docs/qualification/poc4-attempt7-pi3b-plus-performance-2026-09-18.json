@@ -1,0 +1,45 @@
+{
+  "format": "project-cbm.physical-owner-attestation",
+  "schema_version": 1,
+  "reported_date": "2026-09-18",
+  "hardware": "Raspberry Pi 3 B+",
+  "candidate": "private-engineering-poc4 attempt #7",
+  "image_sha256": "cbab8327981eaf0d1d632d6637d3117fd2c2d68ac6d529c434b52fed995b60ba",
+  "compressed_sha256": "b8119c4f3bb1c9361cd4d0c047eaa454447884e36dad9d345b50673ba9e7b687",
+  "release_lock_sha256": "1c25d7f7850c63c41e2730bdaef2deef9cd6d0ccf1321c9b23fd4d9228926b3d",
+  "identity_binding": "Owner identifies attempt7; read-only removable card installed identity matches every field generated from the exact frozen lock. Fresh image hashes identify the candidate, not the changed used card.",
+  "results": {
+    "c64_representative_demanding_workload_realtime": "FAIL",
+    "audio_realtime": "FAIL",
+    "visual_realtime": "FAIL"
+  },
+  "workload": "Owner-supplied Oxyron Donkey Kong demo; external private qualification/reference material, not admitted for redistribution.",
+  "owner_observations": {
+    "arm_clock_hz_approx": 1400000000,
+    "temperature_c_approx": 45.1,
+    "get_throttled": "0x0",
+    "governor": "ondemand",
+    "scaling_cur_freq_khz": 1400000,
+    "memory_total_mib_approx": 905,
+    "memory_available_mib": "600+",
+    "swap_used": "none",
+    "x64sc_main_thread_cpu_percent_approx": "99-109",
+    "sdl_audio_cpu_percent_approx": 3,
+    "threads": 4,
+    "cpus_allowed_list": "0-3",
+    "competing_workload": "No significant competing workload observed"
+  },
+  "interpretation": "Snapshots support a saturated main emulation thread with no evident memory pressure or throttling at capture. They do not identify the dominant internal VICE cost or prove all hardware conditions throughout the run.",
+  "evidence": {
+    "workspace_relative": "qualification/poc4-attempt7-performance-2026-09-18",
+    "manifest_sha256": "1cd2a6527570bf287aaa9f2cae081a9076081046dffe02b6decdd59ab4a164bc",
+    "screenshots": 6,
+    "copied_files_including_verification": 21,
+    "privacy": "Original screenshots/diagnostics private externally; some captures include LAN addresses. No photographs or payload in Git.",
+    "mount": "Verified external removable USB root partition read-only; no remount/write performed. Already-mounted collection is not pristine forensic provenance."
+  },
+  "unreported_functions": "UNTESTED; no transfer of attempt6 Pi3B or offline passes to this Pi3B+ performance result.",
+  "classification": "RELEASE BLOCKER pending correction and exact-candidate physical performance qualification",
+  "physical_testing_by_codex": false,
+  "tested_candidate_mutated": false
+}

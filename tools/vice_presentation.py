@@ -16,6 +16,10 @@ def defaults():
         lines.append('[' + section + ']')
         for chip in chips:
             lines += [chip+'AspectMode=2', chip+'Fullscreen=1', chip+'FullscreenMode=0']
+        # Pi 3 performance floor: retain reSID and SID filters, avoiding the
+        # more expensive resampling default. User-saved resources remain final.
+        if section in ('C64', 'C64SC'):
+            lines.append('SidResidSampling=1')
         lines.append('')
     return '\n'.join(lines).encode()
 

@@ -28,5 +28,5 @@ finally:
  for name in ('sharing','discovery'):
   try:request('service',service=name,enabled=False)
   except Exception:pass
- run(['ip','link','del','mdnstest0']);run(['smbpasswd','-x','owner']);Path('/var/lib/project-cbm/sharing-status.json').unlink(missing_ok=True)
+ run(['ip','link','del','mdnstest0']);run(['smbpasswd','-x','pcbm']);Path('/var/lib/project-cbm/sharing-status.json').unlink(missing_ok=True)
  secret=None

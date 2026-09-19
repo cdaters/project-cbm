@@ -23,6 +23,8 @@ def main():
     p.add_argument('--previous-attempt',type=int,required=True)
     p.add_argument('--runtime-version',required=True)
     p.add_argument('--menu-version',required=True)
+    p.add_argument('--reuse-menu',action='store_true')
+    p.add_argument('--vice-version')
     a = p.parse_args()
     if not 6 <= a.previous_attempt < a.attempt < 100:raise ValueError('distinct increasing attempt required')
     for version in (a.runtime_version,a.menu_version):
@@ -87,11 +89,19 @@ def main():
     lock['base']['configuration'] = store(recipe/'build/pigen/config.json')
     packages = w/f'packages/poc4-attempt{a.attempt}'
     oldrecord = read_json(old/lock['components']['menu']['build_record']['path'])
+    if a.reuse_menu:
+        prior_menu=lock['components']['menu']
+        if (prior_menu['package']['version'], prior_menu['source']['git']['commit'], prior_menu['source']['git']['tag_object']) != (a.menu_version,a.menu_commit,a.menu_tag_object):
+            raise ValueError('reused Menu identity differs from predecessor')
+        if hashlib.sha256((w/f'inputs/project-cbm-menu-{menu_label}.tar').read_bytes()).hexdigest()!=prior_menu['source']['artifact']['sha256']:
+            raise ValueError('reused Menu source bytes differ')
     for name, version, source, commit, ref, tag in (
         ('runtime', a.runtime_version, integration, a.integration_commit,
          'refs/heads/feature/1.1-build-foundation', None),
         ('menu', a.menu_version, w/f'inputs/project-cbm-menu-{menu_label}.tar',
          a.menu_commit, 'refs/tags/v'+menu_label, a.menu_tag_object)):
+        if name=='menu' and a.reuse_menu:
+            continue
         debs = list(packages.glob('project-cbm-'+name+'_*.deb'))
         if len(debs) != 1:
             raise ValueError('ambiguous package')
@@ -131,6 +141,22 @@ def main():
             build['utilities'] = oldrecord['utilities']
         component['build_record'] = record(build)
         lock['components'][name] = component
+    if a.vice_version:
+        if not re.fullmatch(r'3[.]10-1[+]pcbm[0-9]+',a.vice_version):raise ValueError('VICE package version')
+        if a.vice_version==lock['components']['vice']['package']['version']:raise ValueError('changed VICE needs distinct version')
+        component=copy.deepcopy(lock['components']['vice'])
+        deb=packages/f'project-cbm-vice_{a.vice_version}_arm64.deb'
+        fields=subprocess.check_output(['dpkg-deb','-f',str(deb),'Package','Version','Architecture'],text=True)
+        if dict(line.split(': ',1) for line in fields.splitlines())!={'Package':'project-cbm-vice','Version':a.vice_version,'Architecture':'arm64'}:raise ValueError('VICE identity mismatch')
+        component['package'].update(version=a.vice_version,revision=a.vice_version.split('-',1)[1],artifact=store(deb))
+        d=recipe/'build/packages/vice/debian'
+        component['recipe']=archive(d.rglob('*'),d)
+        component['patches']=[store(d/'patches'/line.strip()) for line in (d/'patches/series').read_text().splitlines() if line.strip() and not line.startswith('#')]
+        component['corresponding_source']=archive([f for f in packages.glob('project-cbm-vice_*') if f.suffix=='.dsc' or '.tar.' in f.name],packages)
+        component['build_record']=record({'component':'vice','package':component['package']['artifact'],'source_sha256':component['source']['artifact']['sha256'],
+            'build_info':store(next(packages.glob('project-cbm-vice_*.buildinfo'))),'source_date_epoch':lock['build']['source_date_epoch'],
+            'qualification':'Bounded private performance telemetry; physical performance UNTESTED'})
+        lock['components']['vice']=component
     # Integration source owns engineering.py; explicit installed-file hashes make
     # the corrected lifecycle and setup contract independently inspectable offline.
     mapping = {'usr/libexec/project-cbm/engineering.py':recipe/'build/pigen/stage-cbm/files/engineering.py'}
@@ -143,11 +169,12 @@ def main():
                          ('lib/pcbm-setup-ui.sh','usr/share/project-cbm-menu/pcbm-setup-ui.sh'),
                          ('lib/pcbm-ui.sh','usr/share/project-cbm-menu/pcbm-ui.sh'),
                          ('lib/pcbm_config_bridge.py','usr/libexec/project-cbm-menu/pcbm_config_bridge.py')]:
-        mapping[dest] = packages/'menu'/source
+        if not a.reuse_menu:
+            mapping[dest] = packages/'menu'/source
     for source in (recipe/'runtime/project_cbm').glob('*.py'):
         mapping['usr/share/project-cbm/runtime/project_cbm/'+source.name] = source
     build = read_json(kit/lock['components']['menu']['build_record']['path'])
-    build['corrective_payload'] = {dest:store(source) for dest,source in sorted(mapping.items())}
+    build.setdefault('corrective_payload',{}).update({dest:store(source) for dest,source in sorted(mapping.items())})
     for source in (recipe/'docs/release').glob('*.md'):
         build['corrective_payload']['usr/share/doc/project-cbm-runtime/release/'+source.name]=store(source)
     build['appliance_schema']=store(recipe/'schemas/appliance-info.schema.json')
@@ -163,9 +190,9 @@ def main():
     (kit/'release-lock.sha256').write_text(sha+'  release-lock.json\n')
     (kit/'attempt.json').write_bytes(encode({'attempt':a.attempt,'candidate':lock['product'],
         'prior_lock_sha256':hashlib.sha256(oldraw).hexdigest(),'release_lock_sha256':sha,
-        'changed':['runtime package/source','Menu package/tag/source','integration source/commit',
-                   'service/account/discovery UX','release documentation','default Computer Name','corrective validation records','installed identity'],
-        'unchanged':['VICE','TCPser','all seven Covers','base and host closures','pi-gen and patches',
+        'changed':['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity']
+                   + ([] if a.reuse_menu else ['Menu package/tag/source']) + (['VICE package/patches'] if a.vice_version else []),
+        'unchanged':(['Menu package/tag/source'] if a.reuse_menu else []) + ([] if a.vice_version else ['VICE']) + ['TCPser','all seven Covers','base and host closures','pi-gen and patches',
                      'qualification media','SID-Wizard','StrikeTerm and rights gates'],
         'construction_argument':'--attempt '+str(a.attempt)}))
     print(sha)

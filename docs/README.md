@@ -8,9 +8,11 @@ See [current state](../CURRENT-STATE.md) for the candidate and exact owner proce
 | --- | --- |
 | Flash, first boot, use Menu/VICE, content, USB and utilities | [User guide](release/user-guide.md) |
 | Computer Name, owner credentials, SSH, sharing and discovery | [Networking and services](release/networking.md) |
-| Build an image from retained inputs | [Build Your Own](release/build-your-own.md) |
+| Understand release reproduction, derivatives and the private factory | [Build Your Own](release/build-your-own.md) |
 | Understand pi-gen and the actual factory | [Factory guide](release/factory.md) |
 | Change branding, defaults, content or packages | [Customization](release/customization.md) |
+| Accounts, configuration and installed paths | [System layout](release/accounts-and-layout.md) |
+| VICE source, packaging, profiles and performance | [VICE guide](release/vice.md) |
 | Return to development after time away | [Developer entry](release/development.md) |
 | Diagnose or recover an appliance | [User recovery](release/recovery.md) |
 | Restore source/input/build records | [Engineering recovery](recovery.md) |

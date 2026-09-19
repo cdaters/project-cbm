@@ -1,0 +1,46 @@
+Description: Bounded opt-in wall-clock performance measurements independent of sync resets
+Author: Project CBM contributors
+Forwarded: not-needed
+
+--- a/src/vsync.c
++++ b/src/vsync.c
+@@ -445,6 +445,39 @@
+ 
+     CLOCK main_cpu_clock = maincpu_clk;
+ 
++    /* Private engineering only: numeric measurements, never filenames or
++       device/user identity. Independent of the UI metric's sync resets: a
++       persistently slow machine must not repeatedly report reset-to-100%.
++       The caller runs once per emulated frame, including skipped rendering.
++       Exclude loading, resets, pause/menu and warp intervals when qualifying. */
++    if (getenv("CBM_PRESENTATION_DIAGNOSTICS") != NULL) {
++        static tick_t cbm_tick;
++        static CLOCK cbm_clock;
++        static unsigned int cbm_frames, cbm_records;
++        static int cbm_warp;
++        if (cbm_records < 120) {
++            if (!cbm_tick || main_cpu_clock < cbm_clock || cbm_warp != warp_enabled) {
++                cbm_tick = frame_tick;
++                cbm_clock = main_cpu_clock;
++                cbm_frames = 0;
++                cbm_warp = warp_enabled;
++            } else {
++                double cbm_seconds = (double)(frame_tick - cbm_tick) / tick_per_second();
++                ++cbm_frames;
++                if (cbm_seconds >= 5.0 && cycles_per_sec > 0) {
++                    log_message(vsync_log,
++                        "CBM_PERFORMANCE sample=%u seconds=%.3f speed_percent=%.3f emulated_fps=%.3f warp=%d",
++                        ++cbm_records, cbm_seconds,
++                        100.0 * (double)(main_cpu_clock - cbm_clock) / cycles_per_sec / cbm_seconds,
++                        (double)cbm_frames / cbm_seconds, warp_enabled);
++                    cbm_tick = frame_tick;
++                    cbm_clock = main_cpu_clock;
++                    cbm_frames = 0;
++                }
++            }
++        }
++    }
++
+     if (metrics_reset) {
+         metrics_reset = false;
+         reset_performance_metrics(frame_tick);

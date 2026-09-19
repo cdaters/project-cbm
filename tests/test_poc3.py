@@ -15,7 +15,11 @@ class Presentation(unittest.TestCase):
         config.read_string(vp.defaults().decode())
         self.assertEqual(set(config),{'DEFAULT','Version',*vp.CHIPS})
         for section,chips in vp.CHIPS.items():
-            self.assertEqual(set(config[section]),{chip+suffix for chip in chips for suffix in ['AspectMode','Fullscreen','FullscreenMode']})
+            expected={chip+suffix for chip in chips for suffix in ['AspectMode','Fullscreen','FullscreenMode']}
+            if section in ('C64','C64SC'):
+                expected.add('SidResidSampling')
+                self.assertEqual(config[section]['SidResidSampling'],'1')
+            self.assertEqual(set(config[section]),expected)
             for chip in chips:
                 self.assertEqual(config[section][chip+'AspectMode'],'2')
                 self.assertEqual(config[section][chip+'Fullscreen'],'1')

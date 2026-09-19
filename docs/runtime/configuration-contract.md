@@ -2,8 +2,8 @@
 
 See [networking guide](../release/networking.md) for the complete user workflow.
 `pcbm-info --json --appliance` owns bounded network/service observations (schema 1);
-Menu presents them without probing. First-boot/SSH account remains owner; pi owns
-console/content. File Sharing separately enrolls owner, forces content writes to pi,
+Menu presents them without probing. First-boot/SSH account is `pcbm`; pi owns
+console/content. File Sharing separately enrolls `pcbm`, forces content writes to pi,
 and explicitly enables Avahi discovery on sharing opt-in. On requires unit activity
 and the expected listener; credentials and private stores never enter the projection.
 Default Computer Name is projectcbm, changeable through the existing validated helper.
@@ -65,7 +65,7 @@ moves to Advanced, and duplicate system power/service/status/version paths are r
 | Wi-Fi country | Installed ISO country; fixed raspi-config noninteractive country operation | Adapter implemented; explicit radio-enable confirmation |
 | Network | Fixed NetworkManager commands, one managed WPA personal connection | Implemented; NetworkManager activation and bounded scan readiness |
 | Optional services | Fixed aliases/units below, deliberate enable/disable | Implemented; actual unit/listener state and bounded confirmation |
-| Samba password | smbpasswd stdin for fixed owner account `owner` | Implemented; separate from Unix credentials |
+| Samba password | smbpasswd stdin for fixed owner account `pcbm` | Implemented; separate from Unix credentials |
 | TCPser settings | Root-owned `/etc/project-cbm/modem.json`, typed port/baud | Validated intent consumed by loopback launch adapter |
 | Power/reboot | Fixed systemctl poweroff/reboot | Implemented; fixed system operation |
 | USB import / ROM copy | Constrained removable-media broker | Implemented; isolated read-only source/copy/unmount |

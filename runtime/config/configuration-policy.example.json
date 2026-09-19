@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "owner_user": "owner_example",
+  "owner_user": "pcbm",
   "appliance_user": "pi",
   "system_ready": false,
   "network_ready": false,

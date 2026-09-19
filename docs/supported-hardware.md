@@ -1,3 +1,7 @@
+## Current performance release gate
+
+Attempt #7 has an [owner-reported Pi 3 B+ real-time C64 failure](qualification/poc4-attempt7-pi3b-plus-performance-2026-09-18.json). Pi 3 remains the performance floor. The [correction and measurable qualification contract](runtime/c64-performance-2026-09-18.md) adds sustained emulation speed, audio/visual correctness and representative workloads to functional testing. No newer candidate has a physical performance PASS yet.
+
 # Hardware Targets and Qualification
 
 Project CBM v1.0.0 targets Raspberry Pi 3 through Raspberry Pi 5 and Pi 500-class systems.

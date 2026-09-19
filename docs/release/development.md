@@ -32,3 +32,50 @@ Current accepted limitation: keyboard VT switching while VICE's SDL/KMS console 
 is active. F10 → Quit then switch works; retain it until a supported upstream solution
 can preserve input/display ownership. Quiet boot, splash presentation and measured faster
 boot are the next separate polish milestone. Do not combine them with service refinement.
+
+## Follow a change through the system
+
+For a UI wording change, begin in Menu `scripts/pcbm-menu`, `scripts/pcbm-config` or
+`scripts/pcbm-first-run`; presentation helpers are in `lib`. For information/status,
+start in Product `runtime/project_cbm/info.py` and its JSON schemas. Menu consumes
+those records, so a new status field belongs in the Product contract and focused
+tests before it is formatted. Configuration requests pass through the Runtime's
+validated client/backend rather than arbitrary sudo shell commands.
+
+Machine selection starts in `runtime/data/profiles.json` and validated preferences.
+Launching enters Menu's shared `pcbm-run-vice`, with Product integration under
+`build/pigen/stage-cbm/files`. Cover, emulator and terminal restoration are one owned
+transition. A package can build correctly and still mishandle real tty/DRM input;
+repeat physical launch/quit testing after any change to this path.
+
+Account creation and image-wide defaults belong to `tools/install_poc_stage.py`.
+The Unix account is `pcbm`; `owner` remains the conceptual role and setup step/API name.
+Do not rename role fields while editing usernames. First-boot secrets travel through
+protected input, never command arguments or logs. Native tests exercise actual su,
+sudo, SSH and Samba behavior in a disposable target, in addition to fixture tests.
+
+Package recipes under `build/packages` and Menu's `debian` determine install layout and
+versions. The frozen integration archive determines what pi-gen actually executes.
+Editing your working tree after freezing does not change that candidate. Make another
+version/lock for changed bytes; do not patch a completed image to make a check pass.
+
+## Performance changes
+
+`tools/benchmark_vice.py` creates an original reproducible CPU/screen/SID workload and
+measures a fixed emulated-cycle interval with real WAV samples. Use a new output
+directory for each run. Dummy audio that synthesizes no samples, warp that skips sound,
+and VM CPU percentages do not establish Pi performance. `tools/vice_performance.py`
+parses bounded installed numeric telemetry for a chosen uninterrupted physical interval.
+The exact procedure must identify image, hardware, workload, settings, clocks/throttling,
+audio/visual result and lifecycle. Owner reference media stays outside source packages.
+See [the performance decision](../runtime/c64-performance-2026-09-18.md) for the retained
+comparison and limitations; current defaults are explained in [VICE](vice.md).
+
+## Returning after an absence
+
+Use CURRENT-STATE to locate the newest build report, lock, artifacts, recovery manifest
+and pending physical procedure. Verify the actual Git refs and dirty work; the state
+file can lag a interrupted operation. Read the relevant canonical contract, run focused
+checks, and preserve unfamiliar files before cleanup. A recovered VM is useful but not
+the source of truth: the recipe, retained inputs and verified recovery bundles must
+be enough to reconstruct the engineering state on replacement infrastructure.

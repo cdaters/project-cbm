@@ -98,12 +98,12 @@ def main():
     hosts=re.sub(r'^127\.0\.1\.1\s+.*$', '127.0.1.1\tprojectcbm', hosts, flags=re.M)
     if not re.search(r'^127\.0\.1\.1\s',hosts,re.M):hosts+='\n127.0.1.1\tprojectcbm\n'
     owned_put('/etc/hosts',hosts)
-    chroot('useradd','--uid','1001','--create-home','--shell','/bin/bash','--groups','sudo','owner')
-    chroot('usermod','--password','!','owner')
+    chroot('useradd','--uid','1001','--create-home','--shell','/bin/bash','--groups','sudo','pcbm')
+    chroot('usermod','--password','!','pcbm')
     # No universal credential and no normal-user blanket sudo. Debian %sudo is
     # authenticated; only the separate owner account is added for administration.
     chroot('gpasswd','--delete','pi','sudo')
-    policy={'schema_version':1,'owner_user':'owner','appliance_user':'pi',
+    policy={'schema_version':1,'owner_user':'pcbm','appliance_user':'pi',
             'system_ready':False,'network_ready':True,
             'ready_services':['ssh','sharing','modem','discovery']}
     owned_put('/etc/project-cbm/configuration-policy.json',encode(policy))
@@ -116,7 +116,7 @@ def main():
     owned_put('/var/lib/NetworkManager/NetworkManager.state',
               '[main]\nNetworkingEnabled=false\nWirelessEnabled=false\nWWANEnabled=false\n',0o600)
     owned_put('/etc/ssh/sshd_config.d/20-project-cbm.conf',
-              'PermitRootLogin no\nAllowUsers owner\nPasswordAuthentication yes\nKbdInteractiveAuthentication no\n')
+              'PermitRootLogin no\nAllowUsers pcbm\nPasswordAuthentication yes\nKbdInteractiveAuthentication no\n')
     smb=('[global]\n    server role = standalone server\n    security = user\n'
          '    map to guest = Never\n    server min protocol = SMB2\n'
          '    disable netbios = yes\n    smb ports = 445\n    load printers = no\n'

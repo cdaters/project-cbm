@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_CFLAGS_MAINT_APPEND = -march=armv8-a -mtune=generic
-export DEB_CXXFLAGS_MAINT_APPEND = -march=armv8-a -mtune=generic
+export DEB_CFLAGS_MAINT_APPEND = -O3 -march=armv8-a -mtune=generic
+export DEB_CXXFLAGS_MAINT_APPEND = -O3 -march=armv8-a -mtune=generic
 %:
 	dh $@ --builddirectory=debian/build
 

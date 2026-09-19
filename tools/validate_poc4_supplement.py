@@ -24,7 +24,7 @@ def main():
     checks['tmp_mode_1777']=(root/'tmp').stat().st_mode&0o7777==0o1777
     checks['runtime_dirs_recreated']=text('usr/lib/tmpfiles.d/project-cbm.conf')=='d /run/project-cbm 0755 root root -\nd /run/project-cbm/import 0755 root root -\nd /run/project-cbm/import/source 0755 root root -\n'
     checks['authenticated_owner_sudo']=any(line.strip().startswith('%sudo') and 'ALL=(ALL:ALL) ALL' in line and 'NOPASSWD' not in line for line in text('etc/sudoers').splitlines())
-    checks['only_expected_local_accounts']=all(line.split(':')[0] in ('pi','owner','nobody') for line in text('etc/passwd').splitlines() if int(line.split(':')[2])>=1000)
+    checks['only_expected_local_accounts']=all(line.split(':')[0] in ('pi','pcbm','nobody') for line in text('etc/passwd').splitlines() if int(line.split(':')[2])>=1000)
     samba=text('etc/samba/smb.conf')
     checks['samba_only_content_share']=samba.count('path =')==1 and 'path = /home/pi/pcbm' in samba and 'guest ok = no' in samba
     checks['about_view_present']='ABOUT) show_about' in text('usr/bin/pcbm-config') and 'def about(' in text('usr/libexec/project-cbm-menu/pcbm_config_bridge.py')

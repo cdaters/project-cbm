@@ -23,7 +23,7 @@ assert request('setup-region',locale='en_US.UTF-8',keyboard='us',timezone='Ameri
 password=secrets.token_urlsafe(24)
 try:
  assert request('setup-owner',password=password)['status']=='ok'
- p=run(['runuser','-u','owner','--','sudo','-k','-S','-p','','--','/usr/bin/id','-u'],password+'\n')
+ p=run(['runuser','-u','pcbm','--','sudo','-k','-S','-p','','--','/usr/bin/id','-u'],password+'\n')
  assert p.returncode==0 and p.stdout.strip()=='0'
  print('Authenticated owner sudo: PASS',flush=True)
  assert run(['systemctl','unmask','NetworkManager.service']).returncode==0
@@ -41,13 +41,13 @@ try:
  assert request('sharing-password',password=password)['status']=='ok'
  sys.path.insert(0,'/usr/share/project-cbm/runtime')
  from project_cbm.config_backend import Linux
- print(json.dumps({'samba_credential_ready':Linux().credential_ready('pi')}),flush=True)
- assert Linux().credential_ready('pi')
+ print(json.dumps({'samba_credential_ready':Linux().credential_ready('pcbm')}),flush=True)
+ assert Linux().credential_ready('pcbm')
  assert run(['sshd','-t']).returncode!=0 # no sealed host keys
  assert Linux().ssh_keys()
  assert run(['sshd','-t']).returncode==0
  print('Fresh SSH key generation/configuration: PASS',flush=True)
 finally:
- run(['usermod','--password','!','owner'])
- run(['smbpasswd','-x','pi'])
+ run(['usermod','--password','!','pcbm'])
+ run(['smbpasswd','-x','pcbm'])
  password=None

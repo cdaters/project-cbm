@@ -181,7 +181,7 @@ class Linux:
     def owner_expected(self,user):
         try:
             account=pwd.getpwnam(user)
-            return (user=='owner' and account.pw_uid==1001 and account.pw_dir=='/home/owner'
+            return (user=='pcbm' and account.pw_uid==1001 and account.pw_dir=='/home/pcbm'
                     and account.pw_shell=='/bin/bash' and user in grp.getgrnam('sudo').gr_mem)
         except KeyError:return False
 

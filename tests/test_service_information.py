@@ -13,8 +13,8 @@ class Source:
     def exists(self,path):return path.endswith('sharing-status.json')
     def uname(self):return {'hostname':'projectcbm'}
     def read(self,path):
-        if path.endswith('configuration-policy.json'):return json.dumps({'owner_user':'owner'})
-        if path.endswith('sharing-status.json'):return json.dumps({'schema_version':1,'username':'owner','password_set':True})
+        if path.endswith('configuration-policy.json'):return json.dumps({'owner_user':'pcbm'})
+        if path.endswith('sharing-status.json'):return json.dumps({'schema_version':1,'username':'pcbm','password_set':True})
         if path.endswith('modem.json'):return '{"port":25232}'
         raise FileNotFoundError()
     def command(self,args):
@@ -78,8 +78,8 @@ class Services(unittest.TestCase):
     def test_default_identity_share_and_dynamic_advertisement_config(self):
         root=Path(__file__).resolve().parents[1];stage=(root/'tools/install_poc_stage.py').read_text();share=(root/'runtime/config/file-sharing.example.conf').read_text()
         self.assertIn("owned_put('/etc/hostname','projectcbm\\n')",stage)
-        self.assertIn('AllowUsers owner',stage);self.assertIn('mdns name = mdns',stage)
-        self.assertIn('valid users = owner',share);self.assertIn('force user = pi',share);self.assertIn('guest ok = no',share)
+        self.assertIn('AllowUsers pcbm',stage);self.assertIn('mdns name = mdns',stage)
+        self.assertIn('valid users = pcbm',share);self.assertIn('force user = pi',share);self.assertIn('guest ok = no',share)
     def test_hostname_syntax_and_length(self):
         for value in ('projectcbm','retro-64','a'):
             c.validate({'schema_version':1,'operation':'hostname','values':{'value':value}})

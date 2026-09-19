@@ -1,3 +1,36 @@
+# Pi 3 B+ performance correction selected — 2026-09-18
+
+**READY TO FLASH: NO; attempt #8 construction/validation pending.** Attempt #7 has
+[owner-reported below-real-time C64 performance](docs/qualification/poc4-attempt7-pi3b-plus-performance-2026-09-18.json).
+The verified read-only card matches its exact lock. Six screenshots/diagnostics and the
+matching owner-supplied `kong_arcade.prg` are preserved privately outside Git/images.
+See [the evidence, comparisons and decision](docs/runtime/c64-performance-2026-09-18.md).
+
+Chosen correction keeps x64sc, SID filters, true-drive/VIC-II accuracy and the working
+SDL/ALSA/Cover/session lifecycle. Portable -O3 plus C64 reSID interpolation used 36.9%
+less native CPU for the exact reference; that is comparative evidence, not Pi performance
+PASS. Bounded numeric speed/FPS telemetry and an explicit physical real-time gate are
+added. The Pi 3 floor remains. Quiet/fast boot and active-VICE VT remain separate.
+
+The default administrator/network username becomes `pcbm`; `owner` remains the role.
+Console/content stay `pi`, Computer Name stays `projectcbm`, Samba keeps a separate
+password. No earlier image/account/evidence is migrated. Release manuals now explain
+users, services, installed layout, VICE, actual pi-gen stages, package manifests and
+practical customization. Build Your Own distinguishes public release replay, derivatives
+and private frozen engineering, with exact public-bootstrap gaps stated honestly.
+
+Host/native Product 195/195 and Menu 96/96 PASS. Native isolated account/authentication,
+service enable/disable/restart, SSH password login/disable, local SMB mDNS, real dialog,
+USB import, utilities and installed lifecycle 10/10 PASS. Seven Covers decode/present/
+release using SDL dummy; three supervised cycles restore terminal/reap children.
+Physical graphics/audio/network clients remain UNTESTED. A staging-only bytes/text
+fixture error is retained and corrected in a separate continuation, not a product failure.
+
+Next: commit/freeze clean Runtime 1.1.0~poc4.5-1, Menu 1.1.0~poc4.6-1+pcbm1 and VICE
+3.10-1+pcbm4; reuse unchanged verified TCPser/assets/closures; build ONE next private
+candidate with approved factory, all actual-image/integrity/recovery gates and an
+exact-hash Pi 3 B+ performance procedure. No push/publication/card write/physical test.
+
 # Attempt #7 release-readiness candidate complete — 2026-09-18
 
 **READY TO FLASH: YES. STOP FOR OWNER PHYSICAL TEST.**
