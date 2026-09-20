@@ -1,3 +1,33 @@
+# RC4 attempt14 complete — owner Pi 4 B qualification next
+
+**READY TO FLASH: YES only with the external recovery manifest and restore PASS.**
+[Build report](docs/build/private-rc4.md), [exact results](docs/build/private-rc4.json),
+[hash-bound physical procedure](docs/qualification/rc4-pi4b-regression.md).
+One RC4 image built. The earlier attempt13 freeze rejection produced no image;
+its inputs/packages/logs remain preserved. RC3 raw/XZ/lock are unchanged.
+
+Lock: `inputs/frozen-poc4-attempt14/release-lock.json`, SHA-256
+`ced936a75aebf2f45d30052da85ba35f00fe9881d0d59f1938b1d64c84c1d5df`.
+Integration `b723bc9b57d9adc38a4c19ca25982b3ccae65301`.
+Menu source `26a5e83e2b4f731245de254f60dec5784695a47b`, private tag `v1.1.0_rc4`
+object `c8ad265f1eb2c6145245b7f9931f7c154a7f62b7`.
+Raw SHA-256 `9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893`;
+XZ `f87e0c6fec6a0199974fd77d9624a1d0e851f0e35d1bf1e4577aa852ba79c658`.
+Runtime/Menu RC4 NEW; VICE/TCPser REUSED exactly. Source after the frozen integration
+only records results and updates the documentation package inventory; image bytes do not change.
+
+Host/native Product244/244 and Menu102/102 PASS; installed lifecycle12/12 PASS.
+Native CCGMS AT/connect/text/disconnect/exit/relaunch and C64/C128 G71 PASS.
+Actual-image324 checks,672 packages,127 ELF objects; raw/XZ equivalence, filesystems,
+accounts/services/security, host drift and historical preservation PASS.
+Evidence: `qualification/rc4-attempt14`; recovery: `archive/rc4-2026-09-20` under
+configured bulk storage. The external recovery manifest/restore report is authoritative.
+Independent encrypted custody remains outstanding; this is not independent build reproducibility.
+
+Next: owner flashes the exact new image and performs the Pi4 B affected-area procedure.
+RC4 physical UNTESTED. Stop for that qualification; no final tag, push or publication.
+Earlier checkpoints below are historical and retain their contemporaneous findings.
+
 # RC4 final release-polish — attempt14 after pre-construction freeze rejection
 
 The owner approved the CCGMS-only disk and one new final candidate. [Scope and gates](docs/build/private-rc4.md)

@@ -1,0 +1,176 @@
+{
+  "format": "project-cbm.private-rc4-candidate-result",
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "attempt": 14,
+  "product": {
+    "candidate": "private-engineering-rc4",
+    "version": "1.1.0-rc.4"
+  },
+  "integration_commit": "b723bc9b57d9adc38a4c19ca25982b3ccae65301",
+  "menu_source": {
+    "commit": "26a5e83e2b4f731245de254f60dec5784695a47b",
+    "ref": "refs/tags/v1.1.0_rc4",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "c8ad265f1eb2c6145245b7f9931f7c154a7f62b7"
+  },
+  "packages": {
+    "menu": {
+      "status": "NEW",
+      "version": "1.1.0~rc4-1+pcbm1",
+      "filename": "project-cbm-menu_1.1.0~rc4-1+pcbm1_all.deb",
+      "size_bytes": 1295000,
+      "sha256": "f260fe545ca83b6b82a4a9a6c7adbbdd7dafdfe43ef74e65db82f24df8212a81",
+      "source_commit": "26a5e83e2b4f731245de254f60dec5784695a47b"
+    },
+    "runtime": {
+      "status": "NEW",
+      "version": "1.1.0~rc4-1",
+      "filename": "project-cbm-runtime_1.1.0~rc4-1_all.deb",
+      "size_bytes": 77896,
+      "sha256": "c58b5cc6e14019da6670eef200d845ea5ebf63f7f597018e62f986ad2a3ed7d0",
+      "source_commit": "b723bc9b57d9adc38a4c19ca25982b3ccae65301"
+    },
+    "tcpser": {
+      "status": "REUSED",
+      "version": "1.1.6~beta-1+pcbm1",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "size_bytes": 26872,
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "source_commit": "fe7feff4862406b277e009d14c219f5d16cf1222"
+    },
+    "vice": {
+      "status": "REUSED",
+      "version": "3.10-1+pcbm4",
+      "filename": "project-cbm-vice_3.10-1+pcbm4_arm64.deb",
+      "size_bytes": 5069684,
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+      "source_commit": null
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt14/release-lock.json",
+    "sha256": "ced936a75aebf2f45d30052da85ba35f00fe9881d0d59f1938b1d64c84c1d5df",
+    "kit_files_verified": 3157
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-rc4-attempt-14/work/export-image/2026-09-20-project-cbm-1.1.0-rc.4-lite-private-rc4.img",
+      "size_bytes": 3095396352,
+      "sha256": "9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893",
+      "path": "artifacts/private-rc4-attempt-14/2026-09-20-project-cbm-1.1.0-rc.4-lite-private-rc4.img"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-rc4-attempt-14/image_2026-09-20-project-cbm-1.1.0-rc.4-lite-private-rc4.img.xz",
+      "size_bytes": 599761028,
+      "sha256": "f87e0c6fec6a0199974fd77d9624a1d0e851f0e35d1bf1e4577aa852ba79c658",
+      "path": "artifacts/private-rc4-attempt-14/image_2026-09-20-project-cbm-1.1.0-rc.4-lite-private-rc4.img.xz"
+    },
+    "xz_expanded_sha256": "9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893",
+    "raw_xz_equivalence": "PASS",
+    "raw_unchanged_after_inspection": true,
+    "external_copy_and_xz_equivalence": "PASS"
+  },
+  "ccgms": {
+    "disk_bytes": 174848,
+    "disk_sha256": "495e97ec5e6f51c454abf30858ea7429e85c8f7ec81d278097ac9bdfa3258e27",
+    "program_sha256": "baab211ac345aa9b486f70bbf1f7dfdfa7d056a67229dfad5668b7c8e0879076",
+    "source_sha256": "201c98d03db53f649a9e9a18eb62a7b9b24e5051db3c5af1c32a410e02ef3d18",
+    "payload": {
+      "artifact": {
+        "path": "objects/e283509182d86730da9772446f6cb873c892f065c7ebdd2a6ca14924fef7a478",
+        "sha256": "e283509182d86730da9772446f6cb873c892f065c7ebdd2a6ca14924fef7a478",
+        "size_bytes": 327680
+      },
+      "license": "BSD-3-Clause",
+      "notice": {
+        "path": "objects/5e20bda180d6dc4738f6ae232257a9b96d0d2834a0492db09964b9681eb56520",
+        "sha256": "5e20bda180d6dc4738f6ae232257a9b96d0d2834a0492db09964b9681eb56520",
+        "size_bytes": 2053
+      },
+      "origin": "https://1200baud.wordpress.com/2020/12/24/ccgms-2021-released/",
+      "recipe": {
+        "path": "objects/a983956d2a43f08266a94c165e32efd9d8638b649c1d86b70d589eb1b4102a80",
+        "sha256": "a983956d2a43f08266a94c165e32efd9d8638b649c1d86b70d589eb1b4102a80",
+        "size_bytes": 4710
+      },
+      "rights_review": {
+        "path": "objects/a535780214e6eb34c2cf3f68c151b401d89e52484cc8826144315c6cf83ac986",
+        "sha256": "a535780214e6eb34c2cf3f68c151b401d89e52484cc8826144315c6cf83ac986",
+        "size_bytes": 1616
+      },
+      "source": {
+        "path": "objects/201c98d03db53f649a9e9a18eb62a7b9b24e5051db3c5af1c32a410e02ef3d18",
+        "sha256": "201c98d03db53f649a9e9a18eb62a7b9b24e5051db3c5af1c32a410e02ef3d18",
+        "size_bytes": 133216
+      },
+      "upstream_disk": {
+        "path": "objects/103ebd7e129a5e2d4125be3c3c93d2945f480393428d2525d334c2cd06d0353c",
+        "sha256": "103ebd7e129a5e2d4125be3c3c93d2945f480393428d2525d334c2cd06d0353c",
+        "size_bytes": 174848
+      },
+      "version": "2021"
+    },
+    "entries": 1,
+    "excluded_unrelated_files": 7,
+    "license": "BSD-3-Clause"
+  },
+  "tests": {
+    "host_product": 244,
+    "host_menu": 102,
+    "native_product": 244,
+    "native_menu": 102,
+    "installed_lifecycle": 12,
+    "CCGMS": "native AT/connect/text/disconnect/exit/relaunch PASS, physical UNTESTED",
+    "G71": "native x64sc/x128 autostart and BASIC PASS",
+    "boot_handoff": "native readiness/SDL/PTY PASS",
+    "USB": "native metadata/duplicates/UID1000/source-hash/unmount PASS"
+  },
+  "offline": {
+    "checks": 324,
+    "main_checks": 119,
+    "supplement_checks": 20,
+    "corrective_checks": 185,
+    "installed_packages": 672,
+    "elf_objects": 127,
+    "filesystems": "FAT/ext4 PASS",
+    "CCGMS_source_disk_notices_and_StrikeTerm_absence": "PASS",
+    "accounts_services_privileges_lifecycle_docs": "PASS"
+  },
+  "footprint": {
+    "available_to_user": 639475712,
+    "capacity": 2439266304,
+    "free": 783757312,
+    "used": 1655508992
+  },
+  "maintenance_margin": "UNMEASURED; no minimum card size established",
+  "expanded_user_capacity": "UNTESTED; depends on target media and successful expansion",
+  "host": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capabilities_before_after": "PASS",
+    "update_guards": "PASS",
+    "AppArmor": "preserved",
+    "frozen_inputs": "PASS",
+    "no_builder_mounts_loops_or_emulators": true,
+    "available_bytes": 54871801856
+  },
+  "preservation": {
+    "original": "PASS",
+    "RC3_raw_xz_lock": "PASS",
+    "failed_attempt13": "Retained; freeze-origin rejection, no image built",
+    "package_bytes_after_provenance_correction": "Unchanged, verified exact equality"
+  },
+  "recovery": {
+    "path": "archive/rc4-2026-09-20",
+    "authority": "External manifest.json + SHA256 + restore-report.json; readiness requires verified PASS",
+    "independent_custody": false
+  },
+  "physical_procedure": "docs/qualification/rc4-pi4b-regression.md",
+  "images_built": 1,
+  "physical_RC4": "UNTESTED",
+  "pushed": false,
+  "published": false,
+  "final_release_tag_created": false,
+  "readiness": "YES conditional on final external recovery verification"
+}

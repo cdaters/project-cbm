@@ -1,8 +1,10 @@
 # Private RC4 — attempt 14
 
 The owner authorized one bounded final release-polish candidate. RC3 and its frozen
-inputs, image and history remain unchanged. This record is updated with exact final
-identities after construction and validation; until then **READY TO FLASH: NO**.
+inputs, image and history remain unchanged. **READY TO FLASH: YES after the external recovery manifest and offline restore report
+verify PASS. Physical RC4 qualification remains UNTESTED.**
+Use the [exact-hash Pi 4 B procedure](../qualification/rc4-pi4b-regression.md).
+[Machine-readable results](private-rc4.json) contain all hashes, package identities and limits.
 
 ## Scope
 
@@ -24,7 +26,7 @@ architecture redesign, final release tag, push or publication is authorized here
 
 ## Validation before freezing
 
-Host Product 243/243 and Menu 102/102 PASS. Native ARM64 Product 243/243 and Menu
+Host Product 244/244 and Menu 102/102 PASS. Native ARM64 Product 244/244 and Menu
 102/102 PASS after providing preserved Git history required by two reference tests.
 The initial tar-only harness failure is retained; no failing test was waived.
 Existing installed lifecycle 12/12 and native service/authentication/SSH/discovery,
@@ -46,10 +48,49 @@ origin, with the CSDb release reference retained separately in the provenance pi
 No payload, licensing decision or privilege rule changed. Installed Runtime/Menu
 payloads are unchanged; a new source export preserves accurate build correspondence.
 
-## Remaining gates
+## Completed candidate gates
 
-Changed Runtime/Menu package builds, clean-source freeze, complete actual-image and
-raw/XZ verification, host integrity, recovery checkpoint and hash-bound physical
-procedure must all pass before READY TO FLASH. Pi4 B affected-area qualification
-remains the owner's next task after those gates. Unchanged earlier owner results are
-retained, without inferring unreported RC3 or RC4 PASS results.
+Runtime **1.1.0~rc4-1** and Menu **1.1.0~rc4-1+pcbm1** are new; VICE **3.10-1+pcbm4**
+and TCPser **1.1.6~beta-1+pcbm1** retain their verified package identities. Both fresh
+attempt14 package builds matched attempt13 `.deb` bytes exactly; the corrected origin
+changed provenance/factory inputs, not installed package payloads. Original package
+and failed-freeze outputs were preserved, not replaced.
+
+The new lock is `inputs/frozen-poc4-attempt14/release-lock.json`, SHA-256
+`ced936a75aebf2f45d30052da85ba35f00fe9881d0d59f1938b1d64c84c1d5df`. All 3,157 external kit files match native sizes/hashes;
+full semantic/Debian verification passes in the native builder. The failed attempt13
+kit's 3,154 files are preserved separately. The one constructed image has correct RC4
+filenames and installed identity.
+
+Actual-image **324 checks PASS: 119 main + 20 supplemental + 185 corrective**. This
+includes 672 exact installed package/version/architecture identities, 127 ELF objects,
+FAT/ext4, both initramfs images, CCGMS-only disk/source/license/provenance, no bundled
+StrikeTerm/private admission, user ownership, services, privileges, lifecycle and
+shipped manuals. The disk is one unchanged CCGMS PRG; its exact disk/program/source
+hashes are in the machine-readable report. Native AT/text/disconnect/relaunch and
+C64/C128 G71 BASIC tests pass. Real Pi BBS/keyboard/display workflow remains untested.
+
+Raw and XZ hashes/equivalence pass natively and independently on the external Mac
+copy. Build-host inventory is unchanged, update guards and AppArmor are preserved,
+capabilities pass before/after, and no build mounts, loops or emulator processes remain.
+Root user-available space is about 639 MB before first-boot expansion; maintenance
+headroom beyond measured free space and expanded card capacity are not newly qualified.
+
+Historical preservation manifests pass; RC3 raw/XZ/lock are unchanged. Recovery is
+`archive/rc4-2026-09-20`, with full Git bundles, exact refs/peeled tags, offline restored
+source and fsck verification. Its external manifest and restore report are the final
+readiness authority. TheBench is not independent encrypted custody; that limitation
+remains explicit. A second folder is not an independent backup.
+
+## Owner next action and release status
+
+Flash the exact new image and perform the affected-area Pi4 B procedure. Preserve
+unchanged owner-reported results; do not repeat broad Pi4 benchmarking unless a
+regression appears. Required new physical evidence covers CCGMS connection/text/
+disconnect/return/relaunch, content/import changes, sharing prompt and core smoke.
+G71 without suitable owner media must be reported UNTESTED, with release disposition.
+
+Formal signing, standardized SBOM and public bootstrap remain approved post-1.1 work.
+Final source/notices/checksums and publication still require the separate final release
+milestone after owner physical qualification. Nothing was pushed or published and
+no final 1.1.0 tag was created. Stop here for owner qualification.

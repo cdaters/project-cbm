@@ -136,7 +136,7 @@ def main():
             check(flag in source, f'Documented CLI flag missing: {rel} {flag}')
     inventory = json.loads((ROOT/'docs/release/installed-packages.json').read_text())
     check(inventory['package_count'] == len(inventory['packages']) == 672, 'Installed package manifest count')
-    check(inventory['image_sha256'] == '5bde293b5ec6096e2a3bb2f9b31f123a8a07fdc6ac1f9077b510a4ceb5a1702e', 'Manifest image binding')
+    check(inventory['image_sha256'] == '9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893', 'Manifest image binding')
     for name in ('project-cbm-runtime', 'project-cbm-menu', 'project-cbm-vice', 'project-cbm-tcpser'):
         row = next((p for p in inventory['packages'] if p['name'] == name), None)
         check(row is not None and row['version'] in all_docs, f'Missing package version {name}')

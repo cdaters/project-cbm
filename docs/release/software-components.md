@@ -37,12 +37,12 @@ you exactly what was installed.
 
 ## Exact package reference
 
-The next 1.1 candidate uses Runtime **1.1.0~rc4-1**, Menu
+The current reviewed 1.1 candidate uses Runtime **1.1.0~rc4-1**, Menu
 **1.1.0~rc4-1+pcbm1**, VICE **3.10-1+pcbm4**, and TCPser **1.1.6~beta-1+pcbm1**.
 The base reports Debian 13.7. These technical versions identify the candidate reviewed
 for this manual; they are not a claim that a final 1.1 release was published.
 
-[installed-packages.json](installed-packages.json) is the retained preceding candidate inventory (Runtime **1.1.0~rc3-1**, Menu **1.1.0~rc3-1+pcbm1**). It contains all 672 installed
+[installed-packages.json](installed-packages.json) contains all 672 installed
 package/version/architecture records, package size metadata, source-inventory checksum
 and the raw image hash they were measured from. It was generated from actual-image
 validation output, not a proposed apt list. It includes no payloads or credentials.
