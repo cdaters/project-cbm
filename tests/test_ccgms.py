@@ -82,3 +82,9 @@ class CCGMS(unittest.TestCase):
         self.assertEqual(content_profile(p,profiles,'x64',self.root),'x64')
         p=self.media('programs/c128/80col/disk.g71')
         self.assertEqual(content_profile(p,profiles,'x64sc',self.root),'x128-80col')
+
+    def test_publication_origin_meets_frozen_url_contract(self):
+        from build_contracts import public_url
+        pin=json.loads(ccgms.PIN.read_text())
+        public_url(pin['origin'])
+        self.assertEqual(pin['publication_reference'],'https://csdb.dk/release/?id=198392')

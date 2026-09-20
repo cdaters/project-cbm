@@ -1,4 +1,4 @@
-# Private RC4 — attempt 13
+# Private RC4 — attempt 14
 
 The owner authorized one bounded final release-polish candidate. RC3 and its frozen
 inputs, image and history remain unchanged. This record is updated with exact final
@@ -35,6 +35,16 @@ x64sc/x128 and 1571. New focused final runs and packaged tests are recorded exte
 A real VICE CLI check corrected the ACIA selector spelling to `-myaciadev`; no VICE
 code changed. Native probe failures caused by output encoding/monitor handshake were
 kept as harness evidence and corrected. Native results are not Pi physical claims.
+
+## Preserved pre-construction freeze failure
+
+Attempt13 produced valid packages but its freeze rejected the CSDb query-bearing
+publication URL under the existing credential/query-free origin contract. No lock
+was completed and no image construction began. The failed input directory and log
+are retained. Attempt14 uses the already verified author publication URL as lock
+origin, with the CSDb release reference retained separately in the provenance pin.
+No payload, licensing decision or privilege rule changed. Installed Runtime/Menu
+payloads are unchanged; a new source export preserves accurate build correspondence.
 
 ## Remaining gates
 

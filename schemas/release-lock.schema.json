@@ -527,7 +527,7 @@
               "const": "BSD-3-Clause"
             },
             "origin": {
-              "const": "https://csdb.dk/release/?id=198392"
+              "const": "https://1200baud.wordpress.com/2020/12/24/ccgms-2021-released/"
             },
             "upstream_disk": {
               "$ref": "#/$defs/artifact"

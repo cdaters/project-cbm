@@ -1,4 +1,4 @@
-# RC4 final release-polish implementation — attempt13 preparation
+# RC4 final release-polish — attempt14 after pre-construction freeze rejection
 
 The owner approved the CCGMS-only disk and one new final candidate. [Scope and gates](docs/build/private-rc4.md)
 and [CCGMS integration](docs/runtime/ccgms-integration.md) are authoritative for this work.
@@ -13,8 +13,10 @@ working evidence: `qualification/rc4-attempt13`; native staging is a disposable 
 on the hash-verified read-only RC3 image. Initial harness failures remain retained.
 
 Next: finish focused/packaged validation, freeze clean committed sources and a new lock,
-build ONE attempt13/RC4 image, complete actual-image/raw-XZ/host/recovery gates and prepare
-the exact-hash Pi4 B affected-area procedure. No image built at this checkpoint; no push,
+build ONE attempt14/RC4 image, complete actual-image/raw-XZ/host/recovery gates and prepare
+the exact-hash Pi4 B affected-area procedure. Attempt13 freeze rejected a query-bearing CSDb origin; failed inputs/log are retained.
+Attempt14 uses the verified author publication URL and unchanged application bytes.
+No image built at this checkpoint; no push,
 publication or final 1.1.0 tag. STOP for owner physical qualification after completion.
 Earlier milestone STOPs below describe history. RC3 artifacts remain unchanged.
 

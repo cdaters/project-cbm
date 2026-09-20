@@ -5,7 +5,7 @@
   "version": "2021",
   "author": "Craig Smith; 2017-2021 modifications by Alwyz",
   "license": "BSD-3-Clause",
-  "origin": "https://csdb.dk/release/?id=198392",
+  "origin": "https://1200baud.wordpress.com/2020/12/24/ccgms-2021-released/",
   "publication_date": "2020-12-24",
   "source": {
     "filename": "ccgms 2021 source.txt",
@@ -30,5 +30,6 @@
   "content_path": "programs/c64/Communications/CCGMS/CCGMS-2021.d64",
   "redistribution_basis": "BSD 3-Clause explicitly identified in the published 2021 source and exact binary About text; original author license retained. Owner authorized a CCGMS-only disk of the unchanged PRG on 2026-09-20. Seven unrelated compilation files are excluded.",
   "source_correspondence": "Same author-published release; matching version/credits/About text. Bit-identical source rebuild not established.",
-  "author_reference": "https://1200baud.wordpress.com/2020/12/24/ccgms-2021-released/"
+  "author_reference": "https://1200baud.wordpress.com/2020/12/24/ccgms-2021-released/",
+  "publication_reference": "https://csdb.dk/release/?id=198392"
 }
