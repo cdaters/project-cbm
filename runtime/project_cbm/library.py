@@ -49,6 +49,11 @@ def content_profile(path, profiles, default, root=ROOT):
         selected = 'x128-80col'
     else:
         selected = default if default in choices else choices[0]
+    if path.suffix.lower() == '.g71' and selected not in ('x64sc', 'x64', 'x128', 'x128-80col'):
+        if parts[1] == 'c64':
+            selected = 'x64sc'  # Do not inherit DTV/SuperCPU for a 1571 disk.
+        else:
+            raise ValueError('g71_requires_c64_c128')
     if not any(p['id'] == selected for p in profiles):
         raise ValueError('content_profile_unavailable')
     return selected

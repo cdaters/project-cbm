@@ -118,7 +118,7 @@ class OptionalApplications(unittest.TestCase):
         return p
 
     def test_known_apps_route_to_registry_c64_without_preference_write(self):
-        for folder in ['music/Creation/SID-Wizard','programs/Communications/StrikeTerm','music/c64/Creation/SID-Wizard','programs/c64/Communications/StrikeTerm']:
+        for folder in ['music/Creation/SID-Wizard','music/c64/Creation/SID-Wizard','programs/c64/Communications/CCGMS']:
             p=self.make_app(folder)
             self.assertEqual(application_profile(p,registry(),self.root),'x64sc')
             with self.assertRaises(ValueError):application_profile(p,[],self.root)
@@ -129,7 +129,7 @@ class OptionalApplications(unittest.TestCase):
         self.assertIsNone(application_profile(p,registry(),self.root))
 
     def test_invalid_application_media_and_path_rejected(self):
-        p=self.make_app('programs/Communications/StrikeTerm')
+        p=self.make_app('programs/c64/Communications/CCGMS')
         p.write_bytes(b'not a disk')
         with self.assertRaises(ValueError):application_profile(p,registry(),self.root)
         link=self.root/'link.d64';link.symlink_to(p)

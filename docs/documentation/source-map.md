@@ -1,5 +1,10 @@
 # Release documentation source verification
 
+> Historical documentation checkpoint. Current release decisions and changed application
+> composition are in [release policy](../release/release-policy.md); final candidate validation
+> and physical status are recorded in [CURRENT-STATE](../../CURRENT-STATE.md).
+
+
 This table records the implementation read for the documentation pass. Product runtime,
 Menu and factory sources match the RC3 input commits; documentation-only commits may
 advance HEAD. No runtime source was executed as a static documentation test.

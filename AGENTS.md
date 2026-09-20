@@ -154,7 +154,9 @@ and [host/target environment boundary](docs/build/environment-boundary.md).
   [optional-input contract](docs/runtime/optional-applications-contract.md). Preserve
   corresponding source, licenses and exact payload/recipe/rights hashes. Freeware,
   downloads, archive inclusion or possession do not establish redistribution rights.
-  Existing private admissions (including StrikeTerm and Cover art) remain private;
+  Existing private admissions remain private unless explicitly superseded by the owner;
+  apply the recorded [1.1 release policy](docs/release/release-policy.md) for artwork,
+  CCGMS composition, upstream VICE ROMs and deferred release engineering;
   original qualification media stays distinct from third-party references. No automatic
   content downloader/scraper or blanket MIT relicensing of third-party content.
 

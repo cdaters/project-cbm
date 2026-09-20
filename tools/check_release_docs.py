@@ -117,13 +117,13 @@ def main():
         for value in values:
             check(value in source, f'Path/account source changed: {relative}: {value}')
     versions = {
-        'build/packages/runtime/debian/changelog': '1.1.0~rc3-1',
+        'build/packages/runtime/debian/changelog': '1.1.0~rc4-1',
         'build/packages/vice/debian/changelog': '3.10-1+pcbm4',
         'build/packages/tcpser/debian/changelog': '1.1.6~beta-1+pcbm1',
     }
     for relative, version in versions.items():
         check(version in (ROOT/relative).read_text().splitlines()[0] and version in all_docs, f'Version mismatch: {relative}')
-    check('1.1.0~rc3-1+pcbm1' in (MENU/'debian/changelog').read_text().splitlines()[0] and '1.1.0~rc3-1+pcbm1' in all_docs, 'Menu version mismatch')
+    check('1.1.0~rc4-1+pcbm1' in (MENU/'debian/changelog').read_text().splitlines()[0] and '1.1.0~rc4-1+pcbm1' in all_docs, 'Menu version mismatch')
     for rel, flags in {
         'tools/freeze_private_candidate.py': ['--attempt', '--previous-attempt', '--runtime-version', '--menu-version', '--product-version', '--candidate'],
         'tools/export_candidate.py': ['--attempt', '--menu-tag'],

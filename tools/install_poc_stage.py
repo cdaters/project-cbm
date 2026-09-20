@@ -165,6 +165,9 @@ def main():
         from optional_software import verify_optional, install as install_optional
         payload = verify_optional(args.kit, lock['optional_software']['sid_wizard'])
         paths = install_optional(root, payload)
+        if 'ccgms' in lock['optional_software']:
+            from ccgms_application import verify as verify_ccgms, install as install_ccgms
+            paths.extend(install_ccgms(root,verify_ccgms(args.kit,lock['optional_software']['ccgms'])))
         if 'striketerm' in lock['optional_software']:
             from private_application import check_rights, verify as verify_private, install as install_private
             check_rights(lock,'private-engineering')

@@ -12,7 +12,7 @@ class RC2(unittest.TestCase):
   from build_contracts import read_json
   defaults=read_json(ROOT/'build/pigen/defaults.json')
   self.assertEqual(defaults['boot_presentation']['primary_dwell_milliseconds'],3000)
-  self.assertEqual(read_json(ROOT/'build/pigen/config.json')['image_name'],'project-cbm-1.1.0-rc.3')
+  self.assertEqual(read_json(ROOT/'build/pigen/config.json')['image_name'],'project-cbm-1.1.0-rc.4')
  def test_reused_runtime_rejects_payload_or_recipe_change(self):
   import io,tarfile
   sys.path.insert(0,str(ROOT/'tools'))

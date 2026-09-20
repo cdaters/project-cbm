@@ -48,8 +48,8 @@ keep the failing card and obtain help with recovery rather than repeatedly power
 | Imported files not visible | Check `category/machine/Imported` and source subfolders; SID files always go to `music/c64/Imported` |
 | File copied to home but absent from CONTENT | Move it into the `content` library's proper category/machine folder using FILES or SFTP |
 | File browses but will not launch | ROM/BIN/REU resources require VICE configuration; SID playback is not integrated. Other media must match the selected machine/drive/RAM |
-| G71 imported but not listed | Current CONTENT omits `.g71`; open it through compatible VICE media controls. This source mismatch is recorded for release review |
-| A hidden media file is in FILES but not CONTENT | Import and CONTENT have separate filtering. Inspect in FILES and use a normal visible filename if appropriate; do not assume copy failed |
+| G71 does not launch | Put it in a C64 or C128 machine folder. Project CBM uses a 1571 drive for this format; other machine profiles do not auto-launch it |
+| A media file is in FILES but not CONTENT | Check its extension and category. Legitimate dot-prefixed media is supported; known host housekeeping files/folders are intentionally excluded. Do not assume copy failed |
 | Updated same-name game was not copied | USB import preserves existing names. Keep both versions under distinct names or replace deliberately in FILES after backup |
 
 Do not clean a source drive merely to make counts match. The [narrow metadata policy](content.md#host-metadata-and-counts)

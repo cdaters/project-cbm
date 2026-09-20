@@ -29,7 +29,7 @@ verified package bytes, not a freshly compiled binary with an old version label.
 | `udisks2`, filesystem utilities, `rsync` | Storage management and transfer support | Lite/component dependencies; import has its own read-only broker |
 | `cloud-guest-utils` | Filesystem preparation support | Explicit target installation; does not mean cloud-init setup is enabled |
 | SID-Wizard 1.97 core | C64 music creation | Selected upstream binary/source/license subset, placed on a working D64 |
-| StrikeTerm 2014 Final | Optional C64 BBS terminal | Present in private test inputs only; public redistribution remains unresolved |
+| CCGMS 2021 | C64 BBS terminal | Unchanged Alwyz PRG on a Project CBM application disk; BSD 3-Clause notice and matching published source included |
 
 Development tools from intermediate stages are removed where specified by the installer.
 The final package inventory, rather than the list above or upstream stage lists, tells
@@ -37,12 +37,12 @@ you exactly what was installed.
 
 ## Exact package reference
 
-The current reviewed 1.1 candidate uses Runtime **1.1.0~rc3-1**, Menu
-**1.1.0~rc3-1+pcbm1**, VICE **3.10-1+pcbm4**, and TCPser **1.1.6~beta-1+pcbm1**.
+The next 1.1 candidate uses Runtime **1.1.0~rc4-1**, Menu
+**1.1.0~rc4-1+pcbm1**, VICE **3.10-1+pcbm4**, and TCPser **1.1.6~beta-1+pcbm1**.
 The base reports Debian 13.7. These technical versions identify the candidate reviewed
 for this manual; they are not a claim that a final 1.1 release was published.
 
-[installed-packages.json](installed-packages.json) contains all 672 installed
+[installed-packages.json](installed-packages.json) is the retained preceding candidate inventory (Runtime **1.1.0~rc3-1**, Menu **1.1.0~rc3-1+pcbm1**). It contains all 672 installed
 package/version/architecture records, package size metadata, source-inventory checksum
 and the raw image hash they were measured from. It was generated from actual-image
 validation output, not a proposed apt list. It includes no payloads or credentials.
@@ -69,16 +69,27 @@ records, rather than a generic license label on this repository, control third-p
 
 The selected SID-Wizard core has explicit author-license evidence retained by the project.
 Its supplied songs/examples, manuals and unrelated add-ons are not automatically part of
-that selection. StrikeTerm's private-use availability does not establish public redistribution
-permission. Primary artwork and machine Covers include material whose embedded graphics/font
-rights still require public-release review. They must be cleared or replaced with suitable
-art before being promised as redistributable assets.
+that selection. CCGMS 2021 retains its applicable BSD 3-Clause license, original credits,
+source and provenance. The application disk includes only the unchanged CCGMS program;
+seven unrelated files from the upstream compilation are excluded. StrikeTerm is no
+longer bundled, by product choice rather than a finding that redistribution is prohibited.
 
-ROMs, games, demos and music are separate content questions. Do not assume every VICE
-data file or every owner-supplied reference is project-owned, and do not assume all ROMs
-are absent merely because users can add their own. Review the actual image's asset/license
-inventory and [provenance](../provenance.md). Users should supply additional material they
-are entitled to use. This guide grants no new third-party rights.
+Craig Daters created the Project CBM logos, primary branding and seven machine Covers
+and authorized their inclusion and redistribution with Project CBM 1.1.0. The Menu
+package's copyright file distinguishes MIT code/documentation from this release-specific
+artwork permission. It does not grant blanket MIT rights to the artwork.
+
+VICE's program license and its ROM copyrights are distinct. The image retains only the
+ROM/resource set from the pinned upstream VICE distribution, with its notices and
+provenance. This does not claim that Commodore/DTV ROMs are GPL. The project has recorded
+the historical permission-documentation uncertainty and the owner's 1.1.0 release decision;
+additional proprietary ROM collections are not included. Supply additional games, demos,
+music and resources only when you are entitled to use them.
+
+Release SHA-256 checksums, component identities, package inventory and license/source
+notices provide useful verification. Formal cryptographic release signing and a standardized
+SPDX/CycloneDX software bill of materials are deferred beyond 1.1.0. The package inventory
+is not advertised as a complete standardized SBOM, nor is the release advertised as signed.
 
 The [public-release audit](../documentation/public-bootstrap.md) lists genuine remaining
 publication work. Normal users can focus on [adding their own content](content.md).

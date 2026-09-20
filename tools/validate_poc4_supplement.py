@@ -14,7 +14,7 @@ def main():
    root=Path(tmp);subprocess.run(['mount','-o','ro,noload',loop+'p2',str(root)],check=True)
    try:
     def text(p):return (root/p).read_text()
-    single_user=json.loads(text('usr/share/project-cbm/identity.json'))['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3')
+    single_user=json.loads(text('usr/share/project-cbm/identity.json'))['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3','private-engineering-rc4')
     content='home/pcbm/content' if single_user else 'home/pi/pcbm'
     rows={}
     for stanza in text('var/lib/dpkg/status').split('\n\n'):
@@ -32,12 +32,16 @@ def main():
     checks['about_view_present']='ABOUT) show_about' in text('usr/bin/pcbm-config') and 'def about(' in text('usr/libexec/project-cbm-menu/pcbm_config_bridge.py')
     checks['firstboot_payloads_present']=all((root/name).is_file() for name in ('usr/libexec/project-cbm/first_boot.py','usr/bin/pcbm-first-run','usr/bin/pcbm-setup-state'))
     checks['admin_auth_paths']=all(token in text('usr/share/project-cbm/runtime/project_cbm/admin.py') for token in ('su','sudo','raspi-config'))
-    checks['public_rights_gate_retained']=json.loads(text('usr/share/doc/project-cbm-striketerm/PRIVATE-ADMISSION.json'))['public_release_rights']=='PUBLIC-RELEASE-RIGHTS-GATE-PENDING'
+    ccgms=(root/'usr/share/project-cbm/applications/ccgms').is_dir()
+    if ccgms:
+     checks['no_bundled_striketerm']=not (root/'usr/share/project-cbm/applications/striketerm').exists() and not (root/'usr/share/doc/project-cbm-striketerm').exists()
+    else:
+     checks['public_rights_gate_retained']=json.loads(text('usr/share/doc/project-cbm-striketerm/PRIVATE-ADMISSION.json'))['public_release_rights']=='PUBLIC-RELEASE-RIGHTS-GATE-PENDING'
     record['optional_application_bytes']={}
-    for name in ('sid-wizard','striketerm'):
+    for name in ('sid-wizard','ccgms' if ccgms else 'striketerm'):
      paths=[root/'usr/share/project-cbm/applications'/name,root/'usr/share/doc'/('project-cbm-'+name)]
      record['optional_application_bytes'][name+'_system']=sum(f.stat().st_size for d in paths for f in d.rglob('*') if f.is_file() and not f.is_symlink())
-    record['optional_application_bytes']['fresh_user_working_disks']=sum(f.stat().st_size for f in (root/content).rglob('*.d64') if f.name in ('SID-Wizard-1.97.d64','StrikeTerm-2014-Final.d64'))
+    record['optional_application_bytes']['fresh_user_working_disks']=sum(f.stat().st_size for f in (root/content).rglob('*.d64') if f.name in ('SID-Wizard-1.97.d64','StrikeTerm-2014-Final.d64','CCGMS-2021.d64'))
     record['installed_package_size_sum_bytes']=sum(int(r.get('Installed-Size','0'))*1024 for r in rows.values())
     record['installed_package_count']=len(rows)
    finally:subprocess.run(['umount',str(root)],check=True)

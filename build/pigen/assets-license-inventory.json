@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "private-engineering-poc",
+  "scope": "Project CBM 1.1.0 release composition; owner policy 2026-09-20",
   "items": [
     {
       "component": "Project CBM integration",
@@ -12,14 +12,14 @@
       "component": "Project CBM Menu",
       "origin": "exact tagged Menu source selected by future frozen release lock",
       "license": "MIT",
-      "payload": "reviewed Menu source and explicitly listed machine covers; no experimental screenshot helper"
+      "payload": "MIT Menu code/documentation; artwork separately licensed below"
     },
     {
       "component": "VICE 3.10",
       "origin": "official upstream source archive",
       "license": "GPL-2+ code; upstream per-file ROM/data notices",
       "payload": "SDL2 executables and upstream runtime data",
-      "public_distribution": "requires separate ROM/data rights review"
+      "public_distribution": "Retain established pinned upstream ROM/resources and notices under owner 1.1.0 policy; known historical permission-documentation uncertainty retained, not a GPL claim or automatic blocker absent new contrary evidence"
     },
     {
       "component": "TCPser",
@@ -36,23 +36,40 @@
     {
       "component": "Project CBM machine covers",
       "origin": "existing project-cbm-menu/covers; exact files in Menu docs/cover-artwork.json",
-      "license": "owner-identified Project CBM artwork; constituent third-party rights not independently resolved",
+      "license": "Project CBM 1.1.0 release-specific inclusion/redistribution permission; not blanket MIT",
       "payload": "seven unchanged machine-specific JPEGs",
-      "scope": "future private candidate only; absent from immutable POC1\u20134 attempt 2",
-      "public_distribution": "requires constituent graphics/font rights review"
+      "public_distribution": "Owner explicitly authorized inclusion and redistribution with Project CBM 1.1.0",
+      "creator_copyright_owner": "Craig Daters"
     },
     {
       "component": "Project CBM primary presentation",
       "origin": "Menu docs/primary-artwork.json; unchanged exact released v1.0.0 pcbmcover1.jpg",
-      "license": "Owner-authorized private engineering use; embedded constituent graphics/font rights remain unresolved for publication",
+      "license": "Project CBM 1.1.0 release-specific inclusion/redistribution permission; not blanket MIT",
       "payload": "one existing primary JPEG; no machine Cover replacement",
-      "public_distribution": "requires constituent rights review"
+      "public_distribution": "Owner explicitly authorized inclusion and redistribution with Project CBM 1.1.0",
+      "creator_copyright_owner": "Craig Daters"
+    },
+    {
+      "component": "CCGMS 2021",
+      "origin": "CSDb release198392; exact pin build/optional/ccgms.json",
+      "license": "BSD-3-Clause; full notice, source and attribution retained",
+      "payload": "One unchanged verified PRG on Project CBM application D64; no unrelated compilation utilities"
+    },
+    {
+      "component": "SID-Wizard 1.97 core",
+      "origin": "Exact source/license selection in build/optional/sid-wizard.json",
+      "license": "Established per-selection source/license evidence",
+      "payload": "Existing selected core program disk and source/notices"
     }
   ],
   "excluded": [
     "historical private image extracts",
     "personal media",
     "commercial content collections",
-    "Unselected generic artwork and historical source-art archives"
+    "Unselected generic artwork and historical source-art archives",
+    "StrikeTerm 2014 Final (product composition decision; historical evidence retained)",
+    "Seven unrelated files from upstream CCGMS compilation disk",
+    "CCGMS CRT variant",
+    "Owner-supplied qualification demo payloads"
   ]
 }

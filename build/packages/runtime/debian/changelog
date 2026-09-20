@@ -1,3 +1,9 @@
+project-cbm-runtime (1.1.0~rc4-1) trixie; urgency=medium
+
+  * Integrate verified CCGMS-only terminal and media launch contracts.
+
+ -- Project CBM contributors <noreply@localhost>  Sun, 20 Sep 2026 21:30:00 +0000
+
 project-cbm-runtime (1.1.0~rc3-1) trixie; urgency=medium
 
   * Filter known removable-media metadata and distinguish content file counts.

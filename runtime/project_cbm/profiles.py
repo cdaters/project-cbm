@@ -4,7 +4,7 @@ import json
 import sys
 from .data import registry
 from . import preferences, library
-from .applications import application_profile
+from .applications import application_profile, content_options
 
 
 def main(argv=None):
@@ -16,6 +16,7 @@ def main(argv=None):
     sub.add_parser('initialize')
     sub.add_parser('content-families')
     content = sub.add_parser('content-profile'); content.add_argument('media')
+    options = sub.add_parser('content-options'); options.add_argument('profile'); options.add_argument('media')
     resolve = sub.add_parser('resolve'); resolve.add_argument('profile')
     output = resolve.add_mutually_exclusive_group()
     output.add_argument('--launch-fields', action='store_true')
@@ -23,6 +24,10 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         profiles = registry()
+        if args.action == 'content-options':
+            if not any(p['id']==args.profile for p in profiles):raise ValueError('unknown_profile')
+            for option in content_options(args.media,args.profile):print(option)
+            return 0
         if args.action == 'content-families':
             for name, (label, _) in library.FAMILIES.items():
                 print(name+'\t'+label)

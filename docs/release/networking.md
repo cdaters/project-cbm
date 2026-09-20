@@ -186,12 +186,40 @@ port and speed** accepts a local port from 1024–65535 (default **25232**) and 
 endpoint **127.0.0.1:25232** at the default port. This local address means the Pi itself;
 it is not the address of the remote BBS and not a public modem server.
 
-Configure the terminal/emulated modem according to its own instructions and the chosen
-VICE interface. Use a BBS endpoint you are permitted to access. Terminal software may
-have its own saved settings/passwords; protect those with your personal backups.
-StrikeTerm is separately rights-gated; its presence in a test image does not make it
-part of the public release. End-to-end BBS connectivity still needs physical testing.
-Turn **BBS / Modem** off when not needed.
+### Call a BBS with CCGMS 2021
+
+CCGMS is the included Commodore 64 terminal. It sends modem commands through VICE
+to TCPser, which makes the network connection. No Ultimate Ethernet cartridge is needed.
+
+1. In CONTROL → Services → BBS / Modem, turn the service on. Keep the initial speed
+   at **2400 baud**; changing the local port is normally unnecessary.
+2. Open CONTENT → PROGRAMS → `c64/Communications/CCGMS/CCGMS-2021.d64`.
+3. In CCGMS press **F7** for Dialer/Parameters. Press **M** until Modem Type reads
+   **Swift / Turbo DE**, **B** until Baud Rate reads **2400**, and use **Standard**
+   firmware with **Full** duplex. Press **Return** to return to the terminal.
+4. Type `AT` and press Return. The modem should answer `OK`. If it does not, check
+   BBS / Modem is On and recheck those settings before trying a remote address.
+5. Use the hostname and port published by a BBS you are permitted to visit. Type
+   `ATDTbbs.example.org:6400` and press Return, replacing this illustrative address
+   with the real BBS address. `CONNECT` means the modem connected. Follow the BBS's
+   prompts; its account/password is separate from your Project CBM passwords.
+6. Log off using the BBS's command. To hang up locally, pause typing for at least
+   one second, type `+++` without Return, wait at least another second, then type
+   `ATH` and press Return. Alternatively use CCGMS's documented Commodore + RUN/STOP
+   disconnect shortcut with your VICE keyboard mapping.
+7. Press **F10 → Quit** to return to Project CBM. Turn BBS / Modem off when finished.
+
+CCGMS F7 also offers **Save** for its phone book/configuration (`CCGMS-PHONE`) on the
+writable application disk. Save after choosing your settings if you want them next
+launch. The pristine system copy is separate from this user-owned working disk.
+Keep the application under its supplied CCGMS library folder so Project CBM applies
+its serial configuration automatically. Ordinary C64 launches retain their settings.
+
+The same SwiftLink interface supports higher rates, but 2400 is the initial documented
+setting. If experimenting with another supported rate, change both the Project CBM
+modem speed and CCGMS baud rate, then test sending and receiving. File-transfer
+protocols and every remote BBS are not qualified merely by a successful text connection.
+Protect saved phone books and BBS passwords with your personal backups.
 
 ## Quick connection checks
 

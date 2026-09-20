@@ -5,9 +5,9 @@ from .data import text
 
 from .library import ROOT as CONTENT_ROOT
 APP_FOLDERS = (('music', 'Creation', 'SID-Wizard'),
-               ('programs', 'Communications', 'StrikeTerm'))
+               )
 NEW_APP_FOLDERS = (('music', 'c64', 'Creation', 'SID-Wizard'),
-                   ('programs', 'c64', 'Communications', 'StrikeTerm'))
+                   ('programs', 'c64', 'Communications', 'CCGMS'))
 
 
 def application_profile(media, profiles, root=CONTENT_ROOT):
@@ -37,3 +37,27 @@ def application_profile(media, profiles, root=CONTENT_ROOT):
     if not any(p['id'] == 'x64sc' and p['executable'] == 'x64sc' for p in profiles):
         raise ValueError('c64_profile_unavailable')
     return 'x64sc'
+
+
+def content_options(media, profile, root=CONTENT_ROOT, modem_path=Path('/etc/project-cbm/modem.json')):
+    """Per-launch media options; never save emulator preferences or enable services."""
+    path=Path(media)
+    if path.is_symlink() or not path.is_file():
+        raise ValueError('redirected_content')
+    options=[]
+    if path.suffix.lower()=='.g71':
+        if profile not in ('x64','x64sc','x128','x128-80col'):
+            raise ValueError('g71_requires_c64_c128')
+        options += ['-drive8type','1571']
+    try:relative=path.relative_to(Path(root).resolve())
+    except ValueError:return options  # Existing direct launches outside the library.
+    if path.resolve(strict=True)!=path:raise ValueError('redirected_content')
+    if relative.parts[:4]==('programs','c64','Communications','CCGMS'):
+        if profile!='x64sc':raise ValueError('ccgms_requires_c64')
+        from .data import read_json
+        from .modem import arguments
+        settings=read_json(modem_path)
+        arguments(settings)  # Same typed port/baud contract as the existing adapter.
+        options += ['-acia1','-acia1mode','1','-acia1base','56832','-acia1irq','1',
+                    '-myaciadev','0','-rsdev1','127.0.0.1:'+str(settings['port']),'-rsdev1ip232']
+    return options

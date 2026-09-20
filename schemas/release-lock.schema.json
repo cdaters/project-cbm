@@ -515,6 +515,50 @@
             "artifact",
             "rights_review"
           ]
+        },
+        "ccgms": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "const": "2021"
+            },
+            "license": {
+              "const": "BSD-3-Clause"
+            },
+            "origin": {
+              "const": "https://csdb.dk/release/?id=198392"
+            },
+            "upstream_disk": {
+              "$ref": "#/$defs/artifact"
+            },
+            "source": {
+              "$ref": "#/$defs/artifact"
+            },
+            "notice": {
+              "$ref": "#/$defs/artifact"
+            },
+            "artifact": {
+              "$ref": "#/$defs/artifact"
+            },
+            "recipe": {
+              "$ref": "#/$defs/artifact"
+            },
+            "rights_review": {
+              "$ref": "#/$defs/artifact"
+            }
+          },
+          "required": [
+            "version",
+            "license",
+            "origin",
+            "upstream_disk",
+            "source",
+            "notice",
+            "artifact",
+            "recipe",
+            "rights_review"
+          ]
         }
       }
     }

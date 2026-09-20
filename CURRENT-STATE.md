@@ -1,3 +1,23 @@
+# RC4 final release-polish implementation — attempt13 preparation
+
+The owner approved the CCGMS-only disk and one new final candidate. [Scope and gates](docs/build/private-rc4.md)
+and [CCGMS integration](docs/runtime/ccgms-integration.md) are authoritative for this work.
+Changed Runtime/Menu are versioned RC4; VICE/TCPser and accepted RC3 lifecycle stay unchanged.
+CCGMS uses the verified unchanged PRG with BSD/source/notices, replacing StrikeTerm in new
+composition only. Three Menu corrections and approved artwork/release policies are applied.
+
+Host Product243/Menu102 and native Product243/Menu102 pass. Installed lifecycle12 and
+existing native services/authentication/network/MC/import pass. Native CCGMS/VICE/TCPser
+local text exchange and G71 autostart pass; physical workflow remains UNTESTED. External
+working evidence: `qualification/rc4-attempt13`; native staging is a disposable overlay
+on the hash-verified read-only RC3 image. Initial harness failures remain retained.
+
+Next: finish focused/packaged validation, freeze clean committed sources and a new lock,
+build ONE attempt13/RC4 image, complete actual-image/raw-XZ/host/recovery gates and prepare
+the exact-hash Pi4 B affected-area procedure. No image built at this checkpoint; no push,
+publication or final 1.1.0 tag. STOP for owner physical qualification after completion.
+Earlier milestone STOPs below describe history. RC3 artifacts remain unchanged.
+
 # Release documentation refinement — RC3 unchanged
 
 Documentation-only milestone complete for owner review. Start at [documentation](docs/README.md)

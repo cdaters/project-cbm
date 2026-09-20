@@ -1,5 +1,10 @@
 # Project CBM 1.1 documentation readiness
 
+> Historical documentation checkpoint. Current release decisions and changed application
+> composition are in [release policy](../release/release-policy.md); final candidate validation
+> and physical status are recorded in [CURRENT-STATE](../../CURRENT-STATE.md).
+
+
 [Documentation index](../README.md) · [Source verification](source-map.md) · [Public-build audit](public-bootstrap.md)
 
 This documentation-only review describes the current RC3 software. Owner physical

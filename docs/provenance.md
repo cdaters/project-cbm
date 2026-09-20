@@ -1,3 +1,8 @@
+> Current 1.1.0 owner decisions: [release contents and notices](release/release-policy.md).
+> CCGMS replaces StrikeTerm in the new candidate; artwork permission and the VICE ROM,
+> signing, formal SBOM and public-bootstrap decisions supersede earlier tentative gates below.
+> Historical candidates, rights observations and evidence remain unchanged.
+
 # Historical provenance and preservation
 
 2026-09-18: [POC4 corrective attempt #5](build/private-poc4-attempt5.md) binds the new

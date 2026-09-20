@@ -79,7 +79,7 @@ bash "$CBM_RECIPE/build/packages/build_candidate.sh" "$CBM_RECIPE" \
 `CBM_MENU_SOURCE_VERSION` is the tag without its leading v. The script creates a new
 `packages/poc4-attemptN`, builds Runtime and Menu with dpkg-buildpackage and retains
 `.deb`, `.dsc`, source tarballs, `.buildinfo`, `.changes` and logs. The final argument
-selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. RC3 changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
+selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. The final release-polish candidate changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
 when Menu is reused, use `--reuse-menu` during both export and freezing. Reused Menu
 version/tag/source must equal the predecessor exactly. Reuse TCPser/closures/assets
 and any unchanged component with its original verified identity. Their original recipes are under `build/packages`; adding a dependency
@@ -92,6 +92,17 @@ that a package was rebuilt. The freeze checks actual package fields and hashes.
 Run native tests against the actual new packages in a disposable isolated staging root;
 see [native tests](../../tests/native/README.md). Preserve lower-image identity, make it
 read-only and put mutations in a separate overlay. Never use the qualification SD card.
+
+## Approved CCGMS inputs
+
+The final release composition uses the CCGMS-only disk recipe, not the upstream
+compilation. Before freezing, retain the three exact reviewed inputs named in
+`build/optional/ccgms.json` beneath the workspace's `inputs/ccgms-2021/`: upstream
+D64, published source and BSD license notice. The freeze checks their hashes, extracts
+only the verified PRG and constructs the deterministic application disk. See
+[CCGMS integration](../runtime/ccgms-integration.md) for provenance and exact identities.
+This is a required acquired input set; the factory does not download or scrape it.
+The new lock omits StrikeTerm while historical kits keep their original evidence.
 
 ## Freeze and construct
 

@@ -31,6 +31,13 @@ def disk(programs):
     """Original minimal two-program working disk; never imports upstream music."""
     if len(programs) != 2 or [n for n, _ in programs] != ['SID-WIZARD', 'SID-MAKER']:
         raise ValueError('only admitted core programs')
+    return application_disk(programs, 'SID-WIZARD 1.97', 'SW')
+
+
+def application_disk(programs, label, disk_id):
+    """Deterministic fresh D64; callers independently verify admitted PRG bytes."""
+    if not 1 <= len(programs) <= 8 or len(label) > 16 or len(disk_id) != 2:
+        raise ValueError('application disk shape')
     out = bytearray(174848)
     used = {(18, 0), (18, 1)}
     available = [(t, s) for t in range(1, 36) if t != 18 for s in range(sectors(t))]
@@ -55,8 +62,8 @@ def disk(programs):
     for t in range(1, 36):
         free = [s for s in range(sectors(t)) if (t, s) not in used]
         out[bam+t*4:bam+t*4+4] = bytes([len(free)]) + sum(1 << s for s in free).to_bytes(3, 'little')
-    out[bam+0x90:bam+0xa0] = b'SID-WIZARD 1.97'.ljust(16, b'\xa0')
-    out[bam+0xa0:bam+0xab] = b'\xa0\xa0SW\xa02A\xa0\xa0\xa0\xa0'
+    out[bam+0x90:bam+0xa0] = label.encode('ascii').ljust(16, b'\xa0')
+    out[bam+0xa0:bam+0xab] = b'\xa0\xa0'+disk_id.encode('ascii')+b'\xa02A\xa0\xa0\xa0\xa0'
     return bytes(out)
 
 

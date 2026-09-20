@@ -32,7 +32,7 @@ def main():
     raw = args.lock.read_bytes()
     lock = validate_lock(raw)
     activated=lock['schema_version']>=4
-    single_user=lock['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3')
+    single_user=lock['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3','private-engineering-rc4')
     account='pcbm' if single_user else 'pi'
     home='home/'+account
     content=home+('/content' if single_user else '/pcbm')
@@ -107,7 +107,7 @@ def main():
         check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()==lock['product']['candidate']+'\n')
         check('diagnostic_programs_present',all((root/p).is_file() for p in ['usr/bin/pcbm-diagnostics','usr/libexec/project-cbm/engineering.py']))
         observer=(root/'usr/libexec/project-cbm/engineering.py').read_text()
-        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2','private-engineering-rc3'):
+        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2','private-engineering-rc3','private-engineering-rc4'):
             template=root/'usr/share/project-cbm/vice-defaults.ini'
             user=root/home/'.config/vice/sdl-vicerc'
             check('presentation_template_exact',template.read_bytes()==presentation_defaults() and template.stat().st_uid==0)

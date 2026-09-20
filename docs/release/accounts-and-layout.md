@@ -94,3 +94,8 @@ wizard have separate system-preparation and user-choice responsibilities.
 Sensitive credential databases and connection files are not support attachments or
 build inputs. [Security](../security.md) and [configuration contracts](../runtime/configuration-contract.md)
 provide the precise developer rules behind these paths.
+
+CCGMS uses `content/programs/c64/Communications/CCGMS/CCGMS-2021.d64` as its writable
+application disk. `/usr/share/project-cbm/applications/ccgms/CCGMS-2021.d64` is the pristine
+system copy. Its source, BSD license, provenance and manifest are under
+`/usr/share/doc/project-cbm-ccgms/`. Back up the working disk after saving a phone book.

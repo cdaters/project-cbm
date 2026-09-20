@@ -28,7 +28,7 @@ def inspect(root, boot, record, kit):
     checks['type_machine_hierarchy'] = all((content/category/family).is_dir() for category in ('games','demos','programs','roms') for family in ('c64','c128','vic20','plus4','pet','cbm2','cbm5x0'))
     checks['no_format_directory_sprawl'] = not any((content/'games/c64'/name).exists() for name in ('disk','tape','cart','prg'))
     checks['no_loose_content_categories_in_home'] = not any((root/'home/pcbm'/name).exists() for name in ('games','demos','music','programs','roms'))
-    checks['optional_disks_canonical_library'] = (content/'music/c64/Creation/SID-Wizard/SID-Wizard-1.97.d64').is_file() and (content/'programs/c64/Communications/StrikeTerm/StrikeTerm-2014-Final.d64').is_file()
+    checks['optional_disks_canonical_library'] = (content/'music/c64/Creation/SID-Wizard/SID-Wizard-1.97.d64').is_file() and (content/('programs/c64/Communications/CCGMS/CCGMS-2021.d64' if (root/'usr/share/project-cbm/applications/ccgms').is_dir() else 'programs/c64/Communications/StrikeTerm/StrikeTerm-2014-Final.d64')).is_file()
     checks['content_profile_authority'] = 'library.content_profile' in text('usr/share/project-cbm/runtime/project_cbm/profiles.py')
     checks['import_family_authority'] = 'library.import_destination' in text('usr/share/project-cbm/runtime/project_cbm/importer.py') and 'pcbm-profiles content-families' in text('usr/bin/pcbm-import')
     checks['gateway_dns_authority'] = 'IP4.GATEWAY,IP4.DNS,IP6.GATEWAY,IP6.DNS' in text('usr/share/project-cbm/runtime/project_cbm/network_info.py')
@@ -71,6 +71,32 @@ def inspect(root, boot, record, kit):
             functions=list(Path(scratch).glob('**/scripts/functions'))
             body=functions[0].read_text() if len(functions)==1 else ''
             checks[name+'_quiet_fsck_and_verbose_recovery'] = ('Project CBM: successful quiet checks' in body and '>/run/initramfs/pcbm-fsck.console 2>&1' in body and 'if [ "$FSCKCODE" -ne 0 ]; then cat /run/initramfs/pcbm-fsck.console; fi' in body and 'fsck $spinner $force $fix -V' in body and 'filesystem failed' in body)
+    lock=read_json(kit/'release-lock.json')
+    if lock['product']['candidate']=='private-engineering-rc4':
+        import io,tarfile
+        from ccgms_application import verify
+        payload=verify(kit,lock['optional_software']['ccgms'])
+        with tarfile.open(fileobj=io.BytesIO(payload)) as archive:
+            expected={m.name:archive.extractfile(m).read() for m in archive.getmembers()}
+        for name,data in expected.items():
+            target=root/('usr/share/project-cbm/applications/ccgms/'+name if name.endswith('.d64') else 'usr/share/doc/project-cbm-ccgms/'+name)
+            checks['ccgms_exact_'+name]=target.is_file() and target.read_bytes()==data
+        working=content/'programs/c64/Communications/CCGMS/CCGMS-2021.d64'
+        checks['ccgms_exact_owned_working_disk']=working.is_file() and working.read_bytes()==expected['CCGMS-2021.d64'] and working.stat().st_uid==working.stat().st_gid==1000
+        checks['no_striketerm_input']='striketerm' not in lock['optional_software']
+        checks['no_striketerm_image_payload']=not any('striketerm' in p.name.lower() for base in (content,root/'usr/share/project-cbm/applications',root/'usr/share/doc') for p in base.rglob('*'))
+        checks['no_private_admission_in_image']=not list((root/'usr/share/doc').rglob('PRIVATE-ADMISSION.json'))
+        apps=text('usr/share/project-cbm/runtime/project_cbm/applications.py')
+        checks['ccgms_typed_serial_contract']=all(token in apps for token in ("'56832'","'-myaciadev'","'-rsdev1ip232'","settings['port']","arguments(settings)"))
+        checks['shared_launcher_uses_content_options']='content-options' in text('usr/bin/pcbm-run-vice')
+        filters=text('usr/bin/pcbm-dialog-lib.sh')
+        checks['g71_discovery_and_drive']='*.g71' in filters and "'-drive8type','1571'" in apps
+        checks['legitimate_dot_content']= "-name '.*'" not in filters and "-name '._*'" in filters and "-name '.Trashes'" in filters
+        checks['sharing_prompt_colon']='colon (:) is not accepted' in text('usr/bin/pcbm-config')
+        copyright=text('usr/share/doc/project-cbm-menu/copyright')
+        checks['separate_artwork_permission']=all(token in copyright for token in ('Project-CBM-Branding','Project-CBM-Covers','Craig Daters','as part of Project CBM 1.1.0'))
+        checks['ccgms_user_instructions']='CCGMS 2021' in text('usr/share/doc/project-cbm-runtime/release/user-guide.md') and 'Swift / Turbo DE' in text('usr/share/doc/project-cbm-runtime/release/networking.md')
+        checks['owner_release_policy_shipped']=(root/'usr/share/doc/project-cbm-runtime/release/release-policy.md').is_file()
     result['result'] = 'PASS' if all(checks.values()) else 'FAIL'
     result['scope'] = 'Actual-image bytes/configuration; Pi boot appearance/time and complete RC3 behavior require physical qualification'
     return result

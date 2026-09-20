@@ -2,6 +2,18 @@
 
 All notable Project CBM changes should be documented here.
 
+## [1.1.0-rc.4] - Private release-polish candidate
+
+- Replace bundled StrikeTerm with a CCGMS-only disk containing the unchanged verified
+  CCGMS 2021 program, source, BSD notice and attribution; unrelated compilation utilities
+  are excluded. Add application-scoped VICE SwiftLink/IP232 options for existing TCPser.
+- Discover G71 content and use compatible C64/C128 1571 routing; retain legitimate
+  dot-prefixed supported content while excluding known host metadata.
+- State the File Sharing password's colon restriction in its prompt.
+- Distinguish Craig Daters' release-authorized branding/Covers from MIT code, record
+  owner release policy and update user connection instructions and validation.
+- Physical qualification is pending. No final release publication is implied.
+
 ## [1.0.0] - Initial Public Release
 
 ### Added

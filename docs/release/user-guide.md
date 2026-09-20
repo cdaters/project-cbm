@@ -238,13 +238,14 @@ Save your own work on writable working disks and back them up; F10 → Quit leav
 The selected core tool has established project license evidence; unrelated examples,
 songs and add-ons are not automatically included.
 
-**StrikeTerm 2014 Final** is a C64 terminal for connecting to BBS systems through an
-emulated modem. Its disk appears under CONTENT → PROGRAMS at
-`c64/Communications/StrikeTerm/StrikeTerm-2014-Final.d64` only when supplied. Public
-redistribution permission remains unresolved, so it must not be promised as part of
-the public download. If lawfully supplied separately, use the documented application
-folder and [modem setup](networking.md#bbs--modem); F10 → Quit returns. An application
-launch test does not establish every function or remote connection works.
+**CCGMS 2021** is a Commodore 64 terminal for calling bulletin board systems (BBSs).
+Open CONTENT → PROGRAMS → `c64/Communications/CCGMS/CCGMS-2021.d64`. Project CBM
+starts the C64 with the modem interface this application needs. Enable BBS / Modem
+first, then follow the [CCGMS connection walkthrough](networking.md#bbs--modem).
+The supplied disk contains CCGMS alone; its program is unchanged from Alwyz's release.
+Your saved phone book and settings belong to your working disk, so back it up with
+other content. F10 → Quit returns to Project CBM. Remote BBS availability and account
+requirements are controlled by each BBS operator.
 
 There is no general Applications or TOOLS Main Menu entry. Other software can be used
 through content or Advanced as appropriate; installation alone does not create a Menu item.

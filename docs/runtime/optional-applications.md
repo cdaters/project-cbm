@@ -1,3 +1,8 @@
+> Current 1.1 applications are SID-Wizard and CCGMS 2021. Use the
+> [user manual](../release/user-guide.md#optional-applications), [CCGMS connection guide](../release/networking.md#bbs--modem)
+> and [integration record](ccgms-integration.md). The source-stage record below is historical;
+> its older paths and StrikeTerm-specific routing do not describe the new candidate.
+
 # SID-Wizard and StrikeTerm
 
 **Source integration, 2026-09-16; not an image update.** POC1–3 are unchanged.

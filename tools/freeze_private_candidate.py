@@ -157,7 +157,8 @@ def main():
     lock['base']['configuration'] = store(recipe/'build/pigen/config.json')
     for key, source in [('defaults','build/pigen/defaults.json'),
                         ('first_boot_recipe','build/pigen/stage-cbm/files/first_boot.py'),
-                        ('sealing_recipe','tools/install_poc_stage.py')]:
+                        ('sealing_recipe','tools/install_poc_stage.py'),
+                        ('assets_license_inventory','build/pigen/assets-license-inventory.json')]:
         lock['configuration'][key] = store(recipe/source)
     # Refresh path-bearing application manifests/recipes; payload rights remain unchanged.
     from optional_software import payload
@@ -168,7 +169,20 @@ def main():
     temporary.write_bytes(payload(kit/sid['source']['path'],read_json(recipe/'build/optional/sid-wizard.json')))
     sid['artifact'] = store(temporary)
     temporary.unlink()
-    lock['optional_software']['striketerm']['rights_review'] = store(recipe/'build/optional/striketerm.json')
+    # New release composition: preserve predecessor evidence, exclude StrikeTerm.
+    from ccgms_application import payload as ccgms_payload
+    lock['optional_software'].pop('striketerm', None)
+    pin=read_json(recipe/'build/optional/ccgms.json')
+    ccgms={k:pin[k] for k in ('version','license','origin')}
+    acquired=w/'inputs/ccgms-2021'
+    for key in ('upstream_disk','source','notice'):
+        ccgms[key]=store(acquired/pin[key]['filename'])
+    ccgms['recipe']=store(recipe/'tools/ccgms_application.py')
+    ccgms['rights_review']=store(recipe/'build/optional/ccgms.json')
+    temporary=kit/'ccgms-payload.tmp'
+    temporary.write_bytes(ccgms_payload(*[(kit/ccgms[k]['path']).read_bytes() for k in ('upstream_disk','source','notice')],pin))
+    ccgms['artifact']=store(temporary);temporary.unlink()
+    lock['optional_software']['ccgms']=ccgms
     packages = w/f'packages/poc4-attempt{a.attempt}'
     oldrecord = read_json(old/lock['components']['menu']['build_record']['path'])
     if a.reuse_menu:
@@ -285,10 +299,10 @@ def main():
     (kit/'release-lock.sha256').write_text(sha+'  release-lock.json\n')
     (kit/'attempt.json').write_bytes(encode({'attempt':a.attempt,'candidate':lock['product'],
         'prior_lock_sha256':hashlib.sha256(oldraw).hexdigest(),'release_lock_sha256':sha,
-        'changed':['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity','optional application path manifests/recipes']
+        'changed':['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity','CCGMS-only disk/source/notice replacing StrikeTerm','artwork permission metadata','G71/hidden content and sharing prompt']
                    + ([] if a.reuse_menu else ['Menu package/tag/source']) + (['VICE package/patches'] if a.vice_version else []),
         'unchanged':(['Menu package/tag/source'] if a.reuse_menu else []) + ([] if a.vice_version else ['VICE']) + ['TCPser','all seven Covers','base and host closures','pi-gen and patches',
-                     'qualification media','SID-Wizard upstream source','StrikeTerm disk bytes and rights gates'],
+                     'qualification media','SID-Wizard upstream source','historical StrikeTerm evidence (not installed)' ],
         'construction_argument':'--attempt '+str(a.attempt)}))
     print(sha)
 

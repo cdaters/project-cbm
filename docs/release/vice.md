@@ -171,3 +171,20 @@ For engineering results and current physical status, follow [current state](../.
 The measurable window uses 12 consecutive complete non-warp samples spanning at least
 60 seconds, weighted speed 98–102% and no complete sample below 95%. Physical sound/pace
 and launch/quit behavior are also required; emulated FPS is not a display-refresh count.
+
+## Application-specific serial and disk options
+
+CCGMS launched from its documented library folder selects the normal `x64sc` profile
+and adds a temporary SwiftLink interface: ACIA enabled, mode 1, base `$DE00`, NMI,
+VICE RS232 device 0, IP232 to the configured local TCPser port (initially 25232).
+The installed VICE 3.10 option for that device selector is `-myaciadev 0`.
+Project CBM reads the same typed `/etc/project-cbm/modem.json` used by `pcbm-modem`;
+it does not start a network service merely by launching content. CCGMS users select
+Swift / Turbo DE and 2400 baud initially. See the [connection walkthrough](networking.md#bbs--modem).
+These arguments do not rewrite the owner's VICE resources. Do not save temporary
+application-specific emulator settings as global defaults unless that is intentional.
+
+G71 content uses a 1571 drive (`-drive8type 1571`) for that invocation and is restricted
+to C64/C128 profiles. Other media retain their existing launch behavior. Filename and
+directory dots do not by themselves hide supported content; known host metadata is
+still excluded. No VICE package rebuild is needed for these Product/Menu launch changes.

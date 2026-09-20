@@ -56,7 +56,9 @@ category remain browsable and use RUN's default.
 
 ## Launching files
 
-CONTENT scans each category recursively and shows relative filenames. There is no
+CONTENT scans each category recursively and shows relative filenames. A leading dot
+in a legitimate file or folder name does not hide supported content; known host
+metadata remains excluded. There is no
 intermediate machine picker. Select `c64/My Game.d64` from GAMES to launch it with a
 C64 profile. The shared launcher passes ordinary media to VICE's autostart facility.
 Whether it starts correctly depends on the program, selected machine, drive and memory
@@ -67,7 +69,7 @@ configuration. For multi-disk software, use VICE's F10 media controls to change 
 | Programs | `.prg`, `.p00` | Yes | Must target the selected computer and required RAM |
 | Tapes | `.tap`, `.t64` | Yes | Requires compatible machine/tape support |
 | Disks | `.d64`, `.d67`, `.d71`, `.d80`, `.d81`, `.d82`, `.g64`, `.g41`, `.x64`, `.p64` | Yes | Drive type and software matter; attach manually in VICE when necessary |
-| G71 disk | Not currently listed | `.g71` is imported | Use FILES/VICE; this browse/import mismatch is a known release-review item |
+| G71 disk | Listed | `.g71` is imported | C64/C128 profiles; Project CBM selects a 1571 drive for this launch |
 | Cartridges | `.crt` | Yes | Only where the selected VICE machine can handle that cartridge |
 | Music | `.sid`, `.mus` | Yes | SID is explicitly refused by the generic launcher; MUS recognition is not a promised music-player workflow |
 | Resources | `.bin`, `.rom`, `.reu` | No | Browse/store, then configure in VICE; not automatic programs |

@@ -4,6 +4,21 @@ This is an engineering release-readiness record, separate from the user manual.
 Audit date: 2026-09-20. No runtime, packages, factory implementation, lock or image
 changed during the documentation milestone. RC3 remains in owner physical qualification.
 
+## Owner policy update — 2026-09-20
+
+The historical audit below records the findings at the documentation checkpoint.
+Its earlier tentative gate classifications are superseded by the [owner release policy](../release/release-policy.md).
+Public bootstrap, formal SBOM and signing are post-1.1.0. Artwork permission is established.
+The known upstream VICE ROM permission-documentation gap is accepted under the recorded
+policy. StrikeTerm is replaced by an approved CCGMS-only disk in the next candidate.
+
+Remaining publication work is the final candidate's physical qualification, exact image
+checksums/source identities, applicable corresponding source and notices, current user
+documentation and separately authorized release publication. Public source-to-image
+bootstrap remains incomplete and must not be advertised as complete.
+
+### Historical audit (gate classifications superseded)
+
 ## Can a stranger build 1.1 from public inputs today?
 
 **No.** Public Product refs inspected with `git ls-remote --heads --tags` contain main

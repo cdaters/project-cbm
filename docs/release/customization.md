@@ -83,7 +83,7 @@ information, and the derivative's image asset/input record. A new hash is not a 
 grant. Bump/rebuild **Menu**. Test `fit()`/renderer limits in Menu tests, missing-image
 fallback, actual installed asset bytes and repeated physical Cover → VICE → Quit.
 The seven mappings and primary artwork are listed in the [layout](accounts-and-layout.md)
-and Menu artwork manifests. Existing project artwork still has public-rights review needs.
+and Menu artwork manifests. Craig Daters authorizes the supplied artwork with Project CBM 1.1.0; this is not a general MIT license for separate or modified artwork. Use your own licensed art for a derivative.
 
 ## Change the default machine
 
@@ -149,8 +149,9 @@ For a host Linux utility, package it with normal permissions and add an unprivil
 action only if useful. Follow the existing FILES/MC call-and-return pattern. Changes to
 Runtime require its package; a new Menu action requires Menu; new content/installer input
 requires a new image. Validate writable working copies, missing input, launch/return,
-source/license availability and user ownership. StrikeTerm's private classification is
-not a reusable permission grant for your derivative.
+source/license availability and user ownership. The approved CCGMS-only disk is a concrete
+example; its BSD notice and source are retained. A private admission of other software
+is not a reusable redistribution permission for your derivative.
 
 ## Add a Debian package
 
