@@ -59,6 +59,16 @@ def verify_reused_runtime(old,recipe,component,version):
     if actual!=expected:raise ValueError('reused Runtime payload or recipe changed')
 
 
+def verify_output_identity(recipe, config, product_version, candidate):
+    if not product_version:return
+    if config['image_name']!='project-cbm-'+product_version:
+        raise ValueError('image filename version differs from installed identity')
+    suffix=candidate.removeprefix('private-engineering-')
+    expected="IMG_SUFFIX='-lite-private-"+suffix+"'"
+    if (recipe/'build/pigen/stage-cbm/EXPORT_IMAGE').read_text().strip()!=expected:
+        raise ValueError('image export suffix differs from candidate identity')
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('workspace', type=Path)
@@ -97,8 +107,7 @@ def main():
     # Use the actual strict installer reader before creating an immutable kit.
     read_json(recipe/'build/pigen/defaults.json')
     config=read_json(recipe/'build/pigen/config.json')
-    if a.product_version and config['image_name']!='project-cbm-'+a.product_version:
-        raise ValueError('image filename/product version mismatch')
+    verify_output_identity(recipe,config,a.product_version,a.candidate)
     old = w/f'inputs/frozen-poc4-attempt{a.previous_attempt}'
     oldraw = (old/'release-lock.json').read_bytes()
     lock = copy.deepcopy(verify_predecessor(old,w))

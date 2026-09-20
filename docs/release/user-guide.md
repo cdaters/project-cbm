@@ -150,6 +150,10 @@ demos, SID music or firmware freely redistributable. A `.sid` music file is not 
 and does not automatically become playable through normal autostart; dedicated PSID/
 RSID playback is outside the currently implemented launch workflow.
 
+USB import counts actual content files and ignores known macOS/Windows filesystem
+metadata, including AppleDouble and Trash. Other hidden content remains eligible;
+see the [exact import policy](content.md#usb-import).
+
 To import from USB, insert a supported FAT, exFAT or ext4 partition and choose IMPORT.
 Select the intended source/category, review the proposed operation and wait for the
 result. Choose a machine family and category. Imported files go to

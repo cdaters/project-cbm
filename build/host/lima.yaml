@@ -6,7 +6,7 @@ os: Linux
 plain: true
 cpus: 8
 memory: 10GiB
-disk: 224GiB
+disk: 256GiB
 images:
 - location: __GUEST_IMAGE_JSON__
   arch: aarch64

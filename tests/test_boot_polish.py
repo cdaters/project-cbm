@@ -47,7 +47,8 @@ class BootPolish(unittest.TestCase):
  def test_presentation_uses_existing_session_without_delay(self):
   text=(ROOT/'build/pigen/stage-cbm/files/pcbm-console-session').read_text()
   prefix=text.split('# One local setup owner.')[0]
-  self.assertIn('PROJECT CBM',prefix)
+  self.assertIn('boot_session.py',prefix)
+  self.assertNotIn('Starting your Commodore computer',text)
   for bad in ['sleep','chvt','sudo','/dev/fb','systemctl']:self.assertNotIn(bad,prefix)
   self.assertIn('/usr/bin/pcbm-first-run',text)
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "hardware": "Raspberry Pi 4 B",
+  "candidate": "private-engineering-rc2 attempt11",
+  "release_lock_sha256": "9831849a3fd12c12528e09d1b7f265d9b03e48ca2819b99f0dfe4583156e7581",
+  "raw_image_sha256": "f3b21038c1fc289c58396cb8106348cd3cda514a96548e5c6d0c9277fced1be4",
+  "source": "Owner physical report and matching live installed identity over authenticated SSH",
+  "physical_results": {
+    "core_functionality": "Owner reports working; no unreported individual function promoted to PASS",
+    "primary_artwork_visible": "PASS",
+    "primary_presentation_lifecycle": "FAIL: follows setup, repeats prior Saving configuration screen, short late presentation",
+    "usb_copy": "PASS: actual copying now observed",
+    "usb_filtering_and_count": "FAIL: owner expected three D64 files in one folder; reported nine copied",
+    "routine_boot_output": "FAIL: successful filesystem and console/session text visible"
+  },
+  "stopwatch": {
+    "endpoint": "power-on to first meaningful Project CBM/setup/Menu activity",
+    "seconds_approximate": [20, 23],
+    "repeatability": "first and repeated subsequent boots",
+    "owner_comparison": "roughly 7-10 seconds improved versus RC1 approximately 30 seconds",
+    "limitations": "RC1 report named interactive Menu as endpoint. Stopwatch alone does not isolate causal changes."
+  },
+  "private_evidence": {
+    "workspace_relative": "qualification/rc2-attempt11-polish-2026-09-19",
+    "manifest_sha256": "59a0fffed9e5fc93c67b51e3625606bccbbf8a411d56af3d440cbb7f74e310bf",
+    "photographs": 7,
+    "privacy": "Outside Git; photographs contain private network addresses. No payload or credentials collected."
+  },
+  "engineering_findings": {
+    "identity": "Live lock and all four components match attempt11",
+    "boot_trace": "Five retained boots: primary stage lasts 4.69-4.96 seconds; first Main Menu dialog dispatch 18.18-18.67 seconds kernel uptime. Dispatch is not measured interactive readiness.",
+    "renderer": "KMSDRM/opengl; latest first frame at 2185ms within renderer, release starts3701ms; terminal restore verified",
+    "completed_setup": "pcbm-first-run invokes setup-finish with visible Saving configuration even when complete; splash follows that operation",
+    "usb": "Destination contains three intended D64s, their AppleDouble companions, and Trash PRG/AppleDouble content. Exact nine-file source inventory unresolved: USB absent at SSH collection. Additional Finder metadata in destination cannot automatically be attributed to importer.",
+    "display_osd": "HDMI timing/resolution and plug icon appear monitor-generated; no product correction asserted"
+  },
+  "unreported_functions": "UNTESTED by this report; historical exact-candidate evidence remains separate"
+}

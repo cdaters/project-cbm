@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 def inspect(root,lock,check,digest):
-    single_user=lock['product']['candidate']=='private-engineering-rc2'
+    single_user=lock['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3')
     account='pcbm' if single_user else 'pi'
     content='home/pcbm/content' if single_user else 'home/pi/pcbm'
     repo=Path(__file__).resolve().parents[1]

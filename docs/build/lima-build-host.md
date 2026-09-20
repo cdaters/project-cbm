@@ -172,3 +172,14 @@ The previous guest had less than the unchanged 40 GiB construction-start gate.
 This additive capacity maintenance retains all historical/unexported state and the
 existing CPU/RAM/VZ/plain/ext4 architecture. Rerun capability and host-integrity gates.
 The clone is private same-volume recovery, not independent custody.
+
+## Additive RC3 capacity increase, 2026-09-19
+
+Preserved earlier attempts left42,265,796,608 guest bytes, below the unchanged
+40GiB construction-start gate. The stopped224GiB disk/config were cloned and
+byte-verified at `build-host/records/pre-rc3-disk-growth-2026-09-19`, manifest
+`acc1423bbd0495b15d48daeaf451065e6c3e6f6e4c979d4c9f8ead51f75a94a7`.
+Pinned Lima's `edit --disk 256 cbm` increases capacity without deleting historical
+state. The template/preflight now declare256GiB. CPU/RAM/VZ/plain/ext4 and security
+remain unchanged; native capability and host-drift gates must pass again. This is
+private same-volume recovery, not independent custody.

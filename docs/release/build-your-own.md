@@ -175,7 +175,7 @@ bash "$CBM_RECIPE/build/packages/build_candidate.sh" "$CBM_RECIPE" \
 `CBM_MENU_SOURCE_VERSION` is the tag without its leading v. The script creates a new
 `packages/poc4-attemptN`, builds Runtime and Menu with dpkg-buildpackage and retains
 `.deb`, `.dsc`, source tarballs, `.buildinfo`, `.changes` and logs. The final argument
-selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. RC2 changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
+selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. RC3 changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
 when Menu is reused, use `--reuse-menu` during both export and freezing. Reused Menu
 version/tag/source must equal the predecessor exactly. Reuse TCPser/closures/assets
 and any unchanged component with its original verified identity. Their original recipes are under `build/packages`; adding a dependency
@@ -191,14 +191,17 @@ read-only and put mutations in a separate overlay. Never use the qualification S
 
 ## Freeze and construct
 
-Use exact full commits and annotated tag object from the export record:
+Use exact full commits and annotated tag object from the export record. Set
+`CBM_PRODUCT_VERSION` and `CBM_CANDIDATE` to the distinct version and private identity
+being assembled (for example `1.1.0-rc.3` and `private-engineering-rc3`). The pi-gen
+configuration image name and stage-cbm export suffix must match that same identity:
 
 ```sh
 python3 "$CBM_RECIPE/tools/freeze_private_candidate.py" /srv/project-cbm \
   "$CBM_RECIPE" "$CBM_PRODUCT_COMMIT" "$CBM_MENU_COMMIT" "$CBM_MENU_TAG_OBJECT" \
   --attempt "$CBM_ATTEMPT" --previous-attempt "$CBM_PREVIOUS_ATTEMPT" \
   --runtime-version "$CBM_RUNTIME_DEB_VERSION" --menu-version "$CBM_MENU_DEB_VERSION" \
-  --product-version 1.1.0-rc.2 --candidate private-engineering-rc2
+  --product-version "$CBM_PRODUCT_VERSION" --candidate "$CBM_CANDIDATE"
 python3 "$CBM_RECIPE/tools/retained_inputs.py" "$CBM_KIT/release-lock.json" "$CBM_KIT"
 sudo unshare --net python3 "$CBM_RECIPE/tools/construct_poc.py" \
   "$CBM_KIT/release-lock.json" "$CBM_KIT" /srv/project-cbm --attempt "$CBM_ATTEMPT"

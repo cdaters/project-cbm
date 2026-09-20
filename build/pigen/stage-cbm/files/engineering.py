@@ -149,7 +149,8 @@ def restore_tty(fd, saved):
             'state':terminal_record(actual)}
 
 
-def run_cover(argv, stdin, active, timeout=6.0, grace=.5, env=None):
+def run_cover(argv, stdin, active, timeout=6.0, grace=.5, env=None,
+              pass_fds=(), handoff=None):
     """Same foreground group as Menu; bounded drain/TERM/KILL/reap before VICE.
 
     Pi 3B attempt5 exhausted the old two-second total before renderer creation.
@@ -161,9 +162,10 @@ def run_cover(argv, stdin, active, timeout=6.0, grace=.5, env=None):
     result={'started_monotonic':time.monotonic(),'timeout':False,'killed':False,'events':[]}
     child=None;sel=None;tail=bytearray()
     try:
-        child=subprocess.Popen(argv,stdin=stdin,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,env=env)
+        child=subprocess.Popen(argv,stdin=stdin,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,env=env,pass_fds=pass_fds)
         active(child);result['pid']=child.pid
         sel=selectors.DefaultSelector();sel.register(child.stdout,selectors.EVENT_READ)
+        if handoff is not None:sel.register(handoff[0],selectors.EVENT_READ)
         deadline=time.monotonic()+timeout
         while child.poll() is None or sel.get_map():
             now=time.monotonic()
@@ -176,9 +178,19 @@ def run_cover(argv, stdin, active, timeout=6.0, grace=.5, env=None):
                     if child.poll() is None:child.kill();result['killed']=True
                     break
             for key,_ in sel.select(.02):
+                if handoff is not None and key.fileobj==handoff[0]:
+                    os.read(handoff[0],1);sel.unregister(handoff[0])
+                    try:os.write(handoff[1],b'1')
+                    except BrokenPipeError:pass
+                    result['ready_monotonic']=time.monotonic()
+                    continue
                 data=os.read(key.fileobj.fileno(),4096)
                 if data:tail.extend(data);del tail[:-LIMIT]
                 else:sel.unregister(key.fileobj)
+                # Do not await a worker's readiness after renderer failure/exit.
+            if child.poll() is not None and handoff is not None:
+                try:sel.unregister(handoff[0])
+                except KeyError:pass
         status=child.wait()
         result.update(exit_status=status if status>=0 else 128-status,termination_signal=-status if status<0 else None)
         for line in tail.decode(errors='replace').splitlines():

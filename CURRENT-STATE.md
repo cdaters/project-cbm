@@ -1,3 +1,36 @@
+# RC2 physical results retained — bounded RC3 correction investigation
+
+[RC2 owner report](docs/qualification/rc2-attempt11-pi4-owner-report.json) binds the
+new Pi4 findings to attempt11's exact lock/raw image. Artwork and USB copying now
+work; presentation timing/order and USB metadata filtering fail. Owner observes
+20–23s to meaningful activity, versus RC1 ~30s, without a proved causal attribution.
+Seven photographs and allowlisted live evidence are retained privately outside Git;
+manifest is referenced in the report. Authenticated SSH verifies unchanged RC2 identity.
+Five boot traces show a late 4.69–4.96s primary stage; completed setup still displays
+Saving configuration. Imported names establish AppleDouble/Trash traversal; the exact
+nine-file source set awaits USB inventory (drive absent at collection).
+
+Source corrections now implement readiness-held primary artwork in the existing
+PAM session, quiet completed setup, narrow metadata filtering and separate content
+counts, successful-fsck suppression with full failure/verbose recovery, and matching
+RC3 filenames. Host Product231/Menu100 PASS; first native Product228/Menu100 PASS,
+installed lifecycle12 plus existing services/SSH/discovery/MC/import gates PASS.
+Focused native readiness holds for3.20s (ready immediately) and4.08s (ready at4s),
+with restored PTY/reaped SDL; FAT/exFAT metadata/copy/retry/UID1000/unmount/unchanged
+source PASS. Actual agetty/login/PAM quiet prompt fixture passes. Disposable initramfs
+extraction confirms the quiet branch hook; pinned pi-gen export owns generation.
+Failed getty fixture prompt matching and restricted-sysfs initramfs attempts are
+retained, corrected without changing appliance semantics. Physical RC3 UNTESTED.
+Builder grew224→256GiB after a stopped full disk/config byte-verified snapshot;
+manifest `acc1423bbd0495b15d48daeaf451065e6c3e6f6e4c979d4c9f8ead51f75a94a7`.
+Full native capability PASS; final host drift gate remains required.
+
+No new candidate built. Next: finish bounded evidence/source investigation, correct
+presentation handoff and narrow USB filtering/counts, complete Product/Menu/native
+regression, version changed components, freeze/build ONE distinct RC candidate with
+correct filenames, actual-image/recovery gates, then stop for Pi4 owner qualification.
+Do not modify the live Pi or prior artifacts. Nothing pushed/published.
+
 # Private RC2 complete — exact Pi 4 B qualification next
 
 **READY TO FLASH: YES only with verified external recovery manifest/restore PASS.**

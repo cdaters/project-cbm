@@ -45,6 +45,6 @@
     "console": "quiet-with-errors",
     "presentation": "supervised-existing-SDL-primary-artwork",
     "getty_type": "simple",
-    "primary_dwell_milliseconds": 1500
+    "primary_dwell_milliseconds": 3000
   }
 }

@@ -1,3 +1,10 @@
+project-cbm-runtime (1.1.0~rc3-1) trixie; urgency=medium
+
+  * Filter known removable-media metadata and distinguish content file counts.
+  * Document readiness-held primary artwork and verbose recovery behavior.
+
+ -- Project CBM contributors <noreply@project-cbm.invalid>  Sun, 20 Sep 2026 06:30:00 +0000
+
 project-cbm-runtime (1.1.0~rc2-1) trixie; urgency=medium
 
   * Unify the appliance account and content library under pcbm.

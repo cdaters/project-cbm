@@ -19,3 +19,18 @@ pcbm_boot_mark() {
   [[ $uptime =~ ^[0-9]+\.[0-9]+$ ]] || return 0
   printf '%s\t%s\n' "$uptime" "$1" >> "$PCBM_BOOT_TRACE" || true
 }
+
+# First meaningful screen requests release; future children see EOF after release.
+pcbm_boot_handoff() {
+  local ready=${PCBM_BOOT_READY_FD:-} ack=${PCBM_BOOT_ACK_FD:-} answer
+  [[ $ready =~ ^[0-9]+$ && $ack =~ ^[0-9]+$ ]] || return 0
+  if read -r -t 0 -u "$ack"; then
+    # Buffered acknowledgment or EOF after the completed supervisor handoff.
+    read -r -u "$ack" answer 2>/dev/null || true
+  else
+    printf '1' >&"$ready" 2>/dev/null || return 1
+    read -r -t 32 -u "$ack" answer 2>/dev/null || return 1
+    [[ $answer == 1 ]] || return 1
+  fi
+  unset PCBM_BOOT_READY_FD PCBM_BOOT_ACK_FD
+}

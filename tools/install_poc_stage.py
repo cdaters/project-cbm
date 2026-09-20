@@ -134,10 +134,11 @@ def main():
 
     # Standard getty/login/PAM owns tty sessions; no direct competing tty service.
     for tty in ['tty1','tty2']:
-        owned_put('/etc/systemd/system/getty@'+tty+'.service.d/autologin.conf',
-                  (REPO/'build/pigen/stage-cbm/files/getty-autologin.conf').read_bytes())
+        getty=(REPO/'build/pigen/stage-cbm/files/getty-autologin.conf').read_text()
+        if tty=='tty2':getty=getty.replace(' --skip-login --noissue --nohostname','')
+        owned_put('/etc/systemd/system/getty@'+tty+'.service.d/autologin.conf',getty)
     owned_put('/etc/profile.d/pcbm-console.sh',(REPO/'build/pigen/stage-cbm/files/pcbm-profile.sh').read_bytes())
-    for name in ['pcbm-console-session','engineering.py','boot-trace.sh']:
+    for name in ['pcbm-console-session','engineering.py','boot-trace.sh','boot_session.py']:
         owned_put('/usr/libexec/project-cbm/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes(),0o755)
     owned_put('/usr/bin/pcbm-diagnostics',(REPO/'build/pigen/stage-cbm/files/pcbm-diagnostics').read_bytes(),0o755)
     owned_put('/etc/pcbm/engineering-poc',lock['product']['candidate']+'\n')
@@ -182,6 +183,10 @@ def main():
     config=root/'boot/firmware/config.txt'
     config.write_text(boot_presentation.firmware(config.read_text()))
     owned_put('/etc/issue',boot_presentation.ISSUE)
+    owned_put('/etc/initramfs-tools/hooks/pcbm-quiet-fsck',
+              (REPO/'build/pigen/stage-cbm/files/pcbm-quiet-fsck').read_bytes(),0o755)
+    # Pinned pi-gen export-image/05-finalise builds both target initramfs images
+    # after this hook is installed. Do not generate a second set during stage-cbm.
     # Suppress only the appliance login's routine motd/last-login prose. PAM still runs.
     put('/home/pcbm/.hushlogin','')
     os.chown(root/'home/pcbm/.hushlogin',1000,1000)

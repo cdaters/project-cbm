@@ -1,0 +1,17 @@
+#!/bin/sh
+# Existing initramfs-tools build hook: keep fsck and full logs, hide clean output.
+# The pinned vendor quiet branch is checked exactly; unexpected input fails build.
+set -eu
+case "${1:-}" in prereqs) exit 0 ;; esac
+python3 - "$DESTDIR/scripts/functions" <<'PY'
+from pathlib import Path
+import sys
+p=Path(sys.argv[1]);text=p.read_text()
+old='\t\tlogsave -a -s $FSCK_LOGFILE fsck $spinner $force $fix -T -t "$TYPE" "$DEV"\n\t\tFSCKCODE=$?'
+new='''\t\t# Project CBM: successful quiet checks stay in fsck.log, failures remain visible.
+\t\tlogsave -a -s $FSCK_LOGFILE fsck $spinner $force $fix -T -t "$TYPE" "$DEV" >/run/initramfs/pcbm-fsck.console 2>&1
+\t\tFSCKCODE=$?
+\t\tif [ "$FSCKCODE" -ne 0 ]; then cat /run/initramfs/pcbm-fsck.console; fi'''
+if text.count(old)!=1:raise SystemExit('Project CBM: pinned initramfs fsck quiet branch differs')
+p.write_text(text.replace(old,new))
+PY

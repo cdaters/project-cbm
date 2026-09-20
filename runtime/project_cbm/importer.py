@@ -24,6 +24,16 @@ EXTENSIONS = {'.prg','.p00','.t64','.tap','.d64','.d71','.d81','.g64','.g71','.x
 MAX_BYTES = 2 * 1024**3
 MARGIN = 256 * 1024**2
 
+# Known host metadata only. Other dotfiles/directories remain eligible content.
+# Counts describe encountered entries/subtrees, never the files hidden in Trash.
+HOST_METADATA = {'.DS_Store', '.Spotlight-V100', '.Trashes', '.fseventsd',
+                 '.TemporaryItems', '.VolumeIcon.icns', '.AppleDouble',
+                 'System Volume Information', '$RECYCLE.BIN'}
+
+
+def host_metadata(name):
+    return name in HOST_METADATA or name.startswith('._')
+
 
 class ImportFailure(ValueError):
     def __init__(self,code,source_unmounted=None):
@@ -92,17 +102,18 @@ def copy_content(source,category,family=None):
     """Runs after dropping all root IDs/groups. No symlink traversal or overwrite."""
     if os.geteuid()!=1000 or category not in CATEGORIES:raise ValueError('copy_identity')
     library.import_destination(category, '', family)
-    copied=skipped=total=visited=0
+    copied=skipped=total=visited=ignored_metadata=0
     base=os.open(CONTENT,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
     source_fd=os.open(source,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
     def walk(src,parts,depth=0):
-        nonlocal copied,skipped,total,visited
+        nonlocal copied,skipped,total,visited,ignored_metadata
         if depth>12:raise ValueError('depth')
         names=os.listdir(src)
         if len(names)>10000:raise ValueError('entries')
         for name in sorted(names):
             visited+=1
             if visited>10000:raise ValueError('entries')
+            if host_metadata(name):ignored_metadata+=1;continue
             if not name.isprintable() or len(name.encode())>240:skipped+=1;continue
             status=os.stat(name,dir_fd=src,follow_symlinks=False)
             if stat.S_ISDIR(status.st_mode):
@@ -149,7 +160,9 @@ def copy_content(source,category,family=None):
             finally:os.close(dest)
     try:walk(source_fd,[])
     finally:os.close(source_fd);os.close(base)
-    return {'copied':copied,'skipped':skipped,'bytes':total}
+    result={'copied':copied,'skipped':skipped,'bytes':total}
+    if ignored_metadata:result['ignored_metadata']=ignored_metadata
+    return result
 
 
 def perform(entry,category,family=None):

@@ -86,6 +86,14 @@ it is safe to remove. If release could not be confirmed, leave it connected and 
 down safely before unplugging it. Do not retry blindly after an error; first read the
 result. Imports are limited to 2 GiB per operation and preserve 256 MiB free space.
 
+Counts refer to content files actually copied, not folders. Known host metadata is
+ignored: `.DS_Store`, AppleDouble `._*` files and `.AppleDouble` folders,
+`.Spotlight-V100`, `.Trashes`, `.fseventsd`, `.TemporaryItems`, `.VolumeIcon.icns`,
+Windows `System Volume Information` and `$RECYCLE.BIN`. Matching folders are not
+searched. Other hidden files/folders remain eligible when their media types are
+supported. The result separates ignored metadata entries/folders from copied content
+and other skipped entries. Previously imported files are never silently removed.
+
 An unclassified collection may use Shared, then be organized later with FILES.
 A source already containing category/machine folders is not silently flattened:
 copy an already organized library tree through File Sharing to avoid nesting that
