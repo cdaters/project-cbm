@@ -1,0 +1,135 @@
+{
+  "format": "project-cbm.private-rc3-candidate-result",
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "attempt": 12,
+  "product": {
+    "candidate": "private-engineering-rc3",
+    "version": "1.1.0-rc.3"
+  },
+  "integration_commit": "ece07f04c396c1530a179a5980a41b9b0e8a81b9",
+  "menu_source": {
+    "commit": "23f0e0b0a0a77fc4ba565a6dd777543f11cce6c0",
+    "ref": "refs/tags/v1.1.0_rc3",
+    "tag_object": "cbcbb7ad2b4045d32f74ad857aee25916cd389b6"
+  },
+  "packages": {
+    "menu": {
+      "status": "NEW",
+      "version": "1.1.0~rc3-1+pcbm1",
+      "filename": "project-cbm-menu_1.1.0~rc3-1+pcbm1_all.deb",
+      "size_bytes": 1294628,
+      "sha256": "194a387412cd425d0b9d4f59695c594142f3cb23835e53bf2035fc77c2ccc685",
+      "source_commit": "23f0e0b0a0a77fc4ba565a6dd777543f11cce6c0"
+    },
+    "runtime": {
+      "status": "NEW",
+      "version": "1.1.0~rc3-1",
+      "filename": "project-cbm-runtime_1.1.0~rc3-1_all.deb",
+      "size_bytes": 67508,
+      "sha256": "592d9ef7da99e897c7c6ed1681f821e0579fdfb721e47b9c611c576104a39fb2",
+      "source_commit": "ece07f04c396c1530a179a5980a41b9b0e8a81b9"
+    },
+    "vice": {
+      "status": "REUSED",
+      "version": "3.10-1+pcbm4",
+      "filename": "project-cbm-vice_3.10-1+pcbm4_arm64.deb",
+      "size_bytes": 5069684,
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1"
+    },
+    "tcpser": {
+      "status": "REUSED",
+      "version": "1.1.6~beta-1+pcbm1",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "size_bytes": 26872,
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt12/release-lock.json",
+    "sha256": "bbcf02a56403c8f19bd42304f985cd5202ac797311a9ddf4cad5ea2eb79e665d",
+    "kit_files_verified": 3111
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-rc3-attempt-12/work/export-image/2026-09-20-project-cbm-1.1.0-rc.3-lite-private-rc3.img",
+      "size_bytes": 3095396352,
+      "sha256": "5bde293b5ec6096e2a3bb2f9b31f123a8a07fdc6ac1f9077b510a4ceb5a1702e",
+      "path": "artifacts/private-rc3-attempt-12/2026-09-20-project-cbm-1.1.0-rc.3-lite-private-rc3.img"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-rc3-attempt-12/image_2026-09-20-project-cbm-1.1.0-rc.3-lite-private-rc3.img.xz",
+      "size_bytes": 599157232,
+      "sha256": "ca9f21d6bcfa3cae46921bbc4cd93663e9c7800832a173546d1181789ca8d15b",
+      "path": "artifacts/private-rc3-attempt-12/image_2026-09-20-project-cbm-1.1.0-rc.3-lite-private-rc3.img.xz"
+    },
+    "xz_expanded_sha256": "5bde293b5ec6096e2a3bb2f9b31f123a8a07fdc6ac1f9077b510a4ceb5a1702e",
+    "raw_xz_equivalence": "PASS",
+    "raw_unchanged_after_inspection": true,
+    "external_copy_and_xz_equivalence": "PASS"
+  },
+  "physical_baseline": "docs/qualification/rc2-attempt11-pi4-owner-report.json",
+  "physical_RC3": "UNTESTED",
+  "tests": {
+    "host_product": 231,
+    "host_menu": 100,
+    "native_product": 231,
+    "native_menu": 100,
+    "installed_lifecycle": 12,
+    "failures": 0,
+    "focused": [
+      "PTY/SDL readiness and verified restoration",
+      "agetty/login/PAM quiet prompt",
+      "FAT/exFAT metadata/media/retry/UID1000/RO/unmount/source integrity",
+      "quiet fsck success, nonzero visibility, verbose branch, unexpected vendor rejection",
+      "actual initramfs extraction"
+    ]
+  },
+  "offline": {
+    "result": "PASS",
+    "checks": 305,
+    "main_checks": 122,
+    "supplement_checks": 20,
+    "corrective_checks": 163,
+    "installed_packages": 672,
+    "retained_package_descriptors": 709,
+    "elf_objects": 127,
+    "filesystems": "FAT/ext4 PASS",
+    "both_initramfs": "PASS",
+    "identity": "PASS",
+    "services_accounts_security_lifecycle_docs": "PASS"
+  },
+  "footprint": {
+    "root_capacity_bytes": 2439266304,
+    "root_used_bytes": 1655607296,
+    "root_free_bytes": 783659008,
+    "root_user_available_bytes": 639377408,
+    "boot_used_bytes": 78419456,
+    "installed_package_size_bytes": 1602472960,
+    "maintenance_margin": "UNMEASURED beyond actual free space",
+    "expanded_user_capacity": "PHYSICAL QUALIFICATION REQUIRED"
+  },
+  "host": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capabilities_before_after": "PASS",
+    "update_guards": "PASS",
+    "AppArmor": "preserved",
+    "frozen_inputs": "PASS",
+    "no_builder_mounts_loops_or_emulators": true,
+    "available_bytes": 64824492032
+  },
+  "preservation": {
+    "current_and_previous": "PASS",
+    "original": "PASS"
+  },
+  "recovery": {
+    "path": "archive/rc3-2026-09-20",
+    "authority": "External manifest.json, manifest.json.sha256 and restore-report.json; readiness requires their verified PASS",
+    "independent_custody": false
+  },
+  "physical_procedure": "docs/qualification/rc3-pi4b-regression.md",
+  "pushed": false,
+  "published": false,
+  "readiness": "YES conditional on final external recovery verification; physical RC3 untested"
+}

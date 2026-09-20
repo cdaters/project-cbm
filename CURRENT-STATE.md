@@ -1,3 +1,29 @@
+# Private RC3 attempt12 complete — Pi 4 B physical qualification next
+
+**READY TO FLASH: YES only with the external recovery manifest and restore PASS.**
+[Build report](docs/build/private-rc3.md), [exact results](docs/build/private-rc3.json),
+[hash-bound physical procedure](docs/qualification/rc3-pi4b-regression.md).
+One RC3 image built; lock `bbcf02a56403c8f19bd42304f985cd5202ac797311a9ddf4cad5ea2eb79e665d` at
+`inputs/frozen-poc4-attempt12/release-lock.json`. Raw SHA-256
+`5bde293b5ec6096e2a3bb2f9b31f123a8a07fdc6ac1f9077b510a4ceb5a1702e`; XZ `ca9f21d6bcfa3cae46921bbc4cd93663e9c7800832a173546d1181789ca8d15b`.
+Integration `ece07f04c396c1530a179a5980a41b9b0e8a81b9`; Menu tagv1.1.0_rc3 object `cbcbb7ad2b4045d32f74ad857aee25916cd389b6`,
+source `23f0e0b0a0a77fc4ba565a6dd777543f11cce6c0`. Runtime/Menu RC3 NEW; VICE/TCPser REUSED exactly.
+
+RC2 physical evidence is retained; RC3 fixes readiness-held primary presentation,
+silent completed setup, routine successful fsck/login text, narrow host metadata
+filtering and truthful content counts. No live Pi configuration or prior candidate
+changed. Core accounts/content/VICE/Covers/network/service boundaries remain intact.
+Host/native Product231/Menu100; installed lifecycle12; focused native boot/USB gates
+PASS. Actual-image305 checks,672 packages,127 ELF, FAT/ext4, both initramfs, security,
+identity, docs and independent raw/XZ equivalence PASS. Host drift/capability/update
+guards and original/prior preservation PASS; builder STOPPED.
+
+Recovery `archive/rc3-2026-09-20` external manifest/restore report is final authority;
+independent encrypted custody remains outstanding. Physical RC3 UNTESTED. Next:
+owner flashes the exact artifact and performs the Pi4B RC3 procedure, then reports
+results. STOP for physical qualification. Nothing pushed/published. Older entries
+below preserve historical investigation and qualification state.
+
 # RC2 physical results retained — bounded RC3 correction investigation
 
 [RC2 owner report](docs/qualification/rc2-attempt11-pi4-owner-report.json) binds the
