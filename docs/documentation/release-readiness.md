@@ -87,8 +87,15 @@ Command blocks were not executed as installers, package builds or runtime tests.
 syntax checking and source inspection verify their form and supported options; they do
 not establish public build success. Windows and graphical client instructions were not
 executed on a Windows machine. Existing native/physical results remain historical evidence,
-not new documentation-test passes. Final counts and hashes are retained with the external
-documentation validation/recovery checkpoint.
+not new documentation-test passes. Final validation: **471 checks, 21 documents, 169 local links, 28 shell blocks and
+five parser tests PASS**. JSON/Python syntax and diff-whitespace checks pass. All
+pre-existing non-documentation tracked files match the task-start hashes; all Menu
+files match. RC3 raw/XZ, four component packages, lock and 46 directly referenced
+frozen input objects passed read-only size/hash verification. The external evidence
+is `qualification/release-docs-2026-09-20`, with manifest SHA-256
+`0c4ef3d643650c9fee59304f45106c2694df341074e387a64b4fc6ec0cb1a135`.
+The additive recovery checkpoint is `archive/release-docs-2026-09-20` beneath the
+configured bulk workspace; its final external manifest/restore report is authoritative.
 
 ## Release review still required
 

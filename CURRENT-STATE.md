@@ -1,3 +1,28 @@
+# Release documentation refinement — RC3 unchanged
+
+Documentation-only milestone complete for owner review. Start at [documentation](docs/README.md)
+and [readiness report](docs/documentation/release-readiness.md). The manuals now cover
+actual RC3 menus/profiles, unified account/content, networking/USB, backup/recovery,
+build recipe, VICE, customization and contribution. The public source-to-image route
+remains BLOCKED by unpublished source/input/bootstrap and redistribution/publication
+work; [audit](docs/documentation/public-bootstrap.md) lists exact gaps and three minor
+source mismatches discovered without changing implementation.
+
+Documentation validation: 471 checks across 21 documents, 169 local links, 28 shell
+example syntax checks, all eight Main Menu items and eleven profiles; five focused
+parser tests PASS. Commands were source/syntax checked, not run as installers or builds.
+No new native/physical claims. RC3 runtime/Menu/factory/package bytes, frozen inputs,
+lock, raw/XZ and hashes remain unchanged. Menu repository unchanged. No new image,
+version/tag, push or publication. RC3 is currently undergoing owner physical qualification;
+no new function/model PASS is inferred from that statement.
+
+Additive documentation evidence/recovery: `qualification/release-docs-2026-09-20` and
+`archive/release-docs-2026-09-20` beneath the configured bulk workspace; final external
+manifest/restore result is authoritative. Prior RC3/USB checkpoint preserved and checked.
+Independent encrypted custody remains outstanding. Next action: owner reviews these
+manuals/public-release gaps and completes RC3 physical qualification. Stop this
+documentation milestone; do not automatically build or start another engineering task.
+
 # RC3 USB evidence addendum — candidate unchanged
 
 [Read-only source follow-up](docs/qualification/rc2-usb-source-followup.md) now confirms
