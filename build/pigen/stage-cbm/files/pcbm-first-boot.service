@@ -1,5 +1,5 @@
 [Unit]
-Description=Project CBM POC retry-checked initialization
+Description=Project CBM retry-checked first-boot initialization
 After=local-fs.target systemd-machine-id-commit.service
 Before=getty@tty1.service getty@tty2.service
 

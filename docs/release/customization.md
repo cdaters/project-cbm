@@ -1,5 +1,9 @@
 # Customize your Project CBM image
 
+[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
+USB import, optional applications and safe preservation of older content.
+
+
 You own your Raspberry Pi. These levels explain the consequences of a change, not
 restrictions on your ability to administer Linux. Start with user preferences when
 possible; image changes use the [build workflow](build-your-own.md) and a new identity.

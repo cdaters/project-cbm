@@ -5,6 +5,7 @@ set -u
 [[ $(tty) == /dev/tty1 ]] || exit 1
 export HISTFILE=/dev/null
 cd /home/pi/pcbm || exit 1
+printf '\033[2J\033[H\n  PROJECT CBM\n  Starting your Commodore computer...\n\n'
 # One local setup owner. A failed/cancelled step stays incomplete and is retried.
 while ! /usr/bin/pcbm-first-run; do
   stty sane 2>/dev/null || true

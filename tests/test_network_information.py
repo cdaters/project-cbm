@@ -37,6 +37,15 @@ class Network(unittest.TestCase):
   result=net.devices('GENERAL.DEVICE:wlan0\nGENERAL.TYPE:wifi\nGENERAL.STATE:100 (connected)\n')
   self.assertEqual(result,{'wlan0':{'type':'wifi','state':'connected'}})
   with self.assertRaises(ValueError):net.devices('GENERAL.DEVICE:wlan0\nGENERAL.CONNECTION:private-profile\n')
+ def test_gateway_dns_live_fields_and_bounds(self):
+  raw='GENERAL.DEVICE:enx123\nGENERAL.TYPE:ethernet\nGENERAL.STATE:100 (connected)\nIP4.GATEWAY:192.0.2.1\nIP4.DNS[1]:192.0.2.53\nIP4.DNS[2]:198.51.100.53\nIP6.GATEWAY:fe80\\:0000\\:0000\\:0000\\:0000\\:0000\\:0000\\:0001\nIP6.DNS[1]:2001\\:db8\\:\\:53\n'
+  d=net.devices(raw)['enx123'];self.assertEqual(d['gateway_ipv4'],['192.0.2.1']);self.assertEqual(d['dns_ipv4'],['192.0.2.53','198.51.100.53']);self.assertEqual(d['gateway_ipv6'],['fe80::1']);self.assertEqual(d['dns_ipv6'],['2001:db8::53'])
+  for extra in ['IP4.DNS[1]:bad\n','IP4.DNS[9]:192.0.2.9\n','IP4.GATEWAY:224.0.0.1\n']:
+   with self.assertRaises(ValueError):net.devices(raw+extra)
+ def test_empty_gateway_truthful_and_no_secret_connection_probe(self):
+  d=net.devices('GENERAL.DEVICE:enp1s0\nGENERAL.TYPE:ethernet\nGENERAL.STATE:30 (disconnected)\nIP4.GATEWAY:--\n')['enp1s0']
+  self.assertEqual(d['gateway_ipv4'],[])
+  self.assertNotIn('connection',net.DEVICES);self.assertNotIn('--show-secrets',net.DEVICES)
  def test_ssid_escaping_inactive_and_no_injection(self):
   self.assertEqual(net.active_ssids('wlan0:no:Other\nwlan0:yes:Test\\: room\\\\a\n'),{'wlan0':'Test: room\\a'})
   for raw in ['wlan0:yes:bad\x1b','wlan0:yes:'+32*'界','wlan0:yes:one\nwlan0:yes:two','wlan0:yes:bad\\q']:

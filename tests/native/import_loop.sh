@@ -37,7 +37,14 @@ for category,filename in [('programs','probe.prg'),('music','probe.sid')]:
  assert p.is_file() and p.stat().st_uid==1000
 assert not os.path.ismount(importer.WORK/'source')
 again=importer.perform(entry,'programs');assert again['copied']==0 and again['skipped']>=3
-print(json.dumps({'native_loop_import':answer,'retry':again,'source_unmounted':True,'discovery':'test adapter; real USB needs Pi validation'}))
+family=importer.perform(entry,'demos','c64')
+assert family['copied']==2 and family['skipped']>=1,family
+for category,filename in [('demos','probe.prg'),('music','probe.sid')]:
+ p=Path('/home/pi/pcbm')/category/'c64/Imported'/filename
+ assert p.is_file() and p.stat().st_uid==1000
+repeat=importer.perform(entry,'demos','c64');assert repeat['copied']==0 and repeat['skipped']>=3
+assert not os.path.ismount(importer.WORK/'source')
+print(json.dumps({'native_loop_import':answer,'retry':again,'family_import':family,'family_retry':repeat,'source_unmounted':True,'discovery':'test adapter; real USB needs Pi validation'}))
 os.unlink(device)
 PY
 sha256sum -c "$base/usb-before.sha256"

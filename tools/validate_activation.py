@@ -57,7 +57,7 @@ def inspect(root,lock,check,digest):
     if 'striketerm' in optional:
         entry=optional['striketerm'];base='usr/share/project-cbm/applications/striketerm/StrikeTerm-2014-Final.d64'
         check('striketerm_exact_private_input',digest(root/base)==entry['artifact']['sha256'])
-        p=root/'home/pi/pcbm/programs/Communications/StrikeTerm/StrikeTerm-2014-Final.d64'
+        p=root/'home/pi/pcbm/programs/c64/Communications/StrikeTerm/StrikeTerm-2014-Final.d64'
         check('striketerm_working_copy',digest(p)==entry['artifact']['sha256'] and p.stat().st_uid==1000)
         notice=json.loads(text('usr/share/doc/project-cbm-striketerm/PRIVATE-ADMISSION.json'))
         check('striketerm_public_gate_pending',notice['public_release_rights']=='PUBLIC-RELEASE-RIGHTS-GATE-PENDING')

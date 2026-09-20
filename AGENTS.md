@@ -2,7 +2,7 @@
 
 Project CBM is a Raspberry Pi Commodore appliance. Preserve its personality, user
 control, reliable console-to-emulator lifecycle and long-term recoverability.
-Prefer clear, maintainable engineering with measurable benefit on the Pi 3 floor.
+Prefer clear, maintainable engineering with measurable benefit on the Pi 4 performance floor.
 
 ## Authority and continuity
 
@@ -72,10 +72,11 @@ commits and new private version tags are not push or publication permission.
   Read its evidence-based review triggers before foundation changes.
 - Keep Bash/dialog, console getty/login/PAM/session ownership, SDL2 VICE and ALSA.
   VICE owns emulation, per-chip geometry and user emulator preferences; retain F10,
-  complete aspect-preserving canvas and reliable return. Do not substitute x64 for
-  x64sc or optimize solely for Pi 5 to hide a Pi 3 regression.
-- Target Pi 3 through Pi 500+ where supportable; qualify each model separately,
-  including Pi 3A+ at 512 MiB. OS support does not establish CBM qualification.
+  complete aspect-preserving canvas and reliable return. Retain x64sc as the normal C64 core; qualify its performance on the Pi 4 floor.
+- Project CBM 1.1 targets Pi 4-class hardware and newer (Pi 4 B/400, Pi 5/500/500+
+  where supportable); qualify each model separately. Pi 3/Zero-class hardware is
+  outside the 1.1 release target. Preserve historical results; do not resume Pi 3
+  optimization. OS support does not establish CBM qualification.
 - The read-only product `pcbm-info` JSON is the system-information authority.
   Menu/configuration UI consumes it without duplicate probes or human-output parsing.
   Product registry and validated user preferences own machine/profile selection.
@@ -90,7 +91,7 @@ commits and new private version tags are not push or publication permission.
   or failed Cover must allow VICE to proceed without weakening terminal safety.
   No root/framebuffer/resolution workaround. See [Covers](docs/runtime/covers.md).
 - Streamline UI when benefits are concrete: predictable Back/Cancel/retry/resume,
-  truthful working/error feedback and equal or better measured Pi 3 responsiveness.
+  truthful working/error feedback and equal or better measured Pi 4 responsiveness.
   Historical menu layout is not immutable; major architecture changes remain gated.
 
 ## Versioning, immutable candidates and the factory

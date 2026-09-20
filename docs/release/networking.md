@@ -1,5 +1,9 @@
 # Network and service guide
 
+[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
+USB import, optional applications and safe preservation of older content.
+
+
 Project CBM is a single-owner home-LAN appliance. Network services start off until you
 choose them. Use real passwords; do not forward its service ports to the Internet.
 Credential privacy, protected storage and constrained operations remain in place.

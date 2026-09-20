@@ -10,8 +10,9 @@ Project CBM 1.1 uses Raspberry Pi OS Lite arm64 based on Debian 13 (Trixie). The
 instructions describe the developing 1.1 appliance. Use the [current candidate and
 qualification status](../../CURRENT-STATE.md) when choosing an image: a successful
 build does not mean every feature or Raspberry Pi model has been physically tested.
-The Pi 3-class performance floor remains part of the product; the reported Pi 3 B+
-C64 slowdown is a release blocker until a corrected image passes performance testing.
+Project CBM 1.1 targets Pi 4-class hardware and newer. Pi 3/Zero-class hardware is
+outside this release target. Pi 4 B has an owner-reported C64 performance PASS; the
+new RC image and other models still need their own physical qualification.
 
 ## Getting started
 
@@ -30,8 +31,8 @@ C64 slowdown is a release blocker until a corrected image passes performance tes
 The card must hold the actual uncompressed image and leave room for your content and
 future maintenance. Root-filesystem expansion happens automatically through Project
 CBM's first-boot coordinator. Do not select a card solely from an unsupported nominal
-minimum. Pi 3B, 3B+, 3A+ and newer Pi models need their own qualification; the 512 MiB
-Pi 3A+ particularly needs a memory check. See [hardware status](../supported-hardware.md)
+minimum. Pi 4 B/400 and Pi 5/500/500+ need their own qualification. See
+[hardware status](../supported-hardware.md)
 for the distinction between intended support and retained test evidence.
 
 ## First boot and your account
@@ -131,6 +132,12 @@ content reference, VICE speed reading and hardware health before changing settin
 
 ## Your content library
 
+See the [content guide](content.md) for folders, supported media, import and safe migration.
+The administrator account `pcbm` and the content library are separate: uploading to
+`/home/pcbm` does not put files into CONTENT. Use the **Project CBM** File Sharing
+share, USB IMPORT, or an explicit administrator copy into `/home/pi/pcbm`.
+
+
 The shared library is `/home/pi/pcbm`, with `games`, `demos`, `music`, `programs`, `roms`,
 `saves` and `screenshots` subdirectories. Use CONTENT for normal launching and FILES for
 file management. Keep related multi-file software together. A filename or extension
@@ -144,8 +151,8 @@ RSID playback is outside the currently implemented launch workflow.
 
 To import from USB, insert a supported FAT, exFAT or ext4 partition and choose IMPORT.
 Select the intended source/category, review the proposed operation and wait for the
-result. Imported files go to the category's `Imported` directory; SID files go under
-`music/Imported`. The importer reads the source through its supervised mount path and
+result. Choose a machine family and category. Imported files go to
+`category/machine/Imported`; SID files go under `music/c64/Imported`. The importer reads the source through its supervised mount path and
 copies admitted content, rather than exposing an arbitrary writable USB mount. Wait
 for unmount/cleanup confirmation before removing the drive. If your filesystem or
 layout is unavailable, do not guess a device name and force-mount it from an ordinary
@@ -217,4 +224,8 @@ the displayed error and relevant private diagnostics. Do not post passwords, Wi-
 profiles, account hashes, private keys or entire logs containing personal data. The
 [recovery guide](recovery.md) explains common checks; [accounts and layout](accounts-and-layout.md)
 identifies files; the exact candidate procedure defines engineering evidence collection.
-Quiet boot and measured boot-time improvements remain a separate later milestone.
+[Boot presentation and timing](boot.md) explains the quieter Project CBM startup,
+recovery access and the distinction between first and subsequent boots.
+
+See [boot presentation, timing and verbose recovery](boot.md) for the quiet-boot
+settings, bounded repeated-initialization correction and physical measurement limits.

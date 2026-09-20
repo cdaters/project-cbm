@@ -3,7 +3,7 @@ import argparse
 import json
 import sys
 from .data import registry
-from . import preferences
+from . import preferences, library
 from .applications import application_profile
 
 
@@ -14,6 +14,7 @@ def main(argv=None):
     sub.add_parser('menu')  # Bounded tab-separated contract 1 for Bash, not pretty output.
     default = sub.add_parser('default'); default.add_argument('--id-only', action='store_true')
     sub.add_parser('initialize')
+    sub.add_parser('content-families')
     content = sub.add_parser('content-profile'); content.add_argument('media')
     resolve = sub.add_parser('resolve'); resolve.add_argument('profile')
     output = resolve.add_mutually_exclusive_group()
@@ -22,10 +23,14 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         profiles = registry()
+        if args.action == 'content-families':
+            for name, (label, _) in library.FAMILIES.items():
+                print(name+'\t'+label)
+            return 0
         if args.action == 'content-profile':
             selected = application_profile(args.media, profiles)
             if selected is None:
-                selected = preferences.selection(profiles=profiles)['id']
+                selected = library.content_profile(args.media, profiles, preferences.selection(profiles=profiles)['id'])
             print(selected)
             return 0
         if args.action == 'list':

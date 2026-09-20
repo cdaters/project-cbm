@@ -1,5 +1,9 @@
 # pi-gen and the Project CBM factory
 
+[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
+USB import, optional applications and safe preservation of older content.
+
+
 [Build Your Own](build-your-own.md) gives the commands. This page explains their inputs
 and effects. The accepted base is Raspberry Pi OS Lite **arm64/Trixie** on writable
 ext4, with logical separation of user content. Lite supplies supported Pi kernel,
@@ -57,8 +61,9 @@ preventing a checksum cycle.
 
 ## Outputs and proof
 
-For POC4 attempt N, work lives in `builds/private-poc4-attempt-N`, and compressed output
-in `artifacts/private-poc4-attempt-N`. pi-gen exports the raw image in
+For RC1 attempt N, work lives in `builds/private-rc1-attempt-N`, and compressed output
+in `artifacts/private-rc1-attempt-N`. Historical POC4 builds retain their original
+`private-poc4-attempt-N` paths; input/package directories retain that lineage locator. pi-gen exports the raw image in
 `work/export-image`; current configuration exports XZ at level 3. Exact names come from
 `build/pigen/config.json`. Never replace an existing attempt directory, package, lock
 or tag. Raw size, compressed size and SHA-256 are separate records. Hashing decompressed
@@ -171,3 +176,6 @@ columns: package, version, architecture, installed size in KiB and dpkg status. 
 projection includes installed entries only. Neither file contains account or network
 credentials. Publish it with a release when publication is authorized; it is useful
 without access to private engineering storage.
+
+See [boot presentation, timing and verbose recovery](boot.md) for the quiet-boot
+settings, bounded repeated-initialization correction and physical measurement limits.

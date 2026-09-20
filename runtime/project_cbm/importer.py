@@ -14,12 +14,13 @@ import subprocess
 import sys
 from .config_backend import ENV, trusted
 from .data import loads
+from . import library
 
 WORK = Path('/run/project-cbm/import')
-CONTENT = Path('/home/pi/pcbm')
+CONTENT = library.ROOT
 FILESYSTEMS = {'vfat','exfat','ext4'}
 CATEGORIES = {'games','demos','programs','music'}
-EXTENSIONS = {'.prg','.p00','.t64','.tap','.d64','.d71','.d81','.g64','.g71','.x64','.sid','.crt'}
+EXTENSIONS = {'.prg','.p00','.t64','.tap','.d64','.d71','.d81','.g64','.g71','.x64','.sid','.crt','.d67','.d80','.d82','.g41','.p64','.mus'}
 MAX_BYTES = 2 * 1024**3
 MARGIN = 256 * 1024**2
 
@@ -59,9 +60,10 @@ def open_directory(parent,name):
     return os.open(name,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=parent)
 
 
-def copy_content(source,category):
+def copy_content(source,category,family=None):
     """Runs after dropping all root IDs/groups. No symlink traversal or overwrite."""
     if os.geteuid()!=1000 or category not in CATEGORIES:raise ValueError('copy_identity')
+    library.import_destination(category, '', family)
     copied=skipped=total=visited=0
     base=os.open(CONTENT,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
     source_fd=os.open(source,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
@@ -91,7 +93,7 @@ def copy_content(source,category):
             if fs.f_bavail*fs.f_frsize < status.st_size+MARGIN:raise ValueError('space')
             dest=os.dup(base)
             try:
-                for component in [('music' if ext=='.sid' else category),'Imported',*parts]:
+                for component in [*library.import_destination(category,ext,family),*parts]:
                     new=open_directory(dest,component);os.close(dest);dest=new
                 try:os.stat(name,dir_fd=dest,follow_symlinks=False)
                 except FileNotFoundError:pass
@@ -122,7 +124,7 @@ def copy_content(source,category):
     return {'copied':copied,'skipped':skipped,'bytes':total}
 
 
-def perform(entry,category):
+def perform(entry,category,family=None):
     if entry not in discover():raise ValueError('device_changed')
     target=trusted(WORK/'source')
     if os.path.ismount(target):raise ValueError('mount_busy')
@@ -144,7 +146,7 @@ def perform(entry,category):
                 try:
                     os.close(reader);os.close(fd)
                     os.setgroups([]);os.setgid(1000);os.setuid(1000)
-                    answer=copy_content(target,category)
+                    answer=copy_content(target,category,family)
                     os.write(writer,json.dumps(answer).encode());os.close(writer)
                     os._exit(0)
                 except Exception:os._exit(2)
@@ -169,8 +171,9 @@ def validate_request(raw):
     d=loads(raw)
     if not isinstance(d,dict) or type(d.get('schema_version')) is not int or d['schema_version']!=1:raise ValueError('request')
     if d=={'schema_version':1,'operation':'list'}:return d
-    if (set(d)=={'schema_version','operation','token','category'} and d['operation']=='import'
+    if (set(d) in ({'schema_version','operation','token','category'}, {'schema_version','operation','token','category','family'}) and d['operation']=='import'
             and isinstance(d['category'],str) and d['category'] in CATEGORIES
+            and ('family' not in d or isinstance(d['family'],str) and d['family'] in library.FAMILIES)
             and isinstance(d['token'],str) and re.fullmatch('[0-9a-f]{32}',d['token'])):return d
     raise ValueError('request')
 
@@ -197,11 +200,11 @@ def main():
                 print(json.dumps({'schema_version':1,'status':'ok','devices':[
                     {'token':k,'label':f'USB partition {i+1}: {v["filesystem"]}, {v["size_bytes"]//1024**2} MiB'}
                     for i,(k,v) in enumerate(entries.items())]}))
-            elif (set(request)=={'schema_version','operation','token','category'} and request['schema_version']==1
+            elif (set(request) in ({'schema_version','operation','token','category'}, {'schema_version','operation','token','category','family'}) and request['schema_version']==1
                   and request['operation']=='import' and request['category'] in CATEGORIES
                   and isinstance(request['token'],str) and re.fullmatch('[0-9a-f]{32}',request['token'])):
                 entries=loads(trusted(WORK/'devices.json').read_bytes())
-                answer=perform(entries[request['token']],request['category'])
+                answer=perform(entries[request['token']],request['category'],request.get('family'))
                 print(json.dumps({'schema_version':1,'status':'ok',**answer}))
             else:raise ValueError('request')
         return 0

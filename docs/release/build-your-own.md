@@ -149,8 +149,8 @@ verified predecessor kit in guest storage. No credentials belong in these variab
 Make your bounded changes, run Product/Menu tests per [testing](../testing.md), update
 the changed package changelogs, commit clean source and create an annotated new Menu
 tag at its HEAD. Do not reuse an existing version/tag. The refinement helper currently
-supports the private `1.1.0_poc4.N` Menu/version family; another release family needs
-explicit reviewed lock/tooling changes. A replay of an unchanged kit needs no new package.
+supports private `1.1.0_poc4.N` and `1.1.0_rcN` Menu versions; RC product identity
+is explicitly supplied when freezing. A replay of an unchanged kit needs no new package.
 
 From Product on the source host, choose unused attempt/version values:
 
@@ -169,21 +169,20 @@ recipe or use an unverified transfer. In the guest (set variables to those exact
 
 ```sh
 bash "$CBM_RECIPE/build/packages/build_candidate.sh" "$CBM_RECIPE" \
-  /srv/project-cbm "$CBM_ATTEMPT" "$CBM_MENU_SOURCE_VERSION" runtime-menu-vice
+  /srv/project-cbm "$CBM_ATTEMPT" "$CBM_MENU_SOURCE_VERSION" runtime-menu
 ```
 
 `CBM_MENU_SOURCE_VERSION` is the tag without its leading v. The script creates a new
 `packages/poc4-attemptN`, builds Runtime and Menu with dpkg-buildpackage and retains
 `.deb`, `.dsc`, source tarballs, `.buildinfo`, `.changes` and logs. The final argument
-selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. The performance
-refinement changes all three. When VICE changes, use `--vice-version` during freezing;
+selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. RC1 changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
 when Menu is reused, use `--reuse-menu` during both export and freezing. Reused Menu
 version/tag/source must equal the predecessor exactly. Reuse TCPser/closures/assets
 and any unchanged component with its original verified identity. Their original recipes are under `build/packages`; adding a dependency
 requires authenticated acquisition/retention and a new closure before freezing.
 
-These example selections build changed Runtime/Menu/VICE together. Omit `--vice-version`
-when VICE is reused and select the matching package set; a version string is not evidence
+These examples build changed Runtime/Menu together. Add `--vice-version` only
+when VICE changes and select the matching package set; a version string is not evidence
 that a package was rebuilt. The freeze checks actual package fields and hashes.
 
 Run native tests against the actual new packages in a disposable isolated staging root;
@@ -199,7 +198,7 @@ python3 "$CBM_RECIPE/tools/freeze_private_candidate.py" /srv/project-cbm \
   "$CBM_RECIPE" "$CBM_PRODUCT_COMMIT" "$CBM_MENU_COMMIT" "$CBM_MENU_TAG_OBJECT" \
   --attempt "$CBM_ATTEMPT" --previous-attempt "$CBM_PREVIOUS_ATTEMPT" \
   --runtime-version "$CBM_RUNTIME_DEB_VERSION" --menu-version "$CBM_MENU_DEB_VERSION" \
-  --vice-version "$CBM_VICE_DEB_VERSION"
+  --product-version 1.1.0-rc.1 --candidate private-engineering-rc1
 python3 "$CBM_RECIPE/tools/retained_inputs.py" "$CBM_KIT/release-lock.json" "$CBM_KIT"
 sudo unshare --net python3 "$CBM_RECIPE/tools/construct_poc.py" \
   "$CBM_KIT/release-lock.json" "$CBM_KIT" /srv/project-cbm --attempt "$CBM_ATTEMPT"
@@ -208,7 +207,9 @@ sudo unshare --net python3 "$CBM_RECIPE/tools/construct_poc.py" \
 `CBM_KIT` is the newly created `inputs/frozen-poc4-attemptN`. The freeze helper supports
 verified POC4 predecessors starting at attempt 6, strictly increasing new attempts, and
 refuses existing output directories. Freeze verifies corresponding source, package
-identity, Cover manifest and all retained descriptors. Preserve stdout/stderr externally
+identity, Cover manifest and all retained descriptors. Historical predecessor inputs
+are verified with their exact retained integration recipes before the new recipes verify
+the new kit; a changed content-path recipe must not redefine historical evidence. Preserve stdout/stderr externally
 as the attempt's build log; a failure is evidence, not a directory to overwrite.
 
 ## Validate and retain
@@ -220,7 +221,7 @@ Set `CBM_RAW` to the exported raw image, `CBM_XZ` to the compressed artifact, an
 sudo python3 "$CBM_RECIPE/tools/validate_poc_image.py" "$CBM_RAW" "$CBM_KIT/release-lock.json" "$CBM_EVIDENCE/offline"
 sudo python3 "$CBM_RECIPE/tools/validate_poc2_closure.py" "$CBM_RAW" "$CBM_EVIDENCE/closure.json"
 sudo python3 "$CBM_RECIPE/tools/validate_poc4_supplement.py" "$CBM_RAW" "$CBM_EVIDENCE/supplement.json"
-sudo python3 "$CBM_RECIPE/tools/validate_release_refinement.py" "$CBM_RAW" "$CBM_KIT/release-lock.json" "$CBM_KIT" "$CBM_EVIDENCE/refinement.json"
+sudo python3 "$CBM_RECIPE/tools/validate_rc1.py" "$CBM_RAW" "$CBM_KIT/release-lock.json" "$CBM_KIT" "$CBM_EVIDENCE/refinement.json"
 sha256sum "$CBM_RAW" "$CBM_XZ"
 xz -dc "$CBM_XZ" | sha256sum
 ```
@@ -236,6 +237,6 @@ checks after transfer. Measure used/free space and first-boot/maintenance allowa
 
 Create an additive checkpoint following [engineering recovery](../recovery.md): exact
 refs, full bundles, offline clone/ref/tag/fsck validation, retained-input/output manifests
-and independent custody status. Prepare an exact-hash Pi 3B procedure before flashing.
+and independent custody status. Prepare an exact-hash Pi 4 B procedure before flashing.
 A build is not physical qualification, nor proof of independent-build reproducibility.
 Stop for owner testing; no command here authorizes publication or clears third-party rights.

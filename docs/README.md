@@ -30,3 +30,6 @@ Historical 1.0 guides: [end-user guide](end-user-guide.md),
 [flashing](flashing-the-image.md), [troubleshooting](troubleshooting.md),
 [screenshots](screenshots.md), and [audit corrections](v1.0-current-notes.md).
 The new guides replace their account/service/default advice for 1.1.
+
+- [Content library and migration](release/content.md)
+- [Boot presentation, timing and recovery](release/boot.md)

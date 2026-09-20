@@ -56,7 +56,7 @@ Slow pitch/tempo together with slow graphics suggests the emulator is below real
 not simply dropping display frames. Check the exact machine/profile, whether warp or
 pause is active, and the current release's performance qualification. Power supply,
 thermal throttling and CPU clock are useful evidence but are not automatic explanations.
-The Pi 3 B+ performance correction is still awaiting physical qualification. Preserve
+Project CBM 1.1 targets Pi 4-class hardware and newer. Preserve
 the image identity and a brief description of the workload before experimenting.
 Engineering instructions use numeric speed measurements; see [VICE](vice.md).
 
@@ -74,3 +74,6 @@ allows ordinary Linux offline recovery; it also means physical possession is par
 the security model. Do not follow instructions that publish shadow files or replace
 the appliance with unrestricted passwordless administration. During formal candidate
 qualification, stop and preserve evidence instead of repairing that candidate in place.
+
+See [boot presentation, timing and verbose recovery](boot.md) for the quiet-boot
+settings, bounded repeated-initialization correction and physical measurement limits.

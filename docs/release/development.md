@@ -1,5 +1,9 @@
 # Return to Project CBM development
 
+[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
+USB import, optional applications and safe preservation of older content.
+
+
 Read Product and Menu AGENTS/CURRENT-STATE from disk, inspect branches/HEAD/dirty work,
 then follow the exact next action. Preserve unfamiliar changes and immutable evidence.
 Product owns runtime/integration/build/qualification; Menu owns its independent UI
@@ -30,8 +34,9 @@ candidate ends at the owner's exact-hash physical procedure, not automatic publi
 
 Current accepted limitation: keyboard VT switching while VICE's SDL/KMS console backend
 is active. F10 → Quit then switch works; retain it until a supported upstream solution
-can preserve input/display ownership. Quiet boot, splash presentation and measured faster
-boot are the next separate polish milestone. Do not combine them with service refinement.
+can preserve input/display ownership. [Boot presentation and timing](boot.md) describe
+the current quiet console settings, guarded initialization fast path, unchanged baseline
+and required physical checks. Quieter output is not evidence of a faster boot.
 
 ## Follow a change through the system
 

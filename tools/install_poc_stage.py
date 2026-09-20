@@ -15,6 +15,7 @@ from build_contracts import encode, make_identity, read_json
 from retained_inputs import verify_kit
 from build_environment import environment
 from vice_presentation import defaults as presentation_defaults, seed as seed_presentation
+import boot_presentation
 
 REPO=Path(__file__).resolve().parents[1]
 
@@ -79,15 +80,18 @@ def main():
     for name in ['pcbm-first-boot.service','tcpser.service']:
         owned_put('/usr/lib/systemd/system/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes())
     owned_put('/usr/libexec/project-cbm/first_boot.py',(REPO/'build/pigen/stage-cbm/files/first_boot.py').read_bytes(),0o755)
-    for directory in ['pcbm','.config','.config/pcbm','.config/vice','.local','.local/state','.local/state/vice','.local/share','.local/share/vice']:
+    for directory in ['pcbm','.config','.config/vice','.local','.local/state','.local/state/vice','.local/share','.local/share/vice']:
         target=root/'home/pi'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
     owned_put('/usr/share/project-cbm/vice-defaults.ini',presentation_defaults())
     user_config=root/'home/pi/.config/vice/sdl-vicerc'
     if seed_presentation(user_config):
         os.chown(user_config,1000,1000)
     # The user copy is user state, deliberately excluded from owned-paths.txt.
-    for directory in ['games','demos','music','programs','roms','screenshots','saves']:
-        target=root/'home/pi/pcbm'/directory;target.mkdir(exist_ok=True);os.chown(target,1000,1000)
+    sys.path.insert(0,str(REPO/'runtime'))
+    from project_cbm.library import directories as library_directories
+    for directory in library_directories():
+        target=root/'home/pi/pcbm'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
+        if target.parent != root/'home/pi/pcbm':os.chown(target.parent,1000,1000)
     chroot('usermod','--password','*','pi');chroot('usermod','--password','*','root')
     chroot('usermod','--shell','/bin/bash','pi')
     if 'runtime' not in lock['components']:raise ValueError('activated candidate requires declared runtime package')
@@ -176,7 +180,13 @@ def main():
                     os.chown(parent,1000,1000)
     # One growth owner. The inspected vendor initramfs hooks both require ' resize'.
     cmdline=root/'boot/firmware/cmdline.txt'
-    cmdline.write_text(' '.join(word for word in cmdline.read_text().split() if word!='resize')+'\n')
+    cmdline.write_text(boot_presentation.cmdline(cmdline.read_text()))
+    config=root/'boot/firmware/config.txt'
+    config.write_text(boot_presentation.firmware(config.read_text()))
+    owned_put('/etc/issue',boot_presentation.ISSUE)
+    # Suppress only the appliance login's routine motd/last-login prose. PAM still runs.
+    put('/home/pi/.hushlogin','')
+    os.chown(root/'home/pi/.hushlogin',1000,1000)
     disabled=['rpi-resize.service','systemd-growfs-root.service','userconfig.service',
               'regenerate_ssh_host_keys.service','ssh.socket','sshswitch.service',
               'sshd-keygen.service','nmbd.service','samba-ad-dc.service',

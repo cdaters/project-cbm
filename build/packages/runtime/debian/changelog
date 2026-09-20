@@ -1,3 +1,11 @@
+project-cbm-runtime (1.1.0~rc1-1) trixie; urgency=medium
+
+  * Define the canonical type/machine content library and safe import destinations.
+  * Report live gateway and DNS information through pcbm-info.
+  * Document the Pi 4 floor, content migration and measured boot polish.
+
+ -- Project CBM contributors <noreply@project-cbm.invalid>  Sat, 19 Sep 2026 23:30:00 +0000
+
 project-cbm-runtime (1.1.0~poc4.5-1) trixie; urgency=medium
 
   * Adopt pcbm as the fixed owner/admin account; preserve the pi console role.

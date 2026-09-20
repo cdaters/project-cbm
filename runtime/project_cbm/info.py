@@ -304,6 +304,9 @@ def human(data):
         lines.append('    MAC: ' + (row['mac'] or 'unavailable'))
         for family in ('ipv4', 'ipv6'):
             lines.append('    ' + family.upper() + ': ' + (', '.join(row[family]) or 'none assigned'))
+        for key in ('gateway_ipv4','gateway_ipv6','dns_ipv4','dns_ipv6'):
+            values=row.get(key)
+            lines.append('    '+key+': '+('unavailable' if values is None else ', '.join(values) or 'none configured'))
         if row['ssid'] is not None: lines.append('    SSID: ' + row['ssid'])
     if c['services'] is not None:
         labels = {'ssh': 'SSH', 'samba': 'Samba', 'tcpser': 'Modem/BBS', 'avahi': 'mDNS', 'network_manager': 'Network', 'first_boot': 'First boot'}

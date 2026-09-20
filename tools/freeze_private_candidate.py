@@ -8,8 +8,31 @@ from pathlib import Path
 import re
 import subprocess
 import tarfile
-from build_contracts import encode, read_json
+import sys
+import tempfile
+from build_contracts import encode, read_json, verify_artifact
 from retained_inputs import verify_kit
+
+
+def verify_predecessor(old, workspace):
+    """Verify historical recipes with their exact retained integration, not new recipes."""
+    lock = read_json(old/'release-lock.json')
+    source = lock['integration']['source']
+    verify_artifact(old, source)
+    scratch = workspace/'scratch'
+    scratch.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='verify-predecessor-', dir=scratch) as name:
+        target = Path(name)
+        with tarfile.open(old/source['path']) as archive:
+            for member in archive.getmembers():
+                if (not (member.name.startswith('project-cbm/') or (member.name == 'project-cbm' and member.isdir()))
+                        or '..' in Path(member.name).parts or not (member.isdir() or member.isfile())):
+                    raise ValueError('unsafe predecessor integration archive')
+            archive.extractall(target, filter='data')
+        subprocess.run([sys.executable, str(target/'project-cbm/tools/retained_inputs.py'),
+                        str(old/'release-lock.json'), str(old)], check=True,
+                       env={'PATH':os.environ['PATH'],'LC_ALL':'C','PYTHONDONTWRITEBYTECODE':'1'})
+    return lock
 
 
 def main():
@@ -25,10 +48,15 @@ def main():
     p.add_argument('--menu-version',required=True)
     p.add_argument('--reuse-menu',action='store_true')
     p.add_argument('--vice-version')
+    p.add_argument('--product-version')
+    p.add_argument('--candidate')
     a = p.parse_args()
     if not 6 <= a.previous_attempt < a.attempt < 100:raise ValueError('distinct increasing attempt required')
     for version in (a.runtime_version,a.menu_version):
-        if not re.fullmatch(r'1[.]1[.]0~poc4[.][0-9]+-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
+        if not re.fullmatch(r'1[.]1[.]0~(?:poc4[.][0-9]+|rc[0-9]+)-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
+    if bool(a.product_version) != bool(a.candidate):raise ValueError('complete product identity required')
+    if a.candidate and not re.fullmatch(r'private-engineering-rc[0-9]+',a.candidate):raise ValueError('private RC identity required')
+    if a.product_version and not re.fullmatch(r'1[.]1[.]0-rc[.][0-9]+',a.product_version):raise ValueError('RC version required')
     menu_label=a.menu_version.rsplit('-',1)[0].replace('~','_')
     runtime_label=a.runtime_version.rsplit('-',1)[0].replace('~','_')
     for pin in (a.integration_commit, a.menu_commit, a.menu_tag_object):
@@ -43,7 +71,8 @@ def main():
         if path.stat().st_size!=descriptor['size_bytes'] or hashlib.sha256(path.read_bytes()).hexdigest()!=descriptor['sha256']:raise ValueError('export bytes mismatch')
     old = w/f'inputs/frozen-poc4-attempt{a.previous_attempt}'
     oldraw = (old/'release-lock.json').read_bytes()
-    lock = copy.deepcopy(verify_kit(oldraw, old))
+    lock = copy.deepcopy(verify_predecessor(old,w))
+    if a.product_version:lock['product'].update(version=a.product_version,candidate=a.candidate)
     kit = w/f'inputs/frozen-poc4-attempt{a.attempt}'
     kit.mkdir()
     (kit/'objects').mkdir()
@@ -87,6 +116,20 @@ def main():
     lock['integration']['git']['commit'] = a.integration_commit
     lock['integration']['source'] = store(integration)
     lock['base']['configuration'] = store(recipe/'build/pigen/config.json')
+    for key, source in [('defaults','build/pigen/defaults.json'),
+                        ('first_boot_recipe','build/pigen/stage-cbm/files/first_boot.py'),
+                        ('sealing_recipe','tools/install_poc_stage.py')]:
+        lock['configuration'][key] = store(recipe/source)
+    # Refresh path-bearing application manifests/recipes; payload rights remain unchanged.
+    from optional_software import payload
+    sid = lock['optional_software']['sid_wizard']
+    sid['rights_review'] = store(recipe/'build/optional/sid-wizard.json')
+    sid['recipe'] = store(recipe/'tools/optional_software.py')
+    temporary = kit/'sid-payload.tmp'
+    temporary.write_bytes(payload(kit/sid['source']['path'],read_json(recipe/'build/optional/sid-wizard.json')))
+    sid['artifact'] = store(temporary)
+    temporary.unlink()
+    lock['optional_software']['striketerm']['rights_review'] = store(recipe/'build/optional/striketerm.json')
     packages = w/f'packages/poc4-attempt{a.attempt}'
     oldrecord = read_json(old/lock['components']['menu']['build_record']['path'])
     if a.reuse_menu:
@@ -164,6 +207,8 @@ def main():
                          ('lib/pcbm_info_view.py','usr/libexec/project-cbm-menu/pcbm_info_view.py'),
                          ('scripts/pcbm-system-info','usr/bin/pcbm-system-info'),
                          ('scripts/pcbm-menu','usr/bin/pcbm-menu'),
+                         ('scripts/pcbm-import','usr/bin/pcbm-import'),
+                         ('scripts/pcbm-content','usr/bin/pcbm-content'),
                          ('scripts/pcbm-first-run','usr/bin/pcbm-first-run'),
                          ('scripts/pcbm-config','usr/bin/pcbm-config'),
                          ('lib/pcbm-setup-ui.sh','usr/share/project-cbm-menu/pcbm-setup-ui.sh'),
@@ -190,10 +235,10 @@ def main():
     (kit/'release-lock.sha256').write_text(sha+'  release-lock.json\n')
     (kit/'attempt.json').write_bytes(encode({'attempt':a.attempt,'candidate':lock['product'],
         'prior_lock_sha256':hashlib.sha256(oldraw).hexdigest(),'release_lock_sha256':sha,
-        'changed':['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity']
+        'changed':['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity','optional application path manifests/recipes']
                    + ([] if a.reuse_menu else ['Menu package/tag/source']) + (['VICE package/patches'] if a.vice_version else []),
         'unchanged':(['Menu package/tag/source'] if a.reuse_menu else []) + ([] if a.vice_version else ['VICE']) + ['TCPser','all seven Covers','base and host closures','pi-gen and patches',
-                     'qualification media','SID-Wizard','StrikeTerm and rights gates'],
+                     'qualification media','SID-Wizard upstream source','StrikeTerm disk bytes and rights gates'],
         'construction_argument':'--attempt '+str(a.attempt)}))
     print(sha)
 

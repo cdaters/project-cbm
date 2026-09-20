@@ -1,3 +1,37 @@
+# RC1 final polish in progress — 2026-09-19
+
+The owner changed the 1.1 floor to Pi 4-class and newer, explicitly authorized
+quiet presentation/measured safe boot work and one new RC1-basis private candidate.
+This supersedes the Pi 3 investigation/attempt9 stop below; preserve those failures.
+[Attempt8 Pi4 attestation](docs/qualification/poc4-attempt8-pi4-owner-report-2026-09-19.json):
+normal x64sc owner performance PASS, 29 non-warp samples over 145.219 seconds at
+weighted 100.002%; final low interval is owner-confirmed quitting. RO card identity
+verified before collection; private manifest `daaa83ecadf08c9faffe34c6594ede98a87922d1c241e71e18c6d435d4e28540`.
+No unreported function/model is promoted to PASS. Card is now back in the Pi.
+
+Source refinements: `/home/pi/pcbm` remains the independent runtime library;
+type-first machine folders/import routing, explicit FILES start location, gateway/DNS
+through pcbm-info, quiet firmware/kernel/existing-console text presentation and guarded
+completed root-growth fast path. VICE/Covers/session ownership unchanged. Networking
+waits are retained. Unchanged Pi4 baseline: kernel2.390s + userspace16.960s =19.351s;
+no power-to-Menu stopwatch measurement. Product208/208 and Menu97/97 host tests PASS.
+Native Product208/208, Menu97/97, installed lifecycle10/10, seven SDL dummy Covers,
+service/SSH/local-discovery/dialog/USB-loop checks PASS. Initial native fixture errors
+(missing historical Git metadata and a group-writable synthetic marker) were corrected
+and retained; production guards unchanged. Package/freeze/image/recovery gates pending; **READY TO FLASH: NO** for RC1.
+New source versions Runtime1.1.0~rc1-1 and Menu1.1.0_rc1 are not frozen yet.
+VICE3.10-1+pcbm4 and TCPser will be reused with exact checks.
+
+Builder remains approved native ARM64 Lima/VZ/ext4. Additive stopped-disk/config copy
+verified before growth192→224GiB, recovery manifest
+`26f9294e0361091dcb8e92203fb491590d632994c5039ccf12f4968fe8574ee1`
+at `build-host/records/pre-rc1-disk-growth-2026-09-19`. Full capability and existing
+inventory/update guard PASS; no host package updates or retained-state deletion.
+Next: finish native tests, clean commits/tags, changed packages, distinct RC1 lock/image,
+actual-image gates, verified recovery and exact-hash Pi4 procedure. Nothing pushed.
+
+Earlier entries below are historical checkpoints.
+
 # Attempt #8 pre-test checks complete — ready for owner live A/B
 
 The [readback record](docs/qualification/poc4-attempt8-live-settings.json) now includes

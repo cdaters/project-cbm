@@ -125,12 +125,16 @@ Product seeds and launch flags are separate sources of effective settings; suppo
 reports should distinguish them. Restoring old saved resources can also restore old
 performance choices, so compare them explicitly during a fresh-image regression.
 
-Pi 3-class hardware remains the performance floor. Functionally launching a profile is
+Pi 4-class hardware is the Project CBM 1.1 performance floor. Functionally launching a profile is
 not enough: representative games, demos, disk software, BASIC and music must sustain
 real-time emulation on the minimum qualified model. The owner-supplied demanding
 reference is private test material, not a bundled game. Compiler/core/resource decisions
 must follow bounded evidence and retain the highest fidelity that satisfies real time.
-No host/native result independently qualifies a Pi 3 B+.
+Attempt #8 has an owner Pi 4 B PASS for the demanding reference under x64sc, supported
+by 145.219 seconds at weighted 100.002% speed. The final low sample was quitting,
+confirmed by the owner. The saved configuration is retained with that result. No
+host/native result independently qualifies a Pi, and every new image still needs its
+own regression. The normal C64 core remains x64sc; no Pi 3 tuning or core tier is selected.
 
 Engineering `CBM_PERFORMANCE` records contain measured wall-window speed percentage,
 emulated FPS and warp state. They are capped at 120 records, about five seconds apart,

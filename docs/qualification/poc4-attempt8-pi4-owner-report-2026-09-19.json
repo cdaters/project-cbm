@@ -1,0 +1,66 @@
+{
+  "format": "project-cbm.physical-owner-attestation",
+  "schema_version": 1,
+  "reported_date": "2026-09-19",
+  "hardware": "Raspberry Pi 4 B",
+  "candidate": "private-engineering-poc4 attempt #8",
+  "raw_image_sha256": "e4bb7f03ed26583097f92e8b8d1c2e9e4e3616d4d39940c78f70618ca3a81c40",
+  "release_lock_sha256": "53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57",
+  "installed_identity": "Verified from removable USB card, read-only Paragon rootfs mount, before collection",
+  "engine": "x64sc",
+  "engine_sha256": "bc046286c8071a2e9ebeeabb923afb977528bf64b409e8fd8a7845cbda2ad69b",
+  "workload": {
+    "filename": "kong_arcade_oxyron.prg",
+    "sha256": "a80816ec175ffcbc44b4127f43ea43091df28494e8da9ef9e93bff72c1fdd554",
+    "same_bytes_as_prior_reference": true,
+    "rights": "Private owner-supplied reference; not redistributed"
+  },
+  "result": {
+    "owner_perceived_performance": "PASS",
+    "active_nonwarp_samples": [
+      11,
+      39
+    ],
+    "seconds": 145.219,
+    "weighted_speed_percent": 100.00161686831613,
+    "minimum_speed_percent": 99.977,
+    "final_sample_40": {
+      "seconds": 21.757,
+      "speed_percent": 20.357,
+      "owner_confirmed": "Quitting",
+      "excluded_from_active_workload": true
+    },
+    "other_unreported_functions": "UNTESTED"
+  },
+  "saved_vice_config_sha256": "e80641f8da36f486e718df04fc277a54be04f931fe6968893e375a8768ac67de",
+  "saved_config_differs_from_fresh_seed": true,
+  "evidence": {
+    "workspace_relative": "qualification/poc4-attempt8-pi4-2026-09-19",
+    "manifest_sha256": "daaa83ecadf08c9faffe34c6594ede98a87922d1c241e71e18c6d435d4e28540",
+    "files": 17,
+    "raw_final_sample_preserved": true
+  },
+  "limits": [
+    "No persistent card boot journal; subsequent unchanged live systemd baseline is recorded separately from unmeasured power-on-to-Menu timing.",
+    "No live CPU, clock, temperature or throttling observations available from this offline card.",
+    "One workload on Pi 4 B does not qualify all machines or newer hardware."
+  ],
+  "support_decision": "Owner explicitly chooses Pi 4-class and newer for 1.1; Pi 3/Zero-class removed from release target, failures preserved.",
+  "boot_baseline": {
+    "source": "Owner SSH output from unchanged attempt8 on Pi 4 B",
+    "kernel_seconds": 2.39,
+    "userspace_seconds": 16.96,
+    "total_seconds": 19.351,
+    "graphical_target_userspace_seconds": 16.959,
+    "target_critical_path": [
+      "smbd.service",
+      "network-online.target",
+      "NetworkManager-wait-online.service",
+      "NetworkManager.service"
+    ],
+    "network_wait_seconds": 5.966,
+    "pcbm_first_boot_seconds": 1.885,
+    "power_on_to_interactive_menu_seconds": null,
+    "tty1_critical_chain": "Requested; pending"
+  }
+}

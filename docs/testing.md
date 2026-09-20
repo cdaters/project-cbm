@@ -1,4 +1,13 @@
-## Current performance release gate
+# Current 1.1 floor: Pi 4 B
+
+The owner explicitly changed the release target to Pi 4-class and newer on 2026-09-19.
+[Attempt #8 Pi 4 result](qualification/poc4-attempt8-pi4-owner-report-2026-09-19.json)
+records the bounded C64 performance PASS and retained numeric evidence. Qualify each
+new candidate, profile and model independently. Pi 3 failures and older policy below
+are historical; do not resume Pi 3 optimization. Quiet boot and measured fast boot
+are now authorized final polish, with an unchanged Pi 4 baseline required first.
+
+## Historical Pi 3 performance release gate — superseded by the owner policy above
 
 Attempt #7 has an [owner-reported Pi 3 B+ real-time C64 failure](qualification/poc4-attempt7-pi3b-plus-performance-2026-09-18.json). Pi 3 remains the performance floor. The [correction and measurable qualification contract](runtime/c64-performance-2026-09-18.md) adds sustained emulation speed, audio/visual correctness and representative workloads to functional testing. No newer candidate has a physical performance PASS yet.
 

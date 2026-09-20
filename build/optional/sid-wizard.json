@@ -34,7 +34,7 @@
       "disk_name": "SID-MAKER"
     }
   ],
-  "content_path": "music/Creation/SID-Wizard/SID-Wizard-1.97.d64",
+  "content_path": "music/c64/Creation/SID-Wizard/SID-Wizard-1.97.d64",
   "profile": "x64sc",
   "physical_qualification": "PENDING",
   "upstream_binary_rebuilt": "NOT ESTABLISHED; verified extraction of exact released binary"

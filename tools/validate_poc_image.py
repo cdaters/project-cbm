@@ -103,7 +103,7 @@ def main():
         check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()==lock['product']['candidate']+'\n')
         check('diagnostic_programs_present',all((root/p).is_file() for p in ['usr/bin/pcbm-diagnostics','usr/libexec/project-cbm/engineering.py']))
         observer=(root/'usr/libexec/project-cbm/engineering.py').read_text()
-        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4'):
+        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4','private-engineering-rc1'):
             template=root/'usr/share/project-cbm/vice-defaults.ini'
             user=root/'home/pi/.config/vice/sdl-vicerc'
             check('presentation_template_exact',template.read_bytes()==presentation_defaults() and template.stat().st_uid==0)

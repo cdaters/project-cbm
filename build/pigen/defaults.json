@@ -28,5 +28,22 @@
     "user_preferences_preserved": true,
     "initialization": "image-construction-only",
     "pixel_geometry": "VICE per-chip PAL/NTSC"
+  },
+  "hardware_policy": {
+    "minimum_class": "Pi 4",
+    "targets": [
+      "Pi 4 B",
+      "Pi 400",
+      "Pi 5",
+      "Pi 500",
+      "Pi 500+"
+    ],
+    "qualification": "per-model"
+  },
+  "boot_presentation": {
+    "rainbow": false,
+    "console": "quiet-with-errors",
+    "presentation": "existing-login-session-text",
+    "extra_delay_seconds": 0
   }
 }

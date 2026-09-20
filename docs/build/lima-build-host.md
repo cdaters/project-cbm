@@ -161,3 +161,14 @@ Lima/VZ/plain/ext4 architecture; CPU, RAM, host package closure, isolation and
 security remain unchanged. Rerun capability and package/update guards after growth.
 The same-volume COW snapshot is private builder state, not independent custody,
 and must never be published. No historical tree or unexported state is deleted.
+
+## Additive RC1 capacity increase, 2026-09-19
+
+Prior candidates remain preserved. Before growing 192 to **224 GiB**, the stopped
+builder disk/config were cloned and byte-verified at
+`build-host/records/pre-rc1-disk-growth-2026-09-19`, manifest SHA-256
+`26f9294e0361091dcb8e92203fb491590d632994c5039ccf12f4968fe8574ee1`.
+The previous guest had less than the unchanged 40 GiB construction-start gate.
+This additive capacity maintenance retains all historical/unexported state and the
+existing CPU/RAM/VZ/plain/ext4 architecture. Rerun capability and host-integrity gates.
+The clone is private same-volume recovery, not independent custody.

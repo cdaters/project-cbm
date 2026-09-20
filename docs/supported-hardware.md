@@ -1,3 +1,23 @@
+# Project CBM 1.1 hardware policy
+
+The owner has selected **Pi 4-class hardware and newer** for Project CBM 1.1.
+Targets are Raspberry Pi 4 B, 400, 5, 500 and 500+ where technically supportable;
+each model requires separate qualification. Pi 3/Zero-class hardware is outside the
+1.1 release target. Existing images and historical results are retained unchanged.
+
+Attempt #8 has an [owner-reported Pi 4 B C64 performance PASS](qualification/poc4-attempt8-pi4-owner-report-2026-09-19.json)
+for the private Donkey Kong reference with x64sc. The retained active non-warp interval
+covers 145.219 seconds at weighted 100.002% speed. This is one workload, not blanket
+qualification for every profile or newer Pi. The next physical target is Pi 4 B.
+Pi 3 B+ performance failures remain valid historical evidence; no further Pi 3 tuning
+or default-core downgrade is planned. OS support alone does not qualify Project CBM.
+
+Use a suitable power supply, HDMI display and keyboard. Storage must hold the exact
+raw image plus first-boot, maintenance and content headroom; no unsupported nominal
+8 GB minimum is asserted. See [testing](testing.md) and [current status](../CURRENT-STATE.md).
+
+## Historical policy and records (superseded for 1.1)
+
 ## Current performance release gate
 
 Attempt #7 has an [owner-reported Pi 3 B+ real-time C64 failure](qualification/poc4-attempt7-pi3b-plus-performance-2026-09-18.json). Pi 3 remains the performance floor. The [correction and measurable qualification contract](runtime/c64-performance-2026-09-18.md) adds sustained emulation speed, audio/visual correctness and representative workloads to functional testing. No newer candidate has a physical performance PASS yet.

@@ -5,7 +5,7 @@ from .data import loads
 
 IP = ['/usr/sbin/ip', '-j', 'address', 'show']
 DEVICES = ['/usr/bin/nmcli', '--terse', '--escape', 'yes', '--fields',
-           'GENERAL.DEVICE,GENERAL.TYPE,GENERAL.STATE', 'device', 'show']
+           'GENERAL.DEVICE,GENERAL.TYPE,GENERAL.STATE,IP4.GATEWAY,IP4.DNS,IP6.GATEWAY,IP6.DNS', 'device', 'show']
 WIFI = ['/usr/bin/nmcli', '--terse', '--escape', 'yes', '--fields',
         'DEVICE,ACTIVE,SSID', 'device', 'wifi', 'list', '--rescan', 'no']
 STATES = {10:'unmanaged', 20:'unavailable', 30:'disconnected', 40:'connecting',
@@ -49,7 +49,8 @@ def addresses(raw):
         if state not in ('up','down','unknown','dormant','lowerlayerdown','notpresent','testing'): raise ValueError('operstate')
         mac=d.get('address');mac=mac.lower() if isinstance(mac,str) and re.fullmatch(r'(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}',mac) else None
         row={'interface':name,'type':'unknown','operstate':state,'state':'unknown',
-             'ipv4':[],'ipv6':[],'mac':mac,'ssid':None}
+             'ipv4':[],'ipv6':[],'mac':mac,'ssid':None,
+             'gateway_ipv4':None,'gateway_ipv6':None,'dns_ipv4':None,'dns_ipv6':None}
         entries=d.get('addr_info',[])
         if not isinstance(entries,list) or len(entries)>16: raise ValueError('addresses')
         for entry in entries:
@@ -91,8 +92,19 @@ def devices(raw):
                 if not match:raise ValueError('nm_state')
                 value=STATES.get(int(match[1]),'unknown')
             result[current][dest]=value
+        elif current is not None and re.fullmatch(r'IP[46]\.(GATEWAY|DNS(?:\[[1-8]\])?)',key):
+            version=int(key[2]); kind='gateway' if key.endswith('GATEWAY') else 'dns'
+            dest=f'{kind}_ipv{version}'
+            values=result[current].setdefault(dest,[])
+            if value and value != '--':
+                address=ipaddress.ip_address(value)
+                if address.version!=version or address.is_unspecified or address.is_multicast or (kind=='gateway' and address.is_loopback):
+                    raise ValueError('network_route_address')
+                if getattr(address,'scope_id',None):interface(address.scope_id)
+                if str(address) not in values:values.append(str(address))
+                if len(values)>(1 if kind=='gateway' else 8):raise ValueError('network_route_count')
         else:raise ValueError('nm_key')
-    if any(set(row)!={'type','state'} for row in result.values()):raise ValueError('nm_incomplete')
+    if any(not {'type','state'}<=set(row) for row in result.values()):raise ValueError('nm_incomplete')
     return result
 
 

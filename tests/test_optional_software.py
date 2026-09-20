@@ -118,7 +118,7 @@ class OptionalApplications(unittest.TestCase):
         return p
 
     def test_known_apps_route_to_registry_c64_without_preference_write(self):
-        for folder in ['music/Creation/SID-Wizard','programs/Communications/StrikeTerm']:
+        for folder in ['music/Creation/SID-Wizard','programs/Communications/StrikeTerm','music/c64/Creation/SID-Wizard','programs/c64/Communications/StrikeTerm']:
             p=self.make_app(folder)
             self.assertEqual(application_profile(p,registry(),self.root),'x64sc')
             with self.assertRaises(ValueError):application_profile(p,[],self.root)
@@ -140,7 +140,7 @@ class OptionalApplications(unittest.TestCase):
         import contextlib
         for policy,expected in [('x64sc','x64sc'),(None,'xvic')]:
             out=io.StringIO()
-            with patch('project_cbm.profiles.application_profile',return_value=policy),patch('project_cbm.profiles.preferences.selection',return_value={'id':'xvic'}),patch('project_cbm.preferences.update',side_effect=AssertionError('write')),contextlib.redirect_stdout(out):
+            with patch('project_cbm.profiles.application_profile',return_value=policy),patch('project_cbm.profiles.preferences.selection',return_value={'id':'xvic'}),patch('project_cbm.preferences.update',side_effect=AssertionError('write')),patch('project_cbm.profiles.library.content_profile',return_value='xvic'),contextlib.redirect_stdout(out):
                 self.assertEqual(profiles.main(['content-profile','/unused.d64']),0)
             self.assertEqual(out.getvalue(),expected+'\n')
 

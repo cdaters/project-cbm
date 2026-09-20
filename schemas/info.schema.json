@@ -659,6 +659,70 @@
                         "maxLength": 32
                       }
                     ]
+                  },
+                  "gateway_ipv4": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "maxItems": 8,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        }
+                      }
+                    ]
+                  },
+                  "gateway_ipv6": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "maxItems": 8,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        }
+                      }
+                    ]
+                  },
+                  "dns_ipv4": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "maxItems": 8,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        }
+                      }
+                    ]
+                  },
+                  "dns_ipv6": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "array",
+                        "maxItems": 8,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        }
+                      }
+                    ]
                   }
                 }
               }
@@ -787,6 +851,70 @@
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 32
+                          }
+                        ]
+                      },
+                      "gateway_ipv4": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "array",
+                            "maxItems": 8,
+                            "uniqueItems": true,
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            }
+                          }
+                        ]
+                      },
+                      "gateway_ipv6": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "array",
+                            "maxItems": 8,
+                            "uniqueItems": true,
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            }
+                          }
+                        ]
+                      },
+                      "dns_ipv4": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "array",
+                            "maxItems": 8,
+                            "uniqueItems": true,
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            }
+                          }
+                        ]
+                      },
+                      "dns_ipv6": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "array",
+                            "maxItems": 8,
+                            "uniqueItems": true,
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            }
                           }
                         ]
                       }

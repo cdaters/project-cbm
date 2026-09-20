@@ -35,12 +35,16 @@ refer to that account. Fresh images use `pcbm`; this is not an in-place account 
 When restoring content, preserve the new image's account database, policy, host keys and
 setup state. Do not copy old `/etc/passwd`, `/etc/shadow` or Samba databases wholesale.
 
+The [content library guide](content.md) defines the category/machine hierarchy and safe
+copy workflow. The administrator home is not a second content root. VICE starts in
+`/home/pi/pcbm`; saved browsing choices may navigate elsewhere without moving the library.
+
 ## Installed layout
 
 | Path | What it contains / who owns it |
 | --- | --- |
 | `/home/pi/pcbm/{games,demos,music,programs,roms,screenshots,saves}` | User content; locally usable and shared through File Sharing |
-| `/home/pi/.config/pcbm` | Validated appliance preferences; user-owned |
+| `/home/pi/.config/project-cbm/preferences.json` | Validated appliance preferences; user-owned |
 | `/home/pi/.config/vice/sdl-vicerc` | Saved VICE resources, initially seeded only if absent |
 | `/home/pi/.local/share/vice` | VICE user data/keymap lookup location |
 | `/home/pi/.local/state/vice` | VICE user state/log location |

@@ -3,9 +3,11 @@ from pathlib import Path
 import stat
 from .data import text
 
-CONTENT_ROOT = Path('/home/pi/pcbm')
+from .library import ROOT as CONTENT_ROOT
 APP_FOLDERS = (('music', 'Creation', 'SID-Wizard'),
                ('programs', 'Communications', 'StrikeTerm'))
+NEW_APP_FOLDERS = (('music', 'c64', 'Creation', 'SID-Wizard'),
+                   ('programs', 'c64', 'Communications', 'StrikeTerm'))
 
 
 def application_profile(media, profiles, root=CONTENT_ROOT):
@@ -22,7 +24,7 @@ def application_profile(media, profiles, root=CONTENT_ROOT):
     relative = path.relative_to(root)
     if not stat.S_ISREG(path.stat().st_mode) or path.resolve(strict=True) != path:
         raise ValueError('redirected_content')
-    if relative.parts[:3] not in APP_FOLDERS:
+    if relative.parts[:3] not in APP_FOLDERS and relative.parts[:4] not in NEW_APP_FOLDERS:
         return None
     if path.suffix.lower() != '.d64' or path.stat().st_size != 174848:
         raise ValueError('application_requires_standard_d64')

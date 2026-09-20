@@ -6,10 +6,10 @@ w=$(realpath "${2:?guest bulk workspace}")
 [[ $(uname -m) == aarch64 && $(findmnt -T "$w" -no FSTYPE) == ext4 ]]
 [[ $(df --output=avail -B1 "$w" | tail -1) -gt $((40*1024**3)) ]]
 attempt=${3:?new attempt number}
-menu=${4:?Menu source version, e.g. 1.1.0_poc4.5}
+menu=${4:?Menu source version, e.g. 1.1.0_rc1}
 selection=${5:-runtime-menu}
 [[ $selection == runtime-menu || $selection == runtime-vice || $selection == runtime-menu-vice ]]
-[[ $attempt =~ ^[1-9][0-9]?$ && $menu =~ ^1\.1\.0_poc4\.[0-9]+$ ]]
+[[ $attempt =~ ^[1-9][0-9]?$ && $menu =~ ^1\.1\.0_(poc4\.[0-9]+|rc[0-9]+)$ ]]
 out="$w/packages/poc4-attempt$attempt"
 mkdir "$out"
 mkdir "$out/product"

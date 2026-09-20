@@ -6,8 +6,27 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import stat
 
 STATE = Path('/var/lib/project-cbm/first-boot')
+
+
+def completed(state=STATE):
+    """Only a valid protected completion marker may skip one-time expansion."""
+    path = state/'complete.json'
+    if not path.exists() and not path.is_symlink():
+        return False
+    parent, marker = state.lstat(), path.lstat()
+    if (not stat.S_ISDIR(parent.st_mode) or parent.st_uid != 0 or parent.st_mode & 0o077
+            or not stat.S_ISREG(marker.st_mode) or marker.st_uid != 0
+            or marker.st_mode & 0o022 or marker.st_nlink != 1 or marker.st_size > 1024):
+        raise ValueError('unsafe first-boot completion marker')
+    value = json.loads(path.read_text())
+    if (not isinstance(value,dict) or set(value) != {'schema_version','root_growth_verified'}
+            or type(value['schema_version']) is not int or value['schema_version'] != 1
+            or value['root_growth_verified'] is not True):
+        raise ValueError('invalid first-boot completion marker')
+    return True
 
 
 def run(*args):
@@ -46,6 +65,8 @@ def main():
     STATE.mkdir(parents=True,exist_ok=True,mode=0o700)
     with (STATE/'lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
+        if completed(STATE):
+            return
         mid=Path('/etc/machine-id').read_text().strip()
         if not re.fullmatch('[0-9a-f]{32}',mid) or mid=='0'*32:
             raise ValueError('systemd must initialize persistent machine-id before CBM')
@@ -76,7 +97,7 @@ def main():
             raise ValueError('root did not grow to the expected device tail')
         subprocess.run(['resize2fs',root],check=True)
         if run('id','-u','pi')!='1000': raise ValueError('unexpected appliance account identity')
-        for path in ['/home/pi/pcbm', '/home/pi/.config','/home/pi/.config/pcbm','/home/pi/.config/vice',
+        for path in ['/home/pi/pcbm', '/home/pi/.config','/home/pi/.config/vice',
                      '/home/pi/.local','/home/pi/.local/state','/home/pi/.local/state/vice',
                      '/home/pi/.local/share','/home/pi/.local/share/vice']:
             target=Path(path)

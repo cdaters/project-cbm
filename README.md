@@ -3,7 +3,7 @@
 Project CBM is a keyboard-driven Commodore appliance for Raspberry Pi, built from
 Raspberry Pi OS Lite arm64, SDL2 VICE, ALSA and a Bash/dialog Menu. It preserves user
 control, a reliable console/emulator lifecycle and an independently recoverable image
-factory. Pi 3 is the performance floor; each model requires its own qualification.
+factory. Pi 4 is the 1.1 performance floor; each model requires its own qualification.
 
 **1.1 is in private release-readiness refinement, not a public release.** Start with
 [the documentation](docs/README.md). [CURRENT-STATE](CURRENT-STATE.md) identifies the

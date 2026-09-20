@@ -9,7 +9,7 @@ import tarfile
 from build_contracts import encode, read_json, verify_artifact, check_workspace
 
 PIN = Path(__file__).resolve().parents[1] / 'build/optional/sid-wizard.json'
-CONTENT = 'music/Creation/SID-Wizard/SID-Wizard-1.97.d64'
+CONTENT = 'music/c64/Creation/SID-Wizard/SID-Wizard-1.97.d64'
 NAMES = {'SID-Wizard-1.97.d64', 'UPSTREAM-NOTICE.txt', 'manifest.json'}
 
 
