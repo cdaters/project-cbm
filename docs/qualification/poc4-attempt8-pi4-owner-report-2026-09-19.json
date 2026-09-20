@@ -61,6 +61,15 @@
     "network_wait_seconds": 5.966,
     "pcbm_first_boot_seconds": 1.885,
     "power_on_to_interactive_menu_seconds": null,
-    "tty1_critical_chain": "Requested; pending"
+    "tty1_critical_chain": {
+      "getty_tty1_userspace_seconds": 9.956,
+      "systemd_user_sessions_at": 9.892,
+      "systemd_user_sessions_duration": 0.057,
+      "network_target_at": 9.875,
+      "NetworkManager_at": 5.729,
+      "NetworkManager_duration": 4.143,
+      "network_online_wait_on_reported_console_chain": false,
+      "getty_is_not_interactive_menu_measurement": true
+    }
   }
 }

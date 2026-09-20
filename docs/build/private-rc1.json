@@ -1,0 +1,324 @@
+{
+  "format": "project-cbm.private-rc1-candidate-result",
+  "schema_version": 1,
+  "date": "2026-09-19",
+  "attempt": 9,
+  "product": {
+    "candidate": "private-engineering-rc1",
+    "version": "1.1.0-rc.1"
+  },
+  "integration_commit": "8401248a94132b386f9d6804823e0c4e3cd247dc",
+  "menu_source": {
+    "commit": "4346a350d481f4da3a6abc6524373333637dbb82",
+    "ref": "refs/tags/v1.1.0_rc1",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "ae7abc27abf11141e53442251c5e2706bf7e274f"
+  },
+  "physical_baseline": "docs/qualification/poc4-attempt8-pi4-owner-report-2026-09-19.json",
+  "boot_baseline": {
+    "source": "Owner SSH read-only output on unchanged attempt8 Pi4 B",
+    "getty_tty1_userspace_seconds": 9.956,
+    "chain": [
+      {
+        "unit": "systemd-user-sessions.service",
+        "at": 9.892,
+        "duration": 0.057
+      },
+      {
+        "unit": "network.target",
+        "at": 9.875
+      },
+      {
+        "unit": "NetworkManager.service",
+        "at": 5.729,
+        "duration": 4.143
+      },
+      {
+        "unit": "dbus.service",
+        "at": 5.541,
+        "duration": 0.162
+      },
+      {
+        "unit": "basic.target",
+        "at": 5.488
+      },
+      {
+        "unit": "sockets.target",
+        "at": 5.487
+      },
+      {
+        "unit": "systemd-hostnamed.socket",
+        "at": 5.487
+      },
+      {
+        "unit": "sysinit.target",
+        "at": 5.47
+      },
+      {
+        "unit": "systemd-binfmt.service",
+        "at": 5.293,
+        "duration": 0.175
+      },
+      {
+        "unit": "proc-sys-fs-binfmt_misc.mount",
+        "at": 5.406,
+        "duration": 0.059
+      },
+      {
+        "unit": "systemd-journald.socket",
+        "at": 2.284
+      },
+      {
+        "unit": "system.slice",
+        "at": 2.182
+      },
+      {
+        "unit": "-.slice",
+        "at": 2.182
+      }
+    ],
+    "conclusion": "network-online wait is not on the reported tty1 critical path; NetworkManager service is. Retain readiness ordering.",
+    "power_to_interactive_menu": "UNMEASURED",
+    "release_lock_sha256": "53d2d25f997613434e16fdecc0057eeea88da74783f9487b2501cbec4d1cce57"
+  },
+  "packages": {
+    "menu": {
+      "status": "NEW",
+      "version": "1.1.0~rc1-1+pcbm1",
+      "filename": "project-cbm-menu_1.1.0~rc1-1+pcbm1_all.deb",
+      "size_bytes": 1106844,
+      "sha256": "ff5cca1f1305a2d9b79c76a8a303bf2f4dcc82eb35c9a2a7bc377b86a602eeb9"
+    },
+    "runtime": {
+      "status": "NEW",
+      "version": "1.1.0~rc1-1",
+      "filename": "project-cbm-runtime_1.1.0~rc1-1_all.deb",
+      "size_bytes": 65952,
+      "sha256": "9dbeb0e27b7f1925fe906bad5ac353afbe34e286318a9d9d6dac7a131ce875c7"
+    },
+    "tcpser": {
+      "status": "REUSED",
+      "version": "1.1.6~beta-1+pcbm1",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "size_bytes": 26872,
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f"
+    },
+    "vice": {
+      "status": "REUSED",
+      "version": "3.10-1+pcbm4",
+      "filename": "project-cbm-vice_3.10-1+pcbm4_arm64.deb",
+      "size_bytes": 5069684,
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt9/release-lock.json",
+    "sha256": "e586ae09b6ff486239dc93f814171f0ce0dd0f0fe8bf8b62f3c06f96a345fd9f",
+    "objects_verified": 3033
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-rc1-attempt-9/work/export-image/2026-09-19-project-cbm-1.1.0-rc.1-lite-private-rc1.img",
+      "size_bytes": 3095396352,
+      "sha256": "7edc2452529dea92623b07a42036ce74ac7c7b84968d449336cdb4f250578115",
+      "path": "artifacts/private-rc1-attempt-9/2026-09-19-project-cbm-1.1.0-rc.1-lite-private-rc1.img"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-rc1-attempt-9/image_2026-09-19-project-cbm-1.1.0-rc.1-lite-private-rc1.img.xz",
+      "size_bytes": 599213904,
+      "sha256": "84057184795bc05a805e9aa4e8caf971e47f8fbc084396365a671611377798e0",
+      "path": "artifacts/private-rc1-attempt-9/image_2026-09-19-project-cbm-1.1.0-rc.1-lite-private-rc1.img.xz"
+    },
+    "xz_expanded_sha256": "7edc2452529dea92623b07a42036ce74ac7c7b84968d449336cdb4f250578115",
+    "raw_xz_equivalence": "PASS",
+    "raw_unchanged_after_inspection": true,
+    "external_copy_and_xz_equivalence": "PASS"
+  },
+  "tests": {
+    "Product_host": {
+      "passed": 208,
+      "total": 208
+    },
+    "Product_native": {
+      "passed": 208,
+      "total": 208
+    },
+    "Menu_host": {
+      "passed": 97,
+      "total": 97
+    },
+    "Menu_native": {
+      "passed": 97,
+      "total": 97
+    },
+    "validation_followup_host": {
+      "passed": 3,
+      "total": 3
+    },
+    "validation_followup_native": {
+      "passed": 3,
+      "total": 3
+    },
+    "installed_lifecycle": {
+      "passed": 10,
+      "total": 10
+    },
+    "native_Covers": 7,
+    "repeated_native_lifecycle_cycles": 3,
+    "native_services_accounts_ssh_discovery_dialog_import_utilities": "PASS; headless/isolated fixture limits apply",
+    "native_completed_boot_seconds": [
+      0.012883397999985391,
+      0.013601734999951987,
+      0.013413401000093472
+    ],
+    "contextual_results": {
+      "result": "PASS after documented corrections",
+      "initial_native_fixture_failures": [
+        "Historical Git metadata missing from initial source tar test checkout; restored from retained test Git history.",
+        "Synthetic completion marker inherited builder umask0002; fixture now sets0600 explicitly. Production permission gate unchanged."
+      ],
+      "preconstruction_validation_failure": "Inherited validator required the previous three-field NetworkManager device query. Corrected RC1 validator requires the exact seven-field allowlist; 3 host/native positive/negative/nonexecution tests pass. Initial failed124-check result retained; corrected124-check preconstruction and142-check image refinement pass.",
+      "frozen_inputs_mutated": false,
+      "validation_only_commits": [
+        "9f92ce7",
+        "77009a3"
+      ],
+      "images_constructed": 1,
+      "construction_failures": 0,
+      "namespace_shutdown": "Fixture lacks real logind, so poweroff printed unavailable warning; transient unit ended and all mounts/loops closed, exact attempt8 lower hash verified unchanged."
+    }
+  },
+  "offline": {
+    "result": "PASS",
+    "checks": 283,
+    "main": 121,
+    "supplemental": 20,
+    "refinement": 142,
+    "ELF_objects": 127,
+    "installed_packages": 672,
+    "filesystems": "vfat/ext4 PASS",
+    "systemd": "PASS",
+    "identity": "PASS",
+    "accounts_services_discovery_security_lifecycle_documentation": "PASS",
+    "boot_and_content_configuration": "PASS",
+    "host_drift": "PASS",
+    "raw_xz_equivalence": "PASS in guest and external storage"
+  },
+  "validation_tool": {
+    "path": "tools/validate_rc1.py",
+    "sha256": "a26c66fb20bade34dd74b970fa43f35b641139f2d805e840a10e4617a80d0b10",
+    "correction_commit": "9f92ce7",
+    "scope": "External read-only attestation; frozen integration/packages/lock unchanged"
+  },
+  "installed_package_manifest": {
+    "path": "qualification/rc1-2026-09-19/packages.json",
+    "sha256": "121fa312638b83cf277fdd610e1c6b6a76b8e2aeb62f90c152e3a94070e6d51d",
+    "package_count": 672
+  },
+  "documentation": {
+    "result": "PASS",
+    "release_documents": 11,
+    "local_links": 79,
+    "exact_source_paths": [
+      "build/inputs-poc.json",
+      "build/optional/sid-wizard.json",
+      "build/packages",
+      "build/packages/runtime/debian",
+      "build/packages/tcpser/debian",
+      "build/packages/vice/debian",
+      "build/pigen/config.json",
+      "build/pigen/defaults.json",
+      "build/pigen/exclude-connect.patch",
+      "build/pigen/frozen-export.patch",
+      "build/pigen/stage-cbm",
+      "build/pigen/stage-cbm/00-cbm/00-run.sh",
+      "build/pigen/stage-cbm/EXPORT_IMAGE",
+      "build/pigen/stage-cbm/files",
+      "build/pigen/stage-cbm/files/pcbm-console-session",
+      "build/pigen/stage-cbm/prerun.sh",
+      "build/pigen/target-environment.patch",
+      "runtime/config/file-sharing.example.conf",
+      "runtime/data/profiles.json",
+      "runtime/project_cbm/applications.py",
+      "runtime/project_cbm/config_backend.py",
+      "runtime/project_cbm/data.py",
+      "runtime/project_cbm/info.py",
+      "runtime/project_cbm/library.py",
+      "runtime/project_cbm/service_info.py",
+      "runtime/project_cbm/setup.py",
+      "schemas/machine-profiles.schema.json",
+      "tests/native",
+      "tests/test_poc3.py",
+      "tools/benchmark_vice.py",
+      "tools/boot_presentation.py",
+      "tools/construct_poc.py",
+      "tools/install_poc_stage.py",
+      "tools/validate_poc_image.py",
+      "tools/vice_performance.py",
+      "tools/vice_presentation.py"
+    ],
+    "commands": "Reviewed against actual argparse, Debian recipes, pi-gen integration and executed private package/freeze/build workflow; illustrative edits are identified",
+    "public_bootstrap": "Explicitly incomplete; three build objectives and exact missing public inputs/initial-lock tooling documented",
+    "private_operator_paths_in_release_guides": false,
+    "credential_patterns": "source review PASS"
+  },
+  "footprint": {
+    "root": {
+      "available_to_user": 639598592,
+      "capacity": 2439266304,
+      "free": 783880192,
+      "used": 1655386112
+    },
+    "boot_used_bytes": 78420992,
+    "native_overlay_allocated_bytes": 17219584,
+    "changed_compressed_packages_bytes": 1172796,
+    "changed_installed_packages_bytes": 1604608,
+    "conservative_remaining_user_margin_bytes": 619601604,
+    "limits": "Conservative native-test/package allowance, not a physical first-boot peak or whole-OS upgrade proof. Expansion/user capacity depend on media. No nominal minimum card size invented."
+  },
+  "construction": {
+    "exit_code": 0,
+    "wall_seconds": 170.19,
+    "peak_RSS_KiB": 503092,
+    "factory": "native arm64 Debian Lima/VZ plain mode and pinned pi-gen",
+    "reproducibility_proven": false,
+    "images_constructed": 1
+  },
+  "host_final": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capabilities_before_after": "PASS",
+    "update_guards": "PASS",
+    "AppArmor": "preserved",
+    "frozen_inputs": "PASS",
+    "no_builder_mounts_loops_or_emulators": true,
+    "available_bytes": 59020898304
+  },
+  "builder_final": "STOPPED; disk retained",
+  "recovery": {
+    "path": "archive/rc1-2026-09-19",
+    "verification_authority": "external manifest.json and restore-report.json; verify PASS before flashing",
+    "independent_custody": false
+  },
+  "physical_procedure": "docs/qualification/rc1-pi4b-regression.md",
+  "physical_new_candidate": "UNTESTED",
+  "pushed": false,
+  "published": false,
+  "release_readiness": {
+    "RELEASE_BLOCKER": [
+      "Public release: existing third-party rights gates and complete public source/input bootstrap publication/initial-lock tooling remain unresolved. No known failing RC1 offline gate."
+    ],
+    "PHYSICAL_QUALIFICATION_REQUIRED": [
+      "Exact RC1 Pi4B boot/setup/content/network/service/performance and repeated lifecycle procedure; other models/profiles separately."
+    ],
+    "DOCUMENTATION_FOLLOW_UP": [
+      "Record owner outcomes; publish versioned public input/package documentation only when authorized and rights-cleared."
+    ],
+    "OPTIONAL_POST_1_1_IMPROVEMENT": [
+      "Supported active-VICE VT switching; justified Windows browsing enhancements; further measured boot optimization."
+    ],
+    "RECOVERY_LIMITATION": [
+      "Independent encrypted custody and independent clean-build reproducibility remain unproven."
+    ]
+  }
+}

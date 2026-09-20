@@ -1,3 +1,42 @@
+# Private RC1 basis complete — Pi 4 B physical test next
+
+**READY TO FLASH: YES after verifying the external recovery manifest/restore PASS.**
+[Build report](docs/build/private-rc1.md), [exact results](docs/build/private-rc1.json),
+[hash-bound Pi4 procedure](docs/qualification/rc1-pi4b-regression.md).
+One image built from integration `8401248a94132b386f9d6804823e0c4e3cd247dc` and Menu
+`v1.1.0_rc1` / `4346a350d481f4da3a6abc6524373333637dbb82`.
+Runtime1.1.0~rc1-1 and Menu1.1.0~rc1-1+pcbm1 new; VICE3.10-1+pcbm4/TCPser unchanged.
+Lock `inputs/frozen-poc4-attempt9/release-lock.json`, SHA-256
+`e586ae09b6ff486239dc93f814171f0ce0dd0f0fe8bf8b62f3c06f96a345fd9f`.
+Raw SHA-256 `7edc2452529dea92623b07a42036ce74ac7c7b84968d449336cdb4f250578115`;
+XZ `84057184795bc05a805e9aa4e8caf971e47f8fbc084396365a671611377798e0`.
+External paths/bytes/packages are in the exact report.
+
+Canonical `/home/pi/pcbm`, type-first/machine folders, import/profile routing,
+gateway/DNS detail, quiet existing-console presentation and guarded completed-growth
+fast path are included. Pi4+ policy follows owner decision; no Pi3 optimization.
+Attempt8 Pi4 performance PASS and unchanged boot baseline retained; RC1 physical
+behavior remains UNTESTED. Getty9.956s excludes the later network-online wait from
+its reported critical path; power-on-to-interactive-Menu remains unmeasured.
+
+Product208/208 +3 validation-followup tests, Menu97/97 on host/native; lifecycle10/10,
+seven Covers and native service/import/SSH/discovery/dialog checks PASS. Actual image
+283 checks,672 package identities,127 ELF objects, guest/external raw-XZ equivalence,
+source/docs/privacy/preservation and host integrity PASS. An inherited validator's old
+NM field-list assertion was corrected in separately retained validation-only commits;
+frozen inputs unchanged. Initial fixture/validator failures remain retained.
+Builder STOPPED; all previous evidence/inputs/refs retained. No push/publication.
+
+Recovery `archive/rc1-2026-09-19` contains full bundles and offline restore/ref/peeled-tag/
+fsck verification. Its external manifest is the final checksum authority, avoiding a
+Git/manifest cycle. Independent encrypted custody and independent-build reproducibility
+remain unresolved. Public redistribution rights and complete public bootstrap/input
+publication remain release gates; this is an RC1 basis for private owner qualification.
+**Next: flash the exact new image, run the Pi4 procedure, report outcomes. STOP for
+owner physical testing.** Do not start another feature/model/architecture milestone.
+
+Earlier entries below are historical checkpoints.
+
 # RC1 final polish in progress — 2026-09-19
 
 The owner changed the 1.1 floor to Pi 4-class and newer, explicitly authorized
