@@ -1,86 +1,129 @@
-# Return to Project CBM development
+# Develop and contribute to Project CBM
 
-[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
-USB import, optional applications and safe preservation of older content.
+[Documentation index](../README.md) · [Build Your Own](build-your-own.md) · [Customization](customization.md)
 
+Start by using the appliance and reading the [User Manual](user-guide.md). A contributor
+should know what a user sees before changing its implementation. Product and Menu are
+separate repositories so presentation and system integration can evolve independently.
 
-Read Product and Menu AGENTS/CURRENT-STATE from disk, inspect branches/HEAD/dirty work,
-then follow the exact next action. Preserve unfamiliar changes and immutable evidence.
-Product owns runtime/integration/build/qualification; Menu owns its independent UI
-package. Start with [architecture](../architecture.md), [configuration](../runtime/configuration-contract.md),
-[Covers](../runtime/covers.md), [security](../security.md), [tests](../testing.md),
-[build workflow](build-your-own.md) and [recovery](../recovery.md).
+## Where a change belongs
 
-The release guides are the current user path. Dated build/qualification files preserve
-history; they are not competing instructions. CURRENT-STATE points to the current
-candidate, its exact lock/artifacts and the physical procedure. Keep changing checkpoint
-facts there rather than in governance. Test reports distinguish host fixtures, native
-Linux, actual-image validation and owner physical observations. Never infer a physical
-PASS from installed packages or simulated hardware.
+| Concern | Source to start with | Responsibility |
+| --- | --- | --- |
+| Main Menu/CONTROL/CONTENT/IMPORT/FILES wording | Menu `scripts/` and `lib/` | Presentation and navigation |
+| Network/system/service information | Product `runtime/project_cbm/info.py`, `network_info.py`, `service_info.py` | Read-only structured facts; Menu formats them |
+| Machine selection | Product `runtime/data/profiles.json`, `profiles.py`, `preferences.py` | Validated registry and saved user choice |
+| Content layout/import | Product `library.py`, `importer.py`; Menu content/import clients | One library policy, safe copies and truthful result display |
+| Setup/configuration | Product `setup.py`, `configuration.py`, `config_backend.py`; Menu first-run/setup UI | Validate/apply fixed operations; protect secrets |
+| Emulator launch | Menu `pcbm-run-vice`; Product `build/pigen/stage-cbm/files/engineering.py` | One unprivileged Cover/VICE/terminal-return path |
+| Boot session/presentation | Product stage files `pcbm-console-session`, `boot_session.py`, getty/profile files | Existing Linux session ownership and ready-screen handoff |
+| Packages/image integration | Product `build/packages`, `tools/install_poc_stage.py`; Menu `debian` | Component installation, first boot and assembled image |
+| Practical documentation | Product `docs/release` | Current user/build/customization authority; Menu public-docs mirror is historical |
 
-Use the Python dependencies in `requirements-contracts.txt`. From Product run
-`python3 -m unittest discover -s tests`; from Menu run the same command with Product
-checked out beside it. Run per-file Bash syntax, JSON/schema, local link/path, whitespace,
-size and secret-pattern checks. Native tests under `tests/native` require their guarded
-disposable Linux namespace; never invoke them on a live appliance or builder root.
-The native candidate harness is retained with the qualification evidence. Historical
-runtime/install/release-prep scripts are not static validators.
+`pcbm-info` JSON is the information authority. Avoid duplicating shell probes in Menu.
+A preference says what the user wants; observed service/listener state says what is
+actually available. A configuration request passes through validated fixed helpers,
+not an arbitrary root shell. Account role names such as owner are API concepts; the
+normal Unix username is pcbm. See [accounts/layout](accounts-and-layout.md).
 
-Before freezing, commit logical local changes after checking author/committer privacy,
-version changed packages and pin Menu's annotated tag plus peeled full commit and hash.
-Use a new attempt directory. Build source and output are recoverable without the VM;
-GitHub and caches are not the sole authority. Failed attempts remain evidence. A passing
-candidate ends at the owner's exact-hash physical procedure, not automatic publication.
+## Set up a checkout
 
-Current accepted limitation: keyboard VT switching while VICE's SDL/KMS console backend
-is active. F10 → Quit then switch works; retain it until a supported upstream solution
-can preserve input/display ownership. [Boot presentation and timing](boot.md) describe
-the current quiet console settings, guarded initialization fast path, unchanged baseline
-and required physical checks. Quieter output is not evidence of a faster boot.
+Use sibling Product/Menu repositories as described in Build Your Own. Read both
+AGENTS.md files for contribution rules and CURRENT-STATE.md for active work before editing;
+inspect `git status` so you do not overwrite someone else's unfinished changes. Work on
+a branch. No production Pi, installer, old release-prep script or documentation-sync
+script should be used as a static test.
 
-## Follow a change through the system
+On your development host, create a Python environment for contract tests:
 
-For a UI wording change, begin in Menu `scripts/pcbm-menu`, `scripts/pcbm-config` or
-`scripts/pcbm-first-run`; presentation helpers are in `lib`. For information/status,
-start in Product `runtime/project_cbm/info.py` and its JSON schemas. Menu consumes
-those records, so a new status field belongs in the Product contract and focused
-tests before it is formatted. Configuration requests pass through the Runtime's
-validated client/backend rather than arbitrary sudo shell commands.
+```sh
+cd "$PROJECT_CBM_SRC"
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install -r requirements-contracts.txt
+```
 
-Machine selection starts in `runtime/data/profiles.json` and validated preferences.
-Launching enters Menu's shared `pcbm-run-vice`, with Product integration under
-`build/pigen/stage-cbm/files`. Cover, emulator and terminal restoration are one owned
-transition. A package can build correctly and still mishandle real tty/DRM input;
-repeat physical launch/quit testing after any change to this path.
+Use the version requirements in the repository. A public checkout currently lacks the
+unpublished 1.1 refs; [bootstrap status](../documentation/public-bootstrap.md) applies
+to contributors too. Reading public 1.0 code is not testing the 1.1 implementation.
 
-Account creation and image-wide defaults belong to `tools/install_poc_stage.py`.
-The Unix account is `pcbm`; `owner` remains the conceptual role and setup step/API name.
-Do not rename role fields while editing usernames. First-boot secrets travel through
-protected input, never command arguments or logs. Native tests exercise actual su,
-sudo, SSH and Samba behavior in a disposable target, in addition to fixture tests.
+## Testing
 
-Package recipes under `build/packages` and Menu's `debian` determine install layout and
-versions. The frozen integration archive determines what pi-gen actually executes.
-Editing your working tree after freezing does not change that candidate. Make another
-version/lock for changed bytes; do not patch a completed image to make a check pass.
+With Product's Python environment active, run host tests from each repository:
 
-## Performance changes
+```sh
+cd "$PROJECT_CBM_SRC"
+python3 -m unittest discover -s tests
+cd "$PROJECT_CBM_MENU_SRC"
+python3 -m unittest discover -s tests
+```
 
-`tools/benchmark_vice.py` creates an original reproducible CPU/screen/SID workload and
-measures a fixed emulated-cycle interval with real WAV samples. Use a new output
-directory for each run. Dummy audio that synthesizes no samples, warp that skips sound,
-and VM CPU percentages do not establish Pi performance. `tools/vice_performance.py`
-parses bounded installed numeric telemetry for a chosen uninterrupted physical interval.
-The exact procedure must identify image, hardware, workload, settings, clocks/throttling,
-audio/visual result and lifecycle. Owner reference media stays outside source packages.
-See [the performance decision](../runtime/c64-performance-2026-09-18.md) for the retained
-comparison and limitations; current defaults are explained in [VICE](vice.md).
+For a narrow change, use its focused test module first. Check each changed Bash script
+with `bash -n`, Python syntax/JSON schemas, diff whitespace, links, file sizes and secret
+patterns. Documentation has a dedicated check:
 
-## Returning after an absence
+```sh
+cd "$PROJECT_CBM_SRC"
+python3 tools/check_release_docs.py
+```
 
-Use CURRENT-STATE to locate the newest build report, lock, artifacts, recovery manifest
-and pending physical procedure. Verify the actual Git refs and dirty work; the state
-file can lag a interrupted operation. Read the relevant canonical contract, run focused
-checks, and preserve unfamiliar files before cleanup. A recovered VM is useful but not
-the source of truth: the recipe, retained inputs and verified recovery bundles must
-be enough to reconstruct the engineering state on replacement infrastructure.
+Native Linux tests in `tests/native` exercise actual packages, accounts, services,
+filesystems and pseudo-terminal behavior in guarded disposable environments. Read their
+README first; never run them against your real appliance root or unisolated build host.
+Physical tests are still needed for Pi keyboard, HDMI/KMS, audio, networking, USB and
+speed. A dummy graphics/audio backend cannot establish those behaviors.
+
+The [testing contract](../testing.md) explains what each layer proves. Use original test
+media or separately permitted reference content. Do not redistribute a game/demo simply
+because it was used to find a defect.
+
+## Package and interface changes
+
+Runtime and Menu have independent versions. Runtime exposes the API package dependency
+used by Menu. A registry change can require Runtime only; UI code requires Menu; VICE
+source/flags require its own package; installer-only changes require new image integration.
+Rebuild changed components and verify unchanged package bytes when reusing them.
+
+The Runtime recipe also installs `docs/release/*.md`. Documentation source changes do
+not alter an already-built Runtime package or an existing image. Decide separately how
+to distribute refreshed manuals or include them in a later authorized package release.
+Do not pretend a repository documentation edit updates the Pi's installed manual.
+
+For configuration work, read [configuration](../runtime/configuration-contract.md) and
+[security](../security.md). For launch changes, read [Covers](../runtime/covers.md) and
+[VICE](vice.md). Preserve saved preferences, user control, F10/Quit, complete aspect-correct
+canvas and verified terminal restoration on both success and failure. Do not solve a
+status/permission problem by widening passwordless sudo.
+
+## Release and recovery
+
+A release lock records exactly which source and packages built an image. It is useful
+because otherwise an upstream update might silently change the next build. The factory
+retains the corresponding bytes and build environment, checks the finished image, and
+prepares a physical procedure that names that exact image hash. [Build and release](../build-and-release.md)
+and [official walkthrough](../build/official-factory-walkthrough.md) give the full process.
+
+Git bundles and external manifests preserve the source/inputs beyond one computer or
+remote host. Recovery tests clone the bundles offline and compare refs, tags, files and
+fsck results. An independent backup matters: another folder on the same disk is not
+independent custody. [Engineering recovery](../recovery.md) is the technical authority.
+Bit-for-bit reproducibility requires independent builds and comparison, not just a saved lock.
+
+Make coherent commits with a verified author identity, update CURRENT-STATE and relevant
+contracts, and leave exact tests/limitations for the next contributor. Do not amend
+historical evidence to turn an earlier failure into a success. Publishing branches,
+packages, images or third-party assets is a separate authorized release action.
+
+## Design goals
+
+Project CBM boots into a Commodore-focused appliance rather than a desktop. The Menu
+covers ordinary tasks; Linux remains available for owners who want it. VICE provides
+mature emulation, and portable content folders keep user data understandable. Local
+setup/services avoid a cloud-account dependency. Fresh-image upgrades keep components
+in a known combination while user backup/restore protects personal work. Explainable
+builds and measured physical behavior matter more than adding general desktop features.
+
+After time away, use CURRENT-STATE to locate the current source, candidate, pending
+physical tests and recovery record. Check the actual checkout before trusting a dated
+status paragraph. Then follow the user-facing task through the table above; there is
+no need to reconstruct the project's conversation history.

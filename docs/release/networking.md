@@ -1,142 +1,201 @@
-# Network and service guide
+# Networking and services
 
-[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
-USB import, optional applications and safe preservation of older content.
+[Documentation index](../README.md) · [User Manual](user-guide.md)
 
+You can use Project CBM offline. A home-network connection is useful for copying files,
+connecting by terminal and using a BBS. It does not require enabling every service.
+Use CONTROL → Network for the connection itself, and CONTROL → Services for features
+other computers can reach.
 
-Project CBM is a single-owner home-LAN appliance. Network services start off until you
-choose them. Use real passwords; do not forward its service ports to the Internet.
-Credential privacy, protected storage and constrained operations remain in place.
-Owners can use authenticated Advanced administration for normal Linux work.
+## Addresses and Computer Name
 
-## Computer Name and addresses
+**Computer Name** identifies the Pi on your network. The default is `projectcbm`.
+With Network Discovery on, many home networks let you use **projectcbm.local** rather
+than remember a numeric address. If you rename the Pi to `mycbm`, try `mycbm.local`.
 
-CONTROL → Network → Computer Name changes the default `projectcbm`. Use lowercase
-letters, digits and internal hyphens, starting with a letter, ending with a letter or
-digit, at most 63 characters. Do not enter `.local`. Choose a unique name on your LAN.
-Network Discovery supplies local name resolution where the client/network supports
-mDNS: normally `projectcbm.local`. A name collision or filtered multicast can change
-or prevent discovery. Use the current IP displayed in Network/Services if resolution
-fails. Interface names are discovered, never assumed. Multiple connected interfaces
-are shown; choose an address reachable from your other computer.
+An **IP address** is an address assigned to a network interface, usually by your router.
+Main Menu shows useful current addresses. Network/System Information shows more detail,
+including multiple connected interfaces. An Ethernet and Wi-Fi connection can have
+different addresses at the same time. Use an address reachable from your other computer.
+An address may change after reconnecting or restarting the router.
 
-## Read service state
+The **MAC address** identifies the network adapter on the local network. A **gateway**
+is normally your router, used to reach other networks. **DNS servers** translate names
+into addresses. These details are mainly useful when troubleshooting; displaying them
+is not the same as offering editable settings. Project CBM shows values from its system
+information service rather than guessing interface names.
 
-Main Menu gives a compact overview; Services lists all user-facing services. Each
-service screen shows actual state, useful actions and contextual connection help.
-**Off** means stopped; **On** requires active service and its expected listener.
-**Starting / Pending** means enabled or transitioning but not confirmed ready.
-**Failed** means the service reports failure. **Unavailable** means it cannot be
-observed or is not available in that configuration. A saved preference alone cannot
-make the display say On. State is refreshed on returning to a screen; Refresh status
-rechecks it. Listener readiness is local evidence, not proof another computer can connect.
+## Ethernet and Wi-Fi
 
-An Off service offers Turn On; an On service offers Turn Off. A pending/failed enabled
-service can be turned off. Correct the cause before retrying unavailable services,
-using System Information or Advanced details. Partial failures are reported; check
-current state because part of a compound operation may already have succeeded.
+For Ethernet, connect the cable and choose Use Ethernet in setup, or Enable normal
+networking later. A normally configured home router supplies the address automatically.
+Check the Network screen if no address appears. Offline mode also disables Ethernet.
 
-## Remote Access (SSH)
+For Wi-Fi, choose the country where the Pi is actually used; this sets the radio rules.
+Nearby Wi-Fi networks waits for the radio and a fresh scan, then lets you choose an
+SSID (the network name) and password. The normal workflow supports WPA personal
+networks with an 8–63 printable ASCII character password. Enterprise, open and unusual
+network configurations require Advanced Linux administration. A hidden SSID can be
+entered using Join Wi-Fi by name. Passwords are masked and not displayed in status.
 
-CONTROL → Services → Remote Access (SSH) → Turn On. Confirm home-network access.
-The screen shows Computer Name, IP, **Username: pcbm**, and how to connect. Use the
-**owner password selected during first boot**. With Network Discovery on:
+## Network controls
+
+| Action under CONTROL → Network | What it changes or shows |
+| --- | --- |
+| Network information (IP/MAC and status) | Opens System Information; read-only |
+| Computer Name | Saves a new name and updates local identity/discovery configuration |
+| Wi-Fi country and radio | Sets the regulatory country and enables the radio |
+| Nearby Wi-Fi networks | Runs the guided scan/choose/connect workflow |
+| Join Wi-Fi by name (WPA personal) | Enter the exact SSID and password; enables networking |
+| Disconnect Project CBM Wi-Fi | Disconnects the Project CBM-managed connection; does not erase its saved password |
+| Forget Project CBM Wi-Fi | Removes that saved connection after confirmation; separately administered connections remain |
+| Enable normal networking | Allows configured Ethernet/Wi-Fi connections to activate |
+| Stay offline (disable connections) | Disconnects networking, including Ethernet and remote sessions |
+
+Use a Computer Name beginning with a lowercase letter, followed by lowercase letters,
+digits or hyphens, ending with a letter/digit, at most 63 characters. Do not enter spaces
+or `.local`; discovery supplies the suffix. Choose a distinct name for a second Pi.
+Changes persist. Remote sessions may disconnect when their connection/name changes;
+reconnect using the newly displayed address.
+
+## Services
+
+Each service screen reports actual state and offers only useful actions. **Off** offers
+Turn On; **On** offers Turn Off. **Starting / Pending** means it has not yet reached a
+confirmed usable state. **Failed** needs attention; **Unavailable** means information or
+the required service is unavailable. Refresh status rechecks it. A saved On preference
+is not itself proof a connection will succeed. Settings persist through reboot.
+
+Project CBM is a single-owner home-LAN appliance. These services are intended for your
+local network, not automatic Internet exposure. Choose real passwords; do not forward
+service ports on your router unless you deliberately administer that exposure.
+Turning networking on does not automatically turn optional services on.
+
+## Remote Access
+
+Remote Access (SSH) gives you a text terminal on the Pi from another computer.
+
+1. Open CONTROL → Services → **Remote Access (SSH)**.
+2. Choose **Turn On Remote Access (SSH)** and wait for **Status: On**.
+3. Open **How to connect**. Note the current name/address and username.
+4. On macOS/Linux, open Terminal. On Windows, open PowerShell/Terminal with OpenSSH
+   Client available. Run:
 
 ```sh
 ssh pcbm@projectcbm.local
 ```
 
-Otherwise replace the name with the displayed IP. Confirm the host identity when
-connecting to your own Pi; a freshly flashed image has new host keys. SSH supplies
-an ordinary owner shell, with authenticated sudo for administration. Menu, VICE and remote access use the same pcbm account. Turn Off stops and disables SSH;
-test a new connection to verify access is gone. Existing sessions should not be used
-to infer whether new connections are accepted. Service choice persists across reboot.
+Use the **administrator password chosen during first boot**, not the File Sharing
+password. SSH password entry normally shows no characters; that is separate from the
+masked Project CBM setup dialogs. On first connection, SSH asks you to trust the Pi's
+host key. Verify the target before accepting. After a reflash the key changes; investigate
+an unexpected change rather than routinely bypassing warnings.
+
+If the name does not resolve, substitute the current IP shown by Project CBM, for example
+`ssh pcbm@192.168.1.50` with your own address. Microsoft documents the
+[Windows OpenSSH client](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse).
+Type `exit` to disconnect. To disable the service, return to its screen and choose
+**Turn Off Remote Access (SSH)**; check that it reports Off.
+
+### SFTP file transfer
+
+An SFTP client uses the same SSH service, account and administrator password. Its
+starting folder is `/home/pcbm`; open `content` for the Project CBM library. For a
+command-line client:
+
+```sh
+sftp pcbm@projectcbm.local
+```
+
+Then use `cd content/games/c64`, `put MyGame.d64`, and `bye`. `put` can replace a same-name
+file, unlike USB import's duplicate-preserving policy. Review the destination first.
 
 ## File Sharing
 
-CONTROL → Services → File Sharing. Set a **separate File Sharing password**; use the
-same **pcbm** username. Samba has its own credential database; a Unix password hash
-cannot initialize it. The application does not retain your first-boot plaintext password
-or silently reuse it. Changing one password does not change the other.
+File Sharing lets another computer browse and write the Project CBM content library.
+The share is named **Project CBM**, including the space. It exports `/home/pcbm/content`,
+not your entire home, system settings or administrator credentials.
 
-Turn On explicitly also turns on Network Discovery. After actual On is shown, use
-**How to connect** for current addresses. The share is named **Project CBM**:
+1. Open CONTROL → Services → **File Sharing**.
+2. Choose **Set / change File Sharing password**, or let Turn On request it when unset.
+   Choose and confirm a separate password of 12–128 printable characters, excluding colon.
+3. Choose **Turn On File Sharing**. This also turns on Network Discovery.
+4. Wait for **Status: On**, then open **How to connect**.
 
-- macOS Finder → Go → Connect to Server: `smb://projectcbm.local/Project%20CBM`.
-- Windows File Explorer address bar: `\\projectcbm.local\Project CBM`.
-- If name resolution fails, replace the computer name with the displayed IPv4 address.
+The username is **pcbm**. **The File Sharing password is separate from the administrator
+password.** The program providing sharing, Samba, keeps its own password database.
+Changing one password does not change the other. Do not post either password in support
+requests. To turn sharing off, use **Turn Off File Sharing** and check Off; discovery
+can be controlled separately.
 
-Sign in as pcbm with the separate sharing password. The share exports only
-`/home/pcbm/content`, not the rest of your home or the whole filesystem. Writes belong to pcbm; guest access and links escaping the share are disabled. New content appears
-under CONTENT/FILES according to supported type and folder. Credential status “Set”
-records successful protected enrollment; externally changing Samba accounts in Advanced
-may require setting it again here. Passwords are never displayed in status/help.
+### From a Mac
 
-Turn Off stops/disables File Sharing; Network Discovery remains independently controlled.
-Check a new client connection after disabling. Test write permissions and persistence
-on the physical candidate; native tests cannot prove Finder/Explorer behavior.
+In Finder choose **Go → Connect to Server** and enter:
 
-## Discovery and BBS / Modem
+```text
+smb://projectcbm.local/Project%20CBM
+```
 
-Network Discovery uses Avahi/mDNS. Samba dynamically advertises its SMB service through
-Avahi while running; no permanent advertisement claims a stopped share exists. This
-is the small supported macOS/Linux discovery path. Windows direct SMB connections are
-supported by the workflow; Windows Network browsing varies and is not guaranteed.
-No extra WS-Discovery daemon is installed. Local names and discovery need multicast
-on the same LAN; guest networks/VLANs often isolate devices. Direct IP is the fallback.
+Choose Registered User, enter `pcbm` and your File Sharing password. The opened share
+contains `games`, `demos`, `programs`, `music` and the other library folders. Copy a C64
+game into `games/c64`, then find it in CONTENT → GAMES on the Pi. Finder's Network
+sidebar may also show the Pi when discovery works, but the direct address is sufficient.
+Eject the share in Finder when finished.
 
-BBS / Modem reports the TCPser runtime state and local emulator endpoint, normally
-`127.0.0.1:25232`. Port and speed are editable within validated ranges. It binds
-loopback; turning it on does not open a public modem listener. Use the appropriate
-VICE/terminal settings and test the intended BBS connection separately.
+### From Windows
 
-## Connect Wi-Fi or Ethernet
+In File Explorer's address bar enter:
 
-First boot asks for your region before scanning. Choose your network, enter its password
-(the visible stars are masking, not the password), and wait for the connection result.
-The first scan waits for the radio and scan completion within a bounded interval; it
-does not require you to know NetworkManager commands. If no access point is available,
-check range, country and router settings, then retry or continue offline. Later use
-CONTROL → Network to scan/connect again. A successful saved connection reconnects on
-subsequent boots. A wired connection uses the available Ethernet interface; you do not
-need to identify it as eth0. Check Network Information for the actual interfaces.
+```text
+\\projectcbm.local\Project CBM
+```
 
-The Main Menu shows a concise address summary. Network Information adds interface,
-address and connection detail. Two addresses can be correct when Ethernet and Wi-Fi
-are both connected. Use one reachable from the other computer; an address from an
-isolated guest network may not permit access. A local address does not establish
-Internet access, and Internet access is not needed for direct home-LAN sharing.
+Sign in as `pcbm` with the File Sharing password. Copy to the appropriate machine
+folder exactly as on a Mac. If saved credentials are wrong, disconnect the old session
+and remove/update its saved entry in Windows Credential Manager before reconnecting.
 
-## First connection checklist
+### When discovery does not work
 
-1. Put the Pi and your other computer on the same trusted LAN.
-2. Complete first boot and remember the owner password for account `pcbm`.
-3. Enable only the service you want and wait for its actual On status.
-4. Use the connection example on that service's screen. It reflects the current name
-   and addresses; examples in this guide assume the default Computer Name.
-5. For SSH use the owner password. For File Sharing use its separate password.
-6. If a saved client login fails, disconnect and remove the client's stale saved
-   credential before trying the current password. Never send passwords in an issue.
+Use the IP shown on the Pi, for example `smb://192.168.1.50/Project%20CBM` on Mac or
+`\\192.168.1.50\Project CBM` on Windows. Replace the example address with your Pi's.
+Both computers must be on a network that allows them to communicate; guest Wi-Fi often
+isolates devices. If IP works but `.local` does not, the share itself is working.
 
-Finder discovery can take time to refresh. Use Go → Connect to Server immediately
-instead of waiting for an icon. On Windows, enter the UNC path in File Explorer's
-address bar, not a web browser. A changed Computer Name changes the connection name;
-old bookmarks and saved client credentials may need updating. The network's DHCP
-server may also assign a different IP after reboot, so prefer the current `.local`
-name where supported or recheck the appliance screen.
+## Network Discovery
 
-## What persists and what turning off means
+Project CBM uses Avahi for local names and service announcements (mDNS). With discovery
+on, compatible computers can resolve the `.local` name. File Sharing also advertises
+its SMB service to compatible browsers. Turn discovery on/off from its Services screen;
+no Internet service is required. Direct IP access remains available when other services
+are on even if discovery is off.
 
-Saved Wi-Fi connections, Computer Name, enrolled credentials and service choices survive
-reboot on the writable filesystem. Reflashing creates a new system: complete setup
-again and do not copy old machine keys or setup markers blindly. Disabling a service
-stops its listener and removes its enabled choice; it does not erase your content.
-Discovery is independent, so turning off sharing can leave name resolution available.
-Verify new connections fail after disabling, since a client may show cached directory
-listings. A service that returns Failed/Pending after reboot needs investigation rather
-than another assumption based on its saved preference.
+Automatic Windows Network browsing is not guaranteed; no extra Windows browsing daemon
+is included solely to populate that screen. A missing Finder/Explorer icon does not
+prove sharing is broken. Try How to connect and the direct address before changing
+advanced settings.
 
-The Pi is your Linux computer. Advanced administration can change these policies, but
-then the appliance's documented defaults may no longer describe it. Keep changes and
-private backups separate from public qualification records. See [accounts/layout](accounts-and-layout.md)
-and [troubleshooting](recovery.md) for paths and safe recovery.
+## BBS / Modem
+
+A bulletin board system (BBS) is a computer you connect to with terminal software to
+read messages or exchange files. Old Commodore terminals expect a modem. **TCPser**
+provides an emulated modem connection to network BBS systems.
+
+Enable **BBS / Modem** under Services when using compatible terminal software. **Modem
+port and speed** accepts a local port from 1024–65535 (default **25232**) and baud
+300, 1200, 2400, 9600, 19200 or 38400. **How to connect** shows the local emulator
+endpoint **127.0.0.1:25232** at the default port. This local address means the Pi itself;
+it is not the address of the remote BBS and not a public modem server.
+
+Configure the terminal/emulated modem according to its own instructions and the chosen
+VICE interface. Use a BBS endpoint you are permitted to access. Terminal software may
+have its own saved settings/passwords; protect those with your personal backups.
+StrikeTerm is separately rights-gated; its presence in a test image does not make it
+part of the public release. End-to-end BBS connectivity still needs physical testing.
+Turn **BBS / Modem** off when not needed.
+
+## Quick connection checks
+
+If SSH is refused, verify Remote Access reports On. If sharing rejects a password,
+check that you used its separate password. If neither service is reachable, check IP,
+normal-networking mode, cable/Wi-Fi and guest-network isolation. See
+[troubleshooting](troubleshooting.md#network-and-services) before collecting logs.

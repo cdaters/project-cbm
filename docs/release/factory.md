@@ -1,181 +1,157 @@
-# pi-gen and the Project CBM factory
+# How pi-gen builds Project CBM
 
-[Canonical content paths and hierarchy](content.md) cover the library, machine routing,
-USB import, optional applications and safe preservation of older content.
+[Documentation index](../README.md) · [Build Your Own](build-your-own.md)
 
+Raspberry Pi OS is created with a build system called **pi-gen**. Project CBM uses it
+to start with Raspberry Pi OS Lite, add its software/configuration, and produce a bootable
+SD-card image. Instead of installing a desktop and launching a program inside it, the
+Pi logs into the Project CBM console Menu. VICE uses the graphics/audio stack directly.
 
-[Build Your Own](build-your-own.md) gives the commands. This page explains their inputs
-and effects. The accepted base is Raspberry Pi OS Lite **arm64/Trixie** on writable
-ext4, with logical separation of user content. Lite supplies supported Pi kernel,
-firmware and Debian/Raspberry Pi packages without adding a desktop. See [ADR-0001](../adr/0001-base-distribution-and-image-architecture.md).
+A **stage** is a group of build steps applied to the future Pi filesystem. That filesystem
+is a directory on the Linux builder until export turns it into partitions in an image.
+Commands on the builder and commands inside that target are different: confusing them
+can change the build computer instead of the image.
 
-pi-gen constructs a target Linux filesystem from staged package/configuration steps,
-then exports partitions into an image. Project CBM retains the exact arm64 pi-gen
-commit, source archive and patches in its release lock. `construct_poc.py` extracts
-those bytes and the Product integration source into a new build directory; it does
-not consume an arbitrary current checkout. It runs stage0, stage1, stage2 and the
-Product-owned `build/pigen/stage-cbm`. Earlier stages skip image export; the custom
-stage supplies the appliance integration and final image.
+## Base and stages
 
-The custom stage uses `tools/install_poc_stage.py`, installs exact Runtime/Menu/VICE/
-TCPser packages and admitted optional inputs, configures accounts, restricted helpers,
-services, content directories and first boot, then writes minimal installed identity.
-Menu owns presentation; Product owns the shared lifecycle supervisor, privilege boundary,
-registry, `pcbm-info`, configuration, first-boot readiness and image identity. Accounts
-are initialized locally: no builder identity, factory password or host SSH key is copied.
+Project CBM 1.1 uses Raspberry Pi OS Lite 64-bit, Debian 13 Trixie, with the pinned arm64
+pi-gen commit `6fcca44892d5d4b36f826d2b8fb16d716369fada`. A pin means later upstream
+changes are not silently substituted. The current recipe is described by
+`build/pigen/config.json`; older names in source-selection tools do not define the current
+product version. [Software composition](software-components.md) lists the package choices.
 
-## Two filesystems, two environments
-
-On the qualified macOS route, Lima/VZ runs native arm64 Debian in plain mode. Its disk
-is backed by external storage; `/srv/project-cbm` in the guest is ext4. Git sources
-remain in normal source roots; large archives/images/evidence stay in the registered
-external workspace. APFS is useful for retaining artifacts, not for building a Linux
-rootfs: ownership, case, links, devices, xattrs and mount semantics matter. No host
-shares, container stack or architecture translation substitutes for the capability gate.
-A native arm64 Linux replacement must satisfy the same gates and exact host inventory;
-it is an interface possibility, not a separately qualified host claim.
-
-Builder temporary files and target temporary files are different. The target receives
-a sanitized environment with local `/tmp`, never a builder TMPDIR path. `build_environment.py`
-replaces inherited variables. AppArmor and package authentication remain enabled.
-Changing host packages requires a new retained inventory/lock and revalidation.
-Automatic update units are held under the builder-only guard; those settings are not
-copied into the appliance. A drift failure stops the affected build, preserves it and
-requires a distinct corrected attempt.
-
-## What is frozen
-
-One schema-4 release lock binds clean Product integration, independently tagged Menu,
-component binary/corresponding source/recipe/build records, exact base binary and source
-closure, authenticated repository metadata, pi-gen, patches, bootstrap/toolchain and
-rights/admission records. `retained_inputs.py` verifies descriptors and actual retained
-objects. URLs and caches are not input retention. Unchanged packages may be reused only
-with their exact records and compatibility; changed source requires a new package version.
-
-Construction runs root only inside an isolated Linux network namespace. A local frozen
-APT transport serves authenticated retained bytes; no external routes or package
-acquisition are permitted. Source acquisition and trust review happen before freezing.
-The installed image carries a small offline-readable identity, not the complete lock,
-source archives or builder cache. Image hashes and later evidence stay outside it,
-preventing a checksum cycle.
-
-## Outputs and proof
-
-For RC2 attempt N, work lives in `builds/private-rc2-attempt-N`, and compressed output
-in `artifacts/private-rc2-attempt-N`. Historical POC4 builds retain their original
-`private-poc4-attempt-N` paths; input/package directories retain that lineage locator. pi-gen exports the raw image in
-`work/export-image`; current configuration exports XZ at level 3. Exact names come from
-`build/pigen/config.json`. Never replace an existing attempt directory, package, lock
-or tag. Raw size, compressed size and SHA-256 are separate records. Hashing decompressed
-XZ must equal the raw hash before and after transfer.
-
-Actual-image checks use read-only loop devices and `ro,noload` ext4 inspection. They
-check filesystems, packages and ELF dependencies, identity, privilege/service/account
-configuration, installed source/assets/docs and lifecycle contracts. Native tests cover
-actual Linux boundaries in a disposable isolated overlay. Neither proves visible Covers,
-Pi input, Wi-Fi radio or another computer's discovery. Physical qualification binds
-reported behavior to the exact image hash and model.
-
-A successful controlled build is **not proof of bit-for-bit reproducibility**. That
-claim needs independent clean builds from identical declared inputs, comparison and
-explanation of differences. Recovery retains bundles, refs/tags, input objects, packages,
-image records and evidence; offline restore/ref/fsck checks establish retrievability.
-Independent backup custody remains separate from another folder on the same drive.
-
-## Read the actual stage recipe
-
-The pinned pi-gen revision is
-`6fcca44892d5d4b36f826d2b8fb16d716369fada` from its `arm64` branch. The retained source
-archive SHA-256 is `74f622d712847674f28763cbdcfae4b00909589305b30ad5df01846d8e003d33`.
-The lock pins the commit and archive; the branch name alone is not a pin. pi-gen executes
-numbered scripts/package lists in each selected stage. A later stage starts from the
-previous stage's filesystem, applies its changes and can request an image export.
-
-| Stage | Contribution in this pinned recipe |
+| Stage | What it contributes in the pinned source |
 | --- | --- |
-| `stage0` | Bootstrap the arm64 Debian filesystem and APT configuration; install Raspberry Pi archive trust material, locales, initramfs/firmware and Pi kernel packages |
-| `stage1` | Basic system/network adjustments, `raspi-config`, `netbase` and time synchronization |
-| `stage2` | Raspberry Pi OS Lite userland: console/keyboard setup, SSH tooling, networking/Wi-Fi firmware, NetworkManager, Avahi, storage/USB utilities and Pi-specific system utilities |
-| `stage-cbm` | Install Project CBM packages and admitted applications; configure accounts, restricted operations, first boot, session lifecycle, content and identity; seal and export the appliance |
+| stage0 | Bootstraps Debian with debootstrap, sets up package repositories/keyring and locale, installs initramfs/raspi-firmware and Pi v8/2712 kernel packages |
+| stage1 | Basic system/network adjustments, raspi-config, netbase and systemd time synchronization |
+| stage2 | Raspberry Pi OS Lite console/userland, keyboard setup, SSH tools, NetworkManager/Wi-Fi firmware, Avahi, USB/storage and Pi utilities; no desktop stage is selected |
+| stage-cbm | Project CBM's own packages, content, account/session, first boot, service policies, artwork integration and installed build information |
+| export-image | Creates partitions/filesystems, generates final initramfs images, copies the target and exports/compresses the SD image |
 
-Upstream Lite also brings some tools not wanted in the appliance. The CBM installer
-purges compiler/development payload, cloud-init and excluded remote-connect software,
-then verifies that runtime packages remain installed. “Based on Lite” therefore does
-not mean every upstream Lite package is retained unchanged. `linux-image-rpi-v8` and
-`linux-image-rpi-2712` support the base's different Pi generations; their presence is
-not a performance qualification for each model.
+Project CBM marks stage0/1/2 to skip their image exports and exports only stage-cbm.
+Cloud-init setup is disabled; Project CBM owns first boot. The recipe excludes
+rpi-connect-lite and removes selected development payload before final export. Upstream
+stage package lists therefore are not the final installed package manifest.
 
-| Recipe file | What to change there |
-| --- | --- |
-| `build/pigen/config.json` | Image name/date, architecture/suite, selected stages, locale/keyboard/timezone bootstrap defaults and compression |
-| `build/pigen/defaults.json` | Declared appliance defaults/contract; changes must agree with the actual installer and frozen configuration |
-| `build/pigen/stage-cbm/prerun.sh` | Copy the previous stage root when creating the custom stage |
-| `build/pigen/stage-cbm/00-cbm/00-run.sh` | Invoke the Product installer with the exact lock, input kit and target root |
-| `build/pigen/stage-cbm/EXPORT_IMAGE` | Request the final custom-stage image export |
-| `build/pigen/stage-cbm/files` | First-boot coordinator, getty/profile/session integration, launch diagnostics and service units |
-| `tools/install_poc_stage.py` | Target package installation, account creation, configuration, optional input installation and sealing |
-| `tools/construct_poc.py` | Verify frozen inputs/host, prepare a fresh pi-gen tree, apply retained patches, configure frozen transport and run construction |
-| `build/pigen/target-environment.patch` | Enforce the builder/target environment boundary |
-| `build/pigen/frozen-export.patch` | Keep export package acquisition inside the retained-input process |
-| `build/pigen/exclude-connect.patch` | Remove the unselected remote-connect component from upstream package selection |
+## The Project CBM recipe
 
-`construct_poc.py` marks stage0/1/2 with `SKIP_IMAGES`, copies the custom stage into
-pi-gen, and selects `stage0 stage1 stage2 stage-cbm`. `ROOTFS_DIR` is the target being
-constructed, not the builder's `/`. The custom script passes it to the guarded installer,
-which refuses `/` and requires a prepared Debian target. Package maintainer scripts run
-inside that target with a sanitized environment; services are prevented from starting
-as if the builder were the appliance. Final sealing removes temporary package inputs,
-sets identity/account/service initial state and leaves user choices for first boot.
+These are real repository paths. Most personal changes affect a few files, not the whole tree.
 
-## Deliberate package composition
-
-| Group | Examples and purpose |
-| --- | --- |
-| Debian/Raspberry Pi OS base | systemd, PAM, Bash/coreutils, locales, keyboard/console setup, filesystem and device tools |
-| Raspberry Pi integration | Pi kernels, `raspi-firmware`, `raspberrypi-sys-mods`, `raspi-config`, `raspi-utils`, Wi-Fi/Bluetooth firmware |
-| Front panel | `dialog`, Python 3, ALSA utilities, Midnight Commander (`mc`), SDL2 and SDL2_image for Covers |
-| Emulator graphics/audio | SDL2, ALSA, DRM/GBM, EGL/OpenGL/GLES and Mesa; dynamically loaded graphics libraries are included in closure checks |
-| Network services | NetworkManager/iproute2, OpenSSH server, Samba, Avahi, rsync; installation does not mean the optional listener is enabled |
-| Project-built packages | `project-cbm-runtime`, `project-cbm-menu`, `project-cbm-vice`, `project-cbm-tcpser` |
-| Optional payloads | Admitted SID-Wizard; private StrikeTerm admission remains separate from public redistribution rights |
-| Original qualification media | Small Project CBM-generated smoke/input/SID checks; owner reference games/demos/music are not automatically included |
-
-`build/packages/*/debian/control` and Menu's `debian/control` declare direct package
-dependencies. The installer adds its explicitly selected utilities; pi-gen's package
-lists supply the base. The lock's `base.binary_package_closure` and
-`base.source_package_closure` retain exact dependency bytes, not merely package names.
-Host build dependencies are a separate closure and are not copied into the image.
-Unchanged Project-built packages can be reused with exact hashes and compatibility
-checks. Reuse is a provenance choice, not a different class of installed software.
-
-The authoritative **installed** package manifest is `offline/packages.tsv` produced
-by `tools/validate_poc_image.py` for each actual image. It records package, version and
-architecture and is checked against retained `.deb` artifacts. The candidate's build
-report locates that manifest and closure result. It is separate from the acquisition
-closure, which may also include build-time or later-purged packages. On your own running
-appliance, generate the corresponding machine-readable inventory with:
-
-```sh
-dpkg-query -W -f='${binary:Package}\t${Version}\t${Architecture}\n' > packages.tsv
+```text
+project-cbm/
+  build/
+    host/
+      lima.yaml                 # Mac's Linux VM allocation; build host only
+      inputs.json               # Pinned bootstrap downloads
+      build-packages.list       # Linux image-build tools
+      capability-gate.sh        # Checks the build environment
+    packages/
+      runtime/debian/            # Runtime package metadata/install recipe
+      vice/debian/               # VICE build flags, patches and dependency declarations
+      tcpser/debian/             # TCPser package recipe
+      build_candidate.sh        # Current changed-package factory helper
+    pigen/
+      config.json               # Image name/date, base, stages, initial locale/timezone
+      defaults.json             # Declared appliance defaults and hardware policy
+      frozen-export.patch       # pi-gen export changes for preserved inputs
+      target-environment.patch  # Keeps builder environment out of target operations
+      exclude-connect.patch     # Excludes the unneeded remote-connect package
+      stage-cbm/
+        prerun.sh               # Copies the preceding target filesystem
+        00-cbm/00-run.sh         # Calls Product's target installer
+        EXPORT_IMAGE            # Export filename suffix
+        files/                  # First boot, getty/profile, launch/splash and modem integration
+  runtime/
+    data/profiles.json          # Machines exposed to Menu
+    project_cbm/                # Information, preferences, configuration, import and setup
+    config/                    # Policy, sudo and File Sharing templates
+    bin/                       # Public command entry points
+    libexec/                   # Fixed privileged entry points
+  tools/
+    install_poc_stage.py        # Applies stage-cbm to ROOTFS_DIR
+    construct_poc.py            # Verifies inputs, prepares pi-gen and invokes build.sh
+    freeze_private_candidate.py # Records a new private input set from a predecessor
+    retained_inputs.py         # Checks retained files and metadata
+    vice_presentation.py       # Generates initial VICE resources
+    validate_poc_image.py       # Checks actual image contents
+    package_manifest.py        # Exports exact installed package inventory
+project-cbm-menu/
+  scripts/                     # Menu, CONTENT, IMPORT, CONTROL and shared launch entry
+  lib/                         # Dialog/status/setup and artwork presentation helpers
+  covers/                      # Primary artwork and seven machine Covers
+  debian/                      # Independently versioned Menu package
 ```
 
-Keep that file with your image hash and build record. Public release distribution needs
-to include the exact manifest and public input catalog alongside the release; the
-private engineering kit is not presumed available to someone reading GitHub.
+`stage-cbm/00-cbm/00-run.sh` calls `tools/install_poc_stage.py` with the release lock,
+input directory and pi-gen's `ROOTFS_DIR`. The installer copies the four component `.deb`
+files into target-local `/tmp`, installs them and deliberate system dependencies, checks
+installed versions, then applies appliance configuration. **There is no stage-cbm
+00-packages list in this recipe**: explicit extra installation is in the Python installer,
+while component dependencies live in their Debian `control` files.
 
-For a portable JSON inventory tied to the exact raw image, export the validator TSV:
+The constructor renders pi-gen variables for `stage0 stage1 stage2 stage-cbm`, Trixie,
+arm64, `FIRST_USER_NAME=pcbm`, no cloud-init/SSH/passwordless general sudo, and XZ level 3
+compression. It copies stage-cbm into the pinned pi-gen tree and calls that tree's
+`./build.sh`. Do not invoke stage-cbm by itself against an arbitrary root directory;
+it requires the matching Product packages, policy and input record.
 
-```sh
-python3 tools/package_manifest.py "$CBM_EVIDENCE/offline/packages.tsv" \
-  --image-sha256 "$CBM_RAW_SHA256" "$CBM_EVIDENCE/packages.json"
-```
+## What stage-cbm configures
 
-This read-only conversion rejects malformed/duplicate installed entries, records the
-inventory hash, and refuses to overwrite an existing output. The validator TSV has five
-columns: package, version, architecture, installed size in KiB and dpkg status. Its JSON
-projection includes installed entries only. Neither file contains account or network
-credentials. Publish it with a release when publication is authorized; it is useful
-without access to private engineering storage.
+The normal account is pcbm, UID 1000, `/home/pcbm`; the library is `/home/pcbm/content`.
+Root stays root. The installer sets Computer Name `projectcbm`, prepares user directories
+and absent-only VICE settings, and installs restricted helpers and normal authenticated
+administration. No universal password or developer SSH key is copied into the image.
 
-See [boot presentation, timing and verbose recovery](boot.md) for the quiet-boot
-settings, bounded repeated-initialization correction and physical measurement limits.
+The Linux getty/login/PAM session enters `pcbm-console-session`. The unprivileged boot
+supervisor displays primary artwork while the next screen prepares. First boot handles
+region, owner password and networking. `pcbm-first-boot.service` owns filesystem expansion
+and first-boot system preparation, avoiding competing expansion/setup mechanisms.
+The [layout reference](accounts-and-layout.md) identifies installed paths and units.
+
+NetworkManager owns connections. SSH, Samba, Avahi and TCPser are installed with explicit
+setup/enable policy. File Sharing exports only the library. Runtime reports actual state;
+Menu formats it. Optional applications are installed from explicit verified sources and
+working-copy locations, not downloaded opportunistically during first boot.
+
+## Why Linux storage and clean inputs matter
+
+Build work uses ext4: Linux permissions, symlinks, device nodes and mounts must behave as
+they do on the Pi. macOS APFS holds archives/images well but does not serve as the target
+root filesystem. The qualified VM has no shared host filesystem and no container stack.
+Builder temporary files and target `/tmp` are kept separate; the target environment is
+sanitized so a Mac/VM temporary-directory variable cannot break programs inside it.
+
+Before official construction, the project saves actual source archives, packages and
+repository authentication metadata, not just download URLs. A release lock records their
+versions and hashes. The builder serves those saved packages through a local APT transport
+inside a network-isolated build, preventing changes in Internet mirrors from altering the
+result. Acquiring inputs is a separate earlier step. Builder package inventory/update guards
+catch unexpected toolchain changes; they are build-host controls, not appliance settings.
+
+These extra records support debugging and later rebuilds. They do not make a private input
+kit publicly available. [Public-bootstrap status](../documentation/public-bootstrap.md)
+explains what must be supplied before a new public user can assemble a complete image.
+
+## Outputs and verification
+
+The current constructor derives a directory from the candidate's private identity and
+optional attempt argument, then creates a new `builds/<directory>`; it refuses to overwrite
+existing work. It places extracted `pi-gen` and `project-cbm` recipes there, with pi-gen
+work under `work/` and raw output under `work/export-image/`. `DEPLOY_DIR` points to
+`artifacts/<directory>` for compressed image/export information. The generated pi-gen
+`config` gives the exact paths. The filenames derive from `image_name`, `image_date`
+and stage-cbm's `EXPORT_IMAGE` suffix, not a guessed version string.
+
+The ordered commands are in [the official walkthrough](../build/official-factory-walkthrough.md).
+Actual-image validation reads the finished partitions, package list, ELF dependencies,
+accounts/services, first boot, lifecycle files and minimal installed identity. The raw
+hash is compared with the decompressed XZ hash. The full release lock/source collection
+stays outside the appliance; `/usr/share/project-cbm/identity.json` is the small installed
+record linking it to the build. Image hashes are recorded afterward so they do not create
+a circular checksum dependency.
+
+A successful offline build still needs physical tests for display, keyboard, audio,
+networking and performance. Rebuilding independently from the same inputs and comparing
+results is needed to demonstrate reproducibility; the project does not infer that proof
+from one successful build. [Developer recovery](development.md#release-and-recovery)
+explains preservation without making it a prerequisite for ordinary appliance use.

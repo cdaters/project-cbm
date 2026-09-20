@@ -1,79 +1,87 @@
-# Troubleshooting and recovery
+# Backups, upgrades and user recovery
 
-Start with CONTROL → System Information and the relevant Network or Services screen.
-The normal UI shows useful state; Advanced retains technical details. Do not paste
-passwords, private keys, complete journals or saved Wi-Fi connection files into issues.
+[Documentation index](../README.md) · [Troubleshooting](troubleshooting.md)
 
-- No IP: check the cable or Wi-Fi country/connection. Retry a bounded scan; continuing
-  offline is valid. An IP without Internet access may still work for local sharing.
-- Cannot log in remotely: SSH username is pcbm and uses the first-boot owner password.
-  File Sharing uses pcbm and a separate sharing password. Check actual service On.
-- Name not found or missing Finder entry: check Network Discovery; use the displayed IP.
-- Cover/VICE regression: F10 → Quit if possible; preserve allowlisted diagnostics before
-  another launch. Ctrl+Alt+F2 is supported at Menu, not while this VICE/SDL build is active.
-- Invalid preferences: MACHINES/configuration offers explicit recovery; preserve the bad
-  file if investigating. User preferences live in the pcbm account's configuration directory.
-- Need a shell: CONTROL → Advanced → Owner administration, or tty2 with owner credentials.
-  Ordinary Linux administration remains available. Changing low-level session/display
-  settings can break return to Menu and requires your own testing.
+Keep a copy of your work before reflashing, replacing a card or experimenting. A copy
+on the same SD card does not protect against card failure. Use another computer or
+independent storage and check that you can open files from the backup.
 
-Back up `/home/pcbm/content` content and user preferences to independent storage. Keep any
-credentials/configuration backups private and encrypted. If reflashing, use a verified
-image, complete setup again, then restore selected content/preferences. Do not restore
-an old whole `/etc`, machine identity, credential database or first-boot state blindly.
-There is no universal password recovery secret. An owner with physical storage control
-can recover Linux offline or reflash after preserving data.
+## Back up your files
 
-During formal qualification, use the exact procedure and read-only evidence policy;
-do not repair the tested card in place. Developer recovery includes source bundles,
-retained inputs, image hashes and offline restore checks; see [repository recovery](../recovery.md).
-A second folder on the same drive is not an independent backup.
+The main thing to preserve is **/home/pcbm/content**: games, demos, programs, music,
+resources, saves and any writable application disks you edited. Through File Sharing,
+copy the whole **Project CBM** share to a dated folder on your other computer. Wait for
+the copy to finish, check several files, then disconnect the share. USB IMPORT brings
+files into the Pi; it is not a backup/export feature.
 
-## A practical content backup
+Preferences are outside the share. If you want them too, use an SFTP client with Remote
+Access enabled. Save these folders/files privately:
 
-Use File Sharing to copy the entire `Project CBM` share to an independent disk on your
-other computer, including games, demos, music, programs and saves. Eject/disconnect the
-share after copying and open a few files from the backup to check it. A copy on the
-same SD card does not protect against card failure. Keep more than one dated backup
-if you frequently change emulator save files.
+| Location | Why preserve it? |
+| --- | --- |
+| `/home/pcbm/.config/project-cbm` | RUN default and appliance preferences |
+| `/home/pcbm/.config/vice` | Saved emulator settings |
+| `/home/pcbm/.local/share/vice` | Personal VICE data/keymaps if used |
+| `/home/pcbm/.config/pcbm` | Audio and other legacy UI preferences if present |
+| `/home/pcbm/.asoundrc` | Your selected ALSA output if present; review before restoring to different hardware |
+| Other personal files/application data you created | Work saved outside the normal library |
 
-The share intentionally does not expose configuration or credentials. For a complete
-personal backup, an administrator should also preserve `/home/pcbm/.config/pcbm`,
-`/home/pcbm/.config/vice` and any personal files under `/home/pcbm`. Those files may contain
-local paths or preferences; keep them private. Use ordinary authenticated Linux tools
-or a safely shut-down card. An encrypted full-card backup is useful for personal
-recovery, but includes passwords, Wi-Fi details and machine keys and must never be
-published as a Project CBM release image.
+You do not need to copy system programs to preserve your collection; the image supplies
+them. Configuration/application files can include private paths or login details. Keep
+personal backups private, preferably encrypted. Do not publish a used-card image.
 
-After a fresh flash, complete first boot, copy content back through File Sharing or
-USB import, and restore preferences selectively. Do not overwrite working preferences
-with a malformed file. VICE preferences can also restore older performance settings;
-check C64 sampling before using old settings to assess a new candidate's performance.
+### An rsync example for experienced users
 
-## Slow emulation or audio
+Run this on a Mac/Linux computer with rsync installed and Remote Access enabled on the
+Pi. It copies the library to a new dated backup folder; it does not delete remote files.
 
-Slow pitch/tempo together with slow graphics suggests the emulator is below real time,
-not simply dropping display frames. Check the exact machine/profile, whether warp or
-pause is active, and the current release's performance qualification. Power supply,
-thermal throttling and CPU clock are useful evidence but are not automatic explanations.
-Project CBM 1.1 targets Pi 4-class hardware and newer. Preserve
-the image identity and a brief description of the workload before experimenting.
-Engineering instructions use numeric speed measurements; see [VICE](vice.md).
+```sh
+PROJECT_CBM_BACKUP="$HOME/ProjectCBM-backup-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$PROJECT_CBM_BACKUP/content"
+rsync -rt --ignore-existing -- pcbm@projectcbm.local:/home/pcbm/content/ "$PROJECT_CBM_BACKUP/content/"
+```
 
-## If the appliance will not start
+Use a new backup directory for each snapshot. `--ignore-existing` preserves names
+already in that backup, so it is not a command for refreshing changed same-name saves.
+SFTP or Finder/Explorer is simpler for many users.
 
-Check power, display connection and the flashed image's hash before changing system
-configuration. If Menu appears, use its shutdown/reboot actions rather than removing
-power during writes. If the card is readable but setup/session behavior is broken,
-preserve content first. A fresh verified image plus selective content restoration is
-often simpler than recovering many unknown system changes. Keep the failing card or
-backup intact until its useful data and diagnostic evidence are secured.
+## Upgrade or reflash
 
-There is no factory master password. If you lose the owner password, physical access
-allows ordinary Linux offline recovery; it also means physical possession is part of
-the security model. Do not follow instructions that publish shadow files or replace
-the appliance with unrestricted passwordless administration. During formal candidate
-qualification, stop and preserve evidence instead of repairing that candidate in place.
+Project CBM is an appliance image: the OS, emulator and Menu are tested together.
+There is no supported Menu-driven in-place OS release upgrade. `apt full-upgrade`
+is not the documented way to turn one Project CBM release into another.
 
-See [boot presentation, timing and verbose recovery](boot.md) for the quiet-boot
-settings, bounded repeated-initialization correction and physical measurement limits.
+1. Back up content and wanted preferences. Keep the old card until restoration works.
+2. Download/check the new image and [flash](getting-started.md#flash-the-card) a card.
+3. Complete first boot again with your chosen password and network settings.
+4. Restore content to its matching folders through File Sharing or SFTP. USB import
+   is useful for selected media, but adds Imported directories and is not a full-tree restore.
+5. Check the library and a few launches. Restore settings selectively; reselect audio
+   if the Pi/display changed. A saved VICE configuration may restore older emulator defaults.
+6. Enable only the services you need and verify their connection information.
+
+Do not copy an old whole `/etc`, account database, host keys, Samba password database
+or setup-completed marker over a fresh system. Set the File Sharing password again.
+Normal SSH host-key changes after your deliberate reflash should be verified, not
+confused with an unrelated machine answering at the same address.
+
+## Recover a setting or Menu problem
+
+If Menu still works, undo the last setting through CONTROL. If saved machine preferences
+are malformed, MACHINES can offer explicit recovery that preserves a private copy and
+resets invalid values. Do not approve a reset casually if you still need that data.
+
+CONTROL → Advanced → Terminal opens your pcbm shell. Ctrl+Alt+F2 from Menu also reaches
+the local console; Ctrl+Alt+F1 returns. Type `exit` to leave a shell opened from Advanced.
+SSH is another route if previously enabled. General administrative commands use `sudo`
+and your first-boot password. Owners retain control of Linux; low-level display/session
+changes can affect Menu return, so keep backups and change one thing at a time.
+
+If the system cannot start, protect the card and recover personal content from a backup
+or a safely handled card before reflashing. There is no universal recovery password.
+An owner with physical access can use normal Linux offline recovery or reflash after
+preserving data. See [verbose boot](boot.md#verbose-recovery) for a display/debug route.
+
+Engineering recovery is a separate subject: rebuilding source, packages and images
+from preserved inputs. Contributors can follow [engineering recovery](../recovery.md);
+ordinary users do not need Git bundles to back up games.

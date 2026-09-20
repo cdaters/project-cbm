@@ -1,0 +1,4041 @@
+{
+  "format": "project-cbm.installed-package-manifest",
+  "schema_version": 1,
+  "image_sha256": "5bde293b5ec6096e2a3bb2f9b31f123a8a07fdc6ac1f9077b510a4ceb5a1702e",
+  "inventory_sha256": "ca3dfa38149448c885a57f05ce55edd6d48c87fe352412752a5a5cfd11cffed1",
+  "package_count": 672,
+  "packages": [
+    {
+      "name": "7zip",
+      "version": "25.01+dfsg-1~deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 6938
+    },
+    {
+      "name": "ack",
+      "version": "3.8.1-1",
+      "architecture": "all",
+      "installed_size_kib": 230
+    },
+    {
+      "name": "adduser",
+      "version": "3.152",
+      "architecture": "all",
+      "installed_size_kib": 428
+    },
+    {
+      "name": "alsa-topology-conf",
+      "version": "1.2.5.1-3",
+      "architecture": "all",
+      "installed_size_kib": 420
+    },
+    {
+      "name": "alsa-ucm-conf",
+      "version": "1.2.14-1",
+      "architecture": "all",
+      "installed_size_kib": 1353
+    },
+    {
+      "name": "alsa-utils",
+      "version": "1.2.14-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 3474
+    },
+    {
+      "name": "apparmor",
+      "version": "4.1.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 3328
+    },
+    {
+      "name": "apt",
+      "version": "3.0.3",
+      "architecture": "arm64",
+      "installed_size_kib": 4912
+    },
+    {
+      "name": "apt-listchanges",
+      "version": "4.8",
+      "architecture": "all",
+      "installed_size_kib": 553
+    },
+    {
+      "name": "apt-utils",
+      "version": "3.0.3",
+      "architecture": "arm64",
+      "installed_size_kib": 1154
+    },
+    {
+      "name": "avahi-daemon",
+      "version": "0.8-16",
+      "architecture": "arm64",
+      "installed_size_kib": 315
+    },
+    {
+      "name": "base-files",
+      "version": "13.8+deb13u7",
+      "architecture": "arm64",
+      "installed_size_kib": 498
+    },
+    {
+      "name": "base-passwd",
+      "version": "3.6.7",
+      "architecture": "arm64",
+      "installed_size_kib": 300
+    },
+    {
+      "name": "bash",
+      "version": "5.2.37-2+b10",
+      "architecture": "arm64",
+      "installed_size_kib": 7359
+    },
+    {
+      "name": "bash-completion",
+      "version": "1:2.16.0-7",
+      "architecture": "all",
+      "installed_size_kib": 1952
+    },
+    {
+      "name": "binutils",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 1237
+    },
+    {
+      "name": "binutils-aarch64-linux-gnu",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 9228
+    },
+    {
+      "name": "binutils-common:arm64",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 16098
+    },
+    {
+      "name": "bluez",
+      "version": "5.82-1.1+rpt2",
+      "architecture": "arm64",
+      "installed_size_kib": 5567
+    },
+    {
+      "name": "bluez-firmware",
+      "version": "1.2-13+rpt2",
+      "architecture": "all",
+      "installed_size_kib": 476
+    },
+    {
+      "name": "bsdextrautils",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 555
+    },
+    {
+      "name": "bsdutils",
+      "version": "1:2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 553
+    },
+    {
+      "name": "busybox",
+      "version": "1:1.37.0-6+b9",
+      "architecture": "arm64",
+      "installed_size_kib": 967
+    },
+    {
+      "name": "bzip2",
+      "version": "1.0.8-6",
+      "architecture": "arm64",
+      "installed_size_kib": 193
+    },
+    {
+      "name": "ca-certificates",
+      "version": "20250419",
+      "architecture": "all",
+      "installed_size_kib": 390
+    },
+    {
+      "name": "cifs-utils",
+      "version": "2:7.4-1",
+      "architecture": "arm64",
+      "installed_size_kib": 652
+    },
+    {
+      "name": "cloud-guest-utils",
+      "version": "0.33-1",
+      "architecture": "all",
+      "installed_size_kib": 71
+    },
+    {
+      "name": "console-setup",
+      "version": "1.242~deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 411
+    },
+    {
+      "name": "console-setup-linux",
+      "version": "1.242~deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 7283
+    },
+    {
+      "name": "coreutils",
+      "version": "9.7-3",
+      "architecture": "arm64",
+      "installed_size_kib": 21046
+    },
+    {
+      "name": "cpio",
+      "version": "2.15+dfsg-2",
+      "architecture": "arm64",
+      "installed_size_kib": 1281
+    },
+    {
+      "name": "cron",
+      "version": "3.0pl1-197",
+      "architecture": "arm64",
+      "installed_size_kib": 273
+    },
+    {
+      "name": "cron-daemon-common",
+      "version": "3.0pl1-197",
+      "architecture": "all",
+      "installed_size_kib": 56
+    },
+    {
+      "name": "curl",
+      "version": "8.14.1-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 503
+    },
+    {
+      "name": "dash",
+      "version": "0.5.12-12",
+      "architecture": "arm64",
+      "installed_size_kib": 275
+    },
+    {
+      "name": "dbus",
+      "version": "1.16.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 169
+    },
+    {
+      "name": "dbus-bin",
+      "version": "1.16.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 418
+    },
+    {
+      "name": "dbus-daemon",
+      "version": "1.16.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 420
+    },
+    {
+      "name": "dbus-session-bus-common",
+      "version": "1.16.2-2",
+      "architecture": "all",
+      "installed_size_kib": 80
+    },
+    {
+      "name": "dbus-system-bus-common",
+      "version": "1.16.2-2",
+      "architecture": "all",
+      "installed_size_kib": 91
+    },
+    {
+      "name": "dbus-user-session",
+      "version": "1.16.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 84
+    },
+    {
+      "name": "dconf-cli",
+      "version": "0.40.0-5",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "debconf",
+      "version": "1.5.91",
+      "architecture": "all",
+      "installed_size_kib": 497
+    },
+    {
+      "name": "debconf-i18n",
+      "version": "1.5.91",
+      "architecture": "all",
+      "installed_size_kib": 842
+    },
+    {
+      "name": "debconf-utils",
+      "version": "1.5.91",
+      "architecture": "all",
+      "installed_size_kib": 108
+    },
+    {
+      "name": "debian-archive-keyring",
+      "version": "2025.1",
+      "architecture": "all",
+      "installed_size_kib": 302
+    },
+    {
+      "name": "debianutils",
+      "version": "5.23.2",
+      "architecture": "arm64",
+      "installed_size_kib": 369
+    },
+    {
+      "name": "device-tree-compiler",
+      "version": "1.7.2-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 712
+    },
+    {
+      "name": "dhcpcd-base",
+      "version": "1:10.1.0-11+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 563
+    },
+    {
+      "name": "dialog",
+      "version": "1.3-20250116-1",
+      "architecture": "arm64",
+      "installed_size_kib": 505
+    },
+    {
+      "name": "diffutils",
+      "version": "1:3.10-4",
+      "architecture": "arm64",
+      "installed_size_kib": 1876
+    },
+    {
+      "name": "dirmngr",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 1051
+    },
+    {
+      "name": "distro-info-data",
+      "version": "0.66+deb13u2",
+      "architecture": "all",
+      "installed_size_kib": 19
+    },
+    {
+      "name": "dmidecode",
+      "version": "3.6-2",
+      "architecture": "arm64",
+      "installed_size_kib": 222
+    },
+    {
+      "name": "dmsetup",
+      "version": "2:1.02.205-2",
+      "architecture": "arm64",
+      "installed_size_kib": 275
+    },
+    {
+      "name": "dns-root-data",
+      "version": "2025080400~deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 19
+    },
+    {
+      "name": "dnsmasq-base",
+      "version": "2.91-1+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 1153
+    },
+    {
+      "name": "dos2unix",
+      "version": "7.5.2-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 1896
+    },
+    {
+      "name": "dosfstools",
+      "version": "4.2-1.2",
+      "architecture": "arm64",
+      "installed_size_kib": 374
+    },
+    {
+      "name": "dpkg",
+      "version": "1.22.22",
+      "architecture": "arm64",
+      "installed_size_kib": 6906
+    },
+    {
+      "name": "dracut-install",
+      "version": "106-6",
+      "architecture": "arm64",
+      "installed_size_kib": 152
+    },
+    {
+      "name": "e2fsprogs",
+      "version": "1.47.2-3+b12",
+      "architecture": "arm64",
+      "installed_size_kib": 2125
+    },
+    {
+      "name": "eatmydata",
+      "version": "131-2",
+      "architecture": "all",
+      "installed_size_kib": 21
+    },
+    {
+      "name": "ed",
+      "version": "1.21.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 123
+    },
+    {
+      "name": "eject",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 194
+    },
+    {
+      "name": "ethtool",
+      "version": "1:6.14.2-1",
+      "architecture": "arm64",
+      "installed_size_kib": 795
+    },
+    {
+      "name": "exfatprogs",
+      "version": "1.2.9-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 428
+    },
+    {
+      "name": "fakeroot",
+      "version": "1.37.1.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 289
+    },
+    {
+      "name": "fbset",
+      "version": "2.1-34",
+      "architecture": "arm64",
+      "installed_size_kib": 385
+    },
+    {
+      "name": "fdisk",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 605
+    },
+    {
+      "name": "file",
+      "version": "1:5.46-5",
+      "architecture": "arm64",
+      "installed_size_kib": 119
+    },
+    {
+      "name": "findutils",
+      "version": "4.10.0-3",
+      "architecture": "arm64",
+      "installed_size_kib": 2248
+    },
+    {
+      "name": "firmware-atheros",
+      "version": "1:20260519-1~bpo13+1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 119720
+    },
+    {
+      "name": "firmware-brcm80211",
+      "version": "1:20260519-1~bpo13+1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 20496
+    },
+    {
+      "name": "firmware-libertas",
+      "version": "1:20260519-1~bpo13+1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 11506
+    },
+    {
+      "name": "firmware-mediatek",
+      "version": "1:20260519-1~bpo13+1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 63377
+    },
+    {
+      "name": "firmware-realtek",
+      "version": "1:20260519-1~bpo13+1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 29536
+    },
+    {
+      "name": "flashrom",
+      "version": "1.4.0-3+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 889
+    },
+    {
+      "name": "fuse3",
+      "version": "3.17.2-3",
+      "architecture": "arm64",
+      "installed_size_kib": 185
+    },
+    {
+      "name": "gawk",
+      "version": "1:5.2.1-2+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 3695
+    },
+    {
+      "name": "gcc-14-base:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 112
+    },
+    {
+      "name": "gdisk",
+      "version": "1.0.10-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 1089
+    },
+    {
+      "name": "gettext-base",
+      "version": "0.23.1-2",
+      "architecture": "arm64",
+      "installed_size_kib": 812
+    },
+    {
+      "name": "gnupg",
+      "version": "2.4.7-21+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 468
+    },
+    {
+      "name": "gnupg-l10n",
+      "version": "2.4.7-21+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 5010
+    },
+    {
+      "name": "gnupg-utils",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 921
+    },
+    {
+      "name": "gpg",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 1670
+    },
+    {
+      "name": "gpg-agent",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 1002
+    },
+    {
+      "name": "gpg-wks-client",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 302
+    },
+    {
+      "name": "gpgconf",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 459
+    },
+    {
+      "name": "gpgsm",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 700
+    },
+    {
+      "name": "gpgv",
+      "version": "2.4.7-21+deb13u1+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 620
+    },
+    {
+      "name": "gpiod",
+      "version": "2.2.1-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 459
+    },
+    {
+      "name": "grep",
+      "version": "3.11-4+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 1263
+    },
+    {
+      "name": "groff-base",
+      "version": "1.23.0-9",
+      "architecture": "arm64",
+      "installed_size_kib": 4500
+    },
+    {
+      "name": "gzip",
+      "version": "1.13-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 288
+    },
+    {
+      "name": "hostname",
+      "version": "3.25",
+      "architecture": "arm64",
+      "installed_size_kib": 90
+    },
+    {
+      "name": "htop",
+      "version": "3.4.1-5",
+      "architecture": "arm64",
+      "installed_size_kib": 464
+    },
+    {
+      "name": "init",
+      "version": "1.69~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 17
+    },
+    {
+      "name": "init-system-helpers",
+      "version": "1.69~deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 133
+    },
+    {
+      "name": "initramfs-tools",
+      "version": "0.148.4+rpt2",
+      "architecture": "all",
+      "installed_size_kib": 53
+    },
+    {
+      "name": "initramfs-tools-bin",
+      "version": "0.148.4+rpt2",
+      "architecture": "arm64",
+      "installed_size_kib": 89
+    },
+    {
+      "name": "initramfs-tools-core",
+      "version": "0.148.4+rpt2",
+      "architecture": "all",
+      "installed_size_kib": 166
+    },
+    {
+      "name": "inotify-tools",
+      "version": "4.23.9.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 297
+    },
+    {
+      "name": "iproute2",
+      "version": "6.15.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 4208
+    },
+    {
+      "name": "iputils-arping",
+      "version": "3:20240905-3",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "iputils-ping",
+      "version": "3:20240905-3",
+      "architecture": "arm64",
+      "installed_size_kib": 243
+    },
+    {
+      "name": "iso-codes",
+      "version": "4.18.0-1",
+      "architecture": "all",
+      "installed_size_kib": 23094
+    },
+    {
+      "name": "iw",
+      "version": "6.9-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 353
+    },
+    {
+      "name": "kbd",
+      "version": "2.7.1-2",
+      "architecture": "arm64",
+      "installed_size_kib": 3007
+    },
+    {
+      "name": "keyboard-configuration",
+      "version": "1.242~deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 2861
+    },
+    {
+      "name": "klibc-utils",
+      "version": "2.0.14-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2304
+    },
+    {
+      "name": "kmod",
+      "version": "34.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 279
+    },
+    {
+      "name": "kms++-utils",
+      "version": "0~git20250807.1813ada-1",
+      "architecture": "arm64",
+      "installed_size_kib": 474
+    },
+    {
+      "name": "less",
+      "version": "668-1",
+      "architecture": "arm64",
+      "installed_size_kib": 500
+    },
+    {
+      "name": "libabsl20240722:arm64",
+      "version": "20240722.0-4",
+      "architecture": "arm64",
+      "installed_size_kib": 6512
+    },
+    {
+      "name": "libacl1:arm64",
+      "version": "2.3.2-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 102
+    },
+    {
+      "name": "libalgorithm-diff-perl",
+      "version": "1.201-1",
+      "architecture": "all",
+      "installed_size_kib": 129
+    },
+    {
+      "name": "libalgorithm-diff-xs-perl",
+      "version": "0.04-9",
+      "architecture": "arm64",
+      "installed_size_kib": 94
+    },
+    {
+      "name": "libalgorithm-merge-perl",
+      "version": "0.08-5",
+      "architecture": "all",
+      "installed_size_kib": 43
+    },
+    {
+      "name": "libapparmor1:arm64",
+      "version": "4.1.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 163
+    },
+    {
+      "name": "libapt-pkg7.0:arm64",
+      "version": "3.0.3",
+      "architecture": "arm64",
+      "installed_size_kib": 3643
+    },
+    {
+      "name": "libasan8:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 10515
+    },
+    {
+      "name": "libasound2-data",
+      "version": "1.2.14-1+rpt1+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 200
+    },
+    {
+      "name": "libasound2t64:arm64",
+      "version": "1.2.14-1+rpt1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1269
+    },
+    {
+      "name": "libassuan9:arm64",
+      "version": "3.0.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 184
+    },
+    {
+      "name": "libasyncns0:arm64",
+      "version": "0.8-6+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 83
+    },
+    {
+      "name": "libatasmart4:arm64",
+      "version": "0.19-5+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "libatomic1:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 81
+    },
+    {
+      "name": "libatopology2t64:arm64",
+      "version": "1.2.14-1+rpt1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 153
+    },
+    {
+      "name": "libattr1:arm64",
+      "version": "1:2.5.2-3",
+      "architecture": "arm64",
+      "installed_size_kib": 100
+    },
+    {
+      "name": "libaudit-common",
+      "version": "1:4.0.2-2+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 25
+    },
+    {
+      "name": "libaudit1:arm64",
+      "version": "1:4.0.2-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 222
+    },
+    {
+      "name": "libavahi-client3:arm64",
+      "version": "0.8-16",
+      "architecture": "arm64",
+      "installed_size_kib": 175
+    },
+    {
+      "name": "libavahi-common-data:arm64",
+      "version": "0.8-16",
+      "architecture": "arm64",
+      "installed_size_kib": 760
+    },
+    {
+      "name": "libavahi-common3:arm64",
+      "version": "0.8-16",
+      "architecture": "arm64",
+      "installed_size_kib": 112
+    },
+    {
+      "name": "libavahi-core7:arm64",
+      "version": "0.8-16",
+      "architecture": "arm64",
+      "installed_size_kib": 312
+    },
+    {
+      "name": "libb2-1:arm64",
+      "version": "0.98.1-1.1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libbabeltrace1:arm64",
+      "version": "1.5.11-4+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 772
+    },
+    {
+      "name": "libbinutils:arm64",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 3037
+    },
+    {
+      "name": "libblkid1:arm64",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 518
+    },
+    {
+      "name": "libblockdev-crypto3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 89
+    },
+    {
+      "name": "libblockdev-fs3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 155
+    },
+    {
+      "name": "libblockdev-loop3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 87
+    },
+    {
+      "name": "libblockdev-mdraid3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libblockdev-nvme3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libblockdev-part3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 87
+    },
+    {
+      "name": "libblockdev-swap3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 87
+    },
+    {
+      "name": "libblockdev-utils3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libblockdev3:arm64",
+      "version": "3.3.0-2.1",
+      "architecture": "arm64",
+      "installed_size_kib": 305
+    },
+    {
+      "name": "libbluetooth3:arm64",
+      "version": "5.82-1.1+rpt2",
+      "architecture": "arm64",
+      "installed_size_kib": 337
+    },
+    {
+      "name": "libboost-filesystem1.83.0:arm64",
+      "version": "1.83.0-4.2",
+      "architecture": "arm64",
+      "installed_size_kib": 2339
+    },
+    {
+      "name": "libboost-log1.83.0",
+      "version": "1.83.0-4.2",
+      "architecture": "arm64",
+      "installed_size_kib": 4007
+    },
+    {
+      "name": "libboost-program-options1.83.0:arm64",
+      "version": "1.83.0-4.2",
+      "architecture": "arm64",
+      "installed_size_kib": 2595
+    },
+    {
+      "name": "libboost-thread1.83.0:arm64",
+      "version": "1.83.0-4.2",
+      "architecture": "arm64",
+      "installed_size_kib": 2339
+    },
+    {
+      "name": "libbpf1:arm64",
+      "version": "1:1.5.0-3",
+      "architecture": "arm64",
+      "installed_size_kib": 488
+    },
+    {
+      "name": "libbrotli1:arm64",
+      "version": "1.1.0-2+b7",
+      "architecture": "arm64",
+      "installed_size_kib": 930
+    },
+    {
+      "name": "libbsd0:arm64",
+      "version": "0.12.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 262
+    },
+    {
+      "name": "libbytesize-common",
+      "version": "2.11-2",
+      "architecture": "all",
+      "installed_size_kib": 120
+    },
+    {
+      "name": "libbytesize1:arm64",
+      "version": "2.11-2",
+      "architecture": "arm64",
+      "installed_size_kib": 82
+    },
+    {
+      "name": "libbz2-1.0:arm64",
+      "version": "1.0.8-6",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "libc-bin",
+      "version": "2.41-12+rpt1+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 2249
+    },
+    {
+      "name": "libc-dev-bin",
+      "version": "2.41-12+rpt1+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 166
+    },
+    {
+      "name": "libc-l10n",
+      "version": "2.41-12+rpt1+deb13u4",
+      "architecture": "all",
+      "installed_size_kib": 4739
+    },
+    {
+      "name": "libc6:arm64",
+      "version": "2.41-12+rpt1+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 23769
+    },
+    {
+      "name": "libcamera-ipa:arm64",
+      "version": "0.7.2+rpt20260817-1",
+      "architecture": "arm64",
+      "installed_size_kib": 5289
+    },
+    {
+      "name": "libcamera0.7:arm64",
+      "version": "0.7.2+rpt20260817-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2255
+    },
+    {
+      "name": "libcap-ng0:arm64",
+      "version": "0.8.5-4+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 154
+    },
+    {
+      "name": "libcap2-bin",
+      "version": "1:2.75-10+deb13u1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 303
+    },
+    {
+      "name": "libcap2:arm64",
+      "version": "1:2.75-10+deb13u1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 160
+    },
+    {
+      "name": "libcbor0.10:arm64",
+      "version": "0.10.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 98
+    },
+    {
+      "name": "libcc1-0:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 208
+    },
+    {
+      "name": "libcom-err2:arm64",
+      "version": "1.47.2-3+b12",
+      "architecture": "arm64",
+      "installed_size_kib": 112
+    },
+    {
+      "name": "libcpuinfo0:arm64",
+      "version": "0.0~git20250327.39ea79a-1",
+      "architecture": "arm64",
+      "installed_size_kib": 85
+    },
+    {
+      "name": "libcrypt1:arm64",
+      "version": "1:4.4.38-1",
+      "architecture": "arm64",
+      "installed_size_kib": 227
+    },
+    {
+      "name": "libcryptsetup12:arm64",
+      "version": "2:2.7.5-2",
+      "architecture": "arm64",
+      "installed_size_kib": 652
+    },
+    {
+      "name": "libctf-nobfd0:arm64",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 342
+    },
+    {
+      "name": "libctf0:arm64",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 276
+    },
+    {
+      "name": "libcups2t64:arm64",
+      "version": "2.4.10-3+rpt2+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 764
+    },
+    {
+      "name": "libcurl3t64-gnutls:arm64",
+      "version": "8.14.1-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 1022
+    },
+    {
+      "name": "libcurl4t64:arm64",
+      "version": "8.14.1-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 1017
+    },
+    {
+      "name": "libdaemon0:arm64",
+      "version": "0.14-7.1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 84
+    },
+    {
+      "name": "libdb5.3t64:arm64",
+      "version": "5.3.28+dfsg2-9",
+      "architecture": "arm64",
+      "installed_size_kib": 1775
+    },
+    {
+      "name": "libdbus-1-3:arm64",
+      "version": "1.16.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 489
+    },
+    {
+      "name": "libdconf1:arm64",
+      "version": "0.40.0-5",
+      "architecture": "arm64",
+      "installed_size_kib": 164
+    },
+    {
+      "name": "libdebconfclient0:arm64",
+      "version": "0.280",
+      "architecture": "arm64",
+      "installed_size_kib": 90
+    },
+    {
+      "name": "libdebuginfod-common",
+      "version": "0.192-4",
+      "architecture": "all",
+      "installed_size_kib": 52
+    },
+    {
+      "name": "libdebuginfod1t64:arm64",
+      "version": "0.192-4",
+      "architecture": "arm64",
+      "installed_size_kib": 101
+    },
+    {
+      "name": "libdecor-0-0:arm64",
+      "version": "0.2.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "libdeflate0:arm64",
+      "version": "1.23-2",
+      "architecture": "arm64",
+      "installed_size_kib": 146
+    },
+    {
+      "name": "libdevmapper1.02.1:arm64",
+      "version": "2:1.02.205-2",
+      "architecture": "arm64",
+      "installed_size_kib": 565
+    },
+    {
+      "name": "libdialog15:arm64",
+      "version": "1.3-20250116-1",
+      "architecture": "arm64",
+      "installed_size_kib": 295
+    },
+    {
+      "name": "libdouble-conversion3:arm64",
+      "version": "3.3.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 156
+    },
+    {
+      "name": "libdpkg-perl",
+      "version": "1.22.22",
+      "architecture": "all",
+      "installed_size_kib": 2091
+    },
+    {
+      "name": "libdrm-amdgpu1:arm64",
+      "version": "2.4.134-3~bpo13+1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 93
+    },
+    {
+      "name": "libdrm-common",
+      "version": "2.4.134-3~bpo13+1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 43
+    },
+    {
+      "name": "libdrm2:arm64",
+      "version": "2.4.134-3~bpo13+1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 160
+    },
+    {
+      "name": "libdtovl0:arm64",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libduktape207:arm64",
+      "version": "2.7.0-2+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 347
+    },
+    {
+      "name": "libdvdread8t64:arm64",
+      "version": "6.1.3-2",
+      "architecture": "arm64",
+      "installed_size_kib": 191
+    },
+    {
+      "name": "libdw1t64:arm64",
+      "version": "0.192-4",
+      "architecture": "arm64",
+      "installed_size_kib": 817
+    },
+    {
+      "name": "libeatmydata1:arm64",
+      "version": "131-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 87
+    },
+    {
+      "name": "libebml5:arm64",
+      "version": "1.4.5-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 212
+    },
+    {
+      "name": "libedit2:arm64",
+      "version": "3.1-20250104-1",
+      "architecture": "arm64",
+      "installed_size_kib": 306
+    },
+    {
+      "name": "libegl-mesa0:arm64",
+      "version": "26.2.2-1~bpo13+0~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 440
+    },
+    {
+      "name": "libegl1:arm64",
+      "version": "1.7.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 160
+    },
+    {
+      "name": "libelf1t64:arm64",
+      "version": "0.192-4",
+      "architecture": "arm64",
+      "installed_size_kib": 1244
+    },
+    {
+      "name": "libexif12:arm64",
+      "version": "0.6.25-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 2866
+    },
+    {
+      "name": "libexpat1:arm64",
+      "version": "2.8.3-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 448
+    },
+    {
+      "name": "libext2fs2t64:arm64",
+      "version": "1.47.2-3+b12",
+      "architecture": "arm64",
+      "installed_size_kib": 597
+    },
+    {
+      "name": "libfakeroot:arm64",
+      "version": "1.37.1.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 165
+    },
+    {
+      "name": "libfarmhash0:arm64",
+      "version": "0~git20190513.0d859a8-3+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 84
+    },
+    {
+      "name": "libfdisk1:arm64",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 652
+    },
+    {
+      "name": "libfdt1:arm64",
+      "version": "1.7.2-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 87
+    },
+    {
+      "name": "libffi8:arm64",
+      "version": "3.4.8-2",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "libfftw3-single3:arm64",
+      "version": "3.3.10-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 1384
+    },
+    {
+      "name": "libfido2-1:arm64",
+      "version": "1.15.0-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 287
+    },
+    {
+      "name": "libfile-fcntllock-perl",
+      "version": "0.22-4+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 182
+    },
+    {
+      "name": "libfile-next-perl",
+      "version": "1.18-2",
+      "architecture": "all",
+      "installed_size_kib": 47
+    },
+    {
+      "name": "libflac14:arm64",
+      "version": "1.5.0+ds-2",
+      "architecture": "arm64",
+      "installed_size_kib": 447
+    },
+    {
+      "name": "libfmt10:arm64",
+      "version": "10.1.1+ds1-4",
+      "architecture": "arm64",
+      "installed_size_kib": 283
+    },
+    {
+      "name": "libftdi1-2:arm64",
+      "version": "1.5-10",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "libfuse3-4:arm64",
+      "version": "3.17.2-3",
+      "architecture": "arm64",
+      "installed_size_kib": 377
+    },
+    {
+      "name": "libgbm1:arm64",
+      "version": "26.2.2-1~bpo13+0~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 251
+    },
+    {
+      "name": "libgcc-s1:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 148
+    },
+    {
+      "name": "libgcrypt20:arm64",
+      "version": "1.11.0-7+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1522
+    },
+    {
+      "name": "libgdbm-compat4t64:arm64",
+      "version": "1.24-2",
+      "architecture": "arm64",
+      "installed_size_kib": 127
+    },
+    {
+      "name": "libgdbm6t64:arm64",
+      "version": "1.24-2",
+      "architecture": "arm64",
+      "installed_size_kib": 194
+    },
+    {
+      "name": "libgl1-mesa-dri:arm64",
+      "version": "26.2.2-1~bpo13+0~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 277
+    },
+    {
+      "name": "libgl1:arm64",
+      "version": "1.7.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 1085
+    },
+    {
+      "name": "libgles2:arm64",
+      "version": "1.7.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 230
+    },
+    {
+      "name": "libglib2.0-0t64:arm64",
+      "version": "2.84.4-3~deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 4987
+    },
+    {
+      "name": "libglib2.0-data",
+      "version": "2.84.4-3~deb13u5",
+      "architecture": "all",
+      "installed_size_kib": 9832
+    },
+    {
+      "name": "libglvnd0:arm64",
+      "version": "1.7.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 1565
+    },
+    {
+      "name": "libglx-mesa0:arm64",
+      "version": "26.2.2-1~bpo13+0~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 437
+    },
+    {
+      "name": "libglx0:arm64",
+      "version": "1.7.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 219
+    },
+    {
+      "name": "libgmp10:arm64",
+      "version": "2:6.3.0+dfsg-3",
+      "architecture": "arm64",
+      "installed_size_kib": 846
+    },
+    {
+      "name": "libgnutls30t64:arm64",
+      "version": "3.8.9-3+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 3623
+    },
+    {
+      "name": "libgomp1:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 352
+    },
+    {
+      "name": "libgpg-error-l10n",
+      "version": "1.51-4",
+      "architecture": "all",
+      "installed_size_kib": 635
+    },
+    {
+      "name": "libgpg-error0:arm64",
+      "version": "1.51-4",
+      "architecture": "arm64",
+      "installed_size_kib": 236
+    },
+    {
+      "name": "libgpgme11t64:arm64",
+      "version": "1.24.2-3",
+      "architecture": "arm64",
+      "installed_size_kib": 629
+    },
+    {
+      "name": "libgpiod3:arm64",
+      "version": "2.2.1-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 329
+    },
+    {
+      "name": "libgpiolib0:arm64",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 151
+    },
+    {
+      "name": "libgpm2:arm64",
+      "version": "1.20.7-11+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 85
+    },
+    {
+      "name": "libgprofng0:arm64",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 2703
+    },
+    {
+      "name": "libgssapi-krb5-2:arm64",
+      "version": "1.21.3-5+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 487
+    },
+    {
+      "name": "libgudev-1.0-0:arm64",
+      "version": "238-6",
+      "architecture": "arm64",
+      "installed_size_kib": 84
+    },
+    {
+      "name": "libhidapi-hidraw0:arm64",
+      "version": "0.14.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 89
+    },
+    {
+      "name": "libhogweed6t64:arm64",
+      "version": "3.10.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 507
+    },
+    {
+      "name": "libhwasan0:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 4888
+    },
+    {
+      "name": "libicu76:arm64",
+      "version": "76.1-4",
+      "architecture": "arm64",
+      "installed_size_kib": 37547
+    },
+    {
+      "name": "libidn2-0:arm64",
+      "version": "2.3.8-2",
+      "architecture": "arm64",
+      "installed_size_kib": 442
+    },
+    {
+      "name": "libinotifytools0:arm64",
+      "version": "4.23.9.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 91
+    },
+    {
+      "name": "libisl23:arm64",
+      "version": "0.27-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2427
+    },
+    {
+      "name": "libitm1:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 146
+    },
+    {
+      "name": "libiw30t64:arm64",
+      "version": "30~pre9-18+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "libjansson4:arm64",
+      "version": "2.14-2+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 108
+    },
+    {
+      "name": "libjaylink0:arm64",
+      "version": "0.4.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 81
+    },
+    {
+      "name": "libjbig0:arm64",
+      "version": "2.1-6.1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "libjim0.83:arm64",
+      "version": "0.83-2",
+      "architecture": "arm64",
+      "installed_size_kib": 414
+    },
+    {
+      "name": "libjpeg62-turbo:arm64",
+      "version": "1:2.1.5-4",
+      "architecture": "arm64",
+      "installed_size_kib": 478
+    },
+    {
+      "name": "libjson-c5:arm64",
+      "version": "0.18+ds-1",
+      "architecture": "arm64",
+      "installed_size_kib": 168
+    },
+    {
+      "name": "libk5crypto3:arm64",
+      "version": "1.21.3-5+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 278
+    },
+    {
+      "name": "libkeyutils1:arm64",
+      "version": "1.6.3-6",
+      "architecture": "arm64",
+      "installed_size_kib": 85
+    },
+    {
+      "name": "libklibc:arm64",
+      "version": "2.0.14-1",
+      "architecture": "arm64",
+      "installed_size_kib": 154
+    },
+    {
+      "name": "libkmod2:arm64",
+      "version": "34.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 168
+    },
+    {
+      "name": "libkms++0:arm64",
+      "version": "0~git20250807.1813ada-1",
+      "architecture": "arm64",
+      "installed_size_kib": 472
+    },
+    {
+      "name": "libkrb5-3:arm64",
+      "version": "1.21.3-5+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1166
+    },
+    {
+      "name": "libkrb5support0:arm64",
+      "version": "1.21.3-5+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 154
+    },
+    {
+      "name": "libksba8:arm64",
+      "version": "1.6.7-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 378
+    },
+    {
+      "name": "liblastlog2-2:arm64",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 124
+    },
+    {
+      "name": "libldap-common",
+      "version": "2.6.10+dfsg-1",
+      "architecture": "all",
+      "installed_size_kib": 99
+    },
+    {
+      "name": "libldap2:arm64",
+      "version": "2.6.10+dfsg-1",
+      "architecture": "arm64",
+      "installed_size_kib": 576
+    },
+    {
+      "name": "libldb2:arm64",
+      "version": "2:2.11.0+samba4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1352
+    },
+    {
+      "name": "liblerc4:arm64",
+      "version": "4.0.0+ds-5",
+      "architecture": "arm64",
+      "installed_size_kib": 552
+    },
+    {
+      "name": "liblgpio1:arm64",
+      "version": "0.2.2-1~rpt1+trixie",
+      "architecture": "arm64",
+      "installed_size_kib": 148
+    },
+    {
+      "name": "libllvm19:arm64",
+      "version": "1:19.1.7-3+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 120416
+    },
+    {
+      "name": "liblmdb0:arm64",
+      "version": "0.9.31-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 148
+    },
+    {
+      "name": "liblocale-gettext-perl",
+      "version": "1.07-7+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 101
+    },
+    {
+      "name": "liblsan0:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 3846
+    },
+    {
+      "name": "liblttng-ust-common1t64:arm64",
+      "version": "2.13.9-1",
+      "architecture": "arm64",
+      "installed_size_kib": 150
+    },
+    {
+      "name": "liblttng-ust-ctl5t64:arm64",
+      "version": "2.13.9-1",
+      "architecture": "arm64",
+      "installed_size_kib": 410
+    },
+    {
+      "name": "liblttng-ust1t64:arm64",
+      "version": "2.13.9-1",
+      "architecture": "arm64",
+      "installed_size_kib": 1239
+    },
+    {
+      "name": "libluajit-5.1-2:arm64",
+      "version": "2.1.0+openresty20250117-2",
+      "architecture": "arm64",
+      "installed_size_kib": 606
+    },
+    {
+      "name": "libluajit-5.1-common",
+      "version": "2.1.0+openresty20250117-2",
+      "architecture": "all",
+      "installed_size_kib": 260
+    },
+    {
+      "name": "liblz4-1:arm64",
+      "version": "1.10.0-4",
+      "architecture": "arm64",
+      "installed_size_kib": 217
+    },
+    {
+      "name": "liblzma5:arm64",
+      "version": "5.8.1-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 435
+    },
+    {
+      "name": "libmagic-mgc",
+      "version": "1:5.46-5",
+      "architecture": "arm64",
+      "installed_size_kib": 10154
+    },
+    {
+      "name": "libmagic1t64:arm64",
+      "version": "1:5.46-5",
+      "architecture": "arm64",
+      "installed_size_kib": 260
+    },
+    {
+      "name": "libmatroska7:arm64",
+      "version": "1.7.1-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 727
+    },
+    {
+      "name": "libmd0:arm64",
+      "version": "1.1.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 102
+    },
+    {
+      "name": "libmm-glib0:arm64",
+      "version": "1.24.0-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1481
+    },
+    {
+      "name": "libmnl0:arm64",
+      "version": "1.0.5-3",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "libmount1:arm64",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 653
+    },
+    {
+      "name": "libmp3lame0:arm64",
+      "version": "3.100-6+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 572
+    },
+    {
+      "name": "libmpc3:arm64",
+      "version": "1.3.1-1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 150
+    },
+    {
+      "name": "libmpfr6:arm64",
+      "version": "4.2.2-1",
+      "architecture": "arm64",
+      "installed_size_kib": 1192
+    },
+    {
+      "name": "libmpg123-0t64:arm64",
+      "version": "1.32.10-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 349
+    },
+    {
+      "name": "libmtp-common",
+      "version": "1.1.22-1",
+      "architecture": "all",
+      "installed_size_kib": 165
+    },
+    {
+      "name": "libmtp-runtime",
+      "version": "1.1.22-1",
+      "architecture": "arm64",
+      "installed_size_kib": 108
+    },
+    {
+      "name": "libmtp9t64:arm64",
+      "version": "1.1.22-1",
+      "architecture": "arm64",
+      "installed_size_kib": 709
+    },
+    {
+      "name": "libncurses6:arm64",
+      "version": "6.5+20250216-2",
+      "architecture": "arm64",
+      "installed_size_kib": 499
+    },
+    {
+      "name": "libncursesw6:arm64",
+      "version": "6.5+20250216-2",
+      "architecture": "arm64",
+      "installed_size_kib": 568
+    },
+    {
+      "name": "libndp0:arm64",
+      "version": "1.9-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "libnetfilter-conntrack3:arm64",
+      "version": "1.1.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 152
+    },
+    {
+      "name": "libnetplan1:arm64",
+      "version": "1.1.2-7+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 417
+    },
+    {
+      "name": "libnettle8t64:arm64",
+      "version": "3.10.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 543
+    },
+    {
+      "name": "libnewt0.52:arm64",
+      "version": "0.52.25-1",
+      "architecture": "arm64",
+      "installed_size_kib": 393
+    },
+    {
+      "name": "libnfnetlink0:arm64",
+      "version": "1.0.2-3",
+      "architecture": "arm64",
+      "installed_size_kib": 83
+    },
+    {
+      "name": "libnftables1:arm64",
+      "version": "1.1.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 1104
+    },
+    {
+      "name": "libnftnl11:arm64",
+      "version": "1.2.9-1",
+      "architecture": "arm64",
+      "installed_size_kib": 295
+    },
+    {
+      "name": "libnghttp2-14:arm64",
+      "version": "1.64.0-1.1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 229
+    },
+    {
+      "name": "libnghttp3-9:arm64",
+      "version": "1.8.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 233
+    },
+    {
+      "name": "libngtcp2-16:arm64",
+      "version": "1.11.0-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 363
+    },
+    {
+      "name": "libngtcp2-crypto-gnutls8:arm64",
+      "version": "1.11.0-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 104
+    },
+    {
+      "name": "libnl-3-200:arm64",
+      "version": "3.7.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 236
+    },
+    {
+      "name": "libnl-genl-3-200:arm64",
+      "version": "3.7.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 93
+    },
+    {
+      "name": "libnl-route-3-200:arm64",
+      "version": "3.7.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 665
+    },
+    {
+      "name": "libnm0:arm64",
+      "version": "1.52.1-1+rpt4",
+      "architecture": "arm64",
+      "installed_size_kib": 1789
+    },
+    {
+      "name": "libnpth0t64:arm64",
+      "version": "1.8-3",
+      "architecture": "arm64",
+      "installed_size_kib": 101
+    },
+    {
+      "name": "libnspr4:arm64",
+      "version": "2:4.36-1",
+      "architecture": "arm64",
+      "installed_size_kib": 425
+    },
+    {
+      "name": "libnss-mdns:arm64",
+      "version": "0.15.1-4+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 430
+    },
+    {
+      "name": "libnss3:arm64",
+      "version": "2:3.110-1+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 4588
+    },
+    {
+      "name": "libntfs-3g89t64:arm64",
+      "version": "1:2022.10.3-5+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 419
+    },
+    {
+      "name": "libnuma1:arm64",
+      "version": "2.0.19-1",
+      "architecture": "arm64",
+      "installed_size_kib": 87
+    },
+    {
+      "name": "libnvme1t64",
+      "version": "1.13-2",
+      "architecture": "arm64",
+      "installed_size_kib": 358
+    },
+    {
+      "name": "libogg0:arm64",
+      "version": "1.3.5-3+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 90
+    },
+    {
+      "name": "libopus0:arm64",
+      "version": "1.5.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 3422
+    },
+    {
+      "name": "libossp-uuid16:arm64",
+      "version": "1.6.4-1",
+      "architecture": "arm64",
+      "installed_size_kib": 171
+    },
+    {
+      "name": "libp11-kit0:arm64",
+      "version": "0.25.5-3",
+      "architecture": "arm64",
+      "installed_size_kib": 2062
+    },
+    {
+      "name": "libpam-chksshpwd:arm64",
+      "version": "2.0",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "libpam-modules-bin",
+      "version": "1.7.0-5",
+      "architecture": "arm64",
+      "installed_size_kib": 446
+    },
+    {
+      "name": "libpam-modules:arm64",
+      "version": "1.7.0-5",
+      "architecture": "arm64",
+      "installed_size_kib": 3055
+    },
+    {
+      "name": "libpam-runtime",
+      "version": "1.7.0-5",
+      "architecture": "all",
+      "installed_size_kib": 1028
+    },
+    {
+      "name": "libpam-systemd:arm64",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 741
+    },
+    {
+      "name": "libpam0g:arm64",
+      "version": "1.7.0-5",
+      "architecture": "arm64",
+      "installed_size_kib": 295
+    },
+    {
+      "name": "libparted2t64:arm64",
+      "version": "3.6-5",
+      "architecture": "arm64",
+      "installed_size_kib": 609
+    },
+    {
+      "name": "libpcap0.8t64:arm64",
+      "version": "1.10.5-2",
+      "architecture": "arm64",
+      "installed_size_kib": 402
+    },
+    {
+      "name": "libpci3:arm64",
+      "version": "1:3.13.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 191
+    },
+    {
+      "name": "libpcre2-16-0:arm64",
+      "version": "10.46-1~deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 657
+    },
+    {
+      "name": "libpcre2-8-0:arm64",
+      "version": "10.46-1~deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 722
+    },
+    {
+      "name": "libpcsclite1:arm64",
+      "version": "2.3.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 181
+    },
+    {
+      "name": "libperl5.40:arm64",
+      "version": "5.40.1-6+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 31049
+    },
+    {
+      "name": "libpipeline1:arm64",
+      "version": "1.5.8-1",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "libpisp-common",
+      "version": "1.7.0-1",
+      "architecture": "all",
+      "installed_size_kib": 30
+    },
+    {
+      "name": "libpisp1:arm64",
+      "version": "1.7.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 922
+    },
+    {
+      "name": "libpkgconf3:arm64",
+      "version": "1.8.1-4",
+      "architecture": "arm64",
+      "installed_size_kib": 101
+    },
+    {
+      "name": "libpng16-16t64:arm64",
+      "version": "1.6.48-1+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 477
+    },
+    {
+      "name": "libpolkit-agent-1-0:arm64",
+      "version": "126-2",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "libpolkit-gobject-1-0:arm64",
+      "version": "126-2",
+      "architecture": "arm64",
+      "installed_size_kib": 227
+    },
+    {
+      "name": "libpopt0:arm64",
+      "version": "1.19+dfsg-2",
+      "architecture": "arm64",
+      "installed_size_kib": 257
+    },
+    {
+      "name": "libproc2-0:arm64",
+      "version": "2:4.0.4-9",
+      "architecture": "arm64",
+      "installed_size_kib": 229
+    },
+    {
+      "name": "libpsl5t64:arm64",
+      "version": "0.21.2-1.1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 156
+    },
+    {
+      "name": "libpugixml1v5:arm64",
+      "version": "1.14-2",
+      "architecture": "arm64",
+      "installed_size_kib": 296
+    },
+    {
+      "name": "libpulse0:arm64",
+      "version": "17.0+dfsg1-2+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 1108
+    },
+    {
+      "name": "libpython3-stdlib:arm64",
+      "version": "3.13.5-1",
+      "architecture": "arm64",
+      "installed_size_kib": 28
+    },
+    {
+      "name": "libpython3.13-minimal:arm64",
+      "version": "3.13.5-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 5468
+    },
+    {
+      "name": "libpython3.13-stdlib:arm64",
+      "version": "3.13.5-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 10511
+    },
+    {
+      "name": "libpython3.13:arm64",
+      "version": "3.13.5-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 7433
+    },
+    {
+      "name": "libqt6core6t64:arm64",
+      "version": "6.8.2+dfsg-9+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 6343
+    },
+    {
+      "name": "libreadline8t64:arm64",
+      "version": "8.2-6",
+      "architecture": "arm64",
+      "installed_size_kib": 557
+    },
+    {
+      "name": "librpicam-app1:arm64",
+      "version": "1.13.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 792
+    },
+    {
+      "name": "librpieepromab0:arm64",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 85
+    },
+    {
+      "name": "librpifwcrypto0:arm64",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 86
+    },
+    {
+      "name": "librtmp1:arm64",
+      "version": "2.4+20151223.gitfa8646d.1-2+b5",
+      "architecture": "arm64",
+      "installed_size_kib": 156
+    },
+    {
+      "name": "libsamplerate0:arm64",
+      "version": "0.2.2-4+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 1506
+    },
+    {
+      "name": "libsasl2-2:arm64",
+      "version": "2.1.28+dfsg1-9",
+      "architecture": "arm64",
+      "installed_size_kib": 180
+    },
+    {
+      "name": "libsasl2-modules-db:arm64",
+      "version": "2.1.28+dfsg1-9",
+      "architecture": "arm64",
+      "installed_size_kib": 106
+    },
+    {
+      "name": "libsasl2-modules:arm64",
+      "version": "2.1.28+dfsg1-9",
+      "architecture": "arm64",
+      "installed_size_kib": 526
+    },
+    {
+      "name": "libsdl2-2.0-0:arm64",
+      "version": "2.32.4+dfsg-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2054
+    },
+    {
+      "name": "libsdl2-image-2.0-0:arm64",
+      "version": "2.8.8+dfsg-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 161
+    },
+    {
+      "name": "libseccomp2:arm64",
+      "version": "2.6.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 217
+    },
+    {
+      "name": "libselinux1:arm64",
+      "version": "3.8.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 289
+    },
+    {
+      "name": "libsemanage-common",
+      "version": "3.8.1-1",
+      "architecture": "all",
+      "installed_size_kib": 21
+    },
+    {
+      "name": "libsemanage2:arm64",
+      "version": "3.8.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 354
+    },
+    {
+      "name": "libsensors-config",
+      "version": "1:3.6.2-2",
+      "architecture": "all",
+      "installed_size_kib": 37
+    },
+    {
+      "name": "libsensors5:arm64",
+      "version": "1:3.6.2-2",
+      "architecture": "arm64",
+      "installed_size_kib": 96
+    },
+    {
+      "name": "libsepol2:arm64",
+      "version": "3.8.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 863
+    },
+    {
+      "name": "libsframe1:arm64",
+      "version": "2.44-3",
+      "architecture": "arm64",
+      "installed_size_kib": 146
+    },
+    {
+      "name": "libsharpyuv0:arm64",
+      "version": "1.5.0-0.1",
+      "architecture": "arm64",
+      "installed_size_kib": 183
+    },
+    {
+      "name": "libsigsegv2:arm64",
+      "version": "2.14-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 112
+    },
+    {
+      "name": "libslang2:arm64",
+      "version": "2.3.3-5+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 2559
+    },
+    {
+      "name": "libsmartcols1:arm64",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 457
+    },
+    {
+      "name": "libsndfile1:arm64",
+      "version": "1.2.2-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 615
+    },
+    {
+      "name": "libsource-highlight-common",
+      "version": "3.1.9-4.3",
+      "architecture": "all",
+      "installed_size_kib": 320
+    },
+    {
+      "name": "libsource-highlight4t64:arm64",
+      "version": "3.1.9-4.3+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 1201
+    },
+    {
+      "name": "libsqlite3-0:arm64",
+      "version": "3.46.1-7+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 1854
+    },
+    {
+      "name": "libss2:arm64",
+      "version": "1.47.2-3+b12",
+      "architecture": "arm64",
+      "installed_size_kib": 112
+    },
+    {
+      "name": "libssh2-1t64:arm64",
+      "version": "1.11.1-1+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 473
+    },
+    {
+      "name": "libssl3t64:arm64",
+      "version": "3.5.7-1~deb13u2+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 8019
+    },
+    {
+      "name": "libstdc++6:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 3022
+    },
+    {
+      "name": "libsystemd-shared:arm64",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 6946
+    },
+    {
+      "name": "libsystemd0:arm64",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1276
+    },
+    {
+      "name": "libtalloc2:arm64",
+      "version": "2:2.4.3+samba4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 142
+    },
+    {
+      "name": "libtasn1-6:arm64",
+      "version": "4.20.0-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 167
+    },
+    {
+      "name": "libtdb1:arm64",
+      "version": "2:1.4.13+samba4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 207
+    },
+    {
+      "name": "libteamdctl0:arm64",
+      "version": "1.31-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 85
+    },
+    {
+      "name": "libtensorflow-lite2.20.0:arm64",
+      "version": "2.20.0-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 5056
+    },
+    {
+      "name": "libtevent0t64:arm64",
+      "version": "2:0.16.2+samba4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 212
+    },
+    {
+      "name": "libtext-charwidth-perl:arm64",
+      "version": "0.04-11+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 94
+    },
+    {
+      "name": "libtext-iconv-perl:arm64",
+      "version": "1.7-8+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 98
+    },
+    {
+      "name": "libtext-wrapi18n-perl",
+      "version": "0.06-10",
+      "architecture": "all",
+      "installed_size_kib": 26
+    },
+    {
+      "name": "libtiff6:arm64",
+      "version": "4.7.0-3+deb13u3",
+      "architecture": "arm64",
+      "installed_size_kib": 754
+    },
+    {
+      "name": "libtinfo6:arm64",
+      "version": "6.5+20250216-2",
+      "architecture": "arm64",
+      "installed_size_kib": 673
+    },
+    {
+      "name": "libtirpc-common",
+      "version": "1.3.6+ds-1",
+      "architecture": "all",
+      "installed_size_kib": 32
+    },
+    {
+      "name": "libtirpc3t64:arm64",
+      "version": "1.3.6+ds-1",
+      "architecture": "arm64",
+      "installed_size_kib": 304
+    },
+    {
+      "name": "libtsan2:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 8949
+    },
+    {
+      "name": "libubsan1:arm64",
+      "version": "14.2.0-19",
+      "architecture": "arm64",
+      "installed_size_kib": 3358
+    },
+    {
+      "name": "libuchardet0:arm64",
+      "version": "0.0.8-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 276
+    },
+    {
+      "name": "libudev1:arm64",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 405
+    },
+    {
+      "name": "libudisks2-0:arm64",
+      "version": "2.10.1-12.1+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 983
+    },
+    {
+      "name": "libunistring5:arm64",
+      "version": "1.3-2",
+      "architecture": "arm64",
+      "installed_size_kib": 2128
+    },
+    {
+      "name": "liburing2:arm64",
+      "version": "2.9-1",
+      "architecture": "arm64",
+      "installed_size_kib": 169
+    },
+    {
+      "name": "libusb-1.0-0:arm64",
+      "version": "2:1.0.28-1",
+      "architecture": "arm64",
+      "installed_size_kib": 161
+    },
+    {
+      "name": "libuuid1:arm64",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 126
+    },
+    {
+      "name": "libv4l-0t64:arm64",
+      "version": "1.30.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 481
+    },
+    {
+      "name": "libv4l2rds0t64:arm64",
+      "version": "1.30.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 178
+    },
+    {
+      "name": "libv4lconvert0t64:arm64",
+      "version": "1.30.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 442
+    },
+    {
+      "name": "libvolume-key1:arm64",
+      "version": "0.3.12-9",
+      "architecture": "arm64",
+      "installed_size_kib": 811
+    },
+    {
+      "name": "libvorbis0a:arm64",
+      "version": "1.3.7-3",
+      "architecture": "arm64",
+      "installed_size_kib": 220
+    },
+    {
+      "name": "libvorbisenc2:arm64",
+      "version": "1.3.7-3",
+      "architecture": "arm64",
+      "installed_size_kib": 726
+    },
+    {
+      "name": "libvulkan1:arm64",
+      "version": "1.4.309.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 611
+    },
+    {
+      "name": "libwayland-client0:arm64",
+      "version": "1.24.0-2~bpo13+1~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 150
+    },
+    {
+      "name": "libwayland-cursor0:arm64",
+      "version": "1.24.0-2~bpo13+1~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 95
+    },
+    {
+      "name": "libwayland-egl1:arm64",
+      "version": "1.24.0-2~bpo13+1~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 82
+    },
+    {
+      "name": "libwayland-server0:arm64",
+      "version": "1.24.0-2~bpo13+1~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 153
+    },
+    {
+      "name": "libwbclient0:arm64",
+      "version": "2:4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 209
+    },
+    {
+      "name": "libwebp7:arm64",
+      "version": "1.5.0-0.1",
+      "architecture": "arm64",
+      "installed_size_kib": 503
+    },
+    {
+      "name": "libwebpdemux2:arm64",
+      "version": "1.5.0-0.1",
+      "architecture": "arm64",
+      "installed_size_kib": 183
+    },
+    {
+      "name": "libwrap0:arm64",
+      "version": "7.6.q-36",
+      "architecture": "arm64",
+      "installed_size_kib": 130
+    },
+    {
+      "name": "libwtmpdb0:arm64",
+      "version": "0.73.0-3+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 91
+    },
+    {
+      "name": "libx11-6:arm64",
+      "version": "2:1.8.12-1",
+      "architecture": "arm64",
+      "installed_size_kib": 1689
+    },
+    {
+      "name": "libx11-data",
+      "version": "2:1.8.12-1",
+      "architecture": "all",
+      "installed_size_kib": 1576
+    },
+    {
+      "name": "libx11-xcb1:arm64",
+      "version": "2:1.8.12-1",
+      "architecture": "arm64",
+      "installed_size_kib": 358
+    },
+    {
+      "name": "libxau6:arm64",
+      "version": "1:1.0.11-1",
+      "architecture": "arm64",
+      "installed_size_kib": 94
+    },
+    {
+      "name": "libxcb-dri3-0:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 181
+    },
+    {
+      "name": "libxcb-glx0:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 265
+    },
+    {
+      "name": "libxcb-present0:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 180
+    },
+    {
+      "name": "libxcb-randr0:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 193
+    },
+    {
+      "name": "libxcb-shm0:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 179
+    },
+    {
+      "name": "libxcb-sync1:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 182
+    },
+    {
+      "name": "libxcb-xfixes0:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 184
+    },
+    {
+      "name": "libxcb1:arm64",
+      "version": "1.17.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 329
+    },
+    {
+      "name": "libxcursor1:arm64",
+      "version": "1:1.2.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 101
+    },
+    {
+      "name": "libxdmcp6:arm64",
+      "version": "1:1.1.5-1",
+      "architecture": "arm64",
+      "installed_size_kib": 99
+    },
+    {
+      "name": "libxext6:arm64",
+      "version": "2:1.3.4-1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 181
+    },
+    {
+      "name": "libxfixes3:arm64",
+      "version": "1:6.0.0-2+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 95
+    },
+    {
+      "name": "libxi6:arm64",
+      "version": "2:1.8.2-1",
+      "architecture": "arm64",
+      "installed_size_kib": 135
+    },
+    {
+      "name": "libxkbcommon0:arm64",
+      "version": "1.13.1-1~bpo13+1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 409
+    },
+    {
+      "name": "libxml2:arm64",
+      "version": "2.12.7+dfsg+really2.9.14-2.1+deb13u3",
+      "architecture": "arm64",
+      "installed_size_kib": 1891
+    },
+    {
+      "name": "libxmuu1:arm64",
+      "version": "2:1.1.3-3+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "libxrandr2:arm64",
+      "version": "2:1.5.4-1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 105
+    },
+    {
+      "name": "libxrender1:arm64",
+      "version": "1:0.9.12-1",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "libxshmfence1:arm64",
+      "version": "1.3.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libxss1:arm64",
+      "version": "1:1.2.3-1+b3",
+      "architecture": "arm64",
+      "installed_size_kib": 94
+    },
+    {
+      "name": "libxtables12:arm64",
+      "version": "1.8.11-2",
+      "architecture": "arm64",
+      "installed_size_kib": 101
+    },
+    {
+      "name": "libxxf86vm1:arm64",
+      "version": "1:1.1.4-1+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "libxxhash0:arm64",
+      "version": "0.8.3-2",
+      "architecture": "arm64",
+      "installed_size_kib": 88
+    },
+    {
+      "name": "libyaml-0-2:arm64",
+      "version": "0.2.5-2",
+      "architecture": "arm64",
+      "installed_size_kib": 151
+    },
+    {
+      "name": "libz3-4:arm64",
+      "version": "4.13.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 26286
+    },
+    {
+      "name": "libzstd1:arm64",
+      "version": "1.5.7+dfsg-1",
+      "architecture": "arm64",
+      "installed_size_kib": 748
+    },
+    {
+      "name": "linux-base",
+      "version": "4.12.1",
+      "architecture": "all",
+      "installed_size_kib": 76
+    },
+    {
+      "name": "linux-base-6.18.50+rpt-rpi-2712",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 973
+    },
+    {
+      "name": "linux-base-6.18.50+rpt-rpi-v8",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 973
+    },
+    {
+      "name": "linux-base-rpi-2712",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 9
+    },
+    {
+      "name": "linux-base-rpi-v8",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 9
+    },
+    {
+      "name": "linux-image-6.18.50+rpt-rpi-2712",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 35717
+    },
+    {
+      "name": "linux-image-6.18.50+rpt-rpi-v8",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 35713
+    },
+    {
+      "name": "linux-image-rpi-2712",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 13
+    },
+    {
+      "name": "linux-image-rpi-v8",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 13
+    },
+    {
+      "name": "linux-kbuild-6.18.50+rpt",
+      "version": "1:6.18.50-1+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 3468
+    },
+    {
+      "name": "linux-sysctl-defaults",
+      "version": "4.12.1",
+      "architecture": "all",
+      "installed_size_kib": 19
+    },
+    {
+      "name": "locales",
+      "version": "2.41-12+rpt1+deb13u4",
+      "architecture": "all",
+      "installed_size_kib": 15775
+    },
+    {
+      "name": "login",
+      "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 419
+    },
+    {
+      "name": "login.defs",
+      "version": "1:4.17.4-2",
+      "architecture": "all",
+      "installed_size_kib": 214
+    },
+    {
+      "name": "logrotate",
+      "version": "3.22.0-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 192
+    },
+    {
+      "name": "logsave",
+      "version": "1.47.2-3+b12",
+      "architecture": "arm64",
+      "installed_size_kib": 111
+    },
+    {
+      "name": "lsb-release",
+      "version": "12.1-1",
+      "architecture": "all",
+      "installed_size_kib": 17
+    },
+    {
+      "name": "lua5.1",
+      "version": "5.1.5-11",
+      "architecture": "arm64",
+      "installed_size_kib": 481
+    },
+    {
+      "name": "luajit",
+      "version": "2.1.0+openresty20250117-2",
+      "architecture": "arm64",
+      "installed_size_kib": 597
+    },
+    {
+      "name": "man-db",
+      "version": "2.13.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 3562
+    },
+    {
+      "name": "manpages",
+      "version": "6.9.1-1",
+      "architecture": "all",
+      "installed_size_kib": 1668
+    },
+    {
+      "name": "mawk",
+      "version": "1.3.4.20250131-1",
+      "architecture": "arm64",
+      "installed_size_kib": 320
+    },
+    {
+      "name": "mc",
+      "version": "3:4.8.33-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1690
+    },
+    {
+      "name": "mc-data",
+      "version": "3:4.8.33-1+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 6277
+    },
+    {
+      "name": "media-types",
+      "version": "13.0.0",
+      "architecture": "all",
+      "installed_size_kib": 98
+    },
+    {
+      "name": "mesa-libgallium:arm64",
+      "version": "26.2.2-1~bpo13+0~rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 50583
+    },
+    {
+      "name": "mkvtoolnix",
+      "version": "92.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 27961
+    },
+    {
+      "name": "mount",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 657
+    },
+    {
+      "name": "nano",
+      "version": "8.4-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 2867
+    },
+    {
+      "name": "ncdu",
+      "version": "1.22-1",
+      "architecture": "arm64",
+      "installed_size_kib": 155
+    },
+    {
+      "name": "ncurses-base",
+      "version": "6.5+20250216-2",
+      "architecture": "all",
+      "installed_size_kib": 389
+    },
+    {
+      "name": "ncurses-bin",
+      "version": "6.5+20250216-2",
+      "architecture": "arm64",
+      "installed_size_kib": 917
+    },
+    {
+      "name": "ncurses-term",
+      "version": "6.5+20250216-2",
+      "architecture": "all",
+      "installed_size_kib": 4372
+    },
+    {
+      "name": "net-tools",
+      "version": "2.10-1.3",
+      "architecture": "arm64",
+      "installed_size_kib": 1371
+    },
+    {
+      "name": "netbase",
+      "version": "6.5",
+      "architecture": "all",
+      "installed_size_kib": 35
+    },
+    {
+      "name": "netcat-openbsd",
+      "version": "1.229-1",
+      "architecture": "arm64",
+      "installed_size_kib": 133
+    },
+    {
+      "name": "netplan-generator",
+      "version": "1.1.2-7+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 332
+    },
+    {
+      "name": "netplan.io",
+      "version": "1.1.2-7+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 372
+    },
+    {
+      "name": "network-manager",
+      "version": "1.52.1-1+rpt4",
+      "architecture": "arm64",
+      "installed_size_kib": 8584
+    },
+    {
+      "name": "network-manager-l10n",
+      "version": "1.52.1-1+rpt4",
+      "architecture": "all",
+      "installed_size_kib": 8525
+    },
+    {
+      "name": "nftables",
+      "version": "1.1.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 225
+    },
+    {
+      "name": "ntfs-3g",
+      "version": "1:2022.10.3-5+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 2106
+    },
+    {
+      "name": "openssh-client",
+      "version": "1:10.0p1-7+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 5323
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:10.0p1-7+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 3488
+    },
+    {
+      "name": "openssh-sftp-server",
+      "version": "1:10.0p1-7+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 209
+    },
+    {
+      "name": "openssl",
+      "version": "3.5.7-1~deb13u2+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 2554
+    },
+    {
+      "name": "openssl-provider-legacy",
+      "version": "3.5.7-1~deb13u2+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 416
+    },
+    {
+      "name": "p7zip-full",
+      "version": "16.02+transitional.1",
+      "architecture": "all",
+      "installed_size_kib": 12
+    },
+    {
+      "name": "pahole",
+      "version": "1.30-1",
+      "architecture": "arm64",
+      "installed_size_kib": 1977
+    },
+    {
+      "name": "parted",
+      "version": "3.6-5",
+      "architecture": "arm64",
+      "installed_size_kib": 218
+    },
+    {
+      "name": "passwd",
+      "version": "1:4.17.4-2",
+      "architecture": "arm64",
+      "installed_size_kib": 5317
+    },
+    {
+      "name": "pastebinit",
+      "version": "1.7.1-1+~rpt2",
+      "architecture": "all",
+      "installed_size_kib": 333
+    },
+    {
+      "name": "pci.ids",
+      "version": "0.0~2025.06.09-1",
+      "architecture": "all",
+      "installed_size_kib": 1509
+    },
+    {
+      "name": "pciutils",
+      "version": "1:3.13.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 350
+    },
+    {
+      "name": "perl",
+      "version": "5.40.1-6+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 841
+    },
+    {
+      "name": "perl-base",
+      "version": "5.40.1-6+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 8006
+    },
+    {
+      "name": "perl-modules-5.40",
+      "version": "5.40.1-6+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 19993
+    },
+    {
+      "name": "pinentry-curses",
+      "version": "1.3.1-2",
+      "architecture": "arm64",
+      "installed_size_kib": 206
+    },
+    {
+      "name": "pkg-config:arm64",
+      "version": "1.8.1-4",
+      "architecture": "arm64",
+      "installed_size_kib": 29
+    },
+    {
+      "name": "pkgconf-bin",
+      "version": "1.8.1-4",
+      "architecture": "arm64",
+      "installed_size_kib": 106
+    },
+    {
+      "name": "pkgconf:arm64",
+      "version": "1.8.1-4",
+      "architecture": "arm64",
+      "installed_size_kib": 65
+    },
+    {
+      "name": "polkitd",
+      "version": "126-2",
+      "architecture": "arm64",
+      "installed_size_kib": 701
+    },
+    {
+      "name": "ppp",
+      "version": "2.5.2-1+1",
+      "architecture": "arm64",
+      "installed_size_kib": 1689
+    },
+    {
+      "name": "procps",
+      "version": "2:4.0.4-9",
+      "architecture": "arm64",
+      "installed_size_kib": 2975
+    },
+    {
+      "name": "project-cbm-menu",
+      "version": "1.1.0~rc3-1+pcbm1",
+      "architecture": "all",
+      "installed_size_kib": 1506
+    },
+    {
+      "name": "project-cbm-runtime",
+      "version": "1.1.0~rc3-1",
+      "architecture": "all",
+      "installed_size_kib": 267
+    },
+    {
+      "name": "project-cbm-tcpser",
+      "version": "1.1.6~beta-1+pcbm1",
+      "architecture": "arm64",
+      "installed_size_kib": 78
+    },
+    {
+      "name": "project-cbm-vice",
+      "version": "3.10-1+pcbm4",
+      "architecture": "arm64",
+      "installed_size_kib": 44182
+    },
+    {
+      "name": "psmisc",
+      "version": "23.7-2",
+      "architecture": "arm64",
+      "installed_size_kib": 1198
+    },
+    {
+      "name": "publicsuffix",
+      "version": "20250328.1952-0.1",
+      "architecture": "all",
+      "installed_size_kib": 570
+    },
+    {
+      "name": "python-apt-common",
+      "version": "3.0.0",
+      "architecture": "all",
+      "installed_size_kib": 532
+    },
+    {
+      "name": "python-babel-localedata",
+      "version": "2.17.0-1",
+      "architecture": "all",
+      "installed_size_kib": 30133
+    },
+    {
+      "name": "python-is-python3",
+      "version": "3.13.3-1",
+      "architecture": "all",
+      "installed_size_kib": 16
+    },
+    {
+      "name": "python3",
+      "version": "3.13.5-1",
+      "architecture": "arm64",
+      "installed_size_kib": 83
+    },
+    {
+      "name": "python3-apt",
+      "version": "3.0.0",
+      "architecture": "arm64",
+      "installed_size_kib": 774
+    },
+    {
+      "name": "python3-arrow",
+      "version": "1.3.0-1.1",
+      "architecture": "all",
+      "installed_size_kib": 313
+    },
+    {
+      "name": "python3-attr",
+      "version": "25.3.0-1",
+      "architecture": "all",
+      "installed_size_kib": 268
+    },
+    {
+      "name": "python3-babel",
+      "version": "2.17.0-1",
+      "architecture": "all",
+      "installed_size_kib": 519
+    },
+    {
+      "name": "python3-bcrypt",
+      "version": "4.2.0-2.1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 555
+    },
+    {
+      "name": "python3-blinker",
+      "version": "1.9.0-1",
+      "architecture": "all",
+      "installed_size_kib": 45
+    },
+    {
+      "name": "python3-certifi",
+      "version": "2025.1.31+ds-1",
+      "architecture": "all",
+      "installed_size_kib": 41
+    },
+    {
+      "name": "python3-cffi-backend:arm64",
+      "version": "1.17.1-3",
+      "architecture": "arm64",
+      "installed_size_kib": 298
+    },
+    {
+      "name": "python3-chardet",
+      "version": "5.2.0+dfsg-2",
+      "architecture": "all",
+      "installed_size_kib": 1141
+    },
+    {
+      "name": "python3-charset-normalizer",
+      "version": "3.4.2-1",
+      "architecture": "arm64",
+      "installed_size_kib": 570
+    },
+    {
+      "name": "python3-colorzero",
+      "version": "2.0-4",
+      "architecture": "all",
+      "installed_size_kib": 115
+    },
+    {
+      "name": "python3-configobj",
+      "version": "5.0.9-1",
+      "architecture": "all",
+      "installed_size_kib": 162
+    },
+    {
+      "name": "python3-cryptography",
+      "version": "43.0.0-3+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 3574
+    },
+    {
+      "name": "python3-dateutil",
+      "version": "2.9.0-4",
+      "architecture": "all",
+      "installed_size_kib": 324
+    },
+    {
+      "name": "python3-debconf",
+      "version": "1.5.91",
+      "architecture": "all",
+      "installed_size_kib": 19
+    },
+    {
+      "name": "python3-distro",
+      "version": "1.9.0-1",
+      "architecture": "all",
+      "installed_size_kib": 83
+    },
+    {
+      "name": "python3-fqdn",
+      "version": "1.5.1-2",
+      "architecture": "all",
+      "installed_size_kib": 30
+    },
+    {
+      "name": "python3-gpiozero",
+      "version": "2.0.1-0+rpt1+trixie",
+      "architecture": "all",
+      "installed_size_kib": 680
+    },
+    {
+      "name": "python3-idna",
+      "version": "3.10-1+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 373
+    },
+    {
+      "name": "python3-isoduration",
+      "version": "20.11.0+git20211126.ae0bd61-2",
+      "architecture": "all",
+      "installed_size_kib": 58
+    },
+    {
+      "name": "python3-jinja2",
+      "version": "3.1.6-1",
+      "architecture": "all",
+      "installed_size_kib": 532
+    },
+    {
+      "name": "python3-json-pointer",
+      "version": "2.4-3",
+      "architecture": "all",
+      "installed_size_kib": 45
+    },
+    {
+      "name": "python3-jsonpatch",
+      "version": "1.32-5",
+      "architecture": "all",
+      "installed_size_kib": 58
+    },
+    {
+      "name": "python3-jsonschema",
+      "version": "4.19.2-6",
+      "architecture": "all",
+      "installed_size_kib": 485
+    },
+    {
+      "name": "python3-jsonschema-specifications",
+      "version": "2023.12.1-2",
+      "architecture": "all",
+      "installed_size_kib": 81
+    },
+    {
+      "name": "python3-jwt",
+      "version": "2.10.1-2+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 118
+    },
+    {
+      "name": "python3-lgpio",
+      "version": "0.2.2-1~rpt1+trixie",
+      "architecture": "arm64",
+      "installed_size_kib": 324
+    },
+    {
+      "name": "python3-libgpiod",
+      "version": "2.2.1-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 186
+    },
+    {
+      "name": "python3-linkify-it",
+      "version": "2.0.3-1",
+      "architecture": "all",
+      "installed_size_kib": 79
+    },
+    {
+      "name": "python3-markdown-it",
+      "version": "3.0.0-3",
+      "architecture": "all",
+      "installed_size_kib": 287
+    },
+    {
+      "name": "python3-markupsafe",
+      "version": "2.1.5-1+b4",
+      "architecture": "arm64",
+      "installed_size_kib": 105
+    },
+    {
+      "name": "python3-mdurl",
+      "version": "0.1.2-1",
+      "architecture": "all",
+      "installed_size_kib": 42
+    },
+    {
+      "name": "python3-minimal",
+      "version": "3.13.5-1",
+      "architecture": "arm64",
+      "installed_size_kib": 112
+    },
+    {
+      "name": "python3-netplan",
+      "version": "1.1.2-7+rpt1",
+      "architecture": "arm64",
+      "installed_size_kib": 193
+    },
+    {
+      "name": "python3-oauthlib",
+      "version": "3.2.2-3",
+      "architecture": "all",
+      "installed_size_kib": 562
+    },
+    {
+      "name": "python3-pip-whl",
+      "version": "25.1.1+dfsg-1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 1534
+    },
+    {
+      "name": "python3-pycryptodome",
+      "version": "3.20.0+dfsg-3",
+      "architecture": "arm64",
+      "installed_size_kib": 5738
+    },
+    {
+      "name": "python3-pygments",
+      "version": "2.18.0+dfsg-2",
+      "architecture": "all",
+      "installed_size_kib": 4521
+    },
+    {
+      "name": "python3-referencing",
+      "version": "0.36.2-1",
+      "architecture": "all",
+      "installed_size_kib": 139
+    },
+    {
+      "name": "python3-requests",
+      "version": "2.32.3+dfsg-5+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 241
+    },
+    {
+      "name": "python3-rfc3339-validator",
+      "version": "0.1.4-2",
+      "architecture": "all",
+      "installed_size_kib": 23
+    },
+    {
+      "name": "python3-rfc3986-validator",
+      "version": "0.1.1-2",
+      "architecture": "all",
+      "installed_size_kib": 28
+    },
+    {
+      "name": "python3-rfc3987",
+      "version": "1.3.8-3",
+      "architecture": "all",
+      "installed_size_kib": 47
+    },
+    {
+      "name": "python3-rich",
+      "version": "13.9.4-1",
+      "architecture": "all",
+      "installed_size_kib": 1072
+    },
+    {
+      "name": "python3-rpds-py",
+      "version": "0.21.0-2+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 736
+    },
+    {
+      "name": "python3-rpi-lgpio",
+      "version": "0.6-0~rpt1+trixie",
+      "architecture": "all",
+      "installed_size_kib": 58
+    },
+    {
+      "name": "python3-setuptools-whl",
+      "version": "78.1.1-0.1",
+      "architecture": "all",
+      "installed_size_kib": 1324
+    },
+    {
+      "name": "python3-smbus2",
+      "version": "0.4.3-1",
+      "architecture": "arm64",
+      "installed_size_kib": 56
+    },
+    {
+      "name": "python3-spidev",
+      "version": "3.6-1+b6",
+      "architecture": "arm64",
+      "installed_size_kib": 93
+    },
+    {
+      "name": "python3-typeshed",
+      "version": "0.0~git20241223.ea91db2-1",
+      "architecture": "all",
+      "installed_size_kib": 14753
+    },
+    {
+      "name": "python3-uc-micro",
+      "version": "1.0.3-1",
+      "architecture": "all",
+      "installed_size_kib": 43
+    },
+    {
+      "name": "python3-uritemplate",
+      "version": "4.1.1-3",
+      "architecture": "all",
+      "installed_size_kib": 48
+    },
+    {
+      "name": "python3-urllib3",
+      "version": "2.3.0-3+deb13u2",
+      "architecture": "all",
+      "installed_size_kib": 471
+    },
+    {
+      "name": "python3-venv",
+      "version": "3.13.5-1",
+      "architecture": "arm64",
+      "installed_size_kib": 6
+    },
+    {
+      "name": "python3-webcolors",
+      "version": "1.13-1",
+      "architecture": "all",
+      "installed_size_kib": 66
+    },
+    {
+      "name": "python3-yaml",
+      "version": "6.0.2-1+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 552
+    },
+    {
+      "name": "python3.13",
+      "version": "3.13.5-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 830
+    },
+    {
+      "name": "python3.13-minimal",
+      "version": "3.13.5-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 6613
+    },
+    {
+      "name": "python3.13-venv",
+      "version": "3.13.5-2+deb13u5",
+      "architecture": "arm64",
+      "installed_size_kib": 27
+    },
+    {
+      "name": "raspberrypi-archive-keyring",
+      "version": "2025.1+rpt1",
+      "architecture": "all",
+      "installed_size_kib": 28
+    },
+    {
+      "name": "raspberrypi-net-mods",
+      "version": "1.4.4",
+      "architecture": "all",
+      "installed_size_kib": 16
+    },
+    {
+      "name": "raspberrypi-sys-mods",
+      "version": "1:20260914",
+      "architecture": "arm64",
+      "installed_size_kib": 113
+    },
+    {
+      "name": "raspi-config",
+      "version": "20260730",
+      "architecture": "all",
+      "installed_size_kib": 32
+    },
+    {
+      "name": "raspi-config-core",
+      "version": "20260730",
+      "architecture": "all",
+      "installed_size_kib": 142
+    },
+    {
+      "name": "raspi-firmware",
+      "version": "1:1.20260907-1",
+      "architecture": "all",
+      "installed_size_kib": 22134
+    },
+    {
+      "name": "raspi-utils",
+      "version": "20260626-1",
+      "architecture": "all",
+      "installed_size_kib": 14
+    },
+    {
+      "name": "raspi-utils-core",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 307
+    },
+    {
+      "name": "raspi-utils-dt",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 242
+    },
+    {
+      "name": "raspi-utils-eeprom",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 154
+    },
+    {
+      "name": "raspi-utils-otp",
+      "version": "20260626-1",
+      "architecture": "all",
+      "installed_size_kib": 21
+    },
+    {
+      "name": "raspinfo",
+      "version": "20260626-1",
+      "architecture": "all",
+      "installed_size_kib": 23
+    },
+    {
+      "name": "readline-common",
+      "version": "8.2-6",
+      "architecture": "all",
+      "installed_size_kib": 89
+    },
+    {
+      "name": "rfkill",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 127
+    },
+    {
+      "name": "rpcsvc-proto",
+      "version": "1.4.3-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 283
+    },
+    {
+      "name": "rpi-eeprom",
+      "version": "28.31-1",
+      "architecture": "all",
+      "installed_size_kib": 16781
+    },
+    {
+      "name": "rpi-keyboard-config",
+      "version": "1.0",
+      "architecture": "all",
+      "installed_size_kib": 188
+    },
+    {
+      "name": "rpi-keyboard-fw-update",
+      "version": "1.0.1",
+      "architecture": "all",
+      "installed_size_kib": 1001
+    },
+    {
+      "name": "rpi-loop-utils",
+      "version": "1.2.4",
+      "architecture": "all",
+      "installed_size_kib": 29
+    },
+    {
+      "name": "rpi-swap",
+      "version": "1.2.4",
+      "architecture": "all",
+      "installed_size_kib": 62
+    },
+    {
+      "name": "rpi-systemd-config",
+      "version": "1.1.1",
+      "architecture": "all",
+      "installed_size_kib": 27
+    },
+    {
+      "name": "rpi-update",
+      "version": "20230904",
+      "architecture": "all",
+      "installed_size_kib": 31
+    },
+    {
+      "name": "rpi-usb-gadget",
+      "version": "1.0.6",
+      "architecture": "arm64",
+      "installed_size_kib": 107
+    },
+    {
+      "name": "rpicam-apps-core",
+      "version": "1.13.0-1",
+      "architecture": "arm64",
+      "installed_size_kib": 1016
+    },
+    {
+      "name": "rpicam-apps-lite",
+      "version": "1.13.0-1",
+      "architecture": "all",
+      "installed_size_kib": 11
+    },
+    {
+      "name": "rpieepromab",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 82
+    },
+    {
+      "name": "rpifwcrypto",
+      "version": "20260626-1",
+      "architecture": "arm64",
+      "installed_size_kib": 82
+    },
+    {
+      "name": "rsync",
+      "version": "3.4.1+ds1-5+deb13u4",
+      "architecture": "arm64",
+      "installed_size_kib": 894
+    },
+    {
+      "name": "runit-helper",
+      "version": "2.16.4",
+      "architecture": "all",
+      "installed_size_kib": 21
+    },
+    {
+      "name": "samba",
+      "version": "2:4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 8298
+    },
+    {
+      "name": "samba-common",
+      "version": "2:4.22.11+dfsg-0+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 124
+    },
+    {
+      "name": "samba-common-bin",
+      "version": "2:4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 5494
+    },
+    {
+      "name": "samba-libs:arm64",
+      "version": "2:4.22.11+dfsg-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 30860
+    },
+    {
+      "name": "sed",
+      "version": "4.9-2+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 995
+    },
+    {
+      "name": "sensible-utils",
+      "version": "0.0.25",
+      "architecture": "all",
+      "installed_size_kib": 63
+    },
+    {
+      "name": "sgml-base",
+      "version": "1.31+nmu1",
+      "architecture": "all",
+      "installed_size_kib": 65
+    },
+    {
+      "name": "shared-mime-info",
+      "version": "2.4-5+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 5195
+    },
+    {
+      "name": "sq",
+      "version": "1.3.1-2+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 19787
+    },
+    {
+      "name": "sqv",
+      "version": "1.3.0-3+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 1631
+    },
+    {
+      "name": "ssh",
+      "version": "1:10.0p1-7+deb13u4",
+      "architecture": "all",
+      "installed_size_kib": 154
+    },
+    {
+      "name": "ssh-import-id",
+      "version": "5.10-3",
+      "architecture": "all",
+      "installed_size_kib": 48
+    },
+    {
+      "name": "strace",
+      "version": "6.13+ds-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2728
+    },
+    {
+      "name": "sudo",
+      "version": "1.9.16p2-3+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 7062
+    },
+    {
+      "name": "systemd",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 13327
+    },
+    {
+      "name": "systemd-sysv",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "systemd-timesyncd",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 255
+    },
+    {
+      "name": "systemd-zram-generator",
+      "version": "1.2.1-2",
+      "architecture": "arm64",
+      "installed_size_kib": 741
+    },
+    {
+      "name": "sysvinit-utils",
+      "version": "3.14-4",
+      "architecture": "arm64",
+      "installed_size_kib": 196
+    },
+    {
+      "name": "tar",
+      "version": "1.35+dfsg-3.1",
+      "architecture": "arm64",
+      "installed_size_kib": 3105
+    },
+    {
+      "name": "tzdata",
+      "version": "2026c-0+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 1358
+    },
+    {
+      "name": "ucf",
+      "version": "3.0052",
+      "architecture": "all",
+      "installed_size_kib": 148
+    },
+    {
+      "name": "udev",
+      "version": "257.13-1~deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 10669
+    },
+    {
+      "name": "udisks2",
+      "version": "2.10.1-12.1+deb13u2",
+      "architecture": "arm64",
+      "installed_size_kib": 2926
+    },
+    {
+      "name": "unzip",
+      "version": "6.0-29+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 495
+    },
+    {
+      "name": "usb-modeswitch",
+      "version": "2.6.1-4+b2",
+      "architecture": "arm64",
+      "installed_size_kib": 186
+    },
+    {
+      "name": "usb-modeswitch-data",
+      "version": "20191128-7",
+      "architecture": "all",
+      "installed_size_kib": 92
+    },
+    {
+      "name": "usbutils",
+      "version": "1:018-2",
+      "architecture": "arm64",
+      "installed_size_kib": 426
+    },
+    {
+      "name": "userconf-pi",
+      "version": "0.19",
+      "architecture": "all",
+      "installed_size_kib": 36
+    },
+    {
+      "name": "util-linux",
+      "version": "2.41.5-0+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 7402
+    },
+    {
+      "name": "uuid",
+      "version": "1.6.4-1",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "v4l-utils",
+      "version": "1.30.1-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2992
+    },
+    {
+      "name": "vim-common",
+      "version": "2:9.1.1230-2",
+      "architecture": "all",
+      "installed_size_kib": 1864
+    },
+    {
+      "name": "vim-tiny",
+      "version": "2:9.1.1230-2",
+      "architecture": "arm64",
+      "installed_size_kib": 1948
+    },
+    {
+      "name": "wget",
+      "version": "1.25.0-2",
+      "architecture": "arm64",
+      "installed_size_kib": 3780
+    },
+    {
+      "name": "whiptail",
+      "version": "0.52.25-1",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "wireless-regdb",
+      "version": "2026.05.30-1~deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 39
+    },
+    {
+      "name": "wireless-tools",
+      "version": "30~pre9-18+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 549
+    },
+    {
+      "name": "wpasupplicant",
+      "version": "2:2.10-24",
+      "architecture": "arm64",
+      "installed_size_kib": 3914
+    },
+    {
+      "name": "x11-common",
+      "version": "1:7.7+24+deb13u1",
+      "architecture": "all",
+      "installed_size_kib": 275
+    },
+    {
+      "name": "xauth",
+      "version": "1:1.1.2-1.1",
+      "architecture": "arm64",
+      "installed_size_kib": 97
+    },
+    {
+      "name": "xdg-user-dirs",
+      "version": "0.18-2",
+      "architecture": "arm64",
+      "installed_size_kib": 415
+    },
+    {
+      "name": "xkb-data",
+      "version": "2.42-1",
+      "architecture": "all",
+      "installed_size_kib": 6911
+    },
+    {
+      "name": "xml-core",
+      "version": "0.19",
+      "architecture": "all",
+      "installed_size_kib": 114
+    },
+    {
+      "name": "xz-utils",
+      "version": "5.8.1-1+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 1500
+    },
+    {
+      "name": "zip",
+      "version": "3.0-15+deb13u1",
+      "architecture": "arm64",
+      "installed_size_kib": 803
+    },
+    {
+      "name": "zlib1g:arm64",
+      "version": "1:1.3.dfsg+really1.3.1-1+b1",
+      "architecture": "arm64",
+      "installed_size_kib": 181
+    },
+    {
+      "name": "zstd",
+      "version": "1.5.7+dfsg-1",
+      "architecture": "arm64",
+      "installed_size_kib": 2112
+    }
+  ]
+}

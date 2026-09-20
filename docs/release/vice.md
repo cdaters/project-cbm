@@ -1,5 +1,7 @@
 # VICE in Project CBM
 
+[Documentation index](../README.md) · [User basics](user-guide.md#run-and-vice-basics) · [Build Your Own](build-your-own.md)
+
 VICE emulates the Commodore machines; Project CBM supplies the appliance around it.
 The emulator owns CPU/chip behavior, media handling, joystick/key mappings and saved
 emulator preferences. Menu chooses a validated machine profile and launches through
@@ -8,13 +10,13 @@ package/build identity and qualification policy.
 
 ## Source and package construction
 
-The selected upstream version is **VICE 3.10**. Its source archive is `vice-3.10.tar.gz`
+The selected upstream version is **VICE 3.10**, packaged as **3.10-1+pcbm4**. Its source archive is `vice-3.10.tar.gz`
 from `https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.10.tar.gz`.
 The retained source SHA-256 is
 `8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1`.
 `build/inputs-poc.json` records the selection; each release lock retains the actual source,
 Debian recipe, patches, corresponding source package, build record and binary hash.
-The current package recipe is `build/packages/vice/debian`. A version label alone does
+The current package recipe is `build/packages/vice/debian`; the [package walkthrough](build-your-own.md#vice) gives its build commands. A version label alone does
 not identify a Project CBM build: check the Debian revision and installed image identity.
 
 Build dependencies are declared in that recipe's `control`: debhelper, SDL2/SDL2_image,
@@ -50,21 +52,35 @@ archives, `.deb`, `.buildinfo`, `.changes` and logs. Use the exact source/patch/
 hashes from the frozen lock when reproducing a version. See [Build Your Own](build-your-own.md)
 for the full distinction between source packages, a derivative image and frozen replay.
 
-## Executables and profiles
+## Profiles and media
 
-| VICE executable | Registered use |
-| --- | --- |
-| `x64sc` | Cycle-accurate C64 profile |
-| `x64` | Alternate fast C64 core, separately available for comparison/use |
-| `xscpu64` | C64 with SuperCPU |
-| `x64dtv` | C64 DTV |
-| `x128` | C128; the 80-column profile adds the validated `-80col` option |
-| `xcbm2`, `xcbm5x0` | The corresponding CBM-II families |
-| `xvic` | VIC-20 |
-| `xplus4` | Plus/4 |
-| `xpet` | PET |
-| `vsid` | Upstream SID-oriented executable; its presence does not establish a supported appliance PSID/RSID workflow |
-| `c1541`, `cartconv`, `petcat` | Upstream media/conversion tools, not replacement appliance launchers |
+| Display name | Profile ID | VICE backend | Notes |
+| --- | --- | --- | --- |
+| Commodore 64 (fast) | `x64` | `x64` | Fast C64 emulation |
+| Commodore 64 | `x64sc` | `x64sc` | Cycle-accurate C64; recommended for games and demos |
+| SuperCPU 64 | `xscpu64` | `xscpu64` | C64 with CMD SuperCPU |
+| Commodore 64 DTV | `x64dtv` | `x64dtv` | C64 Direct-to-TV hardware |
+| Commodore 128 (40 column) | `x128` | `x128` | 40-column VIC-II display |
+| Commodore 128 (80 column) | `x128-80col` | `x128` | Adds -80col for VDC |
+| Commodore CBM-II | `xcbm2` | `xcbm2` | CBM-II business computer |
+| Commodore CBM-II 5x0 | `xcbm5x0` | `xcbm5x0` | CBM-II 5x0 with VIC-II video |
+| Commodore VIC-20 | `xvic` | `xvic` | VIC-20 home computer |
+| Commodore Plus/4 | `xplus4` | `xplus4` | Plus/4 family with TED video |
+| Commodore PET | `xpet` | `xpet` | PET business computer |
+
+All these profiles use the same shared launcher, which passes an ordinary selected file
+as `-autostart`. It does not guarantee every format works on every computer. Typical
+C64-family content is PRG/P00, disk/tape/cartridge software; C128 needs suitable C128
+software and drive/display settings; VIC-20 often requires the right RAM expansion;
+Plus/4, PET and CBM-II require their own machine-compatible programs/media. The
+[content format table](content.md#launching-files) is the exact browse/import reference.
+ROM/BIN/REU resources are not automatic programs; SID autostart is explicitly refused.
+MUS recognition is not a supported standalone music-player workflow.
+
+The package also installs `vsid`, `c1541`, `cartconv` and `petcat`. These upstream tools
+are not additional Project CBM Menu profiles. No PAL/NTSC selector exists in MACHINES;
+VICE's saved machine/model resources control the standard. The initial resource template
+does not force one global PAL/NTSC model across all computers.
 
 The authoritative registry is Product `runtime/data/profiles.json`, installed under
 `/usr/share/project-cbm/runtime/data/profiles.json`. Its schema and runtime validator
@@ -93,9 +109,9 @@ The launcher selects VICE's SDL sound device and `SDL_AUDIODRIVER=alsa`. VICE's 
 engine synthesizes the emulated SID, SDL delivers samples, and ALSA accesses the device.
 The corrected C64/C64SC seed selects reSID interpolation (`SidResidSampling=1`),
 retaining the SID engine, filters and sample-rate behavior. This replaces the more
-expensive resampling seed inherited from compiled defaults. The actual owner reference
-used 36.9% less native CPU with the combined portable -O3/interpolation correction;
-physical Pi performance still requires qualification. High-frequency sampling and
+expensive resampling seed inherited from compiled defaults. The optimization/interpolation combination reduced CPU cost in a native comparison,
+but still did not bring the demanding physical reference to real time on Pi 3 B+.
+It is not evidence of sufficient Pi 3 performance. High-frequency sampling and
 SID readback-sensitive behavior can differ; users may save resampling on faster hardware.
 Other profiles keep their existing resources. The exact sound model/resources remain
 emulator preferences. Audio thread CPU alone does not measure
@@ -113,8 +129,7 @@ Do not add a second launcher for a performance profile.
 
 Linux getty/login/PAM owns the original console session. The current SDL/KMS active-VICE
 VT shortcut limitation is documented; leaving VICE restores working Menu VT switching.
-Changing the emulator core does not automatically change SDL's console behavior. The
-performance milestone preserves this lifecycle and does not implement quiet/fast boot.
+Changing the emulator core does not automatically change SDL's console behavior. Primary boot presentation is separate from the machine Cover transition; see [startup](boot.md).
 
 ## Preferences and performance qualification
 
@@ -130,11 +145,13 @@ not enough: representative games, demos, disk software, BASIC and music must sus
 real-time emulation on the minimum qualified model. The owner-supplied demanding
 reference is private test material, not a bundled game. Compiler/core/resource decisions
 must follow bounded evidence and retain the highest fidelity that satisfies real time.
-Attempt #8 has an owner Pi 4 B PASS for the demanding reference under x64sc, supported
-by 145.219 seconds at weighted 100.002% speed. The final low sample was quitting,
-confirmed by the owner. The saved configuration is retained with that result. No
-host/native result independently qualifies a Pi, and every new image still needs its
-own regression. The normal C64 core remains x64sc; no Pi 3 tuning or core tier is selected.
+Physical Pi 3 B+ testing of a demanding owner-supplied C64 demo showed slow graphics
+and music while the main emulation thread saturated about one core, without reported
+throttling or memory pressure. The same reference ran normally on Pi 4 B with numeric
+speed evidence near real time. This supports Pi 4-class as the 1.1 minimum; it does not
+prove every workload or every newer Pi is qualified. Pi 3/Zero-class machines remain
+experimental, unsupported targets even if they boot. The normal C64 core is x64sc;
+there is no hardware-tier switch that silently substitutes x64.
 
 Engineering `CBM_PERFORMANCE` records contain measured wall-window speed percentage,
 emulated FPS and warp state. They are capped at 120 records, about five seconds apart,
@@ -150,5 +167,7 @@ and CPU/screen activity, a fixed cycle budget and validated WAV output. Its nati
 software renderer is explicitly different from KMSDRM. VICE's dummy sound backend can
 skip meaningful channel/sample generation, so a zero-length or silent output invalidates
 an audio comparison. Invalid harness attempts are retained as failures, not timed passes.
-For complete results and the final selected release settings, follow the current build
-report and its exact-hash physical procedure from [current state](../../CURRENT-STATE.md).
+For engineering results and current physical status, follow [current state](../../CURRENT-STATE.md).
+The measurable window uses 12 consecutive complete non-warp samples spanning at least
+60 seconds, weighted speed 98–102% and no complete sample below 95%. Physical sound/pace
+and launch/quit behavior are also required; emulated FPS is not a display-refresh count.
