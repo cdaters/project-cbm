@@ -9,7 +9,7 @@ from project_cbm.configuration import keyfile,WIFI_UUID
 
 def run(args,data=None):return subprocess.run(args,input=data,text=True,capture_output=True,timeout=65)
 def request(op,**values):
- p=run(['runuser','-u','pi','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
+ p=run(['runuser','-u','pcbm','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
  answer=json.loads(p.stdout);print(json.dumps({'operation':op,'status':answer['status']}),flush=True)
  assert answer['status']=='ok';return answer
 secret=secrets.token_urlsafe(24)+';\\ test'
@@ -38,7 +38,7 @@ try:
  # No radio exists: fail cleanly, without printing credentials.
  assert run(['nmcli','--wait','2','connection','up','uuid',WIFI_UUID]).returncode!=0
  request('wifi-forget');request('network',enabled=False)
- report=run(['runuser','-u','pi','--','pcbm-info','--json'])
+ report=run(['runuser','-u','pcbm','--','pcbm-info','--json'])
  assert report.returncode==0 and json.loads(report.stdout)['schema_version']==1
  assert secret not in report.stdout
  for binary in ('pcbm-config','pcbm-first-run','pcbm-start-profile','pcbm-admin'):

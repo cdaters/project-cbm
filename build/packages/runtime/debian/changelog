@@ -1,3 +1,11 @@
+project-cbm-runtime (1.1.0~rc2-1) trixie; urgency=medium
+
+  * Unify the appliance account and content library under pcbm.
+  * Correct read-only FAT/exFAT import permissions and report safe failure states.
+  * Document supervised primary presentation and measured console startup.
+
+ -- Project CBM contributors <noreply@project-cbm.invalid>  Sun, 20 Sep 2026 03:00:00 +0000
+
 project-cbm-runtime (1.1.0~rc1-1) trixie; urgency=medium
 
   * Define the canonical type/machine content library and safe import destinations.

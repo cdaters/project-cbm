@@ -9,7 +9,7 @@ from build_contracts import read_json
 from validate_poc4_physical_ux import inspect as previous_inspect
 
 
-def inspect(root, record, kit):
+def inspect(root, record, kit, single_user=False):
     result = previous_inspect(root, record, kit)
     checks = result['checks']
     def text(path): return (root/path).read_text()
@@ -28,7 +28,7 @@ def inspect(root, record, kit):
     checks['default_computer_name']=text('etc/hostname').strip()=='projectcbm'
     checks['computer_local_alias']=any(line.split()==['127.0.1.1','projectcbm'] for line in text('etc/hosts').splitlines())
     smb=text('etc/samba/smb.conf')
-    checks['sharing_owner_content_boundary']='valid users = pcbm' in smb and 'force user = pi' in smb and 'guest ok = no' in smb
+    checks['sharing_owner_content_boundary']='valid users = pcbm' in smb and ('force user' not in smb if single_user else 'force user = pi' in smb) and 'guest ok = no' in smb
     checks['dynamic_samba_mdns']='mdns name = mdns' in smb
     checks['no_baked_sharing_enrollment']=not (root/'var/lib/project-cbm/sharing-status.json').exists()
     checks['sharing_discovery_explicit']='Network Discovery will also turn on' in config and "self.service('discovery',True)" in backend
@@ -37,8 +37,8 @@ def inspect(root, record, kit):
     checks['release_documentation']=all((root/'usr/share/doc/project-cbm-runtime/release'/name).is_file() for name in ('user-guide.md','networking.md','build-your-own.md','factory.md','customization.md','development.md','recovery.md','accounts-and-layout.md','vice.md'))
     checks['release_owner_username']='AllowUsers pcbm' in text('etc/ssh/sshd_config.d/20-project-cbm.conf')
     checks['owner_policy_username']=read_json(root/'etc/project-cbm/configuration-policy.json')['owner_user']=='pcbm'
-    checks['owner_home_identity']=any(row.startswith('pcbm:x:1001:') and row.split(':')[5:]==['/home/pcbm','/bin/bash'] for row in text('etc/passwd').splitlines())
-    seed=text('home/pi/.config/vice/sdl-vicerc')
+    checks['owner_home_identity']=any(row.startswith('pcbm:x:'+('1000' if single_user else '1001')+':') and row.split(':')[5:]==['/home/pcbm','/bin/bash'] for row in text('etc/passwd').splitlines())
+    seed=text(('home/pcbm' if single_user else 'home/pi')+'/.config/vice/sdl-vicerc')
     checks['c64_sampling_seed']=seed.count('SidResidSampling=1')==2
     checks['vice_performance_telemetry']=b'CBM_PERFORMANCE sample=' in (root/'usr/bin/x64sc').read_bytes()
     result['result'] = 'PASS' if all(checks.values()) else 'FAIL'

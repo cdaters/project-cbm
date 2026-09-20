@@ -46,7 +46,8 @@ Your administrator login is **`pcbm`**. Choose an owner password of 12-128 print
 characters, excluding colon, and confirm it. This password is used for Remote Access
 (SSH) and Advanced administration. There is no universal factory password. You do not
 need to invent or remember a separate username. “Owner” on a screen describes your role.
-The local Menu/emulator account is `pi`; it is separate from your remote/admin login.
+Menu, VICE, files and remote login all use `pcbm`. Your home is `/home/pcbm`;
+your appliance library is its `content` folder. No second local account is needed.
 
 Networking can be skipped. To use Wi-Fi, choose an available network and enter its
 8-63-character printable ASCII personal-network password. Scanning shows progress and
@@ -133,12 +134,12 @@ content reference, VICE speed reading and hardware health before changing settin
 ## Your content library
 
 See the [content guide](content.md) for folders, supported media, import and safe migration.
-The administrator account `pcbm` and the content library are separate: uploading to
-`/home/pcbm` does not put files into CONTENT. Use the **Project CBM** File Sharing
-share, USB IMPORT, or an explicit administrator copy into `/home/pi/pcbm`.
+Menu, VICE and network transfers use the same `pcbm` identity. SSH/SFTP starts in
+`/home/pcbm`: put appliance files in its `content` folder. File Sharing opens that
+library directly. Files elsewhere in your home are not automatically listed by CONTENT.
 
 
-The shared library is `/home/pi/pcbm`, with `games`, `demos`, `music`, `programs`, `roms`,
+The shared library is `/home/pcbm/content`, with `games`, `demos`, `music`, `programs`, `roms`,
 `saves` and `screenshots` subdirectories. Use CONTENT for normal launching and FILES for
 file management. Keep related multi-file software together. A filename or extension
 alone does not prove compatibility with a machine; choose the matching profile and
@@ -158,7 +159,9 @@ for unmount/cleanup confirmation before removing the drive. If your filesystem o
 layout is unavailable, do not guess a device name and force-mount it from an ordinary
 menu. Use a supported source layout or qualified Advanced handling.
 
-FILES starts Midnight Commander, a two-panel file manager. Select a panel with Tab,
+FILES offers Browse files and Import from USB. Browse files starts Midnight Commander,
+a two-panel file manager, with the content library on one side and your home on the
+other. USB drives are offered by Import from USB; no manual mounting is needed. Select a panel with Tab,
 use arrows/Enter to navigate and read its on-screen function-key labels for copy, move
 and delete. Work within your content directories until you are comfortable with it.
 Deletion is a real filesystem operation; keep backups. F10 returns from the utility.

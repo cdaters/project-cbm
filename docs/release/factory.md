@@ -61,8 +61,8 @@ preventing a checksum cycle.
 
 ## Outputs and proof
 
-For RC1 attempt N, work lives in `builds/private-rc1-attempt-N`, and compressed output
-in `artifacts/private-rc1-attempt-N`. Historical POC4 builds retain their original
+For RC2 attempt N, work lives in `builds/private-rc2-attempt-N`, and compressed output
+in `artifacts/private-rc2-attempt-N`. Historical POC4 builds retain their original
 `private-poc4-attempt-N` paths; input/package directories retain that lineage locator. pi-gen exports the raw image in
 `work/export-image`; current configuration exports XZ at level 3. Exact names come from
 `build/pigen/config.json`. Never replace an existing attempt directory, package, lock

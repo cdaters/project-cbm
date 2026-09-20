@@ -1,4 +1,4 @@
-> Current 1.1 release-readiness checkpoint: [attempt #7](build/private-poc4-attempt7.md)
+> Current 1.1 release-readiness checkpoint: [CURRENT-STATE](../CURRENT-STATE.md)
 > and [CURRENT-STATE](../CURRENT-STATE.md). Start with the [release documentation](README.md),
 > [actual build walkthrough](release/build-your-own.md) and [factory explanation](release/factory.md).
 > Dated checkpoints below retain historical evidence; they do not override current governance.
@@ -18,21 +18,24 @@ explain precedence over historical release/audit statements.
 
 ## Current appliance
 
-Private POC3: Pi firmware → kernel/initramfs → systemd → tty1 getty/login/PAM →
-pi's profile → product console-session loop → Bash/dialog Menu → unprivileged VICE
-→ Menu. This differs from the historical v1.0 pcbm-start/bootmode path. Do not treat
-both as simultaneous startup authorities. See the [audit](design/appliance-audit-2026-09-16.md)
-for the accepted design. Current source implements those boundaries in the
-[configuration contract](runtime/configuration-contract.md); they are not yet installed
-in POC3. Runtime activation remains a separate product gate.
-VICE 3.10 SDL2/ALSA launch, geometry, audio/input and return are physically demonstrated
-on the owner's Pi 3B/display only. Exact backend/mode and other profiles remain unqualified.
+RC2 source follows firmware → kernel/initramfs → systemd → tty1 getty/login/PAM →
+pcbm's profile → Product console session → primary presentation → Bash/dialog Menu
+→ shared Cover/VICE launch → Menu. One normal user, `pcbm` UID 1000, owns the local
+and SSH/file-management experience. Root remains separate and general administration
+requires authenticated sudo. Fixed appliance operations retain narrow helpers.
 
-Content lives under /home/pi/pcbm. Historical system settings live in /etc/pcbm,
-user preferences under /home/pi/.config/pcbm and VICE config under .config/vice.
-Services use systemd; the image contains NetworkManager/Netplan, SSH, Samba and
-optional-in-intent TCPser. See the [audit](audit-2026-09-15.md) for actual defaults.
-Configuration examples in source are not a snapshot of the installed image.
+The canonical library is `/home/pcbm/content`; preferences are
+`/home/pcbm/.config/project-cbm/preferences.json`, and VICE preferences remain in
+`/home/pcbm/.config/vice`. Account, installed-path and migration details are in the
+[account/layout contract](release/accounts-and-layout.md). Runtime and Menu use the
+Product registry and pcbm-info authorities; there is one setup/expansion owner and
+one supervised terminal lifecycle. No old pcbm-start path competes for startup.
+
+Pi 4-class hardware is the 1.1 floor. RC1 Pi 4 B Cover/VICE/F10/return and the owner
+reference performance passed physically; RC2 changes require a new hash-bound test.
+Other models/workloads are not qualified by that result. Historical Pi 3 failures
+remain evidence. See [hardware](supported-hardware.md) and the
+[RC1 owner report](qualification/rc1-attempt9-pi4-owner-report.json).
 
 ## Repository contract
 

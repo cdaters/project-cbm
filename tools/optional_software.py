@@ -127,7 +127,7 @@ def install(root, raw):
         'usr/share/project-cbm/applications/sid-wizard/SID-Wizard-1.97.d64': files['SID-Wizard-1.97.d64'],
         'usr/share/project-cbm/applications/sid-wizard/manifest.json': files['manifest.json'],
         'usr/share/doc/project-cbm-sid-wizard/UPSTREAM-NOTICE.txt': files['UPSTREAM-NOTICE.txt'],
-        'home/pi/pcbm/'+CONTENT: files['SID-Wizard-1.97.d64']}
+        'home/pcbm/content/'+CONTENT: files['SID-Wizard-1.97.d64']}
     for name in destinations:
         p = root/name
         if p.exists() or p.is_symlink() or any(a.is_symlink() for a in p.parents if a != root):

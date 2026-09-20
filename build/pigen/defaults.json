@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "candidate_policy": "private-engineering-poc",
-  "account": "pi",
+  "account": "pcbm",
   "uid": 1000,
-  "content_root": "/home/pi/pcbm",
+  "content_root": "/home/pcbm/content",
   "boot_mode": "menu",
   "default_machine": "x64sc",
   "root": "writable-ext4",
@@ -43,7 +43,9 @@
   "boot_presentation": {
     "rainbow": false,
     "console": "quiet-with-errors",
-    "presentation": "existing-login-session-text",
-    "extra_delay_seconds": 0
+    "presentation": "supervised-existing-SDL-primary-artwork",
+    "extra_delay_seconds": 1.5,
+    "primary_dwell_seconds": 1.5,
+    "getty_type": "simple"
   }
 }

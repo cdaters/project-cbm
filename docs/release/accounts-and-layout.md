@@ -1,55 +1,75 @@
 # Accounts, configuration and installed files
 
-Project CBM separates the person who administers the appliance from the account that
-runs its front panel. **Owner / Administrator is a role. `pcbm` is the default login
-name. `projectcbm` is the default Computer Name.** The usual remote command is
-`ssh pcbm@projectcbm.local` when Network Discovery and Remote Access are enabled.
+Project CBM uses one normal appliance account: **`pcbm`, UID 1000, home
+`/home/pcbm`**. Menu, Covers, VICE, Midnight Commander, SSH/SFTP and imported files
+all use this identity. **Owner / Administrator describes your role; `projectcbm`
+is the default Computer Name.** With Remote Access and Network Discovery enabled,
+connect using `ssh pcbm@projectcbm.local`.
 
 ## Accounts and passwords
 
-| Account | Purpose | Home | Authentication |
-| --- | --- | --- | --- |
-| `pi`, UID 1000 | Local Menu, Covers, VICE and shared content | `/home/pi` | Console autologin; Unix password locked; no general passwordless administration |
-| `pcbm`, UID 1001 | Owner login and administration | `/home/pcbm` | Password chosen at first boot; normal authenticated `sudo` membership |
-| `root` | System services and fixed privileged helpers | `/root` | Locked password; SSH root login disabled |
+| Account | Purpose | Authentication |
+| --- | --- | --- |
+| `pcbm`, UID 1000 | Local appliance, content, remote login and owner administration | Local console autologin; first-boot password for SSH and general `sudo` |
+| `root` | System services and fixed privileged helpers | Locked password; SSH root login disabled |
 
-First boot asks for an owner password, not a username. The username is fixed to keep
-connection instructions predictable. The owner password authenticates SSH, tty2 and
-Advanced administration. File Sharing uses **the same username and a separate password**
-because Samba maintains a separate credential database. Neither password is displayed
-by status/help screens. Password input is masked; secret values travel through protected
-standard input, never command arguments or diagnostics. No universal factory secret is
-installed. On first boot, the owner account is initially locked until setup succeeds.
+First boot asks you to choose a password, without an extra username decision.
+There is no factory password. The account is locked until you set its password;
+optional network services remain off until enabled. Local tty1/tty2 access remains
+an ordinary getty/login/PAM session. Autologin gives local access as `pcbm`, not root.
+Advanced Terminal opens your normal shell; Advanced Owner Administration and vendor
+configuration require the owner password through `sudo -k`, even if a previous
+sudo authentication was cached.
 
-The account name is created in `tools/install_poc_stage.py`; its fixed UID/home/shell
-contract is checked by `runtime/project_cbm/config_backend.py`. The stage writes
-`/etc/project-cbm/configuration-policy.json`, whose `owner_user` field is consumed by
-setup, authenticated administration and `pcbm-info`. SSH's `AllowUsers` and Samba's
-`valid users` select `pcbm`. Samba writes content as `pi` so imported and shared files
-remain usable by the local appliance. The `pcbm-operators` group and
-`/etc/sudoers.d/pcbm-operations` grant the console only fixed validated operations;
-they do not grant arbitrary shell, editor or filesystem commands as root.
+File Sharing uses **username `pcbm` and a separate File Sharing password**, because
+Samba maintains a separate credential database. Both passwords are masked when typed.
+They travel through protected standard input, never command arguments, status text,
+logs or diagnostics. The share exports only `/home/pcbm/content`, not your entire
+home. SSH/SFTP starts in `/home/pcbm`: open its clearly named `content` folder to add
+files for CONTENT and FILES. No account switch or second password is needed to read
+your own launch diagnostics.
 
-Earlier private images used the literal username `owner`. Their recovery records still
-refer to that account. Fresh images use `pcbm`; this is not an in-place account migration.
-When restoring content, preserve the new image's account database, policy, host keys and
-setup state. Do not copy old `/etc/passwd`, `/etc/shadow` or Samba databases wholesale.
+The factory creates `pcbm` through pi-gen's `FIRST_USER_NAME`; UID/home/shell and
+sudo-group membership are checked by `runtime/project_cbm/config_backend.py`.
+`tools/install_poc_stage.py` installs the root-owned account/readiness policy,
+getty drop-ins, service definitions and filesystem ownership. Policy retains both
+`owner_user` and `appliance_user` roles with the same value, `pcbm`.
+`pcbm-info` supplies the username shown in connection help. Samba authenticates
+and writes as `pcbm`; no forced switch to another user's identity is needed.
 
-The [content library guide](content.md) defines the category/machine hierarchy and safe
-copy workflow. The administrator home is not a second content root. VICE starts in
-`/home/pi/pcbm`; saved browsing choices may navigate elsewhere without moving the library.
+The `pcbm-operators` group permits only fixed, validated appliance operations.
+`/etc/sudoers.d/pcbm-operations` does not grant arbitrary editors, shell commands or
+mount commands. Debian's ordinary `%sudo` policy supplies password-authenticated
+administration. Existing credential readiness, atomic writes and service opt-in
+remain in force.
+
+### Moving from an earlier image
+
+RC2 is a fresh-image account model, not an in-place rename of a running RC1 card.
+Back up user content and preferences before flashing. Earlier `pi`-based libraries
+at `/home/pi/pcbm` map to `/home/pcbm/content`; preserve the existing category/machine
+folders beneath them. Restore through File Sharing as `pcbm`, or copy your selected
+files as `pcbm`, so ownership matches the new runtime. Review conflicts and keep
+both copies until verified. Do not restore old `/etc/passwd`, `/etc/shadow`, sudoers,
+Samba databases, host keys or setup completion state. Never move or alter an older
+qualification card or recovery checkpoint in order to migrate it.
+
+The [content guide](content.md) defines the type-first hierarchy. Files elsewhere
+in your home remain ordinary personal files, but the appliance scans the `content`
+folder. VICE starts there; saved emulator browsing choices remain yours.
 
 ## Installed layout
 
 | Path | What it contains / who owns it |
 | --- | --- |
-| `/home/pi/pcbm/{games,demos,music,programs,roms,screenshots,saves}` | User content; locally usable and shared through File Sharing |
-| `/home/pi/.config/project-cbm/preferences.json` | Validated appliance preferences; user-owned |
-| `/home/pi/.config/vice/sdl-vicerc` | Saved VICE resources, initially seeded only if absent |
-| `/home/pi/.local/share/vice` | VICE user data/keymap lookup location |
-| `/home/pi/.local/state/vice` | VICE user state/log location |
-| `/home/pi/.local/state/project-cbm/diagnostics` | Bounded private engineering launch/terminal/Cover/VICE evidence |
-| `/home/pcbm` | Owner shell files; outside the File Sharing export |
+| `/home/pcbm/content/{games,demos,music,programs,roms,screenshots,saves}` | User content; locally usable and shared through File Sharing |
+| `/home/pcbm/.config/project-cbm/preferences.json` | Validated appliance preferences; user-owned |
+| `/home/pcbm/.config/vice/sdl-vicerc` | Saved VICE resources, initially seeded only if absent |
+| `/home/pcbm/.local/share/vice` | VICE user data/keymap lookup location |
+| `/home/pcbm/.local/state/vice` | VICE user state/log location |
+| `/home/pcbm/.local/state/project-cbm/diagnostics` | Bounded private engineering launch/terminal/Cover/VICE evidence |
+| `/home/pcbm` | One appliance/owner home; its `content` child is the File Sharing export |
+| `/home/pcbm/.local/state/project-cbm/boot` | Numeric console/Menu startup phase timestamps; no input or passwords |
 | `/etc/project-cbm/configuration-policy.json` | Root-owned activation/readiness and account policy |
 | `/etc/project-cbm/modem.json` | Validated local modem port/baud settings |
 | `/etc/pcbm` | Product version and legacy boot/default-machine import files |
@@ -80,7 +100,7 @@ reports, Git, screenshots or build inputs.
 ## Boot and session ownership
 
 The image uses Linux console getty, login and PAM. A tty1 getty drop-in logs in the
-locked local appliance account and its profile enters `pcbm-console-session`. The
+pcbm appliance account and its profile enters `pcbm-console-session`. The
 session runs incomplete first boot before starting Menu or the saved emulator boot
 preference. There is one direct-boot launch attempt; failures return to the front panel.
 Menu and VICE remain ordinary user processes in that session. The shared launcher

@@ -48,8 +48,7 @@ ssh pcbm@projectcbm.local
 
 Otherwise replace the name with the displayed IP. Confirm the host identity when
 connecting to your own Pi; a freshly flashed image has new host keys. SSH supplies
-an ordinary owner shell, with authenticated sudo for administration. The console
-account pi is deliberately not the remote account. Turn Off stops and disables SSH;
+an ordinary owner shell, with authenticated sudo for administration. Menu, VICE and remote access use the same pcbm account. Turn Off stops and disables SSH;
 test a new connection to verify access is gone. Existing sessions should not be used
 to infer whether new connections are accepted. Service choice persists across reboot.
 
@@ -68,8 +67,7 @@ Turn On explicitly also turns on Network Discovery. After actual On is shown, us
 - If name resolution fails, replace the computer name with the displayed IPv4 address.
 
 Sign in as pcbm with the separate sharing password. The share exports only
-`/home/pi/pcbm`, not the owner's home or the whole filesystem. Writes use the content
-owner pi; guest access and links escaping the share are disabled. New content appears
+`/home/pcbm/content`, not the rest of your home or the whole filesystem. Writes belong to pcbm; guest access and links escaping the share are disabled. New content appears
 under CONTENT/FILES according to supported type and folder. Credential status “Set”
 records successful protected enrollment; externally changing Samba accounts in Advanced
 may require setting it again here. Passwords are never displayed in status/help.

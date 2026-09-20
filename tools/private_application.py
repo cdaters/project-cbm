@@ -40,7 +40,7 @@ def install(root,data):
     notice=(json.dumps(pin,indent=2)+'\n').encode()
     files={'usr/share/project-cbm/applications/striketerm/StrikeTerm-2014-Final.d64':data,
            'usr/share/doc/project-cbm-striketerm/PRIVATE-ADMISSION.json':notice,
-           'home/pi/pcbm/'+pin['content_path']:data}
+           'home/pcbm/content/'+pin['content_path']:data}
     for name in files:
         p=root/name
         if p.exists() or p.is_symlink() or any(a.is_symlink() for a in p.parents if a!=root):

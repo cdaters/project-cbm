@@ -25,7 +25,7 @@ class POC2(unittest.TestCase):
         control=(ROOT/'build/packages/vice/debian/control').read_text()
         for package in ['libgl1','libglx-mesa0','libegl1','libegl-mesa0','libgles2','libgbm1','libgl1-mesa-dri']:self.assertIn(package,control)
         getty=(ROOT/'build/pigen/stage-cbm/files/getty-autologin.conf').read_text()
-        self.assertIn('--autologin pi',getty);self.assertNotIn('--login-program',getty)
+        self.assertIn('--autologin pcbm',getty);self.assertNotIn('--login-program',getty)
         profile=(ROOT/'build/pigen/stage-cbm/files/pcbm-profile.sh').read_text()
         self.assertIn('/dev/tty1) exec',profile);self.assertNotIn('sudo -',profile)
         install=(ROOT/'tools/install_poc_stage.py').read_text()

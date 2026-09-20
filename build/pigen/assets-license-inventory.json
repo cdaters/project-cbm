@@ -40,12 +40,19 @@
       "payload": "seven unchanged machine-specific JPEGs",
       "scope": "future private candidate only; absent from immutable POC1\u20134 attempt 2",
       "public_distribution": "requires constituent graphics/font rights review"
+    },
+    {
+      "component": "Project CBM primary presentation",
+      "origin": "Menu docs/primary-artwork.json; unchanged exact released v1.0.0 pcbmcover1.jpg",
+      "license": "Owner-authorized private engineering use; embedded constituent graphics/font rights remain unresolved for publication",
+      "payload": "one existing primary JPEG; no machine Cover replacement",
+      "public_distribution": "requires constituent rights review"
     }
   ],
   "excluded": [
     "historical private image extracts",
     "personal media",
     "commercial content collections",
-    "generic numbered covers and historical source-art archives"
+    "Unselected generic artwork and historical source-art archives"
   ]
 }

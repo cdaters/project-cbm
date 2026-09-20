@@ -34,7 +34,7 @@ def main():
     if subprocess.check_output(['findmnt','-T',str(w),'-no','FSTYPE'],text=True).strip()!='ext4':raise SystemExit('Linux ext4 required')
     if shutil.disk_usage(w).free<40*1024**3:raise SystemExit('insufficient guest build headroom')
     candidate=lock['product']['candidate']
-    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4','private-engineering-rc1']:raise ValueError('unknown candidate workspace')
+    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2']:raise ValueError('unknown candidate workspace')
     suffix='private-'+candidate.rsplit('-',1)[1]
     if args.attempt != 1: suffix += '-attempt-'+str(args.attempt)
     work=w/'builds'/suffix;work.mkdir()
@@ -62,7 +62,7 @@ def main():
         'GIT_HASH':lock['base']['pi_gen']['git']['commit'],'RELEASE':config['release'],
         'WORK_DIR':str(work/'work'),'DEPLOY_DIR':str(w/'artifacts'/suffix),
         'STAGE_LIST':'stage0 stage1 stage2 stage-cbm','APT_PROXY':'http://127.0.0.1:3142',
-        'ENABLE_CLOUD_INIT':'0','ENABLE_SSH':'0','PASSWORDLESS_SUDO':'0','FIRST_USER_NAME':'pi',
+        'ENABLE_CLOUD_INIT':'0','ENABLE_SSH':'0','PASSWORDLESS_SUDO':'0','FIRST_USER_NAME':'pcbm',
         'TIMEZONE_DEFAULT':config['timezone'],'LOCALE_DEFAULT':config['locale'],
         'KEYBOARD_KEYMAP':config['keyboard'],'KEYBOARD_LAYOUT':'English (US)',
         'DEPLOY_COMPRESSION':config['compression'],'COMPRESSION_LEVEL':str(config['compression_level']),

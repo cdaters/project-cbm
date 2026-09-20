@@ -119,7 +119,7 @@ performance milestone preserves this lifecycle and does not implement quiet/fast
 ## Preferences and performance qualification
 
 The initial template is `/usr/share/project-cbm/vice-defaults.ini`. The user configuration
-is `/home/pi/.config/vice/sdl-vicerc`; the installer creates it only if absent. Save
+is `/home/pcbm/.config/vice/sdl-vicerc`; the installer creates it only if absent. Save
 preferences through VICE when you want them retained. User resources, compiled defaults,
 Product seeds and launch flags are separate sources of effective settings; support
 reports should distinguish them. Restoring old saved resources can also restore old

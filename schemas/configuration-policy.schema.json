@@ -15,11 +15,10 @@
       "const": 1
     },
     "owner_user": {
-      "type": "string",
-      "pattern": "^[a-z][a-z0-9_-]{0,30}$"
+      "const": "pcbm"
     },
     "appliance_user": {
-      "const": "pi"
+      "const": "pcbm"
     },
     "system_ready": {
       "type": "boolean"

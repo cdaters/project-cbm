@@ -18,6 +18,7 @@ systemctl set-property --runtime pcbm-native-staging "DeviceAllow=$loop r"
 nsenter -t "$pid" -m -p -n -u -i -C --root /usr/bin/python3 - "$loop" "$major" "$minor" <<'PY'
 import os,sys,stat,json,subprocess
 from pathlib import Path
+os.umask(0o077)
 os.chdir('/');sys.path.insert(0,'/usr/share/project-cbm/runtime')
 from project_cbm import importer
 # Explicit test-only discovery adapter: production discovery must reject loops.
@@ -33,14 +34,14 @@ importer.discover=lambda:[entry]
 answer=importer.perform(entry,'programs')
 assert answer['copied']==2 and answer['skipped']>=1,answer
 for category,filename in [('programs','probe.prg'),('music','probe.sid')]:
- p=Path('/home/pi/pcbm')/category/'Imported'/filename
+ p=Path('/home/pcbm/content')/category/'Imported'/filename
  assert p.is_file() and p.stat().st_uid==1000
 assert not os.path.ismount(importer.WORK/'source')
 again=importer.perform(entry,'programs');assert again['copied']==0 and again['skipped']>=3
 family=importer.perform(entry,'demos','c64')
 assert family['copied']==2 and family['skipped']>=1,family
 for category,filename in [('demos','probe.prg'),('music','probe.sid')]:
- p=Path('/home/pi/pcbm')/category/'c64/Imported'/filename
+ p=Path('/home/pcbm/content')/category/'c64/Imported'/filename
  assert p.is_file() and p.stat().st_uid==1000
 repeat=importer.perform(entry,'demos','c64');assert repeat['copied']==0 and repeat['skipped']>=3
 assert not os.path.ismount(importer.WORK/'source')

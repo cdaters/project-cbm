@@ -25,6 +25,34 @@ MAX_BYTES = 2 * 1024**3
 MARGIN = 256 * 1024**2
 
 
+class ImportFailure(ValueError):
+    def __init__(self,code,source_unmounted=None):
+        super().__init__(code)
+        self.code=code
+        self.source_unmounted=source_unmounted
+
+
+def copy_failure(error):
+    # No exception messages, filenames or contents cross the privileged boundary.
+    if isinstance(error,PermissionError):return 'access_denied'
+    if isinstance(error,ValueError) and str(error) in ('space','limit','depth','entries'):
+        return str(error)
+    return 'copy_failed'
+
+
+def mount_options(filesystem):
+    """Fixed read-only policy; FAT ownership is synthetic, never inherited root-only.
+
+    The broker's 0077 umask protects its state. FAT/exFAT otherwise inherit that
+    mask and root ownership, making the source unreadable after the copy worker
+    drops privileges. Expose only the runtime UID/GID; never change source bytes.
+    """
+    if filesystem not in FILESYSTEMS:raise ValueError('filesystem')
+    options='ro,nodev,nosuid,noexec'
+    if filesystem=='ext4':return options+',noload'
+    return options+',uid=1000,gid=1000,fmask=0177,dmask=0077'
+
+
 def discover():
     p=subprocess.run(['/usr/bin/lsblk','--json','--bytes','--paths','--output','NAME,TYPE,TRAN,FSTYPE,MOUNTPOINTS,SIZE,MAJ:MIN'],
                      text=True,capture_output=True,env=ENV,timeout=10,check=True)
@@ -134,11 +162,14 @@ def perform(entry,category,family=None):
         if not stat.S_ISBLK(s.st_mode) or number!=entry['number'] or entry not in discover():raise ValueError('device_changed')
         # ext4 may replay a journal even for a read-only mount. Source media
         # must remain unchanged; unclean media requiring recovery is refused.
-        options='ro,nodev,nosuid,noexec'+(',noload' if entry['filesystem']=='ext4' else '')
-        subprocess.run(['/usr/bin/mount','-t',entry['filesystem'],'-o',options,
-                        '--',f'/proc/self/fd/{fd}',str(target)],pass_fds=(fd,),env=ENV,
-                       stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True,timeout=20)
-        pid=None;reaped=False
+        options=mount_options(entry['filesystem'])
+        try:
+            subprocess.run(['/usr/bin/mount','-t',entry['filesystem'],'-o',options,
+                            '--',f'/proc/self/fd/{fd}',str(target)],pass_fds=(fd,),env=ENV,
+                           stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True,timeout=20)
+        except (OSError,subprocess.SubprocessError):
+            raise ImportFailure('mount_failed',not os.path.ismount(target)) from None
+        pid=None;reaped=False;failure=None
         try:
             reader,writer=os.pipe()
             pid=os.fork()
@@ -149,19 +180,31 @@ def perform(entry,category,family=None):
                     answer=copy_content(target,category,family)
                     os.write(writer,json.dumps(answer).encode());os.close(writer)
                     os._exit(0)
-                except Exception:os._exit(2)
+                except Exception as error:
+                    try:os.write(writer,json.dumps({'error':copy_failure(error)}).encode())
+                    except OSError:pass
+                    os._exit(2)
             os.close(writer)
             try:raw=os.read(reader,1024)
             finally:os.close(reader)
             _,status=os.waitpid(pid,0);reaped=True
-            if status!=0:raise ValueError('copy_failed')
+            if status!=0:
+                try:code=loads(raw).get('error')
+                except (ValueError,AttributeError):code=None
+                if code not in ('access_denied','space','limit','depth','entries'):code='copy_failed'
+                failure=ImportFailure(code,False)
+                raise failure
         finally:
             if pid and not reaped:
                 try:os.kill(pid,signal.SIGTERM)
                 except ProcessLookupError:pass
                 os.waitpid(pid,0)
-            subprocess.run(['/usr/bin/umount','--',str(target)],env=ENV,check=True,
-                           stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20)
+            try:
+                subprocess.run(['/usr/bin/umount','--',str(target)],env=ENV,check=True,
+                               stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20)
+            except (OSError,subprocess.SubprocessError):
+                raise ImportFailure('unmount_failed',False) from None
+            if failure is not None:failure.source_unmounted=True
     finally:os.close(fd)
     return loads(raw)
 
@@ -208,6 +251,8 @@ def main():
                 print(json.dumps({'schema_version':1,'status':'ok',**answer}))
             else:raise ValueError('request')
         return 0
-    except (OSError,ValueError,TypeError,KeyError,subprocess.SubprocessError):
-        print(json.dumps({'schema_version':1,'status':'failed','message':'Import could not complete. Previously copied files remain; inspect device/space and retry. A busy mount requires diagnostics.'}))
+    except (OSError,ValueError,TypeError,KeyError,subprocess.SubprocessError) as error:
+        print(json.dumps({'schema_version':1,'status':'failed',
+                          'error':error.code if isinstance(error,ImportFailure) else 'unavailable',
+                          'source_unmounted':error.source_unmounted if isinstance(error,ImportFailure) else None}))
         return 2

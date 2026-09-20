@@ -29,12 +29,14 @@ def summarize(text, first, last):
     complete = [r['sample'] for r in rows] == list(range(first, last+1))
     elapsed = sum(r['seconds'] for r in rows)
     mean = sum(r['seconds']*r['speed_percent'] for r in rows)/elapsed if elapsed else None
+    fps = sum(r['seconds']*r['emulated_fps'] for r in rows)/elapsed if elapsed else None
     minimum = min((r['speed_percent'] for r in rows), default=None)
     enough = complete and len(rows) >= 12 and elapsed >= 60
     passed = enough and not any(r['warp'] for r in rows) and 98 <= mean <= 102 and minimum >= 95
     return {'format': 'project-cbm.vice-performance-summary', 'schema_version': 1,
             'selected_samples': [first, last], 'complete': complete, 'sample_count': len(rows),
             'seconds': elapsed, 'weighted_speed_percent': mean, 'minimum_speed_percent': minimum,
+            'weighted_emulated_fps': fps,
             'metric_gate': 'PASS' if passed else ('FAIL' if enough else 'INSUFFICIENT'),
             'physical_qualification': 'NOT ESTABLISHED by this parser; requires exact image/model, steady workload selection and owner audio/visual/lifecycle observations',
             'samples': rows}

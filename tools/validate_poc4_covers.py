@@ -22,9 +22,12 @@ def inspect(root,record,kit):
     checks['desktop_aspect_fit']='0x1001' in renderer and 'scale = min(' in renderer and 'DURATION_SECONDS = 0.75' in renderer
     checks['no_framebuffer_or_boot_commands']=all(t not in wrapper+renderer for t in ('fbi ','fbset','convert ','chvt','sudo ','/dev/fb0','systemctl'))
     checks['shared_profile_mapping']='pcbm-profiles resolve "$2" --cover' in wrapper and 'RANDOM' not in wrapper
-    checks['mc_normal_user']='\n          mc "$PCBM_CONTENT_BASE" "$PCBM_CONTENT_BASE"\n' in text('usr/bin/pcbm-menu') and 'sudo mc' not in text('usr/bin/pcbm-menu')
+    files = text('usr/bin/pcbm-files') if (root/'usr/bin/pcbm-files').is_file() else ''
+    menu = text('usr/bin/pcbm-menu')
+    checks['mc_normal_user'] = ('\n          mc "$PCBM_CONTENT_BASE" "$PCBM_CONTENT_BASE"\n' in menu or
+                                '"$SCRIPT_DIR/pcbm-files"' in menu and '/usr/bin/mc /home/pcbm/content /home/pcbm' in files) and 'sudo' not in files and 'sudo mc' not in menu
     checks['mixer_unprivileged_no_global_save']='/usr/bin/alsamixer' in text('usr/bin/pcbm-config') and 'alsactl' not in text('usr/bin/pcbm-config') and 'sudo alsamixer' not in text('usr/bin/pcbm-config')
-    checks['import_destination_feedback']='Destination: /home/pi/pcbm/$category/$family/Imported' in text('usr/bin/pcbm-import')
+    checks['import_destination_feedback']=any('Destination: '+base+'/$category/$family/Imported' in text('usr/bin/pcbm-import') for base in ('/home/pi/pcbm','/home/pcbm/content'))
     rows={}
     for stanza in text('var/lib/dpkg/status').split('\n\n'):
         row=dict(l.split(': ',1) for l in stanza.splitlines() if ': ' in l and not l.startswith(' '))

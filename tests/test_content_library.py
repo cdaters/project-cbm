@@ -1,4 +1,4 @@
-"""Synthetic files only: preserve account boundary, existing files and machine choices."""
+"""Synthetic files only: preserve canonical ownership, existing files and machine choices."""
 import json,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -40,7 +40,7 @@ class Library(unittest.TestCase):
    with self.assertRaises(ValueError):importer.validate_request(json.dumps({**request,'family':bad}))
   self.assertEqual(library.import_destination('games','.prg','c128'),('games','c128','Imported'))
   self.assertEqual(library.import_destination('games','.sid','shared'),('music','c64','Imported'))
- def test_import_copies_preserves_conflicts_and_never_uses_admin_home(self):
+ def test_import_copies_preserves_conflicts_and_uses_canonical_library(self):
   source=self.root/'usb';source.mkdir();(source/'example.prg').write_bytes(b'\x01\x08new');(source/'example.sid').write_bytes(b'fixture')
   dest=self.root/'library';dest.mkdir()
   with patch.object(importer,'CONTENT',dest),patch.object(importer.os,'geteuid',return_value=1000):
@@ -48,5 +48,5 @@ class Library(unittest.TestCase):
    p=dest/'demos/c64/Imported/example.prg';p.write_bytes(b'user')
    self.assertEqual(importer.copy_content(source,'demos','c64')['copied'],0);self.assertEqual(p.read_bytes(),b'user')
   self.assertTrue((dest/'music/c64/Imported/example.sid').is_file())
-  self.assertEqual(importer.CONTENT,library.ROOT);self.assertEqual(applications.CONTENT_ROOT,library.ROOT)
+  self.assertEqual(library.ROOT,Path('/home/pcbm/content'));self.assertEqual(importer.CONTENT,library.ROOT);self.assertEqual(applications.CONTENT_ROOT,library.ROOT)
 if __name__=='__main__':unittest.main()

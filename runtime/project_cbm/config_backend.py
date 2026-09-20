@@ -35,8 +35,8 @@ def policy():
     p=read_json(trusted(POLICY))
     if not isinstance(p,dict) or set(p)!={'schema_version','owner_user','appliance_user','system_ready','network_ready','ready_services'}:raise ValueError('policy')
     if type(p['schema_version']) is not int or p['schema_version']!=1:raise ValueError('policy')
-    if p['appliance_user']!='pi':raise ValueError('appliance_account')
-    if not all(match(p[k],r'[a-z][a-z0-9_-]{0,30}') for k in ('owner_user','appliance_user')) or p['owner_user'] in ('root',p['appliance_user']):raise ValueError('policy_account')
+    if p['appliance_user']!='pcbm':raise ValueError('appliance_account')
+    if p['owner_user']!='pcbm':raise ValueError('policy_account')
     if any(type(p[k]) is not bool for k in ('system_ready','network_ready')):raise ValueError('policy')
     if not isinstance(p['ready_services'],list) or any(x not in SERVICES for x in p['ready_services']):raise ValueError('policy_services')
     return p
@@ -181,7 +181,7 @@ class Linux:
     def owner_expected(self,user):
         try:
             account=pwd.getpwnam(user)
-            return (user=='pcbm' and account.pw_uid==1001 and account.pw_dir=='/home/pcbm'
+            return (user=='pcbm' and account.pw_uid==1000 and account.pw_dir=='/home/pcbm'
                     and account.pw_shell=='/bin/bash' and user in grp.getgrnam('sudo').gr_mem)
         except KeyError:return False
 

@@ -22,6 +22,6 @@ def main():
     try:
         if len(sys.argv)!=1 or os.geteuid()==0:raise ValueError('invocation')
         args=arguments(read_json(trusted(Path('/etc/project-cbm/modem.json'))))
-        os.execve(args[0],args,{'PATH':'/usr/bin:/bin','LANG':'C','HOME':'/home/pi'})
+        os.execve(args[0],args,{'PATH':'/usr/bin:/bin','LANG':'C','HOME':'/home/pcbm'})
     except (OSError,ValueError,TypeError):
         print('Project CBM modem settings are unavailable or invalid.',file=sys.stderr);return 2

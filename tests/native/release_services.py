@@ -8,11 +8,11 @@ from project_cbm import info
 
 def run(args,data=None):return subprocess.run(args,input=data,text=True,capture_output=True,timeout=65)
 def request(op,**values):
- p=run(['runuser','-u','pi','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
+ p=run(['runuser','-u','pcbm','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
  assert json.loads(p.stdout)['status']=='ok',op
 
 def snapshot():
- p=run(['runuser','-u','pi','--','pcbm-info','--json','--appliance']);assert p.returncode==0;return json.loads(p.stdout)
+ p=run(['runuser','-u','pcbm','--','pcbm-info','--json','--appliance']);assert p.returncode==0;return json.loads(p.stdout)
 secret=secrets.token_urlsafe(24)
 checks={}
 try:
@@ -35,8 +35,8 @@ try:
   if name=='sharing':
    assert snapshot()['services']['discovery']['state']=='on'
    cfg=run(['testparm','-s','--parameter-name=valid users','--section-name=Project CBM']);assert cfg.stdout.strip()=='pcbm'
-   assert run(['testparm','-s','--parameter-name=force user','--section-name=Project CBM']).stdout.strip()=='pi'
-   assert run(['testparm','-s','--parameter-name=path','--section-name=Project CBM']).stdout.strip()=='/home/pi/pcbm'
+   assert run(['testparm','-s','--parameter-name=force user','--section-name=Project CBM']).stdout.strip()==''
+   assert run(['testparm','-s','--parameter-name=path','--section-name=Project CBM']).stdout.strip()=='/home/pcbm/content'
    assert 'WITH_AVAHI_SUPPORT' in run(['smbd','-b']).stdout
    checks['samba_avahi_build_and_owner_share_config']=True
   request('service',service=name,enabled=False);assert snapshot()['services'][name]['state']=='off'
@@ -44,7 +44,7 @@ try:
   checks[name+'_actual_on_restart_enabled_off_disabled']=True
  d=snapshot();assert d['owner_username']==d['sharing_username']=='pcbm'
  for args in (['pcbm-info','--json'],['pcbm-info','--json','--appliance']):
-  assert secret not in run(['runuser','-u','pi','--',*args]).stdout
+  assert secret not in run(['runuser','-u','pcbm','--',*args]).stdout
  checks['owner_contract_and_redaction']=True
  print(json.dumps({'result':'PASS','checks':checks,'physical_clients_and_reboot':'UNTESTED; restart and enablement are native persistence evidence only'},indent=2))
 finally:

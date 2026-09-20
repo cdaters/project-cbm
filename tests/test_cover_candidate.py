@@ -22,7 +22,7 @@ class CoverPayload(unittest.TestCase):
                 cover[key]=install(source,dest)
             manifest=json.loads((MENU/'docs/cover-artwork.json').read_text())
             for f in manifest['files']:install(MENU/f['path'],'usr/share/project-cbm-menu/'+f['path'])
-            for script in ('pcbm-config','pcbm-menu','pcbm-import'):install(MENU/'scripts'/script,'usr/bin/'+script)
+            for script in ('pcbm-config','pcbm-menu','pcbm-import','pcbm-files'):install(MENU/'scripts'/script,'usr/bin/'+script)
             for tool in ('mc','alsamixer','timeout'):(root/'usr/bin'/tool).touch()
             status=root/'var/lib/dpkg/status';status.parent.mkdir(parents=True)
             names=('mc','mc-data','alsa-utils','libsdl2-image-2.0-0','libsdl2-2.0-0')

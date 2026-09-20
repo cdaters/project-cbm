@@ -1,3 +1,39 @@
+# RC1 physically qualified with release UX defects — RC2 investigation
+
+[Owner RC1 Pi4 report](docs/qualification/rc1-attempt9-pi4-owner-report.json) records
+core Cover/VICE/F10/Menu and reference performance PASS, setup/service/Wi-Fi persistence
+PASS, primary boot presentation FAIL, account/content coherence FAIL, USB import FAIL
+pending cause and MC practical usability FAIL (launch PASS). First/second Menu stopwatch
+~30s; systemd17.668s, tty1~8.261s userspace. Do not add concurrent unit durations or
+remove wait-online from the wrong critical path. Unreported functions remain UNTESTED.
+
+Owner authorizes bounded live evidence first, exact v1.0 boot reference review, then
+single pcbm runtime/admin identity, usable content/USB, primary presentation and measured
+post-getty corrections. No RC2 build until causes/corrections/tests are established.
+ONE new private RC2 image is authorized after those gates; then stop for Pi4 testing.
+RC1 image, lock, packages, refs and recovery stay immutable. No push/publication.
+
+Live owner readback verifies RC1 identity and supplies two numeric logs, exFAT inventory
+and getty/PAM journal. Samples10–21 pass both metric windows; physical audio/visual PASS
+is separate. Native RC1 FAT/exFAT reproduction confirms root0077 mount permissions
+block UID1000 copying; fixed mount options pass copy/retry/unmount/unchanged-source checks.
+Exact installed Type=idle and 5.134061s getty→PAM gap identify a bounded startup deferral;
+Type=simple preserves ordering/PAM. Complete power-to-Menu latency is not established.
+
+[RC2 correction contract](docs/runtime/rc2-corrections.md) records decisions/source work.
+Single pcbm UID1000/home, /home/pcbm/content, explicit supervised historical primary art,
+boot phase trace, FILES/import feedback and corresponding docs/tests are in progress.
+Product220/220 and Menu99/99 host tests pass; native account/service/SSH/discovery,
+MC, read-only ext4/FAT/exFAT import and terminal lifecycle checks pass. Native fixtures
+required overlay-copy ownership and obsolete forced-user expectation corrections;
+failed logs remain retained. New-package/image gates remain pending; no RC2 image exists.
+Builder is running for disposable diagnostics; RC1/prior artifacts remain untouched.
+Next: complete validator/negative tests and native installed single-user/service/boot/
+USB/lifecycle tests, clean logical commits/version/package/freeze, then ONE RC2 build,
+actual-image validation, recovery and Pi4 exact-hash procedure. READY TO FLASH: NO for RC2.
+
+Earlier RC1 build-readiness entries below are historical, not physical UX acceptance.
+
 # Private RC1 basis complete — Pi 4 B physical test next
 
 **READY TO FLASH: YES after verifying the external recovery manifest/restore PASS.**

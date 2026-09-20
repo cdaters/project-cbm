@@ -16,6 +16,15 @@ from build_contracts import validate_lock, encode, make_identity
 
 
 class Boundaries(unittest.TestCase):
+    def test_fat_source_readable_by_copy_uid_without_widening_mount_policy(self):
+        for filesystem in ('vfat','exfat'):
+            options=set(importer.mount_options(filesystem).split(','))
+            self.assertEqual(options,{'ro','nodev','nosuid','noexec','uid=1000',
+                                      'gid=1000','fmask=0177','dmask=0077'})
+        self.assertEqual(importer.mount_options('ext4'),'ro,nodev,nosuid,noexec,noload')
+        for filesystem in ('exfat,rw','ntfs','/dev/sda1',''):
+            with self.assertRaises(ValueError):importer.mount_options(filesystem)
+
     def test_inaccessible_source_directory_is_skipped_not_privileged(self):
         with tempfile.TemporaryDirectory() as t:
             r=Path(t);src=r/'source';src.mkdir();(src/'lost+found').mkdir();dest=r/'content';dest.mkdir()

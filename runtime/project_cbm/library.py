@@ -1,7 +1,7 @@
-"""Product-owned content layout, independent of the administrator's home."""
+"""Product-owned content layout under the single appliance account home."""
 from pathlib import Path
 
-ROOT = Path('/home/pi/pcbm')
+ROOT = Path('/home/pcbm/content')
 # Registry IDs, never executable paths. The chosen ID is checked against the registry.
 FAMILIES = {
     'c64': ('Commodore 64', ('x64sc', 'x64', 'xscpu64', 'x64dtv')),

@@ -12,12 +12,12 @@ passwords, private keys, complete journals or saved Wi-Fi connection files into 
 - Cover/VICE regression: F10 → Quit if possible; preserve allowlisted diagnostics before
   another launch. Ctrl+Alt+F2 is supported at Menu, not while this VICE/SDL build is active.
 - Invalid preferences: MACHINES/configuration offers explicit recovery; preserve the bad
-  file if investigating. User preferences live in the pi account's configuration directory.
+  file if investigating. User preferences live in the pcbm account's configuration directory.
 - Need a shell: CONTROL → Advanced → Owner administration, or tty2 with owner credentials.
   Ordinary Linux administration remains available. Changing low-level session/display
   settings can break return to Menu and requires your own testing.
 
-Back up `/home/pi/pcbm` content and user preferences to independent storage. Keep any
+Back up `/home/pcbm/content` content and user preferences to independent storage. Keep any
 credentials/configuration backups private and encrypted. If reflashing, use a verified
 image, complete setup again, then restore selected content/preferences. Do not restore
 an old whole `/etc`, machine identity, credential database or first-boot state blindly.
@@ -38,8 +38,8 @@ same SD card does not protect against card failure. Keep more than one dated bac
 if you frequently change emulator save files.
 
 The share intentionally does not expose configuration or credentials. For a complete
-personal backup, an administrator should also preserve `/home/pi/.config/pcbm`,
-`/home/pi/.config/vice` and any personal files under `/home/pcbm`. Those files may contain
+personal backup, an administrator should also preserve `/home/pcbm/.config/pcbm`,
+`/home/pcbm/.config/vice` and any personal files under `/home/pcbm`. Those files may contain
 local paths or preferences; keep them private. Use ordinary authenticated Linux tools
 or a safely shut-down card. An encrypted full-card backup is useful for personal
 recovery, but includes passwords, Wi-Fi details and machine keys and must never be

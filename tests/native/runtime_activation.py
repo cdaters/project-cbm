@@ -8,15 +8,15 @@ os.chdir('/')
 def run(args, data=None, timeout=70):
  return subprocess.run(args,input=data,text=True,capture_output=True,timeout=timeout)
 def request(op,**values):
- p=run(['runuser','-u','pi','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
+ p=run(['runuser','-u','pcbm','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
  try:answer=json.loads(p.stdout)
  except Exception:raise RuntimeError('invalid helper result') from None
  print(json.dumps({'operation':op,'exit':p.returncode,'status':answer['status']}),flush=True)
  return answer
 assert run(['visudo','-cf','/etc/sudoers']).returncode==0
 # No arbitrary root command or helper argv permitted.
-assert run(['runuser','-u','pi','--','sudo','-n','--','/usr/bin/id']).returncode!=0
-assert run(['runuser','-u','pi','--','sudo','-n','--','/usr/libexec/pcbm-config-root','evil']).returncode!=0
+assert run(['runuser','-u','pcbm','--','sudo','-n','--','/usr/bin/id']).returncode!=0
+assert run(['runuser','-u','pcbm','--','sudo','-n','--','/usr/libexec/pcbm-config-root','evil']).returncode!=0
 assert request('command',value='id')['status']=='invalid'
 assert request('setup-finish')['status']=='invalid'
 assert request('setup-region',locale='en_US.UTF-8',keyboard='us',timezone='America/Phoenix')['status']=='ok'

@@ -5,8 +5,8 @@ ConditionPathExists=/etc/project-cbm/modem.json
 
 [Service]
 Type=simple
-User=pi
-Group=pi
+User=pcbm
+Group=pcbm
 ExecStart=/usr/bin/pcbm-modem
 Restart=on-failure
 NoNewPrivileges=yes

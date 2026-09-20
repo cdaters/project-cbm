@@ -24,7 +24,7 @@ def inspect(root, record, kit):
     del checks['hidden_password_explanation']
     checks['safe_password_masking'] = all(v in shared for v in ('--insecure','--passwordbox','Typed characters are masked with asterisks.'))
     checks['ascii_password_guidance'] = '12-128 printable characters' in setup and '8-63 printable ASCII characters' in ui and all(v not in setup+ui for v in ('12–128','8–63','12—128','8—63'))
-    checks['cover_dwell_after_present'] = renderer.index('sdl.SDL_RenderPresent(renderer)') < renderer.index('deadline = time.monotonic() + DURATION_SECONDS')
+    checks['cover_dwell_after_present'] = renderer.index('sdl.SDL_RenderPresent(renderer)') < renderer.index('deadline = time.monotonic() +')
     checks['cover_phase_timings'] = all(v in renderer for v in ("stage('window_create')","stage('renderer_create')","stage('texture_load')","stage('present_begin')","stage('releasing')"))
     scan = text('usr/share/project-cbm/runtime/project_cbm/wifi_scan.py')
     backend = text('usr/share/project-cbm/runtime/project_cbm/config_backend.py')

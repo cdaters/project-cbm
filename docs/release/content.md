@@ -1,12 +1,10 @@
 # Content library, media and migration
 
-The Project CBM library is **`/home/pi/pcbm`**. Menu, VICE, CONTENT, USB IMPORT,
-FILES and the **Project CBM** network share use this same root. `pi` runs the local
-appliance; `pcbm` is your administrator/SSH login. Its home, `/home/pcbm`, stores your
-shell files and is not automatically browsed or exported as appliance content.
-An SSH/SFTP connection normally starts in that administrator home. Use File Sharing
-for the simplest network content transfer; sign in as `pcbm` with the separate
-File Sharing password. The share writes files as `pi`, keeping them usable locally.
+The Project CBM library is **`/home/pcbm/content`**. Menu, VICE, CONTENT, USB IMPORT,
+FILES, SSH/SFTP and the **Project CBM** network share use the same normal user,
+`pcbm`. SSH/SFTP starts in `/home/pcbm`; open `content` to reach the library.
+File Sharing exports that folder directly and uses your separate File Sharing
+password. Your other home files and private configuration are outside the share.
 
 ## Folders and examples
 
@@ -17,7 +15,7 @@ existing category menu and relocating established libraries. No such relocation 
 needed. Machine folders also tell CONTENT which profile to launch.
 
 ```text
-/home/pi/pcbm/
+/home/pcbm/content/
   games/c64/My Game.d64
   games/vic20/My Game.prg
   demos/c64/My Demo.prg
@@ -71,11 +69,23 @@ files can be stored/imported, but CONTENT does not claim general SID playback.
 
 ## USB IMPORT
 
+Open IMPORT on Main Menu, or FILES → Import from USB. Attach a USB drive with a FAT,
+exFAT or ext4 partition. The screen lists eligible drives; it does not require a
+Linux device name or manual mounting. Already mounted and system disks are excluded.
+Midnight Commander does not automatically mount removable drives: use this import
+workflow, then browse the copied files in your library.
+
 Choose the USB partition, machine and content category. Supported regular files are
 copied beneath `category/machine/Imported`, preserving source subfolders. SID files
 always go to `music/c64/Imported`. Existing destination files are skipped, never
 replaced. Symlinks, special files and unsupported types are skipped. The source is
 mounted read-only; follow completion or failure guidance before unplugging it.
+A working screen remains during copying. The final screen reports copied/skipped counts
+or a specific failure, and whether the drive was released. A confirmed release means
+it is safe to remove. If release could not be confirmed, leave it connected and shut
+down safely before unplugging it. Do not retry blindly after an error; first read the
+result. Imports are limited to 2 GiB per operation and preserve 256 MiB free space.
+
 An unclassified collection may use Shared, then be organized later with FILES.
 A source already containing category/machine folders is not silently flattened:
 copy an already organized library tree through File Sharing to avoid nesting that
@@ -84,24 +94,24 @@ whole tree beneath one import destination.
 ## Older content and misplaced SSH uploads
 
 Existing category-level files and folders remain browsable recursively. Nothing
-automatically moves, deletes or scans your administrator home. Earlier SID-Wizard and
+automatically moves, deletes or scans the rest of your home. Earlier SID-Wizard and
 StrikeTerm folder locations still work; fresh images seed the new C64 locations.
 Keep an independent backup before reorganizing your own library. FILES starts at the
 canonical root; VICE also starts there, but its file browser can navigate elsewhere.
 
 For ordinary transfers, connect to the Project CBM share and copy selected files into
-its category/machine folders. You do not need to type `/home/pi/pcbm` in Finder.
+its category/machine folders. You do not need to type `/home/pcbm/content` in Finder.
 For a deliberate administrator copy of the observed misplaced demo folder, after
 backing it up, these commands copy regular files without replacing existing files:
 
 ```sh
-sudo install -d -o pi -g pi /home/pi/pcbm/demos/c64
-sudo rsync -rt --ignore-existing --chown=pi:pi -- \
-  /home/pcbm/demos/c64/ /home/pi/pcbm/demos/c64/
+mkdir -p /home/pcbm/content/demos/c64
+rsync -rt --ignore-existing -- \
+  /home/pcbm/demos/c64/ /home/pcbm/content/demos/c64/
 ```
 
 Run this on your own configured appliance, not on an immutable qualification card
-being preserved. It is an authenticated owner action, not a new passwordless helper.
+being preserved. It runs as your ordinary pcbm account, without sudo.
 The source is retained; review copied files before any later manual cleanup. Do not
 copy the whole administrator home, SSH keys, configuration databases or credentials.
 For a new SD image, complete first boot and copy selected content back from your

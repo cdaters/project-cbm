@@ -65,7 +65,7 @@ class OptionalApplications(unittest.TestCase):
     def test_source_install_and_user_state_not_overwritten(self):
         raw=apps.payload(self.source,self.pin);target=self.root/'image';target.mkdir()
         paths=apps.install(target,raw);self.assertEqual(len(paths),4)
-        user=target/'home/pi/pcbm'/apps.CONTENT;user.write_bytes(b'user work')
+        user=target/'home/pcbm/content'/apps.CONTENT;user.write_bytes(b'user work')
         with self.assertRaises(ValueError):apps.install(target,raw)
         self.assertEqual(user.read_bytes(),b'user work')
         self.assertEqual(len(list(target.rglob('*.d64'))),2)

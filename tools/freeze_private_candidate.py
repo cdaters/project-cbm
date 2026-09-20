@@ -181,6 +181,14 @@ def main():
                 'launcher':menu/'scripts/pcbm-run-vice','wrapper':menu/'scripts/pcbm-cover',
                 'registry':recipe/'runtime/data/profiles.json'}.items()}
             build['covers']['assets'] = [store(menu/item['path']) for item in manifest['files']]
+            primary_path=menu/'docs/primary-artwork.json'
+            if primary_path.is_file():
+                primary=read_json(primary_path)['file']
+                if primary['path']!='covers/pcbmcover1.jpg':raise ValueError('primary artwork path')
+                data=(menu/primary['path']).read_bytes()
+                if len(data)!=primary['size_bytes'] or hashlib.sha256(data).hexdigest()!=primary['sha256']:
+                    raise ValueError('primary artwork changed')
+                build['primary']={'manifest':store(primary_path),'asset':store(menu/primary['path'])}
             build['utilities'] = oldrecord['utilities']
         component['build_record'] = record(build)
         lock['components'][name] = component

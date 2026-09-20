@@ -175,7 +175,7 @@ bash "$CBM_RECIPE/build/packages/build_candidate.sh" "$CBM_RECIPE" \
 `CBM_MENU_SOURCE_VERSION` is the tag without its leading v. The script creates a new
 `packages/poc4-attemptN`, builds Runtime and Menu with dpkg-buildpackage and retains
 `.deb`, `.dsc`, source tarballs, `.buildinfo`, `.changes` and logs. The final argument
-selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. RC1 changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
+selects `runtime-menu`, `runtime-vice` (reuse Menu), or `runtime-menu-vice`. RC2 changes Runtime and Menu and reuses verified VICE. When VICE changes, use `--vice-version` during freezing;
 when Menu is reused, use `--reuse-menu` during both export and freezing. Reused Menu
 version/tag/source must equal the predecessor exactly. Reuse TCPser/closures/assets
 and any unchanged component with its original verified identity. Their original recipes are under `build/packages`; adding a dependency
@@ -198,7 +198,7 @@ python3 "$CBM_RECIPE/tools/freeze_private_candidate.py" /srv/project-cbm \
   "$CBM_RECIPE" "$CBM_PRODUCT_COMMIT" "$CBM_MENU_COMMIT" "$CBM_MENU_TAG_OBJECT" \
   --attempt "$CBM_ATTEMPT" --previous-attempt "$CBM_PREVIOUS_ATTEMPT" \
   --runtime-version "$CBM_RUNTIME_DEB_VERSION" --menu-version "$CBM_MENU_DEB_VERSION" \
-  --product-version 1.1.0-rc.1 --candidate private-engineering-rc1
+  --product-version 1.1.0-rc.2 --candidate private-engineering-rc2
 python3 "$CBM_RECIPE/tools/retained_inputs.py" "$CBM_KIT/release-lock.json" "$CBM_KIT"
 sudo unshare --net python3 "$CBM_RECIPE/tools/construct_poc.py" \
   "$CBM_KIT/release-lock.json" "$CBM_KIT" /srv/project-cbm --attempt "$CBM_ATTEMPT"
@@ -221,7 +221,7 @@ Set `CBM_RAW` to the exported raw image, `CBM_XZ` to the compressed artifact, an
 sudo python3 "$CBM_RECIPE/tools/validate_poc_image.py" "$CBM_RAW" "$CBM_KIT/release-lock.json" "$CBM_EVIDENCE/offline"
 sudo python3 "$CBM_RECIPE/tools/validate_poc2_closure.py" "$CBM_RAW" "$CBM_EVIDENCE/closure.json"
 sudo python3 "$CBM_RECIPE/tools/validate_poc4_supplement.py" "$CBM_RAW" "$CBM_EVIDENCE/supplement.json"
-sudo python3 "$CBM_RECIPE/tools/validate_rc1.py" "$CBM_RAW" "$CBM_KIT/release-lock.json" "$CBM_KIT" "$CBM_EVIDENCE/refinement.json"
+sudo python3 "$CBM_RECIPE/tools/validate_rc2.py" "$CBM_RAW" "$CBM_KIT/release-lock.json" "$CBM_KIT" "$CBM_EVIDENCE/refinement.json"
 sha256sum "$CBM_RAW" "$CBM_XZ"
 xz -dc "$CBM_XZ" | sha256sum
 ```

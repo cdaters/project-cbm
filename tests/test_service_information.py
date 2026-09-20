@@ -79,7 +79,7 @@ class Services(unittest.TestCase):
         root=Path(__file__).resolve().parents[1];stage=(root/'tools/install_poc_stage.py').read_text();share=(root/'runtime/config/file-sharing.example.conf').read_text()
         self.assertIn("owned_put('/etc/hostname','projectcbm\\n')",stage)
         self.assertIn('AllowUsers pcbm',stage);self.assertIn('mdns name = mdns',stage)
-        self.assertIn('valid users = pcbm',share);self.assertIn('force user = pi',share);self.assertIn('guest ok = no',share)
+        self.assertIn('valid users = pcbm',share);self.assertNotIn('force user',share);self.assertIn('guest ok = no',share)
     def test_hostname_syntax_and_length(self):
         for value in ('projectcbm','retro-64','a'):
             c.validate({'schema_version':1,'operation':'hostname','values':{'value':value}})

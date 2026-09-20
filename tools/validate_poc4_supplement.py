@@ -14,6 +14,8 @@ def main():
    root=Path(tmp);subprocess.run(['mount','-o','ro,noload',loop+'p2',str(root)],check=True)
    try:
     def text(p):return (root/p).read_text()
+    single_user=json.loads(text('usr/share/project-cbm/identity.json'))['product']['candidate']=='private-engineering-rc2'
+    content='home/pcbm/content' if single_user else 'home/pi/pcbm'
     rows={}
     for stanza in text('var/lib/dpkg/status').split('\n\n'):
      row={line.split(': ',1)[0]:line.split(': ',1)[1] for line in stanza.splitlines() if ': ' in line and not line.startswith(' ')}
@@ -24,9 +26,9 @@ def main():
     checks['tmp_mode_1777']=(root/'tmp').stat().st_mode&0o7777==0o1777
     checks['runtime_dirs_recreated']=text('usr/lib/tmpfiles.d/project-cbm.conf')=='d /run/project-cbm 0755 root root -\nd /run/project-cbm/import 0755 root root -\nd /run/project-cbm/import/source 0755 root root -\n'
     checks['authenticated_owner_sudo']=any(line.strip().startswith('%sudo') and 'ALL=(ALL:ALL) ALL' in line and 'NOPASSWD' not in line for line in text('etc/sudoers').splitlines())
-    checks['only_expected_local_accounts']=all(line.split(':')[0] in ('pi','pcbm','nobody') for line in text('etc/passwd').splitlines() if int(line.split(':')[2])>=1000)
+    checks['only_expected_local_accounts']=all(line.split(':')[0] in (('pcbm','nobody') if single_user else ('pi','pcbm','nobody')) for line in text('etc/passwd').splitlines() if int(line.split(':')[2])>=1000)
     samba=text('etc/samba/smb.conf')
-    checks['samba_only_content_share']=samba.count('path =')==1 and 'path = /home/pi/pcbm' in samba and 'guest ok = no' in samba
+    checks['samba_only_content_share']=samba.count('path =')==1 and 'path = /'+content in samba and 'guest ok = no' in samba
     checks['about_view_present']='ABOUT) show_about' in text('usr/bin/pcbm-config') and 'def about(' in text('usr/libexec/project-cbm-menu/pcbm_config_bridge.py')
     checks['firstboot_payloads_present']=all((root/name).is_file() for name in ('usr/libexec/project-cbm/first_boot.py','usr/bin/pcbm-first-run','usr/bin/pcbm-setup-state'))
     checks['admin_auth_paths']=all(token in text('usr/share/project-cbm/runtime/project_cbm/admin.py') for token in ('su','sudo','raspi-config'))
@@ -35,7 +37,7 @@ def main():
     for name in ('sid-wizard','striketerm'):
      paths=[root/'usr/share/project-cbm/applications'/name,root/'usr/share/doc'/('project-cbm-'+name)]
      record['optional_application_bytes'][name+'_system']=sum(f.stat().st_size for d in paths for f in d.rglob('*') if f.is_file() and not f.is_symlink())
-    record['optional_application_bytes']['fresh_user_working_disks']=sum(f.stat().st_size for f in (root/'home/pi/pcbm').rglob('*.d64') if f.name in ('SID-Wizard-1.97.d64','StrikeTerm-2014-Final.d64'))
+    record['optional_application_bytes']['fresh_user_working_disks']=sum(f.stat().st_size for f in (root/content).rglob('*.d64') if f.name in ('SID-Wizard-1.97.d64','StrikeTerm-2014-Final.d64'))
     record['installed_package_size_sum_bytes']=sum(int(r.get('Installed-Size','0'))*1024 for r in rows.values())
     record['installed_package_count']=len(rows)
    finally:subprocess.run(['umount',str(root)],check=True)

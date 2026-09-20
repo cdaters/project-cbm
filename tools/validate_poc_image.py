@@ -32,6 +32,10 @@ def main():
     raw = args.lock.read_bytes()
     lock = validate_lock(raw)
     activated=lock['schema_version']>=4
+    single_user=lock['product']['candidate']=='private-engineering-rc2'
+    account='pcbm' if single_user else 'pi'
+    home='home/'+account
+    content=home+('/content' if single_user else '/pcbm')
     args.results.mkdir()
     root = args.results/'mounted-root'
     boot = args.results/'mounted-boot'
@@ -96,19 +100,19 @@ def main():
             link=root/'etc/systemd/system/getty.target.wants'/('getty@'+tty+'.service')
             check('enabled_getty_'+tty,link.is_symlink() and link.readlink().name=='getty@.service')
             conf=(root/'etc/systemd/system'/('getty@'+tty+'.service.d/autologin.conf')).read_text()
-            check('login_PAM_'+tty,'--autologin pi' in conf and '--login-program' not in conf)
+            check('login_PAM_'+tty,'--autologin '+account in conf and '--login-program' not in conf)
         check('PAM_systemd_present','pam_systemd.so' in (root/'etc/pam.d/common-session').read_text())
         passwd=[line.split(':') for line in (root/'etc/passwd').read_text().splitlines()]
-        check('pi_valid_unprivileged_shell',any(x[0]=='pi' and x[2]=='1000' and x[-1]=='/bin/bash' for x in passwd))
+        check('runtime_valid_unprivileged_shell',any(x[0]==account and x[2]=='1000' and x[-1]=='/bin/bash' for x in passwd))
         check('engineering_only_marker',(root/'etc/pcbm/engineering-poc').read_text()==lock['product']['candidate']+'\n')
         check('diagnostic_programs_present',all((root/p).is_file() for p in ['usr/bin/pcbm-diagnostics','usr/libexec/project-cbm/engineering.py']))
         observer=(root/'usr/libexec/project-cbm/engineering.py').read_text()
-        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4','private-engineering-rc1'):
+        if lock['product']['candidate'] in ('private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2'):
             template=root/'usr/share/project-cbm/vice-defaults.ini'
-            user=root/'home/pi/.config/vice/sdl-vicerc'
+            user=root/home/'.config/vice/sdl-vicerc'
             check('presentation_template_exact',template.read_bytes()==presentation_defaults() and template.stat().st_uid==0)
             check('presentation_user_copy_exact',user.read_bytes()==template.read_bytes() and user.stat().st_uid==1000 and user.stat().st_gid==1000)
-            check('user_config_not_system_owned','/home/pi/.config/vice/sdl-vicerc' not in (root/'usr/share/project-cbm/owned-paths.txt').read_text().splitlines())
+            check('user_config_not_system_owned','/'+home+'/.config/vice/sdl-vicerc' not in (root/'usr/share/project-cbm/owned-paths.txt').read_text().splitlines())
             check('active_DRM_reporter_present',(root/'usr/libexec/project-cbm-vice/drm-state').is_file())
             check('engineering_geometry_opt_in',"env['CBM_PRESENTATION_DIAGNOSTICS']='1'" in observer and 'active_drm' in observer)
             check('VICE_telemetry_patch_present',b'CBM_PRESENTATION chip=' in (root/'usr/bin/x64sc').read_bytes())
@@ -117,7 +121,7 @@ def main():
         check('VICE_unprivileged_F10','EUID != 0' in launcher and '-menukey 291' in launcher)
         check('single_shared_launch_path','pcbm-run-vice' in (root/'usr/bin/pcbm-boot').read_text() and 'pcbm-run-vice' in (root/'usr/bin/pcbm-dialog-lib.sh').read_text())
         power=(root/'etc/sudoers.d/pcbm-power').read_text()
-        check('only_exact_power_sudo',power=='pi ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n')
+        check('only_exact_power_sudo',power==account+' ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n')
         grants=[p.name for p in (root/'etc/sudoers.d').iterdir() if p.is_file() and 'NOPASSWD' in p.read_text()]
         check('no_other_passwordless_grants',set(grants)==({'pcbm-power','pcbm-operations'} if activated else {'pcbm-power'}))
         if activated:
@@ -126,10 +130,10 @@ def main():
         media=json.loads((root/'usr/share/project-cbm/qualification-media.json').read_text())
         check('media_source_matches_lock',media['source_commit']==lock['qualification_media']['source_commit'])
         for entry in media['files']:
-            p=root/'home/pi/pcbm'/entry['destination']
+            p=root/content/entry['destination']
             check('media_'+entry['name'],p.is_file() and digest(p)==entry['sha256'] and p.stat().st_uid==1000)
         shadow={row.split(':')[0]:row.split(':')[1] for row in (root/'etc/shadow').read_text().splitlines()}
-        check('locked_local_passwords',all(shadow.get(name)=='*' for name in ['root','pi']))
+        check('locked_local_passwords',shadow.get('root')=='*' and shadow.get(account)==('!' if single_user else '*'))
         inventory=output('dpkg-query','--admindir='+str(root/'var/lib/dpkg'),'-W',
                          '-f=${binary:Package}\t${Version}\t${Architecture}\t${Installed-Size}\t${db:Status-Status}\n')
         (args.results/'packages.tsv').write_text(inventory+'\n')
@@ -163,7 +167,7 @@ def main():
         check('VICE_x64sc_present',(root/'usr/bin/x64sc').is_file())
         check('Menu_present',(root/'usr/bin/pcbm-menu').is_file())
         check('TCPser_present',(root/'usr/bin/tcpser').is_file())
-        check('content_directory_owned_by_pi',(root/'home/pi/pcbm').stat().st_uid==1000)
+        check('content_directory_owned_by_runtime',(root/content).stat().st_uid==1000)
         record['root_filesystem_bytes']={
             'capacity':os.statvfs(root).f_blocks*os.statvfs(root).f_frsize,
             'free':os.statvfs(root).f_bfree*os.statvfs(root).f_frsize,

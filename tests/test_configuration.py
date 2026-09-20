@@ -17,7 +17,7 @@ from jsonschema import Draft202012Validator
 
 
 def req(op,**values):return {'schema_version':1,'operation':op,'values':values}
-POLICY={'schema_version':1,'owner_user':'owner_fixture','appliance_user':'pi','system_ready':True,'network_ready':True,'ready_services':list(c.SERVICES)}
+POLICY={'schema_version':1,'owner_user':'pcbm','appliance_user':'pcbm','system_ready':True,'network_ready':True,'ready_services':list(c.SERVICES)}
 CASES=[req('hostname',value='cbm-fixture'),req('locale',value='en_US.UTF-8'),req('timezone',value='America/Phoenix'),
        req('keyboard',value='us'),req('wifi-country',value='US'),req('network',enabled=False),
        req('wifi-enroll',ssid='CBM Test',password='fixture-wifi-pass'),req('sharing-password',password='fixture-samba-pass'),
@@ -144,7 +144,7 @@ class Configuration(unittest.TestCase):
 
     def test_samba_credential_is_separate_and_stdin_only(self):
         system=FakeLinux();b.apply(req('sharing-password',password='fixture-samba-pass'),POLICY,system)
-        self.assertEqual(system.calls[0][0],['/usr/bin/smbpasswd','-s','-a','owner_fixture'])
+        self.assertEqual(system.calls[0][0],['/usr/bin/smbpasswd','-s','-a','pcbm'])
         self.assertEqual(system.calls[0][1],'fixture-samba-pass\nfixture-samba-pass\n')
         self.assertNotIn('passwd',system.calls[0][0][0].split('/')[-1].replace('smbpasswd',''))
 
@@ -184,9 +184,9 @@ class Configuration(unittest.TestCase):
             self.assertNotIn('shell',k);self.assertEqual(k['env']['HOME'],'/run/project-cbm')
 
     def test_admin_paths_authenticate_without_broad_passwordless_api(self):
-        self.assertEqual(admin.command('terminal','owner_fixture'),['/bin/su','--login','owner_fixture'])
-        self.assertEqual(admin.command('owner','owner_fixture'),['/bin/su','--login','owner_fixture'])
-        self.assertEqual(admin.command('raspi-config','owner_fixture')[-1],'sudo -k -- /usr/bin/raspi-config')
+        self.assertEqual(admin.command('terminal','pcbm'),['/bin/bash','--noprofile','--norc','-i'])
+        self.assertEqual(admin.command('owner','pcbm'),['/usr/bin/sudo','-k','--','/bin/bash','--noprofile','--norc','-i'])
+        self.assertEqual(admin.command('raspi-config','pcbm'),['/usr/bin/sudo','-k','--','/usr/bin/raspi-config'])
         with self.assertRaises(ValueError):admin.command('arbitrary')
         with patch('project_cbm.admin.policy',side_effect=FileNotFoundError),patch('project_cbm.admin.subprocess.call') as call,contextlib.redirect_stderr(io.StringIO()),contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(admin.main(['owner']),2);call.assert_not_called()

@@ -7,16 +7,18 @@ from .config_backend import policy
 
 
 def command(action, owner=None):
-    if action=='terminal':return ['/bin/su','--login',owner]
-    if action=='owner':return ['/bin/su','--login',owner]
-    if action=='raspi-config':return ['/bin/su','--login',owner,'--command','sudo -k -- /usr/bin/raspi-config']
+    if owner!='pcbm':raise ValueError('account')
+    # A non-login shell cannot recursively enter the tty1 appliance profile.
+    if action=='terminal':return ['/bin/bash','--noprofile','--norc','-i']
+    if action=='owner':return ['/usr/bin/sudo','-k','--','/bin/bash','--noprofile','--norc','-i']
+    if action=='raspi-config':return ['/usr/bin/sudo','-k','--','/usr/bin/raspi-config']
     raise ValueError('action')
 
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description='Project CBM terminal and authenticated owner administration')
     parser.add_argument('action',choices=['terminal','owner','raspi-config']);args=parser.parse_args(argv)
-    if os.geteuid()==0:
+    if os.geteuid()!=1000:
         print('Use this entry from the normal Project CBM user.',file=sys.stderr);return 2
     try:
         owner=None

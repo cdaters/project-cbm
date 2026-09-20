@@ -14,7 +14,7 @@ possible; image changes use the [build workflow](build-your-own.md) and a new id
   and Startup selects Menu or emulator boot. Preferences are validated, atomic and
   user-owned; valid new state wins over one-time legacy import.
 - **Computer Name:** CONTROL → Network changes projectcbm using validated syntax.
-- **Content:** import or share files into `/home/pi/pcbm`; bring your own lawful library.
+- **Content:** import or share files into `/home/pcbm/content`; bring your own lawful library.
   Do not add games, demos, ROMs or music merely because a reference archive contains them.
 - **Covers and branding in a derivative:** Menu owns seven mapped artwork files. Replace
   artwork you have rights to in your own source, preserve registry mapping/filenames or
@@ -133,8 +133,8 @@ pcbm-preferences set default_machine xvic
 pcbm-preferences set boot_preference menu
 ```
 
-Run these in the appliance user's context; an administrator's separate home is not the
-console's preference store. Normally MACHINES/CONTROL handle that context for you.
+Run these as pcbm, from the local terminal or SSH. Both use the same preference
+store. MACHINES/CONTROL provide the normal keyboard workflow.
 To ship VIC-20 as a derivative default, change `default_machine` in
 `build/pigen/defaults.json`, seed `xvic` in `/etc/pcbm/default-machine.conf` from
 `tools/install_poc_stage.py`, and make the `xvic` registry entry the sole recommended
@@ -188,7 +188,7 @@ than changing a display preference; document and test those costs.
 ### Add content or another application
 
 Ordinary personal content needs no package change: import or transfer it to the right
-`/home/pi/pcbm` category. For distributable content in a derivative, establish its rights,
+`/home/pcbm/content` category. For distributable content in a derivative, establish its rights,
 retain exact payload/source/license bytes and use a manifest rather than a download
 script that fetches unpinned files during boot.
 

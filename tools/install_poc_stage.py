@@ -80,34 +80,32 @@ def main():
     for name in ['pcbm-first-boot.service','tcpser.service']:
         owned_put('/usr/lib/systemd/system/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes())
     owned_put('/usr/libexec/project-cbm/first_boot.py',(REPO/'build/pigen/stage-cbm/files/first_boot.py').read_bytes(),0o755)
-    for directory in ['pcbm','.config','.config/vice','.local','.local/state','.local/state/vice','.local/share','.local/share/vice']:
-        target=root/'home/pi'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
+    for directory in ['content','.config','.config/vice','.local','.local/state','.local/state/vice','.local/share','.local/share/vice']:
+        target=root/'home/pcbm'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
     owned_put('/usr/share/project-cbm/vice-defaults.ini',presentation_defaults())
-    user_config=root/'home/pi/.config/vice/sdl-vicerc'
+    user_config=root/'home/pcbm/.config/vice/sdl-vicerc'
     if seed_presentation(user_config):
         os.chown(user_config,1000,1000)
     # The user copy is user state, deliberately excluded from owned-paths.txt.
     sys.path.insert(0,str(REPO/'runtime'))
     from project_cbm.library import directories as library_directories
     for directory in library_directories():
-        target=root/'home/pi/pcbm'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
-        if target.parent != root/'home/pi/pcbm':os.chown(target.parent,1000,1000)
-    chroot('usermod','--password','*','pi');chroot('usermod','--password','*','root')
-    chroot('usermod','--shell','/bin/bash','pi')
+        target=root/'home/pcbm/content'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
+        if target.parent != root/'home/pcbm/content':os.chown(target.parent,1000,1000)
+    chroot('usermod','--password','!','pcbm');chroot('usermod','--password','*','root')
+    chroot('usermod','--shell','/bin/bash','pcbm')
     if 'runtime' not in lock['components']:raise ValueError('activated candidate requires declared runtime package')
     chroot('groupadd','--system','pcbm-operators')
-    chroot('usermod','--append','--groups','pcbm-operators','pi')
+    chroot('usermod','--append','--groups','pcbm-operators,sudo','pcbm')
     owned_put('/etc/hostname','projectcbm\n')
     hosts=(root/'etc/hosts').read_text()
     hosts=re.sub(r'^127\.0\.1\.1\s+.*$', '127.0.1.1\tprojectcbm', hosts, flags=re.M)
     if not re.search(r'^127\.0\.1\.1\s',hosts,re.M):hosts+='\n127.0.1.1\tprojectcbm\n'
     owned_put('/etc/hosts',hosts)
-    chroot('useradd','--uid','1001','--create-home','--shell','/bin/bash','--groups','sudo','pcbm')
-    chroot('usermod','--password','!','pcbm')
-    # No universal credential and no normal-user blanket sudo. Debian %sudo is
-    # authenticated; only the separate owner account is added for administration.
-    chroot('gpasswd','--delete','pi','sudo')
-    policy={'schema_version':1,'owner_user':'pcbm','appliance_user':'pi',
+    # pi-gen creates pcbm UID 1000. General administration still requires its
+    # first-boot password; only fixed appliance operations are passwordless.
+    if chroot('id','-u','pcbm').strip()!='1000':raise ValueError('appliance identity')
+    policy={'schema_version':1,'owner_user':'pcbm','appliance_user':'pcbm',
             'system_ready':False,'network_ready':True,
             'ready_services':['ssh','sharing','modem','discovery']}
     owned_put('/etc/project-cbm/configuration-policy.json',encode(policy))
@@ -139,12 +137,12 @@ def main():
         owned_put('/etc/systemd/system/getty@'+tty+'.service.d/autologin.conf',
                   (REPO/'build/pigen/stage-cbm/files/getty-autologin.conf').read_bytes())
     owned_put('/etc/profile.d/pcbm-console.sh',(REPO/'build/pigen/stage-cbm/files/pcbm-profile.sh').read_bytes())
-    for name in ['pcbm-console-session','engineering.py']:
+    for name in ['pcbm-console-session','engineering.py','boot-trace.sh']:
         owned_put('/usr/libexec/project-cbm/'+name,(REPO/'build/pigen/stage-cbm/files'/name).read_bytes(),0o755)
     owned_put('/usr/bin/pcbm-diagnostics',(REPO/'build/pigen/stage-cbm/files/pcbm-diagnostics').read_bytes(),0o755)
     owned_put('/etc/pcbm/engineering-poc',lock['product']['candidate']+'\n')
     # Only exact no-argument power actions, required for safe qualification shutdown.
-    owned_put('/etc/sudoers.d/pcbm-power','pi ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n',0o440)
+    owned_put('/etc/sudoers.d/pcbm-power','pcbm ALL=(root) NOPASSWD: /usr/sbin/poweroff "", /usr/sbin/reboot ""\n',0o440)
     chroot('visudo','-cf','/etc/sudoers')
     media=lock.get('qualification_media')
     if not media:raise ValueError('POC2 requires declared qualification media')
@@ -156,9 +154,9 @@ def main():
             if not re.fullmatch(r'(programs|music|demos)/Qualification/[a-z0-9.-]+',dest):raise ValueError('unsafe media destination')
             data=archive.extractfile(entry['name']).read()
             if hashlib.sha256(data).hexdigest()!=entry['sha256']:raise ValueError('media digest mismatch')
-            owned_put('/home/pi/pcbm/'+dest,data)
-            os.chown(root/'home/pi/pcbm'/dest,1000,1000)
-            os.chown((root/'home/pi/pcbm'/dest).parent,1000,1000)
+            owned_put('/home/pcbm/content/'+dest,data)
+            os.chown(root/'home/pcbm/content'/dest,1000,1000)
+            os.chown((root/'home/pcbm/content'/dest).parent,1000,1000)
         owned_put('/usr/share/project-cbm/qualification-media.json',json.dumps(manifest,indent=2)+'\n')
         owned_put('/usr/share/doc/project-cbm-qualification/LICENSE',archive.extractfile('LICENSE').read())
     # Add admitted optional inputs only during construction, never to a sealed image.
@@ -172,11 +170,11 @@ def main():
             paths.extend(install_private(root,verify_private(args.kit,lock['optional_software']['striketerm'])))
         owned.extend('/'+p for p in paths)
         for name in paths:
-            if name.startswith('home/pi/pcbm/'):
+            if name.startswith('home/pcbm/content/'):
                 path = root/name
                 os.chown(path,1000,1000)
                 for parent in path.parents:
-                    if parent == root/'home/pi/pcbm':break
+                    if parent == root/'home/pcbm/content':break
                     os.chown(parent,1000,1000)
     # One growth owner. The inspected vendor initramfs hooks both require ' resize'.
     cmdline=root/'boot/firmware/cmdline.txt'
@@ -185,8 +183,8 @@ def main():
     config.write_text(boot_presentation.firmware(config.read_text()))
     owned_put('/etc/issue',boot_presentation.ISSUE)
     # Suppress only the appliance login's routine motd/last-login prose. PAM still runs.
-    put('/home/pi/.hushlogin','')
-    os.chown(root/'home/pi/.hushlogin',1000,1000)
+    put('/home/pcbm/.hushlogin','')
+    os.chown(root/'home/pcbm/.hushlogin',1000,1000)
     disabled=['rpi-resize.service','systemd-growfs-root.service','userconfig.service',
               'regenerate_ssh_host_keys.service','ssh.socket','sshswitch.service',
               'sshd-keygen.service','nmbd.service','samba-ad-dc.service',
@@ -200,11 +198,11 @@ def main():
     for unit in ['NetworkManager.service','pcbm-first-boot.service','getty@tty1.service','getty@tty2.service']:
         subprocess.run(['systemctl','--root',str(root),'enable',unit],check=True)
     # VM credentials/state are never imported. Remove identities generated in chroots.
-    for pattern in ['etc/ssh/ssh_host_*','home/pi/.ssh/*']:
+    for pattern in ['etc/ssh/ssh_host_*','home/pcbm/.ssh/*']:
         for path in root.glob(pattern):
             if path.is_file() or path.is_symlink(): path.unlink()
     for name in ['etc/machine-id','var/lib/dbus/machine-id','var/lib/systemd/random-seed',
-                 'root/.bash_history','home/pi/.bash_history']:
+                 'root/.bash_history','home/pcbm/.bash_history']:
         path=root/name
         if path.is_file() or path.is_symlink(): path.unlink()
     put('/etc/machine-id','uninitialized\n')

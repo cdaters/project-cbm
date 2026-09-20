@@ -96,10 +96,10 @@ def main():
         if after['free_tail_bytes'] > 10*1024*1024:
             raise ValueError('root did not grow to the expected device tail')
         subprocess.run(['resize2fs',root],check=True)
-        if run('id','-u','pi')!='1000': raise ValueError('unexpected appliance account identity')
-        for path in ['/home/pi/pcbm', '/home/pi/.config','/home/pi/.config/vice',
-                     '/home/pi/.local','/home/pi/.local/state','/home/pi/.local/state/vice',
-                     '/home/pi/.local/share','/home/pi/.local/share/vice']:
+        if run('id','-u','pcbm')!='1000': raise ValueError('unexpected appliance account identity')
+        for path in ['/home/pcbm/content', '/home/pcbm/.config','/home/pcbm/.config/vice',
+                     '/home/pcbm/.local','/home/pcbm/.local/state','/home/pcbm/.local/state/vice',
+                     '/home/pcbm/.local/share','/home/pcbm/.local/share/vice']:
             target=Path(path)
             if target.is_symlink(): raise ValueError('refusing user-state symlink during initialization')
             if not target.exists():

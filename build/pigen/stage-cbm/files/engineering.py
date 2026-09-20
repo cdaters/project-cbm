@@ -16,7 +16,7 @@ import sys
 import termios
 import time
 
-STATE = Path('/home/pi/.local/state/project-cbm/diagnostics')
+STATE = Path('/home/pcbm/.local/state/project-cbm/diagnostics')
 IDENTITY = Path('/usr/share/project-cbm/identity.json')
 MARKER = Path('/etc/pcbm/engineering-poc')
 LIMIT = 128 * 1024
@@ -324,9 +324,38 @@ def run_launch(argv, profile, state=STATE, audio=('/usr/bin/pcbm-audio','auto','
                 print('Project CBM: terminal restoration could not be verified; review launch diagnostics.',file=sys.stderr)
 
 
+def primary_presentation(state=STATE):
+    """Reuse the launch terminal owner for one bounded, unprivileged boot image."""
+    fd=None;saved={};report={}
+    previous={}
+    def stop(signum,frame):raise InterruptedError('presentation_interrupted')
+    try:
+        fd=os.open('/dev/tty',os.O_RDWR|os.O_NOCTTY)
+        saved=terminal_state(fd);report['before']=terminal_record(saved)
+        for sig in (signal.SIGINT,signal.SIGTERM,signal.SIGHUP):
+            previous[sig]=signal.signal(sig,stop)
+        env={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin',**{k:os.environ[k] for k in ENV_KEYS if k in os.environ}}
+        with os.fdopen(os.dup(fd),'rb',buffering=0) as terminal:
+            report['presentation']=run_cover(['/usr/bin/pcbm-cover','--primary'],terminal,lambda child:None,env=env)
+    except OSError as error:report['error']=type(error).__name__
+    finally:
+        if fd is not None:
+            try:report['cleanup']=restore_tty(fd,saved)
+            finally:os.close(fd)
+        for sig,handler in previous.items():signal.signal(sig,handler)
+        if state is not None:
+            try:
+                state.mkdir(parents=True,exist_ok=True,mode=0o700)
+                atomic(state/'primary-presentation.json',report)
+            except OSError:pass
+    return 0 if report.get('cleanup',{}).get('verified') else 1
+
+
 def main():
     os.umask(0o077)
     if os.geteuid()==0:raise SystemExit('non-root only')
+    if sys.argv[1:]==['primary-presentation']:
+        raise SystemExit(primary_presentation(STATE if MARKER.is_file() else None))
     if sys.argv[1:2] in (['run'],['run-with-cover']):
         profile,exe,*args=sys.argv[2:]
         if Path(exe).parent!=Path('/usr/bin') or Path(exe).name not in MACHINES:raise SystemExit('unsupported emulator')

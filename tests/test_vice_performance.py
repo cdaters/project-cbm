@@ -21,6 +21,15 @@ class Performance(unittest.TestCase):
         for text in (records(80),records(100,1),records(103)):
             self.assertEqual(summarize(text,1,12)['metric_gate'],'FAIL')
 
+    def test_explicit_interval_excludes_warp_and_weights_speed_and_fps(self):
+        text=records(count=22)+'\nVSync: CBM_PERFORMANCE sample=23 seconds=5.01 speed_percent=195 emulated_fps=97.8 warp=1'
+        out=summarize(text,10,21)
+        self.assertEqual(out['metric_gate'],'PASS')
+        self.assertEqual(out['sample_count'],12)
+        self.assertAlmostEqual(out['weighted_emulated_fps'],50.1)
+        self.assertEqual(out['samples'][0]['sample'],10)
+        self.assertEqual(out['samples'][-1]['sample'],21)
+
     def test_missing_duplicate_short_windows_are_not_pass(self):
         for text in (records(count=10),records()+'\n'+records(count=1),records().replace('sample=5','sample=6')):
             self.assertNotEqual(summarize(text,1,12)['metric_gate'],'PASS')

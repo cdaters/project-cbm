@@ -5,7 +5,7 @@ assert Path('/run/systemd/container').read_text().strip()=='pcbm-staging'
 os.chdir('/')
 def run(args,data=None):return subprocess.run(args,input=data,text=True,capture_output=True,timeout=65)
 def request(op,**values):
- p=run(['runuser','-u','pi','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
+ p=run(['runuser','-u','pcbm','--','sudo','-n','--','/usr/libexec/pcbm-config-root'],json.dumps({'schema_version':1,'operation':op,'values':values}))
  assert json.loads(p.stdout)['status']=='ok',op
 secret=secrets.token_urlsafe(24)
 try:

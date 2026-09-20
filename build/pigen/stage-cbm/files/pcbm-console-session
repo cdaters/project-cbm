@@ -4,19 +4,32 @@ set -u
 (( EUID == 1000 )) || exit 1
 [[ $(tty) == /dev/tty1 ]] || exit 1
 export HISTFILE=/dev/null
-cd /home/pi/pcbm || exit 1
+source /usr/libexec/project-cbm/boot-trace.sh
+pcbm_boot_start
+pcbm_boot_mark console_entry
+cd /home/pcbm/content || exit 1
 printf '\033[2J\033[H\n  PROJECT CBM\n  Starting your Commodore computer...\n\n'
+pcbm_boot_mark setup_begin
 # One local setup owner. A failed/cancelled step stays incomplete and is retried.
 while ! /usr/bin/pcbm-first-run; do
   stty sane 2>/dev/null || true
   printf '\nSetup is incomplete. Press Enter to retry; tty2 remains available.\n'
   read -r _
 done
+pcbm_boot_mark setup_done
+pcbm_boot_mark profiles_begin
 /usr/bin/pcbm-profiles initialize >/dev/null 2>&1 || true
+pcbm_boot_mark profiles_done
 profile=$(/usr/bin/pcbm-start-profile) || profile=
+pcbm_boot_mark startup_choice_done
+pcbm_boot_mark primary_begin
+/usr/bin/python3 /usr/libexec/project-cbm/engineering.py primary-presentation || true
+pcbm_boot_mark primary_done
+export PCBM_SPLASH_SHOWN=1
 # At most one direct launch per login: exit/failure returns to Menu, never a loop.
 if [[ -n $profile ]]; then /usr/bin/pcbm-run-vice "$profile";fi
 while true; do
+  pcbm_boot_mark menu_exec
   /usr/bin/pcbm-menu
   stty sane 2>/dev/null || true
   sleep 1

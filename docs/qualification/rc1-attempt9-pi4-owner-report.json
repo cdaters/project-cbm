@@ -1,0 +1,168 @@
+{
+  "format": "project-cbm.physical-owner-attestation",
+  "schema_version": 1,
+  "reported_date": "2026-09-19",
+  "hardware": "Raspberry Pi 4 B",
+  "candidate": "1.1.0-rc.1 / private-engineering-rc1 / attempt9",
+  "raw_image_sha256": "7edc2452529dea92623b07a42036ce74ac7c7b84968d449336cdb4f250578115",
+  "release_lock_sha256": "e586ae09b6ff486239dc93f814171f0ce0dd0f0fe8bf8b62f3c06f96a345fd9f",
+  "source": "Owner report and authenticated-shell identity/numeric/USB/session readback; no automated live SSH access",
+  "PASS": [
+    "fresh flash",
+    "boot completes",
+    "first-boot setup",
+    "Menu Ctrl+Alt+F2/F1",
+    "RUN",
+    "correct machine Cover visible",
+    "VICE launch",
+    "F10 Quit",
+    "responsive Menu return",
+    "subsequent boot",
+    "setup does not rerun",
+    "Wi-Fi persistence",
+    "File Sharing enable and persistence",
+    "Remote Access persistence",
+    "File Sharing copy of reference into demos/c64",
+    "Midnight Commander launch",
+    "normal x64sc C64 performance for kong reference",
+    "normal SID speed",
+    "normal graphics pace"
+  ],
+  "FAIL": [
+    "primary Project CBM boot presentation",
+    "coherent appliance user/content ownership",
+    "USB IMPORT pending cause",
+    "Midnight Commander practical content/USB usability"
+  ],
+  "unreported_functions": "UNTESTED",
+  "boot": {
+    "first_power_to_interactive_menu_seconds_approx": 30,
+    "second_power_to_interactive_menu_seconds_approx": 30,
+    "first_measurement_setup_inclusion": "Not separately established; retain owner-described timing",
+    "kernel_seconds": 2.354,
+    "userspace_seconds": 15.314,
+    "total_seconds": 17.668,
+    "graphical_target_userspace_seconds_approx": 15.308,
+    "getty_tty1_userspace_seconds_approx": 8.261,
+    "units_seconds": {
+      "NetworkManager-wait-online.service": 5.97,
+      "NetworkManager.service": 3.277,
+      "rpi-resize-swap-file.service": 1.285,
+      "e2scrub_reap.service": 1.225,
+      "udisks2.service": 1.17,
+      "smbd.service": 1.132,
+      "rpi-eeprom-update.service": 1.125,
+      "root_device": 0.958,
+      "filesystem_fsck": 0.736,
+      "pcbm-first-boot.service": 0.477,
+      "user@1000.service": 0.466,
+      "user@1001.service": 0.414,
+      "avahi-daemon.service": 0.331,
+      "bluetooth.service": 0.322,
+      "ssh.service": 0.308
+    },
+    "quiet_presentation": "Improved/suppressed rainbow and Linux output",
+    "network_online_wait": "Not on previously observed tty1 chain; do not remove based on blame",
+    "post_getty_delay_cause": "Exact image Type=idle getty plus observed 5.134061-second getty-to-PAM gap support five-second output-scheduling deferral. Remaining power-to-interactive path not fully measured; RC2 instrumentation required."
+  },
+  "performance": {
+    "payload": "kong_arcade_oxyron.prg",
+    "engine": "x64sc",
+    "physical_audiovisual": "PASS",
+    "clock_hz_approx": 1800000000,
+    "temperature_c": 74.5,
+    "throttled": "0x0",
+    "governor": "ondemand",
+    "scaling_cur_freq_khz": 1800000,
+    "memory_total_mib_approx": 1845,
+    "memory_free_mib_approx": 1330,
+    "swap_used": false,
+    "memory_pressure_observed": false,
+    "main_thread_cpu_percent_approx": 86,
+    "audio_thread_cpu_percent_approx": 2,
+    "numeric_log_interval": {
+      "selection": "Samples 10 through 21 inclusive, independently in each launch; skip first nine startup samples; exclude second launch warp samples 23-31",
+      "evidence": "qualification/rc1-attempt9-live-2026-09-19",
+      "results": [
+        {
+          "format": "project-cbm.vice-performance-summary",
+          "schema_version": 1,
+          "selected_samples": [
+            10,
+            21
+          ],
+          "complete": true,
+          "sample_count": 12,
+          "seconds": 60.089,
+          "weighted_speed_percent": 99.99882880394082,
+          "minimum_speed_percent": 99.981,
+          "metric_gate": "PASS",
+          "weighted_emulated_fps": 50.12408107973173,
+          "source": "Owner-pasted numeric-only authenticated RC1 readback, not a copy of the whole vice.log",
+          "launch": "launch-1789868051383015572",
+          "numeric_extract_sha256": "ebdbc6aad5fa916d3bb27c0c4573b07584bfe495285006c53f64713aac3d49e1"
+        },
+        {
+          "format": "project-cbm.vice-performance-summary",
+          "schema_version": 1,
+          "selected_samples": [
+            10,
+            21
+          ],
+          "complete": true,
+          "sample_count": 12,
+          "seconds": 60.092,
+          "weighted_speed_percent": 99.99832729814285,
+          "minimum_speed_percent": 99.959,
+          "metric_gate": "PASS",
+          "weighted_emulated_fps": 50.123830310191046,
+          "source": "Owner-pasted numeric-only authenticated RC1 readback, not a copy of the whole vice.log",
+          "launch": "launch-1789868569182059659",
+          "numeric_extract_sha256": "5d6dfb60fa75d46e7f8e8d6cd9d86734e54f81e213c5acdd48fb9af1ce908f8e"
+        }
+      ],
+      "interpretation": "Metric PASS alongside owner audiovisual PASS; numeric telemetry does not identify payload or prove every workload."
+    },
+    "scope": "Supports Pi4B floor for this exact reference/candidate; not all workloads/configurations"
+  },
+  "owner_authority": {
+    "single_normal_user": "pcbm",
+    "home": "/home/pcbm",
+    "content_path": "Choose coherent path under pcbm home after audit",
+    "RC2": "ONE image only after bounded evidence-supported correction and validation",
+    "live_evidence": "read-only; authenticated sudo; no pi password or permission weakening"
+  },
+  "rights": "Owner reference payload remains private; no redistribution",
+  "live_identity": {
+    "build_id_matches": true,
+    "integration_commit": "8401248a94132b386f9d6804823e0c4e3cd247dc",
+    "all_four_component_versions_and_package_hashes_match": true
+  },
+  "usb_readback": {
+    "transport": "usb",
+    "partition_filesystem": "exfat",
+    "size_bytes": 62757928960,
+    "mounted": false,
+    "udisks2": "active",
+    "cause": "Unchanged RC1 importer reproduced copy_failed on native FAT/exFAT: root-owned mount 0700 under broker umask0077 prevents UID1000 reading. Corrected fixed uid/gid/masks pass native copy/retry/unchanged-media/unmount checks; physical RC2 USB remains UNTESTED.",
+    "owner_final_message": "Some files may have copied. Existing files were preserved. Check free space and diagnostics before retrying; do not remove a drive whose unmount failed."
+  },
+  "live_session_readback": {
+    "getty_active_monotonic_seconds": 10.615686,
+    "user1000_active_monotonic_seconds": 16.313195,
+    "udisks_active_monotonic_seconds": 8.215394,
+    "process_ages_seconds": {
+      "pid1": 2295,
+      "tty_login": 2285,
+      "console_session": 2279,
+      "menu": 2277
+    },
+    "caution": "Current monotonic uptime and prior systemd userspace-relative timings use different origins. Approximate process ages locate a login/session interval, not exact first interactive Menu time.",
+    "journal": {
+      "getty_started_monotonic_seconds": 10.615919,
+      "pam_session_opened_monotonic_seconds": 15.74998,
+      "gap_seconds": 5.134061,
+      "user_manager_start_seconds": 0.466
+    }
+  }
+}

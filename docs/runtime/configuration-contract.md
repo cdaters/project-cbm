@@ -2,14 +2,19 @@
 
 See [networking guide](../release/networking.md) for the complete user workflow.
 `pcbm-info --json --appliance` owns bounded network/service observations (schema 1);
-Menu presents them without probing. First-boot/SSH account is `pcbm`; pi owns
-console/content. File Sharing separately enrolls `pcbm`, forces content writes to pi,
+Menu presents them without probing. The single first-boot/console/SSH account is
+`pcbm` UID 1000; its library is `/home/pcbm/content`. File Sharing separately enrolls
+`pcbm`, writes as that same authenticated user,
 and explicitly enables Avahi discovery on sharing opt-in. On requires unit activity
 and the expected listener; credentials and private stores never enter the projection.
 Default Computer Name is projectcbm, changeable through the existing validated helper.
 The rest of this contract retains request/privilege/recovery boundaries.
 
 # Configuration implementation and activation contract
+
+RC2 source supersedes the earlier dual-account model below: normal Terminal stays
+unprivileged as pcbm; Owner Administration uses password-authenticated `sudo -k`.
+No old-card account migration or general passwordless shell is supplied.
 
 2026-09-17 source addendum: [run2 review](../qualification/poc4-run2-source-review-2026-09-17.md).
 Common selections/Advanced, explicit working/hidden-password feedback and retry-safe

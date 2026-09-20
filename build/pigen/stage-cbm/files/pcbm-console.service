@@ -5,10 +5,10 @@ After=pcbm-first-boot.service systemd-user-sessions.service
 Conflicts=getty@tty1.service
 
 [Service]
-User=pi
-Group=pi
-WorkingDirectory=/home/pi/pcbm
-Environment=HOME=/home/pi
+User=pcbm
+Group=pcbm
+WorkingDirectory=/home/pcbm/content
+Environment=HOME=/home/pcbm
 Environment=TERM=linux
 ExecStart=/bin/bash -lc '/usr/bin/pcbm-menu; exec /bin/bash'
 Restart=always
