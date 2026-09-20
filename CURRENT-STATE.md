@@ -1,3 +1,39 @@
+# Private RC2 complete — exact Pi 4 B qualification next
+
+**READY TO FLASH: YES only with verified external recovery manifest/restore PASS.**
+[Build report](docs/build/private-rc2.md), [exact results](docs/build/private-rc2.json),
+[hash-bound Pi4 procedure](docs/qualification/rc2-pi4b-regression.md).
+One exported RC2 image is attempt11, integration
+`e09a285f199fdcf29c6ad7d5dac92bbfefd262b4`; Menu v1.1.0_rc2 source
+`bcbf61e9e3d263f409b4983b5c2a30d6bf37f18f` (annotated object
+`ab2560a00d3535b5fa4357511bc166f572cab22b`). Runtime/Menu RC2 packages are new
+for this milestone and reused byte-for-byte for the recipe-only retry; VICE/TCPser
+remain unchanged. Failed attempt10 stopped before export and is retained.
+Lock `inputs/frozen-poc4-attempt11/release-lock.json`, SHA-256
+`9831849a3fd12c12528e09d1b7f265d9b03e48ca2819b99f0dfe4583156e7581`.
+Raw SHA-256 `f3b21038c1fc289c58396cb8106348cd3cda514a96548e5c6d0c9277fced1be4`;
+XZ `f4b638100f37d673d9a455015121a8ea753b9bcd2daeca02630cba9e33a24ca9`.
+The inherited filename suffix private-rc1 is cosmetic; installed identity is RC2.
+Use exact report paths/hashes, not inferred filenames.
+
+Product222/222 and Menu99/99 host/native, installed lifecycle12/12, primary/seven
+machine Covers and native account/service/SSH/discovery/MC/ext4/FAT/exFAT checks pass.
+Actual image294 checks,672 package identities,127 ELF objects, filesystems, identity,
+security and raw/XZ equivalence pass; host capabilities/inventory/update guards pass.
+Single pcbm UID1000 and /home/pcbm/content, read-only FAT/exFAT permissions, persistent
+import feedback, primary art and Type=simple getty correction are included. RC2 physical
+visibility, actual boot time and USB usability remain UNTESTED. RC1 physical results
+remain separately recorded; no new model/performance claims.
+
+Recovery `archive/rc2-2026-09-19` external manifest and restore-report are the final
+checksum authority. Builder STOPPED; old candidates, failed attempt, inputs, refs and
+original preservation evidence retained. Independent encrypted custody/public rights/
+complete public bootstrap and independent-build reproducibility remain open.
+Nothing pushed/published. **Next: owner flashes the exact new image and performs the
+Pi4B RC2 regression procedure. STOP for owner physical qualification.**
+
+Older entries below preserve investigation/failure history.
+
 # RC2 attempt10 construction halted; distinct recipe-only retry authorized
 
 Attempt10 lock `50d1e0c2754639f612eba24828d644baf64d310a3f14b54c8fd62c05fdada1f4`

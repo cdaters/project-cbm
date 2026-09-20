@@ -1,0 +1,248 @@
+{
+  "format": "project-cbm.private-rc2-candidate-result",
+  "schema_version": 1,
+  "date": "2026-09-19",
+  "attempt": 11,
+  "product": {
+    "candidate": "private-engineering-rc2",
+    "version": "1.1.0-rc.2"
+  },
+  "integration_commit": "e09a285f199fdcf29c6ad7d5dac92bbfefd262b4",
+  "menu_source": {
+    "commit": "bcbf61e9e3d263f409b4983b5c2a30d6bf37f18f",
+    "ref": "refs/tags/v1.1.0_rc2",
+    "repository": "https://github.com/cdaters/project-cbm-menu",
+    "tag_object": "ab2560a00d3535b5fa4357511bc166f572cab22b"
+  },
+  "physical_baseline": "docs/qualification/rc1-attempt9-pi4-owner-report.json",
+  "packages": {
+    "menu": {
+      "status": "NEW for RC2; exact reuse from halted attempt10 in attempt11",
+      "version": "1.1.0~rc2-1+pcbm1",
+      "filename": "project-cbm-menu_1.1.0~rc2-1+pcbm1_all.deb",
+      "size_bytes": 1294180,
+      "sha256": "a6ceb57e4e7565cc9932d2a624027751349c49885a576bce5226d13847475ec6",
+      "source_commit": "bcbf61e9e3d263f409b4983b5c2a30d6bf37f18f"
+    },
+    "runtime": {
+      "status": "NEW for RC2; exact reuse from halted attempt10 in attempt11",
+      "version": "1.1.0~rc2-1",
+      "filename": "project-cbm-runtime_1.1.0~rc2-1_all.deb",
+      "size_bytes": 67580,
+      "sha256": "26b74b9f4896d1d5abae0cf41d5c75078c49df43eb83a602c85671b850a4bd0f",
+      "source_commit": "54e5351c871a119a2d49077407f712a7eb57d0d5"
+    },
+    "tcpser": {
+      "status": "REUSED from RC1",
+      "version": "1.1.6~beta-1+pcbm1",
+      "filename": "project-cbm-tcpser_1.1.6~beta-1+pcbm1_arm64.deb",
+      "size_bytes": 26872,
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "source_commit": "fe7feff4862406b277e009d14c219f5d16cf1222"
+    },
+    "vice": {
+      "status": "REUSED from RC1",
+      "version": "3.10-1+pcbm4",
+      "filename": "project-cbm-vice_3.10-1+pcbm4_arm64.deb",
+      "size_bytes": 5069684,
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+      "source_commit": null
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt11/release-lock.json",
+    "sha256": "9831849a3fd12c12528e09d1b7f265d9b03e48ca2819b99f0dfe4583156e7581",
+    "objects_verified": 3080
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-rc2-attempt-11/work/export-image/2026-09-19-project-cbm-1.1.0-rc.2-lite-private-rc1.img",
+      "size_bytes": 3095396352,
+      "sha256": "f3b21038c1fc289c58396cb8106348cd3cda514a96548e5c6d0c9277fced1be4",
+      "path": "artifacts/private-rc2-attempt-11/2026-09-19-project-cbm-1.1.0-rc.2-lite-private-rc1.img"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-rc2-attempt-11/image_2026-09-19-project-cbm-1.1.0-rc.2-lite-private-rc1.img.xz",
+      "size_bytes": 598069592,
+      "sha256": "f4b638100f37d673d9a455015121a8ea753b9bcd2daeca02630cba9e33a24ca9",
+      "path": "artifacts/private-rc2-attempt-11/image_2026-09-19-project-cbm-1.1.0-rc.2-lite-private-rc1.img.xz"
+    },
+    "xz_expanded_sha256": "f3b21038c1fc289c58396cb8106348cd3cda514a96548e5c6d0c9277fced1be4",
+    "raw_xz_equivalence": "PASS",
+    "raw_unchanged_after_inspection": true,
+    "external_copy_and_xz_equivalence": "PASS"
+  },
+  "tests": {
+    "Product_host": {
+      "passed": 222,
+      "total": 222
+    },
+    "Product_native": {
+      "passed": 222,
+      "total": 222
+    },
+    "Menu_host": {
+      "passed": 99,
+      "total": 99
+    },
+    "Menu_native": {
+      "passed": 99,
+      "total": 99
+    },
+    "installed_lifecycle": {
+      "passed": 12,
+      "total": 12
+    },
+    "machine_Covers": 7,
+    "primary_artwork_native_decode": true,
+    "repeated_native_lifecycle_cycles": 3,
+    "native_services_accounts_ssh_discovery_dialog_import_utilities": "PASS within fixture scope",
+    "USB_filesystems": [
+      "ext4",
+      "vfat",
+      "exfat"
+    ],
+    "boot_trace_private_fixed_fields": "PASS",
+    "contextual_results": {
+      "retained_failures": [
+        "Initial stale host/native test expectations; final suites pass.",
+        "Native overlay rename EXDEV; copy adapter needed ownership restoration. Sealed RC1 lower unchanged.",
+        "Native service fixture expected old Samba force-user behavior; fixed to assert absence.",
+        "Attempt10 stage-cbm strict JSON rejected fractional duration; no image exported.",
+        "First attempt11 offline invocation used anticipated suffix; actual exporter retained private-rc1 suffix. Read-only validation rerun against actual output.",
+        "Automatic review blocked unguarded evidence copy; absent destinations then proved and exclusive/non-overwriting copies approved.",
+        "Native evidence transfer initially lacked read permission for one root-owned synthetic report; collected via builder sudo without permission weakening."
+      ],
+      "physical_RC2": "UNTESTED",
+      "native_limits": "Isolated network/mount namespaces, SDL dummy display, synthetic USB loops; not physical Pi clients/radio/graphics."
+    }
+  },
+  "offline": {
+    "result": "PASS",
+    "checks": 294,
+    "main": 122,
+    "supplemental": 20,
+    "refinement": 152,
+    "ELF_objects": 127,
+    "installed_packages": 672,
+    "filesystems": "vfat/ext4 PASS",
+    "identity": "RC2 lock/integration/package hashes PASS",
+    "accounts_services_discovery_security_lifecycle_documentation": "PASS",
+    "host_drift": "PASS",
+    "raw_xz_equivalence": "PASS independently in guest and external storage"
+  },
+  "installed_package_manifest": {
+    "path": "qualification/rc2-2026-09-19/packages.json",
+    "sha256": "7eb182d63502c687e3c38477ad0ac9c7a1d58d2fc78bd51378bc9e61e5b9591f",
+    "package_count": 672
+  },
+  "documentation": {
+    "result": "PASS",
+    "release_documents": 11,
+    "local_links": 81,
+    "exact_source_paths": [
+      "build/inputs-poc.json",
+      "build/optional/sid-wizard.json",
+      "build/packages",
+      "build/packages/runtime/debian",
+      "build/packages/tcpser/debian",
+      "build/packages/vice/debian",
+      "build/pigen/config.json",
+      "build/pigen/defaults.json",
+      "build/pigen/exclude-connect.patch",
+      "build/pigen/frozen-export.patch",
+      "build/pigen/stage-cbm",
+      "build/pigen/stage-cbm/00-cbm/00-run.sh",
+      "build/pigen/stage-cbm/EXPORT_IMAGE",
+      "build/pigen/stage-cbm/files",
+      "build/pigen/stage-cbm/prerun.sh",
+      "build/pigen/target-environment.patch",
+      "runtime/config/file-sharing.example.conf",
+      "runtime/data/profiles.json",
+      "runtime/project_cbm/applications.py",
+      "runtime/project_cbm/config_backend.py",
+      "runtime/project_cbm/data.py",
+      "runtime/project_cbm/info.py",
+      "runtime/project_cbm/library.py",
+      "runtime/project_cbm/service_info.py",
+      "runtime/project_cbm/setup.py",
+      "schemas/machine-profiles.schema.json",
+      "tests/native",
+      "tests/test_poc3.py",
+      "tools/benchmark_vice.py",
+      "tools/construct_poc.py",
+      "tools/install_poc_stage.py",
+      "tools/validate_poc_image.py",
+      "tools/vice_performance.py",
+      "tools/vice_presentation.py"
+    ],
+    "commands": "Reviewed against actual argparse, Debian recipes, pi-gen integration and executed private package/freeze/build workflow; illustrative edits are identified",
+    "public_bootstrap": "Explicitly incomplete; three build objectives and exact missing public inputs/initial-lock tooling documented",
+    "private_operator_paths_in_release_guides": false,
+    "credential_patterns": "source review PASS"
+  },
+  "footprint": {
+    "root": {
+      "available_to_user": 639381504,
+      "capacity": 2439266304,
+      "free": 783663104,
+      "used": 1655603200
+    },
+    "boot_used_bytes": 78420992,
+    "native_overlay_allocated_bytes": 18116608,
+    "changed_compressed_packages_bytes": 1361760,
+    "changed_installed_packages_bytes": 1815552,
+    "conservative_remaining_user_margin_bytes": 618087584,
+    "limits": "Native fixture/package allowance, not a physical first-boot or full-OS upgrade peak; expanded capacity depends on media. No nominal card minimum invented."
+  },
+  "construction": {
+    "successful_export_attempt": 11,
+    "wall_seconds": 173.69,
+    "peak_RSS_KiB": 505412,
+    "images_exported": 1,
+    "failed_pre_export_attempt": 10,
+    "failed_lock_sha256": "50d1e0c2754639f612eba24828d644baf64d310a3f14b54c8fd62c05fdada1f4",
+    "failed_tree": "guest builds/private-rc2-attempt-10; retained on external-backed stopped builder disk",
+    "factory": "native arm64 Debian Lima/VZ plain-mode + pinned pi-gen",
+    "reproducibility_proven": false,
+    "legacy_export_suffix": "private-rc1 is inherited filename text; installed product is 1.1.0-rc.2/private-engineering-rc2. Original output names and bytes preserved."
+  },
+  "host_final": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capabilities_before_after": "PASS",
+    "update_guards": "PASS",
+    "AppArmor": "preserved",
+    "frozen_inputs": "PASS",
+    "no_builder_mounts_loops_or_emulators": true,
+    "available_bytes": 42266050560
+  },
+  "recovery": {
+    "path": "archive/rc2-2026-09-19",
+    "verification_authority": "manifest.json + restore-report.json; verify before flashing",
+    "independent_custody": false
+  },
+  "physical_procedure": "docs/qualification/rc2-pi4b-regression.md",
+  "physical_new_candidate": "UNTESTED",
+  "pushed": false,
+  "published": false,
+  "release_readiness": {
+    "RELEASE_BLOCKER": [
+      "RC2 physical acceptance of corrected boot/account/USB usability remains required; no failing offline gate.",
+      "Public release still needs existing third-party rights clearance and complete public bootstrap/input publication."
+    ],
+    "PHYSICAL_QUALIFICATION_REQUIRED": [
+      "Exact RC2 Pi4B procedure; do not infer other hardware or all workloads from RC1 reference PASS."
+    ],
+    "DOCUMENTATION_FOLLOW_UP": [
+      "Record physical outcomes; retain clear public/private build input distinction.",
+      "Normalize inherited exporter suffix before public distribution; exact RC2 artifacts here remain unchanged."
+    ],
+    "OPTIONAL_POST_1_1_IMPROVEMENT": [
+      "Accepted active-VICE VT limitation and further measured startup work where justified."
+    ],
+    "RECOVERY_LIMITATION": [
+      "Independent encrypted custody and independent-clean-build reproducibility remain unproven."
+    ]
+  }
+}
