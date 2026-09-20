@@ -1,3 +1,19 @@
+# RC2 attempt10 construction halted; distinct recipe-only retry authorized
+
+Attempt10 lock `50d1e0c2754639f612eba24828d644baf64d310a3f14b54c8fd62c05fdada1f4`
+passed native/package/frozen gates, then stopped in stage-cbm before image export:
+the defaults declared fractional seconds, rejected by the strict integer JSON reader.
+Failed tree/log/lock retained; post-failure host guard/inventory/mount cleanup PASS.
+Recipe correction uses integer1500ms and fixes the output filename to rc.2. Freeze
+now reads these documents with the actual strict parser before creating a kit.
+Runtime/Menu payloads are unchanged; the retry verifies payload/recipe equality and
+reuses their exact RC2 packages rather than replacing or rebuilding them. Attempt11
+will have distinct integration/lock/build/output paths. No RC2 image has exported.
+Seven focused retry tests pass; previous Product220/Menu99 and installed lifecycle12
+plus account/service/SSH/discovery/USB gates remain valid for unchanged payloads.
+Continue through retry gates, one completed RC2 image, offline validation/recovery,
+then stop for owner Pi4B qualification. READY TO FLASH: NO until all gates pass.
+
 # RC1 physically qualified with release UX defects — RC2 investigation
 
 [Owner RC1 Pi4 report](docs/qualification/rc1-attempt9-pi4-owner-report.json) records

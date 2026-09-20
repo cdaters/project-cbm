@@ -44,8 +44,7 @@
     "rainbow": false,
     "console": "quiet-with-errors",
     "presentation": "supervised-existing-SDL-primary-artwork",
-    "extra_delay_seconds": 1.5,
-    "primary_dwell_seconds": 1.5,
-    "getty_type": "simple"
+    "getty_type": "simple",
+    "primary_dwell_milliseconds": 1500
   }
 }

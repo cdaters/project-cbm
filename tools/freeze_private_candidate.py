@@ -35,6 +35,30 @@ def verify_predecessor(old, workspace):
     return lock
 
 
+
+def runtime_payload_inputs(recipe):
+    """The Debian recipe plus all explicit payload/doc inputs; conservative superset."""
+    files={}
+    for directory in ('runtime','docs/release','build/packages/runtime/debian'):
+        for path in (recipe/directory).rglob('*'):
+            if path.is_file():
+                if path.is_symlink():raise ValueError('runtime input symlink')
+                files[str(path.relative_to(recipe))]=(path.stat().st_mode & 0o777,path.read_bytes())
+    return files
+
+
+def verify_reused_runtime(old,recipe,component,version):
+    if component['package']['version']!=version:raise ValueError('reused Runtime version mismatch')
+    expected=runtime_payload_inputs(recipe);actual={}
+    with tarfile.open(old/component['source']['artifact']['path']) as archive:
+        for member in archive.getmembers():
+            if not member.isfile():continue
+            name=member.name.removeprefix('project-cbm/')
+            if any(name.startswith(prefix) for prefix in ('runtime/','docs/release/','build/packages/runtime/debian/')):
+                actual[name]=(member.mode & 0o777,archive.extractfile(member).read())
+    if actual!=expected:raise ValueError('reused Runtime payload or recipe changed')
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('workspace', type=Path)
@@ -47,6 +71,7 @@ def main():
     p.add_argument('--runtime-version',required=True)
     p.add_argument('--menu-version',required=True)
     p.add_argument('--reuse-menu',action='store_true')
+    p.add_argument('--reuse-runtime',action='store_true')
     p.add_argument('--vice-version')
     p.add_argument('--product-version')
     p.add_argument('--candidate')
@@ -69,6 +94,11 @@ def main():
     for descriptor in export['archives']:
         path=w/descriptor['path']
         if path.stat().st_size!=descriptor['size_bytes'] or hashlib.sha256(path.read_bytes()).hexdigest()!=descriptor['sha256']:raise ValueError('export bytes mismatch')
+    # Use the actual strict installer reader before creating an immutable kit.
+    read_json(recipe/'build/pigen/defaults.json')
+    config=read_json(recipe/'build/pigen/config.json')
+    if a.product_version and config['image_name']!='project-cbm-'+a.product_version:
+        raise ValueError('image filename/product version mismatch')
     old = w/f'inputs/frozen-poc4-attempt{a.previous_attempt}'
     oldraw = (old/'release-lock.json').read_bytes()
     lock = copy.deepcopy(verify_predecessor(old,w))
@@ -144,6 +174,9 @@ def main():
         ('menu', a.menu_version, w/f'inputs/project-cbm-menu-{menu_label}.tar',
          a.menu_commit, 'refs/tags/v'+menu_label, a.menu_tag_object)):
         if name=='menu' and a.reuse_menu:
+            continue
+        if name=='runtime' and a.reuse_runtime:
+            verify_reused_runtime(old,recipe,lock['components']['runtime'],version)
             continue
         debs = list(packages.glob('project-cbm-'+name+'_*.deb'))
         if len(debs) != 1:

@@ -67,3 +67,12 @@ actual-image gates and recovery must all pass before READY TO FLASH. Native/head
 results cannot establish primary visibility, physical USB success, actual boot saving
 or Pi input behavior. RC2 requires one exact-hash Pi 4 B regression procedure. No push,
 publication, Pi 3 tuning or unrelated feature work is authorized here.
+
+## Retained construction failure
+
+Attempt10 stopped before export when the installer rejected fractional1.5 seconds in
+its integer-only JSON configuration. Host integrity remained intact. The distinct
+attempt11 recipe uses1500milliseconds, checks strict parsing before freeze and gives
+the image its correct rc.2 filename. Existing Runtime/Menu package payloads and VICE
+are unchanged; recipe/payload equality is required before exact-package reuse. The
+failed attempt, lock and logs remain evidence; no finished image was overwritten.
