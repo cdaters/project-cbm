@@ -161,3 +161,12 @@ release or a newly qualified hardware model.
 
 After the external recovery checks pass, flash the exact RC3 artifact and perform the
 Pi 4 B procedure. Stop for owner physical results. Nothing was pushed or published.
+
+## Subsequent USB evidence addendum — 2026-09-20
+
+After owner sudo refresh, read-only source collection completed and the drive was
+unmounted. The [source follow-up](../qualification/rc2-usb-source-followup.md) confirms
+three intended D64s, three AppleDouble companions and two Trash PRG entries. RC3's
+existing filter leaves three intended files; original nine remains only partially
+reconstructed. Earlier collection limitations above describe their historical point
+in time. No candidate or package changed; physical RC3 qualification remains required.

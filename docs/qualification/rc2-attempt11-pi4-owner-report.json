@@ -38,5 +38,14 @@
     "display_osd": "HDMI timing/resolution and plug icon appear monitor-generated; no product correction asserted",
     "usb_reconnection_followup": "Owner reattached USB during final reporting. SSH confirms /dev/sda1, USB-backed exFAT, unmounted. Filename-only read-only mount requires refreshed owner sudo authentication; unprivileged udisks authorization was unavailable. No payload copied, import rerun, configuration changed or source mounted. Original nine-file count remains unreconciled."
   },
-  "unreported_functions": "UNTESTED by this report; historical exact-candidate evidence remains separate"
+  "unreported_functions": "UNTESTED by this report; historical exact-candidate evidence remains separate",
+  "usb_source_followup": {
+    "report": "docs/qualification/rc2-usb-source-followup.md",
+    "evidence_manifest_sha256": "1782b92cd1aecfcdfa2b81df82ff4a90efccb0f9471357d89205b56f09f8f09c",
+    "rc2_eligible_current_source": 8,
+    "rc3_eligible_current_source": 3,
+    "original_nine_fully_reconciled": false,
+    "read_only_mount_and_unmount": "PASS",
+    "physical_rc3_import": "UNTESTED"
+  }
 }

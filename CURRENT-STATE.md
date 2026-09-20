@@ -1,3 +1,14 @@
+# RC3 USB evidence addendum — candidate unchanged
+
+[Read-only source follow-up](docs/qualification/rc2-usb-source-followup.md) now confirms
+three intended D64s, three AppleDouble companions and two Trash PRG entries. RC2 would
+admit eight present files; RC3's existing filter admits three. The reported ninth item
+remains unestablished. Read-only mount and independent post-unmount check PASS; no
+payload read/import/configuration change. Full names/hashes stay in private external
+evidence. Additive recovery: archive/rc3-usb-evidence-2026-09-20; original RC3 recovery
+and all frozen identities remain unchanged. READY TO FLASH remains YES; stop for the
+exact RC3 Pi4B owner procedure. No rebuild, push or publication.
+
 # Private RC3 attempt12 complete — Pi 4 B physical qualification next
 
 **READY TO FLASH: YES only with the external recovery manifest and restore PASS.**
