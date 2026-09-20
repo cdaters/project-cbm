@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Actual-image RC1 additions, including the FAT boot partition; never execute target code."""
 import argparse
+import ast
 import json
 from pathlib import Path
 import subprocess
@@ -9,8 +10,29 @@ from build_contracts import read_json
 from validate_release_refinement import inspect as previous_inspect
 
 
-def inspect(root, boot, record, kit):
+def inspect_runtime(root, record, kit):
     result = previous_inspect(root, record, kit)
+    # RC1 extends the existing device query, not the number/scope of probes.
+    # Read literal argv from source without executing installed target code.
+    network = (root/'usr/share/project-cbm/runtime/project_cbm/network_info.py').read_text()
+    constants = {}
+    for node in ast.parse(network).body:
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            if node.targets[0].id in ('IP', 'DEVICES', 'WIFI'):
+                constants[node.targets[0].id] = ast.literal_eval(node.value)
+    expected = {
+        'IP':['/usr/sbin/ip','-j','address','show'],
+        'DEVICES':['/usr/bin/nmcli','--terse','--escape','yes','--fields',
+                   'GENERAL.DEVICE,GENERAL.TYPE,GENERAL.STATE,IP4.GATEWAY,IP4.DNS,IP6.GATEWAY,IP6.DNS','device','show'],
+        'WIFI':['/usr/bin/nmcli','--terse','--escape','yes','--fields','DEVICE,ACTIVE,SSID','device','wifi','list','--rescan','no'],
+    }
+    result['checks']['bounded_fixed_network_queries'] = constants == expected and '--show-secrets' not in network and "'connection'" not in network
+    result['result'] = 'PASS' if all(result['checks'].values()) else 'FAIL'
+    return result
+
+
+def inspect(root, boot, record, kit):
+    result = inspect_runtime(root, record, kit)
     checks = result['checks']
     def text(name):return (root/name).read_text()
     command = (boot/'cmdline.txt').read_text().split()
