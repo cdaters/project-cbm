@@ -34,8 +34,8 @@ def main():
     if subprocess.check_output(['findmnt','-T',str(w),'-no','FSTYPE'],text=True).strip()!='ext4':raise SystemExit('Linux ext4 required')
     if shutil.disk_usage(w).free<40*1024**3:raise SystemExit('insufficient guest build headroom')
     candidate=lock['product']['candidate']
-    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2','private-engineering-rc3','private-engineering-rc4']:raise ValueError('unknown candidate workspace')
-    suffix='private-'+candidate.rsplit('-',1)[1]
+    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release']:raise ValueError('unknown candidate workspace')
+    suffix='release-'+lock['product']['version'] if candidate=='release' else 'private-'+candidate.rsplit('-',1)[1]
     if args.attempt != 1: suffix += '-attempt-'+str(args.attempt)
     work=w/'builds'/suffix;work.mkdir()
     for descriptor in [lock['base']['pi_gen']['source'],lock['integration']['source']]:

@@ -68,6 +68,26 @@ excludes known housekeeping entries, not all possible hidden retro content.
 | Quit does not return cleanly | Stop repeated launches, preserve what is visible and the relevant launch diagnostics if accessible, then report the exact version/machine |
 | POWER/REBOOT fails | Wait for the operation/error message. Use Advanced or SSH for orderly Linux shutdown only if you understand the operation; preserve evidence of the failed normal action |
 
+## SSH reports a changed host identity after reflashing
+
+A fresh installation creates a new SSH host key. If you intentionally reflash the Pi
+and keep its Computer Name, your computer may display **REMOTE HOST IDENTIFICATION
+HAS CHANGED**. First confirm that the address really belongs to the Pi you reflashed.
+An unexpected key change deserves investigation; do not remove a key just to silence it.
+
+After a known, intentional reflash, run these commands on the computer you connect from:
+
+```sh
+ssh-keygen -R projectcbm.local
+ssh-keygen -R projectcbm
+```
+
+If you previously connected by numeric IP, remove that old entry too with
+`ssh-keygen -R <Pi-IP-address>`, substituting its actual address. Reconnect with
+`ssh pcbm@projectcbm.local` and verify/accept the new identity. Use your chosen Computer
+Name in these commands if you changed it. These commands remove remembered host keys;
+they do not change your Pi password or delete your own SSH key.
+
 ## Reporting a problem
 
 Include the Project CBM version, Pi model, what you selected, expected result and actual

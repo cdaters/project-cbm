@@ -16,7 +16,7 @@ def main():
     p.add_argument('--attempt',type=int,required=True);p.add_argument('--menu-tag',required=True)
     p.add_argument('--reuse-menu', action='store_true', help='Export an unchanged exact annotated Menu release; current HEAD may contain later documentation')
     a=p.parse_args();root=Path(__file__).resolve().parents[1];w=a.workspace.resolve(strict=True);menu=a.menu.resolve(strict=True)
-    if not 1<=a.attempt<100 or not re.fullmatch(r'v1\.1\.0_(?:poc4\.[0-9]+|rc[0-9]+)',a.menu_tag):raise ValueError('candidate identity')
+    if not 1<=a.attempt<100 or not re.fullmatch(r'v1\.1\.0(?:_(?:poc4\.[0-9]+|rc[0-9]+))?',a.menu_tag):raise ValueError('candidate identity')
     if not (w/'.project-cbm-workspace.json').is_file():raise ValueError('registered external workspace required')
     for repo in (root,menu):
         if git(repo,'status','--porcelain'):raise ValueError('dirty source: '+str(repo))
@@ -32,6 +32,11 @@ def main():
             with path.open('xb') as stream:subprocess.run(command,stdout=stream,check=True)
         descriptors.append({'path':str(path.relative_to(w)),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'size_bytes':path.stat().st_size})
     result={'attempt':a.attempt,'integration_commit':commit,'menu_commit':mc,'menu_tag':a.menu_tag,'menu_tag_object':git(menu,'rev-parse',a.menu_tag),'archives':descriptors}
+    if a.menu_tag=='v1.1.0':
+        if git(root,'cat-file','-t','v1.1.0')!='tag' or git(root,'rev-parse','v1.1.0^{commit}')!=commit:
+            raise ValueError('final Product source requires exact annotated release tag')
+        result['integration_tag']='v1.1.0'
+        result['integration_tag_object']=git(root,'rev-parse','v1.1.0')
     path=w/'inputs'/f'candidate-export-attempt{a.attempt}.json'
     with path.open('x') as stream:json.dump(result,stream,indent=2);stream.write('\n')
     print(json.dumps(result,indent=2))

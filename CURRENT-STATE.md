@@ -1,3 +1,15 @@
+# Final 1.1.0 release preparation — qualified RC4 basis
+
+Owner [overall RC4 Pi4 B PASS and release acceptance](docs/qualification/rc4-owner-release-acceptance.json)
+is bound to the exact RC4 raw/XZ/lock. Individual checklist results are not invented.
+The XZ was independently rehashed successfully before work. Both repositories started clean.
+[Preparation record](docs/build/final-1.1.0.md) tracks validation and source/notice obligations.
+Feature work is closed. Prepare one final 1.1.0 image with only identity/metadata/docs
+changes; halt on unexpected runtime differences. Full validation, fresh-install/privacy/
+content audits, exact final tags, release staging and recovery are required before review.
+No push, upload or publication. Final image smoke test remains for the owner.
+Assembly64, signing, formal SBOM, bootstrap and extra model qualification remain deferred.
+
 # RC4 attempt14 complete — owner Pi 4 B qualification next
 
 **READY TO FLASH: YES only with the external recovery manifest and restore PASS.**

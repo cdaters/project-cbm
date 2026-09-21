@@ -41,3 +41,5 @@ Detailed contracts: [architecture](architecture.md), [configuration](runtime/con
 they are not instructions for operating the current release.
 
 For Project CBM 1.0 use its [historical guide and corrections](v1.0-current-notes.md).
+
+[Project CBM 1.1.0 release notes](release/release-notes-1.1.0.md) describe the prepared release. Check the download page for publication status.

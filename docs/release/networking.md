@@ -227,3 +227,5 @@ If SSH is refused, verify Remote Access reports On. If sharing rejects a passwor
 check that you used its separate password. If neither service is reachable, check IP,
 normal-networking mode, cable/Wi-Fi and guest-network isolation. See
 [troubleshooting](troubleshooting.md#network-and-services) before collecting logs.
+
+After intentionally reflashing, see [changed SSH host identity](troubleshooting.md#ssh-reports-a-changed-host-identity-after-reflashing) before reconnecting.

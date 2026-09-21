@@ -5,8 +5,8 @@
 Project CBM is a Commodore computer collection operated from a keyboard Menu. It
 starts the emulator for you, keeps your content in one library, and offers ordinary
 setup and network tasks without requiring Linux commands. You can still use Linux
-when you want to. This manual describes the current 1.1 release-candidate software;
-final physical qualification is ongoing, and 1.1 has not yet been publicly released.
+when you want to. This manual describes Project CBM 1.1.0. See the project download
+page for publication status and available images.
 
 For the first power-on, follow [Getting Started](getting-started.md). You do not need
 the builder or developer guides to use an image.

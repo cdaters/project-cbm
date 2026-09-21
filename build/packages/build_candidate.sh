@@ -9,7 +9,7 @@ attempt=${3:?new attempt number}
 menu=${4:?Menu source version, e.g. 1.1.0_rc1}
 selection=${5:-runtime-menu}
 [[ $selection == runtime-menu || $selection == runtime-vice || $selection == runtime-menu-vice ]]
-[[ $attempt =~ ^[1-9][0-9]?$ && $menu =~ ^1\.1\.0_(poc4\.[0-9]+|rc[0-9]+)$ ]]
+[[ $attempt =~ ^[1-9][0-9]?$ && $menu =~ ^1\.1\.0(_(poc4\.[0-9]+|rc[0-9]+))?$ ]]
 out="$w/packages/poc4-attempt$attempt"
 mkdir "$out"
 mkdir "$out/product"

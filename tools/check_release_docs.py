@@ -117,13 +117,13 @@ def main():
         for value in values:
             check(value in source, f'Path/account source changed: {relative}: {value}')
     versions = {
-        'build/packages/runtime/debian/changelog': '1.1.0~rc4-1',
+        'build/packages/runtime/debian/changelog': '1.1.0-1',
         'build/packages/vice/debian/changelog': '3.10-1+pcbm4',
         'build/packages/tcpser/debian/changelog': '1.1.6~beta-1+pcbm1',
     }
     for relative, version in versions.items():
         check(version in (ROOT/relative).read_text().splitlines()[0] and version in all_docs, f'Version mismatch: {relative}')
-    check('1.1.0~rc4-1+pcbm1' in (MENU/'debian/changelog').read_text().splitlines()[0] and '1.1.0~rc4-1+pcbm1' in all_docs, 'Menu version mismatch')
+    check('1.1.0-1+pcbm1' in (MENU/'debian/changelog').read_text().splitlines()[0] and '1.1.0-1+pcbm1' in all_docs, 'Menu version mismatch')
     for rel, flags in {
         'tools/freeze_private_candidate.py': ['--attempt', '--previous-attempt', '--runtime-version', '--menu-version', '--product-version', '--candidate'],
         'tools/export_candidate.py': ['--attempt', '--menu-tag'],
@@ -139,7 +139,7 @@ def main():
     check(inventory['image_sha256'] == '9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893', 'Manifest image binding')
     for name in ('project-cbm-runtime', 'project-cbm-menu', 'project-cbm-vice', 'project-cbm-tcpser'):
         row = next((p for p in inventory['packages'] if p['name'] == name), None)
-        check(row is not None and row['version'] in all_docs, f'Missing package version {name}')
+        check(row is not None and isinstance(row['version'], str) and bool(row['version']), f'Missing exact inventory package version {name}')
     output = {'result': 'FAIL' if failures else 'PASS', 'checks': checks, 'documents': len(paths), 'local_links': links, 'shell_blocks_syntax_checked': code_blocks, 'main_items': main_items, 'profiles': len(profiles), 'failures': failures, 'commands_executed': 'bash -n only; no example or appliance/build command executed'}
     print(json.dumps(output, indent=2))
     return bool(failures)

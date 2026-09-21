@@ -3,8 +3,8 @@
 [Documentation index](../README.md) · [Complete User Manual](user-guide.md)
 
 This is the short route from an image download to Commodore 64 BASIC. Project CBM
-1.1 is currently a release candidate. The instructions describe its intended release
-experience; the final 1.1 download will appear only when the release is published.
+1.1.0 starts with a short setup on the Pi. The download becomes available when
+publication is complete; use the project release page to check availability.
 
 ## Hardware
 
@@ -16,8 +16,8 @@ HDMI audio is the normal starting choice; turn up the display's volume. Ethernet
 optional and is often the easiest network connection. Wi-Fi can be set up on the Pi.
 A controller is optional; the Menu works with a keyboard.
 
-Project CBM 1.1 targets Pi 4 B/400, Pi 5 and Pi 500-class systems. Physical testing
-has established useful Pi 4 B results; other models still need their own testing.
+Project CBM 1.1 targets Pi 4 B/400, Pi 5 and Pi 500-class systems. Pi 4 B is physically
+qualified; the other models are targets that still need their own physical qualification.
 Pi 3/Zero-class systems are unsupported for 1.1: representative Pi 3 B+ VICE testing
 could not sustain the intended real-time experience. This does not mean those machines
 cannot boot the software. No blanket promise is made for every workload or peripheral.
@@ -31,24 +31,24 @@ Do not mistake an older public release for 1.1. The source ZIP is not a bootable
 A SHA-256 checksum is a fingerprint of a file. Compare the result below with the value
 published **for that exact file**. A match detects corruption or unexpected changes;
 it does not independently establish that the publisher or software is trustworthy.
-In these examples, replace `ProjectCBM.img.xz` with your downloaded filename.
+In these examples, replace `project-cbm-1.1.0.img.xz` with your downloaded filename.
 
 macOS Terminal:
 
 ```sh
-shasum -a 256 ProjectCBM.img.xz
+shasum -a 256 project-cbm-1.1.0.img.xz
 ```
 
 Linux terminal:
 
 ```sh
-sha256sum ProjectCBM.img.xz
+sha256sum project-cbm-1.1.0.img.xz
 ```
 
 Windows PowerShell:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\ProjectCBM.img.xz
+Get-FileHash -Algorithm SHA256 .\project-cbm-1.1.0.img.xz
 ```
 
 Do not flash a file whose checksum differs. Download it again and check the version.

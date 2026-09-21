@@ -64,7 +64,7 @@ def verify_output_identity(recipe, config, product_version, candidate):
     if config['image_name']!='project-cbm-'+product_version:
         raise ValueError('image filename version differs from installed identity')
     suffix=candidate.removeprefix('private-engineering-')
-    expected="IMG_SUFFIX='-lite-private-"+suffix+"'"
+    expected="IMG_SUFFIX=''" if candidate=='release' else "IMG_SUFFIX='-lite-private-"+suffix+"'"
     if (recipe/'build/pigen/stage-cbm/EXPORT_IMAGE').read_text().strip()!=expected:
         raise ValueError('image export suffix differs from candidate identity')
 
@@ -88,10 +88,14 @@ def main():
     a = p.parse_args()
     if not 6 <= a.previous_attempt < a.attempt < 100:raise ValueError('distinct increasing attempt required')
     for version in (a.runtime_version,a.menu_version):
-        if not re.fullmatch(r'1[.]1[.]0~(?:poc4[.][0-9]+|rc[0-9]+)-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
+        if not re.fullmatch(r'1[.]1[.]0(?:~(?:poc4[.][0-9]+|rc[0-9]+))?-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
     if bool(a.product_version) != bool(a.candidate):raise ValueError('complete product identity required')
-    if a.candidate and not re.fullmatch(r'private-engineering-rc[0-9]+',a.candidate):raise ValueError('private RC identity required')
-    if a.product_version and not re.fullmatch(r'1[.]1[.]0-rc[.][0-9]+',a.product_version):raise ValueError('RC version required')
+    if a.candidate == 'release':
+        if (a.product_version,a.runtime_version,a.menu_version)!=('1.1.0','1.1.0-1','1.1.0-1+pcbm1'):
+            raise ValueError('final release identity mismatch')
+    else:
+        if a.candidate and not re.fullmatch(r'private-engineering-rc[0-9]+',a.candidate):raise ValueError('private RC identity required')
+        if a.product_version and not re.fullmatch(r'1[.]1[.]0-rc[.][0-9]+',a.product_version):raise ValueError('RC version required')
     menu_label=a.menu_version.rsplit('-',1)[0].replace('~','_')
     runtime_label=a.runtime_version.rsplit('-',1)[0].replace('~','_')
     for pin in (a.integration_commit, a.menu_commit, a.menu_tag_object):
@@ -153,6 +157,11 @@ def main():
 
     integration = w/f'inputs/project-cbm-integration-poc4-attempt{a.attempt}.tar'
     lock['integration']['git']['commit'] = a.integration_commit
+    if a.candidate=='release':
+        if export.get('integration_tag')!='v1.1.0' or not re.fullmatch('[0-9a-f]{40}',export.get('integration_tag_object','')):
+            raise ValueError('final Product tag identity required')
+        lock['integration']['git'].update(ref='refs/tags/v1.1.0',tag_object=export['integration_tag_object'])
+
     lock['integration']['source'] = store(integration)
     lock['base']['configuration'] = store(recipe/'build/pigen/config.json')
     for key, source in [('defaults','build/pigen/defaults.json'),
@@ -193,7 +202,8 @@ def main():
             raise ValueError('reused Menu source bytes differ')
     for name, version, source, commit, ref, tag in (
         ('runtime', a.runtime_version, integration, a.integration_commit,
-         'refs/heads/feature/1.1-build-foundation', None),
+         ('refs/tags/v1.1.0' if a.candidate=='release' else 'refs/heads/feature/1.1-build-foundation'),
+         export.get('integration_tag_object') if a.candidate=='release' else None),
         ('menu', a.menu_version, w/f'inputs/project-cbm-menu-{menu_label}.tar',
          a.menu_commit, 'refs/tags/v'+menu_label, a.menu_tag_object)):
         if name=='menu' and a.reuse_menu:

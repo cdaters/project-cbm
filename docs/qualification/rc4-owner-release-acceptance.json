@@ -1,0 +1,15 @@
+{
+  "format": "project-cbm.owner-physical-attestation",
+  "schema_version": 1,
+  "hardware": "Raspberry Pi 4 B",
+  "candidate": "Project CBM 1.1.0-rc.4 attempt14",
+  "xz_sha256": "f87e0c6fec6a0199974fd77d9624a1d0e851f0e35d1bf1e4577aa852ba79c658",
+  "raw_sha256": "9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893",
+  "release_lock_sha256": "ced936a75aebf2f45d30052da85ba35f00fe9881d0d59f1938b1d64c84c1d5df",
+  "result": "PASS",
+  "disposition": "RC4 ACCEPTED AS PROJECT CBM 1.1.0 RELEASE BASIS",
+  "owner_statement": "Everything tested on RC4 looks good. The owner accepts RC4 as the technical basis for Project CBM 1.1.0.",
+  "individual_check_results": "No separate item-by-item observations supplied; do not infer additional individual PASS results.",
+  "procedure": "rc4-pi4b-regression.md",
+  "evidence_source": "Owner release authorization in this session; no new device tests performed by the agent."
+}

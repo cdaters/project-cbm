@@ -8,7 +8,7 @@ You own the computer, including Linux. Source-based customization is for changin
 **a new image** installs or choosing different software/artwork.
 
 The examples below are instructions for your own future derivative, not changes made
-to the reviewed release candidate. Use source you are entitled to modify, a new branch
+to the Project CBM 1.1.0 release. Use source you are entitled to modify, a new branch
 and your own versions. The current public image bootstrap is incomplete; the
 [build guide](build-your-own.md) explains the exact boundary. These examples do not
 pretend that editing a file alone produces an image.

@@ -11,14 +11,14 @@ library, USB import, network services and the integration that makes them work t
 Linux is still underneath, and you retain normal terminal and administrator access.
 No cloud account is required.
 
-**Project CBM 1.1 is a release candidate, not yet a published final release.**
+**Project CBM 1.1.0 is prepared for release; publication is pending.**
 [GitHub Releases](https://github.com/cdaters/project-cbm/releases) is the download
 location. Check the version there: an older release has its own instructions.
 
 ## Hardware and machines
 
 The 1.1 hardware target starts with Raspberry Pi 4 B and Pi 400, and includes Pi 5
-and Pi 500-class systems where qualified. Pi 4 B has physical test evidence; that
+and Pi 500-class systems where qualified. Pi 4 B is physically qualified; that
 does not establish equivalent qualification for every newer model. Pi 3 and Zero
 families are outside 1.1 support. See [hardware guidance](docs/release/getting-started.md#hardware).
 
