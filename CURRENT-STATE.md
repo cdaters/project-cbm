@@ -1,3 +1,24 @@
+# Final 1.1.0 owner smoke in progress — USB disposition, 2026-09-24
+
+The owner reports everything tested so far works. Recursive import of the selected
+USB partition, preserved relative destination paths and automatic safe unmount
+are accepted 1.1.0 behavior. The conservative `import_client.py` reporting loss is
+explicitly deferred as nonblocking; **do not change the release candidate for it**.
+[Owner disposition and documentation verification](docs/qualification/final-1.1.0-usb-import-disposition.md).
+[Four post-1.1.0 tasks](docs/design/post-1.1-roadmap.md#usb-import-and-content-ingestion--owner-deferred-2026-09-24)
+cover reporting, preview/selection, shared USB/future Assembly64 ingestion and
+separate FILES/MC USB browsing. Existing staged import instructions already describe
+the accepted scan scope and preserved paths. Frozen inputs/packages/images/tags
+and sealed release staging remain unchanged; these are later documentation records.
+
+Next: owner continues unfinished [Pi 4 smoke items](docs/qualification/final-1.1.0-pi4-smoke.md)
+and supplies individual results, hardware/card details and observed available space.
+No overall smoke PASS is inferred. No push or publication is authorized.
+The prior image/recovery checkpoint below remains authoritative for immutable bytes.
+This documentation successor is retained separately under configured bulk storage
+at `archive/final-1.1.0-usb-disposition-2026-09-24`, with exact refs, bundles and
+offline restore checks. Independent encrypted custody remains outstanding.
+
 # Final 1.1.0 attempt15 — prepared for owner review, 2026-09-24
 
 The completed final image was recovered from the stopped Lima guest; it had already

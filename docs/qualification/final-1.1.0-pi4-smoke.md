@@ -1,6 +1,12 @@
 # Project CBM 1.1.0 — owner Pi 4 B final smoke test
 
-Status: **UNTESTED** for this final image. RC4 attempt14 is the owner's accepted
+Status update, 2026-09-24: **IN PROGRESS**. The owner reports everything tested
+so far works and accepts the documented USB import behavior; the reporting fix
+is deferred. [Owner report and disposition](final-1.1.0-usb-import-disposition.md).
+Individual checklist results and overall completion have not yet been supplied.
+Continue unfinished items on the existing image; no reflash or repeat is required.
+
+Initial handoff status: **UNTESTED** for this final image. RC4 attempt14 is the owner's accepted
 technical basis. This brief check confirms the final image's fresh installation and
 unchanged core lifecycle; it does not reopen broad RC4 qualification or add other models.
 [Preparation results](../build/final-1.1.0.md) · [Exact identities](../build/final-1.1.0.json).
