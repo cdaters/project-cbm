@@ -1,3 +1,20 @@
+# Final 1.1.0 preparation recovery — 2026-09-24
+
+The single final attempt15 image was recovered from the stopped guest after completed
+construction, exported without rebuilding, and fully audited against accepted RC4.
+[Final result](build/final-1.1.0.md) and [exact identities](build/final-1.1.0.json) bind
+the artifacts and [owner smoke procedure](qualification/final-1.1.0-pi4-smoke.md).
+
+Additive checkpoint: `archive/final-1.1.0-2026-09-24` beneath configured bulk storage.
+Verify its manifest/checksum and offline restore report before flashing. It retains
+full repository bundles, exact refs/peeled tags, source restoration/fsck, private
+allowlisted evidence, and catalogs of unchanged frozen inputs, packages and images.
+The final source tags remain fixed; later local commits contain records/governance only.
+The original `.DS_Store` content/mtime discrepancy is an owner-authorized excluded
+metadata exception, recorded without altering the historical file or sealed baseline.
+The image and staged archives have no Finder metadata. Independent encrypted custody
+and independent image reproducibility remain outstanding; final Pi 4 smoke is UNTESTED.
+
 > Current 1.1 release-readiness checkpoint: [attempt #7](build/private-poc4-attempt7.md)
 > and [CURRENT-STATE](../CURRENT-STATE.md). Start with the [release documentation](README.md),
 > [actual build walkthrough](release/build-your-own.md) and [factory explanation](release/factory.md).

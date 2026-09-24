@@ -1,3 +1,41 @@
+# Final 1.1.0 attempt15 — prepared for owner review, 2026-09-24
+
+The completed final image was recovered from the stopped Lima guest; it had already
+built successfully on September 21 at 04:41 UTC. The earlier external-only inspection
+did not see it. **No second construction or package rebuild was performed.**
+[Final report](docs/build/final-1.1.0.md), [exact results](docs/build/final-1.1.0.json),
+[owner Pi 4 B smoke procedure](docs/qualification/final-1.1.0-pi4-smoke.md).
+
+Product tag `v1.1.0` remains at `787c275005aaf2c03b2ed769edc815a34ccafc9f`;
+Menu tag `v1.1.0` remains at `7df45cf40eae1ca64cd5740e4b93347e3717bdb4`.
+Later commits record validation/recovery and Finder-metadata policy, not new frozen inputs.
+Lock `inputs/frozen-poc4-attempt15/release-lock.json` SHA-256
+`68d59a178f723c6648191b0af080c0c83b9ad60997ff4d59f4619c6d2b4a2810`.
+
+Staged owner files under configured bulk storage `releases/1.1.0/`:
+
+- `project-cbm-1.1.0.img`: 3,095,396,352 bytes, SHA-256
+  `6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468`.
+- `project-cbm-1.1.0.img.xz`: 599,290,700 bytes, SHA-256
+  `8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d`.
+
+325 actual-image checks, 672 package identities, 127 ELF objects, privacy/fresh-install/
+content/CCGMS, native and external raw/XZ, host guards/capabilities and 505 documentation
+checks PASS. Full RC4 comparison: 54,650 identical entries, 21 explained identity/docs/
+package/generated-cache differences. Runtime/Menu/artwork/ELF/initramfs bytes are identical.
+The final image's physical smoke remains **UNTESTED**; RC4 owner acceptance is preserved.
+
+Evidence: `qualification/final-1.1.0`, including the recovered `guest-checkpoint` and
+`review-2026-09-24`. Recovery: `archive/final-1.1.0-2026-09-24`; its external manifest,
+checksum and offline restore PASS are the readiness authority. Independent encrypted
+custody and independent image reproducibility remain unproven. The original historical
+`.DS_Store` mismatch is an owner-authorized excluded-metadata exception, not a rewritten
+preservation baseline. No Finder metadata is present in the image or staged source archives.
+
+Next: verify recovery and staged SHA256SUMS, then the owner performs the exact-hash
+Pi 4 B smoke procedure and supplies results. No push, tag movement, upload, GitHub
+Release or publication. `.qwen/` and `memory/` remain untracked and excluded.
+
 # Final 1.1.0 release preparation — qualified RC4 basis
 
 Owner [overall RC4 Pi4 B PASS and release acceptance](docs/qualification/rc4-owner-release-acceptance.json)

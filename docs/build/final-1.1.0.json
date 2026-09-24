@@ -1,0 +1,153 @@
+{
+  "format": "project-cbm.final-release-preparation-result",
+  "schema_version": 1,
+  "date": "2026-09-24",
+  "product": {
+    "candidate": "release",
+    "version": "1.1.0"
+  },
+  "attempt": 15,
+  "construction": {
+    "images_built": 1,
+    "resumed_by_rebuilding": false,
+    "checkpoint_discovery": "Completed raw/XZ and successful construction log existed only in the stopped Lima guest. Construction completed 2026-09-21 04:41 UTC; exported and validated 2026-09-24.",
+    "command": "construct_poc.py <frozen-lock> <frozen-kit> /srv/project-cbm --attempt 15",
+    "elapsed_seconds": 177.34,
+    "maximum_resident_set_kib": 503440
+  },
+  "source": {
+    "product": {
+      "commit": "787c275005aaf2c03b2ed769edc815a34ccafc9f",
+      "tag": "v1.1.0",
+      "tag_object": "627937867f59b76ea5c3c96fdbb14ebd47ed507f"
+    },
+    "menu": {
+      "commit": "7df45cf40eae1ca64cd5740e4b93347e3717bdb4",
+      "ref": "refs/tags/v1.1.0",
+      "repository": "https://github.com/cdaters/project-cbm-menu",
+      "tag_object": "9f471a2ddd7492d041d9563809e301da9c79ed57"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt15/release-lock.json",
+    "sha256": "68d59a178f723c6648191b0af080c0c83b9ad60997ff4d59f4619c6d2b4a2810",
+    "objects_verified": 3175
+  },
+  "packages": {
+    "menu": {
+      "version": "1.1.0-1+pcbm1",
+      "sha256": "59e90927b305a9bd442cc807536b5d57a2a2ed14bda27fe2d35d0b56f6eb6a19",
+      "status": "existing final package reused; no rebuild"
+    },
+    "runtime": {
+      "version": "1.1.0-1",
+      "sha256": "78400478078ffa93f96e431f20e7097e553f5e392663125232ad00d1b0770455",
+      "status": "existing final package reused; no rebuild"
+    },
+    "tcpser": {
+      "version": "1.1.6~beta-1+pcbm1",
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "status": "unchanged RC4 package reused"
+    },
+    "vice": {
+      "version": "3.10-1+pcbm4",
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+      "status": "unchanged RC4 package reused"
+    }
+  },
+  "artifacts": {
+    "raw": {
+      "size_bytes": 3095396352,
+      "sha256": "6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468",
+      "guest_path": "builds/release-1.1.0-attempt-15/work/export-image/2026-09-20-project-cbm-1.1.0.img",
+      "path": "artifacts/release-1.1.0-attempt-15/2026-09-20-project-cbm-1.1.0.img",
+      "staged_path": "releases/1.1.0/project-cbm-1.1.0.img"
+    },
+    "xz": {
+      "size_bytes": 599290700,
+      "sha256": "8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d",
+      "guest_path": "artifacts/release-1.1.0-attempt-15/image_2026-09-20-project-cbm-1.1.0.img.xz",
+      "path": "artifacts/release-1.1.0-attempt-15/image_2026-09-20-project-cbm-1.1.0.img.xz",
+      "staged_path": "releases/1.1.0/project-cbm-1.1.0.img.xz"
+    }
+  },
+  "validation": {
+    "result": "PASS",
+    "actual_image_checks": 325,
+    "main_checks": 119,
+    "supplement_checks": 20,
+    "corrective_checks": 186,
+    "installed_packages": 672,
+    "elf_objects": 127,
+    "filesystems_units_security_services": "PASS",
+    "fresh_install_privacy_content": "PASS",
+    "CCGMS_only_disk_source_notices": "PASS",
+    "raw_xz_native_and_external": "PASS",
+    "documentation_checks": 505,
+    "native_product_tests": 244,
+    "native_menu_tests": 102,
+    "installed_lifecycle_tests": 12,
+    "native_results": "Retained preconstruction final-package evidence: services/admin/SSH/discovery, USB, CCGMS first/relaunch, G71 and boot handoff PASS; not newly claimed Pi tests."
+  },
+  "equivalence": {
+    "result": "PASS",
+    "identical_filesystem_entries": 54650,
+    "explained_differences": 21,
+    "runtime_Menu_artwork_ELF_initramfs": "BYTE_IDENTICAL to accepted RC4",
+    "unexplained_runtime_differences": [],
+    "detail": "qualification/final-1.1.0/review-2026-09-24/final-assessment.json",
+    "caches": "APT package graph changes only final package versions/dependency/status size; linker auxiliary 500 library records match; changelog observation timestamps and two final changelogs differ."
+  },
+  "footprint": {
+    "available_to_user": 639467520,
+    "capacity": 2439266304,
+    "free": 783749120,
+    "used": 1655517184
+  },
+  "maintenance_margin": "639467520 bytes currently available to unprivileged user before first-boot expansion; future update margin not independently qualified",
+  "expanded_user_capacity": "UNTESTED until owner smoke on selected card; no nominal 8 GB requirement",
+  "ccgms": {
+    "disk_sha256": "495e97ec5e6f51c454abf30858ea7429e85c8f7ec81d278097ac9bdfa3258e27",
+    "program_sha256": "baab211ac345aa9b486f70bbf1f7dfdfa7d056a67229dfad5668b7c8e0879076",
+    "source_sha256": "201c98d03db53f649a9e9a18eb62a7b9b24e5051db3c5af1c32a410e02ef3d18",
+    "entries": 1,
+    "excluded_unrelated_files": 7,
+    "license": "BSD-3-Clause"
+  },
+  "host": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "matches_original_preconstruction": true,
+    "update_guards": "PASS",
+    "capabilities_before_after": "PASS",
+    "no_builder_mounts_loops_or_emulators": true,
+    "guest_available_bytes": 45018320896
+  },
+  "preservation": {
+    "release_inputs_packages_sources": "PASS",
+    "RC4_image_and_owner_acceptance": "PASS",
+    "original_historical_inventory": "PASS except owner-authorized non-release-affecting .DS_Store content/mtime exception; original file and sealed manifest untouched",
+    "exception_path": "TheVerySecond/_notPart/.DS_Store",
+    "frozen_lock_or_image_reference_to_exception": false,
+    "other_historical_inventories": "PASS"
+  },
+  "recovery": {
+    "path": "archive/final-1.1.0-2026-09-24",
+    "authority": "manifest.json, manifest.json.sha256 and restore-report.json must verify before flashing",
+    "independent_encrypted_custody": false,
+    "independent_reproducibility": false
+  },
+  "staging": "releases/1.1.0",
+  "evidence": "qualification/final-1.1.0",
+  "physical": {
+    "accepted_basis": "RC4 attempt14, owner Raspberry Pi 4 B PASS",
+    "final_smoke": "UNTESTED; owner next action",
+    "procedure": "docs/qualification/final-1.1.0-pi4-smoke.md",
+    "other_models": "No new claims"
+  },
+  "frozen_tags_moved": false,
+  "packages_rebuilt": false,
+  "pushed": false,
+  "published": false,
+  "readiness": "READY FOR OWNER REVIEW subject to verified external recovery manifest; final Pi 4 smoke pending"
+}
