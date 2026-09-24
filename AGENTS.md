@@ -138,6 +138,11 @@ and [host/target environment boundary](docs/build/environment-boundary.md).
   normalization, deduplication, cleanup or execution in place. Preservation manifests
   and bundles are in ProjectCBM-Work/archive/preservation-2026-09-15. Verify manifests
   after preservation work; never regenerate a baseline to conceal a mismatch.
+- Exclude `.DS_Store` Finder metadata from Git, active source/build staging and
+  release artifacts. Remove it from active areas when safe. Preserve sealed
+  historical files/manifests; record a Finder-only mismatch as an owner-authorized
+  non-release-affecting exception after verifying it is outside the frozen release
+  dependency graph and cannot affect the image or qualified-basis equivalence.
 - TheBench is unencrypted APFS with ownership disabled; permissions are not encryption,
   and APFS is not a Linux rootfs. Separate private history from derived public inputs.
   Record sensitive-file presence/type, never contents, in reports or Git. Exclude
