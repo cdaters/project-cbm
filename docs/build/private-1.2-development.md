@@ -29,6 +29,17 @@ new evidence directory. It does not alter attempt18's frozen lock, recipes, pack
 or image. No second image construction is warranted by this validator-only fix.
 The source checkpoint is still **BLOCKED: final image validation and recovery**.
 
+The corrected main validation then passed, as did filesystem/ELF and supplemental
+checks. The inherited content validator exposed a second inspection-only defect:
+its AST lookup expected `HOST_METADATA` inside the old importer, but 1.2 imports
+the unchanged policy from `usb_discovery.py`. It stopped before a result. The
+correction verifies the exact relative import and reads the installed shared policy
+without executing it. Tests reject missing/broadened metadata policies and cover
+both the stable inline and development shared definitions. Those successful checks
+remain retained; only unfinished checks need continuing. A transfer-permission
+harness failure created an empty validation2 directory before image inspection;
+it and its log are retained separately from validation3 results.
+
 ## Retained failed attempts and authenticated retry
 
 Attempt16 froze Product `aefc08e`, Menu `7c12a40` / annotated private

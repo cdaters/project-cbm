@@ -11,6 +11,16 @@ from validate_rc1 import inspect_runtime
 from development_identity import development_number
 
 
+def narrow_metadata_policy(source):
+    tree = ast.parse(source)
+    value = next((n.value for n in tree.body if isinstance(n, ast.Assign)
+                  and any(isinstance(t, ast.Name) and t.id == 'HOST_METADATA' for t in n.targets)), None)
+    if value is None:
+        return False
+    metadata = ast.literal_eval(value)
+    return metadata == {'.DS_Store','.Spotlight-V100','.Trashes','.fseventsd','.TemporaryItems','.VolumeIcon.icns','.AppleDouble','System Volume Information','$RECYCLE.BIN'} and "name.startswith('._')" in source
+
+
 def inspect(root, boot, record, kit):
     result = inspect_runtime(root, record, kit, single_user=True)
     checks = result['checks']
@@ -60,8 +70,14 @@ def inspect(root, boot, record, kit):
     checks['ready_dialog_handoff'] = 'pcbm_boot_handoff' in text('usr/bin/pcbm-menu') and 'pcbm_boot_handoff' in text('usr/share/project-cbm-menu/pcbm-ui.sh')
     checks['getty_quiet_only_tty1'] = '--skip-login --noissue --nohostname' in text('etc/systemd/system/getty@tty1.service.d/autologin.conf') and '--skip-login' not in text('etc/systemd/system/getty@tty2.service.d/autologin.conf')
     checks['metadata_filter_before_traversal'] = 'if host_metadata(name):ignored_metadata+=1;continue' in importer and importer.index('if host_metadata(name)') < importer.index('if stat.S_ISDIR(status.st_mode)')
-    tree=ast.parse(importer);metadata=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='HOST_METADATA' for t in n.targets))
-    checks['narrow_metadata_names'] = metadata=={'.DS_Store','.Spotlight-V100','.Trashes','.fseventsd','.TemporaryItems','.VolumeIcon.icns','.AppleDouble','System Volume Information','$RECYCLE.BIN'} and "name.startswith('._')" in importer
+    metadata_source = importer
+    if development_number(read_json(kit/'release-lock.json')['product']):
+        checks['shared_metadata_policy_import'] = any(
+            isinstance(n, ast.ImportFrom) and n.level == 1 and n.module == 'usb_discovery'
+            and {(a.name, a.asname) for a in n.names} == {('HOST_METADATA', None), ('host_metadata', None)}
+            for n in ast.parse(importer).body)
+        metadata_source = text('usr/share/project-cbm/runtime/project_cbm/usb_discovery.py')
+    checks['narrow_metadata_names'] = narrow_metadata_policy(metadata_source)
     checks['separate_content_metadata_counts'] = 'content files' in text('usr/libexec/project-cbm-menu/pcbm_config_bridge.py') and 'ignored_metadata' in text('usr/libexec/project-cbm-menu/pcbm_config_bridge.py')
     hook=root/'etc/initramfs-tools/hooks/pcbm-quiet-fsck'
     checks['quiet_fsck_hook_installed'] = hook.is_file() and hook.stat().st_mode&0o777==0o755

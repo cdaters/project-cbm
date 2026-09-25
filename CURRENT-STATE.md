@@ -17,7 +17,10 @@ new evidence directory; it does not refreeze or rebuild completed construction.
 
 Evidence: `qualification/content-1.2-dev1-resume-2026-09-25` and the retained failed
 `qualification/content-1.2-dev1-attempt18` under configured storage. Attempts16/17
-and logs are retained. Next: corrected actual-image validation, raw/XZ export and
+and logs are retained. Main image, filesystem/ELF and supplemental checks now PASS. The content validator
+requires a second inspection-only correction to follow the shared metadata policy;
+its two focused stable/development policy tests PASS. Preserve successful results.
+Next: complete corrected content validation, raw/XZ export and
 verification, additive recovery, then owner Pi4 handoff. Physical UNTESTED; private
 NON-RELEASE only. Stable 1.1 tags/artifacts are untouched; no publication.
 
