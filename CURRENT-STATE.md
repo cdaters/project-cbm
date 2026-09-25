@@ -1,3 +1,23 @@
+# Assembly64 protocol comparison — 2026-09-25
+
+[Protocol evidence and limits](docs/design/assembly64-protocol-study-2026-09-25.md):
+seven bounded metadata GET variants with one honest Project CBM identity return
+JSON464; the same-identity OpenAPI control returns200 and its bytes are unchanged.
+The public endpoint selects HTTP/1.1 and refuses an HTTP/2-only ALPN handshake.
+GET/JSON is documented. HTTP/HTTPS, ALPN, Accept and encoding/connection variants
+do not resolve the error. No cause, including admission rejection or hidden backend
+protocol misconfiguration, is established. No provider-specific 464 definition found.
+
+Exact next technical step: identify the component/condition producing this JSON464
+using its error definition or a backend trace; do not frame 464 as proven admission
+denial. No provider message sent. No foreign identity/credential, POST, hosted-title
+download, network-client implementation, image/package/tag or builder change.
+Evidence: `qualification/assembly64-protocol-study-2026-09-25`; additive recovery:
+`archive/assembly64-protocol-study-2026-09-25`, whose manifest and offline-restore
+report are completion authority. Independent custody remains outstanding.
+The accepted Online Library gate remains unresolved; physical attempt18 testing
+continues independently, with no new owner results yet. Earlier findings follow.
+
 # Assembly64 reference access audit — 2026-09-25
 
 [Complete A/B/C/D findings](docs/design/assembly64-reference-audit-2026-09-25.md):

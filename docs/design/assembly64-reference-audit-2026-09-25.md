@@ -1,5 +1,12 @@
 # Assembly64 reference and Ultimate Elite II access audit — 2026-09-25
 
+**Subsequent protocol study:** [controlled GET/ALPN comparison](assembly64-protocol-study-2026-09-25.md)
+tests the transport hypothesis with an honest Project CBM identity. HTTP/1.1 is
+selected, HTTP/2-only TLS is refused, and the tested metadata variants still return
+JSON464 while documentation returns200. Neither admission rejection nor a hidden
+backend protocol fault is established. The no-probe statements below describe this
+earlier reference-only audit; the later bounded tests have separate retained evidence.
+
 The reviewed material establishes the protocol and two clients' implementation
 choices. It does **not** establish a mandatory registration/permission process, nor
 does it explain Project CBM's previously observed HTTP 464 responses. None of the

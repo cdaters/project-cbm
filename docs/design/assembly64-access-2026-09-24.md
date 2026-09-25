@@ -6,6 +6,15 @@ continues independently. This addendum supplements the accepted
 
 ## Qualification-preparation review
 
+**Later September 25 protocol investigation:** the owner's authorized
+[controlled comparison](assembly64-protocol-study-2026-09-25.md) reproduces JSON464
+across reference-equivalent GET semantics with honest Project CBM identification.
+The public TLS endpoint selects HTTP/1.1 and refuses HTTP/2-only negotiation. The
+same-identity current schema returns200 and documents GET/JSON. No tested protocol
+change resolves 464, but no admission denial is established either. Historical
+“rejection” language below describes a failed HTTP response, not its proven cause.
+The next technical question is which backend component/condition emits JSON464.
+
 **September 25 correction:** the subsequent
 [reference/Elite II audit](assembly64-reference-audit-2026-09-25.md) exhausts the
 accessible local code/history, public issues/releases and official documentation.
