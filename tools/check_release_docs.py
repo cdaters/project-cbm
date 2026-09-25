@@ -136,10 +136,13 @@ def main():
             check(flag in source, f'Documented CLI flag missing: {rel} {flag}')
     inventory = json.loads((ROOT/'docs/release/installed-packages.json').read_text())
     check(inventory['package_count'] == len(inventory['packages']) == 672, 'Installed package manifest count')
-    check(inventory['image_sha256'] == '9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893', 'Manifest image binding')
+    final_result = json.loads((ROOT/'docs/build/final-1.1.0.json').read_text())
+    check(inventory['image_sha256'] == final_result['artifacts']['raw']['sha256'], 'Manifest final image binding')
     for name in ('project-cbm-runtime', 'project-cbm-menu', 'project-cbm-vice', 'project-cbm-tcpser'):
         row = next((p for p in inventory['packages'] if p['name'] == name), None)
         check(row is not None and isinstance(row['version'], str) and bool(row['version']), f'Missing exact inventory package version {name}')
+        component = name.removeprefix('project-cbm-')
+        check(row is not None and row['version'] == final_result['packages'][component]['version'], f'Final inventory package mismatch: {name}')
     output = {'result': 'FAIL' if failures else 'PASS', 'checks': checks, 'documents': len(paths), 'local_links': links, 'shell_blocks_syntax_checked': code_blocks, 'main_items': main_items, 'profiles': len(profiles), 'failures': failures, 'commands_executed': 'bash -n only; no example or appliance/build command executed'}
     print(json.dumps(output, indent=2))
     return bool(failures)

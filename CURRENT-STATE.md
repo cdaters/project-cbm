@@ -10,11 +10,15 @@ the manuals now explain that choice at setup. No runtime/package/image/tag chang
 USB disposition/backlog at `3df8f06` remains settled and is not reopened.
 
 [Publication plan and exact asset list](docs/build/final-1.1.0-publication-plan.md)
-identify the new `releases/1.1.0-publication-review-2026-09-24` directory under
+identify the new `releases/1.1.0-publication-review-2026-09-24-r2` directory under
 configured bulk storage. Original `releases/1.1.0` and historical recovery remain
 sealed; successor recovery is `archive/final-1.1.0-publication-review-2026-09-24`.
 New qualification/verification evidence is under
 `qualification/final-1.1.0/publication-review-2026-09-24`.
+The old staged JSON package inventory was RC4-bound; the final TSV was correct.
+The publication JSON is regenerated from that retained actual-image TSV, with
+final image/package bindings checked. The incomplete first review set remains
+retained; only the `-r2` set is for publication. No runtime bytes changed.
 Only owner publication authorization remains. No commits/tags pushed, GitHub Release,
 image upload or publication. `.qwen/` and `memory/` remain untracked and excluded.
 

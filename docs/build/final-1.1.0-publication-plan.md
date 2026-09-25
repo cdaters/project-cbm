@@ -27,9 +27,9 @@ image inputs. The clarified manuals do not replace documentation inside the imag
 ## Exact public assets
 
 All paths in the table are relative to configured bulk storage:
-`releases/1.1.0-publication-review-2026-09-24/`.
+`releases/1.1.0-publication-review-2026-09-24-r2/`.
 On this host the complete prefix is
-`/Volumes/TheBench/ProjectCBM-Work/releases/1.1.0-publication-review-2026-09-24/`.
+`/Volumes/TheBench/ProjectCBM-Work/releases/1.1.0-publication-review-2026-09-24-r2/`.
 **Attach each of these 20 files to the Product GitHub Release.** No directory
 wildcard, private recovery bundle, lock/kit, development directory or other file
 is part of the upload plan. `SHA256SUMS` binds the other 19 assets; the manifest
@@ -90,8 +90,9 @@ metadata, Git state, host paths or private records:
 - `docs/release/user-guide.md`
 - `docs/release/vice.md`
 
-Most manual bytes are reused from verified staging, including its final-image
-package inventory and portable technical links. The networking guide, user guide
+Most manual bytes are reused from verified staging, including its portable
+technical links. The final-image JSON package inventory is regenerated from the
+retained actual-image validator TSV; the old staged JSON incorrectly described RC4. The networking guide, user guide
 and release notes receive the small documentation update; the archive index is
 made publication-neutral. Existing frozen source archives are copied byte-for-byte.
 GitHub's automatically generated tag source archives are supplementary; they do
@@ -118,6 +119,19 @@ not replace any corresponding-source assets in this list.
    text and hash are available in the review set before authorization.
 6. Verify public asset hashes and published tag objects after upload; record the
    actual publication result separately. This is a future action, not a claimed pass.
+
+## Documentation inventory correction
+
+The first publication staging check rejected the old JSON package inventory: it
+was bound to RC4 and listed RC4 Runtime/Menu versions. The retained final-image
+validator TSV and staged TSV are identical (SHA-256
+`0a475b0c0112c797819852294df6af0d030e4cf5e6e6ddd30771506883ff6ed8`)
+and contain the correct final versions. The existing manifest exporter regenerates
+the JSON from those actual observations, bound to the qualified final raw hash.
+The documentation checker now checks final-image identity and all four Project CBM
+package versions. This corrects publication metadata only; no package/image change.
+Original sealed staging and the incomplete first publication staging directory
+are retained. The `-r2` directory is the sole complete reviewed publication set.
 
 ## Verification and retained records
 

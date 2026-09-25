@@ -1,8 +1,8 @@
 {
   "format": "project-cbm.installed-package-manifest",
   "schema_version": 1,
-  "image_sha256": "9b9db76e42141ad1043cfaeef2ba148ca9e7dbd034de51b4555b5852f0d4a893",
-  "inventory_sha256": "df6c516b65170dcaea2c6486e80277a6f78f3775bc32f4cabc1d963ad28e19f0",
+  "image_sha256": "6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468",
+  "inventory_sha256": "0a475b0c0112c797819852294df6af0d030e4cf5e6e6ddd30771506883ff6ed8",
   "package_count": 672,
   "packages": [
     {
@@ -3163,15 +3163,15 @@
     },
     {
       "name": "project-cbm-menu",
-      "version": "1.1.0~rc4-1+pcbm1",
+      "version": "1.1.0-1+pcbm1",
       "architecture": "all",
       "installed_size_kib": 1507
     },
     {
       "name": "project-cbm-runtime",
-      "version": "1.1.0~rc4-1",
+      "version": "1.1.0-1",
       "architecture": "all",
-      "installed_size_kib": 305
+      "installed_size_kib": 309
     },
     {
       "name": "project-cbm-tcpser",

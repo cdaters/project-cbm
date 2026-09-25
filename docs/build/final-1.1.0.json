@@ -154,6 +154,12 @@
   "pushed": false,
   "published": false,
   "readiness": "READY FOR PUBLICATION AUTHORIZATION; owner authorization is the only remaining gate",
-  "publication_review_staging": "releases/1.1.0-publication-review-2026-09-24",
-  "publication_review_recovery": "archive/final-1.1.0-publication-review-2026-09-24"
+  "publication_review_staging": "releases/1.1.0-publication-review-2026-09-24-r2",
+  "publication_review_recovery": "archive/final-1.1.0-publication-review-2026-09-24",
+  "publication_review_validation": {
+    "documentation_checks": 509,
+    "package_manifest_tests": 2,
+    "inventory_correction": "Regenerated stale RC4 JSON from retained final-image packages.tsv; TSV and image/package bytes unchanged",
+    "inventory_tsv_sha256": "0a475b0c0112c797819852294df6af0d030e4cf5e6e6ddd30771506883ff6ed8"
+  }
 }
