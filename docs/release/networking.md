@@ -197,6 +197,9 @@ to TCPser, which makes the network connection. No Ultimate Ethernet cartridge is
 3. In CCGMS press **F7** for Dialer/Parameters. Press **M** until Modem Type reads
    **Swift / Turbo DE**, **B** until Baud Rate reads **2400**, and use **Standard**
    firmware with **Full** duplex. Press **Return** to return to the terminal.
+   **Swift / Turbo DE is required for the shipped configuration:** Project CBM
+   enables VICE's SwiftLink/ACIA interface at **$DE00**. CCGMS's **User Port
+   300-2400** driver does not match that interface; change it if initially selected.
 4. Type `AT` and press Return. The modem should answer `OK`. If it does not, check
    BBS / Modem is On and recheck those settings before trying a remote address.
 5. Use the hostname and port published by a BBS you are permitted to visit. Type

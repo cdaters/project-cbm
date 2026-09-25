@@ -1,5 +1,19 @@
 # Project CBM 1.1.0 release preparation
 
+## Final physical completion, 2026-09-24
+
+**READY FOR PUBLICATION AUTHORIZATION.** The owner reports the final attempt15
+Raspberry Pi 4 B smoke **PASS**, including an actual CCGMS/TCPser BBS connection,
+reboot/persistence and shutdown. [Exact attestation](../qualification/final-1.1.0-pi4-owner-pass.json).
+No physical check was repeated; the Pi is shut down. No package, frozen input,
+image or tag was modified. Only release documentation and qualification records
+have advanced. The [publication plan](final-1.1.0-publication-plan.md) identifies
+the separate review set, exact assets and proposed Git/GitHub actions.
+Owner publication authorization is the only remaining gate; nothing is published.
+Earlier preparation observations below retain their historical sequence.
+
+## Original preparation and completed image audit
+
 The owner accepted [qualified RC4](../qualification/rc4-owner-release-acceptance.json)
 as the final technical basis. The exact RC4 compressed hash was independently verified
 before preparation. Individual checklist observations were not supplied and are not
@@ -39,7 +53,7 @@ release blockers. Pi4 B is qualified; other model claims remain appropriately li
 
 ## Completed preparation, 2026-09-24
 
-**READY FOR OWNER REVIEW, conditional on the external recovery manifest and restore
+Initial handoff: **READY FOR OWNER REVIEW, conditional on the external recovery manifest and restore
 report verifying PASS. Final-image physical smoke remains UNTESTED.**
 [Exact results](final-1.1.0.json) and the [Pi 4 B smoke procedure](../qualification/final-1.1.0-pi4-smoke.md)
 bind the final files, source identities and remaining owner action.
@@ -129,5 +143,6 @@ restoration/fsck, retained input/artifact catalogs and checksum manifests. Verif
 external `manifest.json.sha256` and `restore-report.json` before flashing. This is
 same-volume recovery; independent encrypted custody remains outstanding.
 
-The next action is the owner's final Pi 4 B smoke test. Existing RC4 acceptance remains
+At the initial handoff, the next action was the owner's final Pi 4 B smoke test.
+That test is now PASS as recorded above. Existing RC4 acceptance remains
 the physical basis. No new hardware claims, final-tag changes, push, upload or publication.

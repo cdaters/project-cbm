@@ -1,5 +1,15 @@
 # Project CBM 1.1.0 — owner Pi 4 B final smoke test
 
+Final owner result, 2026-09-24: **PASS — COMPLETE** on the exact final attempt15
+raw/XZ identities below. The owner reports a working live CCGMS/TCPser BBS connection
+using **Swift / Turbo DE** at **$DE00**, successful reboot/persistence and shutdown.
+The Pi is shut down. [Exact owner attestation](final-1.1.0-pi4-owner-pass.json)
+records the supplied observations and their limits. Do not repeat completed tests.
+The next action is review of the [publication set](../build/final-1.1.0-publication-plan.md),
+followed by explicit owner publication authorization; none has been granted.
+
+## Historical procedure and intermediate status
+
 Status update, 2026-09-24: **IN PROGRESS**. The owner reports everything tested
 so far works and accepts the documented USB import behavior; the reporting fix
 is deferred. [Owner report and disposition](final-1.1.0-usb-import-disposition.md).

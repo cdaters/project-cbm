@@ -105,7 +105,7 @@
     "used": 1655517184
   },
   "maintenance_margin": "639467520 bytes currently available to unprivileged user before first-boot expansion; future update margin not independently qualified",
-  "expanded_user_capacity": "UNTESTED until owner smoke on selected card; no nominal 8 GB requirement",
+  "expanded_user_capacity": "Owner final smoke PASS; card capacity and measured expanded free bytes were not supplied. No numeric value inferred.",
   "ccgms": {
     "disk_sha256": "495e97ec5e6f51c454abf30858ea7429e85c8f7ec81d278097ac9bdfa3258e27",
     "program_sha256": "baab211ac345aa9b486f70bbf1f7dfdfa7d056a67229dfad5668b7c8e0879076",
@@ -141,13 +141,19 @@
   "evidence": "qualification/final-1.1.0",
   "physical": {
     "accepted_basis": "RC4 attempt14, owner Raspberry Pi 4 B PASS",
-    "final_smoke": "UNTESTED; owner next action",
+    "final_smoke": "PASS; owner completed exact final attempt15 Pi 4 B smoke",
     "procedure": "docs/qualification/final-1.1.0-pi4-smoke.md",
-    "other_models": "No new claims"
+    "other_models": "No new claims",
+    "ccgms_tcpser_live_bbs": "PASS",
+    "reboot_persistence_shutdown": "PASS",
+    "owner_attestation": "docs/qualification/final-1.1.0-pi4-owner-pass.json",
+    "device_state": "SHUT DOWN"
   },
   "frozen_tags_moved": false,
   "packages_rebuilt": false,
   "pushed": false,
   "published": false,
-  "readiness": "READY FOR OWNER REVIEW subject to verified external recovery manifest; final Pi 4 smoke pending"
+  "readiness": "READY FOR PUBLICATION AUTHORIZATION; owner authorization is the only remaining gate",
+  "publication_review_staging": "releases/1.1.0-publication-review-2026-09-24",
+  "publication_review_recovery": "archive/final-1.1.0-publication-review-2026-09-24"
 }

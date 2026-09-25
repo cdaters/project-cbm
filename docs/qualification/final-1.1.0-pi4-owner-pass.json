@@ -1,0 +1,71 @@
+{
+  "format": "project-cbm.owner-physical-attestation",
+  "schema_version": 1,
+  "date": "2026-09-24",
+  "hardware": "Raspberry Pi 4 B",
+  "candidate": "Project CBM 1.1.0 final attempt15",
+  "raw_sha256": "6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468",
+  "xz_sha256": "8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d",
+  "release_lock_sha256": "68d59a178f723c6648191b0af080c0c83b9ad60997ff4d59f4619c6d2b4a2810",
+  "result": "PASS",
+  "complete": true,
+  "owner_statement": "FINAL PROJECT CBM 1.1.0 PI 4 B SMOKE TEST: PASS",
+  "evidence_source": "Explicit owner final report in this session; no agent physical test or new Pi connection.",
+  "owner_reported_passes": [
+    "boot",
+    "fresh first-boot setup",
+    "Main Menu",
+    "system/network operation",
+    "RUN to C64",
+    "C64 Cover",
+    "VICE operation",
+    "display/input/audio behavior",
+    "repeated F10/Quit return to Menu",
+    "USB content import",
+    "intentional automatic safe unmount after USB import",
+    "CCGMS presence and launch",
+    "TCPser service operation",
+    "actual end-to-end TCPser BBS connection",
+    "reboot",
+    "persistence/normal operation after reboot",
+    "shutdown"
+  ],
+  "ccgms_tcpser": {
+    "result": "PASS",
+    "modem_type": "Swift / Turbo DE",
+    "acia_base_hex": "$DE00",
+    "acia_base_decimal": 56832,
+    "owner_reported_vice_options": [
+      "-acia1",
+      "-acia1mode",
+      "1",
+      "-acia1base",
+      "56832",
+      "-rsdev1",
+      "127.0.0.1:25232",
+      "-rsdev1ip232"
+    ],
+    "tcpser_listening": "127.0.0.1:25232",
+    "initial_nonmatching_driver": "User Port 300-2400",
+    "path": [
+      "CCGMS",
+      "SwiftLink/ACIA $DE00",
+      "VICE",
+      "127.0.0.1:25232",
+      "TCPser",
+      "Internet",
+      "real BBS"
+    ],
+    "bbs_display": "normal",
+    "direct_network_reachability": "PASS, independently reported by owner",
+    "remote_endpoint": "Omitted; private endpoint not required for qualification",
+    "baud_observed": "Not separately stated in this final report; documentation starts at 2400"
+  },
+  "device_state": "SHUT DOWN",
+  "limits": [
+    "Exact Pi 4 B RAM, card capacity and measured expanded free space not supplied; no values inferred.",
+    "No additional models, file-transfer protocols or remote BBS systems qualified."
+  ],
+  "repeat_tests_required": false,
+  "publication_authorized": false
+}

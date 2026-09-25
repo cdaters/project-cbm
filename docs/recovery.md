@@ -1,4 +1,18 @@
-# Final 1.1.0 preparation recovery — 2026-09-24
+# Final 1.1.0 publication-review recovery — 2026-09-24
+
+The owner final Pi 4 B smoke, CCGMS/TCPser live BBS connection, reboot/persistence
+and shutdown are **PASS**. [Owner attestation](qualification/final-1.1.0-pi4-owner-pass.json).
+The qualified image and frozen source tags remain unchanged. The separate
+[publication review set](build/final-1.1.0-publication-plan.md) includes current
+manuals/qualification and references the same binaries and corresponding sources.
+Additive recovery is `archive/final-1.1.0-publication-review-2026-09-24` under
+configured bulk storage; its manifest/checksum and offline restore report bind
+the final documentation refs and reviewed asset hashes. Prior sealed checkpoints
+remain unchanged. Independent encrypted custody is deferred, not a release blocker.
+Next: owner reviews and explicitly authorizes publication. Nothing has been pushed
+or published, and no smoke check needs repeating.
+
+# Final 1.1.0 preparation recovery — 2026-09-24 (historical handoff)
 
 The single final attempt15 image was recovered from the stopped guest after completed
 construction, exported without rebuilding, and fully audited against accepted RC4.

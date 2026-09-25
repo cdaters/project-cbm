@@ -29,6 +29,10 @@ are supported targets where compatible but are not all physically qualified. Use
 suitable power supply, cooling, HDMI display, keyboard and microSD card with room for
 the uncompressed image and your content.
 
+The final 1.1.0 image passed the owner's Raspberry Pi 4 B smoke test, including
+fresh setup, display/input/audio, repeated emulator/Menu return, USB import,
+a live CCGMS/TCPser BBS connection, reboot, persistence and shutdown.
+
 Pi 3 and Zero-class systems are outside 1.1.0 support. Representative Pi 3 B+ VICE
 workloads could not sustain the intended real-time experience. This is not a claim
 that those machines cannot boot, or that every workload on newer models is benchmarked.
@@ -43,7 +47,8 @@ Press **F10 → Quit** to return to Project CBM. Use **POWER** for safe shutdown
 explains every Menu area and the [content guide](content.md) gives examples.
 
 For BBS use, turn on BBS / Modem and launch CCGMS from its C64 Communications folder.
-Use the recommended Swift / Turbo DE, 2400 baud settings. The [networking guide](networking.md)
+Select **Swift / Turbo DE** to match the shipped SwiftLink/ACIA interface at **$DE00**,
+and begin at **2400 baud**. The [networking guide](networking.md)
 walks through calling, exchanging text, disconnecting and returning to the Menu.
 
 ## File transfer and remote access

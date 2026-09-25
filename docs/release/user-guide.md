@@ -242,6 +242,8 @@ songs and add-ons are not automatically included.
 Open CONTENT → PROGRAMS → `c64/Communications/CCGMS/CCGMS-2021.d64`. Project CBM
 starts the C64 with the modem interface this application needs. Enable BBS / Modem
 first, then follow the [CCGMS connection walkthrough](networking.md#bbs--modem).
+In CCGMS select **Modem Type: Swift / Turbo DE** to match Project CBM's
+SwiftLink/ACIA interface at **$DE00**; begin at **2400 baud**.
 The supplied disk contains CCGMS alone; its program is unchanged from Alwyz's release.
 Your saved phone book and settings belong to your working disk, so back it up with
 other content. F10 → Quit returns to Project CBM. Remote BBS availability and account

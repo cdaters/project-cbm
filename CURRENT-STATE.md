@@ -1,3 +1,27 @@
+# Final 1.1.0 — READY FOR PUBLICATION AUTHORIZATION, 2026-09-24
+
+Owner final attempt15 Raspberry Pi 4 B smoke **PASS — COMPLETE**, including fresh
+setup, system/network, C64 Cover/VICE/display/input/audio, repeated F10/Quit return,
+USB import/safe unmount, CCGMS/TCPser live BBS connection, reboot/persistence and
+shutdown. [Exact image-bound owner attestation](docs/qualification/final-1.1.0-pi4-owner-pass.json).
+The Pi is shut down; do not repeat tests. RC4 physical acceptance remains PASS.
+CCGMS must use **Swift / Turbo DE** for the shipped SwiftLink/ACIA **$DE00** path;
+the manuals now explain that choice at setup. No runtime/package/image/tag changes.
+USB disposition/backlog at `3df8f06` remains settled and is not reopened.
+
+[Publication plan and exact asset list](docs/build/final-1.1.0-publication-plan.md)
+identify the new `releases/1.1.0-publication-review-2026-09-24` directory under
+configured bulk storage. Original `releases/1.1.0` and historical recovery remain
+sealed; successor recovery is `archive/final-1.1.0-publication-review-2026-09-24`.
+New qualification/verification evidence is under
+`qualification/final-1.1.0/publication-review-2026-09-24`.
+Only owner publication authorization remains. No commits/tags pushed, GitHub Release,
+image upload or publication. `.qwen/` and `memory/` remain untracked and excluded.
+
+Next: owner reviews this exact set and proposed ref/asset actions. Stop before
+publication; do not create a new candidate or start post-1.1 work.
+Earlier checkpoints below are historical and do not reinstate a pending smoke gate.
+
 # Final 1.1.0 owner smoke in progress — USB disposition, 2026-09-24
 
 The owner reports everything tested so far works. Recursive import of the selected
