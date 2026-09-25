@@ -1,5 +1,14 @@
 # Post-1.1.0 work
 
+## 1.2.0 implementation — 2026-09-24
+
+The owner has now authorized incremental implementation. Phase 1 corrects the
+importer result boundary; see the [development contract](../runtime/ingestion-contract.md)
+and [current checkpoint](../../CURRENT-STATE.md). Shared ingestion and USB discovery
+are next. Assembly64 remains access-gated. No 1.2.0 release or qualification is
+claimed. The acceptance-era backlog below is retained as historical scope.
+
+
 These owner-deferred items do not block Project CBM 1.1.0 and are not included features:
 
 Owner-accepted design (2026-09-24): [Content ingestion and Online Library](content-ingestion-online-library.md).

@@ -217,9 +217,10 @@ def perform(entry,category,family=None):
                                stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20)
             except (OSError,subprocess.SubprocessError):
                 raise ImportFailure('unmount_failed',False) from None
+            if os.path.ismount(target):raise ImportFailure('unmount_failed',False)
             if failure is not None:failure.source_unmounted=True
     finally:os.close(fd)
-    return loads(raw)
+    return {**loads(raw),'source_unmounted':True}
 
 
 def validate_request(raw):

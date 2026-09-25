@@ -1,3 +1,26 @@
+# Provisional 1.2.0 — Phase 1 result contract, 2026-09-24
+
+Active work is owner-authorized content ingestion on local
+`feature/1.2-content-ingestion`. Stable 1.1.0 and both protected tags remain fixed.
+Unknown `.qwen/` and `memory/` work is preserved and excluded.
+
+The importer client now preserves validated metadata counts, specific failure codes
+and cleanup state, including nonzero broker replies. Successful cleanup is explicit
+and independently checked by the broker; absent evidence remains conservative.
+[Contract and bounded physical procedure](docs/runtime/ingestion-contract.md).
+Focused importer tests: 7 PASS. Full regression validation uses the retained project
+Python environment; the initial default-Python run lacked jsonschema (20 import
+errors, not runtime failures). Physical USB behavior remains UNTESTED for this source.
+
+Full regression: 252 PASS; documentation: 562 checks PASS; diff whitespace PASS.
+
+Next: make the Phase 1 local commit, then implement shared
+unprivileged ingestion and USB discovery/selection. Assembly64 research may proceed;
+its access gate is unresolved and no network client is authorized past that gate.
+No package/image build, tag, push or release. Additive recovery will be recorded for
+this source checkpoint; independent encrypted custody remains outstanding.
+Earlier checkpoints below retain their historical task scopes.
+
 # README banner and public documentation voice — 2026-09-24
 
 Restored the exact tracked Model 5 / 500 banner reference between the single badge
