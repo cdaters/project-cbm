@@ -1,3 +1,33 @@
+# Private 1.2 attempt18 ready for owner Pi4 procedure — 2026-09-25 UTC
+
+One PRIVATE, NON-RELEASE `1.2.0-dev.1` / `private-engineering-1.2-dev1` image
+is constructed and offline validated. [Exact paths, sizes, hashes and evidence](docs/build/private-1.2-dev1-attempt18.json).
+Frozen Product `255b1d9`, Menu `7c12a40` / `v1.2.0_dev1`; existing development
+packages reused. Stable published 1.1.0 raw/XZ and both protected tags verify unchanged.
+No push, publication, flashing or physical test occurred.
+
+Native Product300/Menu107 and installed lifecycle12 are retained verified passes.
+Actual-image340, privacy6, all672 packages,127 ELF objects, filesystems/systemd,
+current authenticated APT inputs, Runtime reuse and host/capability checks PASS.
+Raw/XZ hashes and decompression equivalence independently verify on guest and host.
+The two validator-only corrections are committed separately (`8094cf1`, `9745e64`);
+no frozen input or image was altered or rebuilt. Initial failed checks and all earlier
+attempts remain retained. [Build explanation](docs/build/private-1.2-development.md).
+
+External recovery: `archive/private-1.2-dev1-attempt18-2026-09-25`; its manifest,
+checksums and offline restore/ref/tag/fsck report are the final recovery authority.
+Independent encrypted custody remains outstanding. Builder returned to STOPPED
+after export and cleanup verification. Guest free space is below the
+40GiB gate for another construction; no new construction or cleanup is needed here.
+Unknown `.qwen/` and `memory/` remain untouched and excluded from source exports.
+
+Next: owner reviews the exact image and [Pi4 USB/lifecycle procedure](docs/qualification/content-1.2-pi4-usb.md),
+then explicitly controls testing on a separate card. Physical USB/exFAT, visible
+Cover/input/audio, Pi4 responsiveness and expanded capacity remain UNTESTED.
+Assembly64 access remains unresolved; [inquiry draft](docs/design/assembly64-provider-inquiry.md)
+is unsent. No public 1.2 release/support or reproducibility claim is made.
+Earlier dated entries below retain their historical scope.
+
 # Private 1.2 attempt18 constructed — validation correction, 2026-09-25 UTC
 
 Resumed the preserved Lima builder. Product `255b1d9` and Menu `7c12a40`, exact

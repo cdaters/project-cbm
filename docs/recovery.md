@@ -1,3 +1,20 @@
+# Private 1.2 attempt18 recovery — 2026-09-25
+
+Additive checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25` under registered
+bulk storage. Its manifest/checksum and `restore-results.json` bind current Product/
+Menu bundles, exact refs/peeled tags, offline restore/fsck, actual retained input and
+output hashes, and the separately retained failed/successful validation evidence.
+[Image result](build/private-1.2-dev1-attempt18.json) and
+[build record](build/private-1.2-development.md) distinguish frozen Product255b1d9
+from later validator/documentation commits. No frozen bytes or stable tags are changed.
+
+The checkpoint catalogs attempt16/17 failed kits, attempt18 complete kit, authenticated
+refresh, existing development packages, raw/XZ and evidence on external storage.
+Earlier failed build/staging trees remain preserved in the external-backed guest;
+no builder state was deleted. Recovery verification must pass before physical testing.
+This is private NON-RELEASE preparation, not independent custody, reproducibility or
+Pi qualification. Independent encrypted recovery remains outstanding.
+
 # 1.2 source checkpoint context addendum — 2026-09-24
 
 The initial `archive/content-1.2-development-2026-09-24` bundles passed offline

@@ -1,0 +1,130 @@
+{
+  "format": "project-cbm.private-development-image-result",
+  "schema_version": 1,
+  "date": "2026-09-25",
+  "product": {
+    "candidate": "private-engineering-1.2-dev1",
+    "version": "1.2.0-dev.1"
+  },
+  "attempt": 18,
+  "status": "PRIVATE NON-RELEASE; offline validated for owner Pi4 procedure; physical UNTESTED",
+  "source": {
+    "integration": {
+      "commit": "255b1d96dac7a78f23c05d6478eb522be7ab694b",
+      "ref": "refs/heads/feature/1.2-content-ingestion",
+      "repository": "https://github.com/cdaters/project-cbm.git",
+      "tag_object": null
+    },
+    "menu": {
+      "commit": "7c12a40d53aee91f4b1d5f421967aa92811fe30d",
+      "ref": "refs/tags/v1.2.0_dev1",
+      "repository": "https://github.com/cdaters/project-cbm-menu",
+      "tag_object": "b9f94546e166df32849ec7d2143477dc8b1fa8e5"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt18/release-lock.json",
+    "sha256": "4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79"
+  },
+  "packages": {
+    "menu": {
+      "version": "1.2.0~dev1-1+pcbm1",
+      "sha256": "10927c4717b94cb94bb6b269f6f5d37c493caeffc1118aa597d400cf6182b01c"
+    },
+    "runtime": {
+      "version": "1.2.0~dev1-1",
+      "sha256": "aed7d5f6eaa2020d73797f88785f8e85f7e412b05dc2f3c215ec7af3ecdee2e2"
+    },
+    "tcpser": {
+      "version": "1.1.6~beta-1+pcbm1",
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f"
+    },
+    "vice": {
+      "version": "3.10-1+pcbm4",
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1"
+    }
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-1.2-dev1-attempt-18/work/export-image/2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img",
+      "path": "artifacts/private-1.2-dev1-attempt-18/2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img",
+      "size_bytes": 3095396352,
+      "sha256": "428da6e67c5f82aa3a09fdbdc54d12e0d6cf8fc78abd0bc25a779c728351e557"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-1.2-dev1-attempt-18/image_2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img.xz",
+      "path": "artifacts/private-1.2-dev1-attempt-18/image_2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img.xz",
+      "size_bytes": 598567740,
+      "sha256": "74f1b438301a491f21149acfce2e4280e232aa8707fb50a1e03b02e26b9f7010"
+    },
+    "raw_xz_equivalence": "PASS"
+  },
+  "validation": {
+    "result": "PASS",
+    "actual_image_checks": 340,
+    "main_checks": 119,
+    "supplement_checks": 20,
+    "development_checks": 201,
+    "privacy_checks": 6,
+    "installed_packages": 672,
+    "elf_objects": 127,
+    "native_product_tests": 300,
+    "native_menu_tests": 107,
+    "installed_lifecycle_tests": 12,
+    "native_tests": "Retained exact preconstruction source/package results independently verified; not rerun",
+    "validator_corrections": [
+      "8094cf1: explicit development single-account validation; three host/native tests",
+      "9745e64: shared metadata policy inspection; two host tests, actual-image check"
+    ],
+    "raw_xz_guest_and_external": "PASS",
+    "physical": "UNTESTED",
+    "independent_reproducibility": false
+  },
+  "construction": {
+    "images_built": 1,
+    "packages_rebuilt": false,
+    "offline_network_namespace": true,
+    "metrics": {
+      "Elapsed (wall clock) time (h:mm:ss or m:ss)": "2:31.43",
+      "Maximum resident set size (kbytes)": "509892"
+    }
+  },
+  "footprint": {
+    "available_to_user": 639401984,
+    "capacity": 2439266304,
+    "free": 783683584,
+    "used": 1655582720
+  },
+  "maintenance_margin": "639401984 bytes available to unprivileged user before first-boot expansion; future update margin and expanded capacity not physically measured",
+  "host": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capability": "PASS",
+    "updates": "masked",
+    "no_mounts_or_loops": true,
+    "stable_raw_unchanged": true,
+    "guest_available_bytes": 34248122368,
+    "final_state": "STOPPED after export, verification and cleanup"
+  },
+  "evidence": [
+    "qualification/content-1.2-dev1-resume-2026-09-25",
+    "qualification/content-1.2-dev1-attempt18-validation3",
+    "qualification/content-1.2-dev1-attempt18-validation4"
+  ],
+  "retained_failures": [
+    "attempt16 expired authenticated metadata construction",
+    "attempt17 permission-normalization freeze",
+    "attempt18 initial legacy-account validation",
+    "attempt18 validation2 transfer/harness failure before image inspection",
+    "attempt18 validation3 inherited metadata AST inspection"
+  ],
+  "recovery": {
+    "path": "archive/private-1.2-dev1-attempt18-2026-09-25",
+    "authority": "manifest.json, manifest.sha256 and restore-results.json; verify before physical testing",
+    "independent_encrypted_custody": false
+  },
+  "stable_1_1_0": "unchanged; stable-preservation.json records raw/XZ and protected tags",
+  "published": false,
+  "pushed": false,
+  "physical_procedure": "docs/qualification/content-1.2-pi4-usb.md"
+}

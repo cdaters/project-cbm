@@ -7,6 +7,21 @@ image. Use a separate microSD card; retain the stable 1.1 card and all user back
 This procedure qualifies the tested Pi 4 B and these workflows, not other models
 or a public 1.2 release. Flashing/testing remains an explicit owner action.
 
+## Prepared attempt18 basis — 2026-09-25
+
+Image preparation is complete: [exact output record](../build/private-1.2-dev1-attempt18.json).
+This is owner-controlled testing on a separate card, not a public release or a physical
+PASS. Verify external recovery at `archive/private-1.2-dev1-attempt18-2026-09-25`.
+
+- Build ID: `4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79`.
+- Raw: `2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img`,
+  3,095,396,352 bytes; SHA-256 `428da6e67c5f82aa3a09fdbdc54d12e0d6cf8fc78abd0bc25a779c728351e557`.
+- XZ: `image_2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img.xz`,
+  598,567,740 bytes; SHA-256 `74f1b438301a491f21149acfce2e4280e232aa8707fb50a1e03b02e26b9f7010`.
+- Both files: `artifacts/private-1.2-dev1-attempt-18` under registered bulk storage.
+
+All procedure cases below remain **UNTESTED** until exact-image owner reports arrive.
+
 ## Record the basis
 
 Record date, Pi model/RAM, power supply, keyboard/display, card size, selected image

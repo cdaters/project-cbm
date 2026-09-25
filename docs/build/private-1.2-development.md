@@ -4,6 +4,51 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Completed private image — attempt18, 2026-09-25
+
+**Ready for owner review and the explicit Pi4 procedure; physical UNTESTED.**
+[Machine-readable result](private-1.2-dev1-attempt18.json) binds the frozen source,
+lock, component hashes, exact outputs, validation sources and recovery location.
+One image was constructed. Existing Runtime/Menu packages were reused unchanged.
+Published stable 1.1.0 remains distinct and unchanged; nothing was published.
+
+Paths below are relative to registered bulk storage (`ProjectCBM-Work`):
+
+| Output | Path | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Raw | `artifacts/private-1.2-dev1-attempt-18/2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img` | 3,095,396,352 | `428da6e67c5f82aa3a09fdbdc54d12e0d6cf8fc78abd0bc25a779c728351e557` |
+| XZ | `artifacts/private-1.2-dev1-attempt-18/image_2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img.xz` | 598,567,740 | `74f1b438301a491f21149acfce2e4280e232aa8707fb50a1e03b02e26b9f7010` |
+
+Build ID: `4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79`.
+Frozen source: Product `255b1d96dac7a78f23c05d6478eb522be7ab694b`, Menu
+`7c12a40d53aee91f4b1d5f421967aa92811fe30d`, annotated object
+`b9f94546e166df32849ec7d2143477dc8b1fa8e5`. Runtime `1.2.0~dev1-1`,
+Menu `1.2.0~dev1-1+pcbm1`; no stable release tag was moved or added.
+
+340 actual-image checks (119 main, 20 supplemental, 201 development), six privacy
+checks, all 672 installed packages, 127 ELF objects and FAT/ext4/systemd checks PASS.
+The existing native Product300/Menu107 and installed lifecycle12 results were verified
+against retained exact sources/packages. Successful tests were not repeated merely
+because the session changed. Raw/XZ equivalence and sizes/hashes verify independently
+in guest and after external export. Builder capabilities, masked-update guards and
+unchanged inventory pass. Fresh identity/account gates, no credentials/builder residue,
+original content, seven artwork files and shared lifecycle remain covered by the checks.
+
+The root filesystem has 639,401,984 bytes available to the unprivileged user before
+first-boot expansion; used 1,655,582,720, capacity 2,439,266,304 bytes. Future update
+margin and expanded capacity need measurement on the owner's card. No nominal card
+minimum or hardware/reproducibility claim follows. Guest free space after validation
+is 34,248,122,368 bytes, below the next-build 40GiB gate; preserve existing attempts.
+
+Recovery checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25`. Verify its
+manifest and restore report before the [Pi4 procedure](../qualification/content-1.2-pi4-usb.md).
+It retains sources/bundles, exact refs/tags, input/output/evidence catalogs and offline
+restoration checks. Independent encrypted custody remains outstanding. The two
+inspection corrections described below are external validation source commits,
+not changes to the frozen image. All failed reports remain separately retained.
+
+Earlier preparation entries below preserve their original dates and pending state.
+
 ## Attempt18 construction and validation correction — 2026-09-25
 
 The preserved builder resumed without package drift. Native Product300/Menu107
