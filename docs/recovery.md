@@ -1,3 +1,16 @@
+# 1.2 source checkpoint context addendum — 2026-09-24
+
+The initial `archive/content-1.2-development-2026-09-24` bundles passed offline
+restore, exact refs/peeled tags and fsck. They remain sealed. The retained final
+unsandboxed macOS Product test has the known mktemp expectation failure (283 PASS,
+one contextual failure); native Product284 and Menu107 host/native PASS.
+
+The additive `archive/content-1.2-development-2026-09-24-r2` successor retains the
+final source/documentation refs and pins the initial evidence manifest. Its own
+manifest/restore report is the latest source recovery authority. This is no image
+qualification or independent custody claim. Guest is stopped; provider access and
+physical qualification remain the next substantive gates.
+
 # Provisional 1.2 content source checkpoint — 2026-09-24
 
 Additive recovery location: `archive/content-1.2-development-2026-09-24` under the

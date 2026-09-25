@@ -226,3 +226,17 @@ exercise a busy release and removed drive, then reboot/shutdown with a session.
 Record exact image hash, hardware, filesystem, source preservation and Menu return.
 Physical and Pi 4 responsiveness: UNTESTED. No frozen 1.1.0 artifact is a target for
 in-place repair or new qualification claims.
+
+### Final host context addendum
+
+The final externally retained **unsandboxed macOS** Product run reports 283 PASS and
+one failure in the existing `test_mktemp_regression`: this host's mktemp succeeds
+when the test expects rejection of a nonexistent TMPDIR. Earlier sandboxed host284
+and native Linux284 runs passed. This is the documented historical host-context
+failure, not an ingestion regression; the test and factory environment policy were
+not weakened. Menu107 host/native and all new ingestion/browse checks pass.
+
+The first additive recovery checkpoint passed exact refs/peeled tags/offline restore/
+fsck and retained that failed host log. The `archive/content-1.2-development-2026-09-24-r2`
+successor records this explanation and pins the preceding evidence manifest; neither
+the log nor its original manifest was overwritten. The guest is stopped.

@@ -13,7 +13,9 @@ choice. Scans do not copy. Identical destination bytes are Already Present; conf
 keep collections together in predictable siblings. Private JSONL provenance is
 outside content. Recent Additions and Online Library are omitted, not placeholders.
 
-Host/native Product284 and Menu107 PASS; documentation563 PASS. Native FAT/ext4
+Native Product284 and host/native Menu107 PASS; documentation563 PASS. The final
+unsandboxed macOS Product run is 283 PASS / one known contextual mktemp expectation
+failure (earlier sandboxed host284 PASS). No runtime or native failure is inferred. Native FAT/ext4
 read-only scan/copy/retry/source hashes/unmount PASS. MC 4.8.33 native PTY/F10,
 cancellation, complete broker session and client-loss release PASS. Native exFAT,
 physical Pi and measured Pi4 responsiveness remain UNTESTED. Initial missing-fixture,
@@ -28,8 +30,10 @@ No hosted-title downloads, client impersonation, private-token use or provider
 contact occurred. USB work required no new owner design decision.
 
 Evidence: `qualification/content-1.2-development-2026-09-24` under configured bulk
-storage. Additive source recovery: `archive/content-1.2-development-2026-09-24`, whose
-manifest/restore report bind exact final refs, protected tags, bundles and evidence.
+storage. Additive source recovery: `archive/content-1.2-development-2026-09-24` verified offline restores/refs/fsck;
+its immutable record includes the contextual host failure. The additive `-r2`
+successor binds this final explanatory source checkpoint and links the original
+evidence manifest. No failed record or manifest was replaced.
 The native guest has returned to its original stopped state. External recovery
 verification is the final source-checkpoint gate; its manifest/restore report is
 the authority for completion.
