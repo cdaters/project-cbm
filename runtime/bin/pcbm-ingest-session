@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+"""Fixed streaming broker bridge, used by the unprivileged Menu controller."""
+import os
+import sys
+os.execve('/usr/bin/sudo', ['sudo', '-n', '--', '/usr/libexec/pcbm-import-root'],
+          {'PATH': '/usr/bin:/bin', 'LC_ALL': 'C'})

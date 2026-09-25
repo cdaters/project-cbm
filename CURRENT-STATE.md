@@ -1,3 +1,20 @@
+# Provisional 1.2.0 — Phase 2 backend checkpoint, 2026-09-24
+
+Phase 1 committed as `dbafea6`. Phase 2 adds small unprivileged ingestion,
+read-only bounded USB discovery, paged selection and a supervised review session.
+[Contract, safeguards and bounded physical procedures](docs/runtime/ingestion-contract.md).
+Full host regression: 279 PASS (including 27 new ingestion/broker tests).
+No native mount or Pi qualification is implied. Runtime source identity is
+`1.2.0~dev1-1`; no package, image, tag or release was created.
+
+Next: commit Phase 2, then connect the Bash/dialog CONTENT USB workflow in Menu.
+No owner decision is needed before Phase 3. Keep Online Library omitted while
+Assembly64 access remains unresolved. Provider Swagger docs are publicly linked;
+research is continuing without client impersonation or content downloads.
+Stable 1.1.0, tags and frozen evidence remain unchanged. Unknown `.qwen/` and `memory/`
+are preserved. Recovery source bundles will be retained additively at session close;
+independent custody remains outstanding. Earlier records below are historical.
+
 # Provisional 1.2.0 — Phase 1 result contract, 2026-09-24
 
 Active work is owner-authorized content ingestion on local

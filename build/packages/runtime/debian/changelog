@@ -1,3 +1,11 @@
+project-cbm-runtime (1.2.0~dev1-1) trixie; urgency=medium
+
+  * Provisional 1.2 development: import result contract, unprivileged ingestion,
+    bounded USB discovery/selection and supervised review sessions.
+  * No release package or image has been built or qualified.
+
+ -- Project CBM contributors <noreply@project-cbm.invalid>  Fri, 25 Sep 2026 05:00:00 +0000
+
 project-cbm-runtime (1.1.0-1) trixie; urgency=medium
 
   * Promote qualified RC4 to final version and release documentation.

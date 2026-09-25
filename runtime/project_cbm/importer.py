@@ -12,6 +12,7 @@ import signal
 import stat
 import subprocess
 import sys
+import time
 from .config_backend import ENV, trusted
 from .data import loads
 from . import library
@@ -20,24 +21,15 @@ WORK = Path('/run/project-cbm/import')
 CONTENT = library.ROOT
 FILESYSTEMS = {'vfat','exfat','ext4'}
 CATEGORIES = {'games','demos','programs','music'}
-EXTENSIONS = {'.prg','.p00','.t64','.tap','.d64','.d71','.d81','.g64','.g71','.x64','.sid','.crt','.d67','.d80','.d82','.g41','.p64','.mus'}
-MAX_BYTES = 2 * 1024**3
-MARGIN = 256 * 1024**2
-
-# Known host metadata only. Other dotfiles/directories remain eligible content.
-# Counts describe encountered entries/subtrees, never the files hidden in Trash.
-HOST_METADATA = {'.DS_Store', '.Spotlight-V100', '.Trashes', '.fseventsd',
-                 '.TemporaryItems', '.VolumeIcon.icns', '.AppleDouble',
-                 'System Volume Information', '$RECYCLE.BIN'}
-
-
-def host_metadata(name):
-    return name in HOST_METADATA or name.startswith('._')
+# Shared policy constants; legacy copy semantics remain compatible.
+from .ingestion import EXTENSIONS, MAX_BYTES, MARGIN
+from .usb_discovery import HOST_METADATA, host_metadata
 
 
 class ImportFailure(ValueError):
-    def __init__(self,code,source_unmounted=None):
+    def __init__(self,code,source_unmounted=None,result=None):
         super().__init__(code)
+        self.result=result
         self.code=code
         self.source_unmounted=source_unmounted
 
@@ -165,7 +157,20 @@ def copy_content(source,category,family=None):
     return result
 
 
-def perform(entry,category,family=None):
+def stop_worker(pid):
+    """Bounded TERM grace, then KILL and reap; never leave a live copy worker."""
+    for sig in (signal.SIGTERM,signal.SIGKILL):
+        try:os.kill(pid,sig)
+        except ProcessLookupError:pass
+        deadline=time.monotonic()+2
+        while time.monotonic()<deadline:
+            if os.waitpid(pid,os.WNOHANG)[0]:return
+            time.sleep(0.02)
+    # A kernel I/O wait can outlive SIGKILL; refuse a safe-removal assertion.
+    raise ImportFailure('copy_failed',False)
+
+
+def perform(entry,category,family=None,worker=None):
     if entry not in discover():raise ValueError('device_changed')
     target=trusted(WORK/'source')
     if os.path.ismount(target):raise ValueError('mount_busy')
@@ -182,7 +187,7 @@ def perform(entry,category,family=None):
                            stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True,timeout=20)
         except (OSError,subprocess.SubprocessError):
             raise ImportFailure('mount_failed',not os.path.ismount(target)) from None
-        pid=None;reaped=False;failure=None
+        pid=None;reaped=False;failure=None;answer=None
         try:
             reader,writer=os.pipe()
             pid=os.fork()
@@ -190,7 +195,7 @@ def perform(entry,category,family=None):
                 try:
                     os.close(reader);os.close(fd)
                     os.setgroups([]);os.setgid(1000);os.setuid(1000)
-                    answer=copy_content(target,category,family)
+                    answer=worker(target) if worker else copy_content(target,category,family)
                     os.write(writer,json.dumps(answer).encode());os.close(writer)
                     os._exit(0)
                 except Exception as error:
@@ -198,7 +203,10 @@ def perform(entry,category,family=None):
                     except OSError:pass
                     os._exit(2)
             os.close(writer)
-            try:raw=os.read(reader,1024)
+            try:
+                import select
+                if not select.select([reader],[],[],1800)[0]:raise ImportFailure('copy_failed',False)
+                raw=os.read(reader,8192)
             finally:os.close(reader)
             _,status=os.waitpid(pid,0);reaped=True
             if status!=0:
@@ -207,25 +215,30 @@ def perform(entry,category,family=None):
                 if code not in ('access_denied','space','limit','depth','entries'):code='copy_failed'
                 failure=ImportFailure(code,False)
                 raise failure
+            answer=loads(raw)
         finally:
+            worker_failure=None
             if pid and not reaped:
-                try:os.kill(pid,signal.SIGTERM)
-                except ProcessLookupError:pass
-                os.waitpid(pid,0)
+                try:stop_worker(pid)
+                except ImportFailure as error:worker_failure=error
             try:
                 subprocess.run(['/usr/bin/umount','--',str(target)],env=ENV,check=True,
                                stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20)
             except (OSError,subprocess.SubprocessError):
-                raise ImportFailure('unmount_failed',False) from None
-            if os.path.ismount(target):raise ImportFailure('unmount_failed',False)
+                raise ImportFailure('unmount_failed',False,answer) from None
+            if os.path.ismount(target):raise ImportFailure('unmount_failed',False,answer)
+            if worker_failure is not None:raise worker_failure
             if failure is not None:failure.source_unmounted=True
     finally:os.close(fd)
-    return {**loads(raw),'source_unmounted':True}
+    return {**answer,'source_unmounted':True}
 
 
 def validate_request(raw):
     if len(raw)>4096:raise ValueError('size')
     d=loads(raw)
+    if (isinstance(d,dict) and type(d.get('schema_version')) is int and d['schema_version']==2
+            and set(d)=={'schema_version','operation','token'} and d['operation']=='session'
+            and isinstance(d['token'],str) and re.fullmatch('[0-9a-f]{32}',d['token'])):return d
     if not isinstance(d,dict) or type(d.get('schema_version')) is not int or d['schema_version']!=1:raise ValueError('request')
     if d=={'schema_version':1,'operation':'list'}:return d
     if (set(d) in ({'schema_version','operation','token','category'}, {'schema_version','operation','token','category','family'}) and d['operation']=='import'
@@ -237,6 +250,7 @@ def validate_request(raw):
 
 def main():
     import fcntl
+    request={}
     try:
         os.umask(0o077)
         def interrupted(signum,frame):raise InterruptedError('import_interrupted')
@@ -244,7 +258,12 @@ def main():
         if os.geteuid()!=0 or len(sys.argv)!=1:raise ValueError('invocation')
         from .config_backend import policy
         if not policy()['system_ready']:raise ValueError('setup_incomplete')
-        raw=sys.stdin.buffer.read(4097)
+        raw=bytearray()
+        while len(raw)<=4096:
+            byte=os.read(0,1)
+            if not byte or byte==b'\n':break
+            raw.extend(byte)
+        raw=bytes(raw)
         if len(raw)>4096:raise ValueError('size')
         request=validate_request(raw)
         trusted(WORK)
@@ -257,6 +276,11 @@ def main():
                 print(json.dumps({'schema_version':1,'status':'ok','devices':[
                     {'token':k,'label':f'USB partition {i+1}: {v["filesystem"]}, {v["size_bytes"]//1024**2} MiB'}
                     for i,(k,v) in enumerate(entries.items())]}))
+            elif request.get('schema_version')==2:
+                from .ingest_session import run
+                entries=loads(trusted(WORK/'devices.json').read_bytes())
+                answer=perform(entries[request['token']],None,worker=run)
+                print(json.dumps({'schema_version':2,**answer}),flush=True)
             elif (set(request) in ({'schema_version','operation','token','category'}, {'schema_version','operation','token','category','family'}) and request['schema_version']==1
                   and request['operation']=='import' and request['category'] in CATEGORIES
                   and isinstance(request['token'],str) and re.fullmatch('[0-9a-f]{32}',request['token'])):
@@ -266,6 +290,12 @@ def main():
             else:raise ValueError('request')
         return 0
     except (OSError,ValueError,TypeError,KeyError,subprocess.SubprocessError) as error:
+        if request.get('schema_version')==2:
+            detail=error.result if isinstance(error,ImportFailure) and isinstance(error.result,dict) else {}
+            print(json.dumps({**detail,'schema_version':2,'status':'partial' if detail.get('saved') else 'failed',
+                              'error':error.code if isinstance(error,ImportFailure) else 'unavailable',
+                              'source_unmounted':error.source_unmounted if isinstance(error,ImportFailure) else None}),flush=True)
+            return 2
         print(json.dumps({'schema_version':1,'status':'failed',
                           'error':error.code if isinstance(error,ImportFailure) else 'unavailable',
                           'source_unmounted':error.source_unmounted if isinstance(error,ImportFailure) else None}))
