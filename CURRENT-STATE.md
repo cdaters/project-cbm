@@ -1,3 +1,32 @@
+# Assembly64 expanded access evidence — 2026-09-25
+
+[Expanded A/B/C/D study](docs/design/assembly64-expanded-study-2026-09-25.md):
+the supplied AQL guide explicitly supports other applications. Newly supplied
+captures show a developer being told to DM Scooby their desired client ID, and
+advertise `/leet/homeserver/all-public-servers`. An independent client's README
+explicitly names a registered dedicated ID. Requesting `project-cbm` is justified.
+The retained provider desktop application maps 464 to both UNAUTHORIZED and
+LINK_ERROR; unregistered identity is a leading hypothesis, not proven diagnosis.
+
+Honest current discovery GETs still return JSON464, so the three screenshot servers
+are historical examples, not a verified current list. Home-server protected mode
+can require Basic auth. ID scope, exact 464 cause, token requirements and provider
+usage/attribution/change expectations remain partly unresolved. Online Library is
+technically feasible; an ID is not proven to be the only external dependency.
+
+Next: owner may send the [short Discord draft](docs/design/assembly64-provider-inquiry.md),
+retain the response, then verify bounded operations using the confirmed CBM identity.
+Nothing was sent. No foreign identity/credential, hosted-title download, reference
+execution, runtime/package/image/tag or builder change. Pi4 physical testing remains
+owner-controlled, with no new result supplied; attempt18 and stable 1.1.0 unchanged.
+
+Evidence: `qualification/assembly64-expanded-study-2026-09-25`; additive recovery:
+`archive/assembly64-expanded-study-2026-09-25`. Its manifest and offline restore/ref/
+peeled-tag/fsck report are completion authority. Independent custody remains
+outstanding. Unknown `.qwen/` and `memory/` remain untouched. Earlier entries below
+retain their historical evidence scope; the expanded study supersedes their negative
+findings about the absence of any registration precedent or provider 464 mapping.
+
 # Assembly64 protocol comparison — 2026-09-25
 
 [Protocol evidence and limits](docs/design/assembly64-protocol-study-2026-09-25.md):

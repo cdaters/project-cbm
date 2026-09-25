@@ -1,3 +1,23 @@
+# Assembly64 client ID request — current Discord draft, not sent
+
+Based on the [expanded reference study](assembly64-expanded-study-2026-09-25.md),
+the supplied June 14 Discord exchange supports sending Scooby a DM with the desired
+ID. The following is the current short draft; the earlier diagnostic email remains
+below as historical context. No message has been sent.
+
+> Hi Scooby! I’m developing Project CBM, an open-source Raspberry Pi Commodore
+> appliance, and would like to register `project-cbm` for its optional Online
+> Library: user-initiated AQL search and selected downloads, with Assembly64
+> attribution. Could you allocate that ID? Our own unregistered study ID returns
+> JSON `errorCode: 464`; is that expected? Does the registered ID cover search,
+> downloads and `/leet/homeserver/all-public-servers` without a user token?
+> Please also confirm rate/concurrency limits, caching guidance and required
+> attribution/terms. We won’t bundle hosted titles.
+> https://github.com/cdaters/project-cbm
+> Thanks!
+
+---
+
 # Assembly64 third-party access inquiry — draft, not sent
 
 To: **freabe@gmail.com** (API Support in the retained provider OpenAPI schema)

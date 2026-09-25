@@ -1,5 +1,11 @@
 # Assembly64 HTTP 464 protocol investigation — 2026-09-25
 
+**Expanded evidence:** the [subsequent study](assembly64-expanded-study-2026-09-25.md)
+adds a supplied ID-request exchange, a public-discovery announcement and provider
+application enum mappings for 464. The earlier negative findings below apply to
+this document's original corpus; the new evidence strengthens, but does not prove,
+the unregistered-ID explanation.
+
 **Result: reproduced; cause unresolved.** Treat 464 as an unexplained endpoint
 failure, not evidence of rejected client admission. The bounded protocol tests
 below did not identify a client-side HTTP-version, method, compression or Accept

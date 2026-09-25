@@ -1,5 +1,11 @@
 # Assembly64 reference and Ultimate Elite II access audit — 2026-09-25
 
+**Expanded evidence:** the [subsequent study](assembly64-expanded-study-2026-09-25.md)
+adds a supplied ID-request exchange, a public-discovery announcement and provider
+application enum mappings for 464. The earlier negative findings below apply to
+this document's original corpus; the new evidence strengthens, but does not prove,
+the unregistered-ID explanation.
+
 **Subsequent protocol study:** [controlled GET/ALPN comparison](assembly64-protocol-study-2026-09-25.md)
 tests the transport hypothesis with an honest Project CBM identity. HTTP/1.1 is
 selected, HTTP/2-only TLS is refused, and the tested metadata variants still return
