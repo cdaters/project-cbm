@@ -4,6 +4,49 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Attempt16 stopped; authenticated retry preparation
+
+Attempt16 froze Product `aefc08e`, Menu `7c12a40` / annotated private
+`v1.2.0_dev1` (`b9f94546e166df32849ec7d2143477dc8b1fa8e5`). Lock:
+`ff3a1a156003c73e343457a3b5092abdac98c28574549607837bb185d8edc844`.
+Construction stopped at stage0 APT update: the retained updates/security InRelease
+files expired on September 22. No image was produced. The failed kit, tree and log
+remain intact. Builder inventory/update guards passed after the failure. Signature
+and expiry checking were not disabled, and the clock was not changed.
+
+The legitimate retry is **attempt17**, with a new lock and output directory, retaining
+the same private development product identity and exact unchanged Runtime/Menu packages.
+Current signed updates metadata has identical index hashes. Current signed security
+metadata advertises one newer package among the 672 installed packages:
+`mkvtoolnix 92.0-1` → `92.0-1+deb13u1`. A disposable read-only-image overlay ran normal
+APT update and a resolver simulation requiring exactly that one update, then downloaded
+its binary and complete corresponding source. No builder or stable-image package was
+installed or upgraded. This is a documented new 1.2 input set, not a claim that it
+reconstructs 1.1 from identical inputs.
+
+The bounded acquisition recipe is `tools/acquire_development_apt.py`. Its new
+`inputs/apt-refresh-dev1-20260925` directory records transport bytes, normal APT
+authentication, resolver output and binary/source downloads. The freeze verifier
+independently checks current Sequoia signatures using the pinned host keyring, Date/
+Valid-Until, signed index hashes and every admitted binary/source hash. Inherited
+non-security repository inputs stay identical. The refresh flag is rejected for
+the 1.1 release path. No unsigned package, expired-metadata exception, permissive
+APT option or ambient crypto-policy override is used.
+
+The newly acquired updates/security metadata is valid until October 2, 2026, at
+02:07:43 / 03:12:56 UTC respectively. Later construction still enforces expiry;
+the procedure is not a perpetual waiver. The source helper admits only the reviewed
+mkvtoolnix version; another delta requires a separately reviewed input set.
+
+Native prebuild Product289 and Menu107 passed; installed development packages passed
+integrity/dependency/sudo checks, twelve lifecycle tests, seven Cover decodes, three
+terminal-return cycles, FAT/ext4 ingestion and MC PTY/broker release. Initial native
+staging missed the sibling Menu checkout. Separate harness retries corrected host-guard
+observation inside a PID namespace and a busy `/usr` bind during teardown. Failed logs
+are retained; corrected cleanup released every test mount/loop, and the stable raw
+image remained `6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468`.
+These are native results, not physical Pi qualification.
+
 ## Identity rules
 
 The factory explicitly admits product `1.2.0-dev.N` only with candidate
@@ -16,7 +59,7 @@ package/source hashes and the existing API dependency still apply.
 
 The initial image identity is **1.2.0-dev.1 / private-engineering-1.2-dev1**;
 Runtime `1.2.0~dev1-1`, Menu `1.2.0_dev1` / `1.2.0~dev1-1+pcbm1`.
-The new attempt is **16**, based on verified attempt15 retained inputs.
+Initial attempt **16** used verified attempt15 inputs; the authenticated retry is **17**.
 The frozen lock hash is the build ID, independently recorded in the eventual result.
 
 Development configuration and export suffix have separate source files:
@@ -49,9 +92,10 @@ VICE/TCPser/OS/assets; disposable installed-package tests; freeze; isolated offl
 construction; actual-image validation and raw/XZ comparison; additive source/input/
 image recovery. No network client or hosted Assembly64 titles enter the image.
 
-Image construction uses new paths `inputs/frozen-poc4-attempt16`,
-`packages/poc4-attempt16`, `builds/private-1.2-dev1-attempt-16` and
-`artifacts/private-1.2-dev1-attempt-16` beneath configured bulk storage.
+The retry uses new paths `inputs/frozen-poc4-attempt17`,
+`builds/private-1.2-dev1-attempt-17` and `artifacts/private-1.2-dev1-attempt-17`
+beneath configured bulk storage. Exact unchanged development packages remain in
+`packages/poc4-attempt16`; no duplicate package with the same version is rebuilt.
 These paths must be absent before their respective steps. Failed attempts remain
 retained; a changed input set requires a new attempt and, when applicable, package
 identity. Never repair a frozen image in place.
@@ -76,6 +120,9 @@ and runs `/bin/sh -c 'p=$(mktemp) || exit; rm -- "$p"'`. On this macOS run it re
 zero, contrary to the test's expected Linux failure. This assertion fails before the
 test's subsequent sanitized-environment command is reached. The earlier sandboxed
 host pass does not establish macOS portability; sandbox effects can change the control.
+An independent host observation confirmed `/usr/bin/mktemp` created a file in the
+macOS per-user temporary directory and returned zero for both the invalid-control
+and sanitized environments. Each probe removed only the temporary file it created.
 
 This is known from the pre-ingestion September 17/18 checkpoints in
 [testing](../testing.md); the test was introduced by `93d264a` for the factory

@@ -1,5 +1,15 @@
 # Private 1.2 Pi qualification preparation — 2026-09-25 UTC
 
+Attempt16 is retained as a failed construction: normal APT rejected expired signed
+updates/security metadata. No image exists yet. Native prebuild Product289/Menu107
+and installed-package/lifecycle/USB/MC checks pass. The stable raw image is unchanged.
+The [build record](docs/build/private-1.2-development.md) documents a bounded,
+authenticated retry as attempt17: fresh metadata, one mkvtoolnix security update with
+full source, exact reused CBM packages and unchanged host. No time/signature gate is
+weakened. Next: validate/commit the private-only refresh verifier, export clean source,
+freeze a new attempt17 kit, construct and validate the private image. Failed attempt16
+and acquisition/test failures remain preserved. No physical/public action occurred.
+
 Owner accepted Phase 1–4 and explicitly authorized the bounded factory extension,
 new private NON-RELEASE image and validation. Stop for review after delivering exact
 image hashes, the [Pi 4 USB procedure](docs/qualification/content-1.2-pi4-usb.md) and

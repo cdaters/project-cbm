@@ -102,11 +102,13 @@ def main():
     p.add_argument('--vice-version')
     p.add_argument('--product-version')
     p.add_argument('--candidate')
+    p.add_argument('--apt-refresh',type=Path,help='Verified bounded private-development security metadata refresh; never a release override')
     a = p.parse_args()
     if not 6 <= a.previous_attempt < a.attempt < 100:raise ValueError('distinct increasing attempt required')
     verify_candidate_versions(a.product_version,a.candidate,a.runtime_version,a.menu_version)
     product={'version':a.product_version or '', 'candidate':a.candidate or ''}
     development=development_number(product)
+    if a.apt_refresh and not development:raise ValueError('APT refresh is private-development only')
     menu_label=a.menu_version.rsplit('-',1)[0].replace('~','_')
     runtime_label=a.runtime_version.rsplit('-',1)[0].replace('~','_')
     for pin in (a.integration_commit, a.menu_commit, a.menu_tag_object):
@@ -179,6 +181,25 @@ def main():
 
     lock['integration']['source'] = store(integration)
     lock['base']['configuration'] = store(config_file)
+    if a.apt_refresh:
+        from development_apt_refresh import verify_refresh
+        metadata=read_json(old/lock['base']['authenticated_apt_metadata']['path'])
+        previous_urls=read_json(old/next(row['artifact']['path'] for row in metadata['entries'] if row['role']=='frozen-url-map'))
+        urls,admitted,authentication=verify_refresh(a.apt_refresh,previous_urls)
+        current=[]; binaries=read_json(old/lock['base']['binary_package_closure']['path'])['entries']
+        sources=read_json(old/lock['base']['source_package_closure']['path'])['entries']
+        for url,row in sorted(urls.items()):
+            artifact=store(a.apt_refresh/'transport'/row['path'])
+            if url in admitted:
+                target=binaries if url.endswith('.deb') else sources
+                target.append({'role':'binary-package' if url.endswith('.deb') else 'corresponding-source','artifact':artifact,'origin':url})
+            elif not url.endswith('.deb'):
+                current.append({'role':'authenticated-repository-input','artifact':artifact,'origin':url})
+        current.append({'role':'frozen-url-map','artifact':record(urls),'origin':'https://www.debian.org/'})
+        current.append({'role':'development-refresh-authentication','artifact':record(authentication),'origin':'https://www.debian.org/'})
+        for key,entries in [('authenticated_apt_metadata',current),('binary_package_closure',binaries),('source_package_closure',sources)]:
+            lock['base'][key]=record({'format':'project-cbm.input-catalog','schema_version':1,'entries':entries})
+        lock['base']['release_identity']='trixie-13.7-private-security-refresh-2026-09-25'
     for key, source in [('defaults','build/pigen/defaults.json'),
                         ('first_boot_recipe','build/pigen/stage-cbm/files/first_boot.py'),
                         ('sealing_recipe','tools/install_poc_stage.py'),
