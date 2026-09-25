@@ -3,8 +3,8 @@
 [Documentation index](../README.md) · [Complete User Manual](user-guide.md)
 
 This is the short route from an image download to Commodore 64 BASIC. Project CBM
-1.1.0 starts with a short setup on the Pi. The download becomes available when
-publication is complete; use the project release page to check availability.
+1.1.0 is released and starts with a short setup on the Pi.
+[Download the current release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
 
 ## Hardware
 
@@ -24,14 +24,23 @@ cannot boot the software. No blanket promise is made for every workload or perip
 
 ## Download and check the image
 
-Open [Project CBM Releases](https://github.com/cdaters/project-cbm/releases) and choose
-the intended version. Download its `.img.xz` (or `.img`) and published SHA-256 value.
-Do not mistake an older public release for 1.1. The source ZIP is not a bootable image.
+Download [project-cbm-1.1.0.img.xz](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0.img.xz)
+and [SHA256SUMS](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SHA256SUMS)
+from the [1.1.0 release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
+The raw `.img` is not uploaded separately. The source ZIP is not a bootable image.
 
 A SHA-256 checksum is a fingerprint of a file. Compare the result below with the value
 published **for that exact file**. A match detects corruption or unexpected changes;
 it does not independently establish that the publisher or software is trustworthy.
-In these examples, replace `project-cbm-1.1.0.img.xz` with your downloaded filename.
+For `project-cbm-1.1.0.img.xz` (599,290,700 bytes), the expected SHA-256 is:
+
+```text
+8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d
+```
+
+The uncompressed image is 3,095,396,352 bytes. The published SHA256SUMS also lists
+the accompanying source/documentation assets; you need not download those to flash
+the image. The commands below check the image alone.
 
 macOS Terminal:
 
@@ -75,8 +84,8 @@ With power disconnected, insert the card and connect keyboard, HDMI and optional
 Ethernet. Switch the display to the correct input, then power the Pi. Some initial
 black-screen time while video starts is normal. Project CBM artwork should appear
 while the appliance prepares, followed by initial setup. This is not an instant-on
-system; storage and connected hardware affect startup. No final startup-time promise
-is made while physical release qualification is in progress.
+system; storage and connected hardware affect startup. The owner verified boot and
+first setup on the final Pi 4 B image; no fixed startup-time promise is made.
 
 ## First boot
 

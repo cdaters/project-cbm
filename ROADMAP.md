@@ -1,5 +1,17 @@
 # Project CBM Roadmap
 
+Project CBM **1.1.0 is publicly released**. The current
+[post-1.1 roadmap](docs/design/post-1.1-roadmap.md) and
+[owner-accepted content design](docs/design/content-ingestion-online-library.md)
+record the provisional **1.2.0** feature direction. No content/Online Library
+implementation has begun. Pi 4 B is the qualified 1.1 floor; older Pi 3 priorities
+below are historical, not current support policy.
+
+## Historical roadmap — 2026-09-15
+
+The original priorities below are retained as history. For current work use the
+links above and [CURRENT-STATE](CURRENT-STATE.md).
+
 Updated 2026-09-15. [ADR-0001](docs/adr/0001-base-distribution-and-image-architecture.md)
 accepts the 1.1 foundation. [CURRENT-STATE](CURRENT-STATE.md) and the
 [build handoff](docs/build-and-release.md#new-session-first-task) define the next

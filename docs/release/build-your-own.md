@@ -28,9 +28,13 @@ Raspberry Pi OS Lite (64-bit, Debian 13 Trixie)
 
 **A published release:** use that release's Product/Menu sources and documented public
 dependencies. This is the intended route for someone who wants to reproduce the product.
-**Current limitation:** the 1.1 sources/input publication and first-image bootstrap are
-not yet complete. A stranger with only today's public repositories cannot follow an
-end-to-end 1.1 image build. The [public-build audit](../documentation/public-bootstrap.md) names each gap.
+The [1.1.0 release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) now
+publishes Product/Menu refs, corresponding-source archives and inventories.
+**Current limitation:** the complete initial-input acquisition/bootstrap route is
+still unfinished. Public source availability alone does not provide an end-to-end
+first image build or establish independent reproducibility. The
+[dated public-build audit](../documentation/public-bootstrap.md) retains the original
+findings; its publication-pending statements are historical.
 
 **A customized image:** change your own source and build new packages/image. The
 [worked customization examples](customization.md) explain what to change and test.

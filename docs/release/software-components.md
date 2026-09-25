@@ -39,8 +39,9 @@ you exactly what was installed.
 
 Project CBM 1.1.0 uses Runtime **1.1.0-1**, Menu
 **1.1.0-1+pcbm1**, VICE **3.10-1+pcbm4**, and TCPser **1.1.6~beta-1+pcbm1**.
-The base reports Debian 13.7. These technical versions identify the prepared release.
-Publication status and download availability are shown on the project release page.
+The base reports Debian 13.7. These technical versions identify the published 1.1.0 release.
+[Release assets](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) include
+corresponding-source archives, inventories and notices.
 
 The release [installed-packages.json](installed-packages.json) records all 672 installed
 package/version/architecture records, package size metadata, source-inventory checksum

@@ -1,3 +1,33 @@
+# Accepted post-1.1 design and public documentation — 2026-09-24
+
+Owner accepted the [content/Online Library design](docs/design/content-ingestion-online-library.md),
+recorded separately in commit `2e5bb6d`. The provisional milestone is 1.2.0;
+CONTENT will own the sole visible Import entry. Online Library identifies Assembly64
+inside the feature; legitimate access/HTTP 464 expectations remain unresolved.
+No implementation, package build, image build, new version or release began.
+Next engineering work is a separately scoped Phase 1 reporting/contracts task.
+
+This documentation cleanup makes the published 1.1.0 image and user guides the
+front door. Product/Menu READMEs have one badge-only line; current docs give exact
+XZ/checksum links, appropriate Pi 4 B qualification and clearly historical screenshots.
+Old audit/recovery/packaging records are retained with lower-level navigation or
+additive context. The documentation checker now accepts that badge layout and
+resolves navigation separately from source paths; no runtime/build/package code changed.
+
+Owner explicitly authorized GitHub default branches `feature/1.1-build-foundation`
+(Product) and `feature/1.1-debian-package` (Menu). Both defaults are changed;
+`main` remains historical and unmerged. Documentation commits may be pushed to
+these active branches; existing v1.1.0 tag objects and release assets stay fixed.
+The previous local publication-completion record is included in the Product ancestry;
+its earlier local-only statement below describes the checkpoint before this push.
+
+[Cleanup verification record](docs/documentation/post-release-cleanup.md).
+Additive recovery location: `archive/post-1.1-design-docs-2026-09-24` under configured
+bulk storage. It retains both repositories' refs/bundles, offline restore checks,
+render/link/badge evidence and public-ref/release invariants after these documentation
+commits. Independent encrypted custody remains outstanding; this is not a new image
+qualification. Earlier checkpoints below remain historical.
+
 # Project CBM 1.1.0 — PUBLISHED, 2026-09-24
 
 [Public release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0), title

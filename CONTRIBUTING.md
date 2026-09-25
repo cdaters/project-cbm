@@ -10,7 +10,8 @@ Useful contributions include:
 - Documentation fixes
 - Menu/script improvements
 - VICE configuration improvements
-- Compatibility reports for Pi 3, Pi 4, Pi 5, and Pi 500
+- Compatibility reports for Pi 4-class and newer target models; qualify each model
+  separately. Pi 3/Zero-class hardware is outside the 1.1 target.
 
 ## Bug Reports
 

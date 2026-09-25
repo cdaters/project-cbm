@@ -1,6 +1,14 @@
 # Project CBM Screenshot Gallery
 
-Screenshots from Project CBM v1.0.0.
+Historical screenshots/artwork from Project CBM v1.0.0. They are retained unchanged
+and do not illustrate the current 1.1.0 Menu labels, hardware qualification or
+service defaults. See the [current manual](release/user-guide.md) and
+[1.1.0 capture checklist](release/screenshot-checklist.md).
+
+The original model-specific banner is historical artwork, not a Pi 5/500
+qualification claim:
+
+![Historical Project CBM Model 5 / 500 banner](../assets/images/project-cbm-header.png)
 
 ## Splash / Cover Screen
 
@@ -34,8 +42,11 @@ Screenshots from Project CBM v1.0.0.
 
 ![Project CBM system menu](../screenshots/v1.0.0/08-system-menu.png)
 
-## VICE Emulator
+## Historical machine presentation
 
-![VICE C64 startup launched from Project CBM](../screenshots/v1.0.0/09-vice-c64-startup.png)
+The C64 and C128 images below show Cover artwork before emulation, not running
+VICE screens.
 
-![VICE C128 startup launched from Project CBM](../screenshots/v1.0.0/10-vice-c128-demo.png)
+![Historical C64 Cover artwork](../screenshots/v1.0.0/09-vice-c64-startup.png)
+
+![Historical C128 Cover artwork](../screenshots/v1.0.0/10-vice-c128-demo.png)

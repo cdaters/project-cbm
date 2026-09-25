@@ -1,3 +1,26 @@
+# Current checksums and verification
+
+For **Project CBM 1.1.0**, download
+[project-cbm-1.1.0.img.xz](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0.img.xz)
+and [SHA256SUMS](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SHA256SUMS).
+Follow the [current verification commands](release/getting-started.md#download-and-check-the-image)
+for macOS, Linux or Windows. The image SHA-256 is:
+
+```text
+8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d
+```
+
+SHA256SUMS lists 19 accompanying release assets. Checking the entire list without
+all those downloads will report missing files; verifying the image alone is sufficient
+before flashing. A checksum detects changed bytes, not independent publisher trust.
+Do not use the old filenames or historical checksum file below for 1.1.0.
+
+## Historical 1.0 instructions — retained unchanged
+
+The original guide below documents the earlier release and is not current setup advice.
+
+---
+
 > **Historical v1.0 documentation.** For current 1.1 instructions use the
 > [user guide](release/user-guide.md), [networking guide](release/networking.md)
 > and [recovery help](release/recovery.md). Old credentials and service defaults do not apply.

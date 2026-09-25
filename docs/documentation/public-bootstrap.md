@@ -1,5 +1,12 @@
 # Public build and release gap audit
 
+> **Post-release update — 2026-09-24:** Project CBM 1.1.0 is published; final Pi 4 B
+> owner qualification passed. Product/Menu refs, corresponding-source archives,
+> inventories and notices are public. See the [publication record](../build/published-1.1.0.json)
+> and [current user documentation](../README.md). The initial public build bootstrap
+> remains incomplete. The dated audit below is preserved; its pending-publication
+> and pending-qualification statements describe the earlier checkpoint.
+
 This is an engineering release-readiness record, separate from the user manual.
 Audit date: 2026-09-20. No runtime, packages, factory implementation, lock or image
 changed during the documentation milestone. RC3 remains in owner physical qualification.

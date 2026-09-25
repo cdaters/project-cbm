@@ -38,6 +38,23 @@ def local_link_targets(text):
     return re.findall(r'\[[^\]]+\]\(([^)]+)\)', prose)
 
 
+def has_document_title(text):
+    """Allow one badge-only README preamble, followed by a blank line and H1."""
+    if text.startswith('# '):
+        return True
+    lines = text.splitlines()
+    if len(lines) < 3 or lines[1] != '' or not lines[2].startswith('# '):
+        return False
+    badge = r'\[!\[[^\]]+\]\(https://img\.shields\.io/[^)]+\)\]\([^)]+\)'
+    return bool(re.fullmatch(badge + r'(?: ' + badge + r')*', lines[0]))
+
+
+def source_references(text):
+    # Navigation targets are checked relative to their document above, not ROOT.
+    prose = re.sub(r'\[[^\]]+\]\([^)]+\)', '', text)
+    return set(re.findall(r'(?<![\w/])((?:tools|build|runtime|tests)/[A-Za-z0-9_./-]+\.(?:py|sh|json|yaml|list))', prose))
+
+
 def main():
     checks = 0
     links = 0
@@ -56,7 +73,7 @@ def main():
     for p in paths:
         text = p.read_text()
         check(len(text.encode()) < 150000, f'{p}: oversized text')
-        check(text.startswith('# '), f'{p}: missing title')
+        check(has_document_title(text), f'{p}: missing title or malformed badge preamble')
         check(sum(line.startswith('```') for line in text.splitlines()) % 2 == 0, f'{p}: unmatched fence')
         check(not re.search(r'-----BEGIN (?:OPENSSH |RSA |EC )?PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{30,}', text), f'{p}: secret pattern')
         if p.parent.name == 'release' or p.name == 'README.md':
@@ -82,7 +99,7 @@ def main():
                     check(False, f'{p}: Python example syntax {error}')
                 else:
                     check(True, 'Python syntax')
-        for rel in set(re.findall(r'(?<![\w/])((?:tools|build|runtime|tests)/[A-Za-z0-9_./-]+\.(?:py|sh|json|yaml|list))', text)):
+        for rel in source_references(text):
             check((ROOT/rel).exists(), f'{p}: missing source path {rel}')
 
     manual = (ROOT/'docs/release/user-guide.md').read_text()

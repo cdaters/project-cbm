@@ -10,6 +10,19 @@ spec.loader.exec_module(docs)
 
 
 class ReleaseDocumentationParsingTests(unittest.TestCase):
+    def test_title_accepts_one_badge_line_with_blank_separator(self):
+        badge = '[![Release](https://img.shields.io/badge/release-1.1.0-blue)](https://example.com/release)'
+        self.assertTrue(docs.has_document_title('# Project CBM\n'))
+        self.assertTrue(docs.has_document_title(badge + ' ' + badge + '\n\n# Project CBM\n'))
+        self.assertFalse(docs.has_document_title(badge + '\n# Project CBM\n'))
+        self.assertFalse(docs.has_document_title(badge + '\n' + badge + '\n\n# Project CBM\n'))
+        self.assertFalse(docs.has_document_title(badge + ' unrelated text\n\n# Project CBM\n'))
+
+    def test_source_paths_exclude_document_relative_navigation(self):
+        text = '[Publication](build/published-1.1.0.json) and `tools/package_manifest.py`'
+        self.assertEqual(docs.source_references(text), {'tools/package_manifest.py'})
+        self.assertEqual(docs.local_link_targets(text), ['build/published-1.1.0.json'])
+
     def test_wrapped_link_label_is_checked(self):
         self.assertEqual(docs.local_link_targets('[Release\nreadiness](audit.md#results)'),
                          ['audit.md#results'])

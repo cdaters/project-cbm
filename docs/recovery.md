@@ -1,3 +1,18 @@
+# Post-1.1 accepted design and documentation checkpoint — 2026-09-24
+
+Additive checkpoint: `archive/post-1.1-design-docs-2026-09-24` under configured bulk
+storage. Scope is the accepted content design and public repository documentation,
+including the owner-authorized switch to the published development branches as
+GitHub defaults. Retain `main`, both v1.1.0 tags and all release artifacts unchanged.
+
+Exact post-commit refs, full bundles, offline restored refs/peeled tags/fsck checks
+and public landing-page/release verification belong in this checkpoint's manifest
+and verification records. No package/image construction is part of this checkpoint.
+See [cleanup record](documentation/post-release-cleanup.md) and
+[CURRENT-STATE](../CURRENT-STATE.md) for scope and next action. Earlier recovery
+checkpoints below are retained; another directory on this disk is not independent
+or encrypted custody.
+
 # Project CBM 1.1.0 published recovery — 2026-09-24
 
 [Public release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) and

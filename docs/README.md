@@ -1,45 +1,52 @@
-# Project CBM documentation
+# Project CBM 1.1.0 Documentation
 
-Project CBM gives your Raspberry Pi a Commodore-focused front panel. Start at the
-level you need; you do not need the build guides to use an image.
+Project CBM 1.1.0 is publicly released. Start with the user guides below; you do not
+need factory or recovery-engineering knowledge to use the image.
 
-## Use Project CBM
+## Start Here
 
-- [Getting Started](release/getting-started.md): hardware, download, flash, first boot and C64 BASIC.
-- [User Manual](release/user-guide.md): every Main Menu and CONTROL area, machines, VICE and common tasks.
-- [Content and USB](release/content.md): where files belong, what launches and how import works.
-- [Networking and services](release/networking.md): Wi-Fi, Computer Name, Mac/Windows sharing, SSH and BBS/modem.
-- [Troubleshooting](release/troubleshooting.md): useful first steps when something goes wrong.
-- [Backup, upgrades and recovery](release/recovery.md): protect your files and move to a new image.
-- [Startup and recovery display](release/boot.md): expected artwork and advanced verbose boot.
+- [Hardware and qualification](release/getting-started.md#hardware): Pi 4 B is physically qualified; other target models need separate qualification.
+- [Download Project CBM 1.1.0](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
+- [Download and verify checksums](release/getting-started.md#download-and-check-the-image).
+- [Flash the image](release/getting-started.md#flash-the-card), then follow [first boot](release/getting-started.md#first-boot).
+- [End-User Manual](release/user-guide.md): keyboard navigation and everyday operation.
 
-## Build your own
+## Using Project CBM
 
-- [Build Your Own](release/build-your-own.md): source, prerequisites, package commands and the current public-build limit.
-- [pi-gen factory](release/factory.md): image recipe, standard stages, Linux host and official construction workflow.
-- [Software composition](release/software-components.md): important components, exact package inventory and rights.
-- [VICE integration](release/vice.md): Project CBM's emulator build, defaults, profiles and performance policy.
+- [Main Menu](release/user-guide.md#main-menu).
+- [RUN / VICE basics](release/user-guide.md#run-and-vice-basics) and [Machines](release/user-guide.md#machines).
+- [CONTENT and library layout](release/content.md) / [USB Import](release/content.md#usb-import).
+- [CCGMS / TCPser BBS calls](release/networking.md#call-a-bbs-with-ccgms-2021): use **Swift / Turbo DE** with the shipped configuration.
+- [FILES / Midnight Commander](release/user-guide.md#files-and-midnight-commander).
+- [File Sharing](release/networking.md#file-sharing) / [SSH and SFTP](release/networking.md#remote-access).
+- [Networking](release/networking.md) and [service controls](release/networking.md#services).
+- [Troubleshooting](release/troubleshooting.md).
+- [Safe shutdown](release/getting-started.md#your-first-c64-session) / [backup and user recovery](release/recovery.md).
+- [Startup display](release/boot.md) and [customization](release/customization.md).
 
-## Customize and develop
+These guides describe **shipped 1.1.0 behavior**. USB preview/selection, explicit
+USB browsing and Online Library belong to the accepted future design, not this image.
 
-- [Customization](release/customization.md): worked changes to names, Covers, defaults, applications and packages.
-- [Development](release/development.md): repository boundaries, interfaces, tests and release engineering.
-- [Accounts and installed layout](release/accounts-and-layout.md): paths, permissions and what is safe to edit.
-- [Screenshot checklist](release/screenshot-checklist.md): real screens still needed for the manual.
+## Development / Reference
 
-## Engineering references
+- [Developer guide](release/development.md) / [Contributing](../CONTRIBUTING.md).
+- [Architecture](architecture.md), [configuration contract](runtime/configuration-contract.md) and [Covers](runtime/covers.md).
+- [Build Your Own](release/build-your-own.md): the public initial bootstrap remains incomplete.
+- [pi-gen factory](release/factory.md) / [build and release contract](build-and-release.md).
+- [Software composition and licenses](release/software-components.md) / [VICE integration](release/vice.md).
+- [Accounts and installed paths](release/accounts-and-layout.md).
+- [Post-1.1 roadmap](design/post-1.1-roadmap.md) / [accepted content and Online Library design](design/content-ingestion-online-library.md).
+- [Engineering recovery](recovery.md) / [testing](testing.md).
 
-The release guides describe current behavior. [CURRENT-STATE](../CURRENT-STATE.md)
-tracks physical qualification and the current engineering checkpoint. [Documentation
-readiness](documentation/release-readiness.md) records the public-build audit and
-remaining release work.
+## Release Records / History
 
-Detailed contracts: [architecture](architecture.md), [configuration](runtime/configuration-contract.md),
-[Covers](runtime/covers.md), [security](security.md), [testing](testing.md),
-[build/release](build-and-release.md), [engineering recovery](recovery.md) and
-[provenance](provenance.md). Dated build/qualification records preserve earlier results;
-they are not instructions for operating the current release.
+- [1.1.0 release notes](release/release-notes-1.1.0.md) / [verified publication record](build/published-1.1.0.json).
+- [Final Pi 4 B owner qualification](qualification/final-1.1.0-pi4-owner-pass.json).
+- [Current engineering checkpoint](../CURRENT-STATE.md): later work and links to retained qualification/recovery records.
+- [Provenance](provenance.md) / [security history](security.md).
+- [Historical screenshots](screenshots.md) / [current capture checklist](release/screenshot-checklist.md).
+- [Historical documentation audit](documentation/release-readiness.md) and [bootstrap audit](documentation/public-bootstrap.md).
+- [Historical 1.0 guide and corrections](v1.0-current-notes.md).
 
-For Project CBM 1.0 use its [historical guide and corrections](v1.0-current-notes.md).
-
-[Project CBM 1.1.0 release notes](release/release-notes-1.1.0.md) describe the prepared release. Check the download page for publication status.
+Dated audits, build attempts and qualification records preserve what was known at
+that time. They are not the starting instructions for operating the current image.

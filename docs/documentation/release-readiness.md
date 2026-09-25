@@ -1,5 +1,12 @@
 # Project CBM 1.1 documentation readiness
 
+> **Post-release update — 2026-09-24:** Project CBM 1.1.0 is published; final Pi 4 B
+> owner qualification passed. Product/Menu refs, corresponding-source archives,
+> inventories and notices are public. See the [publication record](../build/published-1.1.0.json)
+> and [current user documentation](../README.md). The initial public build bootstrap
+> remains incomplete. The dated audit below is preserved; its pending-publication
+> and pending-qualification statements describe the earlier checkpoint.
+
 > Historical documentation checkpoint. Current release decisions and changed application
 > composition are in [release policy](../release/release-policy.md); final candidate validation
 > and physical status are recorded in [CURRENT-STATE](../../CURRENT-STATE.md).
