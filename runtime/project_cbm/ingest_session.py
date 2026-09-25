@@ -113,8 +113,12 @@ class Session:
                         stream.write(json.dumps(event, ensure_ascii=False) + '\n')
                         stream.flush()
                         os.fsync(stream.fileno())
+                    record({'event': 'started', 'source': 'usb',
+                            'scope': '/'.join(self.discovery.scope), 'generation': self.discovery.generation})
                     result = save(self.planned, self.root, self.discovery.open, record, cancelled)
-                    record({'event': 'finished', **result})
+                    try:record({'event': 'finished', **result})
+                    except OSError:
+                        result.update(status='partial' if result['saved'] else 'failed', error='write_failed')
             finally:
                 os.close(lock)
         self.finished = True

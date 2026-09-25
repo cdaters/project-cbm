@@ -259,7 +259,10 @@ def main():
         from .config_backend import policy
         if not policy()['system_ready']:raise ValueError('setup_incomplete')
         raw=bytearray()
+        import select
+        deadline=time.monotonic()+20
         while len(raw)<=4096:
+            if not select.select([0],[],[],max(0,deadline-time.monotonic()))[0]:raise ValueError('request_timeout')
             byte=os.read(0,1)
             if not byte or byte==b'\n':break
             raw.extend(byte)

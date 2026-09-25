@@ -1,5 +1,7 @@
 # Content library and USB import
 
+This page describes stable **1.1.0**. See the separate [provisional 1.2 content guide](../development/content-1.2.md) for development source behavior.
+
 [Documentation index](../README.md) · [User Manual](user-guide.md)
 
 Your library is **/home/pcbm/content**. You do not need to type that Linux path when

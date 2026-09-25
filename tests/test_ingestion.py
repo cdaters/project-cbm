@@ -248,7 +248,7 @@ class Ingestion(unittest.TestCase):
         result = session.handle({'operation': 'import'})
         self.assertEqual(result['saved'], 1)
         records = [json.loads(l) for l in next(state.glob('*.jsonl')).read_text().splitlines()]
-        self.assertEqual([r['event'] for r in records], ['pending', 'saved', 'finished'])
+        self.assertEqual([r['event'] for r in records], ['started', 'pending', 'saved', 'finished'])
         self.assertFalse(list(self.dest.rglob('*.json*')))
 
     def test_session_cancel_and_invalid_requests(self):

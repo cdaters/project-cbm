@@ -1,3 +1,31 @@
+# Provisional 1.2.0 — Phase 3 CONTENT workflow, 2026-09-24
+
+Phase 1 `dbafea6`; Phase 2 `f86140d`; Phase 3 Menu/runtime integration is ready for
+local commit. Both repositories use `feature/1.2-content-ingestion`. Stable 1.1.0
+and both protected tags are unchanged. No package/image/tag/push/release.
+
+[Development guide](docs/development/content-1.2.md),
+[contract and checks](docs/runtime/ingestion-contract.md),
+[Assembly64 access facts/inferences](docs/design/assembly64-access-2026-09-24.md).
+Host/native Menu105 PASS; Product279 native PASS; focused follow-up browser tests
+PASS. Native FAT/ext4 read-only scan/import/retry/source-hash/unmount PASS. Native
+exFAT and physical Pi UNTESTED. Failed initial staging/probe logs are preserved.
+Evidence: `qualification/content-1.2-development-2026-09-24` under configured bulk
+storage. The approved guest was started only for bounded tests, not construction;
+source/runtime packages have development identities, but no package has been built.
+
+CONTENT is the sole normal visible Import path and includes real Help. Browse Library
+uses the existing launcher with bounded pages. Online Library and Recent Additions
+are omitted. The provider's public OpenAPI schema supplies an API Support contact,
+but HTTP464/client admission/rates remain unresolved; no content was downloaded and
+no provider contact sent. Online network implementation remains gated.
+
+Next: finish Phase 3 local commits, then implement separate read-only FILES USB
+browsing with supervised MC and explicit safe release. No owner decision is required
+for that implementation. Preserve unknown `.qwen/` and `memory/`. Additive recovery
+bundles/native evidence must be retained at session close; independent encrypted
+custody remains outstanding. Earlier checkpoints are historical.
+
 # Provisional 1.2.0 — Phase 2 backend checkpoint, 2026-09-24
 
 Phase 1 committed as `dbafea6`. Phase 2 adds small unprivileged ingestion,

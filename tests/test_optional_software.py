@@ -149,7 +149,7 @@ class OptionalApplications(unittest.TestCase):
         self.assertIn("if 'optional_software' in lock:",stage)
         self.assertIn("verify_optional(args.kit",stage)
         menu=ROOT.parent/'project-cbm-menu'
-        self.assertIn('pcbm-profiles content-profile "${files[$PCBM_CHOICE]}"',(menu/'scripts/pcbm-content').read_text())
+        self.assertIn('pcbm-profiles content-profile "${files[$PCBM_CHOICE]}"',(menu/'scripts/pcbm-library').read_text())
         launcher=(menu/'scripts/pcbm-run-vice').read_text()
         for literal in ['pcbm-profiles resolve', '-menukey 291', 'args+=(-autostart "$1")', 'exec /usr/libexec/project-cbm/engineering.py run', 'SDL_AUDIODRIVER=alsa']:
             self.assertIn(literal,launcher)

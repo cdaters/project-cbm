@@ -141,3 +141,38 @@ media, two partitions, whole/folder scan, cancel before Import, select/deselect,
 unknown classification, multi-disk import/retry/conflict, removed media and busy
 unmount. Verify no payload appears before Import, source bytes remain unchanged,
 and F10/Menu regression on one existing C64 launch still passes. Physical UNTESTED.
+
+## Phase 3: CONTENT interface and native checks
+
+The matching Menu development source exposes Browse Library, Import from USB and
+Help under CONTENT. Its normal top-level Import item is removed. Online Library
+and Recent Additions are omitted, avoiding planned items that resemble working
+features. The old internal Import command/handler remains compatible as an entry
+point to the same workflow. Local library launch still uses the existing resolver
+and shared Cover/VICE launcher; browsing is paged at 20 files with a disclosed
+10,000-file category limit.
+
+The Bash controller uses private FIFOs for the bounded session protocol, typed
+request encoding and allowlisted result formatting. No caller-supplied source or
+mount paths appear in normal dialogs. Preview supports all/clear, per-file actions,
+folder descendant actions, pages and a full relative-name detail view. Every save
+requires explicit destination review followed by Import. Long operations offer
+Cancel. Closing the client requests cleanup; missing cleanup evidence never becomes
+safe-removal guidance. Built-in Help and the [development guide](../development/content-1.2.md)
+cover formats, uncertain classification, selection, limits, duplicates and release.
+
+Host Menu105 PASS and native Menu105 PASS. Product279 native PASS. Focused browser
+launch regression passes after paging. Tests use actual Bash and the actual
+unprivileged ingestion implementation with a synthetic broker, not a live USB drive.
+Native Linux FAT/ext4 loop tests PASS for read-only source enforcement, scan-without-
+copy, UID/GID 1000 copying, Already Present retry, source hash preservation and
+confirmed unmount. exFAT native is UNTESTED because the guest formatter is absent;
+its unchanged mount flags have fixture coverage. Physical USB/Pi behavior is UNTESTED.
+
+Evidence: `qualification/content-1.2-development-2026-09-24` under configured bulk
+storage, with distinct source snapshots/native logs. Initial native staging omitted
+some fixtures/refs; a first mount probe rejected a builder-writable ancestor. Those
+failures are retained. Corrected complete source/ref staging and a distinct root-owned
+synthetic mount location passed without weakening production checks. Historical
+Cover-validator tests now use the released import script expected by that validator;
+the historical validator and frozen evidence are unchanged.

@@ -13,7 +13,9 @@ class CoverPayload(unittest.TestCase):
                 # This validator is the immutable attempt-3 contract, not a
                 # next-candidate qualification of arbitrary current source.
                 raw=(subprocess.check_output(['git','-C',str(MENU),'show','407ced58b711209631cdfb4db6dcd741a555f408:scripts/pcbm-run-vice'])
-                     if path=='usr/bin/pcbm-run-vice' else source.read_bytes())
+                     if path=='usr/bin/pcbm-run-vice' else
+                     subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:scripts/pcbm-import'])
+                     if path=='usr/bin/pcbm-import' else source.read_bytes())
                 dest=root/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
                 descriptor={'path':hashlib.sha256(raw).hexdigest(),'sha256':hashlib.sha256(raw).hexdigest(),'size_bytes':len(raw)}
                 (kit/descriptor['path']).write_bytes(raw);return descriptor

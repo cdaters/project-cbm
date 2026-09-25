@@ -2,10 +2,9 @@
 
 ## 1.2.0 implementation — 2026-09-24
 
-The owner has now authorized incremental implementation. Phase 1 corrects the
-importer result boundary; see the [development contract](../runtime/ingestion-contract.md)
-and [current checkpoint](../../CURRENT-STATE.md). Shared ingestion and USB discovery
-are next. Assembly64 remains access-gated. No 1.2.0 release or qualification is
+The owner has now authorized incremental implementation. Phases 1–3 implement result reporting, shared ingestion, bounded USB discovery/
+selection and the CONTENT interface; see the [development contract](../runtime/ingestion-contract.md)
+and [current checkpoint](../../CURRENT-STATE.md). Separate read-only FILES USB browsing is next. Assembly64 remains access-gated. No 1.2.0 release or qualification is
 claimed. The acceptance-era backlog below is retained as historical scope.
 
 

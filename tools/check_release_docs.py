@@ -113,7 +113,7 @@ def main():
 
     manual = (ROOT/'docs/release/user-guide.md').read_text()
     all_docs = '\n'.join(p.read_text() for p in (ROOT/'docs/release').glob('*.md'))
-    main_source = (MENU/'scripts/pcbm-menu').read_text()
+    main_source = subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:scripts/pcbm-menu'],text=True)
     block = main_source.split('main_items=(', 1)[1].split('\n  )', 1)[0]
     main_items = re.findall(r'^\s+"([A-Z]+)"', block, re.M)
     check(len(main_items) == 8, 'Review main menu count change')
@@ -142,14 +142,15 @@ def main():
         source = (ROOT/relative).read_text()
         for value in values:
             check(value in source, f'Path/account source changed: {relative}: {value}')
+    # Stable manuals describe immutable released tags, not a later development tip.
     versions = {
         'build/packages/runtime/debian/changelog': '1.1.0-1',
         'build/packages/vice/debian/changelog': '3.10-1+pcbm4',
         'build/packages/tcpser/debian/changelog': '1.1.6~beta-1+pcbm1',
     }
     for relative, version in versions.items():
-        check(version in (ROOT/relative).read_text().splitlines()[0] and version in all_docs, f'Version mismatch: {relative}')
-    check('1.1.0-1+pcbm1' in (MENU/'debian/changelog').read_text().splitlines()[0] and '1.1.0-1+pcbm1' in all_docs, 'Menu version mismatch')
+        check(version in subprocess.check_output(['git','-C',str(ROOT),'show','v1.1.0:'+relative],text=True).splitlines()[0] and version in all_docs, f'Version mismatch: {relative}')
+    check('1.1.0-1+pcbm1' in subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:debian/changelog'],text=True).splitlines()[0] and '1.1.0-1+pcbm1' in all_docs, 'Menu version mismatch')
     for rel, flags in {
         'tools/freeze_private_candidate.py': ['--attempt', '--previous-attempt', '--runtime-version', '--menu-version', '--product-version', '--candidate'],
         'tools/export_candidate.py': ['--attempt', '--menu-tag'],
