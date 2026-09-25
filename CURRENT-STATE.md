@@ -1,5 +1,13 @@
 # Private 1.2 Pi qualification preparation — 2026-09-25 UTC
 
+Attempt17's freeze stopped on safe-extraction permission normalization in the
+Runtime-reuse check; all compared bytes were identical. Its partial kit is retained.
+The development-only comparison correction preserves executable-bit/content checks
+and the original 1.1 behavior. New attempt18 will use complete predecessor16 plus
+the authenticated refresh. Product297 native PASS; three focused reuse tests added.
+No image yet. Next: commit/validate corrected development reuse, freeze18, construct,
+validate and export the private image, retain recovery, then stop for owner review.
+
 Attempt16 is retained as a failed construction: normal APT rejected expired signed
 updates/security metadata. No image exists yet. Native prebuild Product289/Menu107
 and installed-package/lifecycle/USB/MC checks pass. The stable raw image is unchanged.

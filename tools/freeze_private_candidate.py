@@ -48,7 +48,7 @@ def runtime_payload_inputs(recipe):
     return files
 
 
-def verify_reused_runtime(old,recipe,component,version):
+def verify_reused_runtime(old,recipe,component,version,*,extracted_permissions=False):
     if component['package']['version']!=version:raise ValueError('reused Runtime version mismatch')
     expected=runtime_payload_inputs(recipe);actual={}
     with tarfile.open(old/component['source']['artifact']['path']) as archive:
@@ -56,7 +56,11 @@ def verify_reused_runtime(old,recipe,component,version):
             if not member.isfile():continue
             name=member.name.removeprefix('project-cbm/')
             if any(name.startswith(prefix) for prefix in ('runtime/','docs/release/','build/packages/runtime/debian/')):
-                actual[name]=(member.mode & 0o777,archive.extractfile(member).read())
+                # Development recipes are extracted with filter='data': compare
+                # those effective source permissions, including executable bits.
+                # Preserve the historical 1.1 reuse gate's default behavior.
+                mode=(tarfile.data_filter(member,recipe).mode if extracted_permissions else member.mode)
+                actual[name]=(mode & 0o777,archive.extractfile(member).read())
     if actual!=expected:raise ValueError('reused Runtime payload or recipe changed')
 
 
@@ -245,7 +249,7 @@ def main():
         if name=='menu' and a.reuse_menu:
             continue
         if name=='runtime' and a.reuse_runtime:
-            verify_reused_runtime(old,recipe,lock['components']['runtime'],version)
+            verify_reused_runtime(old,recipe,lock['components']['runtime'],version,extracted_permissions=bool(development))
             continue
         debs = list(packages.glob('project-cbm-'+name+'_*.deb'))
         if len(debs) != 1:

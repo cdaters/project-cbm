@@ -4,7 +4,7 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
-## Attempt16 stopped; authenticated retry preparation
+## Retained failed attempts and authenticated retry
 
 Attempt16 froze Product `aefc08e`, Menu `7c12a40` / annotated private
 `v1.2.0_dev1` (`b9f94546e166df32849ec7d2143477dc8b1fa8e5`). Lock:
@@ -14,7 +14,7 @@ files expired on September 22. No image was produced. The failed kit, tree and l
 remain intact. Builder inventory/update guards passed after the failure. Signature
 and expiry checking were not disabled, and the clock was not changed.
 
-The legitimate retry is **attempt17**, with a new lock and output directory, retaining
+The legitimate retry was **attempt17**, with a new lock and output directory, retaining
 the same private development product identity and exact unchanged Runtime/Menu packages.
 Current signed updates metadata has identical index hashes. Current signed security
 metadata advertises one newer package among the 672 installed packages:
@@ -47,6 +47,18 @@ are retained; corrected cleanup released every test mount/loop, and the stable r
 image remained `6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468`.
 These are native results, not physical Pi qualification.
 
+Attempt17 stopped during freeze, before writing a lock or constructing an image:
+the Runtime-reuse check compared Git tar permissions (0664/0775) with safe-extracted
+recipe permissions (0644/0755). All 65 compared file payloads were identical. The
+partial kit remains preserved. The development-only reuse path now compares the
+permissions produced by the same `tarfile.data_filter` used for extraction; changed
+bytes and executable bits still fail. The historical 1.1 default comparison is
+unchanged. The new retry is **attempt18**, using the last complete kit, attempt16,
+and the independently authenticated refresh. Attempt17 is not a usable predecessor.
+Host Product297 ran with only the known mktemp control failure; native Product297
+passed before this small comparison correction. Three additional reuse tests cover
+the correction and rejection behavior.
+
 ## Identity rules
 
 The factory explicitly admits product `1.2.0-dev.N` only with candidate
@@ -59,7 +71,7 @@ package/source hashes and the existing API dependency still apply.
 
 The initial image identity is **1.2.0-dev.1 / private-engineering-1.2-dev1**;
 Runtime `1.2.0~dev1-1`, Menu `1.2.0_dev1` / `1.2.0~dev1-1+pcbm1`.
-Initial attempt **16** used verified attempt15 inputs; the authenticated retry is **17**.
+Initial attempt **16** used verified attempt15 inputs; the authenticated retry is **18**.
 The frozen lock hash is the build ID, independently recorded in the eventual result.
 
 Development configuration and export suffix have separate source files:
@@ -92,8 +104,8 @@ VICE/TCPser/OS/assets; disposable installed-package tests; freeze; isolated offl
 construction; actual-image validation and raw/XZ comparison; additive source/input/
 image recovery. No network client or hosted Assembly64 titles enter the image.
 
-The retry uses new paths `inputs/frozen-poc4-attempt17`,
-`builds/private-1.2-dev1-attempt-17` and `artifacts/private-1.2-dev1-attempt-17`
+The retry uses new paths `inputs/frozen-poc4-attempt18`,
+`builds/private-1.2-dev1-attempt-18` and `artifacts/private-1.2-dev1-attempt-18`
 beneath configured bulk storage. Exact unchanged development packages remain in
 `packages/poc4-attempt16`; no duplicate package with the same version is rebuilt.
 These paths must be absent before their respective steps. Failed attempts remain
