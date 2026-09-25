@@ -176,3 +176,53 @@ failures are retained. Corrected complete source/ref staging and a distinct root
 synthetic mount location passed without weakening production checks. Historical
 Cover-validator tests now use the released import script expected by that validator;
 the historical validator and frozen evidence are unchanged.
+
+## Phase 4: separate read-only FILES USB browsing
+
+FILES now offers **Library** and **USB Drive**. The USB flow chooses a partition,
+then Mount Read-Only, Midnight Commander, and Safe Unmount (or Browse Read-Only
+again / Help). Leaving the screen attempts release. A busy/failed unmount explicitly
+requires leaving the drive connected until safe shutdown; it never force-unmounts.
+MC's ordinary copy/overwrite actions do not become ingestion/provenance records.
+
+The fixed helper's schema-2 `browse-session` accepts only an enumerated token.
+It uses the same disk-generation checks and exclusive session lock, but a separate
+fixed mount directory, `/run/project-cbm/import/browse`. Import uses `source`.
+The broker creates/checks its fixed root-owned browse directory and refuses a stale
+mounted target; it does not unmount a foreign mount or choose a new device by name.
+Already-mounted physical disks remain excluded as a whole, so it never reports one
+partition safe while another admitted CBM session is using the same disk.
+
+`usb_browse.py` runs after UID/GID/group drop. Only fixed `/usr/bin/mc -u` with the
+USB and library panels is launched, attached to the existing controlling terminal.
+No arbitrary command, path, shell, writable mount or second launch engine is added.
+Its child receives a minimal environment and closed IPC descriptors. The worker
+terminates/reaps MC on cancellation, disconnect or interruption; Linux parent-death
+SIGKILL prevents a worker crash from leaving MC orphaned. The existing broker
+supervises/reaps the worker and verifies ordinary unmount. The UI closes its pipe
+and waits for its known child after a final result; it never signals a stale saved
+PID. The same five-minute idle and thirty-minute total session bounds apply.
+
+Session mounts are not persisted in fstab or remounted on reboot. Normal shutdown
+terminates session processes and unmounts filesystems; exact physical shutdown and
+removed-device behavior still require qualification. `noexec` is not a sandbox
+against manually interpreting source scripts. MC remains ordinary user file
+management; USB writes are refused by the read-only filesystem.
+
+Final host/native source regression: Product284 PASS, Menu107 PASS. Seven actual
+Bash flow tests include browse-again/no-copy and busy release. Five focused worker
+tests cover request bounds, fixed unprivileged command, cancellation/reap and
+failure/EOF cleanup. Native MC 4.8.33 PTY tests PASS: F10 round trip, cancellation,
+and the complete real broker fork/mount/protocol/UID-drop path with explicit release
+and caller loss. Both release paths confirmed ordinary unmount of synthetic ext4.
+The guest lacked MC; the successful test used retained staging `/usr` read-only in
+an isolated mount namespace, without host installation. The original missing-MC
+probe remains retained. Post-test package inventory is unchanged and all five
+host automatic-update units remain masked.
+
+Bounded physical Phase 4 procedure on a future distinct image: browse representative
+FAT/exFAT media read-only, verify source write refusal, exit/re-enter MC, release,
+exercise a busy release and removed drive, then reboot/shutdown with a session.
+Record exact image hash, hardware, filesystem, source preservation and Menu return.
+Physical and Pi 4 responsiveness: UNTESTED. No frozen 1.1.0 artifact is a target for
+in-place repair or new qualification claims.

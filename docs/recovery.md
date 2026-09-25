@@ -1,3 +1,16 @@
+# Provisional 1.2 content source checkpoint — 2026-09-24
+
+Additive recovery location: `archive/content-1.2-development-2026-09-24` under the
+configured bulk workspace. Its external manifest and restore report bind both local
+`feature/1.2-content-ingestion` tips, full Git bundles/refs/peeled tags and offline
+mirror/fsck checks. Evidence is in `qualification/content-1.2-development-2026-09-24`,
+including distinct native source snapshots and failed/successful test logs.
+
+This is source recovery for development phases 1–4, not a package/image/release or
+physical qualification. Both published v1.1.0 tags and frozen release artifacts are
+unchanged. No historical manifest is regenerated. Independent encrypted custody and
+Pi/exFAT/response-time qualification remain outstanding. Assembly64 is access-gated.
+
 # Additive banner and public-voice checkpoint — 2026-09-24
 
 Recovery location: `archive/post-1.1-banner-voice-2026-09-24` under configured bulk

@@ -71,3 +71,22 @@ provenance, checks and the bounded physical procedure. Runtime source package ve
 is `1.2.0~dev1-1`; Menu source version is `1.2.0_dev1` / `1.2.0~dev1-1+pcbm1`.
 No package/image/tag/release exists for these changes. Native and physical results
 must be reported separately from host fixtures.
+
+## FILES → USB Drive
+
+Choose a partition, then **Mount Read-Only**. Midnight Commander shows the USB source
+and your local library. Press **F10** to exit; choose **Safe Unmount**, **Browse
+Read-Only again**, or Help. Back also attempts release. Remove the drive only after
+confirmation. If it is busy or release is unknown, leave it connected until safe
+shutdown. Reboot does not remount the session.
+
+USB rename/delete/write operations are refused. Midnight Commander runs as your
+normal user; any manual copy into the library uses its own overwrite prompts and
+does not receive ingestion history. Use CONTENT → Import from USB for reviewed
+selection, duplicate handling and provenance. The browser is not an execution
+sandbox: do not manually execute content you do not trust.
+
+One CBM USB session is active at a time, with a thirty-minute total limit and a
+five-minute idle review timeout. Close other sessions before choosing another
+partition. Source removal or browser failure ends the session and attempts cleanup;
+missing confirmation always requires conservative removal.

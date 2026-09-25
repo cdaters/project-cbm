@@ -3,4 +3,4 @@
 import os
 import sys
 os.execve('/usr/bin/sudo', ['sudo', '-n', '--', '/usr/libexec/pcbm-import-root'],
-          {'PATH': '/usr/bin:/bin', 'LC_ALL': 'C'})
+          {'PATH': '/usr/bin:/bin', 'LC_ALL': 'C', 'TERM': os.environ.get('TERM', 'linux')})

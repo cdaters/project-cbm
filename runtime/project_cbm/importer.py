@@ -170,9 +170,17 @@ def stop_worker(pid):
     raise ImportFailure('copy_failed',False)
 
 
-def perform(entry,category,family=None,worker=None):
+def perform(entry,category,family=None,worker=None,purpose='import'):
     if entry not in discover():raise ValueError('device_changed')
-    target=trusted(WORK/'source')
+    if purpose not in ('import','browse'):raise ValueError('purpose')
+    if purpose=='browse':
+        trusted(WORK)
+        try:os.mkdir(WORK/'browse',0o755)
+        except FileExistsError:pass
+        trusted(WORK/'browse')
+        if os.path.ismount(WORK/'browse'):raise ValueError('mount_busy')
+        os.chmod(WORK/'browse',0o755)
+    target=trusted(WORK/('browse' if purpose=='browse' else 'source'))
     if os.path.ismount(target):raise ValueError('mount_busy')
     fd=os.open(entry['device'],os.O_RDONLY|os.O_NOFOLLOW)
     try:
@@ -237,7 +245,7 @@ def validate_request(raw):
     if len(raw)>4096:raise ValueError('size')
     d=loads(raw)
     if (isinstance(d,dict) and type(d.get('schema_version')) is int and d['schema_version']==2
-            and set(d)=={'schema_version','operation','token'} and d['operation']=='session'
+            and set(d)=={'schema_version','operation','token'} and d['operation'] in ('session','browse-session')
             and isinstance(d['token'],str) and re.fullmatch('[0-9a-f]{32}',d['token'])):return d
     if not isinstance(d,dict) or type(d.get('schema_version')) is not int or d['schema_version']!=1:raise ValueError('request')
     if d=={'schema_version':1,'operation':'list'}:return d
@@ -281,8 +289,12 @@ def main():
                     for i,(k,v) in enumerate(entries.items())]}))
             elif request.get('schema_version')==2:
                 from .ingest_session import run
+                purpose='import'
+                if request['operation']=='browse-session':
+                    from .usb_browse import run
+                    purpose='browse'
                 entries=loads(trusted(WORK/'devices.json').read_bytes())
-                answer=perform(entries[request['token']],None,worker=run)
+                answer=perform(entries[request['token']],None,worker=run,purpose=purpose)
                 print(json.dumps({'schema_version':2,**answer}),flush=True)
             elif (set(request) in ({'schema_version','operation','token','category'}, {'schema_version','operation','token','category','family'}) and request['schema_version']==1
                   and request['operation']=='import' and request['category'] in CATEGORIES

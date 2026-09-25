@@ -1,3 +1,46 @@
+# Provisional 1.2.0 — Phases 1–4 source complete, 2026-09-24
+
+Local Product commits: Phase 1 `dbafea6`, Phase 2 `f86140d`, Phase 3 `3c732d8`.
+Menu Phase 3 `6c9648f`; the following Phase 4 commits are identified by this checkpoint's
+branch refs/recovery bundles. Both branches: `feature/1.2-content-ingestion`.
+Stable 1.1.0, annotated tags, frozen packages/images and historical evidence remain
+unchanged. No new tag, package, image, push, publication or release.
+
+[Development guide](docs/development/content-1.2.md) and
+[contract/phase validation](docs/runtime/ingestion-contract.md) describe implemented
+reporting, source-neutral ingestion, read-only discovery/selection, CONTENT UX and
+separate read-only FILES/MC browsing. Unknown classifications require explicit user
+choice. Scans do not copy. Identical destination bytes are Already Present; conflicts
+keep collections together in predictable siblings. Private JSONL provenance is
+outside content. Recent Additions and Online Library are omitted, not placeholders.
+
+Host/native Product284 and Menu107 PASS; documentation563 PASS. Native FAT/ext4
+read-only scan/copy/retry/source hashes/unmount PASS. MC 4.8.33 native PTY/F10,
+cancellation, complete broker session and client-loss release PASS. Native exFAT,
+physical Pi and measured Pi4 responsiveness remain UNTESTED. Initial missing-fixture,
+unsafe-staging-ancestor and missing-MC test attempts remain retained; corrections did
+not weaken runtime gates. Host package inventory is unchanged; update guards PASS.
+
+[Assembly64 access findings](docs/design/assembly64-access-2026-09-24.md): public
+OpenAPI documentation and API Support contact found, but honest client admission,
+HTTP464 and usage expectations remain unresolved. Phase 5 network implementation
+is STOPPED at its accepted access gate; Phase 6 Save & Run is not implemented.
+No hosted-title downloads, client impersonation, private-token use or provider
+contact occurred. USB work required no new owner design decision.
+
+Evidence: `qualification/content-1.2-development-2026-09-24` under configured bulk
+storage. Additive source recovery: `archive/content-1.2-development-2026-09-24`, whose
+manifest/restore report bind exact final refs, protected tags, bundles and evidence.
+Finish its verification and return the native guest to its original stopped state.
+Independent encrypted custody remains outstanding. Unknown `.qwen/` and `memory/`
+are preserved and excluded.
+
+Next engineering action: obtain documented provider admission guidance before any
+online client; prepare a distinct private development package/image only when moving
+to the bounded Pi procedures. No physical flashing/test is authorized by source
+checks alone. This checkpoint does not claim release readiness or reproducibility.
+Earlier checkpoints below retain their historical task scopes.
+
 # Provisional 1.2.0 — Phase 3 CONTENT workflow, 2026-09-24
 
 Phase 1 `dbafea6`; Phase 2 `f86140d`; Phase 3 Menu/runtime integration is ready for
