@@ -119,7 +119,7 @@
     "attempt18 validation3 inherited metadata AST inspection"
   ],
   "recovery": {
-    "path": "archive/private-1.2-dev1-attempt18-2026-09-25",
+    "path": "archive/private-1.2-dev1-attempt18-2026-09-25-r2",
     "authority": "manifest.json, manifest.sha256 and restore-results.json; verify before physical testing",
     "independent_encrypted_custody": false
   },

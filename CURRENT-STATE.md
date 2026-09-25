@@ -14,7 +14,7 @@ The two validator-only corrections are committed separately (`8094cf1`, `9745e64
 no frozen input or image was altered or rebuilt. Initial failed checks and all earlier
 attempts remain retained. [Build explanation](docs/build/private-1.2-development.md).
 
-External recovery: `archive/private-1.2-dev1-attempt18-2026-09-25`; its manifest,
+External recovery: `archive/private-1.2-dev1-attempt18-2026-09-25-r2`; its manifest,
 checksums and offline restore/ref/tag/fsck report are the final recovery authority.
 Independent encrypted custody remains outstanding. Builder returned to STOPPED
 after export and cleanup verification. Guest free space is below the

@@ -40,7 +40,7 @@ margin and expanded capacity need measurement on the owner's card. No nominal ca
 minimum or hardware/reproducibility claim follows. Guest free space after validation
 is 34,248,122,368 bytes, below the next-build 40GiB gate; preserve existing attempts.
 
-Recovery checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25`. Verify its
+Recovery checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25-r2`. Verify its
 manifest and restore report before the [Pi4 procedure](../qualification/content-1.2-pi4-usb.md).
 It retains sources/bundles, exact refs/tags, input/output/evidence catalogs and offline
 restoration checks. Independent encrypted custody remains outstanding. The two

@@ -1,6 +1,6 @@
 # Private 1.2 attempt18 recovery — 2026-09-25
 
-Additive checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25` under registered
+Additive checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25-r2` under registered
 bulk storage. Its manifest/checksum and `restore-results.json` bind current Product/
 Menu bundles, exact refs/peeled tags, offline restore/fsck, actual retained input and
 output hashes, and the separately retained failed/successful validation evidence.
@@ -14,6 +14,12 @@ Earlier failed build/staging trees remain preserved in the external-backed guest
 no builder state was deleted. Recovery verification must pass before physical testing.
 This is private NON-RELEASE preparation, not independent custody, reproducibility or
 Pi qualification. Independent encrypted recovery remains outstanding.
+
+The initial `archive/private-1.2-dev1-attempt18-2026-09-25` checkpoint passed both
+source restores but stopped before sealing its catalog because package staging
+contains symlinks. It remains untouched. The `-r2` successor catalogs link targets
+without following them, alongside regular-file bytes; this corrects recovery
+representation, not any package/image input. Its own manifest is the final authority.
 
 # 1.2 source checkpoint context addendum — 2026-09-24
 

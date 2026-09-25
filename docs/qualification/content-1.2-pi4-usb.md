@@ -11,7 +11,7 @@ or a public 1.2 release. Flashing/testing remains an explicit owner action.
 
 Image preparation is complete: [exact output record](../build/private-1.2-dev1-attempt18.json).
 This is owner-controlled testing on a separate card, not a public release or a physical
-PASS. Verify external recovery at `archive/private-1.2-dev1-attempt18-2026-09-25`.
+PASS. Verify external recovery at `archive/private-1.2-dev1-attempt18-2026-09-25-r2`.
 
 - Build ID: `4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79`.
 - Raw: `2026-09-25-project-cbm-1.2.0-dev.1-lite-private-1.2-dev1.img`,
