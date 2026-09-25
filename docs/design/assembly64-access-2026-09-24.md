@@ -6,6 +6,15 @@ continues independently. This addendum supplements the accepted
 
 ## Qualification-preparation review
 
+**September 25 correction:** the subsequent
+[reference/Elite II audit](assembly64-reference-audit-2026-09-25.md) exhausts the
+accessible local code/history, public issues/releases and official documentation.
+The historical phrase “own admitted identity” below overstates the evidence: the
+Manager uses a fixed identity and its author acknowledges provider cooperation.
+No source establishes mandatory registration or contact for every third-party
+client. Project CBM's observed 464 and the four specific operating-policy questions
+remain unresolved; provider clarification is useful for those reasons.
+
 The legitimate next step is an owner-sent inquiry to the published API Support
 contact. A [concise technical draft](assembly64-provider-inquiry.md) is prepared;
 it has not been sent. USB image/qualification preparation does not open the network

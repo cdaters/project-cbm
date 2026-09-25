@@ -39,6 +39,12 @@ https://github.com/cdaters/project-cbm
 
 ## Basis and handling
 
+The [September 25 reference and Elite II audit](assembly64-reference-audit-2026-09-25.md)
+found concrete protocol details and acknowledged provider cooperation with Manager,
+but no documented mandatory registration process. The four questions above remain
+partially unanswered; this draft seeks clarification of the actual 464 response and
+missing policy, without assuming that all clients must request permission.
+
 The address is a published API Support contact, not inferred from a personal account.
 Its source is the [provider schema](https://hackerswithstyle.se/leet/v3/api-docs),
 retained with an exact hash in the [access findings](assembly64-access-2026-09-24.md).

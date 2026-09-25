@@ -1,3 +1,23 @@
+# Assembly64 reference access audit — 2026-09-25
+
+[Complete A/B/C/D findings](docs/design/assembly64-reference-audit-2026-09-25.md):
+Manager source/history/issues/releases and official Elite II documentation/firmware
+establish endpoint/header details, but not mandatory registration, the meaning of
+HTTP464, Project CBM identification or provider operating/attribution/change policy.
+The earlier “admitted identity” claim is corrected additively. All four inquiry
+topics remain partially unresolved. No service probe, foreign identity/credential,
+hosted-title download, provider message or network implementation occurred.
+
+Evidence: `qualification/assembly64-reference-audit-2026-09-25`; additive source
+recovery: `archive/assembly64-reference-audit-2026-09-25`, with manifest and offline
+restore/ref/tag/fsck verification as completion authority. Independent custody
+remains outstanding. No image/package/tag or Menu/reference source changes.
+Unknown `.qwen/` and `memory/` are preserved. Owner says Pi4 testing is in progress;
+no results have been supplied, so no physical PASS or qualification is recorded.
+Next: receive exact-image physical results; clarify only the unresolved Assembly64
+questions before proceeding with the accepted Online Library gate. Inquiry unsent.
+Stable 1.1.0 and private attempt18 remain as recorded below.
+
 # Private 1.2 attempt18 ready for owner Pi4 procedure — 2026-09-25 UTC
 
 One PRIVATE, NON-RELEASE `1.2.0-dev.1` / `private-engineering-1.2-dev1` image
