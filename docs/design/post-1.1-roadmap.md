@@ -2,6 +2,15 @@
 
 These owner-deferred items do not block Project CBM 1.1.0 and are not included features:
 
+Owner-accepted design (2026-09-24): [Content ingestion and Online Library](content-ingestion-online-library.md).
+It develops the existing online/USB items below; all future behavior remains
+unimplemented and the published 1.1.0 release is unchanged. The provisional feature
+target is **1.2.0**, with reporting/contracts → shared primitives and USB selection
+→ CONTENT UX → read-only FILES browsing → legitimate-access-gated Online Library
+→ Save & Run. No separate 1.1.1 is planned solely for the reporting defect. CONTENT
+will own the sole normal USB Import entry; Online Library names Assembly64 inside
+the feature. No implementation, new tag or release is authorized by this record.
+
 - **Project CBM Online Library / Assembly64**: investigate search, results/details,
   optional downloads into `/home/pcbm/content`, and Download & Run through existing
   profile routing. Future design must address service terms, content rights and safety.
