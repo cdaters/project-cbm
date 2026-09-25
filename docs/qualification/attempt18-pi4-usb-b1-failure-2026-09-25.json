@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-25",
+  "candidate": {
+    "candidate": "private-engineering-1.2-dev1",
+    "version": "1.2.0-dev.1"
+  },
+  "attempt": 18,
+  "hardware": "Raspberry Pi 4 Model B Rev 1.4",
+  "image_reference": {
+    "raw_sha256": "428da6e67c5f82aa3a09fdbdc54d12e0d6cf8fc78abd0bc25a779c728351e557",
+    "xz_sha256": "74f1b438301a491f21149acfce2e4280e232aa8707fb50a1e03b02e26b9f7010",
+    "lock_sha256": "4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79"
+  },
+  "identity_basis": "Owner reports exact attempt18; installed identity/build lock and six relevant source hashes independently match. Running media not rehashed.",
+  "case": "B1 — FILES read-only USB browsing",
+  "result": "FAIL",
+  "source": "owner physical report",
+  "reproduction": [
+    "FILES",
+    "USB Drive",
+    "Select real USB partition",
+    "Mount Read-Only",
+    "Midnight Commander opens"
+  ],
+  "observations": [
+    "Ordinary FILES Midnight Commander works on same image/hardware",
+    "USB MC Up/Down echo escape sequences similar to ^[[A and ^[[B",
+    "Tab and function keys do not navigate",
+    "Ctrl+C aborts and returns to Main Menu"
+  ],
+  "read_only_investigation": {
+    "browse_mount_absent": true,
+    "usb_partition_unmounted": true,
+    "observed_mc_or_broker_remaining": false,
+    "normal_mc_live_snapshot": "PENDING owner opens normal MC",
+    "usb_mc_live_snapshot": "PENDING owner reproduction after normal snapshot",
+    "root_proc_access": "Unavailable without owner authentication; sudo -n read-only collector refused",
+    "suspected_cause": "sudo use_pty plus FIFO/background broker means MC opens a different controlling PTY; physical console raw mode/foreground handling may not follow",
+    "root_cause_confirmed": false
+  },
+  "limits": [
+    "No agent-sent keys or live reproduction",
+    "No Pi configuration, source or mount modifications",
+    "No USB writes or mount-protection changes",
+    "No new PASS for any physical case"
+  ],
+  "next": "Capture normal MC first, then owner-reproduced USB failure; compare fd, TTY, session/group, termios and allowlisted environment, followed by Ctrl+C cleanup snapshot."
+}

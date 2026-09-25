@@ -1,3 +1,34 @@
+# Attempt18 Pi 4 physical B1 FAIL — read-only investigation, 2026-09-25
+
+Owner reports normal FILES MC works but USB read-only MC echoes arrow escapes,
+ignores Tab/function keys, and Ctrl+C returns to Main Menu. Record **B1 FAIL** for
+exact attempt18; other cases gain no new result. [Owner report](docs/qualification/attempt18-pi4-usb-b1-failure-2026-09-25.json)
+and [investigation / pending comparison](docs/qualification/attempt18-pi4-usb-b1-investigation.md).
+
+Read-only SSH verifies Pi4 B Rev1.4, installed attempt18 identity/lock, Runtime/Menu
+versions and matching hashes for six relevant launch files. Browse mount is absent,
+USB partition unmounted and no MC/broker remains at inspection. No live repair,
+mount/unmount, USB write, key injection or security-policy change was performed.
+
+Suspected cause: installed FIFO/background bridge crosses sudo use_pty, so the
+worker's /dev/tty can be a different terminal from the physical console. Exact live
+cause remains UNCONFIRMED. Native PTY tests bypassed sudo/Menu launch boundaries
+and did not test arrow/Tab navigation. TERM=linux and terminfo exist; baseline dialog
+state is not failing MC state. Privileged /proc collection was refused for lack of
+cached authentication; ordinary read-only collection succeeded.
+
+Next: owner leaves normal MC open for snapshot (request pending), then owner-driven
+USB reproduction and Ctrl+C cleanup capture. Do not claim exact diagnosis until
+both states are observed. Conditional fix: unprivileged caller-side MC with broker
+mount lease retained; no use_pty disablement. A corrected source/package set needs
+a new distinct private candidate, never an in-place attempt18 repair.
+
+Initial evidence: `qualification/attempt18-pi4-usb-browse-defect-2026-09-25`;
+additive source recovery: `archive/attempt18-pi4-usb-browse-defect-2026-09-25`.
+Investigation is incomplete; manifests bind this initial checkpoint only. Independent
+custody remains outstanding. Stable artifacts/tags, Menu and unknown local work
+remain unchanged. Earlier entries below retain their historical scope.
+
 # Assembly64 distributed backend comparison — 2026-09-25
 
 [Central/home protocol comparison](docs/design/assembly64-home-protocol-2026-09-25.md)

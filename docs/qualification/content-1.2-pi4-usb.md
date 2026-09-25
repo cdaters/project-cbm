@@ -1,5 +1,11 @@
 # Pi 4 B — private 1.2 USB/content qualification
 
+**September 25 physical update:** B1 on exact private attempt18 is **FAIL**:
+USB MC keyboard navigation fails while ordinary FILES MC works. See the
+[owner report and read-only investigation](attempt18-pi4-usb-b1-investigation.md).
+Stop B1 for evidence collection; do not repair the qualification image in place.
+The procedure below is retained as the original test expectation.
+
 **NON-RELEASE. Physical results: UNTESTED.** Do not flash until the
 [candidate record](../build/private-1.2-development.md) supplies a completed image,
 exact raw/XZ hashes, validation and verified recovery. Source tests alone are not an
