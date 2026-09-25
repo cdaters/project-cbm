@@ -1,3 +1,19 @@
+# Project CBM 1.1.0 published recovery — 2026-09-24
+
+[Public release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) and
+[verified publication result](build/published-1.1.0.json). All 20 public assets were
+independently downloaded and hashed; public XZ expansion matches the qualified raw
+image. Both annotated tags and public branch commits match the owner-approved refs.
+The approved assets, tags, packages and images were not changed.
+
+Successor checkpoint: `archive/final-1.1.0-published-2026-09-24` under configured bulk
+storage. Its manifest/checksum and restore report bind the local completion records,
+bundles/offline source restoration and published asset/ref verification. Public
+repositories remain at the approved commits; the later local completion record is
+not pushed. Prior sealed checkpoints and the failed first staging set remain intact.
+Independent encrypted custody remains deferred. Publication is complete; no unrelated
+post-release work has started. Earlier entries below are historical.
+
 # Final 1.1.0 publication-review recovery — 2026-09-24
 
 The owner final Pi 4 B smoke, CCGMS/TCPser live BBS connection, reboot/persistence

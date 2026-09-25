@@ -1,3 +1,37 @@
+# Project CBM 1.1.0 — PUBLISHED, 2026-09-24
+
+[Public release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0), title
+**Project CBM 1.1.0**, non-prerelease; published `2026-09-25T01:57:44Z` (September 24
+in Arizona). [Exact publication result](docs/build/published-1.1.0.json).
+Owner authorization covered the reviewed 20 assets plus a release-body-only paragraph
+explaining binary source versus later documentation. All 20 public asset downloads
+match approved sizes/SHA-256; the downloaded XZ expands to qualified raw SHA-256
+`6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468`.
+The public XZ SHA-256 remains
+`8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d`.
+No raw image upload, package/image rebuild, tag change or approved-asset edit.
+
+Published Product branch `feature/1.1-build-foundation` points to
+`f185bc353428a1ab9bb4b6e1ab49143c73b3a57a`; annotated `v1.1.0` remains object
+`627937867f59b76ea5c3c96fdbb14ebd47ed507f`, peeled to binary source
+`787c275005aaf2c03b2ed769edc815a34ccafc9f`.
+Published Menu branch `feature/1.1-debian-package` points to
+`7df45cf40eae1ca64cd5740e4b93347e3717bdb4`; annotated `v1.1.0` remains object
+`9f471a2ddd7492d041d9563809e301da9c79ed57`, peeled to that same Menu commit.
+The public page explicitly distinguishes source and documentation snapshots;
+GitHub's generated tag source archive matches the frozen source byte-for-byte.
+All 24 distinct public documentation links and 123 archive-local links were checked;
+one upstream HTTP bot rejection was resolved through the web reader without edits.
+
+Evidence: `qualification/final-1.1.0/publication-2026-09-24` under configured bulk
+storage. Additive recovery: `archive/final-1.1.0-published-2026-09-24`, with exact
+refs, bundles, offline restore/fsck and publication verification manifests.
+This subsequent local record commit is not part of the published `f185bc3` snapshot
+and is not pushed; the approved public refs and asset set remain fixed.
+RC4 and final owner Pi 4 B smoke, live BBS, reboot and shutdown remain PASS.
+Publication is complete. No Assembly64, 1.1.1 or unrelated work is authorized here.
+Earlier checkpoints below retain their historical pre-publication state.
+
 # Final 1.1.0 — READY FOR PUBLICATION AUTHORIZATION, 2026-09-24
 
 Owner final attempt15 Raspberry Pi 4 B smoke **PASS — COMPLETE**, including fresh

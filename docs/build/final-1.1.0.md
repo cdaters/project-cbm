@@ -1,5 +1,16 @@
 # Project CBM 1.1.0 release preparation
 
+## Publication complete
+
+**PUBLISHED:** [Project CBM 1.1.0](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0),
+non-prerelease, `2026-09-25T01:57:44Z`. [Exact publication results](published-1.1.0.json)
+record all 20 public download hashes/sizes, downloaded-XZ/raw equivalence, published
+branch/tag identities, source archive and documentation/page checks. The approved
+asset set is unchanged; only the GitHub Release body appends the separately authorized
+source/documentation clarification. No tag movement or binary/package rebuild.
+The readiness and authorization statements below are historical checkpoints.
+
+
 ## Final physical completion, 2026-09-24
 
 **READY FOR PUBLICATION AUTHORIZATION.** The owner reports the final attempt15

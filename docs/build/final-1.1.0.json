@@ -151,9 +151,9 @@
   },
   "frozen_tags_moved": false,
   "packages_rebuilt": false,
-  "pushed": false,
-  "published": false,
-  "readiness": "READY FOR PUBLICATION AUTHORIZATION; owner authorization is the only remaining gate",
+  "pushed": true,
+  "published": true,
+  "readiness": "PUBLISHED; all 20 public downloads and qualified raw/XZ identity verified",
   "publication_review_staging": "releases/1.1.0-publication-review-2026-09-24-r2",
   "publication_review_recovery": "archive/final-1.1.0-publication-review-2026-09-24",
   "publication_review_validation": {
@@ -161,5 +161,6 @@
     "package_manifest_tests": 2,
     "inventory_correction": "Regenerated stale RC4 JSON from retained final-image packages.tsv; TSV and image/package bytes unchanged",
     "inventory_tsv_sha256": "0a475b0c0112c797819852294df6af0d030e4cf5e6e6ddd30771506883ff6ed8"
-  }
+  },
+  "publication_result": "docs/build/published-1.1.0.json"
 }

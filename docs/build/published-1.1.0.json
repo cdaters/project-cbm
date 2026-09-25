@@ -1,0 +1,261 @@
+{
+  "format": "project-cbm.publication-result",
+  "schema_version": 1,
+  "status": "PUBLISHED",
+  "published_at_utc": "2026-09-25T01:57:44Z",
+  "release_url": "https://github.com/cdaters/project-cbm/releases/tag/v1.1.0",
+  "release_id": 396195778,
+  "title": "Project CBM 1.1.0",
+  "prerelease": false,
+  "tag_name": "v1.1.0",
+  "repositories": {
+    "product": {
+      "result": "PASS",
+      "refs": {
+        "refs/heads/feature/1.1-build-foundation": "f185bc353428a1ab9bb4b6e1ab49143c73b3a57a",
+        "refs/tags/v1.1.0": "627937867f59b76ea5c3c96fdbb14ebd47ed507f",
+        "refs/tags/v1.1.0^{}": "787c275005aaf2c03b2ed769edc815a34ccafc9f"
+      },
+      "annotated_tag_object": "627937867f59b76ea5c3c96fdbb14ebd47ed507f",
+      "peeled_commit": "787c275005aaf2c03b2ed769edc815a34ccafc9f"
+    },
+    "menu": {
+      "result": "PASS",
+      "refs": {
+        "refs/heads/feature/1.1-debian-package": "7df45cf40eae1ca64cd5740e4b93347e3717bdb4",
+        "refs/tags/v1.1.0": "9f471a2ddd7492d041d9563809e301da9c79ed57",
+        "refs/tags/v1.1.0^{}": "7df45cf40eae1ca64cd5740e4b93347e3717bdb4"
+      },
+      "annotated_tag_object": "9f471a2ddd7492d041d9563809e301da9c79ed57",
+      "peeled_commit": "7df45cf40eae1ca64cd5740e4b93347e3717bdb4"
+    }
+  },
+  "binary_source_commit": "787c275005aaf2c03b2ed769edc815a34ccafc9f",
+  "documentation_publication_commit": "f185bc353428a1ab9bb4b6e1ab49143c73b3a57a",
+  "assets": [
+    {
+      "filename": "COMPONENT-INVENTORY.json",
+      "size_bytes": 6230,
+      "sha256": "aff78937818218dd7739e493f2a7c469b62ec2f3fe977cd307c18ae7a8952a60",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/COMPONENT-INVENTORY.json",
+      "asset_id": 587208635,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "LICENSE.md",
+      "size_bytes": 1766,
+      "sha256": "a15219092fb41a4bb5bb1a2f8ace72c28b339f9a43dec440a70254a64780f030",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/LICENSE.md",
+      "asset_id": 587208632,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "NOTICES.txt",
+      "size_bytes": 1181,
+      "sha256": "326f570eef6778cb5ba6b66aa7c18d74348129f99e491dc0db6196c7eebfcfbe",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/NOTICES.txt",
+      "asset_id": 587208637,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "QUALIFICATION.json",
+      "size_bytes": 2394,
+      "sha256": "525388bdf8f2d77a810c9559f40a92f0e52828bd8ad635c360881bcc957d25b8",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/QUALIFICATION.json",
+      "asset_id": 587208638,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "README.txt",
+      "size_bytes": 1316,
+      "sha256": "1818b000c59a0ab85a54e8a4759b2809a604370da3e2d6385b6c451beeb5cec2",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/README.txt",
+      "asset_id": 587208634,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "RELEASE-MANIFEST.json",
+      "size_bytes": 7802,
+      "sha256": "706609eb2ed2f8617607666d7fc840d397550487b46ef44eb1b888a8609de25f",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/RELEASE-MANIFEST.json",
+      "asset_id": 587208651,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "RELEASE-NOTES.md",
+      "size_bytes": 6042,
+      "sha256": "4d30b14ae3ff576ebd41e0308723a347f4f6f02e323c014cdb3fd2912c2eb334",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/RELEASE-NOTES.md",
+      "asset_id": 587208652,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "SHA256SUMS",
+      "size_bytes": 1737,
+      "sha256": "f92d65ae5fe897db692bb1a8a21022b03a06cb46b7e9ec91bd864cf514a19720",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SHA256SUMS",
+      "asset_id": 587208654,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "SOURCE-INVENTORY.json",
+      "size_bytes": 388947,
+      "sha256": "47f4f53e9447bae18903f595cc163b240c10eeb4129181f7710c47528c3ed768",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SOURCE-INVENTORY.json",
+      "asset_id": 587208657,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "SOURCE-README.txt",
+      "size_bytes": 1523,
+      "sha256": "94b753fe50aa8fe80967fc2bd1cf14830e3d2267bdfff4f7c79ee3f48881fac6",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SOURCE-README.txt",
+      "asset_id": 587208661,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "installed-packages.json",
+      "size_bytes": 95064,
+      "sha256": "dc711ecee31d97410de3ae0afda0df6cdb40a3105ebb3e9ac99d4c9327de6513",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/installed-packages.json",
+      "asset_id": 587208678,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "installed-packages.tsv",
+      "size_bytes": 32268,
+      "sha256": "0a475b0c0112c797819852294df6af0d030e4cf5e6e6ddd30771506883ff6ed8",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/installed-packages.tsv",
+      "asset_id": 587208686,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-1.1.0-component-sources.tar.gz",
+      "size_bytes": 14908981,
+      "sha256": "c76c33efdd1d8321e4f1f7fec26f0c871047bee483e6554b2e5c0f7368f6a822",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0-component-sources.tar.gz",
+      "asset_id": 587208690,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-1.1.0-docs.tar.gz",
+      "size_bytes": 66457,
+      "sha256": "c01ad97263ce6fc82bb853f261ac86c3f47e7fdb9a6983def32444b28f87ea8d",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0-docs.tar.gz",
+      "asset_id": 587208693,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-1.1.0-os-sources-01.tar",
+      "size_bytes": 900249600,
+      "sha256": "89c00c24fe6bf64129ff0238c552dd20fa2dd727fca8f4f4153939da34e2eace",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0-os-sources-01.tar",
+      "asset_id": 587208696,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-1.1.0-os-sources-02.tar",
+      "size_bytes": 793559040,
+      "sha256": "e31908a46d00297dbaf70c4c5a83ba65fde51956eb315f5d744ff85a9f97a8bd",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0-os-sources-02.tar",
+      "asset_id": 587208703,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-1.1.0-os-sources-03.tar",
+      "size_bytes": 324280320,
+      "sha256": "aeeb1445fa13444455889c02943941f44addf4afa3757e90db0fa6793c08068b",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0-os-sources-03.tar",
+      "asset_id": 587208704,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-1.1.0.img.xz",
+      "size_bytes": 599290700,
+      "sha256": "8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0.img.xz",
+      "asset_id": 587208707,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-menu-1.1.0-sources.tar",
+      "size_bytes": 1996800,
+      "sha256": "855f2fa2dfb4692e1b3a9511303d7afe1b44f0a4fcd787bb2fdc940771519a55",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-menu-1.1.0-sources.tar",
+      "asset_id": 587210468,
+      "public_download_verification": "PASS"
+    },
+    {
+      "filename": "project-cbm-runtime-1.1.0-sources.tar",
+      "size_bytes": 1454080,
+      "sha256": "1b4ef36041153f191fb6ca0a7dc37ededee09d22355acbfd3bf35d0ebfcf6414",
+      "public_download_url": "https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-runtime-1.1.0-sources.tar",
+      "asset_id": 587211163,
+      "public_download_verification": "PASS"
+    }
+  ],
+  "raw_image": {
+    "size_bytes": 3095396352,
+    "sha256": "6c9b7599461a41f6ab30b666dd718329c34f863f11a46dfd20d61fe9830d2468",
+    "result": "PASS"
+  },
+  "raw_uploaded": false,
+  "checksums": {
+    "all_20_public_downloads": "PASS",
+    "public_SHA256SUMS_matches_downloads": true
+  },
+  "qualification": {
+    "RC4_owner": "PASS",
+    "final_Pi4B_owner_smoke": "PASS",
+    "CCGMS_TCPser_live_BBS": "PASS",
+    "reboot_persistence_shutdown": "PASS"
+  },
+  "source_archive": {
+    "result": "PASS",
+    "url": "https://codeload.github.com/cdaters/project-cbm/tar.gz/refs/tags/v1.1.0",
+    "files": 426,
+    "download_sha256": "6a8868ca5dc50c275f9296a4521e9da0ee21f4f4ab50aaf5c1164c7d178bace4",
+    "commit": "787c275005aaf2c03b2ed769edc815a34ccafc9f",
+    "all_source_bytes_match_frozen_tag": true,
+    "later_documentation_snapshot_included": false
+  },
+  "documentation_links": {
+    "result": "PASS",
+    "archive_local_links": 123,
+    "distinct_public_links": 24,
+    "direct_HTTP_checks_pass": 23,
+    "alternate_web_reader_check": {
+      "url": "https://www.raspberrypi.com/documentation/computers/getting-started.html",
+      "title": "Getting started - Raspberry Pi Documentation",
+      "result": "PASS",
+      "observation": "Official page opened successfully through web reader after direct Python HTTP received 403; original direct-HTTP result retained."
+    },
+    "immutable_GitHub_source_links": "Public raw bytes matched local exact refs",
+    "release_asset_changes": false
+  },
+  "release_page": {
+    "result": "PASS",
+    "url": "https://github.com/cdaters/project-cbm/releases/tag/v1.1.0",
+    "public_http_status": 200,
+    "source_and_documentation_distinction_visible": true
+  },
+  "release_body": {
+    "prepared_notes_asset_unchanged": true,
+    "authorized_snapshot_clarification_appended": true,
+    "public_body_match": "PASS",
+    "sha256": "c4ea7c2dba6f5602973ef10d9d1ffbac3f5884a7dfdd5a9d89d7fda71f6404bc"
+  },
+  "approved_asset_set": "releases/1.1.0-publication-review-2026-09-24-r2",
+  "evidence": "qualification/final-1.1.0/publication-2026-09-24",
+  "recovery": "archive/final-1.1.0-published-2026-09-24",
+  "frozen_inputs_packages_images_tags_changed": false,
+  "actions": {
+    "commits_pushed": true,
+    "tags_pushed": true,
+    "github_release_created": true,
+    "public_image_uploaded": true,
+    "anything_published": true
+  },
+  "remaining_release_blockers": [],
+  "scope": "Publication complete. No Assembly64, 1.1.1 or unrelated work started."
+}
