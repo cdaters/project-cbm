@@ -4,6 +4,30 @@
 continues independently. This addendum supplements the accepted
 [design study](content-ingestion-online-library.md); it does not replace it.
 
+## Qualification-preparation review
+
+The legitimate next step is an owner-sent inquiry to the published API Support
+contact. A [concise technical draft](assembly64-provider-inquiry.md) is prepared;
+it has not been sent. USB image/qualification preparation does not open the network
+implementation gate. The official Ultimate guide and operator page were reviewed
+again; neither resolves third-party client admission. The web reader could not
+reopen the schema, so schema facts below remain attributed to the retained, hashed
+September 24 retrieval, not a claimed fresh response. No service probe was repeated.
+
+| Subject | Established source fact | Still unknown |
+| --- | --- | --- |
+| Public schema | OpenAPI 3.1.0, API version 1.0, publicly linked Swagger documentation | Public third-party use/admission terms |
+| Service endpoints | HTTPS base `https://hackerswithstyle.se/leet/`; `/search/aql/{offset}/{limit}`, `/search/aql/presets`, `/search/categories`, `/search/entries/{itemId}/{categoryId}`, `/search/meta/{id}/{category}`, `/search/compotypes`, `/search/bin/{itemId}/{categoryId}/{fileId}` documented | Which routes Project CBM may use, API change/deprecation expectations |
+| HTTP 464 | Two prior metadata requests with honest study identity received 464; schema does not document it | Meaning, cause, retry expectations; it is not proven to mean registration or hardware admission |
+| Client identity | Search schema describes optional `client-id`; reference Manager uses its own admitted identity | Project CBM's accepted ID, registration/authentication and identification requirements |
+| Usage | No rate/usage policy found in reviewed schema/docs | Rate/concurrency limits, caching, download/size limits and backoff |
+| Attribution | Project design proposes “Powered by Assembly64” | Whether that wording/link/notices satisfy provider requirements |
+| Third-party expectations | Reference Manager thanks the provider for API access | Permission or supported access process for another client; service stability commitment |
+| Contact | Schema's API Support email is `freabe@gmail.com` | Response/admission guidance; no contact has been made |
+
+Endpoint documentation is not an access grant. No foreign client ID, Swagger default
+identity, private token, circumvention, content download or CSDb scraping is used.
+
 ## Source facts
 
 The local Ultimate64 Manager reference remains commit

@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+from development_identity import valid_menu_tag
 
 
 def git(root,*args):return subprocess.check_output(['git','-C',str(root),*args],text=True).strip()
@@ -16,7 +17,7 @@ def main():
     p.add_argument('--attempt',type=int,required=True);p.add_argument('--menu-tag',required=True)
     p.add_argument('--reuse-menu', action='store_true', help='Export an unchanged exact annotated Menu release; current HEAD may contain later documentation')
     a=p.parse_args();root=Path(__file__).resolve().parents[1];w=a.workspace.resolve(strict=True);menu=a.menu.resolve(strict=True)
-    if not 1<=a.attempt<100 or not re.fullmatch(r'v1\.1\.0(?:_(?:poc4\.[0-9]+|rc[0-9]+))?',a.menu_tag):raise ValueError('candidate identity')
+    if not 1<=a.attempt<100 or not valid_menu_tag(a.menu_tag):raise ValueError('candidate identity')
     if not (w/'.project-cbm-workspace.json').is_file():raise ValueError('registered external workspace required')
     for repo in (root,menu):
         if git(repo,'status','--porcelain'):raise ValueError('dirty source: '+str(repo))

@@ -8,6 +8,7 @@ import subprocess
 import tempfile
 from build_contracts import read_json
 from validate_rc1 import inspect_runtime
+from development_identity import development_number
 
 
 def inspect(root, boot, record, kit):
@@ -72,7 +73,7 @@ def inspect(root, boot, record, kit):
             body=functions[0].read_text() if len(functions)==1 else ''
             checks[name+'_quiet_fsck_and_verbose_recovery'] = ('Project CBM: successful quiet checks' in body and '>/run/initramfs/pcbm-fsck.console 2>&1' in body and 'if [ "$FSCKCODE" -ne 0 ]; then cat /run/initramfs/pcbm-fsck.console; fi' in body and 'fsck $spinner $force $fix -V' in body and 'filesystem failed' in body)
     lock=read_json(kit/'release-lock.json')
-    if lock['product']['candidate'] in ('private-engineering-rc4','release'):
+    if development_number(lock['product']) or lock['product']['candidate'] in ('private-engineering-rc4','release'):
         import io,tarfile
         from ccgms_application import verify
         payload=verify(kit,lock['optional_software']['ccgms'])

@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""Read-only development image checks; retain stable checks with named USB successors."""
+import argparse
+import json
+from pathlib import Path
+import subprocess
+import tempfile
+from build_contracts import read_json
+from development_identity import development_number
+from validate_rc3 import inspect as inspect_previous
+
+
+def inspect(root, boot, record, kit):
+    lock = read_json(kit / 'release-lock.json')
+    if not development_number(lock['product']):
+        raise ValueError('explicit private development image required')
+    result = inspect_previous(root, boot, record, kit)
+    checks = result['checks']
+    def text(name): return (root / name).read_text()
+    view = text('usr/libexec/project-cbm-menu/pcbm_ingest_view.py')
+    menu = text('usr/bin/pcbm-import')
+    session = text('usr/share/project-cbm-menu/pcbm-usb-session.sh')
+    browse = text('usr/bin/pcbm-usb-browse')
+    worker = text('usr/share/project-cbm/runtime/project_cbm/usb_browse.py')
+    # These three old checks describe the superseded immediate-import UI.
+    # All other inherited checks, including exact frozen payloads, remain required.
+    result['superseded_checks'] = {
+        'import_destination_feedback': 'Explicit selection/plan/review before copy',
+        'import_failure_release_feedback': 'Schema 2 shared result presenter',
+        'files_usb_entry': 'Separate read-only USB browsing instead of second Import path',
+    }
+    for name in result['superseded_checks']:
+        del checks[name]
+    checks['review_before_explicit_import'] = (menu.index('busy_rpc plan') < menu.index('busy_rpc import')
+        and 'Import selected files' in menu and 'Library:' in view and 'Already Present:' in view)
+    checks['confirmed_release_only'] = ("d.get('source_unmounted') is True" in view
+        and 'Drive release was not confirmed.' in view and 'result_message' in session)
+    checks['separate_readonly_browser'] = ('/usr/bin/pcbm-usb-browse' in text('usr/bin/pcbm-files')
+        and 'Mount Read-Only' in browse and 'Safe Unmount' in browse
+        and "rpc release" in browse and "'/usr/bin/mc'" in worker and "'-u'" in worker)
+    hub = text('usr/bin/pcbm-content')
+    checks['content_navigation'] = all(value in hub for value in ('Browse Library','Import from USB','pcbm-content-help'))
+    checks['library_existing_launch_path'] = ('pcbm_launch_content' in text('usr/bin/pcbm-library')
+        and 'pcbm-run-vice' in text('usr/bin/pcbm-dialog-lib.sh'))
+    checks['private_development_marker'] = text('etc/pcbm/engineering-poc').strip() == lock['product']['candidate']
+    checks['no_bundled_usb_qualification_fixtures'] = not list((root/'home/pcbm/content').rglob('CBM12-USB-QUAL*'))
+    result['result'] = 'PASS' if all(checks.values()) else 'FAIL'
+    result['scope'] = 'Private 1.2 exact installed image; physical USB/exFAT/Pi behavior UNTESTED'
+    return result
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    for name in ('image', 'lock', 'kit', 'output'): p.add_argument(name, type=Path)
+    a = p.parse_args()
+    lock = read_json(a.lock)
+    record = read_json(a.kit / lock['components']['menu']['build_record']['path'])
+    loop = subprocess.check_output(['losetup','--read-only','--find','--show','--partscan',str(a.image)], text=True).strip()
+    mounted = []
+    try:
+        with tempfile.TemporaryDirectory(dir=a.output.parent) as directory:
+            root = Path(directory)/'root'; boot = Path(directory)/'boot'
+            root.mkdir(); boot.mkdir()
+            try:
+                for device, path, flags in ((loop+'p2',root,'ro,noload'),(loop+'p1',boot,'ro')):
+                    subprocess.run(['mount','-o',flags,device,str(path)],check=True); mounted.append(path)
+                result = inspect(root,boot,record,a.kit)
+            finally:
+                for path in reversed(mounted): subprocess.run(['umount',str(path)],check=True)
+    finally:
+        subprocess.run(['losetup','--detach',loop],check=True)
+    with a.output.open('x') as stream: json.dump(result,stream,indent=2); stream.write('\n')
+    print(json.dumps({'result':result['result'],'checks':len(result['checks']),
+                      'failed':[k for k,v in result['checks'].items() if not v]}))
+    if result['result'] != 'PASS': raise SystemExit(1)
+
+
+if __name__ == '__main__': main()

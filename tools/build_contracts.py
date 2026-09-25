@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 
 from jsonschema import Draft202012Validator
 from referencing import Registry
+from development_identity import development_number, development_packages
 
 SCHEMAS = Path(__file__).resolve().parents[1] / 'schemas'
 MAX_JSON_BYTES = 1024 * 1024
@@ -92,6 +93,9 @@ def artifacts(value):
 def validate_lock(raw, allow_fixture=False):
     lock = loads(raw)
     validate_schema(lock, 'release-lock')
+    if development_number(lock['product']):
+        if lock['schema_version'] != 4:raise ValueError('development requires current runtime contract')
+        development_packages(lock['components']['runtime']['package']['version'],lock['components']['menu']['package']['version'])
     if lock['fixture'] and not allow_fixture:
         raise ValueError('synthetic fixture is not a candidate')
     version = lock['schema_version']

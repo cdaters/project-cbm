@@ -2,6 +2,7 @@
 """Additional read-only POC4 activation footprint and integration checks."""
 import argparse,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
+from development_identity import development_number
 
 
 def main():
@@ -14,7 +15,8 @@ def main():
    root=Path(tmp);subprocess.run(['mount','-o','ro,noload',loop+'p2',str(root)],check=True)
    try:
     def text(p):return (root/p).read_text()
-    single_user=json.loads(text('usr/share/project-cbm/identity.json'))['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release')
+    product=json.loads(text('usr/share/project-cbm/identity.json'))['product']
+    single_user=bool(development_number(product)) or product['candidate'] in ('private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release')
     content='home/pcbm/content' if single_user else 'home/pi/pcbm'
     rows={}
     for stanza in text('var/lib/dpkg/status').split('\n\n'):

@@ -15,6 +15,7 @@ from build_contracts import read_json
 from retained_inputs import verify_kit
 from build_host_guard import verify as verify_host
 from build_environment import environment
+from development_identity import development_number, configuration_path, export_path
 
 
 def main():
@@ -34,8 +35,8 @@ def main():
     if subprocess.check_output(['findmnt','-T',str(w),'-no','FSTYPE'],text=True).strip()!='ext4':raise SystemExit('Linux ext4 required')
     if shutil.disk_usage(w).free<40*1024**3:raise SystemExit('insufficient guest build headroom')
     candidate=lock['product']['candidate']
-    if candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release']:raise ValueError('unknown candidate workspace')
-    suffix='release-'+lock['product']['version'] if candidate=='release' else 'private-'+candidate.rsplit('-',1)[1]
+    if not development_number(lock['product']) and candidate not in ['private-engineering-poc1','private-engineering-poc2','private-engineering-poc3','private-engineering-poc4','private-engineering-rc1','private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release']:raise ValueError('unknown candidate workspace')
+    suffix='release-'+lock['product']['version'] if candidate=='release' else 'private-'+candidate.removeprefix('private-engineering-')
     if args.attempt != 1: suffix += '-attempt-'+str(args.attempt)
     work=w/'builds'/suffix;work.mkdir()
     for descriptor in [lock['base']['pi_gen']['source'],lock['integration']['source']]:
@@ -45,7 +46,7 @@ def main():
         with (kit/patch['path']).open('rb') as stream:
             subprocess.run(['patch','--batch','-p1'],cwd=pg,stdin=stream,check=True)
     config=read_json(kit/lock['base']['configuration']['path'])
-    if config!=read_json(recipe/'build/pigen/config.json'):raise ValueError('frozen config/source mismatch')
+    if config!=read_json(configuration_path(recipe,lock['product'])):raise ValueError('frozen config/source mismatch')
     meta=read_json(kit/lock['base']['authenticated_apt_metadata']['path'])
     urls=[e['artifact'] for e in meta['entries'] if e['role']=='frozen-url-map']
     if len(urls)!=1:raise ValueError('missing unique frozen URL map')
@@ -56,6 +57,8 @@ def main():
         if not target.exists():os.link(source,target)
     (proxyroot/'catalog.json').write_text(json.dumps(urlmap,sort_keys=True,indent=2)+'\n')
     shutil.copytree(recipe/'build/pigen/stage-cbm',pg/'stage-cbm')
+    if development_number(lock['product']):
+        shutil.copyfile(export_path(recipe,lock['product']),pg/'stage-cbm/EXPORT_IMAGE')
     for stage in ['stage0','stage1','stage2']:(pg/stage/'SKIP_IMAGES').touch()
     envconfig={
         'IMG_NAME':config['image_name'],'IMG_DATE':config['image_date'],

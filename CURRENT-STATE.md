@@ -1,3 +1,28 @@
+# Private 1.2 Pi qualification preparation — 2026-09-25 UTC
+
+Owner accepted Phase 1–4 and explicitly authorized the bounded factory extension,
+new private NON-RELEASE image and validation. Stop for review after delivering exact
+image hashes, the [Pi 4 USB procedure](docs/qualification/content-1.2-pi4-usb.md) and
+[provider inquiry draft](docs/design/assembly64-provider-inquiry.md). No physical
+flashing/test, provider message, network client, push or publication is authorized.
+
+[Private build record and mktemp explanation](docs/build/private-1.2-development.md).
+New identity: `1.2.0-dev.1` / `private-engineering-1.2-dev1`, distinct attempt16;
+Runtime `1.2.0~dev1-1`, Menu `1.2.0~dev1-1+pcbm1`. Factory development admission is
+separate; stable 1.1 defaults/tag/package/release rules remain unchanged. Five new
+identity tests PASS. Host Product288 PASS plus the known contextual mktemp failure;
+Menu107 PASS. Original USB fixture scan counts/determinism/non-overwrite PASS.
+
+Current preparation has no completed image yet. Next: clean committed source export,
+native guards/tests and actual packages, freeze, construct a separate engineering
+image, validate actual bytes/closure/lifecycle, export/check raw/XZ and retain additive
+recovery. Guest is temporarily running for this authorized preparation. Unknown
+`.qwen/` and `memory/` remain untouched; use a clean isolated export checkout.
+Source/native evidence goes to `qualification/content-1.2-dev1-preparation-2026-09-25`
+under registered bulk storage. Assembly64 remains unresolved and gated; contact draft
+is unsent. Independent encrypted custody remains outstanding. The completed result
+will be recorded additively; all earlier statements below retain their dated scope.
+
 # Provisional 1.2.0 — Phases 1–4 source complete, 2026-09-24
 
 Local Product commits: Phase 1 `dbafea6`, Phase 2 `f86140d`, Phase 3 `3c732d8`.

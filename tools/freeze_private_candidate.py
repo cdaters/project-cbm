@@ -12,6 +12,7 @@ import sys
 import tempfile
 from build_contracts import encode, read_json, verify_artifact
 from retained_inputs import verify_kit
+from development_identity import development_number, development_packages, configuration_path, export_path
 
 
 def verify_predecessor(old, workspace):
@@ -65,8 +66,24 @@ def verify_output_identity(recipe, config, product_version, candidate):
         raise ValueError('image filename version differs from installed identity')
     suffix=candidate.removeprefix('private-engineering-')
     expected="IMG_SUFFIX=''" if candidate=='release' else "IMG_SUFFIX='-lite-private-"+suffix+"'"
-    if (recipe/'build/pigen/stage-cbm/EXPORT_IMAGE').read_text().strip()!=expected:
+    if export_path(recipe, {'version':product_version, 'candidate':candidate}).read_text().strip()!=expected:
         raise ValueError('image export suffix differs from candidate identity')
+
+
+def verify_candidate_versions(product_version, candidate, runtime_version, menu_version):
+    if bool(product_version) != bool(candidate):raise ValueError('complete product identity required')
+    if development_number({'version':product_version or '', 'candidate':candidate or ''}):
+        development_packages(runtime_version, menu_version)
+        return
+    # Preserve the existing 1.1 admission rules exactly.
+    for version in (runtime_version, menu_version):
+        if not re.fullmatch(r'1[.]1[.]0(?:~(?:poc4[.][0-9]+|rc[0-9]+))?-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
+    if candidate == 'release':
+        if (product_version,runtime_version,menu_version)!=('1.1.0','1.1.0-1','1.1.0-1+pcbm1'):
+            raise ValueError('final release identity mismatch')
+    else:
+        if candidate and not re.fullmatch(r'private-engineering-rc[0-9]+',candidate):raise ValueError('private RC identity required')
+        if product_version and not re.fullmatch(r'1[.]1[.]0-rc[.][0-9]+',product_version):raise ValueError('RC version required')
 
 
 def main():
@@ -87,15 +104,9 @@ def main():
     p.add_argument('--candidate')
     a = p.parse_args()
     if not 6 <= a.previous_attempt < a.attempt < 100:raise ValueError('distinct increasing attempt required')
-    for version in (a.runtime_version,a.menu_version):
-        if not re.fullmatch(r'1[.]1[.]0(?:~(?:poc4[.][0-9]+|rc[0-9]+))?-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
-    if bool(a.product_version) != bool(a.candidate):raise ValueError('complete product identity required')
-    if a.candidate == 'release':
-        if (a.product_version,a.runtime_version,a.menu_version)!=('1.1.0','1.1.0-1','1.1.0-1+pcbm1'):
-            raise ValueError('final release identity mismatch')
-    else:
-        if a.candidate and not re.fullmatch(r'private-engineering-rc[0-9]+',a.candidate):raise ValueError('private RC identity required')
-        if a.product_version and not re.fullmatch(r'1[.]1[.]0-rc[.][0-9]+',a.product_version):raise ValueError('RC version required')
+    verify_candidate_versions(a.product_version,a.candidate,a.runtime_version,a.menu_version)
+    product={'version':a.product_version or '', 'candidate':a.candidate or ''}
+    development=development_number(product)
     menu_label=a.menu_version.rsplit('-',1)[0].replace('~','_')
     runtime_label=a.runtime_version.rsplit('-',1)[0].replace('~','_')
     for pin in (a.integration_commit, a.menu_commit, a.menu_tag_object):
@@ -110,7 +121,8 @@ def main():
         if path.stat().st_size!=descriptor['size_bytes'] or hashlib.sha256(path.read_bytes()).hexdigest()!=descriptor['sha256']:raise ValueError('export bytes mismatch')
     # Use the actual strict installer reader before creating an immutable kit.
     read_json(recipe/'build/pigen/defaults.json')
-    config=read_json(recipe/'build/pigen/config.json')
+    config_file=configuration_path(recipe,product)
+    config=read_json(config_file)
     verify_output_identity(recipe,config,a.product_version,a.candidate)
     old = w/f'inputs/frozen-poc4-attempt{a.previous_attempt}'
     oldraw = (old/'release-lock.json').read_bytes()
@@ -157,13 +169,16 @@ def main():
 
     integration = w/f'inputs/project-cbm-integration-poc4-attempt{a.attempt}.tar'
     lock['integration']['git']['commit'] = a.integration_commit
+    if development:
+        lock['integration']['git']['ref']='refs/heads/feature/1.2-content-ingestion'
+        lock['integration']['git']['tag_object']=None
     if a.candidate=='release':
         if export.get('integration_tag')!='v1.1.0' or not re.fullmatch('[0-9a-f]{40}',export.get('integration_tag_object','')):
             raise ValueError('final Product tag identity required')
         lock['integration']['git'].update(ref='refs/tags/v1.1.0',tag_object=export['integration_tag_object'])
 
     lock['integration']['source'] = store(integration)
-    lock['base']['configuration'] = store(recipe/'build/pigen/config.json')
+    lock['base']['configuration'] = store(config_file)
     for key, source in [('defaults','build/pigen/defaults.json'),
                         ('first_boot_recipe','build/pigen/stage-cbm/files/first_boot.py'),
                         ('sealing_recipe','tools/install_poc_stage.py'),
@@ -202,7 +217,7 @@ def main():
             raise ValueError('reused Menu source bytes differ')
     for name, version, source, commit, ref, tag in (
         ('runtime', a.runtime_version, integration, a.integration_commit,
-         ('refs/tags/v1.1.0' if a.candidate=='release' else 'refs/heads/feature/1.1-build-foundation'),
+         ('refs/heads/feature/1.2-content-ingestion' if development else 'refs/tags/v1.1.0' if a.candidate=='release' else 'refs/heads/feature/1.1-build-foundation'),
          export.get('integration_tag_object') if a.candidate=='release' else None),
         ('menu', a.menu_version, w/f'inputs/project-cbm-menu-{menu_label}.tar',
          a.menu_commit, 'refs/tags/v'+menu_label, a.menu_tag_object)):
@@ -292,6 +307,16 @@ def main():
             mapping[dest] = packages/'menu'/source
     for source in (recipe/'runtime/project_cbm').glob('*.py'):
         mapping['usr/share/project-cbm/runtime/project_cbm/'+source.name] = source
+    if development and not a.reuse_menu:
+        for source, dest in (
+            ('scripts/pcbm-library','usr/bin/pcbm-library'),
+            ('scripts/pcbm-files','usr/bin/pcbm-files'),
+            ('scripts/pcbm-usb-browse','usr/bin/pcbm-usb-browse'),
+            ('scripts/pcbm-content-help','usr/bin/pcbm-content-help'),
+            ('lib/pcbm-usb-session.sh','usr/share/project-cbm-menu/pcbm-usb-session.sh'),
+            ('lib/pcbm_ingest_view.py','usr/libexec/project-cbm-menu/pcbm_ingest_view.py'),
+        ):
+            mapping[dest]=packages/'menu'/source
     build = read_json(kit/lock['components']['menu']['build_record']['path'])
     build.setdefault('corrective_payload',{}).update({dest:store(source) for dest,source in sorted(mapping.items())})
     for source in (recipe/'docs/release').glob('*.md'):
@@ -309,7 +334,7 @@ def main():
     (kit/'release-lock.sha256').write_text(sha+'  release-lock.json\n')
     (kit/'attempt.json').write_bytes(encode({'attempt':a.attempt,'candidate':lock['product'],
         'prior_lock_sha256':hashlib.sha256(oldraw).hexdigest(),'release_lock_sha256':sha,
-        'changed':['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity','CCGMS-only disk/source/notice replacing StrikeTerm','artwork permission metadata','G71/hidden content and sharing prompt']
+        'changed':(['runtime package/source','integration source/commit','private development identity/configuration','USB/content ingestion and read-only browsing','development validation records'] if development else ['runtime package/source','integration source/commit','release documentation','corrective validation records','installed identity','CCGMS-only disk/source/notice replacing StrikeTerm','artwork permission metadata','G71/hidden content and sharing prompt'])
                    + ([] if a.reuse_menu else ['Menu package/tag/source']) + (['VICE package/patches'] if a.vice_version else []),
         'unchanged':(['Menu package/tag/source'] if a.reuse_menu else []) + ([] if a.vice_version else ['VICE']) + ['TCPser','all seven Covers','base and host closures','pi-gen and patches',
                      'qualification media','SID-Wizard upstream source','historical StrikeTerm evidence (not installed)' ],

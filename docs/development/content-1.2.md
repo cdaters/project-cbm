@@ -72,6 +72,11 @@ is `1.2.0~dev1-1`; Menu source version is `1.2.0_dev1` / `1.2.0~dev1-1+pcbm1`.
 No package/image/tag/release exists for these changes. Native and physical results
 must be reported separately from host fixtures.
 
+Private image preparation is now authorized: see the [separate development identity
+and build record](../build/private-1.2-development.md) and the [Pi 4 USB procedure](../qualification/content-1.2-pi4-usb.md).
+The earlier source-only statement above describes the Phase 1–4 checkpoint; the
+build record is the authority for subsequent artifact availability and readiness.
+
 ## FILES → USB Drive
 
 Choose a partition, then **Mount Read-Only**. Midnight Commander shows the USB source
