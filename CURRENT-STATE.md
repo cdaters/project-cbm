@@ -1,8 +1,7 @@
 # Provisional 1.2.0 — Phases 1–4 source complete, 2026-09-24
 
 Local Product commits: Phase 1 `dbafea6`, Phase 2 `f86140d`, Phase 3 `3c732d8`.
-Menu Phase 3 `6c9648f`; the following Phase 4 commits are identified by this checkpoint's
-branch refs/recovery bundles. Both branches: `feature/1.2-content-ingestion`.
+Menu Phase 3 `6c9648f`; Phase 4 Product `cd1eed1` / Menu `7c12a40`. Both branches: `feature/1.2-content-ingestion`.
 Stable 1.1.0, annotated tags, frozen packages/images and historical evidence remain
 unchanged. No new tag, package, image, push, publication or release.
 
@@ -31,7 +30,9 @@ contact occurred. USB work required no new owner design decision.
 Evidence: `qualification/content-1.2-development-2026-09-24` under configured bulk
 storage. Additive source recovery: `archive/content-1.2-development-2026-09-24`, whose
 manifest/restore report bind exact final refs, protected tags, bundles and evidence.
-Finish its verification and return the native guest to its original stopped state.
+The native guest has returned to its original stopped state. External recovery
+verification is the final source-checkpoint gate; its manifest/restore report is
+the authority for completion.
 Independent encrypted custody remains outstanding. Unknown `.qwen/` and `memory/`
 are preserved and excluded.
 
