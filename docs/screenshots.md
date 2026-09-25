@@ -5,10 +5,10 @@ and do not illustrate the current 1.1.0 Menu labels, hardware qualification or
 service defaults. See the [current manual](release/user-guide.md) and
 [1.1.0 capture checklist](release/screenshot-checklist.md).
 
-The original model-specific banner is historical artwork, not a Pi 5/500
+The Project CBM README banner is branding artwork, not a Pi 5/500
 qualification claim:
 
-![Historical Project CBM Model 5 / 500 banner](../assets/images/project-cbm-header.png)
+![Project CBM Model 5 / 500 banner](../assets/images/project-cbm-header.png)
 
 ## Splash / Cover Screen
 

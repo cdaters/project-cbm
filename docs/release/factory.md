@@ -104,7 +104,7 @@ administration. No universal password or developer SSH key is copied into the im
 
 The Linux getty/login/PAM session enters `pcbm-console-session`. The unprivileged boot
 supervisor displays primary artwork while the next screen prepares. First boot handles
-region, owner password and networking. `pcbm-first-boot.service` owns filesystem expansion
+region, administrator password and networking. `pcbm-first-boot.service` owns filesystem expansion
 and first-boot system preparation, avoiding competing expansion/setup mechanisms.
 The [layout reference](accounts-and-layout.md) identifies installed paths and units.
 

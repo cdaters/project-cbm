@@ -39,14 +39,23 @@ def local_link_targets(text):
 
 
 def has_document_title(text):
-    """Allow one badge-only README preamble, followed by a blank line and H1."""
+    """Allow one badge line and the optional original Project CBM banner."""
     if text.startswith('# '):
         return True
     lines = text.splitlines()
-    if len(lines) < 3 or lines[1] != '' or not lines[2].startswith('# '):
+    if len(lines) < 3 or lines[1] != '':
         return False
     badge = r'\[!\[[^\]]+\]\(https://img\.shields\.io/[^)]+\)\]\([^)]+\)'
-    return bool(re.fullmatch(badge + r'(?: ' + badge + r')*', lines[0]))
+    if not re.fullmatch(badge + r'(?: ' + badge + r')*', lines[0]):
+        return False
+    preamble = [
+        '<p align="center">',
+        '  <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">',
+        '</p>',
+        '',
+    ]
+    title = 6 if lines[2:6] == preamble else 2
+    return len(lines) > title and lines[title].startswith('# ')
 
 
 def source_references(text):

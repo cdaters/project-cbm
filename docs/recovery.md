@@ -1,3 +1,16 @@
+# Additive banner and public-voice checkpoint — 2026-09-24
+
+Recovery location: `archive/post-1.1-banner-voice-2026-09-24` under configured bulk
+storage. Retain Product/Menu exact refs and bundles, offline restore/ref/tag/fsck
+checks, documentation checks, GitHub rendered-page evidence and the unchanged
+20-asset release identity comparison. This is documentation recovery, not new image
+qualification or independent encrypted custody. Prior recovery records remain intact.
+
+The original tracked README banner is restored without changing artwork. Current
+public guides use project voice and direct user instructions. Defined account/API
+roles, release notes/policy, immutable qualification data and historical Menu mirror
+are preserved. No runtime/package/image changes or protected ref/asset edits.
+
 # Post-1.1 accepted design and documentation checkpoint — 2026-09-24
 
 Additive checkpoint: `archive/post-1.1-design-docs-2026-09-24` under configured bulk

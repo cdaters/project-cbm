@@ -41,7 +41,7 @@ USB browsing and Online Library belong to the accepted future design, not this i
 ## Release Records / History
 
 - [1.1.0 release notes](release/release-notes-1.1.0.md) / [verified publication record](build/published-1.1.0.json).
-- [Final Pi 4 B owner qualification](qualification/final-1.1.0-pi4-owner-pass.json).
+- [Final Pi 4 B qualification](qualification/final-1.1.0-pi4-owner-pass.json).
 - [Current engineering checkpoint](../CURRENT-STATE.md): later work and links to retained qualification/recovery records.
 - [Provenance](provenance.md) / [security history](security.md).
 - [Historical screenshots](screenshots.md) / [current capture checklist](release/screenshot-checklist.md).

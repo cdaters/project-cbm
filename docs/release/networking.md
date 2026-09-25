@@ -66,7 +66,7 @@ confirmed usable state. **Failed** needs attention; **Unavailable** means inform
 the required service is unavailable. Refresh status rechecks it. A saved On preference
 is not itself proof a connection will succeed. Settings persist through reboot.
 
-Project CBM is a single-owner home-LAN appliance. These services are intended for your
+Project CBM is a personal home-LAN appliance. These services are intended for your
 local network, not automatic Internet exposure. Choose real passwords; do not forward
 service ports on your router unless you deliberately administer that exposure.
 Turning networking on does not automatically turn optional services on.

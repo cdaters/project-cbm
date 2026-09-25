@@ -2,7 +2,7 @@
 
 Project CBM **1.1.0 is publicly released**. The current
 [post-1.1 roadmap](docs/design/post-1.1-roadmap.md) and
-[owner-accepted content design](docs/design/content-ingestion-online-library.md)
+[accepted content design](docs/design/content-ingestion-online-library.md)
 record the provisional **1.2.0** feature direction. No content/Online Library
 implementation has begun. Pi 4 B is the qualified 1.1 floor; older Pi 3 priorities
 below are historical, not current support policy.

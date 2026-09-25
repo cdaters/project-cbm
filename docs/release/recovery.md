@@ -74,12 +74,12 @@ resets invalid values. Do not approve a reset casually if you still need that da
 CONTROL → Advanced → Terminal opens your pcbm shell. Ctrl+Alt+F2 from Menu also reaches
 the local console; Ctrl+Alt+F1 returns. Type `exit` to leave a shell opened from Advanced.
 SSH is another route if previously enabled. General administrative commands use `sudo`
-and your first-boot password. Owners retain control of Linux; low-level display/session
+and your first-boot password. You retain control of Linux; low-level display/session
 changes can affect Menu return, so keep backups and change one thing at a time.
 
 If the system cannot start, protect the card and recover personal content from a backup
 or a safely handled card before reflashing. There is no universal recovery password.
-An owner with physical access can use normal Linux offline recovery or reflash after
+With physical access, you can use normal Linux offline recovery or reflash after
 preserving data. See [verbose boot](boot.md#verbose-recovery) for a display/debug route.
 
 Engineering recovery is a separate subject: rebuilding source, packages and images

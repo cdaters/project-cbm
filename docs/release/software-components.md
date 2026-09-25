@@ -82,8 +82,8 @@ artwork permission. It does not grant blanket MIT rights to the artwork.
 
 VICE's program license and its ROM copyrights are distinct. The image retains only the
 ROM/resource set from the pinned upstream VICE distribution, with its notices and
-provenance. This does not claim that Commodore/DTV ROMs are GPL. The project has recorded
-the historical permission-documentation uncertainty and the owner's 1.1.0 release decision;
+provenance. This does not claim that Commodore/DTV ROMs are GPL. The project records the historical permission-documentation uncertainty and the
+1.1.0 release decision;
 additional proprietary ROM collections are not included. Supply additional games, demos,
 music and resources only when you are entitled to use them.
 

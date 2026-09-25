@@ -254,15 +254,15 @@ through content or Advanced as appropriate; installation alone does not create a
 
 ## Common tasks
 
-| I want to… | Steps |
+| Task | Steps |
 | --- | --- |
 | Play a C64 D64 game | Copy it to `content/games/c64`; CONTENT → GAMES → `c64/filename.d64` |
 | Run a PRG demo | Put it in `content/demos/<machine>`; CONTENT → DEMOS → the file |
-| Make VIC-20 my default | MACHINES → DEFAULT → Commodore VIC-20; check Main Menu Default |
+| Make VIC-20 your default | MACHINES → DEFAULT → Commodore VIC-20; check Main Menu Default |
 | Import a USB disk | IMPORT → partition → machine → Games/Demos/Programs/Music; read the result |
 | Find imported files | CONTENT → category → `<machine>/Imported/...` |
 | Copy from Mac or Windows | CONTROL → Services → File Sharing; set its password, turn it on, then [connect](networking.md#file-sharing) |
-| Find my IP | Read Main Menu, or CONTROL → Network / System Information |
+| Find your IP address | Read Main Menu, or CONTROL → Network / System Information |
 | Use SSH | Turn on Remote Access; use How to connect with username pcbm |
 | Change Wi-Fi | CONTROL → Network → Nearby Wi-Fi networks |
 | Change Computer Name | CONTROL → Network → Computer Name |

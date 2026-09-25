@@ -84,8 +84,8 @@ With power disconnected, insert the card and connect keyboard, HDMI and optional
 Ethernet. Switch the display to the correct input, then power the Pi. Some initial
 black-screen time while video starts is normal. Project CBM artwork should appear
 while the appliance prepares, followed by initial setup. This is not an instant-on
-system; storage and connected hardware affect startup. The owner verified boot and
-first setup on the final Pi 4 B image; no fixed startup-time promise is made.
+system; storage and connected hardware affect startup. Boot and first setup were verified
+on the final Pi 4 B image; no fixed startup-time promise is made.
 
 ## First boot
 

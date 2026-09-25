@@ -240,7 +240,9 @@ bootstrap gap applies; virtualization does not supply missing release inputs.
 9. Verifies the image's contents and that decompressing XZ produces the same raw bytes.
 10. Retains source/output records, then tests the image on physical hardware.
 
-## Did my build work?
+<a id="did-my-build-work"></a>
+
+## Verify your build
 
 For a personal build, first check the build exited successfully and locate the expected
 files reported in its log. Do not flash a partial output after an error. Hash the files;

@@ -142,10 +142,10 @@ performance choices, so compare them explicitly during a fresh-image regression.
 
 Pi 4-class hardware is the Project CBM 1.1 performance floor. Functionally launching a profile is
 not enough: representative games, demos, disk software, BASIC and music must sustain
-real-time emulation on the minimum qualified model. The owner-supplied demanding
-reference is private test material, not a bundled game. Compiler/core/resource decisions
+real-time emulation on the minimum qualified model. The demanding test
+reference is private material, not a bundled game. Compiler/core/resource decisions
 must follow bounded evidence and retain the highest fidelity that satisfies real time.
-Physical Pi 3 B+ testing of a demanding owner-supplied C64 demo showed slow graphics
+Physical Pi 3 B+ testing of the supplied demanding C64 demo showed slow graphics
 and music while the main emulation thread saturated about one core, without reported
 throttling or memory pressure. The same reference ran normally on Pi 4 B with numeric
 speed evidence near real time. This supports Pi 4-class as the 1.1 minimum; it does not
@@ -181,7 +181,7 @@ The installed VICE 3.10 option for that device selector is `-myaciadev 0`.
 Project CBM reads the same typed `/etc/project-cbm/modem.json` used by `pcbm-modem`;
 it does not start a network service merely by launching content. CCGMS users select
 Swift / Turbo DE and 2400 baud initially. See the [connection walkthrough](networking.md#bbs--modem).
-These arguments do not rewrite the owner's VICE resources. Do not save temporary
+These arguments do not rewrite your VICE resources. Do not save temporary
 application-specific emulator settings as global defaults unless that is intentional.
 
 G71 content uses a 1571 drive (`-drive8type 1571`) for that invocation and is restricted

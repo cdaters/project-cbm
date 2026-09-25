@@ -18,6 +18,17 @@ class ReleaseDocumentationParsingTests(unittest.TestCase):
         self.assertFalse(docs.has_document_title(badge + '\n' + badge + '\n\n# Project CBM\n'))
         self.assertFalse(docs.has_document_title(badge + ' unrelated text\n\n# Project CBM\n'))
 
+    def test_title_accepts_original_banner_with_separated_badges_and_heading(self):
+        badge = '[![Release](https://img.shields.io/badge/release-1.1.0-blue)](https://example.com/release)'
+        banner = ('<p align="center">\n'
+                  '  <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">\n'
+                  '</p>')
+        text = badge + '\n\n' + banner + '\n\n# Project CBM\n'
+        self.assertTrue(docs.has_document_title(text))
+        self.assertFalse(docs.has_document_title(text.replace('</p>\n\n', '</p>\n')))
+        self.assertFalse(docs.has_document_title(text.replace('project-cbm-header.png', 'other.png')))
+        self.assertFalse(docs.has_document_title(badge + '\n' + text))
+
     def test_source_paths_exclude_document_relative_navigation(self):
         text = '[Publication](build/published-1.1.0.json) and `tools/package_manifest.py`'
         self.assertEqual(docs.source_references(text), {'tools/package_manifest.py'})

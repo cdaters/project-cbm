@@ -1,5 +1,9 @@
 [![Project CBM 1.1.0](https://img.shields.io/badge/release-1.1.0-blue)](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) [![Platform: Raspberry Pi arm64](https://img.shields.io/badge/platform-Raspberry%20Pi%20arm64-C51A4A)](docs/release/getting-started.md#hardware) [![Code license: MIT](https://img.shields.io/badge/code%20license-MIT-orange)](LICENSE.md)
 
+<p align="center">
+  <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">
+</p>
+
 # Project CBM
 
 Project CBM turns a Raspberry Pi into a keyboard-operated Commodore computer
@@ -14,8 +18,8 @@ Linux terminal and administrator access.
 ## Current Release
 
 **Project CBM 1.1.0 is released.** [Release page and notes](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
-The final image passed the owner's Raspberry Pi 4 B smoke test, including an
-end-to-end CCGMS/TCPser BBS connection, reboot and shutdown.
+The final image passed the Raspberry Pi 4 B smoke test, including an
+end-to-end CCGMS/TCPser BBS connection, reboot, and shutdown.
 
 ## What Is Included
 
@@ -69,13 +73,13 @@ ZIP/TAR files are not bootable images.
 
 ## Getting Started / Documentation
 
-| I want to… | Read this |
+| Task | Read this |
 | --- | --- |
 | Verify, flash and reach C64 BASIC | [Getting Started](docs/release/getting-started.md) |
 | Learn everyday Menu tasks | [User Manual](docs/release/user-guide.md) |
 | Add content or import USB files | [Content and USB](docs/release/content.md) |
 | Share files, enable SSH or call a BBS | [Networking and services](docs/release/networking.md) |
-| Fix a problem or protect my files | [Troubleshooting](docs/release/troubleshooting.md) and [backup/recovery](docs/release/recovery.md) |
+| Fix a problem or protect your files | [Troubleshooting](docs/release/troubleshooting.md) and [backup/recovery](docs/release/recovery.md) |
 
 [Documentation index](docs/README.md) · [Support](SUPPORT.md)
 
@@ -98,7 +102,7 @@ is not yet complete; a published image is not a claim of independent reproducibi
 
 ## Roadmap
 
-The owner has accepted a unified content-ingestion design for provisional **1.2.0**:
+The accepted unified content-ingestion design targets provisional **1.2.0**:
 USB preview/selection under CONTENT, separate read-only USB browsing, and Online
 Library with Assembly64 once legitimate service access is established. These
 features are **not implemented in 1.1.0**. [Roadmap](docs/design/post-1.1-roadmap.md).

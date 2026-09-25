@@ -23,7 +23,7 @@ separate repositories so presentation and system integration can evolve independ
 `pcbm-info` JSON is the information authority. Avoid duplicating shell probes in Menu.
 A preference says what the user wants; observed service/listener state says what is
 actually available. A configuration request passes through validated fixed helpers,
-not an arbitrary root shell. Account role names such as owner are API concepts; the
+not an arbitrary root shell. Account role names such as `owner` are API concepts; the
 normal Unix username is pcbm. See [accounts/layout](accounts-and-layout.md).
 
 ## Set up a checkout
@@ -117,7 +117,7 @@ packages, images or third-party assets is a separate authorized release action.
 ## Design goals
 
 Project CBM boots into a Commodore-focused appliance rather than a desktop. The Menu
-covers ordinary tasks; Linux remains available for owners who want it. VICE provides
+covers ordinary tasks; Linux remains available when you need it. VICE provides
 mature emulation, and portable content folders keep user data understandable. Local
 setup/services avoid a cloud-account dependency. Fresh-image upgrades keep components
 in a known combination while user backup/restore protects personal work. Explainable

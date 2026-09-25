@@ -1,3 +1,21 @@
+# README banner and public documentation voice — 2026-09-24
+
+Restored the exact tracked Model 5 / 500 banner reference between the single badge
+line and Product title. Artwork bytes and current README structure are unchanged.
+Current guides use neutral project facts and direct user instructions; technical
+`owner` API roles, frozen release notes, release-policy attestations and historical
+records remain intact. Menu README required no correction; its archived public-docs
+mirror remains historical. No runtime, build, package, image or release changes.
+
+Documentation checks: 562 PASS; eight parser regressions PASS; broader local links,
+file-size/secret-pattern and manual diff review PASS. The title checker permits the
+original banner layout while rejecting stacked badges and malformed separators.
+This narrowly scoped correction is authorized for commit/push to the existing
+Product development branch. Public rendering/ref/asset verification and additive
+recovery evidence belong at `archive/post-1.1-banner-voice-2026-09-24` under configured
+bulk storage. Prior checkpoints remain unchanged below. Next: finish that verification
+and stop; no content/Assembly64 implementation begins in this task.
+
 # Accepted post-1.1 design and public documentation — 2026-09-24
 
 Owner accepted the [content/Online Library design](docs/design/content-ingestion-online-library.md),

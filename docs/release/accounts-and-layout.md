@@ -3,7 +3,7 @@
 [Documentation index](../README.md) · [User Manual](user-guide.md) · [Developer guide](development.md)
 
 The normal account is **pcbm**, UID 1000, home **/home/pcbm**. Menu, VICE, Covers, FILES,
-SSH/SFTP and library ownership all use this account. **Owner/Administrator** describes
+SSH/SFTP and library ownership all use this account. **Administrator** describes
 your role; **projectcbm** is the default Computer Name. Those are not three user accounts.
 
 ## Passwords and access
@@ -22,7 +22,7 @@ See [connection examples](networking.md) for everyday use.
 
 The user is created through pi-gen's `FIRST_USER_NAME`. Product's installer writes
 getty/profile policy and adds normal administrator and fixed-operation group membership.
-`configuration-policy.json` names both owner/appliance roles as pcbm. Changing those
+`configuration-policy.json` names both `owner`/`appliance` roles as `pcbm`. Changing those
 contracts requires more than renaming a home directory.
 
 ## User files
