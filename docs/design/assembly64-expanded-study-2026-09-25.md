@@ -1,5 +1,10 @@
 # Assembly64 expanded access study — 2026-09-25
 
+**Home-server follow-up:** [central/home protocol comparison](assembly64-home-protocol-2026-09-25.md)
+adds the complete pinned Spiffy reference, optional local Client-Id gating, raw versus
+multipart download semantics, a concrete framing caveat and the proposed narrow
+backend interface. Central JSON464 is not an established protocol-wide limitation.
+
 Project CBM Online Library is technically feasible as an independently implemented
 client. The expanded evidence explicitly supports third-party applications and
 shows a concrete practice of requesting a dedicated client ID by Discord DM.

@@ -1,5 +1,10 @@
 # Assembly64 HTTP 464 protocol investigation — 2026-09-25
 
+**Home-server follow-up:** [central/home protocol comparison](assembly64-home-protocol-2026-09-25.md)
+adds the complete pinned Spiffy reference, optional local Client-Id gating, raw versus
+multipart download semantics, a concrete framing caveat and the proposed narrow
+backend interface. Central JSON464 is not an established protocol-wide limitation.
+
 **Expanded evidence:** the [subsequent study](assembly64-expanded-study-2026-09-25.md)
 adds a supplied ID-request exchange, a public-discovery announcement and provider
 application enum mappings for 464. The earlier negative findings below apply to

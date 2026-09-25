@@ -1,3 +1,29 @@
+# Assembly64 distributed backend comparison — 2026-09-25
+
+[Central/home protocol comparison](docs/design/assembly64-home-protocol-2026-09-25.md)
+incorporates the unchanged current provider Docker documentation and complete Spiffy
+source at `ec67f38b59aac60d60694ca90a92d955d1f20c81`. Public directory discovery and
+server choice are intended; actual endpoint/query/auth capabilities differ. Spiffy
+accepts requests without Client-Id by default and optionally applies a local exact-ID
+gate (HTTP404 No Access, not JSON464). Central registration remains a plausible
+explanation of CBM's 464, not a demonstrated Assembly64-wide protocol limitation.
+
+Spiffy wraps one file in multipart/mixed and then HTTP chunk framing. Its inherited
+HTTP/1.0 response version is a static framing concern, not a proven interoperable
+baseline. Central Swagger advertises raw bytes. Recommend a narrow backend interface
+inside the existing Product adapter, with server-scoped capabilities/identity and
+response-aware decoding into existing safe ingestion. Recommendation only; no code
+implementation, GPL copying into CBM, server execution, service probe or file download.
+
+Next: resolve the central ID inquiry and qualify the selected compatible server's
+actual capabilities/transport before enabling it. Current discovery list, central
+464 cause and per-server requirements remain partly unknown. The inquiry is unsent.
+Evidence: `qualification/assembly64-home-protocol-2026-09-25`; additive recovery:
+`archive/assembly64-home-protocol-2026-09-25`, with manifest and offline restore/ref/
+peeled-tag/fsck checks as completion authority. Independent custody outstanding.
+Stable 1.1.0, private attempt18, Menu, builder and physical-test results unchanged;
+unknown `.qwen/` and `memory/` preserved. Earlier checkpoints follow.
+
 # Assembly64 expanded access evidence — 2026-09-25
 
 [Expanded A/B/C/D study](docs/design/assembly64-expanded-study-2026-09-25.md):
