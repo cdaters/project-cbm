@@ -4,6 +4,31 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Attempt18 construction and validation correction — 2026-09-25
+
+The preserved builder resumed without package drift. Native Product300/Menu107
+logs belong to clean exact source checkouts; staged attempt18 archives match the
+canonical commits byte-for-byte. Full capability, Runtime reuse, retained predecessor
+and authenticated refresh gates passed. No prior attempt18 kit/image existed.
+Freeze18 produced lock/build ID
+`4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79`.
+The isolated frozen construction completed successfully, without rebuilding packages.
+
+The first read-only validation stopped on four false legacy-account expectations in
+`validate_activation.py`: activation policy, owner UID, helper group and SID working
+path. The parent validator already selected the development single-account layout;
+this nested validator did not. Separate read-only evidence confirms `pcbm` UID1000,
+no `pi`, `system_ready: false`, the required operator membership and a byte-identical
+SID disk owned by UID1000. The correction uses existing strict development identity
+admission and retains every check, including rejection of wrong UID/readiness/group.
+Stable and historical account models have focused regression coverage.
+
+The failed report stays at `qualification/content-1.2-dev1-attempt18`. Corrected
+validation is a later external attestation from separately committed source, with a
+new evidence directory. It does not alter attempt18's frozen lock, recipes, packages
+or image. No second image construction is warranted by this validator-only fix.
+The source checkpoint is still **BLOCKED: final image validation and recovery**.
+
 ## Retained failed attempts and authenticated retry
 
 Attempt16 froze Product `aefc08e`, Menu `7c12a40` / annotated private

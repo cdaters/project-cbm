@@ -1,3 +1,26 @@
+# Private 1.2 attempt18 constructed — validation correction, 2026-09-25 UTC
+
+Resumed the preserved Lima builder. Product `255b1d9` and Menu `7c12a40`, exact
+source archives, native Product300/Menu107, authenticated refresh, Runtime reuse,
+capability and unchanged host inventory all verified. Existing attempt18 exports
+were reused. Freeze18/build succeeded with lock
+`4d8bfbea304b5505b51f4fc4fab8cbf66541bea70fdc8a54f1f1287675863a79`.
+
+Initial actual-image validation stopped on four account/content checks because
+`validate_activation.py` omitted development identity and selected legacy `pi`.
+Read-only inspection confirms the intended `pcbm` UID1000, readiness false,
+operator membership and exact user-owned SID-Wizard working disk. The validator
+now admits the explicit development identity with the same checks; three focused
+behavioral tests and five development identity tests PASS. Frozen inputs/image
+remain untouched. Revalidation uses separately committed validator source and a
+new evidence directory; it does not refreeze or rebuild completed construction.
+
+Evidence: `qualification/content-1.2-dev1-resume-2026-09-25` and the retained failed
+`qualification/content-1.2-dev1-attempt18` under configured storage. Attempts16/17
+and logs are retained. Next: corrected actual-image validation, raw/XZ export and
+verification, additive recovery, then owner Pi4 handoff. Physical UNTESTED; private
+NON-RELEASE only. Stable 1.1 tags/artifacts are untouched; no publication.
+
 # Private 1.2 Pi qualification preparation — 2026-09-25 UTC
 
 Attempt17's freeze stopped on safe-extraction permission normalization in the

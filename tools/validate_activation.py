@@ -1,10 +1,11 @@
 """Read-only schema-4 candidate checks; never executes appliance code."""
 import json, stat
 from pathlib import Path
+from development_identity import development_number
 
 
 def inspect(root,lock,check,digest):
-    single_user=lock['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release')
+    single_user=bool(development_number(lock['product'])) or lock['product']['candidate'] in ('private-engineering-rc2','private-engineering-rc3','private-engineering-rc4','release')
     account='pcbm' if single_user else 'pi'
     content='home/pcbm/content' if single_user else 'home/pi/pcbm'
     repo=Path(__file__).resolve().parents[1]
