@@ -4,6 +4,18 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Owner physical result — attempt19, 2026-09-25
+
+**B0/B1 PASS for the reported Pi 4 B observations.** The USB MC terminal defect is
+physically confirmed fixed. Manual USB copy → safe release → C64/copied demo →
+F10/emulator exit → responsive Menu PASS. [Exact image-bound qualification and
+remaining cases](../qualification/attempt19-pi4-owner-pass-2026-09-25.md).
+U1–U6/B2/T1 and full R1 remain UNTESTED beyond the reported launch/return subset;
+manual MC copy does not establish CONTENT Import behavior. Unreported B0/B1 substeps
+also remain UNTESTED. This is partial private qualification, not a release decision.
+Attempt18 remains B1 FAIL. Image/package/lock bytes and the build-time record are
+unchanged; physical UNTESTED below describes the earlier construction checkpoint.
+
 ## Completed USB correction image — attempt19, 2026-09-25
 
 **PRIVATE NON-RELEASE `1.2.0-dev.2`; physical UNTESTED.** Attempt18 is preserved

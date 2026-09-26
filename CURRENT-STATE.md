@@ -1,3 +1,30 @@
+# Attempt19 Pi 4 B physical USB fix PASS — 2026-09-25
+
+**PRIVATE NON-RELEASE; partial physical qualification.** Owner confirms B0 ordinary
+FILES MC navigation and B1 USB read-only mount/MC keyboard navigation/copy/safe release
+PASS on exact attempt19. Copy → safe release → C64/copied demo → F10/emulator exit →
+responsive Menu also PASS. The attempt18 terminal defect is physically confirmed fixed.
+[Qualification result and remaining cases](docs/qualification/attempt19-pi4-owner-pass-2026-09-25.md)
+and [structured attestation](docs/qualification/attempt19-pi4-owner-pass-2026-09-25.json).
+
+Bound raw SHA `f69fbee34448936d9df942ab0c8ce990b9ccd3a85e66b95d232f0d7c8caa8d44`;
+XZ SHA `00e88150f5d2105f89182e14e14ed27517a672cb57c6134598dcfa451dfe0fca`.
+Owner identified exact 1.2.0-dev.2/attempt19; no new live identity/card hash collection.
+U1–U6, B2 and T1 remain physical UNTESTED. Full R1 remains UNTESTED beyond the reported
+launch/exit/Menu subset. Detailed B0/B1 key/diagnostic/repetition substeps not reported
+stay UNTESTED. Manual MC copy does not qualify CONTENT Import or duplicate/journal rules.
+
+Attempt18 remains B1 FAIL. No image/package/frozen-input changes, live Pi work, release,
+push, screenshot or Online Library implementation. Stable 1.1.0 and Menu unchanged;
+unknown `.qwen/` and `memory/` untouched. Original build records below are historical.
+Evidence: `qualification/attempt19-pi4-owner-pass-2026-09-25`. Additive source recovery:
+`archive/attempt19-pi4-owner-pass-2026-09-25`; manifests and offline restore report
+bind completion. Independent encrypted custody remains outstanding.
+
+Next: await owner results for remaining cases using the
+[attempt19 procedure](docs/qualification/attempt19-pi4-usb.md). Do not assume the rest
+passed and do not begin a release or either deferred feature from this update.
+
 # Attempt19 USB correction image complete — 2026-09-25
 
 **PRIVATE NON-RELEASE `1.2.0-dev.2`, attempt19; physical UNTESTED.**

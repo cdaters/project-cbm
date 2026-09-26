@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-09-25",
+  "timezone": "America/Phoenix",
+  "test_date": "Not separately supplied",
+  "candidate": {
+    "candidate": "private-engineering-1.2-dev2",
+    "version": "1.2.0-dev.2"
+  },
+  "attempt": 19,
+  "hardware": "Raspberry Pi 4 B",
+  "source": "Owner physical report in this task; no new agent live-device inspection",
+  "image_reference": {
+    "raw_sha256": "f69fbee34448936d9df942ab0c8ce990b9ccd3a85e66b95d232f0d7c8caa8d44",
+    "xz_sha256": "00e88150f5d2105f89182e14e14ed27517a672cb57c6134598dcfa451dfe0fca",
+    "lock_sha256": "1b69db05988dc3435b3460eb045a91c7dcca4fcfe7a7d8b3eebb846e2c2d37ce"
+  },
+  "identity_basis": "Owner identifies exact 1.2.0-dev.2 attempt19; bound to retained candidate hashes. Running card and installed identity were not independently reread in this qualification update.",
+  "reported_passes_verbatim": [
+    "Ordinary FILES -> Midnight Commander navigation",
+    "FILES -> USB Drive -> Mount Read-Only",
+    "USB Midnight Commander keyboard navigation",
+    "file copy from USB to Project CBM content",
+    "safe unmount / release",
+    "C64 launch",
+    "copied demo successfully runs",
+    "F10 / emulator exit",
+    "return to responsive Project CBM Menu"
+  ],
+  "cases": {
+    "B0": {
+      "result": "PASS",
+      "scope": "Owner-confirmed ordinary FILES Midnight Commander navigation; not a per-key attestation of every procedure substep."
+    },
+    "B1": {
+      "result": "PASS",
+      "scope": "Owner-confirmed real USB read-only mount workflow, MC keyboard navigation, copy to content and safe release; confirmed fix of attempt18 terminal defect."
+    },
+    "copy_launch_return": {
+      "result": "PASS",
+      "scope": "USB manual copy -> safe unmount/release -> C64 launch -> copied demo runs -> F10/emulator exit -> responsive Menu."
+    }
+  },
+  "remaining_cases": {
+    "U1": {
+      "result": "UNTESTED",
+      "scope": "CONTENT Import no-device state, partition/system-SD exclusion, menu/help; multi-partition selection if available."
+    },
+    "U2": {
+      "result": "UNTESTED",
+      "scope": "Whole-partition scan counts, paging/filtering, before/after tree and byte equality, cancel without copying and verified Import release."
+    },
+    "U3": {
+      "result": "UNTESTED",
+      "scope": "Folder scope/counts, individual/folder/all selection, deselection/clear, destination review/back state and no writes before explicit import."
+    },
+    "U4": {
+      "result": "UNTESTED",
+      "scope": "Explicit CONTENT Import four-file result, exact hierarchy, exclusions/journal/temp-file checks, source/destination hashes and Import mount release. MC manual copy does not establish this."
+    },
+    "U5": {
+      "result": "UNTESTED",
+      "scope": "Already Present duplicate detection, Keep Both complete collections, original bytes retained, independent inodes and repeat variant without a third copy."
+    },
+    "U6": {
+      "result": "UNTESTED",
+      "scope": "Whole-partition Select All: 30 supported files into Shared, preserved hierarchy, metadata/unsupported exclusions and release."
+    },
+    "B2": {
+      "result": "UNTESTED",
+      "scope": "Physical busy-unmount failure, truthful failure wording, bounded timing, safe shutdown/restart and fresh-session recovery; also attempt19 Back/Cancel, SIGINT/HUP/disconnect/crash cases."
+    },
+    "R1": {
+      "result": "UNTESTED",
+      "scope": "Full before/after local-library and original smoke-program checks, expected Cover/BASIC and repeated exits, imported hello fixture and multi-disk availability, reboot persistence/no stale remount, fresh USB session and normal clean shutdown."
+    },
+    "T1": {
+      "result": "UNTESTED",
+      "scope": "Measured device-list/scan/paging/selection/plan/copy/MC entry-exit/release times, three-repeat ranges, redraw/Cancel/feedback observations and source-fixture post-test hashes."
+    }
+  },
+  "R1_reported_subset": {
+    "result": "PASS",
+    "scope": "C64/copied demo launch, emulator exit and responsive Menu only; full R1 remains UNTESTED."
+  },
+  "not_individually_attested": [
+    "Individual arrow/Tab/function-key sequence, viewer/menu actions and literal Ctrl+C behavior",
+    "Repeated browse/F10/release/reconnect cycles and Back release",
+    "Deliberate write refusal, live mount flags, process/fd/foreground snapshots and post-release absence of mounts/orphans",
+    "Demo identity/format/hash, USB filesystem, hardware revision/RAM, timing measurements and before/after fixture hash agreement",
+    "Cover appearance, reboot persistence, clean shutdown, broader performance/audio and other hardware"
+  ],
+  "attempt18": "B1 FAIL preserved; no historical result rewritten",
+  "limits": [
+    "Owner report supports only the listed behaviors on this Pi 4 B and exact candidate.",
+    "Successful MC copy does not qualify CONTENT Import, duplicate policy or journaling.",
+    "No fresh live Pi/USB inspection or modification; no running-card hash claim.",
+    "Attempt19 remains PRIVATE NON-RELEASE with partial physical qualification; no full-suite/release/support claim.",
+    "No runtime/package/image, screenshot or Online Library implementation work."
+  ],
+  "next": "Owner may continue remaining cases using the attempt19 procedure; await further results. No release begins."
+}

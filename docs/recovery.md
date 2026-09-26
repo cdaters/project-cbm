@@ -1,3 +1,16 @@
+# Attempt19 owner physical USB PASS attestation — 2026-09-25
+
+Additive checkpoint: `archive/attempt19-pi4-owner-pass-2026-09-25` under registered
+bulk storage. It binds the [owner qualification report](qualification/attempt19-pi4-owner-pass-2026-09-25.md),
+current Product/Menu refs and bundles, offline restore/peeled-tag/fsck checks and
+new private evidence. Verify its manifest and restore report. The preceding frozen
+image checkpoint `archive/private-1.2-dev2-attempt19-2026-09-25` remains unchanged.
+
+B0/B1 and the reported copy/release/C64/demo/F10/Menu lifecycle PASS on exact attempt19;
+remaining cases are explicitly UNTESTED. No attempt18 failed evidence, attempt19
+artifact or protected stable tag is replaced. No image construction or live Pi work.
+This is same-volume recovery; independent encrypted custody remains outstanding.
+
 # Private 1.2 attempt18 recovery — 2026-09-25
 
 Additive checkpoint: `archive/private-1.2-dev1-attempt18-2026-09-25-r2` under registered

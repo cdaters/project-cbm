@@ -1,5 +1,12 @@
 # Attempt19: Pi 4 USB terminal qualification
 
+**Owner physical update — September 25:** B0/B1 PASS for reported normal/USB MC
+navigation, read-only mount, copy and safe release. Copy → C64 demo → F10 → responsive
+Menu also PASS. See the [exact attestation and remaining cases](attempt19-pi4-owner-pass-2026-09-25.md).
+U1–U6/B2/T1 and full R1 remain UNTESTED beyond the reported subset. Unreported detailed
+B0/B1 substeps remain UNTESTED. The pre-test status and procedure below are historical
+expectations, not a claim that all steps have now passed.
+
 **PRIVATE NON-RELEASE — physical UNTESTED.** This procedure binds only the new
 Project CBM `1.2.0-dev.2` / `private-engineering-1.2-dev2` attempt19 image.
 Attempt18 remains **B1 FAIL**, preserved without repair. Stable 1.1.0 is unchanged.
