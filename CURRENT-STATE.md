@@ -1,3 +1,16 @@
+# Attempt23 reuse freeze halted; extraction-mode correction for attempt24 — 2026-09-26
+
+Native Product347/Menu119 and installed USB11/screenshot12/Online6 PASS for23.
+Freeze stopped before image construction: recipe extraction by GNU tar inherited
+builder umask0002 (0664/0775), while the strict development reuse contract compares
+Python tarfile filter=data effective modes (0644/0755). Diagnostic comparison found
+identical Runtime bytes, only group-write mode differences. No gate is bypassed.
+Preserve partial frozen23, recipe/source/packages/tests/logs. Next distinct attempt24
+extracts its NEW recipe using filter=data, matching the factory contract. No Runtime,
+KMS or Menu package rebuild is needed; reuse the exact tested package combination.
+Only this checkpoint/procedure changes after tested Product1a6d9ac; executable inputs
+and Menu2e1ac04 remain unchanged. Product1.2.0-dev.5 remains the intended identity.
+
 # Attempt22 pre-freeze identity-test failure retained; distinct retry23 — 2026-09-26
 
 The exact-source Product run stopped at one stale test fixture: it expected dev4
