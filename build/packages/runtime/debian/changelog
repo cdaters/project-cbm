@@ -1,3 +1,11 @@
+project-cbm-runtime (1.2.0~dev4-1) trixie; urgency=medium
+
+  * Save screenshots under authenticated content share with short collision names.
+  * Present readable sizes; keep the existing separately packaged GPL KMS helper.
+  * Add bounded Assembly64 cbm client and shared-ingestion download coordinator.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Sat, 26 Sep 2026 20:30:00 +0000
+
 project-cbm-runtime (1.2.0~dev3-1) trixie; urgency=medium
 
   * Add on-demand private screenshots using a separately packaged GPL KMS helper.

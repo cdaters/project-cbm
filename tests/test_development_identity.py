@@ -53,7 +53,7 @@ class DevelopmentIdentity(unittest.TestCase):
 
     def test_config_and_export_are_separate_and_checked(self):
         stable={'version':'1.1.0','candidate':'release'}
-        dev={'version':'1.2.0-dev.3','candidate':'private-engineering-1.2-dev3'}
+        dev={'version':'1.2.0-dev.4','candidate':'private-engineering-1.2-dev4'}
         for product in (stable,dev):
             config=json.loads(configuration_path(ROOT,product).read_text())
             verify_output_identity(ROOT,config,product['version'],product['candidate'])
