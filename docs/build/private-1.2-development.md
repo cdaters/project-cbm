@@ -4,6 +4,60 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Completed USB correction image — attempt19, 2026-09-25
+
+**PRIVATE NON-RELEASE `1.2.0-dev.2`; physical UNTESTED.** Attempt18 is preserved
+as **B1 FAIL**. Its earlier readiness statements below are historical.
+[Exact candidate record](private-1.2-dev2-attempt19.json) and
+[owner Pi 4 procedure](../qualification/attempt19-pi4-usb.md) are current authority.
+
+Product source `c02c2a119e1506c8ad06a45c376ef944216f4f43` keeps MC unprivileged on
+the caller's controlling terminal and foreground process group. Sudo handles only
+the broker's bounded read-only lease. Terminal bytes never enter the FIFO protocol.
+Verified release, parent-death cleanup, bounded worker-crash cleanup and truthful
+busy-unmount errors remain. No sudo policy, mount flag or stty workaround was added.
+Menu source/API/package remains exact dev1; only Runtime was rebuilt as `1.2.0~dev2-1`.
+
+Native Product 311/311, Menu 107/107 and eleven real installed-path cases PASS.
+The latter exercise real FILES dialogs/FIFOs/sudo/broker/MC under TERM=linux with a
+controlling PTY: foreground ownership and descriptors, arrow/Tab/F3/F10 behavior,
+repeat, SIGINT, HUP, disconnect, bridge/worker crashes, busy release, ordinary MC
+and ingestion save/cancel. Only synthetic device discovery is substituted in the
+isolated fixture. Literal Ctrl+C and actual SIGINT are separate assertions: MC may
+consume the key itself. These tests close the old direct-helper PTY coverage gap;
+they cannot certify a physical Pi keyboard/VT. Failed trial logs remain retained.
+
+341 actual-image checks, six privacy checks, 672 installed package identities,
+127 ELF objects and FAT/ext4/systemd checks PASS. Actual installed package contents
+match the frozen inputs. Guest and external raw/XZ equivalence pass; all 3,246 frozen
+kit files match the natively verified guest kit. The host lacks dpkg-deb, so no native
+Debian verification is claimed on macOS. Existing host mktemp test context is unchanged.
+
+Raw SHA-256: `f69fbee34448936d9df942ab0c8ce990b9ccd3a85e66b95d232f0d7c8caa8d44`,
+3,095,396,352 bytes. XZ SHA-256:
+`00e88150f5d2105f89182e14e14ed27517a672cb57c6134598dcfa451dfe0fca`, 599,040,204 bytes.
+Paths are under `artifacts/private-1.2-dev2-attempt-19`; exact filenames and lock ID
+are in the linked record. One image was built; reproducibility is not claimed.
+
+The builder grew from 256 to 320 GiB only after a stopped, hashed COW disk/config
+snapshot. Existing guest state was retained; expanded capability and unchanged
+package inventory/update guards pass. Construction used an offline network namespace
+and inherited authenticated APT closure. No host packages were updated. Final cleanup
+has no workspace mounts/loops and Lima is stopped. Root free user space before
+expansion is 639,393,792 bytes; maintenance margin after physical first boot is untested.
+
+Private evidence: `qualification/usb-tty-fix-2026-09-25`. Additive recovery:
+`archive/private-1.2-dev2-attempt19-2026-09-25`; its manifests and offline bundle/ref/
+peeled-tag/fsck report bind final documentation and retained inputs/outputs. This is
+same-volume custody; independent encrypted custody remains outstanding. Attempt18
+raw/XZ/lock/live evidence and stable 1.1.0 artifacts/tags verify unchanged. No live Pi
+was modified and nothing was published. Unknown local work remains untouched.
+
+Next: stop for owner Pi 4 testing using the linked procedure. Screenshot implementation
+is a [separate prepared task](../design/screenshot-implementation-next-task.md), with
+no code/package in this image. Assembly64 remains documentation/research only while
+awaiting provider/client-id feedback; the Online Library network client stays disabled.
+
 ## Completed private image — attempt18, 2026-09-25
 
 **Ready for owner review and the explicit Pi4 procedure; physical UNTESTED.**

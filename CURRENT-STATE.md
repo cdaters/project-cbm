@@ -1,3 +1,44 @@
+# Attempt19 USB correction image complete — 2026-09-25
+
+**PRIVATE NON-RELEASE `1.2.0-dev.2`, attempt19; physical UNTESTED.**
+[Candidate record](docs/build/private-1.2-dev2-attempt19.json),
+[build/validation account](docs/build/private-1.2-development.md) and
+[hash-bound owner Pi 4 procedure](docs/qualification/attempt19-pi4-usb.md).
+
+Frozen Product `c02c2a119e1506c8ad06a45c376ef944216f4f43`; Runtime `1.2.0~dev2-1`.
+Menu remains `7c12a40d53aee91f4b1d5f421967aa92811fe30d`, exact `v1.2.0_dev1` package.
+MC stays on the unprivileged caller's controlling terminal/foreground group; sudo
+brokers only the read-only lease. No terminal proxy, policy weakening or stty repair.
+
+Native Product 311, Menu 107 and eleven installed-package path cases PASS. Actual
+image: 341 checks, six privacy checks, 672 package identities, 127 ELF objects and
+filesystems/systemd PASS. Both external artifacts and raw/XZ equivalence verify;
+3,246 exported frozen-kit files match the natively verified guest inputs. Physical
+Pi behavior and independent reproducibility remain UNTESTED. Failed harness evidence
+is retained; the known macOS mktemp context and absence of host dpkg-deb are recorded.
+
+Artifacts: `artifacts/private-1.2-dev2-attempt-19` under registered bulk storage.
+Raw SHA `f69fbee34448936d9df942ab0c8ce990b9ccd3a85e66b95d232f0d7c8caa8d44`;
+XZ SHA `00e88150f5d2105f89182e14e14ed27517a672cb57c6134598dcfa451dfe0fca`.
+Exact names/sizes, lock and package hashes are in the candidate record.
+
+Evidence: `qualification/usb-tty-fix-2026-09-25`. Recovery:
+`archive/private-1.2-dev2-attempt19-2026-09-25`; manifests and restore report are the
+completion authority. Offline bundles/refs/peeled tags/fsck and retained bytes are
+verified there; independent encrypted custody remains outstanding. Builder capacity
+was expanded after a stopped verified snapshot, all earlier attempts retained.
+Host capabilities/inventory/update guards pass; no mounts/loops remain; Lima STOPPED.
+
+Attempt18 remains physical B1 FAIL, raw/XZ/lock/live evidence unchanged. Published
+1.1.0 raw/XZ and protected tags remain unchanged. No live Pi work, publish or push.
+Unknown `.qwen/` and `memory/` remain untouched; Menu tracked source is unchanged.
+
+**Next action: STOP for owner Pi 4 physical testing of attempt19.** Do not mutate
+this frozen image. [Screenshot next task](docs/design/screenshot-implementation-next-task.md)
+is prepared in a separate documentation commit, not implemented or packaged.
+Assembly64 remains research-only awaiting provider/client-id feedback; no Online
+Library activation. Earlier checkpoints below remain historical.
+
 # USB MC correction source checkpoint — 2026-09-25
 
 The caller-side bridge correction is implemented with the unchanged Menu API.

@@ -1,0 +1,142 @@
+{
+  "format": "project-cbm.private-development-image-result",
+  "schema_version": 1,
+  "date": "2026-09-25",
+  "image_date_utc": "2026-09-26",
+  "product": {
+    "candidate": "private-engineering-1.2-dev2",
+    "version": "1.2.0-dev.2"
+  },
+  "attempt": 19,
+  "status": "PRIVATE NON-RELEASE; offline validated for owner Pi4 procedure; physical UNTESTED",
+  "source": {
+    "integration": {
+      "commit": "c02c2a119e1506c8ad06a45c376ef944216f4f43",
+      "ref": "refs/heads/feature/1.2-content-ingestion",
+      "repository": "https://github.com/cdaters/project-cbm.git",
+      "tag_object": null
+    },
+    "menu": {
+      "commit": "7c12a40d53aee91f4b1d5f421967aa92811fe30d",
+      "ref": "refs/tags/v1.2.0_dev1",
+      "repository": "https://github.com/cdaters/project-cbm-menu",
+      "tag_object": "b9f94546e166df32849ec7d2143477dc8b1fa8e5"
+    }
+  },
+  "lock": {
+    "path": "inputs/frozen-poc4-attempt19/release-lock.json",
+    "sha256": "1b69db05988dc3435b3460eb045a91c7dcca4fcfe7a7d8b3eebb846e2c2d37ce"
+  },
+  "packages": {
+    "menu": {
+      "version": "1.2.0~dev1-1+pcbm1",
+      "sha256": "10927c4717b94cb94bb6b269f6f5d37c493caeffc1118aa597d400cf6182b01c",
+      "size_bytes": 1299344,
+      "rebuilt": false
+    },
+    "runtime": {
+      "version": "1.2.0~dev2-1",
+      "sha256": "bee7d7c0399110f090d0d34e300a6099d3f34aa25c0c0f3a2ce23c0c553bd6be",
+      "size_bytes": 87776,
+      "rebuilt": true
+    },
+    "tcpser": {
+      "version": "1.1.6~beta-1+pcbm1",
+      "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+      "size_bytes": 26872,
+      "rebuilt": false
+    },
+    "vice": {
+      "version": "3.10-1+pcbm4",
+      "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+      "size_bytes": 5069684,
+      "rebuilt": false
+    }
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-1.2-dev2-attempt-19/work/export-image/2026-09-26-project-cbm-1.2.0-dev.2-lite-private-1.2-dev2.img",
+      "path": "artifacts/private-1.2-dev2-attempt-19/2026-09-26-project-cbm-1.2.0-dev.2-lite-private-1.2-dev2.img",
+      "size_bytes": 3095396352,
+      "sha256": "f69fbee34448936d9df942ab0c8ce990b9ccd3a85e66b95d232f0d7c8caa8d44"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-1.2-dev2-attempt-19/image_2026-09-26-project-cbm-1.2.0-dev.2-lite-private-1.2-dev2.img.xz",
+      "path": "artifacts/private-1.2-dev2-attempt-19/image_2026-09-26-project-cbm-1.2.0-dev.2-lite-private-1.2-dev2.img.xz",
+      "size_bytes": 599040204,
+      "sha256": "00e88150f5d2105f89182e14e14ed27517a672cb57c6134598dcfa451dfe0fca"
+    },
+    "raw_xz_equivalence": "PASS"
+  },
+  "validation": {
+    "result": "PASS",
+    "actual_image_checks": 341,
+    "main_checks": 119,
+    "supplement_checks": 20,
+    "development_checks": 202,
+    "privacy_checks": 6,
+    "installed_packages": 672,
+    "elf_objects": 127,
+    "native_product_tests": 311,
+    "native_menu_tests": 107,
+    "installed_path_cases": 11,
+    "installed_path": "Real Menu/FIFO/sudo policy/broker/caller MC, TERM=linux controlling PTY; synthetic device discovery only; tested final source and actual rebuilt package",
+    "raw_xz_guest_and_external": "PASS",
+    "external_frozen_kit": "3246 files byte-identical to natively verified kit",
+    "physical": "UNTESTED",
+    "independent_reproducibility": false
+  },
+  "construction": {
+    "images_built": 1,
+    "packages_rebuilt": [
+      "runtime"
+    ],
+    "offline_network_namespace": true,
+    "elapsed": "2:29.51",
+    "maximum_resident_kib": 521956,
+    "authenticated_apt": "Inherited authenticated attempt18 refresh and retained package closure; normal expiry verification; no host update"
+  },
+  "footprint": {
+    "available_to_user": 639393792,
+    "capacity": 2439266304,
+    "free": 783675392,
+    "used": 1655590912
+  },
+  "maintenance_margin": "639393792 bytes available to unprivileged user before first-boot expansion; future update margin and expanded capacity not physically measured",
+  "host": {
+    "result": "PASS",
+    "inventory_sha256": "352fb0f9ed6503e7570278573c8a04219856d8bde086c66e173c7d51c6dd0aa6",
+    "capability": "PASS",
+    "updates": "masked",
+    "no_loops": true,
+    "stable_raw_unchanged": true,
+    "attempt18_raw_unchanged": true,
+    "guest_available_bytes": 89500495872,
+    "final_state": "STOPPED after export, verification and cleanup",
+    "disk_gib": 320
+  },
+  "evidence": [
+    "qualification/usb-tty-fix-2026-09-25",
+    "build-host/records/pre-dev2-disk-growth-2026-09-25"
+  ],
+  "retained_failures": [
+    "Attempt18 physical B1 FAIL and all earlier attempts",
+    "Native harness trial1 noload/norecovery expectation and teardown",
+    "Native harness trial2 lost+found selection and unit export lacking Git refs",
+    "Initial host unit run: known macOS mktemp negative control",
+    "First source export refused generated Menu pycache; generated file removed, clean export succeeded",
+    "Host verify_kit cannot execute dpkg-deb; external kit instead compared byte-for-byte against fully natively verified kit"
+  ],
+  "recovery": {
+    "path": "archive/private-1.2-dev2-attempt19-2026-09-25",
+    "authority": "manifest.json, manifest.sha256, retained-files.json and restore-results.json; verify before physical testing",
+    "independent_encrypted_custody": false
+  },
+  "stable_1_1_0": "unchanged; preservation.json verifies raw/XZ and protected tags",
+  "attempt18": "B1 FAIL preserved; raw/XZ/lock and live failure evidence unchanged",
+  "published": false,
+  "pushed": false,
+  "physical_procedure": "docs/qualification/attempt19-pi4-usb.md",
+  "screenshot": "Separate planning commit only; no implementation/package",
+  "assembly64": "Research only; awaiting provider/client-id feedback; network client disabled"
+}
