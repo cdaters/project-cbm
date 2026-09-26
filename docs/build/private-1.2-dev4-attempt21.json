@@ -1,0 +1,115 @@
+{
+  "format": "project-cbm.private-development-candidate",
+  "schema_version": 1,
+  "status": "BUILT AND VALIDATED; physical UNTESTED",
+  "product": "1.2.0-dev.4",
+  "candidate": "private-engineering-1.2-dev4",
+  "attempt": 21,
+  "release": false,
+  "integration_commit": "d852e878bc74267eb5c6e4ea84959a14736b795f",
+  "logical_commits": {
+    "screenshot_storage_names": "c93fb06d9f59bb05f0e9dd36095c132a018779b5",
+    "readable_sizes": "08d89e6824f129b7984d74810d5454340702c770",
+    "assembly64_backend": "761918e9d299ceb144d5c22dba9440336895c6e7",
+    "online_ingestion": "414e6f16f3e509c4e961a3121e38c7d13acbff66",
+    "kms_pageflip_fix": "b887d2d1d4798f3ca00858bfedbfdeddb2ebba46"
+  },
+  "menu": {
+    "commit": "31ced5e2fe40c4b7a6fae0178d19341517f1b7e1",
+    "tag": "v1.2.0_dev3",
+    "tag_object": "cd7898c8575b75e028252af9b0a3e0f6ee32f83a",
+    "sizes_commit": "1d9f083",
+    "breadcrumbs_commit": "816a5de",
+    "import_navigation_commit": "42ee1f8",
+    "online_ui_commit": "9915a07",
+    "retained_hidden_ids_commit": "f9c4607"
+  },
+  "release_lock_sha256": "558daafc14c44812b312fc4746076f0411c4ef4bfa8ba791604e547a151a67d6",
+  "packages": {
+    "runtime": {
+      "version": "1.2.0~dev4-1",
+      "path": "packages/poc4-attempt21/project-cbm-runtime_1.2.0~dev4-1_all.deb",
+      "size_bytes": 95888,
+      "sha256": "ce1b92a540ff0e86eb0539975658adc881fa4943e76dd6c349336ee8cdd8060a"
+    },
+    "menu": {
+      "version": "1.2.0~dev3-1+pcbm1",
+      "path": "packages/poc4-attempt21/project-cbm-menu_1.2.0~dev3-1+pcbm1_all.deb",
+      "size_bytes": 1303032,
+      "sha256": "b2ef413fe22e155ebad2df62cb14cdb2ae9edadf8ba3246f6b3bc615b9f8ab5e"
+    },
+    "kms-capture": {
+      "version": "1.0.0~dev2-1",
+      "path": "packages/poc4-attempt21/project-cbm-kms-capture_1.0.0~dev2-1_arm64.deb",
+      "size_bytes": 17908,
+      "sha256": "c8c7a471eb4b369ab5c7b2ad82181a1bfc82762c2e62016b9752e6e7a4623874"
+    }
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-1.2-dev4-attempt-21/work/export-image/2026-09-26-project-cbm-1.2.0-dev.4-lite-private-1.2-dev4.img",
+      "path": "artifacts/private-1.2-dev4-attempt-21/2026-09-26-project-cbm-1.2.0-dev.4-lite-private-1.2-dev4.img",
+      "size_bytes": 3095396352,
+      "sha256": "47bc9d7f478c2a1dfaf9d2c834f30aa2951e2749951680c26c8ee31e60f6eb01"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-1.2-dev4-attempt-21/image_2026-09-26-project-cbm-1.2.0-dev.4-lite-private-1.2-dev4.img.xz",
+      "path": "artifacts/private-1.2-dev4-attempt-21/image_2026-09-26-project-cbm-1.2.0-dev.4-lite-private-1.2-dev4.img.xz",
+      "size_bytes": 598029932,
+      "sha256": "5d29cdb03ccbb886ae256f752195d7105cc2f8e12888c72750d7ff145a9f2746"
+    },
+    "raw_xz_equivalence": "PASS",
+    "external_verification": "PASS"
+  },
+  "tests": {
+    "native_product": {
+      "passed": 347,
+      "skipped": 0
+    },
+    "native_menu": {
+      "passed": 118,
+      "skipped": 0
+    },
+    "installed_usb_cases": 11,
+    "installed_screenshot_cases": 12,
+    "installed_online_cases": 5,
+    "native_gpl_component_scenarios": "PASS",
+    "offline_image_checks": 372,
+    "privacy_checks": 7,
+    "capture_security_closure_checks": 11,
+    "installed_package_identities": 673,
+    "capture_elf_graph_objects": 8,
+    "capture_helper_bytes": 67744,
+    "raw_xz_equivalence": "PASS",
+    "external_export_verification": "PASS",
+    "frozen_kit_files_external_verified": 3309,
+    "gpl_corresponding_source_offline_compile": "PASS"
+  },
+  "root_filesystem": {
+    "available_to_user": 639250432,
+    "capacity": 2439266304,
+    "free": 783532032,
+    "used": 1655734272
+  },
+  "recovery": {
+    "path": "archive/private-1.2-dev4-attempt21-2026-09-26",
+    "status": "Verify external restore-results.json and manifest.sha256; seal excluded here for acyclic checksum graph",
+    "independent_encrypted_custody": "OUTSTANDING"
+  },
+  "evidence": "qualification/ux-online-dev4",
+  "preserved": {
+    "attempt18": "B1 FAIL unchanged",
+    "attempt19": "bounded physical passes and visible-ID FAIL unchanged",
+    "attempt20": "bounded USB/Import passes, moving-game screenshot FAIL and non-interference/F10 PASS; unchanged",
+    "stable_1_1_0": "raw/XZ and Product/Menu tags unchanged"
+  },
+  "limits": [
+    "New candidate physical qualification UNTESTED",
+    "No tear-free moving-frame or multi-display guarantee",
+    "One build; reproducibility not claimed",
+    "No hosted content downloaded/bundled during implementation",
+    "Central enabled; discovered home servers not qualified/selectable",
+    "Save & Run deferred; saved content launches through existing Browse Library",
+    "No publication/provider message; BIN remains unsupported"
+  ]
+}

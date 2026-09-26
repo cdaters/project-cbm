@@ -1,3 +1,53 @@
+# Owner attribution follow-up after attempt21 freeze — 2026-09-26
+
+Attempt21 is built, validated and exported below. Before handoff, the owner requested
+Assembly64 team/website credit and optional verified support links, with FTP kept
+reference-only and no embedded alternate credentials or transparent failover.
+Preserve attempt21 as finished engineering evidence; implement this bounded addition
+in a new Menu identity and distinct next candidate. No live Pi patch/publication.
+The pending final physical handoff will target that newer candidate.
+
+# Private dev4 / attempt21 built and validated — 2026-09-26
+
+**PRIVATE NON-RELEASE Project CBM1.2.0-dev.4. STOP for owner Pi4 physical testing.**
+[Exact record](docs/build/private-1.2-dev4-attempt21.json),
+[build report](docs/build/private-1.2-dev4-attempt21.md),
+[hash-bound procedure](docs/qualification/attempt21-pi4-ux-online.md).
+Frozen Product d852e878bc74267eb5c6e4ea84959a14736b795f; Menu 31ced5e2fe40c4b7a6fae0178d19341517f1b7e1,
+annotated v1.2.0_dev3 object cd7898c8575b75e028252af9b0a3e0f6ee32f83a.
+Runtime1.2.0~dev4-1, Menu1.2.0~dev3-1+pcbm1, separate GPL KMS1.0.0~dev2-1.
+Lock 558daafc14c44812b312fc4746076f0411c4ef4bfa8ba791604e547a151a67d6.
+
+Native Product347/Menu118 zero skips; GPL component scenarios; installed USB11,
+screenshot12/Online5; 372 image, 7 privacy and 11 capture security checks PASS.
+All 673 package identities and 3309 external kit files verified;
+raw/XZ equivalence PASS. Corresponding GPL source restores/compiles offline.
+Host inventory/update guards unchanged; no published artifacts/tags or Pi software changed.
+
+Raw 3,095,396,352 bytes, SHA-256 47bc9d7f478c2a1dfaf9d2c834f30aa2951e2749951680c26c8ee31e60f6eb01.
+XZ 598,029,932 bytes, SHA-256 5d29cdb03ccbb886ae256f752195d7105cc2f8e12888c72750d7ff145a9f2746.
+Exact filenames under artifacts/private-1.2-dev4-attempt-21 in linked record.
+
+Attempt20's two moving-game captures FAIL (no PNG,0.278s each); owner confirms no
+interference and F10 return PASS. New helper fixes overly strict same-FB-ID comparison;
+actual new-image moving-game capture remains UNTESTED. Screenshot storage is now
+content/screenshots with private modes and short collision-safe UTC names. Menu
+adds readable sizes/breadcrumbs and Back-to-source Import while preserving the lease.
+BIN remains excluded. Attempt18/19/20 and stable1.1.0 remain unchanged.
+
+Provider-registered cbm yielded HTTP200 for eleven bounded metadata/discovery
+requests, resolving earlier JSON464 in the tested subset. Original Central-only
+Online Library search/select/review/Save uses shared ingestion; no hosted titles
+bundled or downloaded for engineering tests. Home server selection, Save & Run,
+provider quotas and physical live-download interoperability remain deferred/unknown.
+No provider messages; ask only after physical testing if needed.
+
+Recovery: archive/private-1.2-dev4-attempt21-2026-09-26. Verify its external manifest
+and restore-results report after final seal; full refs/bundles and byte catalogs
+keep the graph acyclic. Independent encrypted custody/restore remains OUTSTANDING.
+Evidence qualification/ux-online-dev4; prior failures retained. Unknown .qwen/ and
+memory/ untouched. No next feature or release starts automatically.
+
 # Ready to freeze distinct private dev4 / attempt21 inputs — 2026-09-26
 
 Native trial6 Product346/346 and Menu118/118 PASS, plus updated GPL component tests.

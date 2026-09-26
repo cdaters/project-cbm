@@ -4,6 +4,19 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## UX, screenshot page flips and Online Library — attempt21
+
+**PRIVATE NON-RELEASE 1.2.0-dev.4; built/validated, physical UNTESTED.**
+[Exact candidate and validation](private-1.2-dev4-attempt21.md),
+[owner Pi 4 procedure](../qualification/attempt21-pi4-ux-online.md).
+Attempt20 bounded owner results and moving-game screenshot failure are recorded
+[separately](../qualification/attempt20-owner-review-2026-09-26.md). This candidate
+includes screenshot shared storage/short names, separate GPL page-flip correction,
+readable sizes/breadcrumbs, reversible guided Import and an original bounded Online
+Library using provider-registered cbm. Earlier research-only checkpoints below are
+superseded by the owner's explicit implementation request; historical images remain
+unchanged. STOP for physical testing. Nothing is published or released.
+
 ## Screenshot and guided-import presentation candidate — attempt20
 
 **PRIVATE NON-RELEASE 1.2.0-dev.3, built/validated; physical UNTESTED.**

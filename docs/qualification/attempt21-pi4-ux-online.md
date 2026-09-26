@@ -1,6 +1,12 @@
-# Next private candidate: Pi 4 UX and Online Library qualification
+# Attempt21: Pi 4 UX and Online Library qualification
 
-**DRAFT — not ready to flash until exact candidate hashes are added.**
+**PRIVATE NON-RELEASE 1.2.0-dev.4 / attempt21. Physical cases below UNTESTED.**
+
+Raw SHA-256 `47bc9d7f478c2a1dfaf9d2c834f30aa2951e2749951680c26c8ee31e60f6eb01` (3,095,396,352 bytes).
+XZ SHA-256 `5d29cdb03ccbb886ae256f752195d7105cc2f8e12888c72750d7ff145a9f2746` (598,029,932 bytes).
+Lock `558daafc14c44812b312fc4746076f0411c4ef4bfa8ba791604e547a151a67d6`.
+[Exact paths, packages and validation](../build/private-1.2-dev4-attempt21.md).
+
 Do not update attempt20 in place. Preserve its card/captures and use the new image
 on separate media. This procedure qualifies only the exact image and Pi model
 recorded in the completed build record. Stop a failing case and retain a screenshot
