@@ -1,3 +1,17 @@
+# Ready to freeze distinct private dev4 / attempt21 inputs — 2026-09-26
+
+Native trial6 Product346/346 and Menu118/118 PASS, plus updated GPL component tests.
+Installed trial6 USB11, screenshot12 and Online Library4 cases PASS. Additional
+MIME-octet and installed readiness tests were added (source behavior unchanged);
+final exact-source/package gates will include them. All earlier trials retained.
+
+Product1.2.0-dev.4, Runtime1.2.0~dev4-1, Menu1.2.0~dev3-1+pcbm1 and separate
+GPL KMS1.0.0~dev2-1 are the intended next PRIVATE NON-RELEASE inputs. No existing
+attempt21 output was found. No candidate has been constructed at this checkpoint.
+Next: exact clean export/tag, packages, installed gates, freeze, image validation,
+raw/XZ export, offline recovery and hash-bound physical handoff. Prior20/19/18 and
+stable1.1.0 artifacts/tags stay immutable; no live patch or publication.
+
 # Moving-game capture correction before candidate freeze — 2026-09-26
 
 Attempt20 moving C64 gameplay screenshot **FAIL** twice with display-changed error,
