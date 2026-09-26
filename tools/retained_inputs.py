@@ -83,6 +83,11 @@ def verify_kit(raw, root):
         contract='project-cbm-runtime-api (= 1)'
         if contract not in provided.strip().split(', ') or contract not in required.strip().split(', '):
             raise ValueError('product/Menu runtime interface mismatch')
+    if 'kms-capture' in lock['components']:
+        component=lock['components']['kms-capture']
+        required=subprocess.check_output(['dpkg-deb','-f',str(runtime),'Depends'],text=True)
+        if ('project-cbm-kms-capture (= '+component['package']['version']+')') not in required.strip().split(', '):
+            raise ValueError('Runtime/capture exact package dependency mismatch')
     if 'qualification_media' in lock:
         verify_media(root/lock['qualification_media']['artifact']['path'],lock['qualification_media'])
     if 'optional_software' in lock:

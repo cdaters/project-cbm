@@ -330,6 +330,9 @@
         },
         "runtime": {
           "$ref": "#/$defs/component"
+        },
+        "kms-capture": {
+          "$ref": "#/$defs/component"
         }
       },
       "required": [

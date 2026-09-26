@@ -1,0 +1,10 @@
+{
+  "origin": "https://github.com/pcercuei/kmsgrab",
+  "commit": "d4c6061a59f4b7ecb6b39f96c7d39a5d5f48b702",
+  "license": "GPL-2.0-only",
+  "reference_files": {
+    "CMakeLists.txt": "697adfe05f6d4f5acce4d4fed8fdad661945afbadfc68266c43a8419a6ea11e4",
+    "kmsgrab.c": "8e16072fafd2a989c9a27721f9cb3d04f84a12c033cee3c7a4a06e3f099882b6"
+  },
+  "relationship": "Reviewed technical starting point; fixed replacement helper, separately licensed and packaged."
+}

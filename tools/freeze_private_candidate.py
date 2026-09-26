@@ -298,6 +298,38 @@ def main():
             build['utilities'] = oldrecord['utilities']
         component['build_record'] = record(build)
         lock['components'][name] = component
+    # Separately licensed native screenshot component, declared only by recipes
+    # containing its source. No change to historical predecessor verification.
+    capture_source=recipe/'components/pcbm-kms-capture'
+    if capture_source.is_dir():
+        if not development:raise ValueError('screenshot admission is private development only')
+        version='1.0.0~dev1-1';upstream,revision=version.rsplit('-',1)
+        deb=packages/f'project-cbm-kms-capture_{version}_arm64.deb'
+        fields=subprocess.check_output(['dpkg-deb','-f',str(deb),'Package','Version','Architecture'],text=True)
+        if dict(line.split(': ',1) for line in fields.splitlines())!={'Package':'project-cbm-kms-capture','Version':version,'Architecture':'arm64'}:
+            raise ValueError('capture package identity mismatch')
+        d=capture_source/'debian'
+        component={
+            'version':upstream,
+            'source':{'origin':'https://github.com/cdaters/project-cbm',
+                      'artifact':store(integration),
+                      'git':{'repository':'https://github.com/cdaters/project-cbm',
+                             'ref':'refs/heads/feature/1.2-content-ingestion',
+                             'commit':a.integration_commit,'tag_object':None}},
+            'package':{'name':'project-cbm-kms-capture','architecture':'arm64',
+                       'version':version,'upstream_version':upstream,'revision':revision,'artifact':store(deb)},
+            'recipe':archive(d.rglob('*'),d),'patches':[],
+            'build_options':['separate GPL-2.0-only component','fixed no-argument helper','hardening=+all'],
+            'corresponding_source':archive([f for f in packages.glob('project-cbm-kms-capture_*')
+                if f.suffix=='.dsc' or '.tar.' in f.name],packages),
+            'build_record':record({'component':'kms-capture','source_commit':a.integration_commit,
+                'package':store(deb),'source_sha256':store(integration)['sha256'],
+                'upstream_reference':'d4c6061a59f4b7ecb6b39f96c7d39a5d5f48b702','license':'GPL-2.0-only',
+                'upstream_source':store(capture_source/'upstream/kmsgrab.c'),
+                'license_notice':store(capture_source/'COPYING'),
+                'build_info':store(next(packages.glob('project-cbm-kms-capture_*.buildinfo'))),
+                'physical_qualification':'UNTESTED'})}
+        lock['components']['kms-capture']=component
     if a.vice_version:
         if not re.fullmatch(r'3[.]10-1[+]pcbm[0-9]+',a.vice_version):raise ValueError('VICE package version')
         if a.vice_version==lock['components']['vice']['package']['version']:raise ValueError('changed VICE needs distinct version')
@@ -317,6 +349,11 @@ def main():
     # Integration source owns engineering.py; explicit installed-file hashes make
     # the corrected lifecycle and setup contract independently inspectable offline.
     mapping = {'usr/libexec/project-cbm/engineering.py':recipe/'build/pigen/stage-cbm/files/engineering.py'}
+    if capture_source.is_dir():
+        with tempfile.TemporaryDirectory(dir=w/'scratch',prefix='capture-payload-') as name:
+            subprocess.run(['dpkg-deb','-x',str(packages/'project-cbm-kms-capture_1.0.0~dev1-1_arm64.deb'),name],check=True)
+            capture_binary=store(Path(name)/'usr/libexec/pcbm-kms-capture')
+        mapping['usr/share/project-cbm/runtime/bin/pcbm-screenshot']=recipe/'runtime/bin/pcbm-screenshot'
     for source, dest in [('lib/pcbm_status_view.py','usr/libexec/project-cbm-menu/pcbm_status_view.py'),
                          ('lib/pcbm_info_view.py','usr/libexec/project-cbm-menu/pcbm_info_view.py'),
                          ('scripts/pcbm-system-info','usr/bin/pcbm-system-info'),
@@ -344,6 +381,7 @@ def main():
             mapping[dest]=packages/'menu'/source
     build = read_json(kit/lock['components']['menu']['build_record']['path'])
     build.setdefault('corrective_payload',{}).update({dest:store(source) for dest,source in sorted(mapping.items())})
+    if capture_source.is_dir():build['corrective_payload']['usr/libexec/pcbm-kms-capture']=capture_binary
     for source in (recipe/'docs/release').glob('*.md'):
         build['corrective_payload']['usr/share/doc/project-cbm-runtime/release/'+source.name]=store(source)
     build['appliance_schema']=store(recipe/'schemas/appliance-info.schema.json')

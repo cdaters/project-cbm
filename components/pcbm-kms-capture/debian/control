@@ -1,0 +1,16 @@
+Source: project-cbm-kms-capture
+Section: graphics
+Priority: optional
+Maintainer: Project CBM contributors <1015402+cdaters@users.noreply.github.com>
+Build-Depends: debhelper-compat (= 13), pkg-config, libdrm-dev, libpng-dev, libcap-dev
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/cdaters/project-cbm
+
+Package: project-cbm-kms-capture
+Architecture: arm64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Fixed read-only Project CBM KMS capture helper
+ Separately licensed GPL-2.0-only helper, accepting no arguments or output paths.
+ Product integration owns its account/readiness gate and fixed sudo admission.
+ This package installs no setuid bits, file capabilities or sudo policy.

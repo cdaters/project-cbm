@@ -24,6 +24,10 @@ fi
 cp -a "$recipe/build/packages/runtime/debian" "$out/runtime/debian"
 export SOURCE_DATE_EPOCH=1789513200 TZ=UTC LC_ALL=C.UTF-8 PYTHONDONTWRITEBYTECODE=1
 components=(runtime)
+if [[ -d "$out/runtime/components/pcbm-kms-capture" ]]; then
+  cp -a "$out/runtime/components/pcbm-kms-capture" "$out/kms-capture"
+  components+=(kms-capture)
+fi
 [[ $selection == runtime || $selection == runtime-vice ]] || components+=(menu)
 for name in "${components[@]}"; do
   version=$(cd "$out/$name"; dpkg-parsechangelog -S Version)

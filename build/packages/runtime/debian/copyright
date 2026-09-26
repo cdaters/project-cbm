@@ -22,3 +22,13 @@ License: MIT
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
+
+Files: components/pcbm-kms-capture/* tests/native/screenshot_component.c tests/native/screenshot_fixture.h
+Copyright: 2021 Paul Cercueil; 2026 Project CBM contributors
+License: GPL-2.0-only
+Comment: Separate component source only; not installed by the MIT Runtime package.
+ See components/pcbm-kms-capture/COPYING and debian/copyright for full notices.
+
+License: GPL-2.0-only
+ Licensed under version 2 of the GNU General Public License only.
+ The complete license is included in components/pcbm-kms-capture/COPYING.

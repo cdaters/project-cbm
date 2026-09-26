@@ -41,3 +41,10 @@ The Project CBM release image contains software from multiple upstream projects,
 Those components retain their original licenses.
 
 Project CBM does not claim ownership of upstream software included in the image. Users and redistributors are responsible for complying with the licenses of included upstream components.
+
+## Separately licensed capture component
+
+`components/pcbm-kms-capture/` and the screenshot native C test fixtures are
+GPL-2.0-only, not covered by the MIT license above. See that component's COPYING
+and debian/copyright notices. The MIT Runtime communicates with this separate
+executable through its fixed process/stdout interface.

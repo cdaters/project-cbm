@@ -96,6 +96,8 @@ def validate_lock(raw, allow_fixture=False):
     if development_number(lock['product']):
         if lock['schema_version'] != 4:raise ValueError('development requires current runtime contract')
         development_packages(lock['components']['runtime']['package']['version'],lock['components']['menu']['package']['version'])
+    if 'kms-capture' in lock['components'] and not development_number(lock['product']):
+        raise ValueError('capture component is private development only')
     if lock['fixture'] and not allow_fixture:
         raise ValueError('synthetic fixture is not a candidate')
     version = lock['schema_version']

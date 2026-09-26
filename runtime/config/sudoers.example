@@ -6,3 +6,7 @@ Defaults!/usr/libexec/pcbm-config-root env_reset, !setenv, !log_input, !log_outp
 # Retain Debian's ordinary authenticated %sudo policy, with no universal password.
 Defaults!/usr/libexec/pcbm-import-root env_reset, !setenv, !log_input, !log_output
 %pcbm-operators ALL=(root) NOPASSWD: /usr/libexec/pcbm-import-root ""
+# Binary stdout is a pipe; this exception is scoped to the fixed capture helper.
+# The helper rejects every argument and verifies the active runtime account/policy.
+Defaults!/usr/libexec/pcbm-kms-capture env_reset, !setenv, !log_input, !log_output, !use_pty
+pcbm ALL=(root) NOPASSWD: /usr/libexec/pcbm-kms-capture ""

@@ -1,0 +1,19 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Project CBM KMS capture
+Source: https://github.com/cdaters/project-cbm
+
+Files: *
+Copyright: 2026 Project CBM contributors
+License: GPL-2.0-only
+
+Files: upstream/*
+Copyright: 2021 Paul Cercueil <paul@crapouillou.net>
+License: GPL-2.0-only
+Comment: Exact reference from pcercuei/kmsgrab commit
+ d4c6061a59f4b7ecb6b39f96c7d39a5d5f48b702. Not compiled as the privileged helper.
+
+License: GPL-2.0-only
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of version 2 of the GNU General Public License.
+ On Debian systems the full license is /usr/share/common-licenses/GPL-2.
+ The complete license is also included in the corresponding source as COPYING.

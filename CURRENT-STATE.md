@@ -2505,3 +2505,14 @@ Original historical manifest verifies all 1,677 entries unchanged. Both formal v
 tags, Menu recovery refs and published main refs are unchanged. Product maintenance/1.0
 remains local/bundled. Independent encrypted custody remains unresolved; a second
 folder on TheBench is not an independent backup. Current VM is stopped, not deleted.
+
+## In-progress screenshot implementation — 2026-09-26 UTC
+
+The owner authorized the next private image to combine the separately committed
+Menu hidden-tag correction with on-demand screenshots. Source implementation and
+separate GPL component are in progress; attempt18/19 and the live Pi are untouched.
+Native source trial: Product324/324 and Menu109/109 PASS. The first installed overlay
+trial passes all11 USB terminal cases and12 screenshot sudo/account/drop/output
+cases. Final source/package/freeze/image/recovery gates remain pending; no new image
+or physical screenshot qualification is claimed. See [command/security contract](docs/runtime/screenshot.md)
+and [prepared physical procedure](docs/qualification/screenshot-private-pi4-procedure.md).

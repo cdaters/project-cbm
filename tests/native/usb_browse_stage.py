@@ -6,7 +6,7 @@ Optional fourth argument is a new Runtime .deb; otherwise pre-package source tri
 """
 from pathlib import Path
 import hashlib,json,os,shutil,stat,subprocess,sys,time
-w,r,s=map(Path,sys.argv[1:4]);deb=Path(sys.argv[4]) if len(sys.argv)>4 else None
+w,r,s=map(Path,sys.argv[1:4]);debs=[Path(value) for value in sys.argv[4:]]
 assert os.geteuid()==0 and not s.exists() and str(s).startswith('/srv/project-cbm/')
 s.mkdir();root=s/'root';lower=s/'lower';upper=s/'upper';work=s/'work'
 for p in (root,lower,upper,work):p.mkdir()
@@ -32,8 +32,13 @@ try:
  mount(['-t','tmpfs','-o','mode=1777,nosuid,nodev','tmpfs'],root/'dev/shm')
  mount(['-t','proc','proc'],root/'proc')
  (root/'usr/sbin/policy-rc.d').write_text('#!/bin/sh\nexit 101\n');(root/'usr/sbin/policy-rc.d').chmod(0o755)
- if deb:
-  shutil.copyfile(deb,root/'tmp/runtime.deb');inside('dpkg','-i','/tmp/runtime.deb');inside('apt-get','check');inside('dpkg','--audit')
+ if debs:
+  paths=[]
+  for i,deb in enumerate(debs):
+   dest=f'/tmp/component-{i}.deb';shutil.copyfile(deb,root/dest.lstrip('/'));paths.append(dest)
+  inside('dpkg','-i',*paths);inside('apt-get','check');inside('dpkg','--audit')
+  shutil.copyfile(r/'runtime/config/sudoers.example',root/'etc/sudoers.d/pcbm-operations')
+  (root/'etc/sudoers.d/pcbm-operations').chmod(0o440)
   p=inside('dpkg','--verify','project-cbm-runtime','project-cbm-menu',capture_output=True,text=True);assert not p.stdout,p.stdout
  else:
   shutil.copytree(r/'runtime/project_cbm',root/'usr/share/project-cbm/runtime/project_cbm',dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
@@ -57,6 +62,17 @@ try:
  shutil.copyfile(r/'tests/native/usb_browse_installed.py',root/'tmp/usb_browse_installed.py')
  with (s/'installed-path.log').open('x') as log:inside('python3','/tmp/usb_browse_installed.py',stdout=log,stderr=subprocess.STDOUT)
  print('Real installed USB MC path PASS',flush=True)
+ if (root/'usr/libexec/pcbm-kms-capture').exists():
+  # Keep fixture compilation outside the appliance. Only the disposable overlay
+  # receives the test executable, never the image or frozen production package.
+  component=r/'components/pcbm-kms-capture'
+  source=(component/'capture.c').read_text().replace('int main(int argc,char **argv) {','#include "screenshot_fixture.h"\nint main(int argc,char **argv) {')
+  (s/'capture-fixture.c').write_text(source)
+  flags=subprocess.check_output(['pkg-config','--cflags','--libs','libdrm','libpng'],text=True).split()
+  subprocess.run(['cc','-O2','-I'+str(component),'-I'+str(r/'tests/native'),str(s/'capture-fixture.c'),'-o',str(root/'tmp/screenshot-fixture'),*flags,'-lcap'],check=True)
+  shutil.copyfile(r/'tests/native/screenshot_installed.py',root/'tmp/screenshot_installed.py')
+  with (s/'screenshot-installed.log').open('x') as log:inside('python3','/tmp/screenshot_installed.py',stdout=log,stderr=subprocess.STDOUT)
+  print('Installed screenshot sudo/account/drop/output path PASS',flush=True)
 finally:
  # Reap adopted children in this private PID namespace before devpts teardown.
  until=time.monotonic()+30

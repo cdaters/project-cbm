@@ -44,6 +44,16 @@ def inspect(root, boot, record, kit):
         and 'pcbm-run-vice' in text('usr/bin/pcbm-dialog-lib.sh'))
     checks['private_development_marker'] = text('etc/pcbm/engineering-poc').strip() == lock['product']['candidate']
     checks['no_bundled_usb_qualification_fixtures'] = not list((root/'home/pcbm/content').rglob('CBM12-USB-QUAL*'))
+    if 'kms-capture' in lock['components']:
+        helper=root/'usr/libexec/pcbm-kms-capture'
+        checks['capture_separate_native_helper'] = helper.is_file() and helper.read_bytes().startswith(b'\x7fELF') and helper.stat().st_mode & 0o7777 == 0o755
+        checks['capture_no_file_capabilities'] = not subprocess.check_output(['getcap',str(helper)],text=True).strip()
+        checks['capture_exact_package'] = lock['components']['kms-capture']['package']['version']=='1.0.0~dev1-1'
+        checks['capture_fixed_sudo'] = ('pcbm ALL=(root) NOPASSWD: /usr/libexec/pcbm-kms-capture ""' in text('etc/sudoers.d/pcbm-operations') and '!use_pty' in text('etc/sudoers.d/pcbm-operations'))
+        checks['capture_unprivileged_wrapper'] = 'from project_cbm.screenshot import main' in text('usr/bin/pcbm-screenshot')
+        checks['capture_no_alias_or_menu_action'] = not (root/'usr/bin/screenshot').exists() and 'pcbm-screenshot' not in text('usr/bin/pcbm-menu')
+        checks['capture_no_shipped_private_pngs'] = not (root/'home/pcbm/screenshots').exists()
+        checks['guided_import_hides_tags'] = 'PCBM_UI_HIDE_TAGS=true' in menu
     result['result'] = 'PASS' if all(checks.values()) else 'FAIL'
     result['scope'] = 'Private 1.2 exact installed image; physical USB/exFAT/Pi behavior UNTESTED'
     return result

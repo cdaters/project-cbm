@@ -1,0 +1,5 @@
+#!/usr/bin/python3 -I
+import sys
+sys.path.insert(0, '/usr/share/project-cbm/runtime')
+from project_cbm.screenshot import main
+raise SystemExit(main())
