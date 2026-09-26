@@ -5,6 +5,7 @@ Profiles describe independently qualified server semantics, not interchangeable 
 """
 from dataclasses import dataclass
 from email.parser import BytesParser
+from email.message import Message
 from email.policy import default
 import http.client
 import json
@@ -161,6 +162,14 @@ def payload(kind, body, item):
     media = kind.split(';')[0].strip().lower()
     if media == 'multipart/mixed':
         if len(kind) > 512 or '\r' in kind or '\n' in kind: raise OnlineError('incompatible')
+        header = Message(); header['Content-Type'] = kind
+        boundary = header.get_boundary()
+        if not boundary or not re.fullmatch(r'[ -~]{1,70}', boundary): raise OnlineError('incompatible')
+        marker = b'--' + boundary.encode('ascii')
+        # Bound the MIME object count BEFORE constructing email's parse tree.
+        if body.count(marker) != 2 or not body.startswith(marker + b'\r\n'):
+            raise OnlineError('unexpected_parts')
+        if body.find(b'\r\n\r\n') not in range(1, 8193): raise OnlineError('incompatible')
         message = BytesParser(policy=default).parsebytes(b'Content-Type: ' + kind.encode('ascii') + b'\r\nMIME-Version: 1.0\r\n\r\n' + body)
         if message.defects or not message.is_multipart(): raise OnlineError('incompatible')
         parts = list(message.iter_parts())

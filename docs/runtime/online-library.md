@@ -41,7 +41,8 @@ FFmpeg, shell curl, proxy credential inheritance, cookies, bearer tokens or redi
 following. One online session/request sequence and one selected download at a time;
 no crawling, background fetches or mirrored catalog. Requests have an 8-second I/O
 timeout, 45-second elapsed deadline checked between bounded reads, byte limits and
-cancellation checks. No automatic network retry; the user chooses Retry. HTTP429
+cancellation checks. A 180-second whole-operation alarm also bounds resolver and
+compound transfer time. No automatic network retry; the user chooses Retry. HTTP429
 imposes a 5–300 second cooldown (60 seconds without a numeric Retry-After). This is
 our conservative policy, not a claimed provider quota. Presets/discovery are cached
 in session memory for ten minutes, metadata/search for five minutes, max32 entries.

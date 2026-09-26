@@ -169,10 +169,14 @@ def run():
                 emit({'status':'ready','backend':session.backend.profile.label})
                 while not session.finished:
                     try:
-                        answer=session.handle(receive(),cancellation)
+                        request=receive()
+                        signal.alarm(180)  # Includes resolver, all transfers and staging.
+                        try:answer=session.handle(request,cancellation)
+                        finally:signal.alarm(0)
                         emit({'status':'ok',**answer})
                     except (OnlineError,ingestion.IngestError) as ex:
                         code=str(ex)
+                        session.close()
                         if code in ('expired','disconnected','cancelled'):
                             session.close();session.finished=True
                         emit({'status':'failed','error':code})
@@ -187,6 +191,8 @@ def run():
 def main():
     def interrupted(*_):raise OnlineError('cancelled')
     for sig in (signal.SIGTERM,signal.SIGHUP,signal.SIGINT):signal.signal(sig,interrupted)
+    def timed_out(*_):raise OnlineError('timeout')
+    signal.signal(signal.SIGALRM,timed_out)
     try:run();return 0
     except (OnlineError,ingestion.IngestError) as ex:
         try:emit({'status':'failed','error':str(ex)})
