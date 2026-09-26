@@ -1,3 +1,22 @@
+# Attempt20 review and next private candidate in progress — 2026-09-26
+
+[Owner physical observations](docs/qualification/attempt20-owner-review-2026-09-26.md)
+are recorded against the exact attempt20 image. USB lifecycle and hidden Import IDs
+PASS within reported scope; screenshot command works, reported latency 0.36–0.39s.
+Attempt18/19/20 and stable 1.1.0 remain immutable. Live Pi inspection is read-only
+apart from explicitly requested screenshots; existing captures are preserved.
+
+Owner has now confirmed provider registration of Assembly64 client-id `cbm` and
+explicitly authorized a bounded Online Library implementation, superseding the
+research-only checkpoint below. Seven controlled metadata requests returned HTTP200
+with that identity, including presets/search/categories/discovery/meta/file list;
+no hosted file was downloaded. Evidence is retained externally in
+`qualification/assembly64-cbm-live-2026-09-26`. No provider message or publication.
+
+Next: separate screenshot storage/naming, sizes, breadcrumb, Import navigation,
+backend/UI/ingestion changes; tests and a distinct PRIVATE NON-RELEASE image.
+No new candidate is frozen or ready yet. Unknown .qwen/ and memory/ stay untouched.
+
 # Private dev3 / attempt20 ready for owner testing — 2026-09-26 UTC
 
 **PRIVATE NON-RELEASE Project CBM 1.2.0-dev.3. STOP for owner Pi 4 physical testing.**
