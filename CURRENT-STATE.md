@@ -1,3 +1,13 @@
+# Attempt22 pre-freeze identity-test failure retained; distinct retry23 — 2026-09-26
+
+The exact-source Product run stopped at one stale test fixture: it expected dev4
+while the deliberately versioned candidate config/export say dev5. No package,
+frozen kit or image was constructed for22. Retain its source export and full failed
+native log under qualification/attribution-dev5/final-source. Correct the test's
+explicit expected private identity to dev5; stable identity/mismatch rejection stays.
+Next distinct export/build attempt23 retains Product1.2.0-dev.5 and Menu dev4, with
+exact Runtime/KMS reuse from21. Earlier evidence and finished images stay immutable.
+
 # Distinct attribution candidate dev5 / attempt22 preparation — 2026-09-26
 
 Attempt21 exported and sealed at archive/private-1.2-dev4-attempt21-2026-09-26,
