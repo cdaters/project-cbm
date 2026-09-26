@@ -48,7 +48,7 @@ def inspect(root, boot, record, kit):
         helper=root/'usr/libexec/pcbm-kms-capture'
         checks['capture_separate_native_helper'] = helper.is_file() and helper.read_bytes().startswith(b'\x7fELF') and helper.stat().st_mode & 0o7777 == 0o755
         checks['capture_no_file_capabilities'] = not subprocess.check_output(['getcap',str(helper)],text=True).strip()
-        checks['capture_exact_package'] = lock['components']['kms-capture']['package']['version']=='1.0.0~dev1-1'
+        checks['capture_exact_package'] = lock['components']['kms-capture']['package']['version'] in ('1.0.0~dev1-1','1.0.0~dev2-1')
         checks['capture_fixed_sudo'] = ('pcbm ALL=(root) NOPASSWD: /usr/libexec/pcbm-kms-capture ""' in text('etc/sudoers.d/pcbm-operations') and '!use_pty' in text('etc/sudoers.d/pcbm-operations'))
         checks['capture_unprivileged_wrapper'] = 'from project_cbm.screenshot import main' in text('usr/bin/pcbm-screenshot')
         checks['capture_no_alias_or_menu_action'] = not (root/'usr/bin/screenshot').exists() and 'pcbm-screenshot' not in text('usr/bin/pcbm-menu')

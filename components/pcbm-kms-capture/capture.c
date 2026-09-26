@@ -27,7 +27,7 @@
 #define LIMIT (64u*1024u*1024u)
 /* Stable exit classes, no private diagnostics or DRM identities. */
 enum { UNAVAILABLE=20, UNSUPPORTED=21, DENIED=22, FAILED=23, CHANGED=24 };
-struct frame { uint32_t plane, crtc, fb, width, height, format, pitch, offset; size_t size; };
+struct frame { uint32_t connector, plane, crtc, fb, width, height, format, pitch, offset; drmModeModeInfo mode; size_t size; };
 static int trusted(int fd, int directory) {
     struct stat s;
     return fstat(fd,&s)==0 && s.st_uid==0 && !(s.st_mode&022) &&
@@ -89,7 +89,7 @@ static int equals(int fd,uint32_t obj,uint32_t type,const char *name,uint64_t ex
 }
 static int describe(int fd,struct frame *f) {
     drmModeRes *r=drmModeGetResources(fd); if(!r)return FAILED;
-    unsigned active=0; uint32_t crtc=0,w=0,h=0;
+    unsigned active=0; uint32_t connector=0,crtc=0,w=0,h=0; drmModeModeInfo mode={0};
     int error=0;
     for(int i=0;i<r->count_connectors;i++) {
         drmModeConnector *c=drmModeGetConnectorCurrent(fd,r->connectors[i]);
@@ -100,7 +100,7 @@ static int describe(int fd,struct frame *f) {
             else if(e->crtc_id) {
                 drmModeCrtc *v=drmModeGetCrtc(fd,e->crtc_id);
                 if(!v)error=CHANGED;
-                else if(v->mode_valid) {active++;crtc=e->crtc_id;w=v->mode.hdisplay;h=v->mode.vdisplay;}
+                else if(v->mode_valid) {active++;connector=c->connector_id;crtc=e->crtc_id;mode=v->mode;w=mode.hdisplay;h=mode.vdisplay;}
                 if(v)drmModeFreeCrtc(v);
             }
             if(e)drmModeFreeEncoder(e);
@@ -121,7 +121,7 @@ static int describe(int fd,struct frame *f) {
         drmModePlane *p=drmModeGetPlane(fd,planes->planes[i]);
         if(!p) {error=CHANGED;break;}
         if(p->fb_id && p->crtc_id) {
-            count++; out=(struct frame){.plane=p->plane_id,.crtc=p->crtc_id,.fb=p->fb_id,.width=w,.height=h};
+            count++; out=(struct frame){.connector=connector,.plane=p->plane_id,.crtc=p->crtc_id,.fb=p->fb_id,.width=w,.height=h,.mode=mode};
         }
         drmModeFreePlane(p);
     }
@@ -134,7 +134,18 @@ static int describe(int fd,struct frame *f) {
     *f=out;return 0;
 }
 static int same(const struct frame *a,const struct frame *b) {
-    return a->plane==b->plane && a->crtc==b->crtc && a->fb==b->fb && a->width==b->width && a->height==b->height;
+    /* Page flips change framebuffer identity, not display configuration. The
+     * exported DMA-BUF pinned the sampled scanout until its read-only copy was
+     * complete. Reject mode/layout changes, but do not demand a stopped game. */
+    return a->connector==b->connector && a->plane==b->plane && a->crtc==b->crtc &&
+        a->width==b->width && a->height==b->height && a->format==b->format &&
+        a->pitch==b->pitch && a->offset==b->offset && a->size==b->size &&
+        a->mode.clock==b->mode.clock && a->mode.hdisplay==b->mode.hdisplay &&
+        a->mode.hsync_start==b->mode.hsync_start && a->mode.hsync_end==b->mode.hsync_end &&
+        a->mode.htotal==b->mode.htotal && a->mode.hskew==b->mode.hskew &&
+        a->mode.vdisplay==b->mode.vdisplay && a->mode.vsync_start==b->mode.vsync_start &&
+        a->mode.vsync_end==b->mode.vsync_end && a->mode.vtotal==b->mode.vtotal &&
+        a->mode.vscan==b->mode.vscan && a->mode.flags==b->mode.flags;
 }
 static void free_fb(int fd,drmModeFB2 *f) {
     if(!f)return;
@@ -183,6 +194,11 @@ static int pixels(int fd,struct frame *f,unsigned char **output) {
         if(!copy || ended) {free(copy);return FAILED;}
         struct frame after;
         rc=describe(fd,&after);
+        if(!rc) {
+            drmModeFB2 *next=drmModeGetFB2(fd,after.fb);
+            if(!next)rc=CHANGED;
+            else { rc=layout(next,&after);free_fb(fd,next); }
+        }
         if(!rc && same(f,&after)) { *output=copy;return 0; }
         free(copy);
         if(rc && rc!=CHANGED && rc!=UNAVAILABLE)return rc;

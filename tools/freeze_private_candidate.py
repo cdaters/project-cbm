@@ -327,7 +327,9 @@ def main():
         verify_reused_capture(old, recipe, lock['components']['kms-capture'])
     elif capture_source.is_dir():
         if not development:raise ValueError('screenshot admission is private development only')
-        version='1.0.0~dev1-1';upstream,revision=version.rsplit('-',1)
+        version=subprocess.check_output(['dpkg-parsechangelog','--file',str(capture_source/'debian/changelog'),'--show-field','Version'],text=True).strip()
+        if not re.fullmatch(r'1[.]0[.]0~dev[1-9][0-9]*-1',version):raise ValueError('capture version')
+        upstream,revision=version.rsplit('-',1)
         deb=packages/f'project-cbm-kms-capture_{version}_arm64.deb'
         fields=subprocess.check_output(['dpkg-deb','-f',str(deb),'Package','Version','Architecture'],text=True)
         if dict(line.split(': ',1) for line in fields.splitlines())!={'Package':'project-cbm-kms-capture','Version':version,'Architecture':'arm64'}:

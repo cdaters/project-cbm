@@ -34,7 +34,10 @@ unscaled/unrotated linear RGB565, XRGB8888 or opaque ARGB8888 plane and no color
 transform/LUT. Other configurations produce a concise unsupported error. No fbdev
 fallback exists. It honors pitch/offsets and bounds dimensions to 4096, memory to
 64 MiB scanout/256 MiB address space, execution to 10 seconds and stale-frame retries
-to three. PRIME synchronization brackets the CPU read. This is not a promise of
+to three. Normal page flips may change the framebuffer ID; the separate GPL dev2
+helper accepts the pinned sampled buffer only if connector/CRTC/plane, mode,
+composition and supported layout remain consistent. Actual mode/layout changes
+are rejected or retried within the same bound. PRIME synchronization brackets the CPU read. This is not a promise of
 tear-free moving-frame capture or qualified multi-display behavior.
 
 All DRM/GEM/PRIME descriptors and mappings are closed before permanently dropping
@@ -55,3 +58,9 @@ The earlier probe demonstrated Menu/MC/VICE BASIC capture, with owner-confirmed 
 correspondence. It did not qualify this implementation. New-command physical
 qualification, Covers, moving gameplay, latency and transition behavior remain
 UNTESTED until the next candidate's owner procedure is completed.
+
+Attempt20 command evidence includes readable Menu/MC/Import captures and owner
+latency approximately0.36–0.39s. Moving gameplay failed twice with the conservative
+"display changed" error (0.278s each). The dev2 page-flip correction is a new
+component and requires fresh physical gameplay/HDMI/audio/lifecycle qualification.
+[Attempt20 record](../qualification/attempt20-owner-review-2026-09-26.md).

@@ -57,7 +57,8 @@ qualify changed behavior here.
    should produce a concise network error with Back/Retry; restore connectivity
    using normal controls, not modifications to the image.
 8. **Capture coverage.** Capture Main Menu, text console, ordinary MC, guided Import,
-   USB MC, a machine Cover, VICE/BASIC and moving C64 gameplay. Copy each intended PNG
+   USB MC, a machine Cover, VICE/BASIC and moving C64 gameplay. The new GPL helper corrects attempt20’s rejection of
+   normal page flips; moving gameplay capture is a required retest. Copy each intended PNG
    to the engineering Mac and compare against HDMI: colors, content and borders;
    capture must not change the display. Note latency and any audio/gameplay impact,
    repeat captures, and try near a Cover/display transition. A transition may fail

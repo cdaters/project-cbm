@@ -27,7 +27,7 @@
 #include <assert.h>
 #include <stdarg.h>
 #include <sys/wait.h>
-static int connectors=1,plane_count=1,flip=0,gets=0,missing=0,permission=0,sync_failure=0,handles_closed=0;
+static int connectors=1,plane_count=1,flip=0,gets=0,mode_change=0,format_change=0,missing=0,permission=0,sync_failure=0,handles_closed=0;
 static const char *property_names[]={"ACTIVE","CTM","GAMMA_LUT","DEGAMMA_LUT","CRTC_X","CRTC_Y","CRTC_W","CRTC_H","SRC_X","SRC_Y","SRC_W","SRC_H","rotation","alpha"};
 static uint64_t property_values[]={1,0,0,0,0,0,2,1,0,0,2<<16,1<<16,1,65535};
 drmModeRes *mock_resources(int fd) {
@@ -36,12 +36,12 @@ drmModeRes *mock_resources(int fd) {
 }
 void mock_free_resources(drmModeRes *r) {free(r->connectors);free(r);}
 drmModeConnector *mock_connector(int fd,uint32_t id) {
-    (void)fd;(void)id;drmModeConnector *c=calloc(1,sizeof(*c));c->connection=DRM_MODE_CONNECTED;c->encoder_id=3;return c;
+    (void)fd;drmModeConnector *c=calloc(1,sizeof(*c));c->connector_id=id;c->connection=DRM_MODE_CONNECTED;c->encoder_id=3;return c;
 }
 void mock_free_connector(drmModeConnector *p) {free(p);}
 drmModeEncoder *mock_encoder(int fd,uint32_t id) {(void)fd;(void)id;drmModeEncoder *e=calloc(1,sizeof(*e));e->crtc_id=4;return e;}
 void mock_free_encoder(drmModeEncoder *p) {free(p);}
-drmModeCrtc *mock_crtc(int fd,uint32_t id) {(void)fd;(void)id;drmModeCrtc *p=calloc(1,sizeof(*p));p->mode_valid=1;p->mode.hdisplay=2;p->mode.vdisplay=1;return p;}
+drmModeCrtc *mock_crtc(int fd,uint32_t id) {(void)fd;(void)id;drmModeCrtc *p=calloc(1,sizeof(*p));p->mode_valid=1;p->mode.hdisplay=2;p->mode.vdisplay=1;p->mode.clock=(mode_change && gets%2)?2:1;return p;}
 void mock_free_crtc(drmModeCrtc *p) {free(p);}
 drmModeObjectProperties *mock_properties(int fd,uint32_t obj,uint32_t type) {
     (void)fd;(void)obj;(void)type;drmModeObjectProperties *p=calloc(1,sizeof(*p));p->count_props=14;
@@ -55,7 +55,7 @@ drmModePlaneRes *mock_planes(int fd) {(void)fd;drmModePlaneRes *p=calloc(1,sizeo
 void mock_free_planes(drmModePlaneRes *p) {free(p->planes);free(p);}
 drmModePlane *mock_plane(int fd,uint32_t id) {(void)fd;drmModePlane *p=calloc(1,sizeof(*p));p->plane_id=id;p->crtc_id=4;p->fb_id=7+(flip?gets++:0);return p;}
 void mock_free_plane(drmModePlane *p) {free(p);}
-drmModeFB2 *mock_fb(int fd,uint32_t id) {(void)fd;(void)id;if(missing)return NULL;drmModeFB2 *p=calloc(1,sizeof(*p));p->width=2;p->height=1;p->pixel_format=DRM_FORMAT_XRGB8888;p->handles[0]=permission?0:1;p->pitches[0]=12;p->offsets[0]=4;return p;}
+drmModeFB2 *mock_fb(int fd,uint32_t id) {(void)fd;(void)id;if(missing)return NULL;drmModeFB2 *p=calloc(1,sizeof(*p));p->width=2;p->height=1;p->pixel_format=(format_change && id%2)?DRM_FORMAT_NV12:DRM_FORMAT_XRGB8888;p->handles[0]=permission?0:1;p->pitches[0]=12;p->offsets[0]=4;return p;}
 void mock_free_fb(drmModeFB2 *p) {free(p);}
 int mock_close_handle(int fd,uint32_t handle) {(void)fd;(void)handle;handles_closed++;return 0;}
 int mock_prime(int fd,uint32_t handle,uint32_t flags,int *prime) {
@@ -92,10 +92,12 @@ int main(void) {
     b->offsets[0]=LIMIT;assert(layout(b,&f)==UNSUPPORTED);mock_free_fb(b);
     unsigned char *data=NULL;assert(pixels(0,&f,&data)==0);assert(data[6]==255&&data[9]==255);free(data);
     missing=1;assert(pixels(0,&f,&data)==CHANGED);missing=0;
-    flip=1;assert(pixels(0,&f,&data)==CHANGED);flip=0;
+    flip=1;gets=0;assert(pixels(0,&f,&data)==0);free(data);assert(gets==2);
+    mode_change=1;gets=0;assert(pixels(0,&f,&data)==CHANGED);assert(gets==6);mode_change=0;
+    format_change=1;gets=1;assert(pixels(0,&f,&data)==UNSUPPORTED);format_change=0;flip=0;
     permission=1;assert(pixels(0,&f,&data)==DENIED);permission=0;
     sync_failure=1;assert(pixels(0,&f,&data)==FAILED);sync_failure=0;
-    assert(handles_closed==5);
+    assert(handles_closed==13);
     if(geteuid()==0)check_drop();else {fputs("root privilege-drop test required\n",stderr);return 1;}
-    puts("PASS policy, display discovery, ambiguity, composition, transforms, format/stride/offset/modifier, bounded stale retries, permissions, sync failure, GEM closure, permanent privilege drop");return 0;
+    puts("PASS policy, display discovery, ambiguity, composition, transforms, format/stride/offset/modifier, ordinary page flips, bounded mode/stale retries, permissions, sync failure, GEM closure, permanent privilege drop");return 0;
 }

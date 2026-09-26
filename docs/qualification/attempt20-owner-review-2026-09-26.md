@@ -41,3 +41,23 @@ It is readable and retained privately alongside the earlier captures. This is on
 Main Menu timing sample, not a moving-game/audio or HDMI comparison pass. Only
 screenshot output was written; installed packages/scripts and old captures remain
 unchanged. The ordinary command remains `pcbm-screenshot`; `time` is instrumentation.
+
+## Moving C64 gameplay capture: FAIL
+
+Owner left VICE running moving C64 gameplay on HDMI. Two explicit SSH captures
+both exited1, `Screenshot unavailable: display changed during capture.`, each
+0.278s real. Neither produced a completed PNG. No HDMI image comparison is possible
+for these attempts; disturbance/audio/F10 observations await the owner report.
+Private exact timing/status evidence: `moving-game-capture-failure.json` beside the
+retained screenshots. No live software was changed.
+
+The dev1 GPL helper requires identical framebuffer IDs before/after the CPU copy.
+That rejects normal page flips as well as real display transitions. The observed
+failures are consistent with this overly strict condition; no privileged instrumented
+binary was installed to log the Pi's exact changing IDs. A separate GPL dev2 helper
+will admit an exported, pinned scanout sample when connector, CRTC, plane, display
+mode, composition and supported pixel layout remain consistent. It still rejects
+unsupported composition/format and bounds stale/mode retries. Native fixtures now
+exercise successful continuous page flips and rejected mode/layout changes. Physical
+moving-game success remains UNTESTED until the new image is qualified; tear-free
+moving-frame capture is not promised.
