@@ -73,6 +73,11 @@ try:
   shutil.copyfile(r/'tests/native/screenshot_installed.py',root/'tmp/screenshot_installed.py')
   with (s/'screenshot-installed.log').open('x') as log:inside('python3','/tmp/screenshot_installed.py',stdout=log,stderr=subprocess.STDOUT)
   print('Installed screenshot sudo/account/drop/output path PASS',flush=True)
+ if (root/'usr/bin/pcbm-online').exists():
+  shutil.copyfile(r/'tests/native/online_installed.py',root/'tmp/online_installed.py')
+  with (s/'online-installed.log').open('x') as log:inside('python3','/tmp/online_installed.py',stdout=log,stderr=subprocess.STDOUT)
+  print('Installed Content/Online/ingestion path PASS',flush=True)
+
 finally:
  # Reap adopted children in this private PID namespace before devpts teardown.
  until=time.monotonic()+30
@@ -81,7 +86,7 @@ finally:
    while os.waitpid(-1,os.WNOHANG)[0]:pass
   except ChildProcessError:break
   time.sleep(.05)
- for trace in (root/'tmp').glob('usb-installed-*.terminal'):shutil.copyfile(trace,s/trace.name)
+ for trace in (root/'tmp').glob('*-installed-*.terminal'):shutil.copyfile(trace,s/trace.name)
  # Test-created mounts may remain after an assertion; release only in this namespace.
  if os.path.ismount(root/'run/project-cbm/import/browse'):subprocess.run(['umount',str(root/'run/project-cbm/import/browse')],check=True)
  for path in reversed(mounted):subprocess.run(['umount',str(path)],check=True)

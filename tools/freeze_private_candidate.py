@@ -403,6 +403,14 @@ def main():
             ('lib/pcbm_ingest_view.py','usr/libexec/project-cbm-menu/pcbm_ingest_view.py'),
         ):
             mapping[dest]=packages/'menu'/source
+    if development and not a.reuse_menu and (packages/'menu/scripts/pcbm-online').exists():
+        for source, dest in (
+            ('scripts/pcbm-online','usr/bin/pcbm-online'),
+            ('scripts/pcbm-dialog-lib.sh','usr/bin/pcbm-dialog-lib.sh'),
+            ('lib/pcbm_online_view.py','usr/libexec/project-cbm-menu/pcbm_online_view.py'),
+            ('lib/pcbm_format.py','usr/libexec/project-cbm-menu/pcbm_format.py'),
+        ): mapping[dest]=packages/'menu'/source
+        mapping['usr/share/project-cbm/runtime/bin/pcbm-online-session']=recipe/'runtime/bin/pcbm-online-session'
     build = read_json(kit/lock['components']['menu']['build_record']['path'])
     build.setdefault('corrective_payload',{}).update({dest:store(source) for dest,source in sorted(mapping.items())})
     if capture_source.is_dir():build['corrective_payload']['usr/libexec/pcbm-kms-capture']=capture_binary
