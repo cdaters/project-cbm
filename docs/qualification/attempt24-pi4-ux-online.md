@@ -1,6 +1,14 @@
 # Attempt24: Pi 4 UX, Online Library and attribution qualification
 
-**DRAFT until new image hashes are bound.**
+**PRIVATE NON-RELEASE 1.2.0-dev.5 / attempt24. All new physical cases UNTESTED.**
+
+Raw SHA-256 `754b34e4ab1abd0af65d97956546f295036a4a418b15c20d7f3dd0f14fd1ba7c` (3,095,396,352 bytes).
+XZ SHA-256 `efb7f642b91160b2143abd7f958509f2ffc2f8d618667ba697a4c1f01955f051` (598,643,500 bytes).
+Lock `ee0308da672c783cf3142e7a581b80344e42cc3605f227b7d8f18cb50dd62819`.
+[Exact paths, packages and validation](../build/private-1.2-dev5-attempt24.md).
+Preserve21 as an intermediate build and22/23 as failed preflight/freeze evidence;
+use this image for the combined requested qualification.
+
 
 Do not update attempt20 in place. Preserve its card/captures and use the new image
 on separate media. This procedure qualifies only the exact image and Pi model

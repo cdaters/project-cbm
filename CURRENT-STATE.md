@@ -1,3 +1,45 @@
+# Private dev5 / attempt24 complete — 2026-09-26
+
+**PRIVATE NON-RELEASE Project CBM1.2.0-dev.5. STOP for owner Pi4 testing.**
+[Record](docs/build/private-1.2-dev5-attempt24.json),
+[build report](docs/build/private-1.2-dev5-attempt24.md),
+[exact-hash procedure](docs/qualification/attempt24-pi4-ux-online.md).
+Frozen Product 83c137008adf1d9135f19b1243437b30492ddb7b; Menu 2e1ac04576d5d9d664a43d9e5d0fde5d2abd261c,
+annotated v1.2.0_dev4 object f71d7712e9aea0cb1fce676c16464d4f45b45445.
+Only Menu rebuilt as1.2.0~dev4-1+pcbm1. Runtime1.2.0~dev4-1 and GPL KMS1.0.0~dev2-1
+strictly reused from21 with exact source/modes/packages/complete lock descriptors.
+
+Includes all requested screenshot storage/names/page-flip, sizes/breadcrumbs,
+guided Import Back/unsupported-file and bounded Central Online Library changes,
+plus local Assembly64 team/website/optional PayPal/Ko-fi support. Short PayPal URL
+verified as Fredrik Åberg / Assembly64 without ssrt; Ko-fi Team Assembly64. No
+payment, FTP backend/failover/alternate credentials or provider message.
+
+Native Product347/Menu119 zero skips; installed USB11, screenshot12/Online6 PASS;
+372 image,7 privacy and11 capture security checks PASS.673 package identities,
+3319 exported frozen-kit files and raw/XZ equivalence verified. Unchanged GPL
+scenario/source-restore evidence remains bound through exact reuse from21.
+Build/host capability and inventory/update guards PASS; no live Pi patch/publication.
+
+Lock ee0308da672c783cf3142e7a581b80344e42cc3605f227b7d8f18cb50dd62819.
+Raw 3,095,396,352 bytes SHA-256 754b34e4ab1abd0af65d97956546f295036a4a418b15c20d7f3dd0f14fd1ba7c.
+XZ 598,643,500 bytes SHA-256 efb7f642b91160b2143abd7f958509f2ffc2f8d618667ba697a4c1f01955f051.
+Paths under artifacts/private-1.2-dev5-attempt-24 in linked record.
+
+Attempt20 moving-game capture remains FAIL; owner non-interference/F10 PASS.
+New-image physical capture, download interoperability and combined changes UNTESTED.
+Central cbm metadata requests returned200; real hosted title download was not used
+as an engineering test. Provider quotas/home-server policies remain unknown; no
+follow-up message until owner testing. Save & Run deferred; BIN unsupported.
+
+Attempts18/19/20/21 and stable1.1.0 unchanged. Attempt22 pre-freeze test FAIL and23 extraction-mode freeze FAIL retained;
+no22/23 image existed. Exact passing23 tests/packages reused after documentation-only
+source comparison;24 uses correct filtered extraction without weakening the gate. Recovery archive/private-1.2-dev5-attempt24-2026-09-26 binds final
+refs/bundles/offline restore/fsck and retained bytes; verify its external manifest/
+restore-results. Same-volume custody is not independent encrypted backup (OUTSTANDING).
+Lima stopped after export; prior state preserved. Unknown .qwen/memory untouched.
+No next feature or release starts automatically.
+
 # Attempt23 reuse freeze halted; extraction-mode correction for attempt24 — 2026-09-26
 
 Native Product347/Menu119 and installed USB11/screenshot12/Online6 PASS for23.

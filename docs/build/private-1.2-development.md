@@ -4,6 +4,18 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Assembly64 attribution addition — attempt24
+
+**PRIVATE NON-RELEASE1.2.0-dev.5, built/validated; physical UNTESTED.**
+[Final requested candidate](private-1.2-dev5-attempt24.md),
+[hash-bound owner procedure](../qualification/attempt24-pi4-ux-online.md).
+Preserves21 as an intermediate validated image,22 as a pre-freeze test failure
+and23 as an extraction-mode freeze failure. The exact passing23 package/test
+combination is retained;24 corrects preparation without weakening reuse checks.
+Adds local Assembly64 credit/website/optional verified support links in Menu dev4;
+strictly reuses Runtime dev4 and GPL KMS dev2. No FTP backend, alternate credentials,
+API-to-FTP fallback, provider message, payment, release or publication. STOP for testing.
+
 ## UX, screenshot page flips and Online Library — attempt21
 
 **PRIVATE NON-RELEASE 1.2.0-dev.4; built/validated, physical UNTESTED.**
