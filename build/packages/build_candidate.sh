@@ -8,6 +8,8 @@ w=$(realpath "${2:?guest bulk workspace}")
 attempt=${3:?new attempt number}
 menu=${4:?Menu source version, e.g. 1.1.0_rc1}
 selection=${5:-runtime-menu}
+capture=${6:-build}
+[[ $capture == build || $capture == reuse ]]
 [[ $selection == runtime || $selection == runtime-menu || $selection == runtime-vice || $selection == runtime-menu-vice ]]
 [[ $attempt =~ ^[1-9][0-9]?$ ]]
 [[ $menu =~ ^1\.1\.0(_(poc4\.[0-9]+|rc[0-9]+))?$ || $menu =~ ^1\.2\.0_dev[1-9][0-9]*$ ]]
@@ -24,7 +26,7 @@ fi
 cp -a "$recipe/build/packages/runtime/debian" "$out/runtime/debian"
 export SOURCE_DATE_EPOCH=1789513200 TZ=UTC LC_ALL=C.UTF-8 PYTHONDONTWRITEBYTECODE=1
 components=(runtime)
-if [[ -d "$out/runtime/components/pcbm-kms-capture" ]]; then
+if [[ $capture == build && -d "$out/runtime/components/pcbm-kms-capture" ]]; then
   cp -a "$out/runtime/components/pcbm-kms-capture" "$out/kms-capture"
   components+=(kms-capture)
 fi

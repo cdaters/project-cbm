@@ -64,6 +64,25 @@ def verify_reused_runtime(old,recipe,component,version,*,extracted_permissions=F
     if actual!=expected:raise ValueError('reused Runtime payload or recipe changed')
 
 
+def verify_reused_capture(old, recipe, component):
+    """Retain the exact GPL package/source identity only for identical inputs."""
+    prefix = 'components/pcbm-kms-capture/'
+    expected = {}
+    for path in (recipe/prefix).rglob('*'):
+        if path.is_symlink(): raise ValueError('capture input symlink')
+        if path.is_file(): expected[str(path.relative_to(recipe))] = (path.stat().st_mode & 0o777, path.read_bytes())
+    actual = {}
+    verify_artifact(old, component['source']['artifact'])
+    verify_artifact(old, component['package']['artifact'])
+    with tarfile.open(old/component['source']['artifact']['path']) as archive:
+        for member in archive.getmembers():
+            name = member.name.removeprefix('project-cbm/')
+            if name.startswith(prefix) and not member.isdir():
+                if not member.isfile(): raise ValueError('capture source member')
+                actual[name] = (tarfile.data_filter(member,recipe).mode & 0o777, archive.extractfile(member).read())
+    if not expected or actual != expected: raise ValueError('reused capture source or recipe changed')
+
+
 def verify_output_identity(recipe, config, product_version, candidate):
     if not product_version:return
     if config['image_name']!='project-cbm-'+product_version:
@@ -103,6 +122,7 @@ def main():
     p.add_argument('--menu-version',required=True)
     p.add_argument('--reuse-menu',action='store_true')
     p.add_argument('--reuse-runtime',action='store_true')
+    p.add_argument('--reuse-capture',action='store_true')
     p.add_argument('--vice-version')
     p.add_argument('--product-version')
     p.add_argument('--candidate')
@@ -301,7 +321,11 @@ def main():
     # Separately licensed native screenshot component, declared only by recipes
     # containing its source. No change to historical predecessor verification.
     capture_source=recipe/'components/pcbm-kms-capture'
-    if capture_source.is_dir():
+    if a.reuse_capture:
+        if not development or not capture_source.is_dir() or 'kms-capture' not in lock['components']:
+            raise ValueError('capture reuse requires a development predecessor')
+        verify_reused_capture(old, recipe, lock['components']['kms-capture'])
+    elif capture_source.is_dir():
         if not development:raise ValueError('screenshot admission is private development only')
         version='1.0.0~dev1-1';upstream,revision=version.rsplit('-',1)
         deb=packages/f'project-cbm-kms-capture_{version}_arm64.deb'
@@ -351,7 +375,7 @@ def main():
     mapping = {'usr/libexec/project-cbm/engineering.py':recipe/'build/pigen/stage-cbm/files/engineering.py'}
     if capture_source.is_dir():
         with tempfile.TemporaryDirectory(dir=w/'scratch',prefix='capture-payload-') as name:
-            subprocess.run(['dpkg-deb','-x',str(packages/'project-cbm-kms-capture_1.0.0~dev1-1_arm64.deb'),name],check=True)
+            subprocess.run(['dpkg-deb','-x',str(kit/lock['components']['kms-capture']['package']['artifact']['path']),name],check=True)
             capture_binary=store(Path(name)/'usr/libexec/pcbm-kms-capture')
         mapping['usr/share/project-cbm/runtime/bin/pcbm-screenshot']=recipe/'runtime/bin/pcbm-screenshot'
     for source, dest in [('lib/pcbm_status_view.py','usr/libexec/project-cbm-menu/pcbm_status_view.py'),
