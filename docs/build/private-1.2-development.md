@@ -4,6 +4,15 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Screenshot and guided-import presentation candidate — attempt20
+
+**PRIVATE NON-RELEASE 1.2.0-dev.3, built/validated; physical UNTESTED.**
+[Exact candidate and checks](private-1.2-dev3-attempt20.md) and
+[Pi 4 owner procedure](../qualification/attempt20-pi4-screenshot-usb.md) supersede
+source-only readiness statements below. Menu fix and screenshot implementation
+remain separate commits/packages. Attempt18/19 and stable 1.1.0 are unchanged.
+STOP for physical testing; no release or further feature work.
+
 ## Guided Import follow-up and source-only UI correction — 2026-09-25
 
 Owner confirms nested guided Import, PRG/BIN filtering, explicit destination choices,

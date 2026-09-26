@@ -5,4 +5,5 @@ is under `docs/design`. This reference preserves the qualification-path locator 
 in the owner's follow-up request without duplicating the study or its evidence.
 
 The [next bounded implementation task](../design/screenshot-implementation-next-task.md)
-is separate from the USB terminal correction and remains unimplemented.
+was subsequently implemented separately for [private attempt20](../build/private-1.2-dev3-attempt20.md).
+The earlier probe remains feasibility evidence, not physical qualification of the new command.

@@ -1,3 +1,49 @@
+# Private dev3 / attempt20 ready for owner testing — 2026-09-26 UTC
+
+**PRIVATE NON-RELEASE Project CBM 1.2.0-dev.3. STOP for owner Pi 4 physical testing.**
+The next distinct candidate is built and validated; no new physical pass is claimed.
+[Exact identities](docs/build/private-1.2-dev3-attempt20.json),
+[build/validation report](docs/build/private-1.2-dev3-attempt20.md),
+[hash-bound Pi 4 procedure](docs/qualification/attempt20-pi4-screenshot-usb.md).
+
+Frozen Product f87a2c521cc3a034ecd69a5db59ad19be99cebfe; screenshot implementation
+033bfd1. Menu hidden-tag fix f9c4607 is independently packaged at annotated
+v1.2.0_dev2, commit 53e5409999bebe97746220d75af51cbbf28eb095. Runtime
+1.2.0~dev3-1; separate GPL KMS package 1.0.0~dev1-1. Ordinary SSH command
+`pcbm-screenshot [basename.png]` creates private atomic PNGs. No alias/Menu action,
+recording, upload, fbdev fallback or broad capabilities were added. Exact privileged
+capture/account/drop boundary: [command contract](docs/runtime/screenshot.md).
+
+Native Product 324/324, Menu 109/109; all 11 USB and 12 screenshot installed-path
+cases PASS, plus native DRM/security scenarios. Actual image 354 checks, 7 privacy
+checks, 11 capture security/ELF checks, 673 package identities, FAT/ext4/systemd,
+raw/XZ and external byte verification PASS. All 3,271 frozen-kit files match the
+native verified kit. Corresponding GPL source restores and compiles offline. These
+do not qualify visible Pi capture: S1–S11, corrected guided-import appearance,
+latency, moving-game/audio effects and Cover/transition behavior remain UNTESTED.
+
+Raw SHA-256: 014e9598453e9361984559ac060583dbfb76947ba51206d704c6773e2175d330;
+3,095,396,352 bytes. XZ SHA-256: 8a7e07bd58f126be105f31b63f782d313d1c08f1634174b5090fb1ab8bcfe356;
+599,067,756 bytes. `artifacts/private-1.2-dev3-attempt-20` under registered external
+storage; see the linked build record for complete filenames.
+Lock: dc28290451f7b8ce78eca9625bd3d0ab052ab7df2c61f5776a666c48bd83d514.
+
+Recovery: `archive/private-1.2-dev3-attempt20-2026-09-26`; verify manifest.sha256,
+manifest.json, retained-files.json and restore-results.json. The checksum graph
+stays acyclic: its seal is external to these bundled documents. Evidence is in
+`qualification/screenshot-dev3-implementation`. Lima is stopped after export;
+earlier failed attempts and all guest-resident state remain preserved. Host packages
+and update guards are unchanged; no publication or live-Pi modification. Same-volume
+unencrypted storage is not independent custody; independent encrypted backup and
+independent restore drills remain OUTSTANDING.
+
+Attempt18 retains B1 FAIL. Attempt19 retains bounded owner USB/guided-Import passes
+and the visible-ID presentation failure. Both raw/XZ pairs and stable 1.1.0 raw/XZ
+and annotated tags rehash unchanged. BIN remains excluded; ROM management is separate.
+Assembly64 remains research only pending provider/client-id feedback. Unknown .qwen/
+and memory/ remain untouched and excluded from frozen inputs. No release or next
+feature starts automatically.
+
 # Private dev3 / attempt20 preparation — 2026-09-26 UTC
 
 The owner requested a distinct NON-RELEASE candidate combining the guided-import

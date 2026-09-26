@@ -1,0 +1,101 @@
+{
+  "format": "project-cbm.private-development-candidate",
+  "schema_version": 1,
+  "status": "BUILT AND VALIDATED; physical UNTESTED",
+  "product": "1.2.0-dev.3",
+  "candidate": "private-engineering-1.2-dev3",
+  "attempt": 20,
+  "release": false,
+  "integration_commit": "f87a2c521cc3a034ecd69a5db59ad19be99cebfe",
+  "screenshot_implementation_commit": "033bfd16776b360663f25bbbed8e14f682e4a55a",
+  "menu": {
+    "presentation_fix_commit": "f9c4607d884a5573a943a9e1c1dd01832ca6dece",
+    "commit": "53e5409999bebe97746220d75af51cbbf28eb095",
+    "tag": "v1.2.0_dev2",
+    "tag_object": "532a221e32efaeb4ed448bb2d34d0c27462d8449"
+  },
+  "release_lock_sha256": "dc28290451f7b8ce78eca9625bd3d0ab052ab7df2c61f5776a666c48bd83d514",
+  "packages": {
+    "runtime": {
+      "version": "1.2.0~dev3-1",
+      "path": "packages/poc4-attempt20/project-cbm-runtime_1.2.0~dev3-1_all.deb",
+      "size_bytes": 89996,
+      "sha256": "894e3fe224140b361dd2587056e1062354f0c807b2ab7d1bfaf8edf63929672e"
+    },
+    "menu": {
+      "version": "1.2.0~dev2-1+pcbm1",
+      "path": "packages/poc4-attempt20/project-cbm-menu_1.2.0~dev2-1+pcbm1_all.deb",
+      "size_bytes": 1299480,
+      "sha256": "5348969f2353443f4b28f91dd14676d481d81003d61256b74a39e58b349df8f0"
+    },
+    "kms-capture": {
+      "version": "1.0.0~dev1-1",
+      "path": "packages/poc4-attempt20/project-cbm-kms-capture_1.0.0~dev1-1_arm64.deb",
+      "size_bytes": 17472,
+      "sha256": "b9185f6b0602d886d88ad5986ab96bde3cc119a89918423cb7efeb4c752bc963"
+    }
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/private-1.2-dev3-attempt-20/work/export-image/2026-09-26-project-cbm-1.2.0-dev.3-lite-private-1.2-dev3.img",
+      "path": "artifacts/private-1.2-dev3-attempt-20/2026-09-26-project-cbm-1.2.0-dev.3-lite-private-1.2-dev3.img",
+      "size_bytes": 3095396352,
+      "sha256": "014e9598453e9361984559ac060583dbfb76947ba51206d704c6773e2175d330"
+    },
+    "xz": {
+      "guest_path": "artifacts/private-1.2-dev3-attempt-20/image_2026-09-26-project-cbm-1.2.0-dev.3-lite-private-1.2-dev3.img.xz",
+      "path": "artifacts/private-1.2-dev3-attempt-20/image_2026-09-26-project-cbm-1.2.0-dev.3-lite-private-1.2-dev3.img.xz",
+      "size_bytes": 599067756,
+      "sha256": "8a7e07bd58f126be105f31b63f782d313d1c08f1634174b5090fb1ab8bcfe356"
+    },
+    "raw_xz_equivalence": "PASS",
+    "external_verification": "PASS"
+  },
+  "tests": {
+    "native_product": {
+      "passed": 324,
+      "skipped": 0
+    },
+    "native_menu": {
+      "passed": 109,
+      "skipped": 0
+    },
+    "installed_usb_cases": 11,
+    "installed_screenshot_cases": 12,
+    "native_gpl_component_scenarios": "PASS",
+    "offline_image_checks": 354,
+    "privacy_checks": 7,
+    "capture_security_closure_checks": 11,
+    "installed_package_identities": 673,
+    "existing_elf_graph_objects": 127,
+    "capture_elf_graph_objects": 8,
+    "capture_helper_bytes": 67744,
+    "raw_xz_equivalence": "PASS",
+    "external_export_verification": "PASS",
+    "frozen_kit_files_external_verified": 3271
+  },
+  "root_filesystem": {
+    "available_to_user": 639315968,
+    "capacity": 2439266304,
+    "free": 783597568,
+    "used": 1655668736
+  },
+  "maintenance_margin": "UNMEASURED after physical first boot; no nominal minimum card capacity claim",
+  "recovery": {
+    "path": "archive/private-1.2-dev3-attempt20-2026-09-26",
+    "status": "Verify external restore-results.json and manifest.sha256; excluded from this record to keep the checksum graph acyclic",
+    "independent_encrypted_custody": "OUTSTANDING"
+  },
+  "evidence": "qualification/screenshot-dev3-implementation",
+  "preserved": {
+    "attempt18": "B1 FAIL historical evidence unchanged",
+    "attempt19": "owner-reported bounded USB/guided Import PASS; visible-ID UX FAIL unchanged",
+    "stable_1.1.0": "raw/XZ and Product/Menu tags unchanged"
+  },
+  "limits": [
+    "Physical new-command screenshot qualification UNTESTED",
+    "No multi-display or tear-free moving-frame guarantee",
+    "One build; reproducibility not claimed",
+    "No publication; Assembly64 remains research only; BIN allowlist unchanged"
+  ]
+}

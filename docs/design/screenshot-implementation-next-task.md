@@ -1,3 +1,11 @@
+# Implementation checkpoint — 2026-09-26 UTC
+
+The bounded task below was implemented for [private attempt20](../build/private-1.2-dev3-attempt20.md).
+The [command/security contract](../runtime/screenshot.md) and [hash-bound physical
+procedure](../qualification/attempt20-pi4-screenshot-usb.md) are current. Source/native
+and image checks pass; the new command's physical Pi qualification remains UNTESTED.
+The original plan below is retained as design history.
+
 # Next bounded 1.2 task: pcbm-screenshot
 
 Prepared separately from the USB terminal correction. **No screenshot implementation,
