@@ -4,6 +4,16 @@
 candidate for Phase 1–4 USB/content work. Project CBM 1.1.0 remains the published stable
 release. Nothing in this procedure authorizes publication or physical flashing.
 
+## Guided Import follow-up and source-only UI correction — 2026-09-25
+
+Owner confirms nested guided Import, PRG/BIN filtering, explicit destination choices,
+selected-file save and safe release on exact attempt19. Visible internal IDs beside
+folder names are a separate physical presentation FAIL. [Bounded qualification and
+Menu correction](../qualification/attempt19-guided-import-2026-09-25.md) records the
+source-only fix and tests. No new package, candidate or image exists from this update;
+attempt19 remains unmodified. BIN stays outside the general importer. Earlier blanket
+UNTESTED statements below predate these bounded physical observations.
+
 ## Owner physical result — attempt19, 2026-09-25
 
 **B0/B1 PASS for the reported Pi 4 B observations.** The USB MC terminal defect is

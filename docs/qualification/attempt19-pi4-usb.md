@@ -1,5 +1,13 @@
 # Attempt19: Pi 4 USB terminal qualification
 
+**Guided Import follow-up:** CONTENT Import is physically confirmed present. Nested
+folder navigation, supported `.prg` / unsupported `.bin` filtering, explicit machine/
+category, selected-file Import and safe release PASS for the reported observations.
+Opaque identifiers visible beside folder names are a separate **presentation FAIL**.
+See [the bounded result and source correction](attempt19-guided-import-2026-09-25.md).
+The full U1–U6 fixture matrix is not thereby passed or superseded; earlier blanket
+UNTESTED wording below predates this report. Attempt19 remains unchanged.
+
 **Owner physical update — September 25:** B0/B1 PASS for reported normal/USB MC
 navigation, read-only mount, copy and safe release. Copy → C64 demo → F10 → responsive
 Menu also PASS. See the [exact attestation and remaining cases](attempt19-pi4-owner-pass-2026-09-25.md).

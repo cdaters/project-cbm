@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-09-25",
+  "timezone": "America/Phoenix",
+  "source": "Owner physical observations in this task",
+  "candidate": {
+    "candidate": "private-engineering-1.2-dev2",
+    "version": "1.2.0-dev.2"
+  },
+  "attempt": 19,
+  "hardware": "Raspberry Pi 4 B",
+  "image_reference": {
+    "raw_sha256": "f69fbee34448936d9df942ab0c8ce990b9ccd3a85e66b95d232f0d7c8caa8d44",
+    "xz_sha256": "00e88150f5d2105f89182e14e14ed27517a672cb57c6134598dcfa451dfe0fca",
+    "lock_sha256": "1b69db05988dc3435b3460eb045a91c7dcca4fcfe7a7d8b3eebb846e2c2d37ce"
+  },
+  "identity_basis": "Owner identifies attempt19; prior read-only audit matched 22 installed files to frozen sources. Current read-only SSH reconfirmed the exact build ID, unchanged importer without hidden-tag opt-in, and unchanged extension allowlist.",
+  "reported_passes": [
+    "CONTENT -> Import from USB is present and functional.",
+    "Source-folder navigation exposes c64/roms and its nested directories.",
+    "A JiffyDOS C128 directory containing one .prg and several .bin files was scanned.",
+    "The .prg was recognized as supported.",
+    "The .bin files were correctly reported as unsupported.",
+    "A directory containing only unsupported files produced 0 supported files.",
+    "No attempt was made to treat .bin as generic importable content.",
+    "Category and machine remain explicit user choices; Project CBM does not infer C128 merely from filenames/directories.",
+    "Explicit Import successfully saved the selected .prg and safely released the USB."
+  ],
+  "guided_import_result": "PASS for the reported folder navigation, classification, supported/unsupported filtering, explicit selected-file save and release; not a full U1-U6 attestation",
+  "presentation_defect": {
+    "id": "guided-import-visible-internal-tags",
+    "result": "FAIL",
+    "observed": "Internal hexadecimal identifiers are shown beside friendly source-folder names.",
+    "expected": "Display friendly labels only while stable IDs remain available for backend selection and path mapping.",
+    "attempt19_status": "Preserved unmodified; local source correction does not change this physical result."
+  },
+  "policy": {
+    "bin": "Intentionally excluded from general CONTENT Import; ambiguous raw binary may represent ROM/firmware resources.",
+    "prg": "Recognized format, not proof of target machine, intended use, valid program or successful execution of this particular file.",
+    "machine_and_category": "Explicit choices, not inferred from directory/file names.",
+    "future_rom_management": "Separate design with explicit ROM type, machine and VICE configuration semantics; not implemented here."
+  },
+  "remaining_physical": [
+    "Complete U1 no-device/system-device exclusion and Help checks",
+    "U2 whole-partition fixture counts/paging, no-copy snapshots and cancellation",
+    "U3 full selection/deselection/Back matrix and pre-import no-write snapshots",
+    "U4 prescribed multi-file fixture hierarchy, hashes and journal/temp-file checks",
+    "U5 duplicate/Keep Both and U6 whole-partition Select All",
+    "B2 deliberate busy-unmount/fault-injection cases",
+    "Unreported R1 fixture/Cover/repetition and explicit post-reboot copied-file persistence checks",
+    "Formal timings if pursued; normal responsiveness and reboot/shutdown previously reported good"
+  ],
+  "prior_results": "B0/B1 manual MC copy/release/C64/demo/F10/responsive Menu PASS retained; normal reboot/shutdown good in prior owner follow-up; attempt18 B1 remains FAIL.",
+  "change_scope": "Menu presentation/source tests and documentation only. No .bin allowlist change, ROM payload collection, live Pi modification, package/image replacement, screenshot, Online Library or release work.",
+  "source_correction": {
+    "menu_commit": "f9c4607d884a5573a943a9e1c1dd01832ca6dece",
+    "deployment": "Source only; not packaged, installed on Pi or in attempt19",
+    "native_menu_tests": "109/109 PASS, including real dialog PTY",
+    "host_menu_tests": "108 PASS; real Linux dialog test skipped",
+    "product_ingestion_tests": "21/21 PASS",
+    "physical_corrected_UI": "UNTESTED"
+  },
+  "live_snapshot": {
+    "import_mount": "absent",
+    "browse_mount": "active exFAT with ro,nodev,nosuid,noexec",
+    "interpretation": "Read-only point-in-time observation during continued owner testing; no agent mount/unmount or USB write, not a new release test."
+  }
+}

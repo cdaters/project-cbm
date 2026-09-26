@@ -55,7 +55,10 @@ as though it had scanned everything.
 Supported formats, case-insensitively: PRG/P00 programs; T64/TAP tapes;
 D64/D67/D71/D80/D81/D82/G64/G71/G41/X64/P64 disk images; CRT cartridges;
 SID/MUS music. Format recognition does not guarantee compatibility or playback.
-ROM/BIN/REU resources and archives are outside bulk import.
+ROM/BIN/REU resources and archives are outside bulk import. `.bin` is deliberately
+excluded: raw binary may be ROM/firmware data and does not establish a runnable
+format or target machine. Future ROM management needs its own explicit ROM type,
+machine and VICE configuration design; it must not expand generic Import by extension.
 
 A `.prg` does not establish game, demo, application or machine. Discovery displays
 Unknown/Unclassified and uses your explicit category/machine choice. No filename

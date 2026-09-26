@@ -1,3 +1,39 @@
+# Attempt19 guided Import observations; Menu ID presentation fix — 2026-09-25
+
+**PRIVATE NON-RELEASE; partial physical qualification, presentation defect retained.**
+Owner confirms CONTENT Import present, nested source navigation, `.prg` recognized,
+`.bin` unsupported (including zero-supported scan), explicit category/machine and
+successful selected-file Import/safe release. These bounded U1–U4 observations do
+not qualify the full fixture matrix. Visible opaque folder IDs are physical **FAIL**.
+[Exact attestation, limits and fix](docs/qualification/attempt19-guided-import-2026-09-25.md).
+Prior FILES/MC/C64/demo/F10/Menu and normal reboot/shutdown owner results remain PASS;
+U5/U6, busy-release fault injection and other unreported detailed checks remain untested.
+
+Menu source correction `f9c4607d884a5573a943a9e1c1dd01832ca6dece` enables the existing hidden-tag contract
+throughout the guided importer. IDs remain backend selection keys; only labels render.
+Native Menu109/109 PASS, including real TERM=linux dialog/controlling-PTY rendering;
+host108 PASS plus one native-only skip. Existing Product ingestion21 PASS. Failed
+initial harness/environment checks are retained; native host inventory unchanged.
+No Runtime/data-model/allowlist change. `.bin` remains deliberately excluded; later
+ROM management needs explicit type/machine/VICE semantics in a separate design.
+
+Read-only SSH reconfirmed exact attempt19 identity and installed old importer. At
+inspection, browse mount was active read-only and Import mount absent; nothing was
+mounted, unmounted or written by the agent. Attempt19 is NOT patched. Source fix is
+not physically qualified and no new package/version/tag/image was produced. A later
+distinct Menu package/private candidate is required before deploying this correction.
+Builder tests used disposable storage and extracted retained dialog packages, not
+host installation; Lima is stopped after evidence export. Screenshot/Online Library
+and release work remain outside this change. Attempt18 evidence and stable refs remain.
+
+Evidence: `qualification/attempt19-guided-import-ui-2026-09-25`; prior installed audit:
+`qualification/attempt19-installed-ui-audit-2026-09-25`. Additive recovery:
+`archive/attempt19-guided-import-ui-2026-09-25`, with final refs/bundles/manifests and
+offline restore/peeled-tag/fsck verification. Independent encrypted custody outstanding.
+Unknown `.qwen/` and `memory/` untouched. Next: retain these bounded results and use
+the corrected Menu source in a future distinct candidate; do not repair attempt19.
+Earlier checkpoints below are historical.
+
 # Attempt19 Pi 4 B physical USB fix PASS — 2026-09-25
 
 **PRIVATE NON-RELEASE; partial physical qualification.** Owner confirms B0 ordinary
