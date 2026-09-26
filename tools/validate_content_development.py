@@ -52,7 +52,7 @@ def inspect(root, boot, record, kit):
         checks['capture_fixed_sudo'] = ('pcbm ALL=(root) NOPASSWD: /usr/libexec/pcbm-kms-capture ""' in text('etc/sudoers.d/pcbm-operations') and '!use_pty' in text('etc/sudoers.d/pcbm-operations'))
         checks['capture_unprivileged_wrapper'] = 'from project_cbm.screenshot import main' in text('usr/bin/pcbm-screenshot')
         checks['capture_no_alias_or_menu_action'] = not (root/'usr/bin/screenshot').exists() and 'pcbm-screenshot' not in text('usr/bin/pcbm-menu')
-        checks['capture_no_shipped_private_pngs'] = not (root/'home/pcbm/screenshots').exists()
+        checks['capture_no_shipped_private_pngs'] = not (root/'home/pcbm/screenshots').exists() and not (root/'home/pcbm/content/screenshots').exists()
         checks['guided_import_hides_tags'] = 'PCBM_UI_HIDE_TAGS=true' in menu
     result['result'] = 'PASS' if all(checks.values()) else 'FAIL'
     result['scope'] = 'Private 1.2 exact installed image; physical USB/exFAT/Pi behavior UNTESTED'

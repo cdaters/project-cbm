@@ -2,15 +2,20 @@
 
 Run `pcbm-screenshot` over SSH as `pcbm`, or `pcbm-screenshot my-test.png`.
 The command prints the absolute path only after a complete PNG is saved to
-`/home/pcbm/screenshots`. The directory is private (0700) and PNGs are 0600,
-owned by pcbm. Default names contain UTC time and a random unique suffix.
+`/home/pcbm/content/screenshots`. The directory is private (0700) and PNGs are 0600,
+owned by pcbm. Default names use UTC: `pcbm-20260926T193312Z.png`. Same-second collisions
+use `-01`, `-02`, etc.; concurrent captures never overwrite each other.
+Existing captures in `/home/pcbm/screenshots` remain untouched.
 An optional name must be an ASCII basename ending in `.png`; paths, leading dots,
 traversal and overwriting are rejected. No DISPLAY variable is needed.
 
 Screenshots contain whatever is visible, including potentially private filenames,
 messages and credentials. Capture is explicit and local: no upload, background
 capture, recording, generic alias or Menu action. Copy only PNGs you intend to
-share. Do not collect screenshots automatically during password entry.
+share. Screenshots are reachable through the existing authenticated content
+SMB share as pcbm; private modes remain compatible because SMB uses the same
+account. They are not public. `time pcbm-screenshot` measures qualification
+latency; normal use needs only `pcbm-screenshot`. Do not collect screenshots automatically during password entry.
 
 ## Backend and privilege boundary
 

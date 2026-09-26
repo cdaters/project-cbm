@@ -10,7 +10,6 @@ import struct
 import subprocess
 import sys
 import time
-import uuid
 import zlib
 
 HELPER = ('/usr/bin/sudo', '-n', '--', '/usr/libexec/pcbm-kms-capture')
@@ -42,14 +41,24 @@ def output_directory(home, uid):
             fd = child
         if os.fstat(fd).st_uid != uid:
             raise Unavailable('private output directory unavailable')
+        # The authenticated content share runs as this same account. Do not
+        # relax screenshot permissions or follow a replaced content directory.
+        try:
+            os.mkdir('content', 0o755, dir_fd=fd)
+        except FileExistsError:
+            pass
+        child = os.open('content', os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=fd)
+        os.close(fd)
+        fd = child
+        if os.fstat(fd).st_uid != uid:
+            raise Unavailable('private output directory unavailable')
         try:
             os.mkdir('screenshots', 0o700, dir_fd=fd)
         except FileExistsError:
             pass
         child = os.open('screenshots', os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC, dir_fd=fd)
         try:
-            s = os.fstat(child)
-            if s.st_uid != uid:
+            if os.fstat(child).st_uid != uid:
                 raise Unavailable('private output directory unavailable')
             os.fchmod(child, 0o700)
         except BaseException:
@@ -153,9 +162,10 @@ def capture(stream, command=HELPER, timeout=TIMEOUT):
 
 
 def save(name=None, *, home=HOME, uid=1000, command=HELPER, timeout=TIMEOUT):
-    if name is None:
+    automatic = name is None
+    if automatic:
         stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-        name = 'pcbm-' + stamp + '-' + uuid.uuid4().hex + '.png'
+        name = 'pcbm-' + stamp + '.png'
     basename(name)
     directory = output_directory(home, uid)
     try:
@@ -164,7 +174,8 @@ def save(name=None, *, home=HOME, uid=1000, command=HELPER, timeout=TIMEOUT):
         except FileNotFoundError:
             pass
         else:
-            raise Unavailable('filename already exists')
+            if not automatic:
+                raise Unavailable('filename already exists')
         # Linux ext4 anonymous inode: even SIGKILL/power loss leaves no partial
         # named PNG. Publish with linkat only after successful validation+fsync.
         fd = os.open('.', os.O_RDWR | os.O_TMPFILE | os.O_CLOEXEC, 0o600, dir_fd=directory)
@@ -182,13 +193,21 @@ def save(name=None, *, home=HOME, uid=1000, command=HELPER, timeout=TIMEOUT):
                     raise Unavailable('private output directory unavailable')
             finally:
                 os.close(current)
-            try:
-                os.link('/proc/self/fd/' + str(stream.fileno()), name,
-                        dst_dir_fd=directory, follow_symlinks=True)
-            except FileExistsError:
-                raise Unavailable('filename already exists') from None
+            stem = name[:-4]
+            for sequence in range(1000):
+                candidate = name if sequence == 0 else f'{stem}-{sequence:02d}.png'
+                try:
+                    os.link('/proc/self/fd/' + str(stream.fileno()), candidate,
+                            dst_dir_fd=directory, follow_symlinks=True)
+                    name = candidate
+                    break
+                except FileExistsError:
+                    if not automatic:
+                        raise Unavailable('filename already exists') from None
+            else:
+                raise Unavailable('too many captures in this second')
             os.fsync(directory)
-        return home + '/screenshots/' + name
+        return home + '/content/screenshots/' + name
     finally:
         os.close(directory)
 

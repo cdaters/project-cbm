@@ -12,6 +12,7 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,6 +55,7 @@ class Publication(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.home = Path(self.temp.name)
+        (self.home / 'content').mkdir()
         self.command = (sys.executable, '-c', 'import sys;sys.stdout.buffer.write(' + repr(png()) + ')')
 
     def save(self, name=None, **kwargs):
@@ -62,7 +64,7 @@ class Publication(unittest.TestCase):
     def test_modes_and_default_unique(self):
         first, second = Path(self.save()), Path(self.save())
         self.assertNotEqual(first, second)
-        self.assertRegex(first.name, r'^pcbm-\d{8}T\d{6}Z-[0-9a-f]{32}\.png$')
+        self.assertRegex(first.name, r'^pcbm-\d{8}T\d{6}Z(?:-[0-9]{2,3})?\.png$')
         self.assertEqual(first.read_bytes(), png())
         self.assertEqual(stat.S_IMODE(first.stat().st_mode), 0o600)
         self.assertEqual(first.stat().st_uid, os.getuid())
@@ -76,15 +78,15 @@ class Publication(unittest.TestCase):
         self.assertEqual(path.read_bytes(), png())
 
     def test_directory_and_ancestor_symlink(self):
-        (self.home / 'screenshots').symlink_to(self.home, target_is_directory=True)
+        (self.home / 'content' / 'screenshots').symlink_to(self.home, target_is_directory=True)
         with self.assertRaises(OSError): self.save()
-        (self.home / 'screenshots').unlink()
+        (self.home / 'content' / 'screenshots').unlink()
         link = self.home / 'link'
         link.symlink_to(self.home, target_is_directory=True)
         with self.assertRaises(OSError): s.save(home=str(link), uid=os.getuid(), command=self.command)
 
     def test_existing_directory_becomes_private(self):
-        d = self.home / 'screenshots'; d.mkdir(mode=0o755)
+        d = self.home / 'content' / 'screenshots'; d.mkdir(mode=0o755)
         self.save()
         self.assertEqual(stat.S_IMODE(d.stat().st_mode), 0o700)
 
@@ -95,26 +97,44 @@ class Publication(unittest.TestCase):
         with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
             results = list(pool.map(attempt, range(8)))
         self.assertEqual(sum(x is not None for x in results), 1)
-        self.assertEqual(list((self.home / 'screenshots').iterdir())[0].read_bytes(), png())
+        self.assertEqual(list((self.home / 'content' / 'screenshots').iterdir())[0].read_bytes(), png())
+
+    def test_same_second_concurrent_sequence_and_old_captures(self):
+        old = self.home / 'screenshots'; old.mkdir()
+        (old / 'keep.png').write_bytes(png())
+        import datetime
+        instant = datetime.datetime(2026, 9, 26, tzinfo=datetime.timezone.utc)
+        with patch.object(s.datetime, 'datetime') as clock:
+            clock.now.return_value = instant
+            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+                names = {Path(x).name for x in pool.map(lambda _: self.save(), range(8))}
+        self.assertEqual(names, {'pcbm-20260926T000000Z.png'} |
+                         {f'pcbm-20260926T000000Z-{i:02d}.png' for i in range(1, 8)})
+        self.assertEqual((old / 'keep.png').read_bytes(), png())
+
+    def test_content_symlink(self):
+        (self.home / 'content').rmdir()
+        (self.home / 'content').symlink_to(self.home)
+        with self.assertRaises(OSError): self.save()
 
     def test_errors_and_partial_cleanup(self):
         for code in (20, 21, 22, 23, 24, 1):
             command = (sys.executable, '-c', 'import sys;sys.stdout.buffer.write(b"partial");sys.exit(' + str(code) + ')')
             with self.assertRaisesRegex(s.Unavailable, s.ERRORS.get(code, 'capture failed')):
                 self.save(command=command)
-        self.assertEqual(list((self.home / 'screenshots').iterdir()), [])
+        self.assertEqual(list((self.home / 'content' / 'screenshots').iterdir()), [])
 
     def test_partial_success_rejected(self):
         with self.assertRaises(s.Unavailable):
             self.save(command=(sys.executable, '-c', 'print("partial")'))
-        self.assertEqual(list((self.home / 'screenshots').iterdir()), [])
+        self.assertEqual(list((self.home / 'content' / 'screenshots').iterdir()), [])
 
     def test_timeout(self):
         start = time.monotonic()
         with self.assertRaisesRegex(s.Unavailable, 'timed out'):
             self.save(command=(sys.executable, '-c', 'import time;print("partial",flush=True);time.sleep(20)'), timeout=.1)
         self.assertLess(time.monotonic() - start, 2)
-        self.assertEqual(list((self.home / 'screenshots').iterdir()), [])
+        self.assertEqual(list((self.home / 'content' / 'screenshots').iterdir()), [])
 
     def test_killed_writer_leaves_no_partial(self):
         code = ('import sys;sys.path.insert(0,' + repr(str(ROOT / 'runtime')) + ');'
@@ -123,9 +143,9 @@ class Publication(unittest.TestCase):
         p = subprocess.Popen((sys.executable, '-c', code), start_new_session=True)
         try:
             deadline = time.monotonic() + 3
-            while not (self.home / 'screenshots').exists() and time.monotonic() < deadline: time.sleep(.01)
+            while not (self.home / 'content' / 'screenshots').exists() and time.monotonic() < deadline: time.sleep(.01)
             os.killpg(p.pid, signal.SIGKILL); p.wait()
-            self.assertEqual(list((self.home / 'screenshots').iterdir()), [])
+            self.assertEqual(list((self.home / 'content' / 'screenshots').iterdir()), [])
         finally:
             if p.poll() is None: p.kill(); p.wait()
 

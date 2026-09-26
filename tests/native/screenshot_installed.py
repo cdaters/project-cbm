@@ -54,7 +54,7 @@ try:
     shutil.copyfile('/tmp/screenshot-fixture', helper)
     helper.chmod(0o755)
     p = command('installed.png')
-    check('sudo binary channel and complete path', p.returncode == 0 and p.stdout == b'/home/pcbm/screenshots/installed.png\n')
+    check('sudo binary channel and complete path', p.returncode == 0 and p.stdout == b'/home/pcbm/content/screenshots/installed.png\n')
     path = Path(p.stdout.decode().strip())
     check('png and owner modes', path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') and path.stat().st_uid == 1000 and stat.S_IMODE(path.stat().st_mode) == 0o600 and path.parent.stat().st_uid == 1000 and stat.S_IMODE(path.parent.stat().st_mode) == 0o700)
     raw=path.read_bytes(); pos=8; compressed=b''
