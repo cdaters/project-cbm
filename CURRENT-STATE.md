@@ -1,3 +1,21 @@
+# Moving-game capture correction before candidate freeze — 2026-09-26
+
+Attempt20 moving C64 gameplay screenshot **FAIL** twice with display-changed error,
+0.278s each; no completed PNG. Owner confirms no gameplay/audio/HDMI disturbance and
+normal F10 return. [Retained physical report](docs/qualification/attempt20-owner-review-2026-09-26.md).
+Attempt20 remains unmodified; failure cannot be repaired retrospectively.
+
+Separate GPL correction b887d2d accepts normal framebuffer page flips only with
+unchanged supported connector/CRTC/plane/mode/layout and repeated composition checks.
+Bounded native tests PASS; physical moving-game success remains UNTESTED. KMS is now
+1.0.0~dev2-1 with corresponding source; the earlier unchanged-component reuse plan
+below is superseded. Runtime1.2.0~dev4-1 explicitly depends on the new helper.
+
+Installed trial5 passed USB11, screenshot12, and four real Content/Online/dialog/FIFO/
+shared-writer/exit cases. The failure in trial4 was retained and the terminal fixture
+corrected. Final source/package tests must now include GPLdev2 before attempt21
+freeze/construction. No candidate ready yet; no publication or provider messages.
+
 # Private dev4 implementation and installed-path validation — 2026-09-26
 
 Source changes are separate local commits: screenshot c93fb06; sizes08d89e6/Menu

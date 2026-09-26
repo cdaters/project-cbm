@@ -61,3 +61,7 @@ unsupported composition/format and bounds stale/mode retries. Native fixtures no
 exercise successful continuous page flips and rejected mode/layout changes. Physical
 moving-game success remains UNTESTED until the new image is qualified; tear-free
 moving-frame capture is not promised.
+
+Owner follow-up: neither failed attempt disturbed gameplay/audio or changed HDMI.
+F10 returned to Main Menu normally. These bounded non-interference/lifecycle checks
+are PASS; moving-game screenshot production remains FAIL.
