@@ -1,3 +1,31 @@
+# USB MC correction source checkpoint — 2026-09-25
+
+The caller-side bridge correction is implemented with the unchanged Menu API.
+MC owns the existing foreground controlling terminal; the broker holds only its
+read-only lease. Release notification plus bounded unmount retries cover worker
+crash while MC holds a cwd. No sudo/stty/mount-policy weakening. See
+[contract](docs/runtime/ingestion-contract.md#usb-terminal-correction--private-dev2).
+
+Native pre-package installed-layout tests pass eleven cases, including real Menu/
+FIFO/sudo/MC navigation, release/crash paths, ordinary MC and ingestion save/cancel.
+Product310/Menu107 native pass before the final explicit idle-timer unit addition;
+final committed-source/native/package gates remain next. Host's only suite failure
+is the recorded macOS mktemp negative control. Failed harness traces are preserved:
+ext4 reports noload as norecovery; selection initially reached lost+found; the first
+unit export lacked Git refs. These were harness corrections, not gate exceptions.
+
+Planned candidate: PRIVATE NON-RELEASE1.2.0-dev.2, attempt19, Runtime1.2.0~dev2-1.
+Menu will reuse exact unchanged dev1 source/tag/package. No candidate is frozen or
+ready for physical testing yet. Builder expanded256→320GiB after verified stopped
+snapshot; host integrity/capability passed. No retained attempt or stable artifact
+was removed. Attempt18 remains B1FAIL and unchanged; no live Pi work was performed.
+
+Next: final source/package tests, clean frozen exports, distinct lock/build/image,
+actual-image validation, export/recovery and hash-bound Pi4 procedure, then stop.
+Screenshot implementation remains separate; Assembly64 stays research-only awaiting
+provider/client-id feedback. Evidence: `qualification/usb-tty-fix-2026-09-25`.
+Earlier checkpoints below remain historical. Unknown `.qwen/` and `memory/` retained.
+
 # Attempt18 B1 cause confirmed; screenshot feasibility — 2026-09-25
 
 Read-only live normal/USB/Ctrl+C comparison confirms the

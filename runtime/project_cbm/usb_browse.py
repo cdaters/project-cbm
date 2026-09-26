@@ -30,6 +30,8 @@ def browse(source, cancelled=cancellation):
     # No terminal bytes or MC output enter the JSON protocol. The caller's existing
     # controlling terminal remains its owner; do not change VT/mode/session setup.
     with open('/dev/tty', 'r+b', buffering=0) as tty:
+        if os.tcgetpgrp(tty.fileno()) != os.getpgrp():
+            raise IngestError('terminal_owner')
         process = subprocess.Popen(['/usr/bin/mc', '-u', str(source), str(library.ROOT)],
                                    stdin=tty, stdout=tty, stderr=tty, close_fds=True,
                                    env={**MC_ENV, 'TERM': terminal},
@@ -51,16 +53,14 @@ def browse(source, cancelled=cancellation):
 
 
 def run(source):
+    """Unprivileged broker worker holds only a bounded lease, never a terminal."""
     emit({'status': 'ready'})
     try:
         while True:
-            request = receive()
+            request = receive(1800)
             if request in ({'operation': 'release'}, {'operation': 'cancel'}):
                 return {'status': 'ok' if request['operation'] == 'release' else 'cancelled'}
-            if request != {'operation': 'browse'}:
-                raise IngestError('request')
-            browse(source)
-            emit({'status': 'ok'})
+            raise IngestError('request')
     except (OSError, ValueError, subprocess.SubprocessError) as error:
         return {'status': 'cancelled' if isinstance(error, IngestError) and str(error) in ('cancelled', 'disconnected', 'expired') else 'failed',
                 'error': str(error) if isinstance(error, IngestError) else 'browser_failed'}

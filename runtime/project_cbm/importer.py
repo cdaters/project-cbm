@@ -225,15 +225,26 @@ def perform(entry,category,family=None,worker=None,purpose='import'):
                 raise failure
             answer=loads(raw)
         finally:
+            if purpose=='browse':
+                # Notify the caller-side MC supervisor before unmount, including
+                # worker crash/expiry. A vanished reader must not skip cleanup.
+                try:
+                    print(json.dumps({'schema_version':2,'status':'releasing'}),flush=True)
+                except OSError:pass
             worker_failure=None
             if pid and not reaped:
                 try:stop_worker(pid)
                 except ImportFailure as error:worker_failure=error
-            try:
-                subprocess.run(['/usr/bin/umount','--',str(target)],env=ENV,check=True,
-                               stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20)
-            except (OSError,subprocess.SubprocessError):
-                raise ImportFailure('unmount_failed',False,answer) from None
+            deadline=time.monotonic()+(2 if purpose=='browse' else 0)
+            while True:
+                try:
+                    subprocess.run(['/usr/bin/umount','--',str(target)],env=ENV,check=True,
+                                   stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20)
+                    break
+                except (OSError,subprocess.SubprocessError):
+                    if time.monotonic()>=deadline:
+                        raise ImportFailure('unmount_failed',False,answer) from None
+                    time.sleep(0.1)
             if os.path.ismount(target):raise ImportFailure('unmount_failed',False,answer)
             if worker_failure is not None:raise worker_failure
             if failure is not None:failure.source_unmounted=True

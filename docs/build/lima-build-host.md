@@ -183,3 +183,16 @@ Pinned Lima's `edit --disk 256 cbm` increases capacity without deleting historic
 state. The template/preflight now declare256GiB. CPU/RAM/VZ/plain/ext4 and security
 remain unchanged; native capability and host-drift gates must pass again. This is
 private same-volume recovery, not independent custody.
+
+## Additive dev2 capacity increase, 2026-09-25
+
+Attempt18 and earlier failed state remain preserved. Guest free space was
+34,247,704,576 bytes, below the unchanged 40GiB gate. The stopped256GiB disk and
+configuration were COW-cloned and byte-verified at
+`build-host/records/pre-dev2-disk-growth-2026-09-25`. Disk SHA-256:
+`31502dd977751d7a3e6de069f7e90c8810fe7923f7fb10c70413587267f0349c`.
+Pinned Lima `edit --disk 320 cbm` expanded the guest to320GiB without deleting any
+retained attempt. The template/preflight follow that capacity; CPU/RAM/VZ/plain/ext4
+and host package inventory remain unchanged. Full capability and masked-update/
+inventory checks pass after expansion. This is same-volume private recovery,
+not independent custody. The snapshot manifest remains the verification authority.

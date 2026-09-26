@@ -1,4 +1,6 @@
-"""Native real MC/PTY round trip and cancellation on synthetic read-only ext4.
+"""Direct MC primitive and lease tests on synthetic read-only ext4.
+
+This is not installed-path coverage; use usb_browse_installed.py for that gate.
 
 Use a private mount namespace, a NEW root-owned base under /srv/project-cbm,
 and the copied runtime path. No appliance or physical device is touched.
@@ -65,7 +67,7 @@ try:
             os.close(master)
     subprocess.run(['/usr/bin/umount',str(source)],check=True)
     assert not os.path.ismount(source)
-    # Real broker fork, privilege drop, separate mount, protocol and controlling TTY.
+    # Broker lease worker has no interactive-terminal responsibility.
     from project_cbm import importer
     device=os.stat(loop)
     entry={'device':loop,'number':f'{os.major(device.st_rdev)}:{os.minor(device.st_rdev)}',
@@ -103,14 +105,11 @@ try:
         ended=False
         try:
             assert read_reply()['status']=='ready'
-            os.write(req_write,b'{"operation":"browse"}\n')
-            time.sleep(2)
             if disconnect:
                 os.close(req_write);req_write=None
             else:
-                os.write(master,b'\x1b[21~\r')
-                assert read_reply()['status']=='ok'
                 os.write(req_write,b'{"operation":"release"}\n')
+            assert read_reply()['status']=='releasing'
             final=read_reply()
             assert final['source_unmounted'] is True,final
             _,status=os.waitpid(pid,0);ended=True

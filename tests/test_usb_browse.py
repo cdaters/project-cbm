@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, mock_open
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'runtime'))
 from project_cbm import importer, usb_browse
 from project_cbm.ingestion import IngestError
@@ -22,7 +22,9 @@ class Browse(unittest.TestCase):
         process=Mock(returncode=0)
         process.poll.return_value=0
         with patch.object(usb_browse.os,'geteuid',return_value=1000), \
-                patch('builtins.open',return_value=io.BytesIO()), \
+                patch.object(usb_browse.os,'tcgetpgrp',return_value=123), \
+                patch.object(usb_browse.os,'getpgrp',return_value=123), \
+                patch('builtins.open',mock_open()), \
                 patch.object(usb_browse.subprocess,'Popen',return_value=process) as launch:
             usb_browse.browse(Path('/run/project-cbm/import/browse'),lambda:False)
         args,kwargs=launch.call_args
@@ -39,7 +41,9 @@ class Browse(unittest.TestCase):
         process.poll.return_value=None
         process.wait.side_effect=[subprocess.TimeoutExpired('mc',0.5),0]
         with patch.object(usb_browse.os,'geteuid',return_value=1000), \
-                patch('builtins.open',return_value=io.BytesIO()), \
+                patch.object(usb_browse.os,'tcgetpgrp',return_value=123), \
+                patch.object(usb_browse.os,'getpgrp',return_value=123), \
+                patch('builtins.open',mock_open()), \
                 patch.object(usb_browse.subprocess,'Popen',return_value=process), \
                 self.assertRaisesRegex(IngestError,'cancelled'):
             usb_browse.browse(Path('/synthetic'),lambda:True)
@@ -47,15 +51,32 @@ class Browse(unittest.TestCase):
         process.kill.assert_called_once()
         self.assertEqual(process.wait.call_count,2)
 
-    def test_exit_browse_again_and_explicit_release(self):
+    def test_worker_only_holds_lease_until_explicit_release(self):
         with patch.object(usb_browse,'emit') as emit, \
-                patch.object(usb_browse,'receive',side_effect=[{'operation':'browse'},{'operation':'browse'},{'operation':'release'}]), \
+                patch.object(usb_browse,'receive',return_value={'operation':'release'}), \
                 patch.object(usb_browse,'browse') as browse:
             result=usb_browse.run(Path('/synthetic'))
-        self.assertEqual(browse.call_count,2)
+        browse.assert_not_called()
         self.assertEqual(result,{'status':'ok'})
         self.assertNotIn('source_unmounted',result)  # Only root parent can confirm.
-        self.assertEqual(emit.call_count,3)
+        self.assertEqual(emit.call_count,1)
+
+    def test_worker_rejects_interactive_request(self):
+        with patch.object(usb_browse,'emit'), \
+                patch.object(usb_browse,'receive',return_value={'operation':'browse'}), \
+                patch.object(usb_browse,'browse') as browse:
+            self.assertEqual(usb_browse.run(Path('/synthetic'))['status'],'failed')
+        browse.assert_not_called()
+
+    def test_foreground_ownership_required(self):
+        with patch.object(usb_browse.os,'geteuid',return_value=1000), \
+                patch.object(usb_browse.os,'tcgetpgrp',return_value=123), \
+                patch.object(usb_browse.os,'getpgrp',return_value=456), \
+                patch('builtins.open',mock_open()), \
+                patch.object(usb_browse.subprocess,'Popen') as launch, \
+                self.assertRaisesRegex(IngestError,'terminal_owner'):
+            usb_browse.browse(Path('/synthetic'))
+        launch.assert_not_called()
 
     def test_disconnect_or_removed_media_finishes_for_cleanup(self):
         for error in [IngestError('disconnected'),OSError('removed'),IngestError('browser_failed')]:

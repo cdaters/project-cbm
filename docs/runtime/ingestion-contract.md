@@ -4,6 +4,37 @@ This development contract implements the accepted [design](../design/content-ing
 Project CBM 1.1.0 remains the current stable release; these changes are not in its
 packages or qualified image.
 
+## USB terminal correction — private dev2
+
+The [attempt18 physical diagnosis](../qualification/attempt18-pi4-usb-b1-confirmed.md)
+supersedes the Phase4 terminal-ownership assumptions below. `pcbm-ingest-session`
+now remains an unprivileged bridge and starts the fixed sudo broker as a separate
+child. It launches MC locally with the existing controlling terminal, checks that
+its process group is foreground, and closes protocol descriptors in MC. No terminal
+bytes cross the JSON/FIFO channel. Menu's existing schema2 interface is unchanged.
+
+The broker worker only holds the lease. On worker exit/crash/expiry the root parent
+sends an internal `releasing` notice before ordinary unmount; the bridge consumes
+that notice and stops/reaps MC. A bounded two-second retry window accommodates the
+MC cwd release race. Persistent busy mounts still return `source_unmounted:false`;
+no forced/lazy unmount or false safe-removal claim is used. Normal cancellation
+stops MC before requesting broker release. Parent-death SIGKILL protects against
+bridge crash. EOF, SIGINT and HUP all enter bounded cleanup.
+
+The bridge maintains five-minute idle cancellation outside MC; the root broker
+retains the thirty-minute total ceiling. Mount flags, privilege policy and sudo
+`use_pty` are unchanged. MC's native Ctrl+C behavior is retained; the signal cleanup
+test delivers SIGINT to the foreground group separately from literal Ctrl+C, since
+MC uses its own keyboard handling. Physical Pi4 qualification remains required.
+
+`tests/native/usb_browse_installed.py` drives the actual installed FILES dialogs,
+FIFO bridge, sudoers, broker and MC under TERM=linux. The disposable namespace
+substitutes only synthetic-device discovery. It verifies foreground/descriptor and
+terminal modes, selected file contents after Up/Down/F3, Tab switching to a distinct
+library file, F10, repeat browse, SIGINT/HUP/disconnect, bridge/worker crash, busy
+release wording and ordinary FILES MC. It also exercises ingestion cancel/save
+through the changed bridge. Earlier direct primitive PTY tests remain narrower.
+
 ## Phase 1: importer results
 
 `pcbm-import-operation` accepts the existing bounded schema-1 requests. It returns
