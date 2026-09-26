@@ -1,3 +1,32 @@
+# Private dev4 implementation and installed-path validation — 2026-09-26
+
+Source changes are separate local commits: screenshot c93fb06; sizes08d89e6/Menu
+1d9f083; breadcrumbs816a5de; Import navigation42ee1f8; Assembly64 backend761918e,
+ingestion414e6f1 and bounds3f7cda1; Online Library Menu9915a07. Runtime1.2.0~dev4-1,
+Menu1.2.0~dev3-1+pcbm1 are prepared; unchanged GPL KMS1.0.0~dev1-1 will be reused
+only after exact source/package verification. Next distinct identity is intended
+Product1.2.0-dev.4 / attempt21; **not frozen, built or ready yet**.
+
+Native Product346/346 and Menu118/118 plus KMS component scenarios PASS. Installed
+trial4 USB11 and screenshot12 PASS. The first real-dialog Online test stopped on
+an assertion which matched raw terminal bytes across color escapes; the retained
+trace shows the correct result. Its disposable /dev/fd fixture was also incomplete.
+The harness is corrected and a distinct installed trial5 is running. Retain both
+trials, logs and source snapshots under qualification/ux-online-dev4; no Pi patch.
+
+Registered cbm access: seven original bounded requests and four requests through
+the implemented adapter (presets, filtered search, metadata, file list) all HTTP200;
+no hosted file download. [Contract and limits](docs/runtime/online-library.md).
+The first slice uses Central HTTPS; discovery does not enable/fail over to unknown
+home servers. Save & Run is deferred; saved files launch through Browse Library.
+
+[Attempt20 observations](docs/qualification/attempt20-owner-review-2026-09-26.md)
+remain hash-bound. Fresh Main Menu capture0.379s, retained privately. Other unreported
+screenshot HDMI/audio/gameplay cases remain unqualified. Prior images/tags unchanged.
+Next: complete installed gates, freeze distinct clean inputs, construct/validate,
+export/recovery, bind [new physical procedure](docs/qualification/attempt21-pi4-ux-online.md),
+then STOP for owner testing. No release/publication/provider contact.
+
 # Attempt20 review and next private candidate in progress — 2026-09-26
 
 [Owner physical observations](docs/qualification/attempt20-owner-review-2026-09-26.md)

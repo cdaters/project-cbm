@@ -32,3 +32,12 @@ comparison where not explicitly reported. No-display testing may remain UNTESTED
 if it requires disruptive setup. Deliberate busy-unmount fault injection is optional;
 normal Safe Unmount already PASS. Earlier attempt18 FAIL and attempt19 bounded
 results remain historical evidence; no existing image has been modified.
+
+## Additional engineering capture
+
+A new on-demand Main Menu PNG was collected over SSH at 20:15:32 UTC on 2026-09-26.
+Remote `time pcbm-screenshot` measured 0.379 seconds real, 0.281 user and 0.066 sys.
+It is readable and retained privately alongside the earlier captures. This is one
+Main Menu timing sample, not a moving-game/audio or HDMI comparison pass. Only
+screenshot output was written; installed packages/scripts and old captures remain
+unchanged. The ordinary command remains `pcbm-screenshot`; `time` is instrumentation.

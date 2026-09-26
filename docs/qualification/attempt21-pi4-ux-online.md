@@ -1,0 +1,72 @@
+# Next private candidate: Pi 4 UX and Online Library qualification
+
+**DRAFT — not ready to flash until exact candidate hashes are added.**
+Do not update attempt20 in place. Preserve its card/captures and use the new image
+on separate media. This procedure qualifies only the exact image and Pi model
+recorded in the completed build record. Stop a failing case and retain a screenshot
+and the reproduction; do not repair that qualification image in place.
+
+Record PASS/FAIL/UNTESTED for each case, hardware, image SHA-256 and observations.
+Prior attempt20 results remain valid for that image; they do not automatically
+qualify changed behavior here.
+
+1. **Screenshot storage/privacy.** From the engineering Mac, with Main Menu visible,
+   run `ssh pcbm@projectcbm.local 'pcbm-screenshot'`. It prints an absolute path under
+   `/home/pcbm/content/screenshots/`. Names use `pcbm-YYYYMMDDTHHMMSSZ.png`; repeated
+   captures in the same second use `-01`, `-02`, etc. Check directory 0700, files
+   0600 and pcbm ownership; access through the existing authenticated Project CBM
+   SMB share. Existing `/home/pcbm/screenshots` captures stay untouched if present
+   on retained old media; a fresh image does not migrate files from another card.
+   Try an explicit basename twice: the second attempt must refuse overwrite.
+   `time pcbm-screenshot` is optional timing instrumentation, not normal syntax.
+2. **Dialog presentation.** CONTENT, FILES/USB, CONTROL and subordinate dialogs show
+   a clear compact hierarchy and action title. Device sizes are readable KB/MB/GB,
+   using 1024-byte steps. Arrow/Tab/Enter/Escape behavior remains usable; no opaque
+   IDs, hashes or backend keys appear alongside friendly names.
+3. **Guided Import navigation.** CONTENT > Import from USB; select a partition,
+   navigate into nested folders, Scan, then Back. It returns to source navigation
+   while keeping the read-only lease. Parent folder works; scan a different folder
+   without remounting. End Import / Release USB is the deliberate exit. Test an
+   unsupported-only ROM folder: explain files are present but unsupported, show
+   no Select All for an empty supported list, suggest FILES > USB Drive. Mixed
+   PRG/BIN: select/import only PRG after explicit category/machine review. BIN must
+   remain unsupported. Capture these screens using pcbm-screenshot.
+4. **FILES USB regression.** Ordinary MC, then FILES > USB Drive > partition > Mount
+   Read-Only. Check arrows, Tab, function keys, manual copy of chosen test content,
+   F10 and normal Safe Unmount. No writable USB mount. Deliberate busy-unmount fault
+   injection is optional robustness coverage; do not conflate it with normal release.
+5. **Online search and details.** CONTENT > Online Library shows Powered by Assembly64
+   and Internet connection required. Search a known title, inspect metadata and files;
+   test one offered repository/category/year filter and Back/retry. Check friendly
+   labels, sensible result paging and responsiveness. Server Information is a separate
+   public directory; Central stays selected and listed unqualified servers are not
+   silently queried. A directory failure must not prevent trying a Central search.
+6. **Selected download and library save.** Choose a small release you are entitled to
+   use. Select each required disk/file; choose category and machine explicitly.
+   Prepare Save downloads only the selection into private temporary storage. Review
+   exact destination/Already Present/Keep Both, then Save to Library. Verify folders
+   and disk relationships, no MIME envelope in media files, no extra files and no
+   overwrite. Repeat the same selection to exercise Already Present; a deliberately
+   different local same-name copy should result in Keep Both for the set. Back before
+   final Save must leave the library untouched. Test cancellation on an appropriate
+   small operation; completed saves remain, incomplete staging does not become content.
+7. **Offline and lifecycle.** Saved content appears in Browse Library and remains
+   available offline. Launch the copied/downloaded C64 demo through the existing
+   launcher, verify display/audio, F10 and responsive Menu. Save & Run is not included.
+   Check persistence after reboot and ordinary shutdown. Disconnecting Internet
+   should produce a concise network error with Back/Retry; restore connectivity
+   using normal controls, not modifications to the image.
+8. **Capture coverage.** Capture Main Menu, text console, ordinary MC, guided Import,
+   USB MC, a machine Cover, VICE/BASIC and moving C64 gameplay. Copy each intended PNG
+   to the engineering Mac and compare against HDMI: colors, content and borders;
+   capture must not change the display. Note latency and any audio/gameplay impact,
+   repeat captures, and try near a Cover/display transition. A transition may fail
+   concisely rather than save a misleading image. F10/return remains normal. Record
+   unsupported/no-display as UNTESTED if headless setup would be disruptive; do not
+   infer multi-display support. Screenshots can contain private filenames, addresses
+   or credentials: keep them private and share only deliberately selected captures.
+
+No throughput download, background crawl, provider messages or publication. Exact
+provider rate quotas, other-server policies and any remaining download semantics
+can be revisited after this physical evidence. Report remaining questions before
+contacting the provider; do not send messages automatically.

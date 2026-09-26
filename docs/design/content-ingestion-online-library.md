@@ -1,3 +1,11 @@
+> 2026-09-26 implementation update: owner-confirmed attempt20 guided Import and
+> FILES USB workflows coexist; neither supersedes the other. Provider registration
+> of `cbm` is now confirmed by the owner and bounded central API requests succeed.
+> The next private candidate implements the [bounded Online Library contract](../runtime/online-library.md),
+> with explicit selected-file preparation/review/save and no Save & Run yet.
+> Public servers are discoverable but unqualified for selection. The following
+> broader design remains a roadmap where it exceeds that implementation.
+
 # Content ingestion and Online Library — design for owner review
 
 Status: **OWNER-ACCEPTED DESIGN / NOT IMPLEMENTED**. Study and acceptance date: 2026-09-24.
