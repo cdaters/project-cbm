@@ -16,6 +16,7 @@ import time
 from .config_backend import ENV, trusted
 from .data import loads
 from . import library
+from .formatting import human_size
 
 WORK = Path('/run/project-cbm/import')
 CONTENT = library.ROOT
@@ -296,7 +297,7 @@ def main():
                 from .config_backend import Linux
                 Linux().write(WORK/'devices.json',json.dumps(entries))
                 print(json.dumps({'schema_version':1,'status':'ok','devices':[
-                    {'token':k,'label':f'USB partition {i+1}: {v["filesystem"]}, {v["size_bytes"]//1024**2} MiB'}
+                    {'token':k,'label':f'USB partition {i+1}: {v["filesystem"]}, {human_size(v["size_bytes"])}'}
                     for i,(k,v) in enumerate(entries.items())]}))
             elif request.get('schema_version')==2:
                 from .ingest_session import run

@@ -11,6 +11,7 @@ import time
 
 from .data import LIMIT, loads, registry, text, token
 from . import preferences, network_info, service_info
+from .formatting import human_size
 
 PACKAGES = {'menu': 'project-cbm-menu', 'vice': 'project-cbm-vice', 'tcpser': 'project-cbm-tcpser'}
 SERVICES = {'ssh': 'ssh.service', 'samba': 'smbd.service', 'tcpser': 'tcpser.service', 'avahi': 'avahi-daemon.service', 'network_manager': 'NetworkManager.service', 'first_boot': 'pcbm-first-boot.service'}
@@ -278,7 +279,7 @@ def human(data):
     b = data['built_as'] or {}
     r = data['running_on']; c = data['current_state']
     def size(value):
-        return 'unknown' if value is None else f'{value / (1024 ** 3):.2f} GiB'
+        return human_size(value)
     def component(key):
         expected = ((b.get('components') or {}).get(key) or {}).get('version')
         installed = ((c['packages'] or {}).get(key) or {}).get('version')
