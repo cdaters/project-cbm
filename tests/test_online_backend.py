@@ -71,11 +71,11 @@ class Backend(unittest.TestCase):
     def test_metadata_file_mapping_cache_and_unsupported(self):
         release={'id':'123','category':1,'name':'Fixture'}
         transport=Fixtures({'search/meta/123/1':release,'search/entries/123/1':{'contentEntry':[
-            {'id':0,'path':'disk1/a.prg','size':4},{'id':1,'path':'disk2/a.prg','size':4},{'id':2,'path':'rom.bin','size':8}]}})
+            {'id':0,'path':'disk1/a.prg','size':4},{'id':1,'path':'disk2/a.prg','size':4},{'id':2,'path':'rom.bin','size':8},{'id':3,'path':'._disk.prg','size':8}]}})
         backend=o.Backend(transport=transport)
         self.assertEqual(backend.metadata(release),release);backend.metadata(release)
         items,unsupported=backend.files(release)
-        self.assertEqual([i.id for i in items],['0','1']);self.assertEqual(unsupported,1)
+        self.assertEqual([i.id for i in items],['0','1']);self.assertEqual(unsupported,2)
         self.assertEqual(len(transport.calls),2)
         transport.data['search/entries/123/1']['contentEntry'][0]['path']='../evil.prg'
         backend.cache.clear()

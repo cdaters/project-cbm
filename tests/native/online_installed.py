@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import pty
+import re
 import select
 import signal
 import struct
@@ -61,7 +62,7 @@ class Console:
         until=time.monotonic()+12
         while time.monotonic()<until:
             self.drain()
-            if value in self.buffer:self.buffer.clear();return
+            if value in re.sub(rb'\x1b\[[0-?]*[ -/]*[@-~]', b'', self.buffer).replace(b'\x0f', b''):self.buffer.clear();return
         raise AssertionError('missing '+repr(value)+' '+repr(self.buffer[-1500:]))
     def send(self,value):
         self.drain();self.buffer.clear();os.write(self.fd,value)

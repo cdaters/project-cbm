@@ -28,6 +28,7 @@ try:
  for name,major,minor in [('null',1,3),('zero',1,5),('full',1,7),('random',1,8),('urandom',1,9),('tty',5,0)]:os.mknod(root/'dev'/name,stat.S_IFCHR|0o666,os.makedev(major,minor));os.chmod(root/'dev'/name,0o666)
  for name in ['pts','shm']:(root/'dev'/name).mkdir()
  (root/'dev/ptmx').symlink_to('pts/ptmx')
+ (root/'dev/fd').symlink_to('/proc/self/fd')
  mount(['-t','devpts','-o','newinstance,ptmxmode=0666,mode=0620,gid=5','devpts'],root/'dev/pts')
  mount(['-t','tmpfs','-o','mode=1777,nosuid,nodev','tmpfs'],root/'dev/shm')
  mount(['-t','proc','proc'],root/'proc')

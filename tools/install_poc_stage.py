@@ -91,6 +91,7 @@ def main():
     from project_cbm.library import directories as library_directories
     for directory in library_directories():
         target=root/'home/pcbm/content'/directory;target.mkdir(parents=True,exist_ok=True);os.chown(target,1000,1000)
+        if str(directory) == 'screenshots' and 'kms-capture' in lock['components']:target.chmod(0o700)
         if target.parent != root/'home/pcbm/content':os.chown(target.parent,1000,1000)
     chroot('usermod','--password','!','pcbm');chroot('usermod','--password','*','root')
     chroot('usermod','--shell','/bin/bash','pcbm')

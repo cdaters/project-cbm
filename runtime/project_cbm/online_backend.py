@@ -17,6 +17,7 @@ import urllib.parse
 import urllib.request
 
 from .ingestion import Item, IngestError, relative
+from .usb_discovery import host_metadata
 
 MAX_JSON = 2 * 1024**2
 MAX_FILE = 32 * 1024**2
@@ -272,6 +273,8 @@ class Backend:
             key = str(integer(row['id'])); path = text(row['path'], 2048); size = integer(row['size'], 2**40)
             if key in seen or path in paths: raise OnlineError('incompatible')
             seen.add(key); paths.add(path)
+            if any(host_metadata(part) for part in path.split('/')):
+                unsupported += 1; continue
             try: item = Item(key, path, size, self.profile.key, metadata={'release':release['id'],'category':release['category']})
             except IngestError as ex:
                 if str(ex) in ('unsupported', 'limit'): unsupported += 1; continue

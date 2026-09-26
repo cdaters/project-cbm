@@ -52,7 +52,7 @@ def inspect(root, boot, record, kit):
         checks['capture_fixed_sudo'] = ('pcbm ALL=(root) NOPASSWD: /usr/libexec/pcbm-kms-capture ""' in text('etc/sudoers.d/pcbm-operations') and '!use_pty' in text('etc/sudoers.d/pcbm-operations'))
         checks['capture_unprivileged_wrapper'] = 'from project_cbm.screenshot import main' in text('usr/bin/pcbm-screenshot')
         checks['capture_no_alias_or_menu_action'] = not (root/'usr/bin/screenshot').exists() and 'pcbm-screenshot' not in text('usr/bin/pcbm-menu')
-        checks['capture_no_shipped_private_pngs'] = not (root/'home/pcbm/screenshots').exists() and not (root/'home/pcbm/content/screenshots').exists()
+        checks['capture_no_shipped_private_pngs'] = not (root/'home/pcbm/screenshots').exists() and not any((root/'home/pcbm/content/screenshots').iterdir())
         checks['guided_import_hides_tags'] = 'PCBM_UI_HIDE_TAGS=true' in menu
     if (root/'usr/bin/pcbm-online-session').exists():
         online = text('usr/share/project-cbm/runtime/project_cbm/online_backend.py')
@@ -65,6 +65,8 @@ def inspect(root, boot, record, kit):
         checks['online_no_bundled_payload_or_private_state'] = not list((root/'home/pcbm/content').rglob('Downloaded')) and not (root/'home/pcbm/.local/state/project-cbm/ingestion').exists()
         checks['online_explicit_review_before_save'] = online_ui.index('rpc prepare') < online_ui.index('request save') and 'Save to Library' in online_ui
         checks['import_return_to_source'] = 'stage=source; offset=0; continue' in menu and 'End Import / Release USB' in menu
+        shots=root/'home/pcbm/content/screenshots'
+        checks['screenshot_private_shared_directory'] = shots.stat().st_uid==1000 and shots.stat().st_mode & 0o777 == 0o700
         checks['screenshot_content_share_default'] = "'/content/screenshots/'" in text('usr/share/project-cbm/runtime/project_cbm/screenshot.py')
         checks['reusable_breadcrumbs'] = 'pcbm_ui_backtitle' in text('usr/share/project-cbm-menu/pcbm-ui.sh') and 'pcbm_ui_backtitle' in text('usr/bin/pcbm-dialog-lib.sh')
     result['result'] = 'PASS' if all(checks.values()) else 'FAIL'
