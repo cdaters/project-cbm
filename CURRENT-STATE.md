@@ -1,3 +1,18 @@
+# Distinct attribution candidate dev5 / attempt22 preparation — 2026-09-26
+
+Attempt21 exported and sealed at archive/private-1.2-dev4-attempt21-2026-09-26,
+manifest936751ed91d6270309e6687610651d89522197b8386be645f43cde83ce79d41e.
+User requested attribution before final handoff. Menudev4 adds a local About &
+Support screen with official website/team credit and verified optional PayPal/Ko-fi
+links. No ssrt, FTP failover or embedded alternate credentials. PayPal shows Fredrik
+Åberg / Assembly64; Ko-fi shows Team Assembly64. No payment or provider message.
+
+Next distinct Product1.2.0-dev.5 / attempt22 will consume new Menudev4 while strictly
+reusing unchanged Runtime1.2.0~dev4-1 and GPL KMS1.0.0~dev2-1 from attempt21. Do not
+rebuild unchanged components or alter finished attempts. Native/installed/package,
+freeze/build/image/export/recovery gates still required before physical handoff.
+[Pending procedure](docs/qualification/attempt22-pi4-ux-online.md).
+
 # Owner attribution follow-up after attempt21 freeze — 2026-09-26
 
 Attempt21 is built, validated and exported below. Before handoff, the owner requested

@@ -102,6 +102,18 @@ try:
     entry.write_text(original.decode().replace('from project_cbm.online_session import main',fixture+'\nfrom project_cbm.online_session import main'))
     c=Console()
     try:
+        c.expect(b'Browse Library');c.select(2)
+        c.expect(b'About & Support Assembly64');c.select(3)
+        c.expect(b'hosted_button_id=8D6YK9LXULYPE')
+        assert b'Credit to the Assembly64 project and team' in c.trace
+        assert b'ko-fi.com/assembly64' in c.trace and b'ssrt=' not in c.trace
+        c.select();c.expect(b'Search by title')
+        c.send(b'\x1b');c.expect(b'Browse Library')
+        results.append('installed local Assembly64 attribution and optional support links return normally')
+    finally:
+        Path('/tmp/online-installed-about.terminal').write_bytes(c.trace);c.close()
+    c=Console()
+    try:
         c.prepare()
         assert workers()
         assert all(Path(f'/proc/{pid}').stat().st_uid==1000 for pid in workers())

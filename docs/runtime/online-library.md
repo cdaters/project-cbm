@@ -6,6 +6,28 @@ Library. This is an original client of the published API, using the provider-
 registered `client-id: cbm` and an honest Project CBM User-Agent. The owner confirmed
 registration on 2026-09-26. No reference-client code or identity was copied.
 
+## Attribution, support and alternate access
+
+Online Library > About & Support Assembly64 is a local information screen: credit
+to the Assembly64 project/team, with Project CBM identified as an independent API
+client. Official website: [Assembly64](https://assembly64.hackerswithstyle.se).
+Optional support: [PayPal](https://www.paypal.com/donate/?hosted_button_id=8D6YK9LXULYPE)
+and [Ko-fi](https://ko-fi.com/assembly64). These are links to open on another device;
+viewing this screen sends no network request and initiates no payment.
+
+On 2026-09-26, the shortened PayPal URL above opened a page labelled Fredrik Åberg
+and Assembly64, matching the intended project. No ssrt/session parameter was needed;
+no amount was entered and no donation initiated. Ko-fi showed Team Assembly64.
+The official website identifies Fredrik Åberg as a team member. Private verification
+record: qualification/assembly64-attribution-2026-09-26 on registered bulk storage.
+
+The owner's Assembly64 8.40 About screenshot advertises public FTP access. This is
+reference evidence only, not a credentials/rights grant or an implemented backend.
+FTP is plaintext and lacks the same AQL search/metadata contract; layout/provenance
+may differ. Never silently switch API failures to FTP. Future FTP support would need
+an explicit, separately qualified backend or manual/advanced design and security
+review. Alternate-access credentials are not embedded in Runtime or Menu.
+
 ## User-directed flow
 
 Search by plain title/name, optionally group, repository, category or year. The
