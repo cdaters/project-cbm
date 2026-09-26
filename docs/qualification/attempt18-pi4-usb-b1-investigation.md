@@ -1,5 +1,9 @@
 # Attempt18 Pi 4 USB browsing defect — read-only investigation
 
+**Later checkpoint:** the owner-driven live comparison is now complete. See the
+[confirmed cause and cleanup report](attempt18-pi4-usb-b1-confirmed.md). The pending
+and suspected statements below preserve the original investigation checkpoint.
+
 **B1: FAIL**, reported by the owner on September 25, 2026. Normal FILES Midnight
 Commander works; FILES → USB Drive → real partition → Mount Read-Only opens MC but
 arrows echo escape characters, Tab/function keys fail, and Ctrl+C returns to Main

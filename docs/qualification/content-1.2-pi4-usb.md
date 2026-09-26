@@ -6,6 +6,9 @@ USB MC keyboard navigation fails while ordinary FILES MC works. See the
 Stop B1 for evidence collection; do not repair the qualification image in place.
 The procedure below is retained as the original test expectation.
 
+Live follow-up confirms the [terminal ownership cause and Ctrl+C mount release](attempt18-pi4-usb-b1-confirmed.md).
+No repair or B1 PASS is claimed; a corrected source set requires a new private image.
+
 **NON-RELEASE. Physical results: UNTESTED.** Do not flash until the
 [candidate record](../build/private-1.2-development.md) supplies a completed image,
 exact raw/XZ hashes, validation and verified recovery. Source tests alone are not an

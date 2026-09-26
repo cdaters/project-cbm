@@ -1,3 +1,37 @@
+# Attempt18 B1 cause confirmed; screenshot feasibility — 2026-09-25
+
+Read-only live normal/USB/Ctrl+C comparison confirms the
+[sudo/FIFO terminal ownership defect](docs/qualification/attempt18-pi4-usb-b1-confirmed.md).
+Normal MC owns tty1's foreground group. USB MC runs behind sudo's inner PTY in a
+different group from its foreground owner while physical tty1 remains canonical
+and echoing. After owner Ctrl+C, the browse lease/mount is released and Main Menu
+returns. **B1 remains FAIL.** Earlier pending statements below are historical.
+Proposed fix: caller-side unprivileged MC, broker-held read-only mount lease; no
+use_pty/security weakening. No runtime source fix or live image patch was made.
+
+[Screenshot study](docs/design/screenshot-feasibility-2026-09-25.md): SSH read-only
+fbdev capture works for Menu/MC; owner confirmed the MC PNG matches HDMI. VICE uses
+card1 vc4-drm, a separate linear AR24 framebuffer, and owns DRM master. The ordinary
+video/render user gets handle0; fbdev instead captures black. After owner-provided
+administrative authentication, read-only KMS export captured Menu and VICE/BASIC
+without taking DRM master from VICE. Menu matches the prior PNG byte-for-byte;
+owner confirms VICE capture matches HDMI and F10 return works. Recommend a small reviewed KMS
+component, not full FFmpeg. Cover/gameplay timing remain untested; privilege/package
+review and implementation tests are next. No package/helper or Pi file was installed.
+
+Next engineering work: implement/test the confirmed MC ownership correction through
+the actual installed Menu/FIFO/sudo path, then build a distinct private candidate
+and repeat owner-controlled Pi4 qualification. Current task was investigation only;
+attempt18 stays intact. Screenshot support is conditional for1.2, not a proven
+feature or a prerequisite for the USB fix. All stable1.1.0 artifacts/tags unchanged.
+
+New private evidence: `qualification/attempt18-pi4-usb-browse-live-2026-09-25`,
+`qualification/screenshot-feasibility-2026-09-25` and additive
+`qualification/screenshot-kms-proof-2026-09-25`. Additive recovery:
+`archive/attempt18-tty-screenshot-2026-09-25`; manifests and verified offline
+restore/ref/peeled-tag/fsck report are completion authority. Independent custody
+outstanding. Menu, builder, sealed prior evidence, `.qwen/` and `memory/` untouched.
+
 # Attempt18 Pi 4 physical B1 FAIL — read-only investigation, 2026-09-25
 
 Owner reports normal FILES MC works but USB read-only MC echoes arrow escapes,
