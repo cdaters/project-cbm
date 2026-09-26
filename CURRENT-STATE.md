@@ -1,3 +1,29 @@
+# Private dev3 / attempt20 preparation — 2026-09-26 UTC
+
+The owner requested a distinct NON-RELEASE candidate combining the guided-import
+friendly-label fix and the separately scoped screenshot feature. Menu source fix
+f9c4607d884a5573a943a9e1c1dd01832ca6dece is independently versioned as
+1.2.0_dev2 at 53e5409. Screenshot implementation is Product033bfd1, Runtime
+1.2.0~dev3-1 plus separate GPL-2.0-only project-cbm-kms-capture1.0.0~dev1-1.
+The intended Product identity is 1.2.0-dev.3 / private-engineering-1.2-dev3,
+next distinct attempt20. Final package, freeze, image and recovery gates are pending.
+No new image is ready and no new physical pass is claimed at this checkpoint.
+
+Source trial Product324/324 and Menu109/109 pass natively. Installed overlay trial
+passes11 USB terminal and12 screenshot privilege/output cases. Actual DRM scanout
+is represented by bounded test fixtures; the real headless helper correctly fails
+without a display. Earlier physical feasibility is separate evidence, not qualification
+of the new helper. [Security/UX](docs/runtime/screenshot.md),
+[physical procedure](docs/qualification/screenshot-private-pi4-procedure.md).
+External working evidence: qualification/screenshot-dev3-implementation (host) and
+qualification/screenshot-dev3 (guest). Initial missing-Git-context test errors were
+retained and resolved by supplying exact repository bundles, not weakening tests.
+
+Attempt18/19 and stable1.1.0 are immutable and unchanged. No live-Pi changes,
+Online Library activation, BIN allowlist change, publication or release work.
+Unknown untracked .qwen/ and memory/ are preserved; export uses a separate clean
+checkout of the exact committed source, excluding those unrelated files.
+
 # Attempt19 guided Import observations; Menu ID presentation fix — 2026-09-25
 
 **PRIVATE NON-RELEASE; partial physical qualification, presentation defect retained.**

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "image_name": "project-cbm-1.2.0-dev.2",
+  "image_name": "project-cbm-1.2.0-dev.3",
   "image_date": "2026-09-26",
   "release": "trixie",
   "architecture": "arm64",
