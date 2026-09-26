@@ -105,6 +105,14 @@ class Backend(unittest.TestCase):
         for kind,body in [('text/html',raw),('application/octet-stream',b'<html>'),('application/octet-stream',raw+b'x')]:
             with self.assertRaises(o.OnlineError):o.payload(kind,body,item)
 
+    def test_multipart_binary_octets_are_preserved(self):
+        raw=bytes(range(256))*8
+        item=Item('0','original.prg',len(raw),'fixture')
+        body=b'--B\r\nContent-Type: application/octet-stream\r\n\r\n'+raw+b'\r\n--B--\r\n'
+        self.assertEqual(o.payload('multipart/mixed; boundary="B"',body,item),raw)
+        many=(b'--B\r\nContent-Type: application/octet-stream\r\n\r\nx\r\n'*10000)+b'--B--\r\n'
+        with self.assertRaisesRegex(o.OnlineError,'unexpected_parts'):o.payload('multipart/mixed; boundary=B',many,item)
+
     def test_payload_format_plausibility(self):
         with self.assertRaisesRegex(o.OnlineError,'invalid_payload'):
             o.payload('application/octet-stream',b'bad sid!',Item('1','a.sid',8,'fixture'))

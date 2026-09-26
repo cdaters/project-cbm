@@ -12,6 +12,7 @@ import re
 import select
 import signal
 import struct
+import subprocess
 import time
 
 assert os.geteuid()==0 and Path('/run/cbm-disposable-usb-test').is_file()
@@ -87,6 +88,16 @@ class Console:
         except ChildProcessError:pass
 
 import termios
+policy=Path('/etc/project-cbm/configuration-policy.json');original_policy=policy.read_bytes()
+try:
+    value=json.loads(original_policy);value['system_ready']=False;policy.write_text(json.dumps(value))
+    denied=subprocess.run(['/usr/sbin/runuser','-u','pcbm','--','/usr/bin/pcbm-online-session'],input=b'',capture_output=True,timeout=5)
+    assert denied.returncode==1 and json.loads(denied.stdout)['error']=='setup'
+    wrong_user=subprocess.run(['/usr/bin/pcbm-online-session'],input=b'',capture_output=True,timeout=5)
+    assert wrong_user.returncode==1 and json.loads(wrong_user.stdout)['error']=='setup'
+    results.append('installed readiness and runtime-account gates deny without networking')
+finally:policy.write_bytes(original_policy)
+
 try:
     entry.write_text(original.decode().replace('from project_cbm.online_session import main',fixture+'\nfrom project_cbm.online_session import main'))
     c=Console()
