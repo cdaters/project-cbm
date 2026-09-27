@@ -1,3 +1,5 @@
+> Subsequent Guided Import reconfirmation: [PASS addendum](../qualification/attempt25-guided-import-2026-09-27.md). No focused functional physical checks remain. Separate FILES/USB opaque-tag presentation finding remains open. Earlier dated status below is retained.
+
 > Later physical status (2026-09-27 UTC): [owner results and reviewed screenshots](../qualification/attempt25-physical-results-2026-09-27.md). Reported focused cases PASS; guided Import reconfirmation pending; separate FILES/USB opaque-tag presentation finding open. Original build-time status and procedure below are retained.
 
 # Private dev6 / attempt25: direct boot and Online Library retest

@@ -1,3 +1,20 @@
+# Attempt25 Guided Import reconfirmed PASS — 2026-09-27 UTC
+
+[Guided Import addendum](docs/qualification/attempt25-guided-import-2026-09-27.md)
+closes the last focused functional physical check: owner Back/Parent PASS, hidden
+opaque IDs and readable sizes. Twelve additional PNGs copied/hash-verified/viewed;
+three D64 files selected, 512.2 KB reviewed, saved3 and USB released shown.
+Live installed build identity still matches attempt25 / PRIVATE NON-RELEASE dev6.
+
+No focused functional physical checks remain. FILES → USB partition-picker opaque
+ID presentation FAIL remains separately open; no all-PASS/release claim. Next is
+private engineering review of that recorded finding; no further physical repetition
+or in-place attempt25 change in this update. Earlier fault-injection/timing/hardware
+limits remain. Evidence qualification/attempt25-guided-import-2026-09-27; additive
+recovery archive/attempt25-guided-import-2026-09-27. No live patch/publication;
+prior images/seals unchanged, independent encrypted custody outstanding.
+Unknown .qwen/ and memory/ remain untouched. Earlier entries below are historical.
+
 # Attempt25 owner physical results reviewed — 2026-09-27 UTC
 
 **PRIVATE NON-RELEASE 1.2.0-dev.6.** [Exact-hash physical matrix and evidence](docs/qualification/attempt25-physical-results-2026-09-27.md).

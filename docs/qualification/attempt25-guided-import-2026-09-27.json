@@ -1,0 +1,151 @@
+{
+  "format": "project-cbm.physical-qualification-addendum",
+  "attempt": 25,
+  "product": "1.2.0-dev.6",
+  "private_non_release": true,
+  "build_id": "52f551e722aeb6edcee31f87ccdbc376c0ef1407dcf8c63e733d482ea765ab1a",
+  "artifacts": {
+    "raw": {
+      "path": "artifacts/private-1.2-dev6-attempt-25/2026-09-27-project-cbm-1.2.0-dev.6-lite-private-1.2-dev6.img",
+      "size_bytes": 3095396352,
+      "sha256": "adc26fff5355d587547a72dcba737baab7f931d3d66ac646588151c91bb86d49"
+    },
+    "xz": {
+      "path": "artifacts/private-1.2-dev6-attempt-25/image_2026-09-27-project-cbm-1.2.0-dev.6-lite-private-1.2-dev6.img.xz",
+      "size_bytes": 599632072,
+      "sha256": "77d61462479d26593d60dbce04b1e483365e371103d53664205b97f04f17d671"
+    }
+  },
+  "hardware": "Raspberry Pi 4 Model B Rev 1.4",
+  "evidence_root": "qualification/attempt25-guided-import-2026-09-27",
+  "screenshots": [
+    {
+      "name": "pcbm-20260927T044202Z.png",
+      "size_bytes": 35976,
+      "sha256": "76c834bfb71f79be6402c915efef77518198aa06865cc9ff37a3374d6d8d3b85",
+      "description": "Content Import entry",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044223Z.png",
+      "size_bytes": 35103,
+      "sha256": "a455034b0bf75dc1c55bef12ee957fcbdb3d97e52e6444d5635c9e2331c5b4ed",
+      "description": "Friendly USB partition label",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044238Z.png",
+      "size_bytes": 36367,
+      "sha256": "6665c90ab622d768d1ba49eee11addf3ab16da5172c4b502967303c5fe9c6542",
+      "description": "Source root",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044254Z.png",
+      "size_bytes": 36976,
+      "sha256": "25b972ee04ccd4f6ca5cfc89bf0ca8f887782b3927a6fb2fdbc784552ed0fa07",
+      "description": "Source c64 with friendly folders and Parent folder",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044307Z.png",
+      "size_bytes": 36831,
+      "sha256": "bab600e0f6d14cc375d87d038e85ad1f9ff1a64c9d36798fa3726c77f4862770",
+      "description": "Nested games folder",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044321Z.png",
+      "size_bytes": 36668,
+      "sha256": "5d069c8a9a1727c03a121c2c4fa845b12b6ba523c4192420d0557fadd0eed0b0",
+      "description": "Selected game folder with Scan and Parent folder",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044343Z.png",
+      "size_bytes": 38952,
+      "sha256": "77c366e2d59c748a380c8ebc0862ee44ac665ff8073b87cfb8df37bbade0b33f",
+      "description": "Preview: three supported D64 files, none selected",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044356Z.png",
+      "size_bytes": 39304,
+      "sha256": "47b9718b6c8bcb09c99dc181c448687038908539ce52339e1f37053de6d0aed7",
+      "description": "All three supported files selected",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044448Z.png",
+      "size_bytes": 36470,
+      "sha256": "69f6cd1b732bb90ebd1eb4fd384ef4aa62324614e3b1d9d23817acbdd0d6312b",
+      "description": "Explicit destination category choice",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044523Z.png",
+      "size_bytes": 38488,
+      "sha256": "f167a0ae2ee91289ec61fe594d42125a223e7d735758d7fb8fd1af23ebd7fc2a",
+      "description": "Explicit Commodore 64 machine choice",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044536Z.png",
+      "size_bytes": 37980,
+      "sha256": "144a526a6692c7bed5726a317759fd79df09b697c07db4eb2e65eead6e971da8",
+      "description": "Review: three files, 512.2 KB, games/c64 destination",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "name": "pcbm-20260927T044557Z.png",
+      "size_bytes": 34103,
+      "sha256": "d2c6695105e62ba5116b1999049735d31c965c58cd7e0f8aa46f74aa5b02bb6e",
+      "description": "Result: saved three, already present zero, not completed zero; USB released safe to remove",
+      "visually_reviewed": true,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "owner_report": {
+    "back": "PASS",
+    "parent_folder_selection": "PASS",
+    "opaque_ids": "No opaque IDs present",
+    "sizes": "Sizes are human readable"
+  },
+  "results": {
+    "guided_import_parent_back_sizes_hidden_ids": "PASS",
+    "select_all_review_import_normal_release": "PASS (retained UI sequence reports three saved and USB released)",
+    "guided_import_screen_capture": "PASS (readable retained captures)",
+    "remaining_focused_functional_checks": [],
+    "files_usb_partition_picker_presentation": "FAIL remains open; separate workflow"
+  },
+  "limits": [
+    "Screenshots do not independently prove saved file bytes or physical key events",
+    "No duplicate-import/fault-injection/other-hardware qualification added",
+    "No numeric latency or HDMI comparison beyond supplied owner observations",
+    "No live patch or new candidate; no release claim"
+  ],
+  "recovery_checkpoint": "archive/attempt25-guided-import-2026-09-27"
+}

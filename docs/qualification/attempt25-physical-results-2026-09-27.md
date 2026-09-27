@@ -1,3 +1,5 @@
+> Subsequent Guided Import reconfirmation: [PASS addendum](attempt25-guided-import-2026-09-27.md). No focused functional physical checks remain. Separate FILES/USB opaque-tag presentation finding remains open. Earlier dated status below is retained.
+
 # Attempt25 physical results and screenshot review — 2026-09-27 UTC
 
 PRIVATE NON-RELEASE Project CBM **1.2.0-dev.6**, attempt25, Raspberry Pi 4 Model B
