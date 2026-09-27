@@ -21,7 +21,44 @@ expanded, user-configured card.
 | Mixed PRG/BIN guided preview | PASS for exclusion/presentation | First supplied capture offers one PRG, with three unsupported entries and four ignored metadata entries/folders. Friendly name appears without an opaque tag. No import/save operation is established by this screenshot. |
 | Unsupported-only guided preview | PASS for empty-list explanation | Second capture shows zero supported files, four unsupported entries and the FILES > USB Drive alternative. No Select All is offered. |
 | Boot directly to current default machine | FAIL | Saved preference is emulator, default x64sc. Owner reports initial artwork followed by blank HDMI; retained capture is black with a small console cursor. VICE runs using SDL offscreen. |
-| Post-failure F10/return, new-image moving gameplay capture, remaining procedure cases | UNTESTED by this report | No additional interaction or physical result was requested or inferred during this read-only collection. |
+| Return after external VICE TERM | FAIL for physical keyboard responsiveness, owner reported | Visible Main Menu returned, but physical keyboard interaction did not. Foreground ownership appeared correct. See the subsequent chronology below. |
+| Owner recovery by forcing Unicode keyboard mode | PASS for recovery only, owner reported | Physical keyboard became responsive immediately. An intervening diagnostic command had changed keyboard mode; the original pre-command mode is unknown. This does not qualify automatic cleanup. |
+| Normal F10/return from direct boot, new-image moving gameplay capture, remaining procedure cases | UNTESTED by this report | External TERM and manual recovery do not establish a normal F10 lifecycle PASS. |
+
+## Subsequent owner-reported keyboard failure and recovery
+
+This chronology was supplied after the read-only collection described below. It is
+owner-reported physical evidence, not a new agent inspection or a change to the
+retained pre-termination diagnostic snapshots. It remains bound to the same
+attempt24 image identity and hardware.
+
+1. Direct boot showed blank HDMI while x64sc continued running invisibly.
+2. From SSH, the owner ran `pkill -TERM -x x64sc`, terminating only VICE. The
+   visible Project CBM Main Menu returned, but the physical keyboard remained
+   non-responsive. Thus visible redraw alone did not restore a usable console.
+3. Read-only process inspection showed tty1 active, the boot/session/Menu/dialog
+   chain present, dialog in tty1's foreground process group, and VICE/SDL processes
+   gone. Foreground ownership appeared correct; this does not establish keyboard
+   mode or complete console-state correctness.
+4. During subsequent diagnosis, ChatGPT mistakenly instructed the owner to run
+   `sudo kbd_mode -s < /dev/tty1`. This **sets raw/scancode mode**; it is not a
+   read-only query. The keyboard was already unresponsive before this command,
+   but its exact kernel keyboard mode had not been measured at that point.
+5. A later query showed raw/scancode mode. The owner then ran
+   `sudo kbd_mode -u -f < /dev/tty1`. Immediately after forcing Unicode keyboard
+   mode, the physical keyboard worked and the visible Main Menu was navigable.
+
+These commands are retained as historical actions, not instructions to repeat on
+the qualification Pi. The diagnostic `-s` command altered the evidence: the later
+raw/scancode observation **cannot prove direct boot originally left tty1 in that
+mode**. The pre-command keyboard failure is established; its exact keyboard-mode
+cause remains unknown. Unicode recovery establishes restored usability after the
+intervening mode change, not that this mode change was the original defect.
+
+The display-release/launch-order defect remains independently supported by the
+earlier logs. Automatic post-TERM physical keyboard restoration failed according
+to the owner; normal direct-boot F10/exit remains unqualified. The Pi is now
+recovered and responsive. No source/package patch was applied by this update.
 
 ## Direct-boot root cause
 
@@ -78,9 +115,28 @@ then normal Menu return on exit/failure. Native tests cannot establish HDMI outp
 a fresh immutable candidate needs Pi 4 direct-boot KMS/visible BASIC or gameplay,
 F10/return and ordinary Menu-start regression qualification.
 
+The additional keyboard evidence extends this requirement to the complete sequence:
+boot artwork release/reap -> machine Cover -> visible VICE -> normal F10/Quit/exit
+-> tty1 restoration -> correct kernel keyboard and console modes -> physically
+responsive Main Menu. Assert foreground ownership, termios, kernel keyboard mode,
+console display mode and VT mode against the valid captured console baseline;
+foreground ownership or a successful Menu redraw alone is insufficient. Measure
+modes with read-only queries before any recovery action, and keep state-changing
+recovery separate from diagnostic evidence.
+
+Exercise external TERM of VICE, abnormal child exit, failed/offscreen initialization,
+Cover/renderer failure and bounded timeout paths as well as normal exit. Verify
+cleanup ordering, reaping, no late boot-artwork restoration racing the next screen,
+and usable display/keyboard after each failure. Mocked mode assertions and native
+PTY tests cannot prove physical kernel keyboard/VT behavior: qualify the complete
+lifecycle on Pi 4 in a fresh candidate. Do not repair attempt24 in place or use
+blanket keyboard-mode forcing as a substitute for correcting lifecycle ownership.
+
 This investigation changes documentation only. No source correction, package,
-new candidate or repaired-boot PASS is claimed. The live Pi was not patched,
-reconfigured, rebooted, signaled or remounted; no sudo was needed.
+new candidate or repaired-boot PASS is claimed. During the original agent read-only
+inspection, the live Pi was not patched, reconfigured, rebooted, signaled or
+remounted; no sudo was needed. The subsequent owner termination and keyboard-mode
+changes are recorded separately above and must not be described as read-only.
 
 ## BIN and ROM distinction
 
@@ -113,3 +169,9 @@ not an exit/cleanup record. Private filenames remain outside Git.
 Additive recovery belongs under `archive/attempt24-owner-review-2026-09-27`;
 the sealed factory checkpoint and all earlier attempts stay untouched. TheBench
 remains same-volume custody, not independent encrypted backup.
+
+The later owner chronology is retained separately under
+`qualification/attempt24-keyboard-addendum-2026-09-27`, with additive recovery under
+`archive/attempt24-keyboard-addendum-2026-09-27`. It does not modify the sealed
+original collection or its manifest. No new raw process output or pre-command
+keyboard-mode measurement accompanied this owner report.

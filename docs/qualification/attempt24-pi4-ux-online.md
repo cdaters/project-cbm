@@ -8,6 +8,14 @@ and direct-default-machine boot **FAIL** (VICE selects offscreen before boot art
 release). Preserve this image. Other cases below remain UNTESTED unless separately
 recorded; the download report does not establish the whole save/lifecycle matrix.
 
+Subsequent owner evidence: external TERM of invisible VICE restored visible Menu
+but not physical keyboard responsiveness, despite apparently correct foreground
+ownership. A later mistaken `kbd_mode -s` diagnostic changed the mode; only after
+that was raw/scancode mode measured. Forcing Unicode mode restored usability.
+See the linked chronology: original keyboard mode is UNKNOWN, automatic post-TERM
+keyboard cleanup is FAIL, manual recovery is PASS, and normal direct-boot F10/exit
+remains UNTESTED. Do not reproduce or repair this on attempt24.
+
 Raw SHA-256 `754b34e4ab1abd0af65d97956546f295036a4a418b15c20d7f3dd0f14fd1ba7c` (3,095,396,352 bytes).
 XZ SHA-256 `efb7f642b91160b2143abd7f958509f2ffc2f8d618667ba697a4c1f01955f051` (598,643,500 bytes).
 Lock `ee0308da672c783cf3142e7a581b80344e42cc3605f227b7d8f18cb50dd62819`.
@@ -76,7 +84,12 @@ qualify changed behavior here.
    Check persistence after reboot and ordinary shutdown. Direct boot to the current
    default machine is now a separate known FAIL: stop that case on attempt24 and
    retain evidence; a corrected candidate must demonstrate visible VICE and normal
-   F10/Menu return after the boot-artwork handoff. Disconnecting Internet
+   F10/Menu return after the boot-artwork handoff. On the corrected candidate,
+   verify the entire boot artwork -> Cover -> visible VICE -> F10/Quit/exit ->
+   restored tty1 kernel keyboard/console modes -> responsive physical Menu sequence.
+   Include bounded external-TERM and failed/abnormal-launch cleanup tests, recording
+   read-only mode observations before any recovery. A foreground dialog and visible
+   redraw are not sufficient for PASS. Disconnecting Internet
    should produce a concise network error with Back/Retry; restore connectivity
    using normal controls, not modifications to the image.
 8. **Capture coverage.** Capture Main Menu, text console, ordinary MC, guided Import,

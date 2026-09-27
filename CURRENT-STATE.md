@@ -1,3 +1,25 @@
+# Attempt24 keyboard recovery chronology added — 2026-09-27 UTC
+
+[Canonical owner report](docs/qualification/attempt24-owner-review-2026-09-27.md)
+now records the subsequent external TERM of invisible x64sc: visible Main Menu
+returned, but physical keyboard interaction remained FAIL despite apparently correct
+tty1/dialog foreground ownership and no remaining VICE/SDL processes.
+
+During later diagnosis, ChatGPT mistakenly instructed `kbd_mode -s`, which SET raw/
+scancode mode. The earlier unresponsive keyboard's exact kernel mode was not measured.
+Do not attribute the later raw-mode observation to the original direct-boot defect.
+Owner forcing Unicode mode subsequently restored keyboard/Menu usability: recovery
+PASS only, not automatic cleanup or normal F10 PASS. Pi now recovered; no patch.
+
+Next correction must cover complete boot-artwork/Cover/visible-VICE/normal-exit/
+tty1 keyboard-and-console restoration/responsive-Menu lifecycle, plus external TERM
+and failed/abnormal launch cleanup. Record modes read-only before recovery. Existing
+display-order root cause stands; pre-diagnostic keyboard-mode cause remains unknown.
+No runtime edits/build, Pi connection or state-changing action in this documentation
+update. Additive evidence/recovery: qualification/attempt24-keyboard-addendum-2026-09-27
+and archive/attempt24-keyboard-addendum-2026-09-27 in ProjectCBM-Work. Attempt24 factory
+artifacts, earlier evidence/checkpoints and stable releases remain unchanged.
+
 # Attempt24 physical download PASS; direct boot FAIL — 2026-09-27 UTC
 
 [Read-only owner review and root cause](docs/qualification/attempt24-owner-review-2026-09-27.md).
