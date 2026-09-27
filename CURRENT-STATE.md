@@ -1,3 +1,20 @@
+# Project CBM 1.2.0 published — 2026-09-27
+
+**COMPLETE.** Owner attempt26 F1–F5 PASS recorded; exact image promoted without
+rebuild/patch. Both repository 1.2 branches/tags pushed; default branches show1.2.
+[Publication record](docs/build/published-1.2.0.md),
+[public release](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0).
+All21 public assets downloaded/hash-verified; public XZ equals qualified raw.
+Both GitHub tag source downloads match frozen sources. Stable1.1 release assets,
+refs and historical evidence preserved. No live Pi mutation or new build.
+
+User docs cover Assembly64, both USB flows, screenshots, startup and backup/reimage
+upgrades. Runtime1.2.0-1/Menu1.2.0-1+pcbm1/KMS1.0.0-1, unchanged VICE/TCPser.
+Recovery archive/published-1.2.0-2026-09-27 and earlier complete attempt26 kit retained.
+Independent encrypted custody remains outstanding; builder remains stopped.
+Unknown .qwen/ and memory/ excluded/preserved. Next: await owner direction; do not
+start another feature. Earlier preparation and pre-test entries remain historical.
+
 # Attempt26 owner PASS / 1.2.0 publication — 2026-09-27
 
 Owner reports all five exact-attempt26 physical cases PASS and explicitly authorizes
