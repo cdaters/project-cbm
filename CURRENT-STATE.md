@@ -1,3 +1,24 @@
+# Attempt24 physical download PASS; direct boot FAIL — 2026-09-27 UTC
+
+[Read-only owner review and root cause](docs/qualification/attempt24-owner-review-2026-09-27.md).
+Installed Pi 4 B identity matches attempt24/dev5 and its exact lock/packages.
+Owner reports successful Assembly64 content downloads: bounded physical PASS.
+Two guided Import captures confirm friendly labels and intentional BIN exclusion;
+they do not show BIN support or establish an import/save result.
+
+Direct boot to default x64sc FAIL: console-session skips the existing boot-artwork
+release handshake. Machine Cover and VICE initialize with SDL offscreen while
+primary boot artwork still owns KMS, then artwork release leaves blank HDMI.
+Retained traces/logs establish this ordering; VICE remains running foreground on tty1.
+Next source correction: handoff/ack before direct launch, actual-branch regression,
+then distinct immutable candidate and Pi qualification. No runtime source/package
+changed in this investigation; no Pi patch/reboot/remount or new image.
+
+Evidence: qualification/attempt24-owner-review-2026-09-27 in ProjectCBM-Work;
+additive recovery: archive/attempt24-owner-review-2026-09-27. Prior artifacts and
+sealed checkpoints remain unchanged; no release/publication. Other physical cases
+remain UNTESTED unless explicitly recorded. Unknown .qwen/memory remain untouched.
+
 # Private dev5 / attempt24 complete — 2026-09-26
 
 **PRIVATE NON-RELEASE Project CBM1.2.0-dev.5. STOP for owner Pi4 testing.**

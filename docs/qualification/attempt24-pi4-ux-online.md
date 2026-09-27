@@ -1,6 +1,12 @@
 # Attempt24: Pi 4 UX, Online Library and attribution qualification
 
-**PRIVATE NON-RELEASE 1.2.0-dev.5 / attempt24. All new physical cases UNTESTED.**
+**PRIVATE NON-RELEASE 1.2.0-dev.5 / attempt24.**
+
+2026-09-27 update: [owner results and read-only diagnosis](attempt24-owner-review-2026-09-27.md)
+record successful Assembly64 downloads, supported/unsupported guided-preview evidence,
+and direct-default-machine boot **FAIL** (VICE selects offscreen before boot artwork
+release). Preserve this image. Other cases below remain UNTESTED unless separately
+recorded; the download report does not establish the whole save/lifecycle matrix.
 
 Raw SHA-256 `754b34e4ab1abd0af65d97956546f295036a4a418b15c20d7f3dd0f14fd1ba7c` (3,095,396,352 bytes).
 XZ SHA-256 `efb7f642b91160b2143abd7f958509f2ffc2f8d618667ba697a4c1f01955f051` (598,643,500 bytes).
@@ -67,7 +73,10 @@ qualify changed behavior here.
 7. **Offline and lifecycle.** Saved content appears in Browse Library and remains
    available offline. Launch the copied/downloaded C64 demo through the existing
    launcher, verify display/audio, F10 and responsive Menu. Save & Run is not included.
-   Check persistence after reboot and ordinary shutdown. Disconnecting Internet
+   Check persistence after reboot and ordinary shutdown. Direct boot to the current
+   default machine is now a separate known FAIL: stop that case on attempt24 and
+   retain evidence; a corrected candidate must demonstrate visible VICE and normal
+   F10/Menu return after the boot-artwork handoff. Disconnecting Internet
    should produce a concise network error with Back/Retry; restore connectivity
    using normal controls, not modifications to the image.
 8. **Capture coverage.** Capture Main Menu, text console, ordinary MC, guided Import,
