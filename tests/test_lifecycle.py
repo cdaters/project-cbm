@@ -14,6 +14,37 @@ from test_poc2 import eng
 
 
 class Lifecycle(unittest.TestCase):
+    def test_child_exit_and_term_restore_keyboard_display_vt_and_termios(self):
+        # A PTY has no kernel keyboard/VT. Model those ioctl values explicitly,
+        # while exercising real child exit/TERM, termios, reaping and cleanup.
+        master,slave=pty.openpty();self.addCleanup(os.close,master);self.addCleanup(os.close,slave)
+        baseline=termios.tcgetattr(slave)
+        for ending,expected in [('raise SystemExit(0)',0),('raise SystemExit(9)',9),
+                ('import signal;os.kill(os.getpid(),signal.SIGTERM)',143)]:
+            mode={'keyboard':3,'display':0,'vt_mode':b'\0'*8}
+            def ioctl(fd,op,value,*rest):
+                if op==0x4B44:value[0]=mode['keyboard']
+                elif op==0x4B3B:value[0]=mode['display']
+                elif op==0x5601:value[:]=mode['vt_mode']
+                elif op==0x4B45:mode['keyboard']=value
+                elif op==0x4B3A:mode['display']=value
+                elif op==0x5602:mode['vt_mode']=value
+                return 0
+            original=eng.subprocess.Popen
+            def launch(*args,**kwargs):
+                mode.update(keyboard=0,display=1)
+                return original(*args,**kwargs)
+            code='import os,termios;t=termios.tcgetattr(0);t[3]&=~(termios.ECHO|termios.ICANON);termios.tcsetattr(0,termios.TCSANOW,t);'+ending
+            with self.subTest(ending=ending),tempfile.TemporaryDirectory() as tmp,patch.object(eng.fcntl,'ioctl',side_effect=ioctl),patch.object(eng.subprocess,'Popen',side_effect=launch),patch.object(eng,'snapshot',return_value={}):
+                self.assertEqual(eng.run_launch([sys.executable,'-c',code],'x64sc',Path(tmp),audio=None,stdin=slave),expected)
+                d=next(Path(tmp).glob('launch-*'));report=json.loads((d/'cleanup.json').read_text())
+                self.assertTrue(report['verified']);self.assertEqual(mode,{'keyboard':3,'display':0,'vt_mode':b'\0'*8})
+                pid=json.loads((d/'record.json').read_text())['vice_pid']
+                with self.assertRaises(ChildProcessError):os.waitpid(pid,os.WNOHANG)
+                current=termios.tcgetattr(slave);current[3]&=~getattr(termios,'PENDIN',0)
+                saved=list(baseline);saved[3]&=~getattr(termios,'PENDIN',0)
+                self.assertEqual(current,saved)
+
     def test_keyboard_baseline_is_saved_before_cover_not_after(self):
         master,slave=pty.openpty();self.addCleanup(os.close,master);self.addCleanup(os.close,slave)
         mode=[3];writes=[]

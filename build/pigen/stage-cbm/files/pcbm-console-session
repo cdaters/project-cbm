@@ -27,7 +27,12 @@ profile=$(/usr/bin/pcbm-start-profile) || profile=
 pcbm_boot_mark startup_choice_done
 export PCBM_SPLASH_SHOWN=1
 # At most one direct launch per login: exit/failure returns to Menu, never a loop.
-if [[ -n $profile ]]; then /usr/bin/pcbm-run-vice "$profile";fi
+if [[ -n $profile ]]; then
+  # The primary artwork must release KMS/input and be reaped before the shared
+  # launcher captures its console baseline or starts the machine Cover/VICE.
+  pcbm_boot_handoff || exit 2
+  /usr/bin/pcbm-run-vice "$profile"
+fi
 while true; do
   pcbm_boot_mark menu_exec
   /usr/bin/pcbm-menu

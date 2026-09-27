@@ -1,3 +1,21 @@
+# Attempt24 review complete; direct-boot correction in source — 2026-09-27 UTC
+
+Owner supplied additional search/metadata/download/save, guided Import navigation,
+FILES/USB and gameplay screenshot PASS observations. Eight exact Pi PNGs retained
+under qualification/attempt24-full-owner-review-2026-09-27 in ProjectCBM-Work.
+The two cited ROM previews and installed allowlist still exclude BIN; installed
+pcbm-roms is a compatibility notice, not a ROM-specific importer. No allowlist change.
+Filter/Server flash failure is owner-reported but not reproduced in current SSH
+PTY checks; Repository now works on owner HDMI retest. Preserve uncertainty.
+
+Source correction now waits for boot-artwork handoff before direct launch.
+Five actual prepared-branch PTY tests and 13 native lifecycle tests pass, including
+normal/error/TERM cleanup and modeled keyboard/console ioctl restoration. Real
+Pi KMS/keyboard qualification remains required; no live attempt24 patch.
+Next: complete Online UI error/persistence regression and a distinct dev6/attempt25
+freeze/build/validation. Builder capability and unchanged host inventory pass;
+no existing25 candidate found. Runtime/KMS reuse is subject to strict input gates.
+
 # Attempt24 keyboard recovery chronology added — 2026-09-27 UTC
 
 [Canonical owner report](docs/qualification/attempt24-owner-review-2026-09-27.md)
