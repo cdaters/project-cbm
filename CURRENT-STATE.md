@@ -1,3 +1,25 @@
+# v1.2.0 screenshot documentation refresh — 2026-09-27
+
+README restores the two-row, linked 45% previews; the
+[Screenshot Gallery](docs/screenshots.md) now leads with all 16 owner-supplied
+v1.2.0 PNGs and retains the historical v1.0.0 gallery. Cover artwork and running
+VICE BASIC screens are distinguished. Both Content views are retained.
+
+Owner replaced the two exports flagged for visible network details with redacted
+versions; visual reinspection passed. All 16 repository copies match the supplied
+source bytes/SHA-256, decode at 1440×1080, and pass metadata/privacy review.
+123 affected-document relative links and the 606-check release-docs check passed;
+README content outside Screenshots and historical image references are unchanged.
+PNG total: 976,409 bytes. Validation manifest retained under external work root
+`validation/screenshots-v1.2.0-20260927/validation.json`.
+Browser preview was unavailable (no local Chromium/Chrome; in-app loopback preview
+timed out); source images were visually reviewed and layout/links checked statically.
+
+Documentation/images only, local commit only. Originals were read without changes;
+Menu, packages, release assets/tags, and historical evidence remain untouched.
+Unrelated `.qwen/` and `memory/` remain excluded and preserved. Next: owner review;
+no push or publication authorized for this update.
+
 # Project CBM 1.2.0 published — 2026-09-27
 
 **COMPLETE.** Owner attempt26 F1–F5 PASS recorded; exact image promoted without

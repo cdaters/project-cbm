@@ -46,7 +46,7 @@ the immutable 1.1.0 release tag.
 - [Final Pi 4 B qualification](qualification/final-1.1.0-pi4-owner-pass.json).
 - [Current engineering checkpoint](../CURRENT-STATE.md): later work and links to retained qualification/recovery records.
 - [Provenance](provenance.md) / [security history](security.md).
-- [Historical screenshots](screenshots.md) / [current capture checklist](release/screenshot-checklist.md).
+- [Screenshot Gallery — v1.2.0 and historical images](screenshots.md) / [current capture checklist](release/screenshot-checklist.md).
 - [Historical documentation audit](documentation/release-readiness.md) and [bootstrap audit](documentation/public-bootstrap.md).
 - [Historical 1.0 guide and corrections](v1.0-current-notes.md).
 

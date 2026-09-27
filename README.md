@@ -67,14 +67,21 @@ been tested.
 
 ## Screenshots
 
-These retained **1.0.0** images illustrate the project's appearance; they are not
-screenshots of 1.2.0. Menu labels and behavior have changed. No replacement screens
-have been fabricated.
+Project CBM v1.2.0. Click a preview to view the full-size image.
 
-<img src="screenshots/v1.0.0/02-main-menu.png" alt="Historical Project CBM 1.0.0 Main Menu" width="480">
-<img src="screenshots/v1.0.0/09-vice-c64-startup.png" alt="Historical C64 Cover artwork, not an emulator screenshot" width="320">
+<p align="center">
+  <a href="screenshots/v1.2.0/v1.2.0-02-main-menu.png"><img src="screenshots/v1.2.0/v1.2.0-02-main-menu.png" alt="Project CBM v1.2.0 Main Menu" width="45%"></a>
+  <a href="screenshots/v1.2.0/v1.2.0-03-machines.png"><img src="screenshots/v1.2.0/v1.2.0-03-machines.png" alt="Project CBM v1.2.0 Machines Menu" width="45%"></a>
+</p>
 
-[Historical gallery](docs/screenshots.md) · [Current screenshot capture checklist](docs/release/screenshot-checklist.md)
+<p align="center">
+  <a href="screenshots/v1.2.0/v1.2.0-04-content.png"><img src="screenshots/v1.2.0/v1.2.0-04-content.png" alt="Project CBM Content Menu with library, USB import and Online Library options" width="45%"></a>
+  <a href="screenshots/v1.2.0/v1.2.0-13-machine-c64.png"><img src="screenshots/v1.2.0/v1.2.0-13-machine-c64.png" alt="Commodore 64 BASIC screen in VICE" width="45%"></a>
+</p>
+
+See the full **[Screenshot Gallery](docs/screenshots.md)** with all 16 current images
+and the historical v1.0.0 gallery. For taking your own captures, see
+[Screenshots from SSH](docs/release/screenshots.md).
 
 ## Download
 
