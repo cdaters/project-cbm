@@ -1,3 +1,11 @@
+# Attempt26 owner PASS / 1.2.0 publication — 2026-09-27
+
+Owner reports all five exact-attempt26 physical cases PASS and explicitly authorizes
+immediate publication. [Retained result](docs/qualification/attempt26-pi4-owner-pass.md).
+The exact raw/XZ below are being promoted unchanged; no build or live Pi mutation.
+Public source/notices/assets audit and remote verification in progress. Prior
+pre-test entries remain historical. Unknown .qwen/ and memory/ remain excluded.
+
 # Final 1.2.0 candidate / attempt26 — 2026-09-27 UTC
 
 **Built/automated validation PASS. PRIVATE UNPUBLISHED; waiting for owner physical tests.**

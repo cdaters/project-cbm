@@ -1,4 +1,4 @@
-[![Project CBM 1.1.0](https://img.shields.io/badge/release-1.1.0-blue)](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) [![Platform: Raspberry Pi arm64](https://img.shields.io/badge/platform-Raspberry%20Pi%20arm64-C51A4A)](docs/release/getting-started.md#hardware) [![Code license: MIT](https://img.shields.io/badge/code%20license-MIT-orange)](LICENSE.md)
+[![Project CBM 1.2.0](https://img.shields.io/badge/release-1.2.0-blue)](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0) [![Platform: Raspberry Pi arm64](https://img.shields.io/badge/platform-Raspberry%20Pi%20arm64-C51A4A)](docs/release/getting-started.md#hardware) [![Code license: MIT](https://img.shields.io/badge/code%20license-MIT-orange)](LICENSE.md)
 
 <p align="center">
   <img src="assets/images/project-cbm-header.png" alt="Project CBM" width="100%">
@@ -17,9 +17,10 @@ Linux terminal and administrator access.
 
 ## Current Release
 
-**Project CBM 1.1.0 is released.** [Release page and notes](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
-The final image passed the Raspberry Pi 4 B smoke test, including an
-end-to-end CCGMS/TCPser BBS connection, reboot, and shutdown.
+**Project CBM 1.2.0 is released.** [Release page and notes](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0).
+The exact released image passed all five focused Raspberry Pi 4 B checks: USB
+browsing, Guided Import, RUN, direct boot and Assembly64. Earlier qualification
+records retain the broader lifecycle and screenshot testing.
 
 ## What's new in 1.2
 
@@ -38,9 +39,8 @@ and save them to your local library. Saved software stays available offline.
   with normal Cover presentation and F10/Quit return.
 - Clearer file sizes, Back/Parent navigation, duplicate handling and friendly labels.
 
-These features are implemented. **The final 1.2.0 image is being prepared for its
-focused Pi 4 test; it is not published yet.** [1.2 release notes](docs/release/release-notes-1.2.0.md).
-The download section below continues to identify the published 1.1.0 image.
+[Read the 1.2 release notes](docs/release/release-notes-1.2.0.md) or start with the
+[download and setup guide](docs/release/getting-started.md).
 
 **Powered by Assembly64** — [official website](https://assembly64.hackerswithstyle.se).
 Assembly64 is an independent external service, not owned by Project CBM. Optional
@@ -61,7 +61,7 @@ Assembly64 collection. Bring or download only software you are entitled to use.
 
 **Raspberry Pi 4 B is physically qualified for this release.** Pi 400, Pi 5 and
 Pi 500-class systems are targets requiring separate model qualification. Pi 3 and
-Zero-class hardware are outside the 1.1 target. See [hardware and setup requirements](docs/release/getting-started.md#hardware).
+Zero-class hardware are outside the 1.2 target. See [hardware and setup requirements](docs/release/getting-started.md#hardware).
 A supported machine profile is not a claim that every workload or peripheral has
 been tested.
 
@@ -78,17 +78,17 @@ have been fabricated.
 
 ## Download
 
-- [Project CBM 1.1.0 compressed image — project-cbm-1.1.0.img.xz](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0.img.xz)
-- [SHA256SUMS](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SHA256SUMS)
-- [All release assets, source archives, notices and inventory](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0)
+- [Project CBM 1.2.0 compressed image — project-cbm-1.2.0.img.xz](https://github.com/cdaters/project-cbm/releases/download/v1.2.0/project-cbm-1.2.0.img.xz)
+- [SHA256SUMS](https://github.com/cdaters/project-cbm/releases/download/v1.2.0/SHA256SUMS)
+- [All release assets, source archives, notices and inventory](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0)
 
 Verify the compressed image before flashing. Its SHA-256 is:
 
 ```text
-8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d
+b2b7836f752d4b5b3a9a7cd5116776dff8f19eceaf4ad155b9541cc2efb69b5d
 ```
 
-The download is 599,290,700 bytes and expands to a 3,095,396,352-byte image.
+The download is 599,119,848 bytes and expands to a 3,095,396,352-byte image.
 Allow additional space for setup, updates and your library. The raw image is not a
 public asset; extract the XZ only if your imaging tool needs it. GitHub's source
 ZIP/TAR files are not bootable images.
@@ -143,7 +143,7 @@ license for the image. See [software and rights](docs/release/software-component
 These preserve earlier audits and qualification evidence without replacing current
 user instructions.
 
-The immutable Product `v1.1.0` tag identifies the frozen binary-source snapshot.
+The immutable Product `v1.2.0` tag identifies the frozen binary-source snapshot.
 Later repository documentation records clarifications and engineering work;
-[publication identities](docs/build/published-1.1.0.json) and the release manifest
+[publication identities](docs/build/published-1.2.0.json) and the release manifest
 record the exact release source/documentation snapshots.

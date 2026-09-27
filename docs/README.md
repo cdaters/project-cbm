@@ -1,13 +1,13 @@
 # Project CBM 1.2 Documentation
 
-These guides describe 1.2.0. The final image is awaiting focused physical testing;
+These guides describe released 1.2.0, physically qualified on Raspberry Pi 4 B;
 [release availability](../README.md#current-release) is recorded separately. You do not
 need factory or recovery-engineering knowledge to use the image.
 
 ## Start Here
 
 - [Hardware and qualification](release/getting-started.md#hardware): Pi 4 B is physically qualified; other target models need separate qualification.
-- [Download Project CBM 1.1.0](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
+- [Download Project CBM 1.2.0](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0).
 - [Download and verify checksums](release/getting-started.md#download-and-check-the-image).
 - [Flash the image](release/getting-started.md#flash-the-card), then follow [first boot](release/getting-started.md#first-boot).
 - [End-User Manual](release/user-guide.md): keyboard navigation and everyday operation.

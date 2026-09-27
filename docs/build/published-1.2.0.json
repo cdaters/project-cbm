@@ -1,0 +1,11 @@
+{
+  "format": "project-cbm.publication-result",
+  "schema_version": 1,
+  "status": "QUALIFIED_PUBLICATION_IN_PROGRESS",
+  "version": "1.2.0",
+  "release_url": "https://github.com/cdaters/project-cbm/releases/tag/v1.2.0",
+  "raw_sha256": "2a5d192477eac37c819b267ca05b63d466186504c0b92230819208ad94c4f35a",
+  "xz_sha256": "b2b7836f752d4b5b3a9a7cd5116776dff8f19eceaf4ad155b9541cc2efb69b5d",
+  "physical": "Owner F1-F5 PASS, 2026-09-27",
+  "image_rebuilt": false
+}

@@ -9,7 +9,7 @@
 - Start at Menu or directly in the current RUN machine; return with F10/Quit.
 - Clearer sizes, friendly labels and predictable Back/Parent navigation.
 
-The final 1.2 image still requires its focused physical regression before publication.
+The exact 1.2.0 image passed its focused Raspberry Pi 4 B physical regression.
 See [release notes](../release/release-notes-1.2.0.md) and [current state](../../CURRENT-STATE.md).
 
 ## Later work

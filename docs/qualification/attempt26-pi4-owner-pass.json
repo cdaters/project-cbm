@@ -1,0 +1,44 @@
+{
+  "format": "project-cbm.release-qualification",
+  "version": "1.2.0",
+  "date_utc": "2026-09-27",
+  "hardware": "Raspberry Pi 4 B",
+  "basis": "Owner reports all five attempt26 focused cases PASS and authorizes publication of the exact image.",
+  "raw_sha256": "2a5d192477eac37c819b267ca05b63d466186504c0b92230819208ad94c4f35a",
+  "xz_sha256": "b2b7836f752d4b5b3a9a7cd5116776dff8f19eceaf4ad155b9541cc2efb69b5d",
+  "cases": {
+    "F1 USB friendly labels, read-only mount, MC navigation/copy/F10/safe unmount": "PASS",
+    "F2 Guided Import hidden IDs, Parent/Back/readable sizes": "PASS",
+    "F3 RUN/Cover/visible VICE/input/audio/F10/Menu": "PASS",
+    "F4 Direct boot artwork release/Cover/VICE/responsive return": "PASS",
+    "F5 Assembly64 search/filter/details/save or Already Present/Server Information": "PASS"
+  },
+  "automated": {
+    "native_product": {
+      "passed": 354,
+      "skipped": 0
+    },
+    "native_menu": {
+      "passed": 123,
+      "skipped": 0
+    },
+    "installed_usb_cases": 11,
+    "installed_screenshot_cases": 12,
+    "installed_online_cases": 8,
+    "kms_native_scenarios": "PASS",
+    "offline_image_checks": 376,
+    "boot_online_checks": 4,
+    "privacy_checks": 7,
+    "kms_security_checks": 11,
+    "installed_packages": 673,
+    "documentation_checks": 605,
+    "external_frozen_files": 3360,
+    "raw_xz": "PASS",
+    "gpl_packaged_source_offline_compile": "PASS"
+  },
+  "limits": [
+    "Owner aggregate report does not specify whether F5 used a new save or Already Present.",
+    "No new per-case screenshots or timing measurements supplied for attempt26.",
+    "Other hardware, multi-display capture and independent reproducibility not established."
+  ]
+}

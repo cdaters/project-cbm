@@ -49,7 +49,7 @@ The historical 1.1.0 [installed-packages.json](installed-packages.json) records 
 package/version/architecture records, package size metadata, source-inventory checksum
 and the raw image hash they were measured from. It was generated from actual-image
 validation output, not a proposed apt list. It includes no payloads or credentials.
-Use the separate inventory accompanying the 1.2.0 release for the new image.
+Use the [1.2.0 installed inventory](https://github.com/cdaters/project-cbm/releases/download/v1.2.0/installed-packages.json) for its 673 installed packages.
 This historical reference is not a claim about the new image.
 
 For a new build, the existing documentation-safe exporter accepts the validator's TSV:
