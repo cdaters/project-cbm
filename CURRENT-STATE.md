@@ -1,3 +1,22 @@
+# Distinct private dev6 / attempt25 preparation — 2026-09-27 UTC
+
+[Full attempt24 owner results](docs/qualification/attempt24-full-physical-results-2026-09-27.md)
+retain eight directly inspected PNGs, source/allowlist checks and bounded live
+Online read/PTY reproductions. Central search/metadata/download/save, guided UX,
+normal FILES/USB, game capture/no noticeable audio impact and About/back PASS in
+reported scope. Direct boot FAIL remains; original pre-recovery keyboard mode
+UNKNOWN. BIN exclusion confirmed by installed source and named screenshots.
+Filter/server flash trigger remains unconfirmed; current SSH and Repository HDMI
+retest work. Prior failure remains recorded, not silently promoted to PASS.
+
+Product direct-boot correction4bde3bb plus Menu5260d53/dev5 presentation hardening
+are separately attributable. Pending attempt25 Product1.2.0-dev.6 will strictly reuse
+unchanged Runtime1.2.0~dev4-1 and GPL capture1.0.0~dev2-1, and build Menu dev5.
+Focused native direct-boot5/lifecycle13/OnlineUI9 PASS. Full exact-source/native/
+installed package gates, freeze/build/image/recovery are next. Host capability and
+inventory unchanged; no existing25 frozen candidate. No live Pi patch or publication.
+[Pending retest procedure](docs/qualification/attempt25-pi4-directboot-online.md).
+
 # Attempt24 review complete; direct-boot correction in source — 2026-09-27 UTC
 
 Owner supplied additional search/metadata/download/save, guided Import navigation,

@@ -16,6 +16,11 @@ See the linked chronology: original keyboard mode is UNKNOWN, automatic post-TER
 keyboard cleanup is FAIL, manual recovery is PASS, and normal direct-boot F10/exit
 remains UNTESTED. Do not reproduce or repair this on attempt24.
 
+Additional [full physical results](attempt24-full-physical-results-2026-09-27.md) record
+Central search/metadata/download/save, guided Import UX, normal FILES/USB and game
+capture PASS in the owner-reported scope. Filter/server failures remain intermittent;
+Cover capture is UNTESTED, not FAIL.
+
 Raw SHA-256 `754b34e4ab1abd0af65d97956546f295036a4a418b15c20d7f3dd0f14fd1ba7c` (3,095,396,352 bytes).
 XZ SHA-256 `efb7f642b91160b2143abd7f958509f2ffc2f8d618667ba697a4c1f01955f051` (598,643,500 bytes).
 Lock `ee0308da672c783cf3142e7a581b80344e42cc3605f227b7d8f18cb50dd62819`.

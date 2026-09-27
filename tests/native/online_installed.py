@@ -21,14 +21,27 @@ curses.setupterm('linux');DOWN=curses.tigetstr('kcud1')
 results=[]
 fixture='''
 from project_cbm.online_backend import Transport
-import json
+import json,time
+fixture_calls={}
 def synthetic_get(self,path,limit,cancelled=lambda:False):
     assert self.profile.client_id == 'cbm'
     if cancelled():
         from project_cbm.online_backend import OnlineError
         raise OnlineError('cancelled')
     release={'id':'original-native','category':1,'name':'Native Original Set','year':2026,'group':'Original test fixture'}
-    if path.startswith('search/aql/'):value=[release]
+    if path == 'search/aql/presets':
+        time.sleep(1.2)
+        value=[{'type':'repo','values':[{'aqlKey':'csdb','name':'CSDB'}]},
+               {'type':'category','values':[{'aqlKey':'games','name':'Games'}]},
+               {'type':'date','values':[{'aqlKey':'1991','name':'1991'},{'aqlKey':'1992','name':'1992'}]}]
+    elif path == 'homeserver/all-public-servers':
+        fixture_calls[path]=fixture_calls.get(path,0)+1
+        time.sleep(1.2)
+        if fixture_calls[path]==1:
+            from project_cbm.online_backend import OnlineError
+            raise OnlineError('backend_unavailable')
+        value=[{'url':'https://example.invalid','descr':'Independent fixture'}]
+    elif path.startswith('search/aql/'):value=[release]
     elif path.startswith('search/meta/'):value=release
     elif path.startswith('search/entries/'):value={'contentEntry':[{'id':0,'path':'disk1/original.prg','size':4},{'id':1,'path':'disk2/original.prg','size':4}]}
     elif path.startswith('search/bin/'):return 'application/octet-stream',b'\\x01\\x08AB'
@@ -100,6 +113,30 @@ finally:policy.write_bytes(original_policy)
 
 try:
     entry.write_text(original.decode().replace('from project_cbm.online_session import main',fixture+'\nfrom project_cbm.online_session import main'))
+    c=Console()
+    try:
+        c.expect(b'Browse Library');c.select(2)
+        c.expect(b'Powered by Assembly64');c.select(1)
+        c.expect(b'Search Filters');c.select()
+        c.expect(b'Plain group name');c.send(b'Censor\r')
+        c.expect(b'Group: Censor');c.select(3)
+        c.expect(b'Choose Filter');c.drain(1.5)
+        assert b'Search Filters' not in c.buffer
+        c.select(2);c.expect(b'year: 1992')
+        c.select(1);c.expect(b'Choose Filter');c.select(1)
+        c.expect(b'repository: csdb');c.select(2)
+        c.expect(b'Choose Filter');c.select(1)
+        c.expect(b'category: games')
+        c.send(b'\x1b');c.expect(b'Search by title')
+        results.append('installed delayed presets allow Group then Year/Repository/Category, retaining prior filters')
+        c.select(2);c.expect(b'Request incomplete');c.drain(1.5)
+        assert b'Search by title' not in c.buffer
+        c.select();c.expect(b'Independent fixture');assert b'Server Information' in c.trace
+        c.drain(1.5);assert b'Search by title' not in c.buffer
+        c.select(1);c.expect(b'Search by title')
+        results.append('installed directory failure persists for Retry/Back; server information waits for explicit Back')
+    finally:
+        Path('/tmp/online-installed-filters-servers.terminal').write_bytes(c.trace);c.close()
     c=Console()
     try:
         c.expect(b'Browse Library');c.select(2)
