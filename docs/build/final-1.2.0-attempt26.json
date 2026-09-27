@@ -1,0 +1,192 @@
+{
+  "product": "1.2.0",
+  "candidate": "release",
+  "distribution_status": "PRIVATE UNPUBLISHED FINAL CANDIDATE",
+  "attempt": 26,
+  "physical": "UNTESTED",
+  "publication": "BLOCKED pending owner focused exact-image physical PASS and final public asset audit",
+  "integration_commit": "adb61cfef7942a73fd10feed91db7c76d34114d8",
+  "integration_tag": "v1.2.0",
+  "integration_tag_object": "d69adb9e8d8730886f0eb9a9b2988055dc1535f8",
+  "menu": {
+    "menu_commit": "7792fed364c93b0dc6f741a4e985ed00c9d39411",
+    "menu_tag": "v1.2.0",
+    "menu_tag_object": "524db35daa649ce2c43860d59cc4fbd11acb8cc4"
+  },
+  "usb_fix_commit": "0b086249e505f53f75d56641a2ac4b67545e777f",
+  "release_lock_sha256": "ccbd487c39dea2e000f3ae28d2dd81aabadea40cdd4b8de2a5718968382d1819",
+  "packages": {
+    "runtime": {
+      "version": "1.2.0-1",
+      "artifact": {
+        "path": "objects/0aff8ac04907cdbcb950f6760b3cc5cdbb12d4945db12b63e4b3f42f69fe4f14",
+        "sha256": "0aff8ac04907cdbcb950f6760b3cc5cdbb12d4945db12b63e4b3f42f69fe4f14",
+        "size_bytes": 99252
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/968f0b05ad7575e0ec987d835d1d36e2e20bd5ea8a2ee977d82813c77bf49f4b",
+          "sha256": "968f0b05ad7575e0ec987d835d1d36e2e20bd5ea8a2ee977d82813c77bf49f4b",
+          "size_bytes": 4659200
+        },
+        "git": {
+          "commit": "adb61cfef7942a73fd10feed91db7c76d34114d8",
+          "ref": "refs/tags/v1.2.0",
+          "repository": "https://github.com/cdaters/project-cbm",
+          "tag_object": "d69adb9e8d8730886f0eb9a9b2988055dc1535f8"
+        },
+        "origin": "https://github.com/cdaters/project-cbm"
+      }
+    },
+    "menu": {
+      "version": "1.2.0-1+pcbm1",
+      "artifact": {
+        "path": "objects/08f6cdc8f1e906c1bd7d3fec0524b138dd15ae0280cb8862d650c06a99fed31c",
+        "sha256": "08f6cdc8f1e906c1bd7d3fec0524b138dd15ae0280cb8862d650c06a99fed31c",
+        "size_bytes": 1303896
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/079b329dae4a070376f12dd8e5c0e3eb980483ac82c4dcf4fa3ce1945ef2d2e8",
+          "sha256": "079b329dae4a070376f12dd8e5c0e3eb980483ac82c4dcf4fa3ce1945ef2d2e8",
+          "size_bytes": 2631680
+        },
+        "git": {
+          "commit": "7792fed364c93b0dc6f741a4e985ed00c9d39411",
+          "ref": "refs/tags/v1.2.0",
+          "repository": "https://github.com/cdaters/project-cbm-menu",
+          "tag_object": "524db35daa649ce2c43860d59cc4fbd11acb8cc4"
+        },
+        "origin": "https://github.com/cdaters/project-cbm-menu"
+      }
+    },
+    "kms-capture": {
+      "version": "1.0.0-1",
+      "artifact": {
+        "path": "objects/80f7409183488c83a13add9aa8daa1de9d7c5b72696520ba7d350f7730dc0858",
+        "sha256": "80f7409183488c83a13add9aa8daa1de9d7c5b72696520ba7d350f7730dc0858",
+        "size_bytes": 18004
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/968f0b05ad7575e0ec987d835d1d36e2e20bd5ea8a2ee977d82813c77bf49f4b",
+          "sha256": "968f0b05ad7575e0ec987d835d1d36e2e20bd5ea8a2ee977d82813c77bf49f4b",
+          "size_bytes": 4659200
+        },
+        "git": {
+          "commit": "adb61cfef7942a73fd10feed91db7c76d34114d8",
+          "ref": "refs/heads/feature/1.2-content-ingestion",
+          "repository": "https://github.com/cdaters/project-cbm",
+          "tag_object": null
+        },
+        "origin": "https://github.com/cdaters/project-cbm"
+      }
+    },
+    "vice": {
+      "version": "3.10-1+pcbm4",
+      "artifact": {
+        "path": "objects/a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+        "sha256": "a7b77c3b006eb190c64c10cadbfd91ce4152a73523c440496209293da2901dc1",
+        "size_bytes": 5069684
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1",
+          "sha256": "8e5bac18cbcb9f192380ad3ef881f8790f5b75c41d7b3da65d831985d864d6d1",
+          "size_bytes": 14366175
+        },
+        "origin": "https://downloads.sourceforge.net/project/vice-emu/releases/vice-3.10.tar.gz"
+      }
+    },
+    "tcpser": {
+      "version": "1.1.6~beta-1+pcbm1",
+      "artifact": {
+        "path": "objects/8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+        "sha256": "8b8f8a4f3ec98dddf5bdb347320dad05e1bbe5230e0ee2727248c247a5af584f",
+        "size_bytes": 26872
+      },
+      "source": {
+        "artifact": {
+          "path": "objects/b80ec19d5262a8a64035f4f4db04ceee41940017cbc55271c984a1ae2cc50f17",
+          "sha256": "b80ec19d5262a8a64035f4f4db04ceee41940017cbc55271c984a1ae2cc50f17",
+          "size_bytes": 491520
+        },
+        "git": {
+          "commit": "fe7feff4862406b277e009d14c219f5d16cf1222",
+          "ref": "refs/heads/master",
+          "repository": "https://github.com/go4retro/tcpser.git",
+          "tag_object": null
+        },
+        "origin": "https://github.com/go4retro/tcpser.git"
+      }
+    }
+  },
+  "artifacts": {
+    "raw": {
+      "guest_path": "builds/release-1.2.0-attempt-26/work/export-image/2026-09-27-project-cbm-1.2.0.img",
+      "path": "artifacts/release-1.2.0-attempt-26/2026-09-27-project-cbm-1.2.0.img",
+      "size_bytes": 3095396352,
+      "sha256": "2a5d192477eac37c819b267ca05b63d466186504c0b92230819208ad94c4f35a"
+    },
+    "xz": {
+      "guest_path": "artifacts/release-1.2.0-attempt-26/image_2026-09-27-project-cbm-1.2.0.img.xz",
+      "path": "artifacts/release-1.2.0-attempt-26/image_2026-09-27-project-cbm-1.2.0.img.xz",
+      "size_bytes": 599119848,
+      "sha256": "b2b7836f752d4b5b3a9a7cd5116776dff8f19eceaf4ad155b9541cc2efb69b5d"
+    },
+    "raw_xz_equivalence": "PASS",
+    "external_verification": "PASS"
+  },
+  "root_filesystem": {
+    "available_to_user": 639221760,
+    "capacity": 2439266304,
+    "free": 783503360,
+    "used": 1655762944
+  },
+  "evidence": "qualification/release-1.2-attempt26",
+  "tests": {
+    "native_product": {
+      "passed": 354,
+      "skipped": 0
+    },
+    "native_menu": {
+      "passed": 123,
+      "skipped": 0
+    },
+    "installed_usb_cases": 11,
+    "installed_screenshot_cases": 12,
+    "installed_online_cases": 8,
+    "kms_native_scenarios": "PASS",
+    "offline_image_checks": 376,
+    "boot_online_checks": 4,
+    "privacy_checks": 7,
+    "kms_security_checks": 11,
+    "installed_packages": 673,
+    "documentation_checks": 605,
+    "external_frozen_files": 3360,
+    "raw_xz": "PASS",
+    "gpl_packaged_source_offline_compile": "PASS"
+  },
+  "test_harness_correction": {
+    "commits": [
+      "a997e098227514ada863e4c751d498f1a415177e",
+      "ee86a48979de9491e4cdc995797f46b16ae16257"
+    ],
+    "reason": "Real dialog highlights shortcut letters inside visible labels/actions. Normalize CSI formatting in the external installed test; preserve both initial false-failure runs. Frozen source/packages/image unchanged. Corrected verification recipe differs only in tests/native/usb_browse_installed.py.",
+    "initial_runs": "installed-package26; installed-package26-corrected-test",
+    "passing_run": "installed-package26-visible-text"
+  },
+  "host_mac_context": "354 tests: known macOS mktemp assertion failure and20 native-only skips; native run354 passes with no skips.",
+  "rights": "Owner explicitly extended unchanged artwork/Covers permission and pinned VICE policy to1.2.0. Separate GPL capture source/notices retained. No hosted collections or additional ROMs bundled.",
+  "recovery": {
+    "path": "archive/final-1.2.0-attempt26-2026-09-27",
+    "independent_encrypted_custody": "OUTSTANDING"
+  },
+  "limits": [
+    "Physical Pi4 candidate26 UNTESTED; attempt25 passes do not transfer automatically.",
+    "No independent clean-build reproducibility claim.",
+    "Other hardware and multi-display capture not qualified.",
+    "Public release asset/source/privacy audit and post-publication verification await exact-image physical PASS."
+  ],
+  "preserved": "Stable1.1.0 tags/artifacts; all historical attempts including18/19/24/25 and failed test traces retained. Live Pi not altered."
+}

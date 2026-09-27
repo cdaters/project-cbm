@@ -1,3 +1,8 @@
+> Current 1.2.0 preparation: see [CURRENT-STATE](../CURRENT-STATE.md).
+> The owner extended the unchanged artwork and VICE ROM policy to 1.2.0.
+> Publication requires the new exact candidate's focused physical PASS; the dated
+> 1.1/POC checkpoints below remain historical evidence.
+
 # Current 1.1 floor: Pi 4 B
 
 The owner explicitly changed the release target to Pi 4-class and newer on 2026-09-19.

@@ -1,3 +1,30 @@
+# Final 1.2.0 candidate / attempt26 — 2026-09-27 UTC
+
+**Built/automated validation PASS. PRIVATE UNPUBLISHED; waiting for owner physical tests.**
+[Exact build/identities](docs/build/final-1.2.0-attempt26.md),
+[five focused Pi4 cases](docs/qualification/attempt26-pi4-final.md).
+Frozen Product adb61cfef7942a73fd10feed91db7c76d34114d8; Menu 7792fed364c93b0dc6f741a4e985ed00c9d39411.
+Local1.2.0 tags unchanged/unpushed; Runtime1.2.0-1, Menu1.2.0-1+pcbm1, GPL KMS1.0.0-1.
+Lock ccbd487c39dea2e000f3ae28d2dd81aabadea40cdd4b8de2a5718968382d1819. Raw 2a5d192477eac37c819b267ca05b63d466186504c0b92230819208ad94c4f35a; XZ b2b7836f752d4b5b3a9a7cd5116776dff8f19eceaf4ad155b9541cc2efb69b5d.
+
+Menu0b08624 hides FILES USB keys with stable selection mapping. Native354/123;
+installed11/12/8; image376+4; privacy7; KMS11; packages673;
+raw/XZ, closure, GPL source offline compile, frozen-kit export and docs605 PASS.
+External installed harness fixes a997e09/ee86a48 handle dialog colour bytes; both
+initial false-failure logs retained. No frozen package/image changed by test repair.
+Mac mktemp contextual failure/native-only skips remain accurately distinguished.
+
+Owner extended unchanged artwork/VICE policy to1.2.0. User guides now prominently
+cover Assembly64, both USB paths, screenshots, startup and backup/reimage upgrade;
+BIN stays outside generic import. Stable1.1.0 and historical attempts/evidence preserved.
+Recovery archive/final-1.2.0-attempt26-2026-09-27; independent encrypted custody outstanding.
+Builder stopped after export, with all guest state retained. Guest free space
+41,143,959,552 bytes is below the next package build's 40 GiB gate; plan capacity
+before another build, without deleting historical/unexported state.
+Next: owner F1–F5 on exact image. Only after PASS, complete public asset/source/privacy
+review, publish exact bytes and verify downloaded assets. No release/publication now.
+Unknown .qwen/ and memory/ untouched. Earlier entries below remain historical.
+
 # Final 1.2.0 release preparation / candidate26 — 2026-09-27 UTC
 
 Owner authorizes final USB presentation correction, new frozen candidate/full checks,

@@ -1,4 +1,4 @@
-# Online Library — private 1.2 development
+# Online Library — 1.2 runtime contract
 
 CONTENT > Online Library is powered by Assembly64. An Internet connection is
 required to search and download; saved files remain available offline in Browse

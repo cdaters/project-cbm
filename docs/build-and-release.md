@@ -1,3 +1,8 @@
+> Current 1.2.0 preparation: see [CURRENT-STATE](../CURRENT-STATE.md).
+> The owner extended the unchanged artwork and VICE ROM policy to 1.2.0.
+> Publication requires the new exact candidate's focused physical PASS; the dated
+> 1.1/POC checkpoints below remain historical evidence.
+
 > Current 1.1.0 owner decisions: [release contents and notices](release/release-policy.md).
 > CCGMS replaces StrikeTerm in the new candidate; artwork permission and the VICE ROM,
 > signing, formal SBOM and public-bootstrap decisions supersede earlier tentative gates below.
