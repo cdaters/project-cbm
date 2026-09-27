@@ -3,8 +3,8 @@
 [Documentation index](../README.md) · [Complete User Manual](user-guide.md)
 
 This is the short route from an image download to Commodore 64 BASIC. Project CBM
-1.1.0 is released and starts with a short setup on the Pi.
-[Download the current release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
+1.2.0 starts with a short setup on the Pi. Check [release availability](../../README.md#current-release) before downloading.
+[Download the current release](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0).
 
 ## Hardware
 
@@ -16,48 +16,43 @@ HDMI audio is the normal starting choice; turn up the display's volume. Ethernet
 optional and is often the easiest network connection. Wi-Fi can be set up on the Pi.
 A controller is optional; the Menu works with a keyboard.
 
-Project CBM 1.1 targets Pi 4 B/400, Pi 5 and Pi 500-class systems. Pi 4 B is physically
+Project CBM 1.2 targets Pi 4 B/400, Pi 5 and Pi 500-class systems. Pi 4 B is physically
 qualified; the other models are targets that still need their own physical qualification.
-Pi 3/Zero-class systems are unsupported for 1.1: representative Pi 3 B+ VICE testing
+Pi 3/Zero-class systems are unsupported for 1.2: representative Pi 3 B+ VICE testing
 could not sustain the intended real-time experience. This does not mean those machines
 cannot boot the software. No blanket promise is made for every workload or peripheral.
 
 ## Download and check the image
 
-Download [project-cbm-1.1.0.img.xz](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/project-cbm-1.1.0.img.xz)
-and [SHA256SUMS](https://github.com/cdaters/project-cbm/releases/download/v1.1.0/SHA256SUMS)
-from the [1.1.0 release](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
+Download [project-cbm-1.2.0.img.xz](https://github.com/cdaters/project-cbm/releases/download/v1.2.0/project-cbm-1.2.0.img.xz)
+and [SHA256SUMS](https://github.com/cdaters/project-cbm/releases/download/v1.2.0/SHA256SUMS)
+from the [1.2.0 release](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0).
 The raw `.img` is not uploaded separately. The source ZIP is not a bootable image.
 
 A SHA-256 checksum is a fingerprint of a file. Compare the result below with the value
 published **for that exact file**. A match detects corruption or unexpected changes;
 it does not independently establish that the publisher or software is trustworthy.
-For `project-cbm-1.1.0.img.xz` (599,290,700 bytes), the expected SHA-256 is:
-
-```text
-8b3738a204da16e148f5674a95f1ffb55a67b8ad1ce1d997b1858594a899c13d
-```
-
-The uncompressed image is 3,095,396,352 bytes. The published SHA256SUMS also lists
-the accompanying source/documentation assets; you need not download those to flash
-the image. The commands below check the image alone.
+Use the image entry in the published **SHA256SUMS** and the uncompressed size listed
+on the release page. The checksum file also lists accompanying source/documentation
+assets; you need not download those to flash the image. The commands below check the
+image alone.
 
 macOS Terminal:
 
 ```sh
-shasum -a 256 project-cbm-1.1.0.img.xz
+shasum -a 256 project-cbm-1.2.0.img.xz
 ```
 
 Linux terminal:
 
 ```sh
-sha256sum project-cbm-1.1.0.img.xz
+sha256sum project-cbm-1.2.0.img.xz
 ```
 
 Windows PowerShell:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\project-cbm-1.1.0.img.xz
+Get-FileHash -Algorithm SHA256 .\project-cbm-1.2.0.img.xz
 ```
 
 Do not flash a file whose checksum differs. Download it again and check the version.
@@ -84,8 +79,7 @@ With power disconnected, insert the card and connect keyboard, HDMI and optional
 Ethernet. Switch the display to the correct input, then power the Pi. Some initial
 black-screen time while video starts is normal. Project CBM artwork should appear
 while the appliance prepares, followed by initial setup. This is not an instant-on
-system; storage and connected hardware affect startup. Boot and first setup were verified
-on the final Pi 4 B image; no fixed startup-time promise is made.
+system; storage and connected hardware affect startup. No fixed startup-time promise is made.
 
 ## First boot
 
@@ -118,5 +112,5 @@ After successful completion, the wizard does not repeat on later boots.
 If your keyboard uses function keys for media controls, use its Fn key with F10.
 Do not pull power while the Pi is writing. **REBOOT** safely restarts it instead.
 
-Next: [learn the Menu](user-guide.md), [import your first disk](content.md#usb-import)
+Next: [learn the Menu](user-guide.md), [import your first disk](content.md#import-from-usb)
 or [copy files from a Mac/PC](networking.md#file-sharing).

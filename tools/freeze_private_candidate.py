@@ -12,7 +12,7 @@ import sys
 import tempfile
 from build_contracts import encode, read_json, verify_artifact
 from retained_inputs import verify_kit
-from development_identity import development_number, development_packages, configuration_path, export_path
+from development_identity import development_number, development_packages, configuration_path, export_path, release_1_2, content_1_2, release_packages
 
 
 def verify_predecessor(old, workspace):
@@ -98,6 +98,9 @@ def verify_candidate_versions(product_version, candidate, runtime_version, menu_
     if development_number({'version':product_version or '', 'candidate':candidate or ''}):
         development_packages(runtime_version, menu_version)
         return
+    if release_1_2({'version':product_version, 'candidate':candidate}):
+        release_packages(runtime_version, menu_version, '1.0.0-1')
+        return
     # Preserve the existing 1.1 admission rules exactly.
     for version in (runtime_version, menu_version):
         if not re.fullmatch(r'1[.]1[.]0(?:~(?:poc4[.][0-9]+|rc[0-9]+))?-1(?:[+]pcbm1)?',version):raise ValueError('unsupported private package version')
@@ -132,6 +135,7 @@ def main():
     verify_candidate_versions(a.product_version,a.candidate,a.runtime_version,a.menu_version)
     product={'version':a.product_version or '', 'candidate':a.candidate or ''}
     development=development_number(product)
+    content=content_1_2(product)
     if a.apt_refresh and not development:raise ValueError('APT refresh is private-development only')
     menu_label=a.menu_version.rsplit('-',1)[0].replace('~','_')
     runtime_label=a.runtime_version.rsplit('-',1)[0].replace('~','_')
@@ -199,9 +203,9 @@ def main():
         lock['integration']['git']['ref']='refs/heads/feature/1.2-content-ingestion'
         lock['integration']['git']['tag_object']=None
     if a.candidate=='release':
-        if export.get('integration_tag')!='v1.1.0' or not re.fullmatch('[0-9a-f]{40}',export.get('integration_tag_object','')):
+        if export.get('integration_tag')!='v'+a.product_version or not re.fullmatch('[0-9a-f]{40}',export.get('integration_tag_object','')):
             raise ValueError('final Product tag identity required')
-        lock['integration']['git'].update(ref='refs/tags/v1.1.0',tag_object=export['integration_tag_object'])
+        lock['integration']['git'].update(ref='refs/tags/v'+a.product_version,tag_object=export['integration_tag_object'])
 
     lock['integration']['source'] = store(integration)
     lock['base']['configuration'] = store(config_file)
@@ -262,14 +266,14 @@ def main():
             raise ValueError('reused Menu source bytes differ')
     for name, version, source, commit, ref, tag in (
         ('runtime', a.runtime_version, integration, a.integration_commit,
-         ('refs/heads/feature/1.2-content-ingestion' if development else 'refs/tags/v1.1.0' if a.candidate=='release' else 'refs/heads/feature/1.1-build-foundation'),
+         ('refs/heads/feature/1.2-content-ingestion' if development else 'refs/tags/v'+a.product_version if a.candidate=='release' else 'refs/heads/feature/1.1-build-foundation'),
          export.get('integration_tag_object') if a.candidate=='release' else None),
         ('menu', a.menu_version, w/f'inputs/project-cbm-menu-{menu_label}.tar',
          a.menu_commit, 'refs/tags/v'+menu_label, a.menu_tag_object)):
         if name=='menu' and a.reuse_menu:
             continue
         if name=='runtime' and a.reuse_runtime:
-            verify_reused_runtime(old,recipe,lock['components']['runtime'],version,extracted_permissions=bool(development))
+            verify_reused_runtime(old,recipe,lock['components']['runtime'],version,extracted_permissions=content)
             continue
         debs = list(packages.glob('project-cbm-'+name+'_*.deb'))
         if len(debs) != 1:
@@ -322,13 +326,13 @@ def main():
     # containing its source. No change to historical predecessor verification.
     capture_source=recipe/'components/pcbm-kms-capture'
     if a.reuse_capture:
-        if not development or not capture_source.is_dir() or 'kms-capture' not in lock['components']:
+        if not content or not capture_source.is_dir() or 'kms-capture' not in lock['components']:
             raise ValueError('capture reuse requires a development predecessor')
         verify_reused_capture(old, recipe, lock['components']['kms-capture'])
     elif capture_source.is_dir():
-        if not development:raise ValueError('screenshot admission is private development only')
+        if not content:raise ValueError('screenshot requires explicit 1.2 identity')
         version=subprocess.check_output(['dpkg-parsechangelog','--file',str(capture_source/'debian/changelog'),'--show-field','Version'],text=True).strip()
-        if not re.fullmatch(r'1[.]0[.]0~dev[1-9][0-9]*-1',version):raise ValueError('capture version')
+        if not (version=='1.0.0-1' if release_1_2(product) else re.fullmatch(r'1[.]0[.]0~dev[1-9][0-9]*-1',version)):raise ValueError('capture version')
         upstream,revision=version.rsplit('-',1)
         deb=packages/f'project-cbm-kms-capture_{version}_arm64.deb'
         fields=subprocess.check_output(['dpkg-deb','-f',str(deb),'Package','Version','Architecture'],text=True)
@@ -395,7 +399,7 @@ def main():
             mapping[dest] = packages/'menu'/source
     for source in (recipe/'runtime/project_cbm').glob('*.py'):
         mapping['usr/share/project-cbm/runtime/project_cbm/'+source.name] = source
-    if development and not a.reuse_menu:
+    if content and not a.reuse_menu:
         for source, dest in (
             ('scripts/pcbm-library','usr/bin/pcbm-library'),
             ('scripts/pcbm-files','usr/bin/pcbm-files'),
@@ -405,7 +409,7 @@ def main():
             ('lib/pcbm_ingest_view.py','usr/libexec/project-cbm-menu/pcbm_ingest_view.py'),
         ):
             mapping[dest]=packages/'menu'/source
-    if development and not a.reuse_menu and (packages/'menu/scripts/pcbm-online').exists():
+    if content and not a.reuse_menu and (packages/'menu/scripts/pcbm-online').exists():
         for source, dest in (
             ('scripts/pcbm-online','usr/bin/pcbm-online'),
             ('scripts/pcbm-dialog-lib.sh','usr/bin/pcbm-dialog-lib.sh'),

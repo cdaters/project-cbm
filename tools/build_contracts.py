@@ -12,7 +12,7 @@ from urllib.parse import urlsplit
 
 from jsonschema import Draft202012Validator
 from referencing import Registry
-from development_identity import development_number, development_packages
+from development_identity import development_number, development_packages, content_1_2, release_1_2, release_packages
 
 SCHEMAS = Path(__file__).resolve().parents[1] / 'schemas'
 MAX_JSON_BYTES = 1024 * 1024
@@ -96,8 +96,13 @@ def validate_lock(raw, allow_fixture=False):
     if development_number(lock['product']):
         if lock['schema_version'] != 4:raise ValueError('development requires current runtime contract')
         development_packages(lock['components']['runtime']['package']['version'],lock['components']['menu']['package']['version'])
-    if 'kms-capture' in lock['components'] and not development_number(lock['product']):
-        raise ValueError('capture component is private development only')
+    if release_1_2(lock['product']):
+        if lock['schema_version'] != 4:raise ValueError('release 1.2 requires current runtime contract')
+        release_packages(lock['components']['runtime']['package']['version'],
+                         lock['components']['menu']['package']['version'],
+                         lock['components'].get('kms-capture',{}).get('package',{}).get('version'))
+    if 'kms-capture' in lock['components'] and not content_1_2(lock['product']):
+        raise ValueError('capture component requires explicit 1.2 identity')
     if lock['fixture'] and not allow_fixture:
         raise ValueError('synthetic fixture is not a candidate')
     version = lock['schema_version']

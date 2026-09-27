@@ -1,3 +1,10 @@
+project-cbm-runtime (1.2.0-1) trixie; urgency=medium
+
+  * Prepare final 1.2 package identity and included user documentation.
+  * Retain qualified USB, Online Library and screenshot runtime behavior.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Sun, 27 Sep 2026 05:00:00 +0000
+
 project-cbm-runtime (1.2.0~dev4-1) trixie; urgency=medium
 
   * Save screenshots under authenticated content share with short collision names.

@@ -1,3 +1,20 @@
+# Project CBM 1.2 release contents and notices
+
+For Project CBM 1.2.0 the copyright owner explicitly extends the same permission
+for the unchanged Project CBM branding and seven machine Covers. It permits their
+inclusion and redistribution as part of 1.2.0, not separate artwork modification
+or distribution and not blanket MIT licensing. The established pinned VICE ROM/
+resource policy below is also carried forward to 1.2.0, with its uncertainty and
+notice requirements unchanged. No additional ROM collection is admitted.
+
+The separate KMS capture component is GPL-2.0-only. Its corresponding source,
+upstream notices and license accompany the release separately from MIT Runtime.
+Assembly64 is an external service; the image contains the Project CBM client and
+attribution, not downloaded hosted content or alternate-access credentials.
+CCGMS, SID-Wizard, VICE and TCPser retain their existing reviewed composition.
+
+The following 1.1.0 record is retained verbatim as historical policy.
+
 # Project CBM 1.1 release contents and notices
 
 [Documentation index](../README.md) · [Software components](software-components.md)

@@ -1,4 +1,4 @@
-# On-demand screenshots (private 1.2 development)
+# On-demand screenshots (1.2 runtime contract)
 
 Run `pcbm-screenshot` over SSH as `pcbm`, or `pcbm-screenshot my-test.png`.
 The command prints the absolute path only after a complete PNG is saved to

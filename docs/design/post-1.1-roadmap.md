@@ -1,4 +1,30 @@
-# Post-1.1.0 work
+# Project CBM roadmap
+
+## Implemented for 1.2
+
+- Search Assembly64, filter results, read details and save selected files locally.
+- Import selected USB files after scanning and reviewing the destination.
+- Browse USB safely in Midnight Commander, then explicitly unmount.
+- Take screenshots over SSH, including supported VICE/gameplay and Covers.
+- Start at Menu or directly in the current RUN machine; return with F10/Quit.
+- Clearer sizes, friendly labels and predictable Back/Parent navigation.
+
+The final 1.2 image still requires its focused physical regression before publication.
+See [release notes](../release/release-notes-1.2.0.md) and [current state](../../CURRENT-STATE.md).
+
+## Later work
+
+Save & Run in one step; Recent Additions UI; explicit ROM management; selectable
+compatible public servers; additional Pi models/peripherals; public first-build
+bootstrap; release signing and standardized software inventories. These are not
+promised 1.2 features. FTP remains reference-only, never an automatic fallback.
+
+## Historical acceptance records
+
+The dated text below records planning for 1.1/1.2; its future-tense implementation
+and admission status has been superseded by the completed features above.
+
+# Post-1.1.0 work (historical)
 
 ## 1.2.0 implementation — 2026-09-24
 

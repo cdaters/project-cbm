@@ -13,9 +13,20 @@ Some early black-screen time while video starts is normal. Monitor-generated HDM
 popups belong to the display, not Project CBM.
 
 Routine successful filesystem/login output is suppressed. Actual filesystem checks
-still run, and errors can remain visible. Final physical presentation/timing is being
-qualified; no instant-on or fixed boot-time claim is made. SD card, model and peripherals
+still run, and errors can remain visible. No instant-on or fixed boot-time claim is made. SD card, model and peripherals
 can affect time to the first usable screen.
+
+## Choose Menu or your default computer at startup
+
+Open **CONTROL → Machine and Startup → Boot preference**. Choose **Menu** for
+normal navigation or **Default emulator** to start the current RUN machine after
+boot. Set that machine through MACHINES → DEFAULT or Choose default Commodore machine.
+The preference applies at the next login/boot.
+
+During direct boot, the startup artwork finishes, the machine Cover appears and
+VICE becomes visible. **F10 → Quit** returns to a responsive Project CBM Menu;
+it does not immediately start the emulator again. A failed or terminated emulator
+also returns to Menu. Change Boot preference back to Menu whenever desired.
 
 ## Verbose recovery
 

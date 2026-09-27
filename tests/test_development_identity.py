@@ -7,7 +7,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
-from development_identity import development_number, configuration_path, export_path, valid_menu_tag
+from development_identity import development_number, configuration_path, export_path, valid_menu_tag, release_1_2, content_1_2, release_packages
 from freeze_private_candidate import verify_candidate_versions, verify_output_identity
 
 
@@ -32,6 +32,23 @@ class DevelopmentIdentity(unittest.TestCase):
             with self.subTest(version=version,candidate=candidate), self.assertRaises(ValueError):
                 verify_candidate_versions(version,candidate,runtime,menu)
 
+    def test_final_12_requires_exact_packages_and_separate_config(self):
+        product = {'version':'1.2.0', 'candidate':'release'}
+        self.assertTrue(release_1_2(product))
+        self.assertTrue(content_1_2(product))
+        self.assertIsNone(development_number(product))
+        verify_candidate_versions('1.2.0','release','1.2.0-1','1.2.0-1+pcbm1')
+        release_packages('1.2.0-1','1.2.0-1+pcbm1','1.0.0-1')
+        for runtime,menu,capture in [('1.2.0~dev4-1','1.2.0-1+pcbm1','1.0.0-1'),
+                ('1.2.0-1','1.2.0~dev5-1+pcbm1','1.0.0-1'),
+                ('1.2.0-1','1.2.0-1+pcbm1','1.0.0~dev2-1')]:
+            with self.assertRaises(ValueError): release_packages(runtime,menu,capture)
+        config = json.loads(configuration_path(ROOT,product).read_text())
+        verify_output_identity(ROOT,config,'1.2.0','release')
+        self.assertEqual(configuration_path(ROOT,product).name,'config-1.2.json')
+        with self.assertRaises(ValueError):
+            verify_candidate_versions('1.2.0','private-engineering-rc1','1.2.0-1','1.2.0-1+pcbm1')
+
     def test_legacy_release_and_private_admission_retained(self):
         verify_candidate_versions('1.1.0','release','1.1.0-1','1.1.0-1+pcbm1')
         verify_candidate_versions('1.1.0-rc.4','private-engineering-rc4','1.1.0~rc4-1','1.1.0~rc4-1+pcbm1')
@@ -46,9 +63,9 @@ class DevelopmentIdentity(unittest.TestCase):
                 verify_candidate_versions(version,'release',runtime,menu)
 
     def test_export_tag_admission(self):
-        for tag in ('v1.1.0','v1.1.0_rc4','v1.1.0_poc4.6','v1.2.0_dev1'):
+        for tag in ('v1.1.0','v1.1.0_rc4','v1.1.0_poc4.6','v1.2.0_dev1','v1.2.0'):
             self.assertTrue(valid_menu_tag(tag),tag)
-        for tag in ('v1.2.0','v1.2.0_rc1','v1.2.0_dev0','v1.2.0_dev01','v1.1.1','main','v1.2.0_dev1\n'):
+        for tag in ('v1.2.0_rc1','v1.2.0_dev0','v1.2.0_dev01','v1.1.1','main','v1.2.0_dev1\n'):
             self.assertFalse(valid_menu_tag(tag),tag)
 
     def test_config_and_export_are_separate_and_checked(self):

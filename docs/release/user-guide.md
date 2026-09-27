@@ -1,12 +1,12 @@
-# Project CBM 1.1 User Manual
+# Project CBM 1.2 User Manual
 
 [Documentation index](../README.md) · [Getting Started](getting-started.md)
 
 Project CBM is a Commodore computer collection operated from a keyboard Menu. It
 starts the emulator for you, keeps your content in one library, and offers ordinary
 setup and network tasks without requiring Linux commands. You can still use Linux
-when you want to. This manual describes the released **Project CBM 1.1.0**.
-[Download the image and release materials](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0).
+when you want to. This manual describes **Project CBM 1.2.0**.
+See the repository [release status](../../README.md#current-release) for image availability.
 
 For the first power-on, follow [Getting Started](getting-started.md). You do not need
 the builder or developer guides to use an image.
@@ -44,10 +44,9 @@ Internet access. Detailed information belongs in CONTROL.
 | --- | --- | --- |
 | **RUN** | Starts the saved default machine after its Cover | You want your usual Commodore computer |
 | **MACHINES** | Lists machines to launch and a DEFAULT action | You want a different machine now or a new RUN default |
-| **CONTENT** | Opens Games, Demos, Music, Programs and ROMs lists | You want to find and launch a file in your library |
-| **IMPORT** | Selects a USB partition, machine and category, then copies supported files | You brought content on a USB drive |
+| **CONTENT** | Browse Library, Import from USB, Online Library and Help | Find local files, import from USB or search Assembly64 |
 | **CONTROL** | Opens configuration, status and Advanced access | You want to change settings or check the system |
-| **FILES** | Offers Midnight Commander or USB import | You want to organize files rather than launch them |
+| **FILES** | Offers local Midnight Commander or read-only USB browsing | You want to organize files rather than launch them |
 | **POWER** | Asks for confirmation, then shuts down | You are finished and will remove power |
 | **REBOOT** | Asks for confirmation, then restarts | You need a fresh start or want a new keyboard setting to take effect |
 
@@ -104,39 +103,42 @@ It does not offer a separate PAL/NTSC switch in MACHINES; that is a VICE setting
 The [technical profile/media table](vice.md#profiles-and-media) maps these names to
 executables and distinguishes browsable files from safe automatic launch.
 
-## CONTENT and IMPORT
+## CONTENT: your library, USB and Assembly64
 
-CONTENT → **GAMES**, **DEMOS**, **MUSIC**, **PROGRAMS** or **ROMS** shows matching files
-recursively, with paths such as `c64/My Game.d64`. Select the file directly; there is
-no extra machine submenu in CONTENT. Its folder identifies the intended machine.
-Shared/unclassified files use the saved RUN default. Selecting content does not save
-a new default. ROM and memory-resource files can be browsed but need VICE settings
-rather than generic automatic launch. SID files can be stored/imported; generic SID
-music playback is not implemented.
+**Browse Library** opens Games, Demos, Music, Programs and ROMs guidance. Supported
+local media can be launched through the existing VICE path. Use machine folders
+for the intended computer; an extension alone does not establish compatibility.
 
-The library is **/home/pcbm/content**. In File Sharing it is the top of the **Project CBM**
-share. In an SFTP client it is the `content` folder inside your home. See the
-[content guide](content.md) for concrete paths, media limits and the complete USB walkthrough.
-IMPORT reads the USB source without changing it, preserves duplicates and reports
-whether the drive was safely released. Do not remove it until the result says so.
+**Online Library** is powered by Assembly64. Search, apply supported filters, open
+results/details, choose files and **Save to Library**. Already Present avoids copying
+identical files; Keep Both preserves different versions. Saved content stays usable
+offline. Server Information and About & Support are available in Online Library.
+See the [Assembly64 guide](online-library.md).
+
+**Import from USB** lets you select a partition and source folder, scan without
+copying, select supported files, choose category/machine, review and explicitly
+import. Back/Parent let you navigate; unsupported files are explained. Read the
+result and remove USB only after release is confirmed. See [content and USB](content.md).
 
 ## FILES and Midnight Commander
 
-FILES opens **Files and USB**. Choose **LIBRARY — Browse files with Midnight Commander**
-for the file manager, or **USB — Import from USB into the library** for the same import
-workflow as Main Menu. Midnight Commander is a two-pane file manager for organizing
-files with the keyboard. One pane starts in the library and the other in your home.
+Choose **Library — Midnight Commander** for local files, or **USB Drive** to select
+an eligible partition and **Mount Read-Only**. The USB source is on one panel and
+your library on the other. Arrows navigate, Tab switches panels, F5 copies selected
+files and F10 exits. MC uses its own copy/overwrite prompts: check the destination.
+After USB browsing, choose **Safe Unmount** and wait for confirmation before removal.
+If release fails or the drive is busy, leave it connected until safe shutdown.
 
-Use arrows and Enter to open a directory; `..` goes up. Tab changes panes. Insert
-marks/unmarks files for a multi-file operation. F5 copies to the other pane, F6 moves
-(or lets you enter a new name), F7 creates a directory, F8 deletes, and F10 quits.
-Read the source/destination and confirmation before accepting a copy, move or delete.
-Deletion is not a backup. F1 opens help. These are the default controls documented in
-[Midnight Commander's manual](https://source.midnight-commander.org/man/mc.html).
+Manual MC copying is separate from guided Import's selection/review/duplicate
+handling. Neither workflow makes every file safe to execute. USB writes, renames
+and deletions are refused while mounted read-only.
 
-USB drives are presented through Import, not automatically as mounted folders inside
-Midnight Commander. Import first, then organize the copies in the library. This keeps
-ordinary USB transfer independent of Linux mount commands.
+## Screenshots
+
+Run `pcbm-screenshot` over SSH to save the currently visible HDMI picture. It prints
+the saved path under `/home/pcbm/content/screenshots/`. Use the authenticated file
+share or SFTP to retrieve it. Menu, MC, Import, normal Covers and supported VICE/gameplay
+screens can be captured; see [screenshots](screenshots.md) for names and privacy.
 
 ## CONTROL
 
@@ -232,14 +234,14 @@ needed. See [accounts and paths](accounts-and-layout.md) when you want the techn
 ## Optional applications
 
 **SID-Wizard 1.97** is a C64 music-creation tool, not a generic player for downloaded
-SID files. Open CONTENT → MUSIC and choose
+SID files. Open CONTENT → Browse Library → MUSIC and choose
 `c64/Creation/SID-Wizard/SID-Wizard-1.97.d64` when included. It starts normal C64 emulation.
 Save your own work on writable working disks and back them up; F10 → Quit leaves VICE.
 The selected core tool has established project license evidence; unrelated examples,
 songs and add-ons are not automatically included.
 
 **CCGMS 2021** is a Commodore 64 terminal for calling bulletin board systems (BBSs).
-Open CONTENT → PROGRAMS → `c64/Communications/CCGMS/CCGMS-2021.d64`. Project CBM
+Open CONTENT → Browse Library → PROGRAMS → `c64/Communications/CCGMS/CCGMS-2021.d64`. Project CBM
 starts the C64 with the modem interface this application needs. Enable BBS / Modem
 first, then follow the [CCGMS connection walkthrough](networking.md#bbs--modem).
 In CCGMS select **Modem Type: Swift / Turbo DE** to match Project CBM's
@@ -256,11 +258,11 @@ through content or Advanced as appropriate; installation alone does not create a
 
 | Task | Steps |
 | --- | --- |
-| Play a C64 D64 game | Copy it to `content/games/c64`; CONTENT → GAMES → `c64/filename.d64` |
-| Run a PRG demo | Put it in `content/demos/<machine>`; CONTENT → DEMOS → the file |
+| Play a C64 D64 game | Copy it to `content/games/c64`; CONTENT → Browse Library → GAMES → `c64/filename.d64` |
+| Run a PRG demo | Put it in `content/demos/<machine>`; CONTENT → Browse Library → DEMOS → the file |
 | Make VIC-20 your default | MACHINES → DEFAULT → Commodore VIC-20; check Main Menu Default |
-| Import a USB disk | IMPORT → partition → machine → Games/Demos/Programs/Music; read the result |
-| Find imported files | CONTENT → category → `<machine>/Imported/...` |
+| Import a USB disk | CONTENT → Import from USB → partition/folder → scan/select → review/import; read the result |
+| Find imported files | CONTENT → Browse Library → category → `<machine>/Imported/...` |
 | Copy from Mac or Windows | CONTROL → Services → File Sharing; set its password, turn it on, then [connect](networking.md#file-sharing) |
 | Find your IP address | Read Main Menu, or CONTROL → Network / System Information |
 | Use SSH | Turn on Remote Access; use How to connect with username pcbm |

@@ -1,6 +1,9 @@
 # Content library and USB import
 
-This page describes stable **1.1.0**. See the separate [provisional 1.2 content guide](../development/content-1.2.md) for development source behavior.
+This page describes **Project CBM 1.2.0**. For 1.1.0 behavior, use the manual at its preserved release tag.
+
+**CONTENT** offers Browse Library, Import from USB, Online Library and Help.
+[Search Assembly64](online-library.md) or follow the USB steps below.
 
 [Documentation index](../README.md) · [User Manual](user-guide.md)
 
@@ -17,10 +20,10 @@ that level: a game title, publisher or collection works well. You do not need se
 
 | Your file | Example location under `/home/pcbm/content` | How to find it |
 | --- | --- | --- |
-| C64 disk game | `games/c64/My Game.d64` | CONTENT → GAMES → `c64/My Game.d64` |
-| C64 PRG demo | `demos/c64/My Demo.prg` | CONTENT → DEMOS → that path |
-| VIC-20 program | `programs/vic20/My Program.prg` | CONTENT → PROGRAMS → that path |
-| C128 software | `programs/c128/My Program.d71` | CONTENT → PROGRAMS; uses a C128 profile |
+| C64 disk game | `games/c64/My Game.d64` | CONTENT → Browse Library → GAMES → `c64/My Game.d64` |
+| C64 PRG demo | `demos/c64/My Demo.prg` | CONTENT → Browse Library → DEMOS → that path |
+| VIC-20 program | `programs/vic20/My Program.prg` | CONTENT → Browse Library → PROGRAMS → that path |
+| C128 software | `programs/c128/My Program.d71` | CONTENT → Browse Library → PROGRAMS; uses a C128 profile |
 | C128 80-column software | `programs/c128/80col/My Program.d81` | That extra `80col` folder selects the VDC profile |
 | SID music file | `music/c64/My Tune.sid` | Stored/listed, but generic SID playback is not available |
 | Legally supplied ROM resource | `roms/c64/My Resource.rom` | Configure it in VICE; not a generic autostart file |
@@ -58,7 +61,7 @@ category remain browsable and use RUN's default.
 
 ## Launching files
 
-CONTENT scans each category recursively and shows relative filenames. A leading dot
+CONTENT → Browse Library scans each category recursively and shows relative filenames. A leading dot
 in a legitimate file or folder name does not hide supported content; known host
 metadata remains excluded. There is no
 intermediate machine picker. Select `c64/My Game.d64` from GAMES to launch it with a
@@ -74,46 +77,71 @@ configuration. For multi-disk software, use VICE's F10 media controls to change 
 | G71 disk | Listed | `.g71` is imported | C64/C128 profiles; Project CBM selects a 1571 drive for this launch |
 | Cartridges | `.crt` | Yes | Only where the selected VICE machine can handle that cartridge |
 | Music | `.sid`, `.mus` | Yes | SID is explicitly refused by the generic launcher; MUS recognition is not a promised music-player workflow |
-| Resources | `.bin`, `.rom`, `.reu` | No | Browse/store, then configure in VICE; not automatic programs |
+| Resources | `.bin`, `.rom`, `.reu` are outside generic content import | No | Store using FILES or file sharing and configure deliberately in VICE |
+
+Raw `.bin` can represent ROM or firmware data. Project CBM has no guided ROM-management
+workflow; ROM type, target machine, expected size and VICE settings require separate
+care. FILES can copy a file without making it an importable or runnable program.
 
 Do not rename a file's extension to force compatibility. ROMs and memory resources
 require deliberate VICE settings. PSID/RSID playback has not been integrated into the
 normal Menu. SID-Wizard is a music editor launched from its D64, not a SID player.
 
-## USB import
+## Import from USB
 
-1. Put the desired files on a USB drive. FAT, exFAT and ext4 partitions are recognized.
-   Keep a backup; Project CBM imports supported regular files, not every kind of file.
-2. Insert it, then select **IMPORT** (or FILES → USB).
-3. Choose the source partition from **Import from USB**. If absent, return and reopen
-   IMPORT after insertion. Already mounted partitions and the running system disk
-   are intentionally excluded.
-4. Choose the **Content machine**, or Shared for an unclassified collection.
-5. Choose Programs, Games, Demos or Music. Selecting the category starts the copy;
-   there is no separate per-file selection screen. All eligible files in that partition
-   are considered, keeping their subfolders.
-6. Leave the drive connected while the working screen is shown. Read **Import complete**
-   or **Import incomplete**, including its drive-release message.
-7. Remove the drive only after release is confirmed. If release is uncertain or failed,
-   leave it connected and shut down safely before removal.
-8. Open CONTENT → your category. Files are under `<machine>/Imported/...`.
+1. Connect a FAT, exFAT or ext4 USB drive and choose **CONTENT → Import from USB**.
+2. Choose a partition. Mounted disks and the running system disk are excluded.
+3. Choose a folder or **Scan this source** for the whole partition. The source
+   remains read-only. **Scanning does not copy anything.**
+4. Review supported, unsupported, metadata and unreadable-folder counts. Use
+   **Select all**, individual file actions or **Select this folder and descendants**.
+   Deselect unwanted files or clear the selection. Pages contain up to 20 entries.
+5. Choose **Review destination**. Select the category and machine explicitly.
+   If unsure, use **Programs — Unclassified** and **Shared**. These are unsorted
+   destinations, not a claim that every machine can run the content.
+6. Review the selected count, new byte estimate, Already Present count and library
+   destination. Choose **Import selected files** to copy, or return to selection.
+7. Read the result. Completed files remain available even if a later file fails
+   or you cancel. Remove the drive only when its release is confirmed.
 
-For example, three D64s inside `My Game` imported as C64 Games go to
-`/home/pcbm/content/games/c64/Imported/My Game/`. A fresh destination should report
-three content files copied. Repeating it preserves existing files and copies none
-of those three again. Same-name destinations are skipped, not compared/replaced;
-rename or organize a newer version deliberately with FILES.
+During a longer scan, plan or import you can cancel. Back before Import never copies
+payloads. An idle review session expires after five minutes, and a complete session
+is bounded to thirty minutes. Start again to rescan after expiry. Leave USB connected
+if release is unknown or busy; shut down safely before removing it.
 
-The source is mounted read-only. FAT/exFAT permissions allow copying as pcbm; ext4
-journal replay is disabled. Import skips symlinks/special files and unsupported file
-types. One operation is limited to 2 GiB and keeps 256 MiB free at the destination.
-A failure can leave already copied files in place. Read the persistent error before
-retrying; do not assume a partly completed transfer copied everything.
+Files go into `/home/pcbm/content/<category>/<machine>/Imported/<collection>`.
+The selected source folder supplies its collection name; whole-partition scans use
+`USB Import`. Relative folders stay together. Nothing is flattened or migrated.
 
-SID files always route to `music/c64/Imported`, even when another destination category
-or machine was selected. Other files use the selected destination. To transfer a
-library already arranged as `games/c64`, use File Sharing; import would preserve that
-whole source tree beneath the selected Imported folder rather than flattening it.
+Identical bytes at the same destination are **Already Present**. Different bytes
+use **Keep Both**, placing the selected collection in a numbered sibling directory.
+Include every disk you need when selecting a multi-disk title. Mutable disk images
+remain independent files; changing one does not change another copy.
+
+One scan/import is limited to 2 GiB, depth 12 and 10,000 encountered entries; the
+library retains at least 256 MiB of free-space margin. Choose a smaller source
+folder when a limit is reached. A limited scan does not offer incomplete results
+as though it had scanned everything.
+
+
+## FILES → USB Drive
+
+Choose a partition, then **Mount Read-Only**. Midnight Commander shows the USB source
+and your local library. Press **F10** to exit; choose **Safe Unmount**, **Browse
+Read-Only again**, or Help. Back also attempts release. Remove the drive only after
+confirmation. If it is busy or release is unknown, leave it connected until safe
+shutdown. Reboot does not remount the session.
+
+USB rename/delete/write operations are refused. Midnight Commander runs as your
+normal user; any manual copy into the library uses its own overwrite prompts and
+does not use guided Import history. Use CONTENT → Import from USB for reviewed
+selection, duplicate handling and recorded results. The browser is not an execution
+sandbox: do not manually execute content you do not trust.
+
+One CBM USB session is active at a time, with a thirty-minute total limit and a
+five-minute idle review timeout. Close other sessions before choosing another
+partition. Source removal or browser failure ends the session and attempts cleanup;
+missing confirmation always requires conservative removal.
 
 ## Host metadata and counts
 

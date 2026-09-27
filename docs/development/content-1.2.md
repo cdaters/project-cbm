@@ -1,3 +1,8 @@
+> Historical early 1.2 implementation checkpoint. Current implemented behavior is
+> described in the [1.2 content guide](../release/content.md) and
+> [Assembly64 guide](../release/online-library.md). The source-only/access-pending
+> statements below retain their original date and are no longer current status.
+
 # Content workflows in provisional 1.2.0 development
 
 These features are development source, not a released or Pi-qualified image.

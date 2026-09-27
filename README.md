@@ -21,19 +21,41 @@ Linux terminal and administrator access.
 The final image passed the Raspberry Pi 4 B smoke test, including an
 end-to-end CCGMS/TCPser BBS connection, reboot, and shutdown.
 
+## What's new in 1.2
+
+**Assembly64 Online Library** brings search and downloads to **CONTENT → Online
+Library**. Find software, narrow results with filters, read details, choose files
+and save them to your local library. Saved software stays available offline.
+[How to use Assembly64](docs/release/online-library.md).
+
+- **Import files from USB:** choose a folder, scan, select supported files, review
+  the destination and import. Unsupported files are explained.
+- **Browse a USB drive safely:** FILES → USB Drive opens Midnight Commander with
+  a read-only source. Copy what you need, press F10, then Safe Unmount.
+- **Take screenshots from SSH:** `pcbm-screenshot` saves Menu, MC, Cover and supported
+  VICE/gameplay pictures in `/home/pcbm/content/screenshots/`.
+- **Choose your startup:** open Menu or start the current RUN machine directly,
+  with normal Cover presentation and F10/Quit return.
+- Clearer file sizes, Back/Parent navigation, duplicate handling and friendly labels.
+
+These features are implemented. **The final 1.2.0 image is being prepared for its
+focused Pi 4 test; it is not published yet.** [1.2 release notes](docs/release/release-notes-1.2.0.md).
+The download section below continues to identify the published 1.1.0 image.
+
+**Powered by Assembly64** — [official website](https://assembly64.hackerswithstyle.se).
+Assembly64 is an independent external service, not owned by Project CBM. Optional
+[PayPal](https://www.paypal.com/donate/?hosted_button_id=8D6YK9LXULYPE) and
+[Ko-fi](https://ko-fi.com/assembly64) links support its team. Project CBM bundles no
+Assembly64 collection. Bring or download only software you are entitled to use.
+
 ## What Is Included
 
 - VICE 3.10 and eleven profiles covering C64, SuperCPU 64, C64 DTV, C128
   (40/80 columns), VIC-20, Plus/4, PET and the CBM-II families.
-- Guided first boot, keyboard Menu, machine Covers and a shared emulator-return path.
-- Organized content library and USB import with a read-only source and safe unmount.
-- CCGMS 2021 for BBS calls through TCPser, plus SID-Wizard for creating music.
-- Midnight Commander file management; opt-in file sharing, SSH and network discovery.
-
-In **1.1.0**, IMPORT scans the selected USB partition recursively and preserves
-relative folders; it does not offer preview or per-file selection. Online Library
-and the redesigned USB workflow are future work. Bring software you are entitled
-to use; a recognized file format does not establish redistribution rights.
+- Guided first boot, keyboard Menu and machine Covers.
+- Organized local library, guided USB import and separate read-only USB browsing.
+- CCGMS 2021 for BBS calls through TCPser and SID-Wizard for creating music.
+- Midnight Commander, optional file sharing, SSH and network discovery.
 
 ## Hardware Support
 
@@ -46,7 +68,7 @@ been tested.
 ## Screenshots
 
 These retained **1.0.0** images illustrate the project's appearance; they are not
-screenshots of 1.1.0. Menu labels and behavior have changed. No replacement screens
+screenshots of 1.2.0. Menu labels and behavior have changed. No replacement screens
 have been fabricated.
 
 <img src="screenshots/v1.0.0/02-main-menu.png" alt="Historical Project CBM 1.0.0 Main Menu" width="480">
@@ -88,7 +110,7 @@ ZIP/TAR files are not bootable images.
 Product owns OS/runtime integration, image construction and authoritative user
 documentation. [Project CBM Menu](https://github.com/cdaters/project-cbm-menu) owns
 Menu presentation, scripts, artwork and its independently versioned package.
-The active public development/documentation branch is `feature/1.1-build-foundation`;
+The 1.2 development branch is `feature/1.2-content-ingestion`;
 `main` is retained as historical repository history.
 
 - `runtime/`: appliance integration and validated operations.
@@ -102,10 +124,9 @@ is not yet complete; a published image is not a claim of independent reproducibi
 
 ## Roadmap
 
-The accepted unified content-ingestion design targets provisional **1.2.0**:
-USB preview/selection under CONTENT, separate read-only USB browsing, and Online
-Library with Assembly64 once legitimate service access is established. These
-features are **not implemented in 1.1.0**. [Roadmap](docs/design/post-1.1-roadmap.md).
+Assembly64, guided USB import, read-only USB browsing, SSH screenshots and startup
+improvements are implemented for 1.2. Future work includes more hardware testing,
+one-step Save & Run, and improved public build tooling. [Roadmap](docs/design/post-1.1-roadmap.md).
 
 ## License / Upstream Software
 

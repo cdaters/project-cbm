@@ -1,3 +1,10 @@
+project-cbm-kms-capture (1.0.0-1) trixie; urgency=medium
+
+  * Finalize package identity; retain qualified bounded KMS capture implementation.
+  * Preserve separate GPL-2.0-only source and upstream notices.
+
+ -- Project CBM contributors <1015402+cdaters@users.noreply.github.com>  Sun, 27 Sep 2026 05:00:00 +0000
+
 project-cbm-kms-capture (1.0.0~dev2-1) trixie; urgency=medium
 
   * Permit ordinary scanout page flips while validating display mode and layout.

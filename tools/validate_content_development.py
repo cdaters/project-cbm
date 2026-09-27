@@ -6,14 +6,14 @@ from pathlib import Path
 import subprocess
 import tempfile
 from build_contracts import read_json
-from development_identity import development_number
+from development_identity import content_1_2
 from validate_rc3 import inspect as inspect_previous
 
 
 def inspect(root, boot, record, kit):
     lock = read_json(kit / 'release-lock.json')
-    if not development_number(lock['product']):
-        raise ValueError('explicit private development image required')
+    if not content_1_2(lock['product']):
+        raise ValueError('explicit 1.2 image required')
     result = inspect_previous(root, boot, record, kit)
     checks = result['checks']
     def text(name): return (root / name).read_text()
@@ -48,11 +48,12 @@ def inspect(root, boot, record, kit):
         helper=root/'usr/libexec/pcbm-kms-capture'
         checks['capture_separate_native_helper'] = helper.is_file() and helper.read_bytes().startswith(b'\x7fELF') and helper.stat().st_mode & 0o7777 == 0o755
         checks['capture_no_file_capabilities'] = not subprocess.check_output(['getcap',str(helper)],text=True).strip()
-        checks['capture_exact_package'] = lock['components']['kms-capture']['package']['version'] in ('1.0.0~dev1-1','1.0.0~dev2-1')
+        checks['capture_exact_package'] = lock['components']['kms-capture']['package']['version'] in ('1.0.0~dev1-1','1.0.0~dev2-1','1.0.0-1')
         checks['capture_fixed_sudo'] = ('pcbm ALL=(root) NOPASSWD: /usr/libexec/pcbm-kms-capture ""' in text('etc/sudoers.d/pcbm-operations') and '!use_pty' in text('etc/sudoers.d/pcbm-operations'))
         checks['capture_unprivileged_wrapper'] = 'from project_cbm.screenshot import main' in text('usr/bin/pcbm-screenshot')
         checks['capture_no_alias_or_menu_action'] = not (root/'usr/bin/screenshot').exists() and 'pcbm-screenshot' not in text('usr/bin/pcbm-menu')
         checks['capture_no_shipped_private_pngs'] = not (root/'home/pcbm/screenshots').exists() and not any((root/'home/pcbm/content/screenshots').iterdir())
+        checks['usb_browser_hides_tags'] = 'PCBM_UI_HIDE_TAGS=true' in browse
         checks['guided_import_hides_tags'] = 'PCBM_UI_HIDE_TAGS=true' in menu
     if (root/'usr/bin/pcbm-online-session').exists():
         online = text('usr/share/project-cbm/runtime/project_cbm/online_backend.py')
@@ -70,7 +71,7 @@ def inspect(root, boot, record, kit):
         checks['screenshot_content_share_default'] = "'/content/screenshots/'" in text('usr/share/project-cbm/runtime/project_cbm/screenshot.py')
         checks['reusable_breadcrumbs'] = 'pcbm_ui_backtitle' in text('usr/share/project-cbm-menu/pcbm-ui.sh') and 'pcbm_ui_backtitle' in text('usr/bin/pcbm-dialog-lib.sh')
     result['result'] = 'PASS' if all(checks.values()) else 'FAIL'
-    result['scope'] = 'Private 1.2 exact installed image; physical USB/exFAT/Pi behavior UNTESTED'
+    result['scope'] = '1.2 exact installed image; physical USB/exFAT/Pi behavior UNTESTED'
     return result
 
 

@@ -12,7 +12,7 @@ capture=${6:-build}
 [[ $capture == build || $capture == reuse ]]
 [[ $selection == runtime || $selection == runtime-menu || $selection == runtime-vice || $selection == runtime-menu-vice ]]
 [[ $attempt =~ ^[1-9][0-9]?$ ]]
-[[ $menu =~ ^1\.1\.0(_(poc4\.[0-9]+|rc[0-9]+))?$ || $menu =~ ^1\.2\.0_dev[1-9][0-9]*$ ]]
+[[ $menu =~ ^1\.1\.0(_(poc4\.[0-9]+|rc[0-9]+))?$ || $menu =~ ^1\.2\.0(_dev[1-9][0-9]*)?$ ]]
 out="$w/packages/poc4-attempt$attempt"
 mkdir "$out"
 mkdir "$out/product"

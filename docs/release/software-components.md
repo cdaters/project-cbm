@@ -37,17 +37,20 @@ you exactly what was installed.
 
 ## Exact package reference
 
-Project CBM 1.1.0 uses Runtime **1.1.0-1**, Menu
-**1.1.0-1+pcbm1**, VICE **3.10-1+pcbm4**, and TCPser **1.1.6~beta-1+pcbm1**.
-The base reports Debian 13.7. These technical versions identify the published 1.1.0 release.
-[Release assets](https://github.com/cdaters/project-cbm/releases/tag/v1.1.0) include
+Project CBM 1.2.0 uses Runtime **1.2.0-1**, Menu **1.2.0-1+pcbm1**,
+KMS capture **1.0.0-1**, VICE **3.10-1+pcbm4**, and TCPser **1.1.6~beta-1+pcbm1**.
+The base is Raspberry Pi OS Lite / Debian 13 Trixie. The KMS helper is a separate
+GPL-2.0-only component, with corresponding source and pcercuei/kmsgrab reference
+notices; the wrapper remains Project CBM code.
+[Release assets](https://github.com/cdaters/project-cbm/releases/tag/v1.2.0) include
 corresponding-source archives, inventories and notices.
 
-The release [installed-packages.json](installed-packages.json) records all 672 installed
+The historical 1.1.0 [installed-packages.json](installed-packages.json) records its 672 installed
 package/version/architecture records, package size metadata, source-inventory checksum
 and the raw image hash they were measured from. It was generated from actual-image
 validation output, not a proposed apt list. It includes no payloads or credentials.
-This repository reference is not automatically added to the already-frozen image.
+Use the separate inventory accompanying the 1.2.0 release for the new image.
+This historical reference is not a claim about the new image.
 
 For a new build, the existing documentation-safe exporter accepts the validator's TSV:
 
@@ -76,20 +79,20 @@ seven unrelated files from the upstream compilation are excluded. StrikeTerm is 
 longer bundled, by product choice rather than a finding that redistribution is prohibited.
 
 Craig Daters created the Project CBM logos, primary branding and seven machine Covers
-and authorized their inclusion and redistribution with Project CBM 1.1.0. The Menu
+and authorized their inclusion and redistribution with Project CBM 1.1.0 and 1.2.0. The Menu
 package's copyright file distinguishes MIT code/documentation from this release-specific
 artwork permission. It does not grant blanket MIT rights to the artwork.
 
 VICE's program license and its ROM copyrights are distinct. The image retains only the
 ROM/resource set from the pinned upstream VICE distribution, with its notices and
 provenance. This does not claim that Commodore/DTV ROMs are GPL. The project records the historical permission-documentation uncertainty and the
-1.1.0 release decision;
+1.1.0 release decision, extended unchanged to 1.2.0;
 additional proprietary ROM collections are not included. Supply additional games, demos,
 music and resources only when you are entitled to use them.
 
 Release SHA-256 checksums, component identities, package inventory and license/source
 notices provide useful verification. Formal cryptographic release signing and a standardized
-SPDX/CycloneDX software bill of materials are deferred beyond 1.1.0. The package inventory
+SPDX/CycloneDX software bill of materials are deferred beyond 1.2.0. The package inventory
 is not advertised as a complete standardized SBOM, nor is the release advertised as signed.
 
 The [public-release audit](../documentation/public-bootstrap.md) lists genuine remaining

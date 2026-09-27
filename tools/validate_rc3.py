@@ -8,7 +8,7 @@ import subprocess
 import tempfile
 from build_contracts import read_json
 from validate_rc1 import inspect_runtime
-from development_identity import development_number
+from development_identity import content_1_2
 
 
 def narrow_metadata_policy(source):
@@ -71,7 +71,7 @@ def inspect(root, boot, record, kit):
     checks['getty_quiet_only_tty1'] = '--skip-login --noissue --nohostname' in text('etc/systemd/system/getty@tty1.service.d/autologin.conf') and '--skip-login' not in text('etc/systemd/system/getty@tty2.service.d/autologin.conf')
     checks['metadata_filter_before_traversal'] = 'if host_metadata(name):ignored_metadata+=1;continue' in importer and importer.index('if host_metadata(name)') < importer.index('if stat.S_ISDIR(status.st_mode)')
     metadata_source = importer
-    if development_number(read_json(kit/'release-lock.json')['product']):
+    if content_1_2(read_json(kit/'release-lock.json')['product']):
         checks['shared_metadata_policy_import'] = any(
             isinstance(n, ast.ImportFrom) and n.level == 1 and n.module == 'usb_discovery'
             and {(a.name, a.asname) for a in n.names} == {('HOST_METADATA', None), ('host_metadata', None)}
@@ -89,7 +89,7 @@ def inspect(root, boot, record, kit):
             body=functions[0].read_text() if len(functions)==1 else ''
             checks[name+'_quiet_fsck_and_verbose_recovery'] = ('Project CBM: successful quiet checks' in body and '>/run/initramfs/pcbm-fsck.console 2>&1' in body and 'if [ "$FSCKCODE" -ne 0 ]; then cat /run/initramfs/pcbm-fsck.console; fi' in body and 'fsck $spinner $force $fix -V' in body and 'filesystem failed' in body)
     lock=read_json(kit/'release-lock.json')
-    if development_number(lock['product']) or lock['product']['candidate'] in ('private-engineering-rc4','release'):
+    if content_1_2(lock['product']) or lock['product']['candidate'] in ('private-engineering-rc4','release'):
         import io,tarfile
         from ccgms_application import verify
         payload=verify(kit,lock['optional_software']['ccgms'])

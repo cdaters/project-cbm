@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Project CBM 1.1.0 release composition; owner policy 2026-09-20",
+  "scope": "Project CBM 1.2.0 release composition; owner extension 2026-09-27",
   "items": [
     {
       "component": "Project CBM integration",
@@ -19,7 +19,7 @@
       "origin": "official upstream source archive",
       "license": "GPL-2+ code; upstream per-file ROM/data notices",
       "payload": "SDL2 executables and upstream runtime data",
-      "public_distribution": "Retain established pinned upstream ROM/resources and notices under owner 1.1.0 policy; known historical permission-documentation uncertainty retained, not a GPL claim or automatic blocker absent new contrary evidence"
+      "public_distribution": "Retain established pinned upstream ROM/resources and notices under owner 1.1.0 and 1.2.0 policy; known historical permission-documentation uncertainty retained, not a GPL claim or automatic blocker absent new contrary evidence"
     },
     {
       "component": "TCPser",
@@ -36,17 +36,17 @@
     {
       "component": "Project CBM machine covers",
       "origin": "existing project-cbm-menu/covers; exact files in Menu docs/cover-artwork.json",
-      "license": "Project CBM 1.1.0 release-specific inclusion/redistribution permission; not blanket MIT",
+      "license": "Project CBM 1.1.0 and 1.2.0 release-specific inclusion/redistribution permission; not blanket MIT",
       "payload": "seven unchanged machine-specific JPEGs",
-      "public_distribution": "Owner explicitly authorized inclusion and redistribution with Project CBM 1.1.0",
+      "public_distribution": "Owner explicitly authorized inclusion and redistribution with Project CBM 1.1.0 and 1.2.0",
       "creator_copyright_owner": "Craig Daters"
     },
     {
       "component": "Project CBM primary presentation",
       "origin": "Menu docs/primary-artwork.json; unchanged exact released v1.0.0 pcbmcover1.jpg",
-      "license": "Project CBM 1.1.0 release-specific inclusion/redistribution permission; not blanket MIT",
+      "license": "Project CBM 1.1.0 and 1.2.0 release-specific inclusion/redistribution permission; not blanket MIT",
       "payload": "one existing primary JPEG; no machine Cover replacement",
-      "public_distribution": "Owner explicitly authorized inclusion and redistribution with Project CBM 1.1.0",
+      "public_distribution": "Owner explicitly authorized inclusion and redistribution with Project CBM 1.1.0 and 1.2.0",
       "creator_copyright_owner": "Craig Daters"
     },
     {
@@ -60,6 +60,12 @@
       "origin": "Exact source/license selection in build/optional/sid-wizard.json",
       "license": "Established per-selection source/license evidence",
       "payload": "Existing selected core program disk and source/notices"
+    },
+    {
+      "component": "Project CBM KMS capture",
+      "origin": "separate components/pcbm-kms-capture; pcercuei/kmsgrab reference d4c6061a59f4b7ecb6b39f96c7d39a5d5f48b702",
+      "license": "GPL-2.0-only; corresponding source and notices retained",
+      "payload": "bounded native screenshot helper; no bundled captured images"
     }
   ],
   "excluded": [

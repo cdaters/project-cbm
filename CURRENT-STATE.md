@@ -1,3 +1,23 @@
+# Final 1.2.0 release preparation / candidate26 — 2026-09-27 UTC
+
+Owner authorizes final USB presentation correction, new frozen candidate/full checks,
+focused Pi4 smoke and conditional publication only after that exact image passes.
+Menu fix0b08624 committed separately; focused Menu11 PASS. Actual installed PTY
+rendering check added. Runtime/helper behavior unchanged; final package identities
+and updated installed user guides require new packages. Factory adds explicit1.2
+release admission while preserving historical1.1 and private-development checks.
+
+Owner explicitly extends unchanged branding/Covers permission and existing pinned
+VICE ROM policy to1.2.0. No new media or ROM collection admitted. Final Product1.2.0,
+Menu1.2.0 and capture1.0.0 identities will be built before physical testing; distribution
+remains private/unpublished. Never relabel/mutate25 or publish untested changed bytes.
+
+In progress: plain user docs in both repos, final contract/native/package/image gates,
+then freeze26 and bounded owner procedure. Builder resumed with unchanged host guard;
+50,790,412,288 bytes guest free at start. Evidence qualification/release-1.2-attempt26.
+Publication remains conditional on new physical results, asset/source/privacy audit.
+Unknown .qwen/ and memory/ preserved. Earlier checkpoints below remain historical.
+
 # Attempt25 Guided Import reconfirmed PASS — 2026-09-27 UTC
 
 [Guided Import addendum](docs/qualification/attempt25-guided-import-2026-09-27.md)

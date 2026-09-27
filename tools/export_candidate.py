@@ -33,11 +33,11 @@ def main():
             with path.open('xb') as stream:subprocess.run(command,stdout=stream,check=True)
         descriptors.append({'path':str(path.relative_to(w)),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'size_bytes':path.stat().st_size})
     result={'attempt':a.attempt,'integration_commit':commit,'menu_commit':mc,'menu_tag':a.menu_tag,'menu_tag_object':git(menu,'rev-parse',a.menu_tag),'archives':descriptors}
-    if a.menu_tag=='v1.1.0':
-        if git(root,'cat-file','-t','v1.1.0')!='tag' or git(root,'rev-parse','v1.1.0^{commit}')!=commit:
+    if a.menu_tag in ('v1.1.0','v1.2.0'):
+        if git(root,'cat-file','-t',a.menu_tag)!='tag' or git(root,'rev-parse',a.menu_tag+'^{commit}')!=commit:
             raise ValueError('final Product source requires exact annotated release tag')
-        result['integration_tag']='v1.1.0'
-        result['integration_tag_object']=git(root,'rev-parse','v1.1.0')
+        result['integration_tag']=a.menu_tag
+        result['integration_tag_object']=git(root,'rev-parse',a.menu_tag)
     path=w/'inputs'/f'candidate-export-attempt{a.attempt}.json'
     with path.open('x') as stream:json.dump(result,stream,indent=2);stream.write('\n')
     print(json.dumps(result,indent=2))

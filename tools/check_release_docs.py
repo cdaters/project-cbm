@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Read-only release-documentation checks; never execute appliance/build commands."""
+import argparse
 import ast
 import json
 from pathlib import Path
@@ -65,6 +66,10 @@ def source_references(text):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--release-version", choices=("1.1.0", "1.2.0"), default="1.2.0")
+    args = parser.parse_args()
+    current = args.release_version == "1.2.0"
     checks = 0
     links = 0
     code_blocks = 0
@@ -113,10 +118,11 @@ def main():
 
     manual = (ROOT/'docs/release/user-guide.md').read_text()
     all_docs = '\n'.join(p.read_text() for p in (ROOT/'docs/release').glob('*.md'))
-    main_source = subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:scripts/pcbm-menu'],text=True)
+    main_source = ((MENU/'scripts/pcbm-menu').read_text() if current else
+                   subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:scripts/pcbm-menu'],text=True))
     block = main_source.split('main_items=(', 1)[1].split('\n  )', 1)[0]
     main_items = re.findall(r'^\s+"([A-Z]+)"', block, re.M)
-    check(len(main_items) == 8, 'Review main menu count change')
+    check(len(main_items) == (7 if current else 8), 'Review main menu count change')
     for label in main_items:
         check(f'**{label}**' in manual, f'Missing Main Menu {label}')
     profiles = json.loads((ROOT/'runtime/data/profiles.json').read_text())['profiles']
@@ -144,13 +150,21 @@ def main():
             check(value in source, f'Path/account source changed: {relative}: {value}')
     # Stable manuals describe immutable released tags, not a later development tip.
     versions = {
-        'build/packages/runtime/debian/changelog': '1.1.0-1',
+        'build/packages/runtime/debian/changelog': '1.2.0-1' if current else '1.1.0-1',
         'build/packages/vice/debian/changelog': '3.10-1+pcbm4',
         'build/packages/tcpser/debian/changelog': '1.1.6~beta-1+pcbm1',
     }
     for relative, version in versions.items():
-        check(version in subprocess.check_output(['git','-C',str(ROOT),'show','v1.1.0:'+relative],text=True).splitlines()[0] and version in all_docs, f'Version mismatch: {relative}')
-    check('1.1.0-1+pcbm1' in subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:debian/changelog'],text=True).splitlines()[0] and '1.1.0-1+pcbm1' in all_docs, 'Menu version mismatch')
+        text = ((ROOT/relative).read_text() if current else
+                subprocess.check_output(['git','-C',str(ROOT),'show','v1.1.0:'+relative],text=True))
+        check(version in text.splitlines()[0] and version in all_docs, f'Version mismatch: {relative}')
+    menu_version = '1.2.0-1+pcbm1' if current else '1.1.0-1+pcbm1'
+    menu_changelog = ((MENU/'debian/changelog').read_text() if current else
+                      subprocess.check_output(['git','-C',str(MENU),'show','v1.1.0:debian/changelog'],text=True))
+    check(menu_version in menu_changelog.splitlines()[0] and menu_version in all_docs, 'Menu version mismatch')
+    if current:
+        check('1.0.0-1' in (ROOT/'components/pcbm-kms-capture/debian/changelog').read_text().splitlines()[0]
+              and '1.0.0-1' in all_docs, 'KMS package version mismatch')
     for rel, flags in {
         'tools/freeze_private_candidate.py': ['--attempt', '--previous-attempt', '--runtime-version', '--menu-version', '--product-version', '--candidate'],
         'tools/export_candidate.py': ['--attempt', '--menu-tag'],
@@ -161,6 +175,8 @@ def main():
         source = (ROOT/rel).read_text()
         for flag in flags:
             check(flag in source, f'Documented CLI flag missing: {rel} {flag}')
+    # Preserve the independently bound historical 1.1 inventory. A new image
+    # gets a separate inventory after construction; never relabel the old one.
     inventory = json.loads((ROOT/'docs/release/installed-packages.json').read_text())
     check(inventory['package_count'] == len(inventory['packages']) == 672, 'Installed package manifest count')
     final_result = json.loads((ROOT/'docs/build/final-1.1.0.json').read_text())

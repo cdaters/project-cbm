@@ -1,6 +1,7 @@
-# Project CBM 1.1.0 Documentation
+# Project CBM 1.2 Documentation
 
-Project CBM 1.1.0 is publicly released. Start with the user guides below; you do not
+These guides describe 1.2.0. The final image is awaiting focused physical testing;
+[release availability](../README.md#current-release) is recorded separately. You do not
 need factory or recovery-engineering knowledge to use the image.
 
 ## Start Here
@@ -15,7 +16,7 @@ need factory or recovery-engineering knowledge to use the image.
 
 - [Main Menu](release/user-guide.md#main-menu).
 - [RUN / VICE basics](release/user-guide.md#run-and-vice-basics) and [Machines](release/user-guide.md#machines).
-- [CONTENT and library layout](release/content.md) / [USB Import](release/content.md#usb-import).
+- [CONTENT and library layout](release/content.md) / [USB Import](release/content.md#import-from-usb).
 - [CCGMS / TCPser BBS calls](release/networking.md#call-a-bbs-with-ccgms-2021): use **Swift / Turbo DE** with the shipped configuration.
 - [FILES / Midnight Commander](release/user-guide.md#files-and-midnight-commander).
 - [File Sharing](release/networking.md#file-sharing) / [SSH and SFTP](release/networking.md#remote-access).
@@ -24,8 +25,9 @@ need factory or recovery-engineering knowledge to use the image.
 - [Safe shutdown](release/getting-started.md#your-first-c64-session) / [backup and user recovery](release/recovery.md).
 - [Startup display](release/boot.md) and [customization](release/customization.md).
 
-These guides describe **shipped 1.1.0 behavior**. USB preview/selection, explicit
-USB browsing and Online Library belong to the accepted future design, not this image.
+These guides cover Assembly64 Online Library, guided USB import, read-only USB
+browsing, SSH screenshots and Menu/direct startup. The 1.1.0 manuals remain at
+the immutable 1.1.0 release tag.
 
 ## Development / Reference
 
@@ -50,3 +52,9 @@ USB browsing and Online Library belong to the accepted future design, not this i
 
 Dated audits, build attempts and qualification records preserve what was known at
 that time. They are not the starting instructions for operating the current image.
+
+## New in 1.2
+
+- [Assembly64 Online Library](release/online-library.md).
+- [Screenshots from SSH](release/screenshots.md).
+- [1.2.0 release notes](release/release-notes-1.2.0.md).

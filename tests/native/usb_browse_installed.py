@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import pty
+import re
 import select
 import signal
 import struct
@@ -82,7 +83,11 @@ class Console:
         self.expect(b'Files')
         self.send((KEYS['kcud1'] if usb else b'')+b'\r')
         if usb:
-            self.expect(b'Choose a partition');self.send(b'\r')
+            screen=self.expect(b'Choose a partition')
+            self.drain();screen+=bytes(self.buffer)
+            assert b'USB partition 1:' in screen, 'friendly partition label missing'
+            assert not re.search(rb'[0-9a-f]{32}',screen), 'opaque partition token rendered'
+            self.send(b'\r')
             self.expect(b'Mount Read-Only');self.send(b'\r')
         mc=wait_for(lambda:processes('mc'))[0];self.drain(.6)
         return mc
