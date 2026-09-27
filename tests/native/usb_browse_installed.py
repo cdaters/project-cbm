@@ -85,6 +85,9 @@ class Console:
         if usb:
             screen=self.expect(b'Choose a partition')
             self.drain();screen+=bytes(self.buffer)
+            # Dialog highlights the first letter separately; test visible text,
+            # not a byte-contiguous label across SGR/cursor control sequences.
+            screen=re.sub(rb'\x1b\[[0-?]*[ -/]*[@-~]',b'',screen).replace(b'\x0f',b'')
             assert b'USB partition 1:' in screen, 'friendly partition label missing'
             assert not re.search(rb'[0-9a-f]{32}',screen), 'opaque partition token rendered'
             self.send(b'\r')
