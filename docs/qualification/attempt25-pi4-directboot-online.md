@@ -1,7 +1,9 @@
 # Attempt25: direct boot, console restoration and Online Library retest
 
-PRIVATE NON-RELEASE 1.2.0-dev.6. Preparation only; NOT READY TO FLASH until the
-completed build record supplies exact raw/XZ hashes. Never update attempt24 in place.
+PRIVATE NON-RELEASE 1.2.0-dev.6. Built and validated; physical UNTESTED.
+Raw SHA-256 `adc26fff5355d587547a72dcba737baab7f931d3d66ac646588151c91bb86d49` (3095396352 bytes).
+XZ SHA-256 `77d61462479d26593d60dbce04b1e483365e371103d53664205b97f04f17d671` (599632072 bytes).
+[Exact paths/packages/build checks](../build/private-1.2-dev6-attempt25.md). Never update attempt24 in place.
 Use separate media. Preserve its captures, failures and keyboard-mode chronology.
 
 1. With boot preference Menu, check a responsive Menu, normal RUN/Cover/visible

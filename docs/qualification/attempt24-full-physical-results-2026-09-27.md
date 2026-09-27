@@ -76,6 +76,24 @@ Information with Refresh/Back. Installed tests must include delayed replies, a
 failed directory call, explicit retry, persistence and retained multi-filter state.
 Do not merely add sleep or label the original intermittent trigger explained.
 
+## Additional retained keyboard-baseline evidence
+
+Inspection of the already sealed pre-termination diagnostics establishes a narrower
+fact than the unmeasured post-TERM state. Primary boot at monotonic11.980 captured
+keyboard3 (`K_UNICODE`) and VT_AUTO. The overlapping launch at13.622 captured
+keyboard4 (`K_OFF`, input disabled) and VT_PROCESS before its machine Cover;
+its Cover cleanup still recorded that same baseline at16.159. Constants were
+verified against the native Linux `kd.h`/`vt.h` headers. This is not K_RAW (0).
+
+The existing launcher restores its saved keyboard baseline, so capturing K_OFF
+while boot artwork is active supplies a concrete mechanism for disabled input
+after launch cleanup. Ordering handoff/reap/restore before the launcher captures
+its baseline corrects this overlap for both display and input ownership. However,
+no retained measurement here establishes the exact mode immediately after the
+owner's later TERM. The external `kbd_mode -s` contamination and the UNKNOWN
+pre-command post-TERM mode remain explicitly preserved. Physical keyboard recovery
+after the source correction still requires qualification on the new image.
+
 ## Evidence and next candidate
 
 Private evidence: `qualification/attempt24-full-owner-review-2026-09-27` under

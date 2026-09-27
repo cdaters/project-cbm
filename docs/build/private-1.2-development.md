@@ -1,3 +1,11 @@
+## Direct boot and Online presentation — private dev6 / attempt25
+
+[Built/validated candidate](private-1.2-dev6-attempt25.md),
+[Pi4 focused retest](../qualification/attempt25-pi4-directboot-online.md).
+Boot artwork handoff correction and Menu dev5 persistent information/errors are
+separate logical changes. Runtime and GPL capture bytes strictly reused. Attempt24
+physical evidence remains immutable; BIN policy unchanged. STOP for physical testing.
+
 # Private 1.2 development image preparation
 
 **NON-RELEASE. Physical Pi qualification is pending.** This is a separate engineering

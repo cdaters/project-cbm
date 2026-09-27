@@ -1,3 +1,27 @@
+# Private dev6 / attempt25 built and validated — 2026-09-27 UTC
+
+**PRIVATE NON-RELEASE. STOP for Pi4 physical testing.**
+[Build/identity](docs/build/private-1.2-dev6-attempt25.md),
+[focused exact-hash procedure](docs/qualification/attempt25-pi4-directboot-online.md).
+Frozen Product decf2b31d2d965391e804791e26b19404b655312; Menu 5260d5332a2fb45fcb472ff9fb0f3b9fa86610fc / dev5.
+Boot handoff4bde3bb prevents overlapping primary/VICE display and input-baseline
+capture. Menu5260d53 makes error/Server information acknowledgment explicit and
+bounds preset paging. Original intermittent Online trigger remains unconfirmed;
+new physical retest required. BIN unchanged; attempt24 recovery chronology preserved.
+
+Product353/Menu122, installed USB11/screenshot12/Online8; 372+4 image checks,
+7 privacy,11 KMS security,673 packages and full raw/XZ equivalence PASS.
+Only Menu rebuilt; strict exact Runtime dev4/GPL capture dev2 reuse PASS.
+Lock 52f551e722aeb6edcee31f87ccdbc376c0ef1407dcf8c63e733d482ea765ab1a.
+Raw 3095396352 bytes SHA-256 adc26fff5355d587547a72dcba737baab7f931d3d66ac646588151c91bb86d49.
+XZ 599632072 bytes SHA-256 77d61462479d26593d60dbce04b1e483365e371103d53664205b97f04f17d671.
+
+Prior images/stable tags/evidence unchanged. No live patch/publication. Recovery
+archive/private-1.2-dev6-attempt25-2026-09-27 binds final docs/bundles/inputs/tests;
+verify external manifest/restore results. Independent encrypted custody OUTSTANDING.
+Lima stopped after verified export; guest free space 50,790,662,144 bytes.
+No other feature/release starts automatically; unknown .qwen/memory preserved.
+
 # Distinct private dev6 / attempt25 preparation — 2026-09-27 UTC
 
 [Full attempt24 owner results](docs/qualification/attempt24-full-physical-results-2026-09-27.md)
