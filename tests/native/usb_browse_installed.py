@@ -74,7 +74,8 @@ class Console:
         until=time.monotonic()+timeout
         while time.monotonic()<until:
             self.drain()
-            if text in self.buffer:
+            visible=re.sub(rb'\x1b\[[0-?]*[ -/]*[@-~]',b'',bytes(self.buffer)).replace(b'\x0f',b'')
+            if text in visible:
                 found=bytes(self.buffer);self.buffer.clear();return found
         raise AssertionError('screen missing '+repr(text)+' tail='+repr(bytes(self.buffer[-1500:])))
     def send(self, value):
