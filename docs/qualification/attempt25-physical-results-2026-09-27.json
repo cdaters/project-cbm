@@ -1,0 +1,222 @@
+{
+  "format": "project-cbm.physical-qualification-attestation",
+  "attempt": 25,
+  "product": "1.2.0-dev.6",
+  "private_non_release": true,
+  "date_utc": "2026-09-27",
+  "hardware": "Raspberry Pi 4 Model B Rev 1.4",
+  "build_id": "52f551e722aeb6edcee31f87ccdbc376c0ef1407dcf8c63e733d482ea765ab1a",
+  "artifacts": {
+    "raw": {
+      "path": "artifacts/private-1.2-dev6-attempt-25/2026-09-27-project-cbm-1.2.0-dev.6-lite-private-1.2-dev6.img",
+      "size_bytes": 3095396352,
+      "sha256": "adc26fff5355d587547a72dcba737baab7f931d3d66ac646588151c91bb86d49"
+    },
+    "xz": {
+      "path": "artifacts/private-1.2-dev6-attempt-25/image_2026-09-27-project-cbm-1.2.0-dev.6-lite-private-1.2-dev6.img.xz",
+      "size_bytes": 599632072,
+      "sha256": "77d61462479d26593d60dbce04b1e483365e371103d53664205b97f04f17d671"
+    }
+  },
+  "evidence_root": "qualification/attempt25-physical-results-2026-09-27",
+  "screenshots": [
+    {
+      "size_bytes": 40913,
+      "sha256": "2ce0d43bf40e55a62d02f04a46e15e28e1e11f76a300da56cfc5031ba49f52ce",
+      "description": "Server Information with Refresh/Back",
+      "path": "screenshots/pcbm-20260927T041526Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 34994,
+      "sha256": "a8c362c6c3fa7720e1fcf22d3995ec4512980591d3adebaa1cc78d232ea6c059",
+      "description": "Files menu",
+      "path": "screenshots/pcbm-20260927T041842Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 46475,
+      "sha256": "7fb7cb8d99f8eb7a9f5461d19201c0df779d4b3d06cbbb43b261d274af5e187d",
+      "description": "Ordinary MC library",
+      "path": "screenshots/pcbm-20260927T041901Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 46675,
+      "sha256": "5aaf0cf8e12810700154be01435ea45b0bdb1379323142310763be34e13da9c2",
+      "description": "Ordinary MC nested navigation",
+      "path": "screenshots/pcbm-20260927T041946Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 47013,
+      "sha256": "ceefaeae669881bbc45038e6fa9813218051d1cbe0f52770faf14df122faf7a3",
+      "description": "Local copy prompt",
+      "path": "screenshots/pcbm-20260927T042042Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 42697,
+      "sha256": "8cd493c58f1907c999ded26b88d14b2bb888990d7ce926756a882a646945e64a",
+      "description": "Local destination entry after copy",
+      "path": "screenshots/pcbm-20260927T042057Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 34994,
+      "sha256": "a8c362c6c3fa7720e1fcf22d3995ec4512980591d3adebaa1cc78d232ea6c059",
+      "description": "Return to Files",
+      "path": "screenshots/pcbm-20260927T042131Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 35951,
+      "sha256": "08e56c7f1e6036c02335bc20dde9266693c1ea6e6f7404be7e4b9677b28a1f88",
+      "description": "USB picker exposes opaque internal ID",
+      "path": "screenshots/pcbm-20260927T042242Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 36330,
+      "sha256": "a58aef29511886195aeebb6aba0b5ae85f2ea6bbb316d72c64d86f29150e3535",
+      "description": "Mount Read-Only explanation",
+      "path": "screenshots/pcbm-20260927T042258Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 43680,
+      "sha256": "5ac27789bb2dd7f774afaa02503f7f252294e577991dd4900faaf1d7c9606434",
+      "description": "USB MC root",
+      "path": "screenshots/pcbm-20260927T042318Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 44163,
+      "sha256": "6b6b512ba237d3b97c43c590c491db3a529e2908021cde3caab3c57b3ac0bc84",
+      "description": "USB MC nested navigation",
+      "path": "screenshots/pcbm-20260927T042343Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 45905,
+      "sha256": "d02826be5ea87d45bc6e02b4ed863fabebb49d24050fd20afdc1baa5383e81f9",
+      "description": "USB SID copy prompt",
+      "path": "screenshots/pcbm-20260927T042416Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 40431,
+      "sha256": "7cc40430e44016a0068391927ae6f95fbb8fd48b5da3f2ed70f627fd37d9ffdb",
+      "description": "SID visible at destination",
+      "path": "screenshots/pcbm-20260927T042429Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 36166,
+      "sha256": "c24aa77c2a90d63f91f80473912a400abc3561f1eb4312cc9489103715db66da",
+      "description": "Post-F10 Safe Unmount screen",
+      "path": "screenshots/pcbm-20260927T042450Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 32880,
+      "sha256": "750e061f38512915d53f0d0fe8fd10678bd05621accddec38e37f603b8e9caa0",
+      "description": "USB released; safe to remove",
+      "path": "screenshots/pcbm-20260927T042514Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 34969,
+      "sha256": "419a35d1ec44fab4d75b5225a65bf4ce210ec74a2f83a9d050360a375056014a",
+      "description": "Return to Files after release",
+      "path": "screenshots/pcbm-20260927T042547Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 254340,
+      "sha256": "17527cdb7306a1e0071a787287bcf059329510b7cb908a32ba5319a37ad65c73",
+      "description": "Gameplay frame one",
+      "path": "screenshots/pcbm-20260927T042956Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 252108,
+      "sha256": "82c2355a157db550480e608a9c9660029713cc2c007d29b8bda50f4deb72c06e",
+      "description": "Gameplay frame two",
+      "path": "screenshots/pcbm-20260927T042959Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    },
+    {
+      "size_bytes": 306976,
+      "sha256": "5e36fbe2bdae4e6e29e9a5c8031dcdb701124ec283be51162dd9832afd8a9361",
+      "description": "C64 Cover",
+      "path": "screenshots/pcbm-20260927T041719Z.png",
+      "width": 1920,
+      "height": 1080,
+      "visually_reviewed": true
+    }
+  ],
+  "results": {
+    "direct_boot": "PASS",
+    "direct_boot_sigterm_keyboard_cleanup": "PASS",
+    "assembly64_filter_ui": "PASS",
+    "assembly64_server_information": "PASS",
+    "ordinary_files_mc": "PASS",
+    "usb_mc_copy_f10_normal_release": "PASS",
+    "moving_gameplay_capture": "PASS",
+    "normal_interval_c64_cover_capture": "PASS",
+    "guided_import_parent_back_sizes_hidden_ids": "UNTESTED",
+    "files_usb_partition_picker_hidden_opaque_id": "FAIL",
+    "deliberate_busy_unmount_physical": "UNTESTED",
+    "failed_launch_fault_injection_physical": "UNTESTED",
+    "provider_outage_physical": "UNTESTED"
+  },
+  "evidence_basis": "Owner physical observations; agent read-only installed identity/package verification, PNG copy/hash checks and direct visual review. No agent physical tests.",
+  "only_remaining_focused_functional_check": "Guided Import Parent/Back/readable sizes/hidden IDs",
+  "open_presentation_finding": "FILES -> USB partition picker shows opaque tag; separate from guided Import and functional USB PASS",
+  "limits": [
+    "No all-PASS candidate or release claim",
+    "No measured timing or repeat-cycle count",
+    "No physical fault-injection pass inferred from automated tests",
+    "No tear-free or multi-display guarantee",
+    "Earlier attempt24 failure and keyboard chronology unchanged",
+    "No live patch or historical evidence modification"
+  ],
+  "recovery_checkpoint": "archive/attempt25-physical-results-2026-09-27"
+}

@@ -1,3 +1,24 @@
+# Attempt25 owner physical results reviewed — 2026-09-27 UTC
+
+**PRIVATE NON-RELEASE 1.2.0-dev.6.** [Exact-hash physical matrix and evidence](docs/qualification/attempt25-physical-results-2026-09-27.md).
+Direct boot, normal F10 and external VICE SIGTERM/keyboard cleanup, Assembly64
+filters/Server Information, ordinary FILES/USB MC copy/release, moving gameplay
+capture and normal-interval C64 Cover capture: owner physical PASS in stated scope.
+All 19 named PNGs copied, hash-verified and viewed; live identity/packages match25,
+and retained raw/XZ hashes reverified. No live modifications or new physical tests.
+
+Only remaining focused functional check: guided CONTENT Import Parent/Back,
+readable sizes and hidden IDs (plus optional capture of that screen). Separately,
+FILES → USB partition picker visibly exposes an opaque tag: presentation FAIL,
+already evidenced, not a USB terminal/copy/release failure. Do not label all-PASS.
+Next: obtain bounded guided Import reconfirmation; retain the separate presentation
+finding for source follow-up. No new feature, image or release in this update.
+
+Evidence qualification/attempt25-physical-results-2026-09-27; additive recovery
+archive/attempt25-physical-results-2026-09-27, both under ProjectCBM-Work.
+Earlier seals/images/tags unchanged; independent encrypted custody outstanding.
+Unknown .qwen/ and memory/ preserved. Earlier entries below retain their dated scope.
+
 # Private dev6 / attempt25 built and validated — 2026-09-27 UTC
 
 **PRIVATE NON-RELEASE. STOP for Pi4 physical testing.**

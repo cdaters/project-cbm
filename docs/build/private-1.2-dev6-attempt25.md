@@ -1,3 +1,5 @@
+> Later physical status (2026-09-27 UTC): [owner results and reviewed screenshots](../qualification/attempt25-physical-results-2026-09-27.md). Reported focused cases PASS; guided Import reconfirmation pending; separate FILES/USB opaque-tag presentation finding open. Original build-time status and procedure below are retained.
+
 # Private dev6 / attempt25: direct boot and Online Library retest
 
 PRIVATE NON-RELEASE Project CBM 1.2.0-dev.6. Built and validated; physical UNTESTED.
